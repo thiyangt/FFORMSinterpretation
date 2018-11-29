@@ -282,11 +282,27 @@ In this section we provide a step-by-step description on how machine leaning int
 
 #### Feature importance and main effects
 
+First we want to identify the features that have large influence on the response variable: "the best forecasting method". For that we considered three measures of variable importance: i) paermutation-based variable importance, ii) pdp-based variable importance and iii) ice curves-based variable importance. The above 3 measures are calcuated separately for each class. 
+
 \newpage
+
 ```{r vi_yearly, fig.height=10, fig.width=10, fig.cap="", fig.pos="h"}
 ```
 
-First we want to identify the features that have large influence on the response variable: "the best forecasting method". For that we considered three measures of variable importance: i) paermutation-based variable importance, ii) pdp-based variable importance and iii) ice curves-based variable importance. The above 3 measures are calcuated separately for each class. 
+#### Partial dependency curves
+
+\newpage
+```{r pdp_yearly, fig.height=15, fig.width=10, fig.cap="", fig.pos="h"}
+```
+
+#### Two-way interaction effect between features
+
+
+#### PCA space
+
+#### LIME
+
+
 
 
 
