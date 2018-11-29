@@ -40,11 +40,8 @@ read_chunk("src/main.R")
 
 ```
 
-```{r load_packages}
+```{r load_packages, messages=FALSE, warning=FALSE}
 ```
-
-
-
 
 # Introduction
 
@@ -285,6 +282,9 @@ In this section we provide a step-by-step description on how machine leaning int
 
 #### Feature importance and main effects
 
+\newpage
+```{r vi_yearly, fig.height=10, fig.width=10, fig.cap="", fig.pos="h"}
+```
 
 First we want to identify the features that have large influence on the response variable: "the best forecasting method". For that we considered three measures of variable importance: i) paermutation-based variable importance, ii) pdp-based variable importance and iii) ice curves-based variable importance. The above 3 measures are calcuated separately for each class. 
 
