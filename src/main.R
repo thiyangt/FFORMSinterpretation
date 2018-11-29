@@ -11,6 +11,10 @@ library(png)
 library(tsfeatures)
 library(tidyverse)
 library(ggpubr)
+library(forestviews)
+#install_github(repo = 'thiyangt/forestviews')
+library(networkD3)
+library(RColorBrewer)
 
 ## ---- yearly_oob
 load("data/yearly/train_votes.rda") # oob votes from the random forest
@@ -336,3 +340,215 @@ p30 <- ggplot(data = linearitygrid_rmout, aes_string(x = linearitygrid_rmout$lin
 (p1 | p2 | p3) / (p4 | p5 | p6) / (p7 | p8 | p9) / (p10 | p11 | p12) / (p13 | p14 | p15) / (p16 | p17 | p18) / (p19 | p20 | p21) / (p22 | p23 | p24) / (p25 | p26 | p27) / (p28 | p29 | p30)
 
 ## ---- sankey_yearly
+load("data/yearly/rf.yearly.all.paths.rda")
+nd3y <- rf_sankey(all.paths.out = rf.yearly.all.paths, all.nodes = FALSE, plot.node.lim = 6)
+sankeyNetwork(Links = nd3y$links, Nodes = nd3y$nodes , 
+              Source = 'source', Target = 'target', Value = 'value',
+              NodeID = 'name', units = 'Count', fontSize = 12,
+              nodeWidth = 30, NodeGroup = NULL)
+
+## ---- two_way_interaction_yearly
+load("data/yearly/trend.urpprmout.y.rda")
+load("data/yearly/spikiness.diff1y_acf5.y.rda")
+load("data/yearly/hurst.trend.y.rda")
+load("data/yearly/trend.linearityrmout.y.rda")
+colNamestrur <- colnames(trend.urpprmout.y)[27:36]
+colNamessd <- colnames(spikiness.diff1y_acf5.y)[27:36]
+colNamesht <- colnames(spikiness.diff1y_acf5.y)[27:36]
+colNamestl <- colnames(trend.linearityrmout.y)[27:36]
+
+#rwd
+int1 <- ggplot(data=trend.urpprmout.y, 
+              aes_string(x=trend.urpprmout.y$trend, 
+                         y=trend.urpprmout.y$ur_pp, z=colNamestrur[8], fill=colNamestrur[8])) +
+  geom_tile() + 
+  scale_fill_continuous(limits=c(0,0.4), breaks=seq(0,0.4,100))+
+  xlab("trend") + ylab("ur_pp")
+int2 <- ggplot(data=spikiness.diff1y_acf5.y, 
+               aes_string(x=spikiness.diff1y_acf5.y$spikiness, 
+                          y=spikiness.diff1y_acf5.y$diff1y_acf5, z=colNamessd[8], fill=colNamessd[8])) +
+  geom_tile() + 
+  scale_fill_continuous(limits=c(0,0.25), breaks=seq(0,0.25,100), low = "#edf8b1", high = "#2c7fb8")+
+  xlab("spikiness") + ylab("diff1y_acf5")
+int3 <- ggplot(data=hurst.trend.y, 
+               aes_string(x=hurst.trend.y$hurst, 
+                          y=hurst.trend.y$trend, z=colNamessd[8], fill=colNamessd[8])) +
+  geom_tile() + 
+  scale_fill_continuous(limits=c(0,0.4), breaks=seq(0,0.4,100), low = "#edf8b1", high = "#2c7fb8")+
+  xlab("hurst") + ylab("trend")
+int4 <- ggplot(data=trend.linearityrmout.y, 
+               aes_string(x=trend.linearityrmout.y$trend, 
+                          y=trend.linearityrmout.y$linearity, z=colNamestl[8], fill=colNamestl[8])) +
+  geom_tile() + 
+  scale_fill_continuous(limits=c(0,0.25), breaks=seq(0,0.25,100), low = "#edf8b1", high = "#2c7fb8")+
+  xlab("trend") + ylab("linearity")
+## rw
+int5 <- ggplot(data=trend.urpprmout.y, 
+               aes_string(x=trend.urpprmout.y$trend, 
+                          y=trend.urpprmout.y$ur_pp, z=colNamestrur[7], fill=colNamestrur[7])) +
+  geom_tile() + 
+  scale_fill_continuous(limits=c(0,0.15), breaks=seq(0,0.15,100),low = "#edf8b1", high = "#2c7fb8")+
+  xlab("trend") + ylab("ur_pp")
+int6 <- ggplot(data=spikiness.diff1y_acf5.y, 
+               aes_string(x=spikiness.diff1y_acf5.y$spikiness, 
+                          y=spikiness.diff1y_acf5.y$diff1y_acf5, z=colNamessd[7], fill=colNamessd[7])) +
+  geom_tile() + 
+  scale_fill_continuous(limits=c(0,0.2), breaks=seq(0,0.2,100),low = "#edf8b1", high = "#2c7fb8")+
+  xlab("spikiness") + ylab("diff1y_acf5")
+int7 <- ggplot(data=hurst.trend.y, 
+               aes_string(x=hurst.trend.y$hurst, 
+                          y=hurst.trend.y$trend, z=colNamessd[7], fill=colNamessd[7])) +
+  geom_tile() + 
+  scale_fill_continuous(limits=c(0,0.15), breaks=seq(0,0.15,100),low = "#edf8b1", high = "#2c7fb8")+
+  xlab("hurst") + ylab("trend")
+int8 <- ggplot(data=trend.linearityrmout.y, 
+               aes_string(x=trend.linearityrmout.y$trend, 
+                          y=trend.linearityrmout.y$linearity, z=colNamestl[7], fill=colNamestl[7])) +
+  geom_tile() + 
+  scale_fill_continuous(limits=c(0,0.2), breaks=seq(0,0.2,100), low = "#edf8b1", high = "#2c7fb8")+
+  xlab("trend") + ylab("linearity")
+# ETS-trend
+int9 <- ggplot(data=trend.urpprmout.y, 
+               aes_string(x=trend.urpprmout.y$trend, 
+                          y=trend.urpprmout.y$ur_pp, z=colNamestrur[5], fill=colNamestrur[5])) +
+  geom_tile() + 
+  scale_fill_continuous(limits=c(0,0.2), breaks=seq(0,0.2,100), low = "#edf8b1", high = "#2c7fb8")+
+  xlab("trend") + ylab("ur_pp")
+int10 <- ggplot(data=spikiness.diff1y_acf5.y, 
+               aes_string(x=spikiness.diff1y_acf5.y$spikiness, 
+                          y=spikiness.diff1y_acf5.y$diff1y_acf5, z=colNamessd[5], fill=colNamessd[5])) +
+  geom_tile() + 
+  scale_fill_continuous(limits=c(0,0.1), breaks=seq(0,0.1,100),low = "#edf8b1", high = "#2c7fb8")+
+  xlab("spikiness") + ylab("diff1y_acf5")
+int11 <- ggplot(data=hurst.trend.y, 
+               aes_string(x=hurst.trend.y$hurst, 
+                          y=hurst.trend.y$trend, z=colNamessd[5], fill=colNamessd[5])) +
+  geom_tile() + 
+  scale_fill_continuous(limits=c(0,0.3), breaks=seq(0,0.3,100),low = "#edf8b1", high = "#2c7fb8")+
+  xlab("hurst") + ylab("trend")
+int12 <- ggplot(data=trend.linearityrmout.y, 
+               aes_string(x=trend.linearityrmout.y$trend, 
+                          y=trend.linearityrmout.y$linearity, z=colNamestl[5], fill=colNamestl[5])) +
+  geom_tile() + 
+  scale_fill_continuous(limits=c(0,0.2), breaks=seq(0,0.2,100),low = "#edf8b1", high = "#2c7fb8")+
+  xlab("trend") + ylab("linearity")
+##ETS_dampedtrend
+int13 <- ggplot(data=trend.urpprmout.y, 
+               aes_string(x=trend.urpprmout.y$trend, 
+                          y=trend.urpprmout.y$ur_pp, z=colNamestrur[3], fill=colNamestrur[3])) +
+  geom_tile() + 
+  scale_fill_continuous(limits=c(0,0.05), breaks=seq(0,0.05,100), low = "#edf8b1", high = "#2c7fb8")+
+  xlab("trend") + ylab("ur_pp")
+int14 <- ggplot(data=spikiness.diff1y_acf5.y, 
+                aes_string(x=spikiness.diff1y_acf5.y$spikiness, 
+                           y=spikiness.diff1y_acf5.y$diff1y_acf5, z=colNamessd[3], fill=colNamessd[3])) +
+  geom_tile() + 
+  scale_fill_continuous(limits=c(0,0.05), breaks=seq(0,0.05,100),low = "#edf8b1", high = "#2c7fb8")+
+  xlab("spikiness") + ylab("diff1y_acf5")
+int15 <- ggplot(data=hurst.trend.y, 
+                aes_string(x=hurst.trend.y$hurst, 
+                           y=hurst.trend.y$trend, z=colNamessd[3], fill=colNamessd[3])) +
+  geom_tile() + 
+  scale_fill_continuous(limits=c(0,0.04), breaks=seq(0,0.04,100),low = "#edf8b1", high = "#2c7fb8")+
+  xlab("hurst") + ylab("trend")
+int16 <- ggplot(data=trend.linearityrmout.y, 
+                aes_string(x=trend.linearityrmout.y$trend, 
+                           y=trend.linearityrmout.y$linearity, z=colNamestl[3], fill=colNamestl[3])) +
+  geom_tile() + 
+  scale_fill_continuous(limits=c(0,0.1), breaks=seq(0,0.1,100),low = "#edf8b1", high = "#2c7fb8")+
+  xlab("trend") + ylab("linearity")
+#ETS-notrendseasonal
+
+
+(int1|int3|int4)/(int5|int7|int8)/(int9|int11|int12)/(int13|int14|int15)
+
+## ---- yearly_pca
+pcaYvariables <- yearly_training[,1:25]
+pcaM4Y <- prcomp(pcaYvariables, center=TRUE, scale=TRUE)
+#summary(pcaM1Y)
+PC1m4y = pcaM4Y$x[,1]
+PC2m4y = pcaM4Y$x[,2]
+PC3m4y = pcaM4Y$x[,3]
+m4yPCAresults = data.frame(PC1=PC1m4y, PC2=PC2m4y,PC3=PC3m4y,pcaYvariables)
+m4yPCAresults$predicted <- train_predictions_oob
+pca1M4Y_rwd <- ggplot(m4yPCAresults, aes(x=PC1, y=PC2, color=predicted)) + 
+  geom_point(colour="firebrick1")+
+  theme(legend.position="none",
+        aspect.ratio = 1,
+        plot.margin=grid::unit(c(0,0,0,0), "mm"))+
+  geom_point(data=m4yPCAresults[m4yPCAresults$predicted=="rwd",], aes(x=PC1, y=PC2), color="forestgreen")+
+  ggtitle("rwd")
+
+pca1M4Y_rw <- ggplot(m4yPCAresults, aes(x=PC1, y=PC2, color=predicted)) + 
+  geom_point(colour="firebrick1")+
+  theme(legend.position="none",
+        aspect.ratio = 1, plot.margin=grid::unit(c(0,0,0,0), "mm"))+
+  geom_point(data=m4yPCAresults[m4yPCAresults$predicted=="rw",], aes(x=PC1, y=PC2), color="forestgreen")+
+  ggtitle("rw")
+
+pca1M4Y_etstrend <- ggplot(m4yPCAresults, aes(x=PC1, y=PC2, color=predicted)) + 
+  geom_point(colour="firebrick1")+
+  theme(legend.position="none",
+        aspect.ratio = 1, plot.margin=grid::unit(c(0,0,0,0), "mm"))+
+  geom_point(data=m4yPCAresults[m4yPCAresults$predicted=="ETS-trend",], aes(x=PC1, y=PC2), color="forestgreen")+
+  ggtitle("ETS-trend")
+
+pca1M4Y_etsdamtrend <- ggplot(m4yPCAresults, aes(x=PC1, y=PC2, color=predicted)) + 
+  geom_point(colour="firebrick1")+
+  theme(legend.position="none",
+        aspect.ratio = 1, plot.margin=grid::unit(c(0,0,0,0), "mm"))+
+  geom_point(data=m4yPCAresults[m4yPCAresults$predicted=="ETS-dampedtrend",], aes(x=PC1, y=PC2), color="forestgreen")+
+  ggtitle("ETS-dampedtrend")
+
+pca1M4Y_etsdamtrend <- ggplot(m4yPCAresults, aes(x=PC1, y=PC2, color=predicted)) + 
+  geom_point(colour="firebrick1")+
+  theme(legend.position="none",
+        aspect.ratio = 1, plot.margin=grid::unit(c(0,0,0,0), "mm"))+
+  geom_point(data=m4yPCAresults[m4yPCAresults$predicted=="ETS-dampedtrend",], aes(x=PC1, y=PC2), color="forestgreen")+
+  ggtitle("ETS-dampedtrend")
+
+pca1M4Y_notrend <- ggplot(m4yPCAresults, aes(x=PC1, y=PC2, color=predicted)) + 
+  geom_point(colour="firebrick1")+
+  theme(legend.position="none",
+        aspect.ratio = 1, plot.margin=grid::unit(c(0,0,0,0), "mm"))+
+  geom_point(data=m4yPCAresults[m4yPCAresults$predicted=="ETS-notrendnoseasonal",], aes(x=PC1, y=PC2), color="forestgreen")+
+  ggtitle("ETS-notrendnoseasonal")
+
+pca1M4Y_ARIMA <- ggplot(m4yPCAresults, aes(x=PC1, y=PC2, color=predicted)) + 
+  geom_point(colour="firebrick1")+
+  theme(legend.position="none",
+        aspect.ratio = 1, plot.margin=grid::unit(c(0,0,0,0), "mm"))+
+  geom_point(data=m4yPCAresults[m4yPCAresults$predicted=="ARIMA",], aes(x=PC1, y=PC2), color="forestgreen")+
+  ggtitle("ARIMA")
+
+pca1M4Y_ARMA <- ggplot(m4yPCAresults, aes(x=PC1, y=PC2, color=predicted)) + 
+  geom_point(colour="firebrick1")+
+  theme(legend.position="none",
+        aspect.ratio = 1, plot.margin=grid::unit(c(0,0,0,0), "mm"))+
+  geom_point(data=m4yPCAresults[m4yPCAresults$predicted=="ARMA/AR/MA",], aes(x=PC1, y=PC2), color="forestgreen")+
+  ggtitle("ARMA/AR/MA")
+
+pca1M4Y_wn <- ggplot(m4yPCAresults, aes(x=PC1, y=PC2, color=predicted)) + 
+  geom_point(colour="firebrick1")+
+  theme(legend.position="none",
+        aspect.ratio = 1, plot.margin=grid::unit(c(0,0,0,0), "mm"))+
+  geom_point(data=m4yPCAresults[m4yPCAresults$predicted=="wn",], aes(x=PC1, y=PC2), color="forestgreen")+
+  ggtitle("wn")
+
+pca1M4Y_theta <- ggplot(m4yPCAresults, aes(x=PC1, y=PC2, color=predicted)) + 
+  geom_point(colour="firebrick1")+
+  theme(legend.position="none",
+        aspect.ratio = 1, plot.margin=grid::unit(c(0,0,0,0), "mm"))+
+  geom_point(data=m4yPCAresults[m4yPCAresults$predicted=="theta",], aes(x=PC1, y=PC2), color="forestgreen")+
+  ggtitle("theta")
+
+pca1M4Y_nn <- ggplot(m4yPCAresults, aes(x=PC1, y=PC2, color=predicted)) + 
+  geom_point(colour="firebrick1")+
+  theme(legend.position="none",
+        aspect.ratio = 1, plot.margin=grid::unit(c(0,0,0,0), "mm"))+
+  geom_point(data=m4yPCAresults[m4yPCAresults$predicted=="nn",], aes(x=PC1, y=PC2), color="forestgreen")+
+  ggtitle("nn")
+
+(pca1M4Y_rwd|pca1M4Y_rw|pca1M4Y_etstrend|pca1M4Y_etsdamtrend|pca1M4Y_notrend)/
+  (pca1M4Y_ARIMA|pca1M4Y_ARMA|pca1M4Y_wn|pca1M4Y_theta|pca1M4Y_nn)
+
