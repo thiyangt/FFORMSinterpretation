@@ -57,7 +57,7 @@ library(RColorBrewer)
 ```
 
 
-# Introduction
+# Introduction{#intro}
 
 The time series forecasting field has been evolving for a long time and has introduced a wide variety of forecasting methods. However, for a given time series the selection of an appropriate forecasting-method among many possibilities is not straight forward. This selection is one of the most difficult tasks as each method perform best for some but not all tasks. The features of time series are considered to be an important factor in identifying suitable forecasting models[ref, Meade, MakrikadisM3].[This goes back to 1972]. However, a description of relationship between the features and the performance of algorithms is rarely discussed in the field of forecasting. 
 
@@ -75,13 +75,13 @@ There have been several recent studies on use of machine learning algorithms to 
 On the other hand, aside from the goal of developing automated forecast-model selection framework few researchers have made an attempt to provide a desciption of relationship between the features and the performance of algorithms. One of the first attempts to identify the relationship between features and forecast-model performance was presented in xx. However, these studies are limited by the scale of problem instances used, diversity of forecasting-methods used, quality of features considered, and modelling approached used to identify the relationship between features and forecast model performance. Most of these studies are typically restricted to simple statistical techniques such as...[do not capture the complex interaction effects]
 
 
-To explore these points further, this paper makes a first step towards providing a comprehensive explanation of the relationship between time series features and forecast-model selection using machine learning interpretability techniques. This paper builds on the method from our previous work ref,  in which we introduced the FFORMS(Featue-based FORecast Model Selection) framework. The random forest algorithm is used to model the relationship between features and "best" performing forecast-model. [Large time series collection is used to train the model] We use 30 features to capture morphology of time series. The main objective of this paper is to help 
+To explore these points further, this paper makes a first step towards providing a comprehensive explanation of the relationship between time series features and forecast-model selection using machine learning interpretability techniques. This paper builds on the method from our previous work ref,  in which we introduced the FFORMS (Featue-based FORecast Model Selection) framework. The random forest algorithm is used to model the relationship between features and "best" performing forecast-model. [Large time series collection is used to train the model] We use 30 features to capture morphology of time series. 
 
-[What is the usefulness of analysing the relationship between features and model performance?]
+[What is the usefulness of analysing the relationship between features and model performance?] Understanding the role of features is worthwhile even if producing an accurate and generalisable model is the only objective of the modelling. This is because the less transparency of the model may be distrusted regardless of their predictive performance. The methodology we propose here is a novel application of machine learning interpretability methods to visualize and explore the role of features in forecast-model selection. 
 
-This paper structures as follows. 
+This paper structures as follows. In \autoref{fforms} we describe the application of FFORMS framework to M4competition data. The main contribution of this from our previous work @fforms  is we extend the FFORMS framework to model weekly, daily and hourly series. In \autoref{machinelearning}provides a review of existing methods and visualisation tools that provides insights into the role of features in FFORMS framework and tools we used in this context. In \autoref{results} we discuss the results. 
 
-# FFORMS Application to M4 competition data
+# FFORMS Application to M4 competition data{#fforms}
 
 The FFORMS framework consists of two main components: i) *offline phase*, which includes the development of a classification model and ii) *online phase*, use the classification model developed in the offline phase to identify "best" forecast-model. We develop separate classifiers for yearly, monthly, quarterly, weekly, daily and hourly series. 
 
@@ -225,7 +225,7 @@ A random forest with class priors is used to develop the classifier. We build se
 The online phase of the algorithm involves generating point forecasts and 95% prediction intervals for the M4 competition data. First, the corresponding features are calculated based on the full length of the training period provided by the M4 competition. Second, point forecasts and 95% prediction intervals are calculated based on the predicted class labels, in this case forecast-models. Finally, all negative values are set to zero.
 
 
-# Machine Learning Interpretability
+# Machine Learning Interpretability{#machinelearning}
 
 In recent years, a large amount of model-agnostic machine-learning interpretability methods have been proposed to improve the transparency, interpretability and trustability of complex machine learning algorithms[ref]. We explore the role of features in three different angles: i) global interpretability, and ii) local interpretability. We will introduce each of these ideas briefly below. Model-diagnostics tools are used. 
 
@@ -274,7 +274,7 @@ PD plots, ICE curves and PD-, ICE-associated measures are computationally intens
 
 ## Model-diagnostics
 
-# Results
+# Results{#results}
 
 ## M4 competition
 
@@ -416,6 +416,6 @@ First we want to identify the features that have large influence on the response
 ```
 
 
-# Discussion and Conclusions
+# Discussion and Conclusions{#conclusions}
 
 # References
