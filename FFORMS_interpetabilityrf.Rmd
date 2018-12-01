@@ -227,7 +227,7 @@ The online phase of the algorithm involves generating point forecasts and 95% pr
 
 # Machine Learning Interpretability{#machinelearning}
 
-In recent years, a large amount of model-agnostic machine-learning interpretability methods have been proposed to improve the transparency, interpretability and trustability of complex machine learning algorithms[ref]. We explore the role of features in three different angles: i) global interpretability, and ii) local interpretability. We will introduce each of these ideas briefly below. Model-diagnostics tools are used. 
+In recent years, there have been a growing interest for interpretability of machine learning algorithms with European General Data Projection Regulation (GDPR) stipulates the explainability of all automatically made decision concerning individuals. We explore the role of features in three different angles: i) global interpretability, and ii) local interpretability. We will introduce each of these ideas briefly below. Model-diagnostics tools are used. 
 
 ## General Notation
 
@@ -271,6 +271,8 @@ PD plots, ICE curves and PD-, ICE-associated measures are computationally intens
 ## Representation of model in the data space (m-in-ds) and data in the model space (d-in-ms)
 
 ## Local Interpretability Methods
+
+Global interpreta
 
 ## Model-diagnostics
 
