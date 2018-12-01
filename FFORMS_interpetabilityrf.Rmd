@@ -32,16 +32,30 @@ output:
 
 ```{r setup, include=FALSE}
 library(knitr)
-knitr::opts_chunk$set(echo = FALSE, cache=FALSE, messages=FALSE, warning=FALSE, fig.path = 'figures/', dev=c('png', 'pdf'), fig.pos= "h")
+knitr::opts_chunk$set(echo = FALSE, cache=TRUE, messages=FALSE, warning=FALSE, fig.path = 'figures/', dev=c('png'), fig.pos= "h", external = TRUE)
 # Make sure you have the latest version of rmarkdown and bookdown
 #devtools::install_github("rstudio/rmarkdown")
 #devtools::install_github("rstudio/bookdown")
 read_chunk("src/main.R")
+library(ggplot2)
+library(patchwork)
+library(tidyverse)
+library(reshape2)
+library(ggplot2)
+library(grid)
+library(gridExtra)
+library(ggrepel)
+library(png)
+library(tsfeatures)
+library(tidyverse)
+library(ggpubr)
+library(forestviews)
+#install_github(repo = 'thiyangt/forestviews')
+library(networkD3)
+library(RColorBrewer)
 
 ```
 
-```{r load_packages, messages=FALSE, warning=FALSE}
-```
 
 # Introduction
 
@@ -292,18 +306,118 @@ First we want to identify the features that have large influence on the response
 #### Partial dependency curves
 
 \newpage
+
 ```{r pdp_yearly, fig.height=15, fig.width=10, fig.cap="", fig.pos="h"}
 ```
 
+\newpage
+
 #### Two-way interaction effect between features
 
+```{r two_way_interaction_yearly1, fig.height=30, fig.width=20, fig.cap="", fig.pos="h"}
+```
+
+\newpage
+
+```{r two_way_interaction_yearly2, fig.height=30, fig.width=20, fig.cap="", fig.pos="h"}
+```
+
+
+\newpage
 
 #### PCA space
 
+```{r yearly_pca, fig.height=10, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```
+
 #### LIME
 
+\newpage
+### Quarterly data
+
+```{r oob_quarterly, fig.height=30, fig.width=20, fig.cap="", fig.pos="h"}
+```
+
+\newpage
+
+```{r vi_quarterly, fig.height=10, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```
+
+\newpage
+
+```{r pdp_quarterly1, fig.height=45, fig.width=35, fig.cap="Partial dependence plots for top three features in each category (Quarterly)", fig.pos="h"}
+```
+
+\newpage
+
+```{r pdp_quarterly2, fig.height=30, fig.width=20, fig.cap="Partial dependence plots for top three features in each category (Quarterly)", fig.pos="h"}
+```
+
+\newpage
+
+#### Two-way interaction effect between features
+
+```{r two_way_quarterly1, fig.height=30, fig.width=20, fig.cap="", fig.pos="h"}
+```
+
+\newpage
+
+```{r two_way_quarterly2, fig.height=30, fig.width=20, fig.cap="", fig.pos="h"}
+```
+
+\newpage
+
+```{r two_way_quarterly3, fig.height=30, fig.width=20, fig.cap="", fig.pos="h"}
+```
+
+\newpage
+
+```{r two_way_quarterly4, fig.height=10, fig.width=20, fig.cap="", fig.pos="h"}
+```
 
 
+\newpage
+
+```{r quarterly_pca, fig.height=20, fig.width=20, fig.cap="PCA(Quarterly)", fig.pos="h"}
+```
+
+\newpage
+## Monthly
+
+```{r oob_monthly, fig.height=30, fig.width=20, fig.cap="", fig.pos="h"}
+```
+
+\newpage
+
+```{r vi_monthly, fig.height=10, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```
+
+\newpage
+
+```{r pdp_monthly1, fig.height=45, fig.width=35, fig.cap="Partial dependence plots for top three features in each category (Monthly)", fig.pos="h"}
+```
+
+\newpage
+
+```{r pdp_monthly2, fig.height=30, fig.width=20, fig.cap="Partial dependence plots for top three features in each category (Monthly)", fig.pos="h"}
+```
+
+\newpage
+
+```{r two_way_monthly1, fig.height=30, fig.width=20, fig.cap="", fig.pos="h"}
+```
+
+\newpage
+
+```{r monthly_pca, fig.height=20, fig.width=20, fig.cap="PCA(Monthly)", fig.pos="h"}
+```
+
+\newpage
+
+## Hourly
+
+```{r hourly_oob, fig.height=30, fig.width=20, fig.cap="", fig.pos="h"}
+```
 
 
 # Discussion and Conclusions
