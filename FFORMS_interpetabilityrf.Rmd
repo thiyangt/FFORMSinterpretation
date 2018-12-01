@@ -272,9 +272,11 @@ PD plots, ICE curves and PD-, ICE-associated measures are computationally intens
 
 ## Local Interpretability Methods
 
-Global interpreta
+Global interpretations help us to understand the inputs and their entire modeled relationship with the prediction object but global interpretations can be very approximate in some cases. Local interpretations help us understand the pedictions of the model for a single row of data or a group of simila rows. 
 
 ## Model-diagnostics
+
+In addition to the previos discussions xx propose a novel application of 
 
 # Results{#results}
 
