@@ -370,7 +370,7 @@ int1 <- ggplot(
   data = trend.urpprmout.y, aes_string(x = trend.urpprmout.y$trend,y = trend.urpprmout.y$ur_pp, z = colNamestrur[8], fill = colNamestrur[8]
   ))+geom_tile() + 
   scale_fill_continuous(limits = c(0, 0.4), breaks = seq(0, 0.4, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("ur_pp") + theme(legend.position="none")+ggtitle("rwd (H=0.62)")
+  xlab("trend") + ylab("ur_pp") + theme(legend.position="none")+ggtitle("rwd (H=0.32)")
   
 int2 <- ggplot(
   data = spikiness.diff1y_acf5.y,
@@ -404,7 +404,7 @@ int5 <- ggplot(
     y = trend.urpprmout.y$ur_pp, z = colNamestrur[7], fill = colNamestrur[7]
   )) +geom_tile() +
   scale_fill_continuous(limits = c(0, 0.15), breaks = seq(0, 0.15, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("ur_pp")+ theme(legend.position="none")+ggtitle("rw (H=0.20)")
+  xlab("trend") + ylab("ur_pp")+ theme(legend.position="none")+ggtitle("rw (H=0.40)")
 int6 <- ggplot(
   data = spikiness.diff1y_acf5.y,
   aes_string(
@@ -1232,24 +1232,286 @@ int3 <- ggplot(
   data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[13], fill = colNames[13]
   ))+geom_tile() + 
   scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("snaive (H=0.57)")
+  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("snaive (H=0.57)")
 
 # rwd
 int4 <- ggplot(
   data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[11], fill = colNames[11]
   ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), low = "#edf8b1", high = "#2c7fb8") +
+  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
   xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("rwd (H=0.49)")
 int5 <- ggplot(
   data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[11], fill = colNames[11]
   ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), low = "#edf8b1", high = "#2c7fb8") +
+  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
   xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("rwd (H=0.67)")
 int6 <- ggplot(
   data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[11], fill = colNames[11]
   ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("rwd (H=0.90)")
+  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("rwd (H=0.90)")
+#rw
+int7 <- ggplot(
+  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[10], fill = colNames[10]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("rw (H=0.22)")
+int8 <- ggplot(
+  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[10], fill = colNames[10]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("rw (H=0.22)")
+int9 <- ggplot(
+  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[10], fill = colNames[10]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("rw (H=0.26)")
+
+## ETS-notrendnoseasonal
+int10 <- ggplot(
+  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[5], fill = colNames[5]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ETS-NTNS (H=0.24)")
+int11 <- ggplot(
+  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[5], fill = colNames[5]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("ETS-NTNS (H=0.29)")
+int12 <- ggplot(
+  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[5], fill = colNames[5]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("ETS-NTNS (H=0.33)")
+
+## ETS-dt
+int13 <- ggplot(
+  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[3], fill = colNames[3]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ETS-DT (H=0.19)")
+int14 <- ggplot(
+  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[3], fill = colNames[3]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("ETS-DT (H=0.14)")
+int15 <- ggplot(
+  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[3], fill = colNames[3]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("ETS-DT (H=0.12)")
+
+(int1|int2|int3)/(int4|int5|int6)/(int7|int8|int9)/(int10|int11|int12)/(int13|int14|int15)
+
+## ---- two_way_quarterly2
+## ETS-t
+int16 <- ggplot(
+  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[7], fill = colNames[7]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ETS-Trend (H=0.34)")
+int17 <- ggplot(
+  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[7], fill = colNames[7]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("ETS-Trend (H=0.09)")
+int18 <- ggplot(
+  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[7], fill = colNames[7]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("ETS-Trend (H=0.13)")
+
+## ETS-dampedtrendseasonal
+int19 <- ggplot(
+  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[4], fill = colNames[4]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ETS-DTS (H=0.49)")
+int20 <- ggplot(
+  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[4], fill = colNames[4]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("ETS-DTS (H=0.36)")
+int21 <- ggplot(
+  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[4], fill = colNames[4]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("ETS-DTS (H=0.25)")
+
+## ETS-trendseasonal
+int22 <- ggplot(
+  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[8], fill = colNames[8]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ETS-TS (H=0.49)")
+int23 <- ggplot(
+  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[8], fill = colNames[8]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("ETS-TS (H=0.37)")
+int24 <- ggplot(
+  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[8], fill = colNames[8]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("ETS-TS (H=0.31)")
+
+## ETS-seasonal
+int25 <- ggplot(
+  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[6], fill = colNames[6]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ETS-S (H=0.36)")
+int26 <- ggplot(
+  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[6], fill = colNames[6]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("ETS-S (H=0.40)")
+int27 <- ggplot(
+  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[6], fill = colNames[6]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("ETS-S (H=0.56)")
+## SARIMA
+int28 <- ggplot(
+  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[12], fill = colNames[12]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("SARIMA (H=0.18)")
+int29 <- ggplot(
+  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[12], fill = colNames[12]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("SARIMA (H=0.21)")
+int30 <- ggplot(
+  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[12], fill = colNames[12]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("SARIMA (H=0.15)")
+
+(int16|int17|int18)/(int19|int20|int21)/(int22|int23|int24)/(int25|int26|int27)/(int28|int29|int30)
+
+## ---- two_way_quarterly3
+## ARIMA
+int31 <- ggplot(
+  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[1], fill = colNames[1]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ARIMA (H=0.20)")
+int32 <- ggplot(
+  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[1], fill = colNames[1]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("ARIMA (H=0.13)")
+int33 <- ggplot(
+  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[1], fill = colNames[1]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("ARIMA (H=0.16)")
+## ARMA
+int34 <- ggplot(
+  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[2], fill = colNames[2]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ARMA (H=0.29)")
+int35 <- ggplot(
+  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[2], fill = colNames[2]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("ARMA (H=0.34)")
+int36 <- ggplot(
+  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[2], fill = colNames[2]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("ARMA (H=0.39)")
+
+##stlar
+int37 <- ggplot(
+  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[14], fill = colNames[14]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("stlar (H=0.87)")
+int38 <- ggplot(
+  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[14], fill = colNames[14]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("stlar (H=1.00)")
+int39 <- ggplot(
+  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[14], fill = colNames[14]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("stlar (H=0.79)")
+##tbats
+int40 <- ggplot(
+  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[15], fill = colNames[15]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("tbats (H=0.85)")
+int41 <- ggplot(
+  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[15], fill = colNames[15]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("tbats (H=0.56)")
+int42 <- ggplot(
+  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[15], fill = colNames[15]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("tbats (H=0.59)")
+
+##wn
+int43 <- ggplot(
+  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[17], fill = colNames[17]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.6), breaks = seq(0, 0.6, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("wn (H=0.34)")
+int44 <- ggplot(
+  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[17], fill = colNames[17]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.6), breaks = seq(0, 0.6, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("wn (H=0.31)")
+int45 <- ggplot(
+  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[17], fill = colNames[17]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.6), breaks = seq(0, 0.6, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("wn (H=0.40)")
+
+(int31|int32|int33)/(int34|int35|int36)/(int37|int38|int39)/(int40|int41|int42)/(int43|int44|int45)
+
+## ---- two_way_quarterly4
+## theta
+int46 <- ggplot(
+  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[16], fill = colNames[16]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("theta (H=1.00)")
+int47 <- ggplot(
+  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[16], fill = colNames[16]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("theta (H=0.89)")
+int48 <- ggplot(
+  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[16], fill = colNames[16]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("theta (H=0.74)")
+
+## nn
+int49 <- ggplot(
+  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[9], fill = colNames[9]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("nn (H=0.77)")
+int50 <- ggplot(
+  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[9], fill = colNames[9]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("nn (H=0.33)")
+int51 <- ggplot(
+  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[9], fill = colNames[9]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("nn (H=0.66)")
+
+(int46|int47|int48)/(int49|int50|int51)
 
 ## ---- quarterly_pca
 pcaQvariables <- quarterly_training[, 1:30]
@@ -1799,19 +2061,99 @@ int1 <- ggplot(
   data = seasinality.trend.m, aes_string(x = seasinality.trend.m$trend,y = seasinality.trend.m$seasonality, z = colNames[13], fill = colNames[13]
   ))+geom_tile() + 
   scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("snaive (H=0.48)")
+  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("snaive (H=0.72)")
 int2 <- ggplot(
   data = N.seasonality.m, aes_string(x = N.seasonality.m$N,y = N.seasonality.m$seasonality, z = colNames[13], fill = colNames[13]
   ))+geom_tile() + 
   scale_fill_continuous(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("N") + ylab("seasonality") + theme(legend.position="none")+ggtitle("snaive (H=0.33)")
+  xlab("N") + ylab("seasonality") + theme(legend.position="none")+ggtitle("snaive (H=0.79)")
 int3 <- ggplot(
   data = N.hwgamma.m, aes_string(x = N.hwgamma.m$N,y = N.hwgamma.m$hwgamma, z = colNames[13], fill = colNames[13]
   ))+geom_tile() + 
   scale_fill_continuous(limits = c(0, 0.15), breaks = seq(0, 0.15, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("N") + ylab("hwgamma") + theme(legend.position="none")+ggtitle("snaive (H=0.57)")
+  xlab("N") + ylab("hwgamma") + theme(legend.position="none")+ggtitle("snaive (H=0.58)")
 ## rwd
+int4 <- ggplot(
+  data = seasinality.trend.m, aes_string(x = seasinality.trend.m$trend,y = seasinality.trend.m$seasonality, z = colNames[11], fill = colNames[11]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("rwd (H=0.32)")
+int5 <- ggplot(
+  data = N.seasonality.m, aes_string(x = N.seasonality.m$N,y = N.seasonality.m$seasonality, z = colNames[11], fill = colNames[11]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("N") + ylab("seasonality") + theme(legend.position="none")+ggtitle("rwd (H=0.53)")
+int6 <- ggplot(
+  data = N.hwgamma.m, aes_string(x = N.hwgamma.m$N,y = N.hwgamma.m$hwgamma, z = colNames[11], fill = colNames[11]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.15), breaks = seq(0, 0.15, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("N") + ylab("hwgamma") + theme(legend.position="none")+ggtitle("rwd (H=0.24)")
+## rw
+int7 <- ggplot(
+  data = seasinality.trend.m, aes_string(x = seasinality.trend.m$trend,y = seasinality.trend.m$seasonality, z = colNames[10], fill = colNames[10]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("rw (H=0.15)")
+int8 <- ggplot(
+  data = N.seasonality.m, aes_string(x = N.seasonality.m$N,y = N.seasonality.m$seasonality, z = colNames[10], fill = colNames[10]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("N") + ylab("seasonality") + theme(legend.position="none")+ggtitle("rw (H=0.28)")
+int9 <- ggplot(
+  data = N.hwgamma.m, aes_string(x = N.hwgamma.m$N,y = N.hwgamma.m$hwgamma, z = colNames[10], fill = colNames[10]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("N") + ylab("hwgamma") + theme(legend.position="none")+ggtitle("rw (H=0.46)")
+## ETS-notnos
+int7 <- ggplot(
+  data = seasinality.trend.m, aes_string(x = seasinality.trend.m$trend,y = seasinality.trend.m$seasonality, z = colNames[5], fill = colNames[5]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ETS-NTNS (H=0.34)")
+int8 <- ggplot(
+  data = N.seasonality.m, aes_string(x = N.seasonality.m$N,y = N.seasonality.m$seasonality, z = colNames[5], fill = colNames[5]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("N") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ETS-NTNS (H=0.73)")
+int9 <- ggplot(
+  data = N.hwgamma.m, aes_string(x = N.hwgamma.m$N,y = N.hwgamma.m$hwgamma, z = colNames[5], fill = colNames[5]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("N") + ylab("hwgamma") + theme(legend.position="none")+ggtitle("ETS-NTNS ")
+## ETS-dt
+int10 <- ggplot(
+  data = seasinality.trend.m, aes_string(x = seasinality.trend.m$trend,y = seasinality.trend.m$seasonality, z = colNames[3], fill = colNames[3]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ETS-DT (H=0.13)")
+int11 <- ggplot(
+  data = N.seasonality.m, aes_string(x = N.seasonality.m$N,y = N.seasonality.m$seasonality, z = colNames[3], fill = colNames[3]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("N") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ETS-DT (H=0.37)")
+int12 <- ggplot(
+  data = N.hwgamma.m, aes_string(x = N.hwgamma.m$N,y = N.hwgamma.m$hwgamma, z = colNames[3], fill = colNames[3]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("N") + ylab("hwgamma") + theme(legend.position="none")+ggtitle("ETS-DT (H=0.57)")
+## rw
+int13 <- ggplot(
+  data = seasinality.trend.m, aes_string(x = seasinality.trend.m$trend,y = seasinality.trend.m$seasonality, z = colNames[7], fill = colNames[7]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ETS-T (H=0.37)")
+int14 <- ggplot(
+  data = N.seasonality.m, aes_string(x = N.seasonality.m$N,y = N.seasonality.m$seasonality, z = colNames[7], fill = colNames[7]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("N") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ETS-T (H=0.17)")
+int15 <- ggplot(
+  data = N.hwgamma.m, aes_string(x = N.hwgamma.m$N,y = N.hwgamma.m$hwgamma, z = colNames[7], fill = colNames[7]
+  ))+geom_tile() + 
+  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
+  xlab("N") + ylab("hwgamma") + theme(legend.position="none")+ggtitle("ETS-T (H=0.41)")
 
+(int1|int2|int3)/(int4|int5|int6)/(int7|int8|int9)/(int10|int11|int12)/(int13|int14|int15)
 
 ## ---- monthly_pca
 pcaMvariables <- monthly_training[, 1:30]
@@ -1992,59 +2334,42 @@ pca1M4M_nn <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
 ##################################################################################
 
 ## ---- oob_weekly
-load("data/yearly/train_votes.rda") # oob votes from the random forest
-load("data/yearly/train_predictions_oob.rda") # based on oob prediction
-load("data/yearly/yearly_training.rda") # random forest training set
-votes_oob <- data.frame(train_votes)
-names(votes_oob) <- names(table(train_predictions_oob))
-votes_oob$predicted <- train_predictions_oob
-votes_oob$classlabel <- yearly_training$classlabels
-votes_oob <- votes_oob %>%
-  mutate(id = seq_len(n())) %>%
-  melt(id.var = c("classlabel", "id", "predicted"), na.rm = T) %>%
-  select(-id)
-# arrange labels
-votes_oob$classlabel <- factor(votes_oob$classlabel,
-                               levels = c(
-                                 "nn",
-                                 "theta",
-                                 "wn",
-                                 "ARMA/AR/MA",
-                                 "ARIMA",
-                                 "ETS-notrendnoseasonal",
-                                 "ETS-dampedtrend",
-                                 "ETS-trend",
-                                 "rw",
-                                 "rwd"
-                               )
-)
 
-oob_boxplot_yearly <- ggplot(votes_oob, aes(
-  x = variable,
-  y = value, fill = classlabel
-)) +
+
+################################################################
+#              Daily data                                      #
+################################################################
+
+
+
+################################################################
+#              HOurly data                                     #
+################################################################
+
+## ---- oob_hourly
+load("data/hourly/trainH_votes.rda") #oob votes from the random forest
+load("data/hourly/trainH_predictions_oob.rda") # based on oob prediction
+load("data/hourly/hourly_training.rda") # random forest training set
+votes_oobH <- data.frame(trainH_votes)
+names(votes_oobH) <- names(table(trainH_predictions_oob))
+votes_oobH$predicted <- trainH_predictions_oob
+votes_oobH$classlabel <- hourly_training$classlabels
+votes_oobH <- votes_oobH %>% mutate(id=seq_len(n())) %>%
+  melt(id.var=c('classlabel','id','predicted'), na.rm=T) %>%
+  select(-id)
+#new addition to arrange labels 
+votes_oobH$classlabel <- factor(votes_oobH$classlabel, levels=rev(c("tbats","stlar", "mstlarima", "mstlets","snaive", "rw", "rwd", "theta","nn","wn"))
+)
+horizontalbar_hourly <- ggplot(votes_oobH, aes(x = variable, y = value, fill = classlabel)) +
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
-  scale_fill_manual(values = c(
-    "#a50026", "#d73027", "#f46d43", "#fdae61", "#fee090",
-    "#e0f3f8", "#abd9e9", "#74add1", "#4575b4",
-    "#313695"
-  )) +
   ylab("Classification error based on OOB error") +
-  xlab("") +
-  theme(legend.position = "right", legend.title = element_blank(), legend.text.align = 0) +
-  guides(fill = guide_legend(reverse = TRUE)) +
-  scale_x_discrete(limits = c(
-    "nn",
-    "theta",
-    "wn",
-    "ARMA/AR/MA",
-    "ARIMA",
-    "ETS-notrendnoseasonal",
-    "ETS-dampedtrend",
-    "ETS-trend",
-    "rw",
-    "rwd"
-  )) +
-  coord_flip()
-oob_boxplot_yearly
+  xlab("") + 
+  theme(legend.position = "right", legend.title = element_blank(), legend.text.align = 0, text = element_text(size=20)) + 
+  guides(fill=guide_legend(reverse=TRUE)) +
+  scale_x_discrete(limits=rev(c("tbats","stlar", "mstlarima", "mstlets","snaive", "rw", "rwd", "theta","nn","wn"))) +
+  coord_flip() 
+horizontalbar_hourly
+
+## ----pdp_hourly
+
 
