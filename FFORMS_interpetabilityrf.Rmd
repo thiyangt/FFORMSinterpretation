@@ -59,9 +59,12 @@ library(RColorBrewer)
 
 # Introduction
 
-The time series forecasting field has been evolving for a long time and has introduced a wide variety of different methods for forecasting. However, for a given time series the selection of an appropriate forecasting-method among many possibilities is not straight forward. This selection is one of the most difficult tasks as different kind of forecasting-methods have their own “selective superiority; it is best for some but not all tasks” [ref]. 
+The time series forecasting field has been evolving for a long time and has introduced a wide variety of different methods for forecasting. However, for a given time series the selection of an appropriate forecasting-method among many possibilities is not straight forward. The features of time series are considered to be an important factor in identifying suitable forecasting models[ref, Meade, MakrikadisM3].[This goes back to 1972] However, a desciption of relationship between the features and the performance of algorithms is rarely discussed in the field of forecasting. [Usefulness of identifying the relationship between features and forecasting performance.]
 
-The selective superiority of forecasting-methods strongly affected by the features of the time series at hand.  As a result, there have been several recent studies on use of machine learning algorithms to automate the forecast model selection based on the features computed from the time series. The basis of these algorithms are inputs as features, output best performing method/ supervised learning. For example, …. In the most recent Talagala et al. use random forest algorithm to model the relationship between features and “best” forecasting method. This framework is referred to as FFORMS: Feature-based FORecast Model Selection.  With the era of big data, such an automated model selection process is necessary because the cost of invoking all possible forecasting method is prohibitive. Less understanding Unlike linear models, these machine learning algorithms are capable to mode the complex interactions present in the data. However, these machine learning algorithms suffer from the limitation of providing meaningful interpretations that can enhance understanding of relations between features and model outcomes. To best of our knowledge, very limited efforts have been taken to understand how the models are making its decisions and what is really happening inside these complex model structures.  This results in less transparency of the model which lead to the questions of
+Reid(1972) was among the first to argue that features of time series play an important role in identification of suitable forecasting model. One of the first attempts to identify the relationship between features and forecast-model performance was presented in xx. However, these studies are limited by the scale of problem instances used, diversity of forecasting-methods used, quality of features considered, and modelling approached used to identify the relationship between features and forecast model performance. Most of these studies are typically restricted to simple statistical techniques such as...
+
+
+There have been several recent studies on use of machine learning algorithms to automate the forecast model selection based on the features computed from the time series. The key idea behind these framework is, forecast-model selection is posed as a supervised learning task. Each time series in the meta-data set is represented as a vector of features and labeled according to the "best" forecasting method(i.e. lowest MASE, etc.). Then a meta-learner is trained to identify suitable forecasting models. With the era of big data, such an automated model selection process is necessary because the cost of invoking all possible forecasting method is prohibitive. However, these machine learning algorithms suffer from the limitation of providing meaningful interpretations that can enhance understanding of relations between features and model outcomes. To best of our knowledge, very limited efforts have been taken to understand how the models are making its decisions and what is really happening inside these complex model structures.  This results in less transparency of the model which lead to the questions of
 i)	How features are related to the property being modelled?
 ii)	How features interact with each other to identify the suitable forecasting method? 
 iii)	Why one forecasting method is preferable over other? 
@@ -70,17 +73,7 @@ v)	Why certain features were responsible in driving certain decisions?
 vi)	Why is your model less accurate in some areas of the instance space? 
 To explore these points further, this paper makes a first step towards providing a comprehensive explanation of the relationship between time series features and forecast-model selection using machine learning interpretability techniques. This paper builds on the method from our previous work ref,  in which we introduced the FFORMS framework. We use 30 features to capture morphology of time series. 
 
-In this paper, we make the following contributions:
-1.	Application of FFORMS framework to M4 competition data. We extend the FFORMS framework to model weekly, daily and hourly series. 
-2.	
 
-In this paper, we use computationally efficient tools for identifing higher-order interactions in a supervised learning framework.
-
-Objectives
-
-1. To find important variables highly related to the response variables for interpretation purpose.
-
-# Related Work
 
 # FFORMS Application to M4 competition data
 
