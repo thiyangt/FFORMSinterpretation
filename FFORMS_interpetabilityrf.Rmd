@@ -251,11 +251,13 @@ strength of each feature. This measure is calculated based on the  out-of-bag (O
  where $\gamma_{i}^{k}$ denotes the predicted class for the $i^{th}$ observation before permuting the values of $X_{j}$ and $\gamma_{i, \pi_{j}}^{k}$ is the predicted class for the $i^{th}$ observation after permuting the values of $X_{j}$. The overall variable importance score is calculated as:
  \[VI(X_{j})=\frac{\sum_{1}^{ntree}VI^{(t)}(x_{j})}{ntree}.\]
 
-While permutation-based variable importance measure provides a useful starting point, they provides a little indication of the nature of the roles these covariates play inside the complex structure of the fitted model. Further to gain insights into the nature of the role of individual features in the random forest algorithm we PDP proposed by xx.
+Permutation-based variable importance measures provide a useful starting point for identifying relative influence of features on the predicted outcome.  However, they provide a little indication of the nature of the roles these covariates play inside the complex structure of the fitted model. To gain further insights into the role of features inside the FFORMS framework we use partial dependence plot (PDP) introduced by
+@friedman2008predictive. 
 
-### Partial dependence plot (PD Plots)
+### Partial dependence plot (PDP)
 
-PD plots are created by integrating out the effect of features beside the feature of interest. 
+Partial 
+ 
 
 ### Variable importance measure based on PDP
 
@@ -272,7 +274,7 @@ PD plots, ICE curves and PD-, ICE-associated measures are computationally intens
 
 ## Local Interpretability Methods
 
-Global interpretations help us to understand the inputs and their entire modeled relationship with the prediction object but global interpretations can be very approximate in some cases. Local interpretations help us understand the pedictions of the model for a single row of data or a group of simila rows. 
+Global interpretations help us to understand entire modeled relationship.  Local interpretations help us understand the pedictions of the model for a single instance or a group of simila instances. 
 
 ## Model-diagnostics
 
