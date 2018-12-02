@@ -256,13 +256,14 @@ Permutation-based variable importance measures provide a useful starting point f
 
 ### Partial dependence plot (PDP)
 
-Partial 
+Partial dependence plot visualize the relationship between the marginal effect of feature of interest and the response while accounting for the average effect of the other features in the model(while holding the other pedictors in the model constant). 
  
 
 ### Variable importance measure based on PDP
 
 ### ICE plots
 
+While partial dependence plots 
 ICE curves are an extension of PD-plots but, rather than plot the average marginal effect on the response variable, we plot the change in the predicted response variable for each observation as we vary each feature. 
 
 
