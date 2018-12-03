@@ -69,3 +69,4 @@ ARIMA_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="ARIMA",]
 dim(ARIMA_YFH)
 head(ARIMA_YFH)
 
+ARMA_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="ARMA",]
