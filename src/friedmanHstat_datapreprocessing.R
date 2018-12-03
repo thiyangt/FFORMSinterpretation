@@ -51,8 +51,11 @@ head(friedmanHstat_yearly)
 
 # devide the feature column to feature 1 and feature 2
 friedmanHstat_yearly <- friedmanHstat_yearly %>% separate(
-  feature, into=c("feature1", "feature2", sep="(:)")
-) %>% select(c("feature1", "feature2", "class", "interaction"))
+  feature, into=c("feature1", "feature2"), ":") %>% select(c("feature1", "feature2", "class", "interaction"))
+table(friedmanHstat_yearly$feature1)
+table(friedmanHstat_yearly$feature2)
+head(friedmanHstat_yearly)
+friedmanHstat_yearly[316,]
 # replace all NA and Inf swith zero
 is.na(friedmanHstat_yearly) <- sapply(friedmanHstat_yearly, is.infinite)
 friedmanHstat_yearly[is.na(friedmanHstat_yearly)] <- 0
@@ -60,3 +63,9 @@ summary(friedmanHstat_yearly$interaction)
 boxplot(friedmanHstat_yearly$interaction)
 # replace all values greater than 1 to 1
 friedmanHstat_yearly$interaction[friedmanHstat_yearly$interaction > 1.0] <- 1
+head(friedmanHstat_yearly)
+friedmanHstat_yearly$class <- as.character(friedmanHstat_yearly$class)
+ARIMA_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="ARIMA",]
+dim(ARIMA_YFH)
+head(ARIMA_YFH)
+
