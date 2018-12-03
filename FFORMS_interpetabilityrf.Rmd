@@ -9,7 +9,7 @@ author:
 - familyname: Khan
   othernames: Genghis
   address: Mongolian Institute
-abstract: "It is becoming more of a challenge to not only build state-of-the-art predictive models, but also gain an understanding of what's really going on in the data. We explore the impact of features in three levels, globally, subset of observations and individual  level. In this paper we use model-agnostic appraches to explore the impact of time series features towards forecast-model selection. Graphical representations are used to visualize both main and interaction effects."
+abstract: "This study investigates the relationship between features of time series and forecast-model selection using FFORMS framework. It is becoming more of a challenge to not only build state-of-the-art predictive models, but also gain an understanding of what's really going on in the data. We explore the impact of features in three levels, globally, subset of observations and individual  level. In this paper we use model-agnostic appraches to explore the impact of time series features towards forecast-model selection. Graphical representations are used to visualize both main and interaction effects."
 keywords: "FFORMS, machine learning, interpretability, partia-dependece, time series"
 wpnumber: no/yr
 jelcodes: C10,C14,C22
@@ -69,7 +69,8 @@ There have been several recent studies on use of machine learning algorithms to 
 \item Why one forecasting method is preferable over other? 
 \item How different features contribute to the model prediction or how they affect the model performance?
 \item Why certain features were responsible in driving certain decisions?
-\item Why is your model less accurate in some areas of the instance space? 
+\item Why is your model less accurate in some areas of the instance space?
+\item Which features contribute the most to classify a specific instance?
 \end{enumerate}
 
 On the other hand, aside from the goal of developing automated forecast-model selection framework few researchers have made an attempt to provide a desciption of relationship between the features and the performance of algorithms. One of the first attempts to identify the relationship between features and forecast-model performance was presented in xx. However, these studies are limited by the scale of problem instances used, diversity of forecasting-methods used, quality of features considered, and modelling approached used to identify the relationship between features and forecast model performance. Most of these studies are typically restricted to simple statistical techniques such as...[do not capture the complex interaction effects]
@@ -79,7 +80,7 @@ To explore these points further, this paper makes a first step towards providing
 
 [What is the usefulness of analysing the relationship between features and model performance?] Understanding the role of features is worthwhile even if producing an accurate and generalisable model is the only objective of the modelling. This is because the less transparency of the model may be distrusted regardless of their predictive performance. The methodology we propose here is a novel application of machine learning interpretability methods to visualize and explore the role of features in forecast-model selection. 
 
-This paper structures as follows. In \autoref{fforms} we describe the application of FFORMS framework to M4competition data. The main contribution of this from our previous work @fforms  is we extend the FFORMS framework to model weekly, daily and hourly series. In \autoref{machinelearning}provides a review of existing methods and visualisation tools that provides insights into the role of features in FFORMS framework and tools we used in this context. In \autoref{results} we discuss the results. 
+This paper proceeds as follows. In \autoref{fforms} we describe the application of FFORMS framework to M4competition data. The main contribution of this from our previous work @fforms  is we extend the FFORMS framework to model weekly, daily and hourly series.\autoref{machinelearning} gives background on machine learning interpretability techniques that are used to identify role of features in forecast model selection. In \autoref{results} we discuss the results. \autoref{#conclusions} concludes.
 
 # FFORMS Application to M4 competition data{#fforms}
 
@@ -251,25 +252,27 @@ strength of each feature. This measure is calculated based on the  out-of-bag (O
  where $\gamma_{i}^{k}$ denotes the predicted class for the $i^{th}$ observation before permuting the values of $X_{j}$ and $\gamma_{i, \pi_{j}}^{k}$ is the predicted class for the $i^{th}$ observation after permuting the values of $X_{j}$. The overall variable importance score is calculated as:
  \[VI(X_{j})=\frac{\sum_{1}^{ntree}VI^{(t)}(x_{j})}{ntree}.\]
 
-Permutation-based variable importance measures provide a useful starting point for identifying relative influence of features on the predicted outcome.  However, they provide a little indication of the nature of the roles these covariates play inside the complex structure of the fitted model. To gain further insights into the role of features inside the FFORMS framework we use partial dependence plot (PDP) introduced by
-@friedman2008predictive. 
+Permutation-based variable importance measures provide a useful starting point for identifying relative influence of features on the predicted outcome.  However, they provide a little indication of the nature of the relationship between the features and model outcome. To gain further insights into the role of features inside the FFORMS framework we use partial dependence plot (PDP) introduced by @friedman2008predictive. 
 
 ### Partial dependence plot (PDP)
 
-Partial dependence plot visualize the relationship between the marginal effect of feature of interest and the response while accounting for the average effect of the other features in the model(while holding the other pedictors in the model constant). 
- 
+Partial dependence plot can be used to graphically examine how each feature is related to the model prediction while accounting for the average effect of other features in the model. This method is particularly useful to discover complex model structures in "black box" models. Let $X_s$ be the feature we want examine partial dependencies for and $X_c$ be the remaining set of features in $X$.  Then $f_s$, the partial dependence function on $x_s$ is defines as 
+\{f_s=E_x}
+
 
 ### Variable importance measure based on PDP
 
 ### ICE plots
 
-While partial dependence plots 
+While partial dependence plots. However, in the presence of substantial interaction between features, the partial dependence response curves can be misleading. 
 ICE curves are an extension of PD-plots but, rather than plot the average marginal effect on the response variable, we plot the change in the predicted response variable for each observation as we vary each feature. 
 
 
 ### Variable importance measure based on ICE curves
 
 PD plots, ICE curves and PD-, ICE-associated measures are computationally intensive to create, especially when there ae large number of obsevations in the training set. Hence those measures are calcuated based on the subset of randomly selected training examples.
+
+Many of the other techniques exist for visualizing the relationship between the predictors and the response based on a fitted model. For example, 
 
 ## Representation of model in the data space (m-in-ds) and data in the model space (d-in-ms)
 
