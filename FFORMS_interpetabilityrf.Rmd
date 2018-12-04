@@ -309,6 +309,7 @@ In this section we provide a step-by-step description on how machine leaning int
 
 **Feature importance and main effects**
 
+On the otherhand, diff2y_acf5 and lumpiness show lowest contribution across many classes. 
 
 
 \newpage
