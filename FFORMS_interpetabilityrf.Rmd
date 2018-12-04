@@ -309,10 +309,9 @@ In this section we provide a step-by-step description on how machine leaning int
 
 **Feature importance and main effects**
 
-Permutation-based variable importance and Gini feature importance measure are used to evaluate the overall feature importance. Moreover, most important features for each class is identified based on three measures: i) permutation-based variable importance, ii) partial dependence functions based variable importance and iii) ICE-curves based variable importance measure. The one that shows the highest importance is ranked 25, the second best is ranked 24, and so on. Finally, for each category, average rank for each feature is computed based on the mean value of all rankings across all the feature importance metrics considered.
+Permutation-based variable importance and Gini feature importance measure are used to evaluate the overall feature importance. Moreover, most important features for each class is identified based on three measures: i) permutation-based variable importance, ii) partial dependence functions based variable importance and iii) ICE-curves based variable importance measure. The one that shows the highest importance is ranked 25, the second best is ranked 24, and so on. Finally, for each category, an average rank for each feature is computed based on the mean value of all rankings across all the feature importance metrics considered. The corresponding results are shown in \autoref{fig:vi_yearly}. The features strength of trend and test statistic of Phillips–Perron(PP) unit root test are appear to be most important features in each class. On the otherhand, diff2y_acf5 and lumpiness show lowest contribution across many classes. The length of time series (N) is assigned a high importance in neural-network class compared to others. Inorder to identify the relationship between these features and predicted outcomes partial-dependence plots are used. 
 
 
-On the otherhand, diff2y_acf5 and lumpiness show lowest contribution across many classes. 
 
 
 \newpage
