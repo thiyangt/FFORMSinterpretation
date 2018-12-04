@@ -320,7 +320,7 @@ Partial dependency, and associated confidence intervals corresponds to top-three
 
 \newpage
 
-```{r pdp_yearly, fig.height=15, fig.width=10, fig.cap="Partial dependence plots showing the variation top three features corresponds to each class. The shading shows the 95% confidence intervals.", fig.pos="h"}
+```{r pdp_yearly, fig.height=14.7, fig.width=10, fig.cap="Partial dependence plots showing the variation top three features corresponds to each class. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class.", fig.pos="h"}
 ```
 
 **Two-way interaction between features**
