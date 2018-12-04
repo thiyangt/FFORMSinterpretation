@@ -59,7 +59,7 @@ oob_boxplot_yearly <- ggplot(votes_oob, aes(
     "#e0f3f8", "#abd9e9", "#74add1", "#4575b4",
     "#313695"
   )) +
-  ylab("Classification error based on OOB error") +
+  ylab("Proportion") +
   xlab("") +
   theme(legend.position = "right", legend.title = element_blank(), legend.text.align = 0) +
   guides(fill = guide_legend(reverse = TRUE)) +
