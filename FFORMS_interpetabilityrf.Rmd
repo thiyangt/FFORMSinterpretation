@@ -314,7 +314,7 @@ On the otherhand, diff2y_acf5 and lumpiness show lowest contribution across many
 
 \newpage
 
-```{r vi_yearly, fig.height=10, fig.width=10, fig.cap="", fig.pos="h"}
+```{r vi_yearly, fig.height=10, fig.width=10, fig.cap="Feature importance plot. Longer bars indicate more important features.", fig.pos="h"}
 ```
 
 #### Partial dependency curves
