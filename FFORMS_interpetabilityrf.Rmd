@@ -316,7 +316,7 @@ Permutation-based variable importance and Gini feature importance measure are us
 
 **Partial dependency curves**
 
-Partial dependency, and associated confidence intervals corresponds to top-three features of each category are plotted to explore the relationship between features and predicted outcome. Confidence intervals also facilitate the indication of interaction effects. Except, theta class monotonicall increasing or decresing relationship can be observed with trend.
+Partial dependency, and associated confidence intervals corresponds to top-three features of each category are plotted to explore the relationship between features and predicted outcome. Confidence intervals also facilitate the indication of interaction effects. Except, theta class monotonicall increasing or decresing relationship can be observed with trend.  ,whereas the random walk with drift shows an opposite relationship.
 
 \newpage
 
@@ -325,9 +325,11 @@ Partial dependency, and associated confidence intervals corresponds to top-three
 
 **Two-way interaction between features**
 
+The relative strength of two-way interaction between features were determined using formulae developed by @friedman2008predictive, which is implemented in the iml(@molnar2018iml,) package in R.
+xx shows the heat maps of relative strength of all possible pairwise interactions for each class. 
 
 
-\newpage
+
 
 #### Two-way interaction effect between features
 
