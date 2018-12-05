@@ -65,8 +65,9 @@ boxplot(friedmanHstat_yearly$interaction)
 friedmanHstat_yearly$interaction[friedmanHstat_yearly$interaction > 1.0] <- 1
 head(friedmanHstat_yearly)
 friedmanHstat_yearly$class <- as.character(friedmanHstat_yearly$class)
-ARIMA_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="ARIMA",]
-dim(ARIMA_YFH)
-head(ARIMA_YFH)
+save(friedmanHstat_yearly, file="data/friedmanHstat_yearly.rda")
+#ARIMA_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="ARIMA",]
+#dim(ARIMA_YFH)
+#head(ARIMA_YFH)
 
 ARMA_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="ARMA",]
