@@ -164,10 +164,20 @@ meanrank_yearly$class <- factor(meanrank_yearly$class,
     "nn"
   )
 )
-feaImp_yearly <- ggplot(meanrank_yearly, aes(y = rank, x = feature)) +
+
+meanrank_yearly$rn <- 1:275
+
+top <- meanrank_yearly %>%
+  group_by(class) %>%
+  top_n(n = 5, wt = rank)
+
+meanrank_yearly$istop <- ifelse(meanrank_yearly$rn%in%top$rn, TRUE, FALSE)
+
+feaImp_yearly <- ggplot(meanrank_yearly, aes(y = rank, x = feature, fill=as.factor(istop))) +
   geom_bar(position = "dodge", stat = "identity") +
   facet_wrap(~class, ncol = 6, nrow = 2) +
-  coord_flip() + ylab("Average rank")
+  coord_flip() + ylab("Average rank")+ 
+  scale_fill_manual(breaks=c("0","1"), values=c("black","red"), guide="none")
 feaImp_yearly
 
 ## ---- pdp_yearly
@@ -1187,10 +1197,17 @@ meanrank_quarterly$class <- factor(meanrank_quarterly$class,
     "ARIMA", "ARMA", "stlar", "tbats", "wn", "theta", "nn"
   )
 )
-feaImp_quarterly <- ggplot(meanrank_quarterly, aes(y = rank, x = feature)) +
+
+meanrank_quarterly$rn <- 1:540
+topq <- meanrank_quarterly %>%
+  group_by(class) %>%
+  top_n(n = 5, wt = rank)
+meanrank_quarterly$istop <- ifelse(meanrank_quarterly$rn %in% topq$rn, TRUE, FALSE)
+feaImp_quarterly <- ggplot(meanrank_quarterly, aes(y = rank, x = feature,fill=as.factor(istop))) +
   geom_bar(position = "dodge", stat = "identity") +
   facet_wrap(~class, ncol = 9, nrow = 2) +
-  coord_flip() + ylab("Average rank")
+  coord_flip() + ylab("Average rank")+ 
+  scale_fill_manual(breaks=c("0","1"), values=c("black","red"), guide="none")
 feaImp_quarterly
 
 #### ---- pdp_quarterly1

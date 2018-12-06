@@ -174,10 +174,11 @@ The FFORMS framework operates on the features of the time series. For each time 
 28 & sediff\_acf1   & first ACF value of seasonally-differenced series                                        & -     & \yes & \yes & \yes\\
 29 & sediff\_seacf1 & ACF value at the first seasonal lag of seasonally-differenced series                    & -     & \yes & \yes & \yes\\
 30 & sediff\_acf5   & sum of squares of first 5 autocorrelation coefficients of seasonally-differenced series & -     & \yes & \yes & \yes\\
-31 & lmres\_acf1    & first ACF value of residual series of linear trend model                                & \yes  & - & - & -\\
-32 & y\_pacf5       & sum of squares of first 5 PACF values of original series                                & \yes  & \yes & \yes & \yes\\
-33 & diff1y\_pacf5  & sum of squares of first 5 PACF values of differenced series                             & \yes  & \yes & \yes & \yes\\
-34 & diff2y\_pacf5  & sum of squares of first 5 PACF values of twice-differenced series                       & \yes  & \yes & \yes & \yes\\
+31 & seas\_pacf     & partial autocorrelation coefficient at first seasonal lag & -     & \yes & \yes & \yes\\
+32 & lmres\_acf1    & first ACF value of residual series of linear trend model                                & \yes  & - & - & -\\
+33 & y\_pacf5       & sum of squares of first 5 PACF values of original series                                & \yes  & \yes & \yes & \yes\\
+34 & diff1y\_pacf5  & sum of squares of first 5 PACF values of differenced series                             & \yes  & \yes & \yes & \yes\\
+35 & diff2y\_pacf5  & sum of squares of first 5 PACF values of twice-differenced series                       & \yes  & \yes & \yes & \yes\\
 \bottomrule
  \end{tabular}
 \end{table}
@@ -314,7 +315,7 @@ In this section we provide a step-by-step description on how machine leaning int
 
 Permutation-based variable importance and Gini feature importance measure are used to evaluate the overall feature importance. Moreover, most important features for each class is identified based on three measures: i) permutation-based variable importance, ii) partial dependence functions based variable importance and iii) ICE-curves based variable importance measure. The one that shows the highest importance is ranked 25, the second best is ranked 24, and so on. Finally, for each category, an average rank for each feature is computed based on the mean value of all rankings across all the feature importance metrics considered. The corresponding results are shown in \autoref{fig:vi_yearly}. The features strength of trend and test statistic of Phillips–Perron(PP) unit root test, linearity, first autocorrelation coefficient of the differenced series are appear to be most important features in each class. On the otherhand, sum of squares of first five autocorrelation coefficients of the twice-difference series and lumpiness show lowest contribution across many classes. The length of time series (N) is assigned a high importance in neural-network class compared to others. This could be due to neural network approach may be beneficial in forecasting time series with long history of observations. Further, first correlation coefficient of the twice-differenced series is appear to be most important in ARIMA class as this category contains the higher order differenced series. Hurst exponent and entropy appear to be equally important in stationary classes. Within ETS-damped trend category beta and curvature ranked as important features. 
 
-```{r vi_yearly, fig.height=10, fig.width=10, fig.cap="Feature importance plot. Longer bars indicate more important features.", fig.pos="h"}
+```{r vi_yearly, fig.height=10, fig.width=10, fig.cap="Feature importance plot yearly series. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h"}
 ```
 
 **Partial dependency curves**
@@ -363,7 +364,7 @@ In the row categories snaive, stlar tabts, white noise process and neural networ
 **Variable importance: quarterly data**
 
 Strength of seasonality appear to be the most important feature across all categories.
-Similar to the results of yealy time series trend and linearity also listed among the top five features in each category.
+Similar to the results of yearly time series trend and linearity also listed among the top five features in each category. In the case of yearly data low variable importance is assigned to both stability and length of the series, however with quarterly time series within most categories stability and length of the series are assigned a high importance. In additiontion to the strength of seasonality, models with seasonal components assigned high importance to additional features related to seasonality such as ACF or PACF feature related to seasonal lag or seasonally-differenced series, for example, snaive and ETS-seasonal with  partial autocorrelation coefficient at first seasonal lag, etc. Furthurmore, as expected features related to parameter estimates ETS(A, A, A) were selected as important features by ETS with damped trend and seasonal component and ETS with trend and seasonal component models.
 
 \newpage
 
@@ -386,8 +387,6 @@ Similar to the results of yealy time series trend and linearity also listed amon
 ```
 
 \newpage
-
-#### Two-way interaction effect between features
 
 ```{r two_way_quarterly1, fig.height=30, fig.width=20, fig.cap="", fig.pos="h"}
 ```
