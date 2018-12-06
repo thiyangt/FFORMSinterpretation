@@ -79,8 +79,8 @@ There have been several recent studies on use of machine learning algorithms to 
 On the other hand, aside from the goal of developing automated forecast-model selection framework few researchers have made an attempt to provide a description of relationship between the features and the performance of algorithms. One of the first attempts to identify the relationship between features and forecast-model performance was presented in xx. However, these studies are limited by the scale of problem instances used, diversity of forecasting-methods used, quality of features considered, and modelling approached used to identify the relationship between features and forecast model performance. Most of these studies are typically restricted to simple statistical techniques such as...[do not capture the complex interaction effects]
 
 
-To explore these points further, this paper makes a first step towards providing a comprehensive explanation of the relationship between time series features and forecast-model selection using machine learning interpretability techniques. This paper builds on the method from our previous work ref,  in which we introduced the FFORMS (Feature-based FORecast Model Selection) framework. The random forest algorithm is used to model the relationship between features and "best" performing forecast-model. [Large time series collection is used to train the model] We use 30 features to capture morphology of time series. Even though the prediction accuracy of random forest algorithm is high, it is not easy to interpret what is happening inside the forest because of the two-step randomization.
-
+To explore these points further, this paper makes a first step towards providing a comprehensive explanation of the relationship between time series features and forecast-model selection using machine learning interpretability techniques. This paper builds on the method from our previous work ref,  in which we introduced the FFORMS (Feature-based FORecast Model Selection) framework. The random forest algorithm is used to model the relationship between features and "best" performing forecast-model. [Large time series collection is used to train the model] We use 30 features to capture morphology of time series. Even though the prediction accuracy of random forest algorithm is high, it is not easy to interpret what is happening inside the forest because of the two-step randomization.In this work we aim at providing a deeper understanding of the underlying mechanism and influence of features in forecast-model selection.  
+ 
 [What is the usefulness of analyzing the relationship between features and model performance?] Understanding the role of features is worthwhile even if producing an accurate and generalisable model is the only objective of the modelling. This is because the less transparency of the model may be distrusted regardless of their predictive performance. The methodology we propose here is a novel application of machine learning interpretability methods to visualize and explore the role of features in forecast-model selection. 
 
 This paper proceeds as follows. In \autoref{fforms} we describe the application of FFORMS framework to M4competition data. The main contribution of this from our previous work @fforms  is we extend the FFORMS framework to model weekly, daily and hourly series.\autoref{machinelearning} gives background on machine learning interpretability techniques that are used to identify role of features in forecast model selection. In \autoref{results} we discuss the results. \autoref{#conclusions} concludes.
@@ -281,7 +281,7 @@ Many of the other techniques exist for visualizing the relationship between the 
 
 ## Local Interpretability Methods
 
-Global interpretations help us to understand entire modeled relationship.  Local interpretations help us understand the predictions of the model for a single instance or a group of similar instances. 
+Global interpretations help us to understand entire modeled relationship.  Local interpretations help us understand the predictions of the model for a single instance or a group of similar instances. Local view of feature contribution provides valuable information about the reliability of FFORMS prediction for a particular instance.
 
 ## Model-diagnostics
 
@@ -308,7 +308,7 @@ In this section we provide a step-by-step description on how machine leaning int
 ```{r yearly_oob, fig.height=10, fig.width=10, fig.cap="Distribution of proportion of times each time series was assigned to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. There are ten rows in the plot corresponds to each predicted class represented by Y-axis. X-axis denotes the proportion of times a time series is classified in each class. On each row, the true class label match with the predicted class label category dominated the top, indicating a fairly good classification of the model fitted.", fig.pos="h", cache=TRUE}
 ```
 
-\ref{fig:yearly_oob} shows the distribution of proportion of times each observation (in our case each time series) was assigned to each class based on OOB sample. Each row represent the **predicted class label** and colour of boxplots corresponds to **true class label**. The proportion 1 indicates, that the time series was always predicted to the corresponding class and 0 being never. This is an alternative way of visualizing the vote-matrix information in the random forest model. The other way of representing vote matrix involves ternary plot (@sutherland2000orca) and jittered side-by-side dotplot [@ehrlinger2015ggrandomforests; @da2017interactive]. To over come the problem of overlapping classes arises due to the scale of the training data set, number of classes and similar types of classes of data, boxplot diagrams are used. On each row of \autoref{fig:yearly_oob} the distribution of proportions corresponds to the time series in which the prefdictied class label and true class label are the same dominates the top indicating a fairly good classification of the model. In addition to that, in each row the distributions corresponds to the time series labeled similar to the predicted class label also dominate the others. For example, within ETS-trend predicted class, the distributions correspond to the true class labels, ETS-damped trend, ARIMA, were also assigned with high probability and less values were assigned to ARMA/AR/MA, White noise process and ETS(ANN)/ETS(MNN). This confirms that our FFORMS framework successfully learnt the similarities and dissimilarities between the classes itself. (Each series is classified as random walk in some instances, yearly time series has high chance of getting classified as random walk). One reason for this is as shown in @kang2018efficient yearly series of M1, M3 and M4 are generally trended. (Results of M3 and M4 competition) This diagram helps to evaluate the model performance in the data space (model-in-the-data-space) (@da2017interactive).
+\ref{fig:yearly_oob} shows the distribution of proportion of times each observation (in our case each time series) was assigned to each class based on OOB sample. Each row represent the **predicted class label** and colour of boxplots corresponds to **true class label**. The proportion 1 indicates, that the time series was always predicted to the corresponding class and 0 being never. This is an alternative way of visualizing the vote-matrix information in the random forest model. The other way of representing vote matrix involves ternary plot (@sutherland2000orca) and jittered side-by-side dotplot [@ehrlinger2015ggrandomforests; @da2017interactive]. To over come the problem of overlapping classes arises due to the scale of the training data set, number of classes and similar types of classes of data, boxplot diagrams are used. On each row of \autoref{fig:yearly_oob} the distribution of proportions corresponds to the time series in which the prefdictied class label and true class label are the same dominates the top indicating a fairly good classification of the model. In addition to that, in each row the distributions corresponds to the time series labeled similar to the predicted class label also dominate the others. For example, within ETS-trend predicted class, the distributions correspond to the true class labels, ETS-damped trend, ARIMA, were also assigned with high probability and less values were assigned to ARMA/AR/MA, White noise process and ETS (ANN)/ETS(MNN). This confirms that our FFORMS framework successfully learnt the similarities and dissimilarities between the classes itself. (Each series is classified as random walk in some instances, yearly time series has high chance of getting classified as random walk). One reason for this is as shown in @kang2018efficient yearly series of M1, M3 and M4 are generally trended. (Results of M3 and M4 competition) This diagram helps to evaluate the model performance in the data space (model-in-the-data-space) (@da2017interactive).
 
 **Feature importance and main effects**
 
@@ -319,25 +319,22 @@ Permutation-based variable importance and Gini feature importance measure are us
 
 **Partial dependency curves**
 
-Partial dependency, and associated confidence intervals corresponds to top-three features of each category are plotted to explore the relationship between features and predicted outcome. Confidence intervals also facilitate the indication of interaction effects. Except, theta class monotonicall increasing or decresing relationship can be observed with trend.  ,whereas the random walk with drift shows an opposite relationship.
-
-\newpage
-
-```{r pdp_yearly, fig.height=14.7, fig.width=10, fig.cap="Partial dependence plots showing the variation top three features corresponds to each class. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class.", fig.pos="h"}
-```
+Partial dependency, and associated confidence intervals corresponds to top-three features of each category are plotted to explore the relationship between features and predicted outcome. Confidence intervals also facilitate the indication of interaction effects. Top three features of each category shows a non-linear relationship with predicted outcome. ETS (AAN, MAN, ANN, MNN), ARIMA, ARMA/AR/MA, white noise process and neural network classes show a monotonicall increasing or decresing relationship with trend while theta class has a parabolic relationship with trend. First autocorelation of the residual series of linear model shows a monotonically increasing relationship with ETS(ANN, MNN) class, whereas the random walk with drift shows an opposite relationship.
 
 **Two-way interaction between features**
 
-The relative strength of two-way interaction between features were determined using formulae developed by @friedman2008predictive, which is implemented in the iml(@molnar2018iml,) package in R.
-xx shows the heat maps of relative strength of all possible pairwise interactions for each class. 
+The relative strength of two-way interaction between features were determined using formulae developed by @friedman2008predictive, which is implemented in the iml(@molnar2018iml,) package in R. xx shows the heat maps of relative strength of all possible pairwise interactions for each class. The test statistic of Phillip-Perron test, strength of trend, and linearity show a weak interaction  with other features in all the class. These two features are appear to be among top 5 in all the classes according to the variable importance measures. Further, narrow confidence bands correponds to these features in the partial dependency plots also confirms the less interactivity. In almost all the cases partial correlation and auto-corelation based features are heavily interacting. However, the first autocoreelation coefficient of the difference series do not interact with other features heavily in the case of ARIMA  class. Furthur, almost all the feature pairs appear to be interacting in deciding probability of assigning to neural network class. 
 
 \newpage
 
-```{r friedmany, fig.height=30, fig.width=20, fig.cap="", fig.pos="h", message=FALSE, warning=FALSE}
+```{r pdp_yearly, fig.height=14.7, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class.", fig.pos="h"}
 ```
 
+\newpage
 
-#### Two-way interaction effect between features
+```{r friedmany, fig.height=30, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic", fig.pos="h", message=FALSE, warning=FALSE}
+```
+
 
 ```{r two_way_interaction_yearly1, fig.height=30, fig.width=20, fig.cap="", fig.pos="h"}
 ```
@@ -347,18 +344,21 @@ xx shows the heat maps of relative strength of all possible pairwise interaction
 ```{r two_way_interaction_yearly2, fig.height=30, fig.width=20, fig.cap="", fig.pos="h"}
 ```
 
-
 \newpage
 
-#### PCA space
+### PCA space
 
 ```{r yearly_pca, fig.height=10, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
 ```
 
-#### LIME
+### LIME
+
+xx shows the feature contribution for the instances highlighted in xx. 
 
 \newpage
 ### Quarterly data
+
+\newpage
 
 ```{r oob_quarterly, fig.height=30, fig.width=20, fig.cap="", fig.pos="h"}
 ```
@@ -448,6 +448,7 @@ xx shows the heat maps of relative strength of all possible pairwise interaction
 # Discussion and Conclusions{#conclusions}
 
 our proposed method selects a specific feature subset for each class. 
-Feature-based time series analysis should develop support systems that incorporate these features whenever feasible and appropriate.
+Feature-based time series analysis should develop support systems that incorporate these features whenever feasible and appropriate. We also demonstrate how feature contributions can be applied to understand the dependencies between time series features and their predicted classification and to assess the reliability of prediction. Feature contribution provide valuable information about the reliability of FFORMS prediction for a particular instance. Application of feature contributions for model interpretation is particularly valuable for ongoing research in  the field of feature-based time series analysis. We argue this analysis of provides a more refine 
+picture of time series features and forecast model selection.
 
 # References

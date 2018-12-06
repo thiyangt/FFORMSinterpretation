@@ -318,8 +318,8 @@ p22 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = 
 p23 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "wn")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
-p24 <- ggplot(data = y_pacf5grid, aes_string(x = y_pacf5grid$y_pacf5, y = "wn")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("y_pacf5") +
+p24 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "wn")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
 
 # theta
@@ -344,7 +344,7 @@ p30 <- ggplot(data = linearitygrid_rmout, aes_string(x = linearitygrid_rmout$lin
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
 
-(p1 | p2 | p3) / (p4 | p5 | p6) / (p7 | p8 | p9) / (p10 | p11 | p12) / (p13 | p14 | p15) / (p16 | p17 | p18) / (p19 | p20 | p21) / (p22 | p23 | p24) / (p25 | p26 | p27) / (p28 | p29 | p30)
+(p3 | p2 | p1) / (p4 | p5 | p6) / (p7 | p8 | p9) / (p10 | p11 | p12) / (p13 | p14 | p15) / (p16 | p17 | p18) / (p19 | p20 | p21) / (p22 | p23 | p24) / (p25 | p26 | p27) / (p28 | p29 | p30)
 
 ## ---- sankey_yearly
 load("data/yearly/rf.yearly.all.paths.rda")
@@ -582,7 +582,7 @@ cormattheta <- cormattheta[,-1]
 rownames(cormattheta) <- colnames(cormattheta)
 cormattheta <- round(cormattheta,2)
 cormattheta1 <- reorder_cormat(cormattheta)
-p9 <- ggcorrplot(cormattheta1, hc.order = TRUE, type = "upper",
+p9 <- ggcorrplot(cormattheta, hc.order = TRUE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
                        midpoint = 0.5, limit = c(0,1), space = "Lab", 
@@ -610,9 +610,9 @@ p10 <- ggcorrplot(cormatnn1, hc.order = TRUE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
                        midpoint = 0.5, limit = c(0,1), space = "Lab", 
-                       name="")+theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                       name="Friedman's H-statistic")+theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                                                  size = 12, hjust = 1))+
-  guides(fill=FALSE, color=FALSE)+ggtitle("nn")
+  ggtitle("nn")
 
 
 p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+plot_layout(ncol = 3, nrow = 4)
@@ -969,21 +969,26 @@ int20 <- ggplot(
 
 
 ## ---- yearly_pca
+load("data/yearly/train_votes.rda")
 pcaYvariables <- yearly_training[, 1:25]
 pcaM4Y <- prcomp(pcaYvariables, center = TRUE, scale = TRUE)
 # summary(pcaM1Y)
 PC1m4y <- pcaM4Y$x[, 1]
 PC2m4y <- pcaM4Y$x[, 2]
 PC3m4y <- pcaM4Y$x[, 3]
-m4yPCAresults <- data.frame(PC1 = PC1m4y, PC2 = PC2m4y, PC3 = PC3m4y, pcaYvariables)
-m4yPCAresults$predicted <- train_predictions_oob
-pca1M4Y_rwd <- ggplot(m4yPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
+m4yPCAresults1 <- data.frame(PC1 = PC1m4y, PC2 = PC2m4y, PC3 = PC3m4y, pcaYvariables)
+m4yPCAresults1$predicted <- train_predictions_oob
+train_votes1 <- data.frame(train_votes)
+m4yPCAresults <- dplyr::bind_cols(m4yPCAresults1, train_votes1)
+
+pca1M4Y_rwd <- ggplot(m4yPCAresults, aes(x = PC1, y = PC2, color = rwd)) +
+geom_point() +
   theme(
     legend.position = "none",
     aspect.ratio = 1
   ) +
-  geom_point(data = m4yPCAresults[m4yPCAresults$predicted == "rwd", ], aes(x = PC1, y = PC2), color = "forestgreen") +
+#  geom_point(data = m4yPCAresults[m4yPCAresults$predicted == "rwd", ], aes(x = PC1, y = PC2), color = "forestgreen") +
+  scale_colour_gradientn(colours=c("forestgreen","firebrick1"))
   labs(subtitle = "rwd") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
 pca1M4Y_rw <- ggplot(m4yPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
