@@ -544,7 +544,7 @@ p7 <- ggcorrplot(cormatarma1, hc.order = TRUE, type = "upper",
 
 ##  wn 
 wn_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="wn",]
-wn_YFH_cor <- arma_YFH %>% select(c("feature1", "feature2", "interaction"))
+wn_YFH_cor <- wn_YFH %>% select(c("feature1", "feature2", "interaction"))
 names(wn_YFH_cor) <- c("Var1", "Var2", "value")
 df1 <- data.frame(Var1=names(table(wn_YFH_cor$Var1)),
                   Var2=names(table(wn_YFH_cor$Var1)),
@@ -981,14 +981,13 @@ m4yPCAresults1$predicted <- train_predictions_oob
 train_votes1 <- data.frame(train_votes)
 m4yPCAresults <- dplyr::bind_cols(m4yPCAresults1, train_votes1)
 
-pca1M4Y_rwd <- ggplot(m4yPCAresults, aes(x = PC1, y = PC2, color = rwd)) +
-geom_point() +
+pca1M4Y_rwd <- ggplot(m4yPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+  geom_point(colour = "firebrick1") +
   theme(
     legend.position = "none",
     aspect.ratio = 1
   ) +
-#  geom_point(data = m4yPCAresults[m4yPCAresults$predicted == "rwd", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  scale_colour_gradientn(colours=c("forestgreen","firebrick1"))
+  geom_point(data = m4yPCAresults[m4yPCAresults$predicted == "rwd", ], aes(x = PC1, y = PC2), color = "forestgreen") +
   labs(subtitle = "rwd") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
 pca1M4Y_rw <- ggplot(m4yPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
@@ -1076,6 +1075,8 @@ pca1M4Y_nn <- ggplot(m4yPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
 (pca1M4Y_rwd | pca1M4Y_rw | pca1M4Y_etstrend | pca1M4Y_etsdamtrend | pca1M4Y_notrend) /
   (pca1M4Y_ARIMA | pca1M4Y_ARMA | pca1M4Y_wn | pca1M4Y_theta | pca1M4Y_nn)
 
+## ---- limeyearly
+
 
 #################################################################
 #                  Quarterly data                               #
@@ -1100,7 +1101,7 @@ votes_oobQ$classlabel <- factor(votes_oobQ$classlabel, levels = rev(c(
 )))
 oob_boxplot_quarterly <- ggplot(votes_oobQ, aes(x = variable, y = value, fill = classlabel)) +
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
-  ylab("Classification error based on OOB error") +
+  ylab("Proportion") +
   xlab("") +
   theme(legend.position = "right", legend.title = element_blank(), legend.text.align = 0, text = element_text(size = 20)) +
   guides(fill = guide_legend(reverse = TRUE)) +
