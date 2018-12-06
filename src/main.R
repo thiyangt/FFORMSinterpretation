@@ -1159,21 +1159,35 @@ rank_vi_quarterly_classes <- importancescoreQ %>%
 ## compute mean rank
 meanrank_viq_classes <- rank_vi_quarterly_classes %>% group_by(feature, class) %>% summarise_at(vars(c(rank)), funs(mean))
 
-
+## overall importance of features to the forest
+train_impforestQ <- data.frame(trainQ_importance)
+train_impforestQ <- add_rownames(train_impforestQ, "Feature")
+train_impforestQ <- train_impforestQ[, c("Feature", "MeanDecreaseAccuracy", "MeanDecreaseGini")]
+train_impforestQ <- train_impforestQ %>%
+  mutate(rank_permu = min_rank(MeanDecreaseAccuracy)) %>%
+  mutate(rank_gini = min_rank(MeanDecreaseGini))
+train_impforestQ$mean_rank <- (train_impforestQ$rank_permu + train_impforestQ$rank_gini) / 2
+meanrank_viq_forest <- data.frame(
+  feature = train_impforestQ$Feature,
+  class = rep("overall", 30),
+  rank = train_impforestQ$mean_rank
+)
+## combine mean ranks for overall forest and separate classes
+meanrank_quarterly <- dplyr::bind_rows(meanrank_viq_forest, meanrank_viq_classes)
 ## create horizontal bar chart for ranks
-orderOverall <- filter(meanrank_viq_classes, class == "snaive")
-meanrank_viq_classes$feature <- factor(meanrank_viq_classes$feature, levels = orderOverall$feature[order(orderOverall$rank)])
-meanrank_viq_classes$class <- factor(meanrank_viq_classes$class,
+orderOverall <- filter(meanrank_quarterly, class == "overall")
+meanrank_quarterly$feature <- factor(meanrank_quarterly$feature, levels = orderOverall$feature[order(orderOverall$rank)])
+meanrank_quarterly$class <- factor(meanrank_quarterly$class,
   levels = c(
-    "snaive", "rwd", "rw", "ETS.NTNS", "ETS.DT", "ETS.T", "ETS.DTS", "ETS.TS", "ETS.S", "SARIMA",
+    "overall", "snaive", "rwd", "rw", "ETS.NTNS", "ETS.DT", "ETS.T", "ETS.DTS", "ETS.TS", "ETS.S", "SARIMA",
     "ARIMA", "ARMA.AR.MA", "stlar", "tbats", "wn", "theta", "nn"
   ),
   labels = c(
-    "snaive", "rwd", "rw", "ETS.NTNS", "ETS.DT", "ETS.T", "ETS.DTS", "ETS.TS", "ETS.S", "SARIMA",
+    "overall", "snaive", "rwd", "rw", "ETS.NTNS", "ETS.DT", "ETS.T", "ETS.DTS", "ETS.TS", "ETS.S", "SARIMA",
     "ARIMA", "ARMA", "stlar", "tbats", "wn", "theta", "nn"
   )
 )
-feaImp_quarterly <- ggplot(meanrank_viq_classes, aes(y = rank, x = feature)) +
+feaImp_quarterly <- ggplot(meanrank_quarterly, aes(y = rank, x = feature)) +
   geom_bar(position = "dodge", stat = "identity") +
   facet_wrap(~class, ncol = 9, nrow = 2) +
   coord_flip() + ylab("Average rank")
