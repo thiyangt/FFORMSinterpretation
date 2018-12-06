@@ -362,7 +362,8 @@ In the row categories snaive, stlar tabts, white noise process and neural networ
 
 **Variable importance: quarterly data**
 
-Strength of seasonality appear to be the most important feature across all categories. 
+Strength of seasonality appear to be the most important feature across all categories.
+Simila to the results of yealy time series trend and linearity also listed among the top five features in each category.
 
 \newpage
 
