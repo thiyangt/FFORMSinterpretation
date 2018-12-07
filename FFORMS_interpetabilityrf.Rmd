@@ -455,6 +455,8 @@ Similar to the results of yearly time series trend and linearity also listed amo
 
 # Discussion and Conclusions{#conclusions}
 
+Since several number of features are used to build the framework with comparable contributions, and thus, all individual contributions are small.However, patial dependency plots confirms these individual feature effects captures the expected principles in the field of time series forecasting. 
+
 our proposed method selects a specific feature subset for each class. 
 Feature-based time series analysis should develop support systems that incorporate these features whenever feasible and appropriate. We also demonstrate how feature contributions can be applied to understand the dependencies between time series features and their predicted classification and to assess the reliability of prediction. Feature contribution provide valuable information about the reliability of FFORMS prediction for a particular instance. Application of feature contributions for model interpretation is particularly valuable for ongoing research in  the field of feature-based time series analysis. We argue this analysis of provides a more refine 
 picture of time series features and forecast model selection.
