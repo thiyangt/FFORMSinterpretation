@@ -430,7 +430,7 @@ Similar to the results of yearly time series trend and linearity also listed amo
 ```
 
 \autoref(fig: oob_monthly) can be interpreted similar to the results of quarterly data.
-For quarterly and monthly data same set of features and class-labels are used in training the model. Hence, this consistency between the results of quarterly and monthly series would provide evidence in support of the validity and trustability of the model.  Seasonality, trend, spikiness and linearity appear to be most important features across all categories. One notable difference between quarterly series and monthly series is 
+For quarterly and monthly data same set of features and class-labels are used in training the model. Hence, this consistency between the results of quarterly and monthly series would provide evidence in support of the validity and trustability of the model.  Seasonality, trend, spikiness and linearity appear to be most important features across all categories. Further, fetaures calculated based on parameter estimates of ETS(A,A,A) and ACF and PACF-based features related to sesoanl lags and seasonally differenced series were assigned higher importance than the quarterly series FFOMS framewor.  One notable difference between quarterly series and monthly series is 
 
 
 \newpage
