@@ -292,17 +292,11 @@ In addition to the previews discussions xx propose a novel application of
 
 It is argued in order to estimate the test error of a bagged model it is not necessary to perform cross-validation approach, because each tree is grown using different bootstrap samples from  the training set and a part of training data is not used in the tree construction [ref]. In general, each bagged tree does not make use of around one third of observations to construct the decision tree. These observations are referred to as the out-of-bag(OOB) observations. Each tree is grown based on different bootstrap samples hence, each tree has different set of OOB observations. These OOB samples can be used to calculate internal estimation of the test set error, which is known as OOB error. 
 
+\newpage
+
 # Results{#results}
 
-## M4 competition
-
-## Machine learning interpretability
-
-In this section we provide a step-by-step description on how machine leaning interpretability tools are used to facilitate better understanding of of FFORMS framework and corresponding results. We provide separate descriptions for yearly, quarterly, monthly, weekly, daily and hourly series.  
-
 ### Yearly data
-
-\newpage
 
 **Model diagnostic: FFORMS framework,Yearly series**
 
@@ -386,6 +380,16 @@ Similar to the results of yearly time series trend and linearity also listed amo
 \newpage
 
 ```{r pdp_quarterly2, fig.height=30, fig.width=20, fig.cap="Partial dependence plots for top three features in each category (Quarterly)", fig.pos="h"}
+```
+
+\newpage
+
+```{r friedmanQ, fig.height=30, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic for quarterly data.", fig.pos="h", message=FALSE, warning=FALSE}
+```
+
+\newpage
+
+```{r friedmanQ2, fig.height=10, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic for quarterly data(cont).", fig.pos="h", message=FALSE, warning=FALSE}
 ```
 
 \newpage
