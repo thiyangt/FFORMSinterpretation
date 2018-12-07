@@ -389,12 +389,12 @@ Similar to the results of yearly time series trend and linearity also listed amo
 
 \newpage
 
-```{r friedmanQ2, fig.height=10, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic for quarterly data(cont).", fig.pos="h", message=FALSE, warning=FALSE}
+```{r friedmanQ2, fig.height=10, fig.width=30, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic for quarterly data(cont).", fig.pos="h", message=FALSE, warning=FALSE}
 ```
 
 \newpage
 
-```{r two_way_quarterly1, fig.height=30, fig.width=20, fig.cap="", fig.pos="h"}
+```{r two_way_quarterly1, fig.height=35, fig.width=20, fig.cap="", fig.pos="h"}
 ```
 
 \newpage
@@ -428,6 +428,10 @@ Similar to the results of yearly time series trend and linearity also listed amo
 
 ```{r vi_monthly, fig.height=10, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
 ```
+
+\autoref(fig: oob_monthly) can be interpreted similar to the results of quarterly data.
+For quarterly and monthly data same set of features and class-labels are used in training the model. Hence, this consistency between the results of quarterly and monthly series would provide evidence in support of the validity and trustability of the model.  Seasonality, trend, spikiness and linearity appear to be most important features across all categories. One notable difference between quarterly series and monthly series is 
+
 
 \newpage
 
