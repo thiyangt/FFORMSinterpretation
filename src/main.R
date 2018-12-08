@@ -2784,6 +2784,447 @@ p21 <- ggplot(data=stabilitygridM, aes_string(x=stabilitygridM$stability, y="nn"
   (p19|p20|p21)
 
 
+
+## ---- friedmanM
+reorder_cormat <- function(cormat){
+  # Use correlation between variables as distance
+  dd <- as.dist((1-cormat)/2)
+  hc <- hclust(dd)
+  cormat <-cormat[hc$order, hc$order]
+}
+load("data/friedmanHstat_monthly.rda")
+
+## snaive
+snaive_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="snaive",]
+snaive_MFH_cor <- snaive_MFH %>% select(c("feature1", "feature2", "interaction"))
+names(snaive_MFH_cor) <- c("Var1", "Var2", "value")
+df1 <- data.frame(Var1=names(table(snaive_MFH_cor$Var1)),
+                  Var2=names(table(snaive_MFH_cor$Var1)),
+                  value=rep(1.00, 30))
+
+cormat <- dplyr::bind_rows(snaive_MFH_cor, df1)
+cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
+colnames(cormat)[1] <- ""
+cormat <- data.matrix(cormat)
+cormat <- cormat[,-1]
+rownames(cormat) <- colnames(cormat)
+cormat <- round(cormat,2)
+cormat1 <- reorder_cormat(cormat)
+p1 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
+                       name="")+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("snaive")
+## random walk with drift
+rwd_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="rwd",]
+rwd_MFH_cor <- rwd_MFH %>% select(c("feature1", "feature2", "interaction"))
+names(rwd_MFH_cor) <- c("Var1", "Var2", "value")
+df1 <- data.frame(Var1=names(table(rwd_MFH_cor$Var1)),
+                  Var2=names(table(rwd_MFH_cor$Var1)),
+                  value=rep(1.00, 30))
+
+cormat <- dplyr::bind_rows(rwd_MFH_cor, df1)
+cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
+colnames(cormat)[1] <- ""
+cormat <- data.matrix(cormat)
+cormat <- cormat[,-1]
+rownames(cormat) <- colnames(cormat)
+cormat <- round(cormat,2)
+cormat1 <- reorder_cormat(cormat)
+p2 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
+                       name="")+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("rwd")
+## random walk
+rw_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="rw",]
+rw_MFH_cor <- rw_MFH %>% select(c("feature1", "feature2", "interaction"))
+names(rw_MFH_cor) <- c("Var1", "Var2", "value")
+df1 <- data.frame(Var1=names(table(rw_MFH_cor$Var1)),
+                  Var2=names(table(rw_MFH_cor$Var1)),
+                  value=rep(1.00, 30))
+
+cormat <- dplyr::bind_rows(rw_MFH_cor, df1)
+cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
+colnames(cormat)[1] <- ""
+cormat <- data.matrix(cormat)
+cormat <- cormat[,-1]
+rownames(cormat) <- colnames(cormat)
+cormat <- round(cormat,2)
+cormat1 <- reorder_cormat(cormat)
+p3 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
+                       name="")+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
+  ggtitle("rw")
+
+## ETSNTNS
+etsntns_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="ETS.notrendnoseasonal",]
+etsntns_MFH_cor <- etsntns_MFH %>% select(c("feature1", "feature2", "interaction"))
+names(etsntns_MFH_cor) <- c("Var1", "Var2", "value")
+df1 <- data.frame(Var1=names(table(etsntns_MFH_cor$Var1)),
+                  Var2=names(table(etsntns_MFH_cor$Var1)),
+                  value=rep(1.00, 30))
+
+cormatetsntns <- dplyr::bind_rows(etsntns_MFH_cor, df1)
+cormatetsntns <- dcast(cormatetsntns, Var1 ~ Var2, value.var="value")
+colnames(cormatetsntns)[1] <- ""
+cormatetsntns <- data.matrix(cormatetsntns)
+cormatetsntns <- cormatetsntns[,-1]
+rownames(cormatetsntns) <- colnames(cormatetsntns)
+cormat <- round(cormatetsntns,2)
+cormatetsntns1 <- reorder_cormat(cormatetsntns)
+p4 <- ggcorrplot(cormatetsntns, hc.order = TRUE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
+                       name="")+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
+  ggtitle("ETS-notrendnoseasonal")
+
+## ETS-damped trend
+etsdt_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="ETS.dampedtrend",]
+etsdt_MFH_cor <- etsdt_MFH %>% select(c("feature1", "feature2", "interaction"))
+names(etsdt_MFH_cor) <- c("Var1", "Var2", "value")
+df1 <- data.frame(Var1=names(table(etsdt_MFH_cor$Var1)),
+                  Var2=names(table(etsdt_MFH_cor$Var1)),
+                  value=rep(1.00, 30))
+
+cormat <- dplyr::bind_rows(etsdt_MFH_cor, df1)
+cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
+colnames(cormat)[1] <- ""
+cormat <- data.matrix(cormat)
+cormat <- cormat[,-1]
+rownames(cormat) <- colnames(cormat)
+cormat <- round(cormat,2)
+cormat1 <- reorder_cormat(cormat)
+p5 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
+                       name="")+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
+  ggtitle("ETS-dampedtrend")
+
+## ETS-trend
+etst_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="ETS.trend",]
+etst_MFH_cor <- etst_MFH %>% select(c("feature1", "feature2", "interaction"))
+names(etst_MFH_cor) <- c("Var1", "Var2", "value")
+df1 <- data.frame(Var1=names(table(etst_MFH_cor$Var1)),
+                  Var2=names(table(etst_MFH_cor$Var1)),
+                  value=rep(1.00, 30))
+
+cormat <- dplyr::bind_rows(etst_MFH_cor, df1)
+cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
+colnames(cormat)[1] <- ""
+cormat <- data.matrix(cormat)
+cormat <- cormat[,-1]
+rownames(cormat) <- colnames(cormat)
+cormat <- round(cormat,2)
+cormat1 <- reorder_cormat(cormat)
+p6 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
+                       name="")+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
+  ggtitle("ETS-trend")
+
+## ETS-dampedtrendseasonal
+etsdts_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="ETS.dampedtrendseasonal",]
+etsdts_MFH_cor <- etsdts_MFH %>% select(c("feature1", "feature2", "interaction"))
+names(etsdts_MFH_cor) <- c("Var1", "Var2", "value")
+df1 <- data.frame(Var1=names(table(etsdts_MFH_cor$Var1)),
+                  Var2=names(table(etsdts_MFH_cor$Var1)),
+                  value=rep(1.00, 30))
+
+cormat <- dplyr::bind_rows(etsdts_MFH_cor, df1)
+cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
+colnames(cormat)[1] <- ""
+cormat <- data.matrix(cormat)
+cormat <- cormat[,-1]
+rownames(cormat) <- colnames(cormat)
+cormat <- round(cormat,2)
+cormat1 <- reorder_cormat(cormat)
+p7 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
+                       name="")+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
+  ggtitle("ETS-dampedtrendseasonal")
+
+## ETS-trendseasonal
+etsts_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="ETS.trendseasonal",]
+etsts_MFH_cor <- etsts_MFH %>% select(c("feature1", "feature2", "interaction"))
+names(etsts_MFH_cor) <- c("Var1", "Var2", "value")
+df1 <- data.frame(Var1=names(table(etsts_MFH_cor$Var1)),
+                  Var2=names(table(etsts_MFH_cor$Var1)),
+                  value=rep(1.00, 30))
+
+cormat <- dplyr::bind_rows(etsts_MFH_cor, df1)
+cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
+colnames(cormat)[1] <- ""
+cormat <- data.matrix(cormat)
+cormat <- cormat[,-1]
+rownames(cormat) <- colnames(cormat)
+cormat <- round(cormat,2)
+cormat1 <- reorder_cormat(cormat)
+p8 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
+                       name="")+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
+  ggtitle("ETS-dampedtrendseasonal")
+
+## ETS-seasonal
+etss_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="ETS.seasonal",]
+etss_MFH_cor <- etss_MFH %>% select(c("feature1", "feature2", "interaction"))
+names(etss_MFH_cor) <- c("Var1", "Var2", "value")
+df1 <- data.frame(Var1=names(table(etss_MFH_cor$Var1)),
+                  Var2=names(table(etss_MFH_cor$Var1)),
+                  value=rep(1.00, 30))
+
+cormat <- dplyr::bind_rows(etss_MFH_cor, df1)
+cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
+colnames(cormat)[1] <- ""
+cormat <- data.matrix(cormat)
+cormat <- cormat[,-1]
+rownames(cormat) <- colnames(cormat)
+cormat <- round(cormat,2)
+cormat1 <- reorder_cormat(cormat)
+p9 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
+                       name="")+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
+  ggtitle("ETS-dampedtrendseasonal")
+
+
+## SARIMA
+sarima_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="SARIMA",]
+sarima_MFH_cor <- sarima_MFH %>% select(c("feature1", "feature2", "interaction"))
+names(sarima_MFH_cor) <- c("Var1", "Var2", "value")
+df1 <- data.frame(Var1=names(table(sarima_MFH_cor$Var1)),
+                  Var2=names(table(sarima_MFH_cor$Var1)),
+                  value=rep(1.00, 30))
+
+cormat <- dplyr::bind_rows(sarima_MFH_cor, df1)
+cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
+colnames(cormat)[1] <- ""
+cormat <- data.matrix(cormat)
+cormat <- cormat[,-1]
+rownames(cormat) <- colnames(cormat)
+cormat <- round(cormat,2)
+cormat1 <- reorder_cormat(cormat)
+p10 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+                  outline.col = "white")+
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
+                       name="")+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
+  ggtitle("SARIMA")
+
+
+## ARIMA
+arima_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="ARIMA",]
+arima_MFH_cor <- arima_MFH %>% select(c("feature1", "feature2", "interaction"))
+names(arima_MFH_cor) <- c("Var1", "Var2", "value")
+df1 <- data.frame(Var1=names(table(arima_MFH_cor$Var1)),
+                  Var2=names(table(arima_MFH_cor$Var1)),
+                  value=rep(1.00, 30))
+
+cormat <- dplyr::bind_rows(arima_MFH_cor, df1)
+cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
+colnames(cormat)[1] <- ""
+cormat <- data.matrix(cormat)
+cormat <- cormat[,-1]
+rownames(cormat) <- colnames(cormat)
+cormat <- round(cormat,2)
+cormat1 <- reorder_cormat(cormat)
+p11 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+                  outline.col = "white")+
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
+                       name="")+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
+  ggtitle("ARIMA")
+
+
+## ARMA
+arma_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="ARMA.AR.MA",]
+arma_MFH_cor <- arma_MFH %>% select(c("feature1", "feature2", "interaction"))
+names(arma_MFH_cor) <- c("Var1", "Var2", "value")
+df1 <- data.frame(Var1=names(table(arma_MFH_cor$Var1)),
+                  Var2=names(table(arma_MFH_cor$Var1)),
+                  value=rep(1.00, 30))
+
+cormat <- dplyr::bind_rows(arma_MFH_cor, df1)
+cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
+colnames(cormat)[1] <- ""
+cormat <- data.matrix(cormat)
+cormat <- cormat[,-1]
+rownames(cormat) <- colnames(cormat)
+cormat <- round(cormat,2)
+cormat1 <- reorder_cormat(cormat)
+p12 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+                  outline.col = "white")+
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
+                       name="")+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
+  ggtitle("ARMA/AR/MA")
+
+
+p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+p11+p12+plot_layout(ncol = 3, nrow = 4)
+
+## ----friedmanM2
+## stlar
+stlar_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="stlar",]
+stlar_MFH_cor <- stlar_MFH %>% select(c("feature1", "feature2", "interaction"))
+names(stlar_MFH_cor) <- c("Var1", "Var2", "value")
+df1 <- data.frame(Var1=names(table(stlar_MFH_cor$Var1)),
+                  Var2=names(table(stlar_MFH_cor$Var1)),
+                  value=rep(1.00, 30))
+
+cormat <- dplyr::bind_rows(stlar_MFH_cor, df1)
+cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
+colnames(cormat)[1] <- ""
+cormat <- data.matrix(cormat)
+cormat <- cormat[,-1]
+rownames(cormat) <- colnames(cormat)
+cormat <- round(cormat,2)
+cormat1 <- reorder_cormat(cormat)
+p13 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+                  outline.col = "white")+
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
+                       name="")+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
+  ggtitle("stlar")
+
+## tbats
+tbats_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="tbats",]
+tbats_MFH_cor <- tbats_QFH %>% select(c("feature1", "feature2", "interaction"))
+names(tbats_MFH_cor) <- c("Var1", "Var2", "value")
+df1 <- data.frame(Var1=names(table(tbats_MFH_cor$Var1)),
+                  Var2=names(table(tbats_MFH_cor$Var1)),
+                  value=rep(1.00, 30))
+
+cormat <- dplyr::bind_rows(tbats_MFH_cor, df1)
+cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
+colnames(cormat)[1] <- ""
+cormat <- data.matrix(cormat)
+cormat <- cormat[,-1]
+rownames(cormat) <- colnames(cormat)
+cormat <- round(cormat,2)
+cormat1 <- reorder_cormat(cormat)
+p14 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+                  outline.col = "white")+
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
+                       name="")+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
+  ggtitle("tbats")
+
+
+## wn
+wn_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="wn",]
+wn_MFH_cor <- wn_MFH %>% select(c("feature1", "feature2", "interaction"))
+names(wn_MFH_cor) <- c("Var1", "Var2", "value")
+df1 <- data.frame(Var1=names(table(wn_MFH_cor$Var1)),
+                  Var2=names(table(wn_MFH_cor$Var1)),
+                  value=rep(1.00, 30))
+
+cormat <- dplyr::bind_rows(wn_MFH_cor, df1)
+cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
+colnames(cormat)[1] <- ""
+cormat <- data.matrix(cormat)
+cormat <- cormat[,-1]
+rownames(cormat) <- colnames(cormat)
+cormat <- round(cormat,2)
+cormat1 <- reorder_cormat(cormat)
+p15 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+                  outline.col = "white")+
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
+                       name="")+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
+  ggtitle("wn")
+
+## theta
+theta_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="theta",]
+theta_MFH_cor <- theta_MFH %>% select(c("feature1", "feature2", "interaction"))
+names(theta_MFH_cor) <- c("Var1", "Var2", "value")
+df1 <- data.frame(Var1=names(table(theta_MFH_cor$Var1)),
+                  Var2=names(table(theta_MFH_cor$Var1)),
+                  value=rep(1.00, 30))
+
+cormat <- dplyr::bind_rows(theta_MFH_cor, df1)
+cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
+colnames(cormat)[1] <- ""
+cormat <- data.matrix(cormat)
+cormat <- cormat[,-1]
+rownames(cormat) <- colnames(cormat)
+cormat <- round(cormat,2)
+cormat1 <- reorder_cormat(cormat)
+p16 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+                  outline.col = "white")+
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
+                       name="")+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
+  ggtitle("theta")
+
+## nn
+nn_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="nn",]
+nn_MFH_cor <- nn_MFH %>% select(c("feature1", "feature2", "interaction"))
+names(nn_MFH_cor) <- c("Var1", "Var2", "value")
+df1 <- data.frame(Var1=names(table(nn_MFH_cor$Var1)),
+                  Var2=names(table(nn_MFH_cor$Var1)),
+                  value=rep(1.00, 30))
+
+cormat <- dplyr::bind_rows(nn_MFH_cor, df1)
+cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
+colnames(cormat)[1] <- ""
+cormat <- data.matrix(cormat)
+cormat <- cormat[,-1]
+rownames(cormat) <- colnames(cormat)
+cormat <- round(cormat,2)
+cormat1 <- reorder_cormat(cormat)
+p17 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+                  outline.col = "white")+
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
+                       name="")+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
+  ggtitle("nn")
+
+p13+p14+p15+p16+p17+plot_layout(ncol = 3, nrow = 2)
+
 ## ---- two_way_monthly1
 load("data/monthly/seasinality.trend.m.rda")
 load("data/monthly/N.seasonality.m.rda")
@@ -2899,7 +3340,7 @@ PC3m4m <- pcaM4M$x[, 3]
 m4mPCAresults <- data.frame(PC1 = PC1m4m, PC2 = PC2m4m, PC3 = PC3m4m, pcaMvariables)
 m4mPCAresults$predicted <- trainM_predictions_oob
 m4mPCAresults <- m4mPCAresults[-249937, ]
-pca1M4M_snaive <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+pca1M4Msnaive <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   geom_point(colour = "firebrick1") +
   theme(
     legend.position = "none",
@@ -2908,7 +3349,7 @@ pca1M4M_snaive <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)
   geom_point(data = m4mPCAresults[m4mPCAresults$predicted == "snaive", ], aes(x = PC1, y = PC2), color = "forestgreen") +
   labs(subtitle = "rwd") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
-pca1M4M_rwd <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+pca1M4Mrwd <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   geom_point(colour = "firebrick1") +
   theme(
     legend.position = "none",
@@ -2917,7 +3358,7 @@ pca1M4M_rwd <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   geom_point(data = m4mPCAresults[m4mPCAresults$predicted == "rwd", ], aes(x = PC1, y = PC2), color = "forestgreen") +
   labs(subtitle = "rwd") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
-pca1M4M_rw <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+pca1M4Mrw <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   geom_point(colour = "firebrick1") +
   theme(
     legend.position = "none",
@@ -2927,7 +3368,7 @@ pca1M4M_rw <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   labs(subtitle = "rw") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
 
-pca1M4M_notrend <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+pca1M4Mnotrend <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   geom_point(colour = "firebrick1") +
   theme(
     legend.position = "none",
@@ -2936,7 +3377,7 @@ pca1M4M_notrend <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted
   geom_point(data = m4mPCAresults[m4mPCAresults$predicted == "ETS-notrendnoseasonal", ], aes(x = PC1, y = PC2), color = "forestgreen") +
   labs(subtitle = "ETS-notrendnoseasonal") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
-pca1M4M_etsdamtrend <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+pca1M4Metsdamtrend <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   geom_point(colour = "firebrick1") +
   theme(
     legend.position = "none",
@@ -2945,7 +3386,7 @@ pca1M4M_etsdamtrend <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predi
   geom_point(data = m4mPCAresults[m4mPCAresults$predicted == "ETS-dampedtrend", ], aes(x = PC1, y = PC2), color = "forestgreen") +
   labs(subtitle = "ETS-dampedtrend") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
-pca1M4M_etstrend <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+pca1M4Metstrend <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   geom_point(colour = "firebrick1") +
   theme(
     legend.position = "none",
@@ -2954,7 +3395,7 @@ pca1M4M_etstrend <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicte
   geom_point(data = m4mPCAresults[m4mPCAresults$predicted == "ETS-trend", ], aes(x = PC1, y = PC2), color = "forestgreen") +
   labs(subtitle = "ETS-trend") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
-pca1M4M_etsdtrends <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+pca1M4Metsdtrends <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   geom_point(colour = "firebrick1") +
   theme(
     legend.position = "none",
@@ -2963,7 +3404,7 @@ pca1M4M_etsdtrends <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predic
   geom_point(data = m4mPCAresults[m4mPCAresults$predicted == "ETS-dampedtrendseasonal", ], aes(x = PC1, y = PC2), color = "forestgreen") +
   labs(subtitle = "ETS-DTS") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
-pca1M4M_trends <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+pca1M4Mtrends <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   geom_point(colour = "firebrick1") +
   theme(
     legend.position = "none",
@@ -2972,7 +3413,7 @@ pca1M4M_trends <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)
   geom_point(data = m4mPCAresults[m4mPCAresults$predicted == "ETS-trendseasonal", ], aes(x = PC1, y = PC2), color = "forestgreen") +
   labs(subtitle = "ETS-trendseasonal") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
-pca1M4M_s <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+pca1M4Ms <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   geom_point(colour = "firebrick1") +
   theme(
     legend.position = "none",
@@ -2981,7 +3422,7 @@ pca1M4M_s <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   geom_point(data = m4mPCAresults[m4mPCAresults$predicted == "ETS-seasonal", ], aes(x = PC1, y = PC2), color = "forestgreen") +
   labs(subtitle = "ETS-seasonal") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
-pca1M4M_sarima <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+pca1M4Msarima <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   geom_point(colour = "firebrick1") +
   theme(
     legend.position = "none",
@@ -2990,7 +3431,7 @@ pca1M4M_sarima <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)
   geom_point(data = m4mPCAresults[m4mPCAresults$predicted == "SARIMA", ], aes(x = PC1, y = PC2), color = "forestgreen") +
   labs(subtitle = "SARIMA") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
-pca1M4M_ARIMA <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+pca1M4MARIMA <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   geom_point(colour = "firebrick1") +
   theme(
     legend.position = "none",
@@ -2999,7 +3440,7 @@ pca1M4M_ARIMA <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted))
   geom_point(data = m4mPCAresults[m4mPCAresults$predicted == "ARIMA", ], aes(x = PC1, y = PC2), color = "forestgreen") +
   labs(subtitle = "ARIMA") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
-pca1M4M_ARMA <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+pca1M4MARMA <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   geom_point(colour = "firebrick1") +
   theme(
     legend.position = "none",
@@ -3008,7 +3449,7 @@ pca1M4M_ARMA <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) 
   geom_point(data = m4mPCAresults[m4mPCAresults$predicted == "ARMA/AR/MA", ], aes(x = PC1, y = PC2), color = "forestgreen") +
   labs(subtitle = "ARMA/AR/MA") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
-pca1M4M_stlar <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+pca1M4Mstlar <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   geom_point(colour = "firebrick1") +
   theme(
     legend.position = "none",
@@ -3017,7 +3458,7 @@ pca1M4M_stlar <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted))
   geom_point(data = m4mPCAresults[m4mPCAresults$predicted == "stlar", ], aes(x = PC1, y = PC2), color = "forestgreen") +
   labs(subtitle = "stlar") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
-pca1M4M_tbats <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+pca1M4Mtbats <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   geom_point(colour = "firebrick1") +
   theme(
     legend.position = "none",
@@ -3026,7 +3467,7 @@ pca1M4M_tbats <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted))
   geom_point(data = m4mPCAresults[m4mPCAresults$predicted == "tbats", ], aes(x = PC1, y = PC2), color = "forestgreen") +
   labs(subtitle = "stlar") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
-pca1M4M_wn <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+pca1M4Mwn <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   geom_point(colour = "firebrick1") +
   theme(
     legend.position = "none",
@@ -3035,7 +3476,7 @@ pca1M4M_wn <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   geom_point(data = m4mPCAresults[m4mPCAresults$predicted == "wn", ], aes(x = PC1, y = PC2), color = "forestgreen") +
   labs(subtitle = "wn") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
-pca1M4M_theta <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+pca1M4Mtheta <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   geom_point(colour = "firebrick1") +
   theme(
     legend.position = "none",
@@ -3044,7 +3485,7 @@ pca1M4M_theta <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted))
   geom_point(data = m4mPCAresults[m4mPCAresults$predicted == "theta", ], aes(x = PC1, y = PC2), color = "forestgreen") +
   labs(subtitle = "theta") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
-pca1M4M_nn <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+pca1M4Mnn <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   geom_point(colour = "firebrick1") +
   theme(
     legend.position = "none",
@@ -3054,20 +3495,12 @@ pca1M4M_nn <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   labs(subtitle = "nn") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
 
-(pca1M4M_snaive|pca1M4M_rwd|pca1M4M_rw|pca1M4M_notrend|pca1M4M_etsdamtrend)/
-  (pca1M4M_etstrend|pca1M4M_etsdtrends|pca1M4M_trends|pca1M4M_s|pca1M4M_sarima)/
-  (pca1M4M_ARIMA|pca1M4M_ARMA|pca1M4M_stlar|pca1M4M_tbats|pca1M4M_wn)/
-  (pca1M4M_theta|pca1M4M_nn )
+pca1M4Msnaive+pca1M4Mrwd+pca1M4Mrw+pca1M4Mnotrend+pca1M4Metsdamtrend+
+  pca1M4Metstrend+pca1M4Metsdtrends+pca1M4Mtrends+pca1M4Ms+pca1M4Msarima+
+  pca1M4MARIMA+pca1M4MARMA+pca1M4Mstlar+pca1M4Mtbats+pca1M4Mwn+
+  pca1M4Mtheta+pca1M4Mnn+plot_layout(ncol = 5, nrow = 4)
 
 
-
-
-
-##################################################################################
-#                     Weekly data                                                #
-##################################################################################
-
-## ---- oob_weekly
 
 
 ################################################################

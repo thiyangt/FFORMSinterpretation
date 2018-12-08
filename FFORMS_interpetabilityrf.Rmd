@@ -37,6 +37,7 @@ knitr::opts_chunk$set(echo = FALSE, cache=TRUE, messages=FALSE, warning=FALSE, f
 #devtools::install_github("rstudio/rmarkdown")
 #devtools::install_github("rstudio/bookdown")
 read_chunk("src/main.R")
+read_chunk("src/main_weekly.R")
 library(ggplot2)
 library(patchwork)
 library(tidyverse)
@@ -331,14 +332,6 @@ The relative strength of two-way interaction between features were determined us
 ```
 
 
-```{r two_way_interaction_yearly1, fig.height=30, fig.width=20, fig.cap="", fig.pos="h"}
-```
-
-\newpage
-
-```{r two_way_interaction_yearly2, fig.height=30, fig.width=20, fig.cap="", fig.pos="h"}
-```
-
 \newpage
 
 ### PCA space
@@ -392,26 +385,6 @@ Similar to the results of yearly time series trend and linearity also listed amo
 ```{r friedmanQ2, fig.height=10, fig.width=30, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic for quarterly data(cont).", fig.pos="h", message=FALSE, warning=FALSE}
 ```
 
-\newpage
-
-```{r two_way_quarterly1, fig.height=35, fig.width=20, fig.cap="", fig.pos="h"}
-```
-
-\newpage
-
-```{r two_way_quarterly2, fig.height=30, fig.width=20, fig.cap="", fig.pos="h"}
-```
-
-\newpage
-
-```{r two_way_quarterly3, fig.height=30, fig.width=20, fig.cap="", fig.pos="h"}
-```
-
-\newpage
-
-```{r two_way_quarterly4, fig.height=10, fig.width=20, fig.cap="", fig.pos="h"}
-```
-
 
 \newpage
 
@@ -426,7 +399,7 @@ Similar to the results of yearly time series trend and linearity also listed amo
 
 \newpage
 
-```{r vi_monthly, fig.height=10, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```{r vi_monthly, fig.height=10, fig.width=40, fig.cap="", fig.pos="h", fig.align="center"}
 ```
 
 \autoref(fig: oob_monthly) can be interpreted similar to the results of quarterly data.
@@ -445,13 +418,38 @@ For quarterly and monthly data same set of features and class-labels are used in
 
 \newpage
 
-```{r two_way_monthly1, fig.height=30, fig.width=20, fig.cap="", fig.pos="h"}
+```{r friedmanM, fig.height=30, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic for monthly data.", fig.pos="h", message=FALSE, warning=FALSE}
+```
+
+\newpage
+
+```{r friedmanM2, fig.height=30, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic for monthly data.", fig.pos="h", message=FALSE, warning=FALSE}
 ```
 
 \newpage
 
 ```{r monthly_pca, fig.height=20, fig.width=20, fig.cap="PCA(Monthly)", fig.pos="h"}
 ```
+
+\newpage
+## Weekly
+
+```{r oob_weekly, fig.height=10, fig.width=10, fig.cap="Distribution of proportion of times each weekly time series was assigned to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. There are ten rows in the plot corresponds to each predicted class represented by Y-axis. X-axis denotes the proportion of times a time series is classified in each class. On each row, the true class label match with the predicted class label category dominated the top, indicating a fairly good classification of the model fitted.", fig.pos="h", cache=TRUE}
+```
+
+\newpage
+
+```{r vi_weekly, fig.height=15, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```
+
+\newpage
+
+
+
+\newpage
+
+## Daily
+
 
 \newpage
 
