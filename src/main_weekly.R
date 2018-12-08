@@ -118,3 +118,126 @@ feaImp_weekly <- ggplot(meanrank_weekly, aes(y = rank, x = feature,fill=as.facto
   coord_flip() + ylab("Average rank")+ 
   scale_fill_manual(breaks=c("0","1"), values=c("black","red"), guide="none")
 feaImp_weekly
+
+## ---- weekly_pdp
+## load ICE calculation files
+## entropy
+load("data/weekly/pdp_ice/entropyW_includeout.rda")
+entropyW_includeout$variable <- rep(1:1111, 20)
+## lumpiness
+load("data/weekly/pdp_ice/lumpinessW_includeout.rda")
+lumpinessW_includeout$variable <- rep(1:1111, 20)
+## stability
+load("data/weekly/pdp_ice/stabilityW_includeout.rda")
+stabilityW_includeout$variable <- rep(1:1111, 20)
+## hurst
+load("data/weekly/pdp_ice/hurstW_includeout.rda")
+hurstW_includeout$variable <- rep(1:1111, 20)
+## trend
+load("data/weekly/pdp_ice/trendW_includeout.rda")
+trendW_includeout$variable <- rep(1:1111, 20)
+## spikines
+load("data/weekly/pdp_ice/spikinessW_includeout.rda")
+spikinessW_includeout$variable <- rep(1:1111, 20)
+## linearity
+load("data/weekly/pdp_ice/linearityW_includeout.rda")
+linearityW_includeout$variable <- rep(1:1111, 20)
+## curvature
+load("data/weekly/pdp_ice/curvatureW_includeout.rda")
+curvatureW_includeout$variable <- rep(1:1111, 20)
+## e_acf1
+load("data/weekly/pdp_ice/e_acf1W_includeout.rda")
+e_acf1W_includeout$variable <- rep(1:1111, 20)
+## y_acf1
+load("data/weekly/pdp_ice/y_acf1W_includeout.rda")
+y_acf1W_includeout$variable <- rep(1:1111, 20)
+## diff1y_acf1
+load("data/weekly/pdp_ice/diff1y_acf1W_includeout.rda")
+diff1y_acf1W_includeout$variable <- rep(1:1111, 20)
+## diff2y_acf1
+load("data/weekly/pdp_ice/diff2y_acf1W_includeout.rda")
+diff2y_acf1W_includeout$variable <- rep(1:1111, 20)
+## y_pacf5
+load("data/weekly/pdp_ice/y_pacf5W_includeout.rda")
+y_pacf5W_includeout$variable <- rep(1:1111, 20)
+## diff1y_pacf5
+load("data/weekly/pdp_ice/diff1y_pacf5W_includeout.rda")
+diff1y_pacf5W_includeout$variable <- rep(1:1111, 20)
+## diff2y_pacf5
+load("data/weekly/pdp_ice/diff2y_pacf5W_includeout.rda")
+diff2y_pacf5W_includeout$variable <- rep(1:1111, 20)
+## nonlinearity
+load("data/weekly/pdp_ice/nonlinearityW_includeout.rda")
+nonlinearityW_includeout$variable <- rep(1:1111, 20)
+## seasonality
+load("data/weekly/pdp_ice/seasonalityW_includeout.rda")
+seasonalityW_includeout$variable <- rep(1:1111, 20)
+## seas_pacf
+load("data/weekly/pdp_ice/seas_pacfW_includeout.rda")
+seas_pacfW_includeout$variable <- rep(1:1111, 20)
+## sediff_acf1
+load("data/weekly/pdp_ice/sediff_acf1W_includeout.rda")
+sediff_acf1W_includeout$variable <- rep(1:1111, 20)
+## sediff_acf5
+load("data/weekly/pdp_ice/sediff_acf5W_includeout.rda")
+sediff_acf5W_includeout$variable <- rep(1:1111, 20)
+## N
+load("data/weekly/pdp_ice/NW_includeout.rda")
+NW_includeout$variable <- rep(1:1111, 20)
+## y_acf5
+load("data/weekly/pdp_ice/y_acf5W_includeout.rda")
+y_acf5W_includeout$variable <- rep(1:1111, 20)
+## diff1y_acf5
+load("data/weekly/pdp_ice/diff1y_acf5W_includeout.rda")
+diff1y_acf5W_includeout$variable <- rep(1:1111, 20)
+## diff2y_acf5
+load("data/weekly/pdp_ice/diff2y_acf5W_includeout.rda")
+diff2y_acf5W_includeout$variable <- rep(1:1111, 20)
+## alpha
+load("data/weekly/pdp_ice/alphaW_includeout.rda")
+alphaW_includeout$variable <- rep(1:1111, 20)
+## beta
+load("data/weekly/pdp_ice/betaW_includeout.rda")
+betaW_includeout$variable <- rep(1:1111, 20)
+## sediff_seacf1
+load("data/weekly/pdp_ice/sediff_seacf1W_includeout.rda")
+sediff_seacf1W_includeout$variable <- rep(1:1111, 20)
+
+## snaive
+p1 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "snaive")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("snaive")
+p2 <- ggplot(data = trendW_includeout, aes_string(x = trendW_includeout$trend, y = "snaive")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") 
+p3 <- ggplot(data = linearityW_includeout, aes_string(x = linearityW_includeout$linearity, y = "snaive")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("snaive")
+
+
+## rwd
+
+## rw
+
+## ARIMA
+
+## ARMA/AR/MA
+
+## SARIMA
+
+## stlar
+
+## mstlets
+
+## tbats
+
+## wn
+
+## theta
+
+## nn
+
+(p1|p2|p3)
