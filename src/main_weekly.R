@@ -211,33 +211,170 @@ p1 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_include
 p2 <- ggplot(data = trendW_includeout, aes_string(x = trendW_includeout$trend, y = "snaive")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none") 
+  theme(legend.position = "none") +ylab("")
 p3 <- ggplot(data = linearityW_includeout, aes_string(x = linearityW_includeout$linearity, y = "snaive")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none") + ylab("snaive")
+  theme(legend.position = "none") +ylab("")
 
 
 ## rwd
+p4 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "rwd")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("rwd")
+p5 <- ggplot(data = trendW_includeout, aes_string(x = trendW_includeout$trend, y = "rwd")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
+p6 <- ggplot(data = linearityW_includeout, aes_string(x = linearityW_includeout$linearity, y = "rwd")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
 
 ## rw
+p7 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "rw")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("rw")
+p8 <- ggplot(data = trendW_includeout, aes_string(x = trendW_includeout$trend, y = "rw")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
+p9 <- ggplot(data = linearityW_includeout, aes_string(x = linearityW_includeout$linearity, y = "rw")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
 
 ## ARIMA
-
-## ARMA/AR/MA
-
+p10 <- ggplot(data = sediff_seacf1W_includeout, aes_string(x = sediff_seacf1W_includeout$sediff_seacf1, y = "ARIMA")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("sediff_seacf1") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("ARIMA")
+p11 <- ggplot(data = lumpinessW_includeout, aes_string(x = lumpinessW_includeout$lumpiness, y = "ARIMA")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("lumpiness") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
+p12 <- ggplot(data = linearityW_includeout, aes_string(x = linearityW_includeout$linearity, y = "ARIMA")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
 ## SARIMA
-
+p13 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "SARIMA")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("SARIMA")
+p14 <- ggplot(data = trendW_includeout, aes_string(x = trendW_includeout$trend, y = "SARIMA")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
+p15 <- ggplot(data = linearityW_includeout, aes_string(x = linearityW_includeout$linearity, y = "SARIMA")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
 ## stlar
+p16 <- ggplot(data = sediff_seacf1W_includeout, aes_string(x = sediff_seacf1W_includeout$sediff_seacf1, y = "stlar")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("sediff_seacf1") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("stlar")
+p17 <- ggplot(data = betaW_includeout, aes_string(x = betaW_includeout$beta, y = "stlar")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("beta") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
+p18 <- ggplot(data = diff2y_pacf5W_includeout, aes_string(x = diff2y_pacf5W_includeout$diff2y_pacf5, y = "stlar")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
 
 ## mstlets
+p19 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "mstlets")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("mstlets")
+p20 <- ggplot(data = NW_includeout, aes_string(x = NW_includeout$N, y = "mstlets")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("N") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
+p21 <- ggplot(data = sediff_seacf1W_includeout, aes_string(x = sediff_seacf1W_includeout$sediff_seacf1, y = "mstlets")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("sediff_seacf1") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
 
 ## tbats
+p22 <- ggplot(data = entropyW_includeout, aes_string(x = entropyW_includeout$entropy, y = "tbats")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("tbats")
+p23 <- ggplot(data = NW_includeout, aes_string(x = NW_includeout$N, y = "tbats")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("N") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
+p24 <- ggplot(data =linearityW_includeout, aes_string(x = linearityW_includeout$linearity, y = "tbats")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
+
+## ARMA
+p25 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "ARMA.AR.MA")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("ARMA.AR.MA")
+p26 <- ggplot(data = trendW_includeout, aes_string(x = trendW_includeout$trend, y = "ARMA.AR.MA")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
+p27 <- ggplot(data = y_pacf5W_includeout, aes_string(x = y_pacf5W_includeout$y_pacf5, y = "ARMA.AR.MA")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("y_pacf5") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
 
 ## wn
+p28 <- ggplot(data = spikinessW_includeout, aes_string(x = spikinessW_includeout$spikiness, y = "wn")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("spikiness") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("wn")
+p29 <- ggplot(data = trendW_includeout, aes_string(x = trendW_includeout$trend, y = "wn")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
+p30 <- ggplot(data = linearityW_includeout, aes_string(x = linearityW_includeout$linearity, y = "wn")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
 
+(p1|p2|p3)/(p4|p5|p6)/(p7|p8|p9)/(p10|p11|p12)/(p13|p14|p15)/(p16|p17|p18)/(p19|p20|p21)/(p22|p23|p24)/(p25|p26|p27)/(p28|p29|p30)
+
+
+## ---- weekly_pdp2
 ## theta
+p1 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "theta")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("wn")
+p2 <- ggplot(data = stabilityW_includeout, aes_string(x = stabilityW_includeout$stability, y = "theta")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("stability") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
+p3 <- ggplot(data = linearityW_includeout, aes_string(x = linearityW_includeout$linearity, y = "theta")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("y_pacf5") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
 
 ## nn
+p4 <- ggplot(data = y_pacf5W_includeout, aes_string(x = y_pacf5W_includeout$y_pacf5, y = "nn")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("y_pacf5") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("nn")
+p5 <- ggplot(data = NW_includeout, aes_string(x = NW_includeout$N, y = "nn")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("N") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
+p6 <- ggplot(data = diff2y_acf1W_includeout, aes_string(x = diff2y_acf1W_includeout$diff2y_acf1, y = "nn")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff2y_acf1") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
 
-(p1|p2|p3)
+
+(p1|p2|p3)/(p4|p5|p6)
+
+## ---- friedmanW

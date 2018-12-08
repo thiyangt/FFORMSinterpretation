@@ -451,6 +451,12 @@ For quarterly and monthly data same set of features and class-labels are used in
 
 \newpage
 
+```{r weekly_pdp2, fig.height=5, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures(weekly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class(cont.).", fig.pos="h"}
+```
+
+
+\newpage
+
 ## Daily
 
 
