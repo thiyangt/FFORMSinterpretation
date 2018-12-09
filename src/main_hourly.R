@@ -170,88 +170,227 @@ y_pacf5gridH$variable <- rep(1:1000, 20)
 
 # snaive
 p1 <- ggplot(data=seasonality1gridH, aes_string(x=seasonality1gridH$seasonal_strength1, y="snaive")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality1")+ theme(legend.position="none")+ylab("snaive")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality1")+ 
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position="none")+ylab("snaive")
 p2 <- ggplot(data= NgridH, aes_string(x=NgridH$N, y="snaive")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("N")+ theme(legend.position="none")+ylab("")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("N")+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +theme(legend.position="none")+ylab("")
 p3 <- ggplot(data=linearitygridH, aes_string(x=linearitygridH$linearity, y="snaive")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ theme(legend.position="none")+ylab("")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("linearity")+ theme(legend.position="none")+ylab("")
 
 # rw
 p4 <- ggplot(data=seasonality1gridH, aes_string(x=seasonality1gridH$seasonal_strength1, y="rw")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality1")+ theme(legend.position="none")+ylab("rw")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("seasonality1")+ theme(legend.position="none")+ylab("rw")
 p5 <-  ggplot(data=seasonality2gridH, aes_string(x=seasonality2gridH$seasonal_strength2, y="rw")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality2")+ theme(legend.position="none")+ylab("rw")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("seasonality2")+ theme(legend.position="none")+ylab("rw")
 p6 <- ggplot(data=stabilitygridH, aes_string(x=stabilitygridH$stability, y="rw")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("stability")+ theme(legend.position="none")+ylab("")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("stability")+ theme(legend.position="none")+ylab("")
 
 #rwd
 p7 <- ggplot(data=seasonality1gridH, aes_string(x=seasonality1gridH$seasonal_strength1, y="rwd")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality1")+ theme(legend.position="none")+ylab("rwd")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("seasonality1")+ theme(legend.position="none")+ylab("rwd")
 p8 <- ggplot(data=entropygridH, aes_string(x=entropygridH$entropy, y="rwd")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("entropy")+ theme(legend.position="none")+ylab("")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("entropy")+ theme(legend.position="none")+ylab("")
 p9 <- ggplot(data=stabilitygridH, aes_string(x=stabilitygridH$stability, y="rwd")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("stability")+ theme(legend.position="none")+ylab("")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("stability")+ theme(legend.position="none")+ylab("")
 
 #mstlarima
 p10 <- ggplot(data=seasonality1gridH, aes_string(x=seasonality1gridH$seasonal_strength1, y="mstlarima")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality1")+ theme(legend.position="none")+ylab("mstlarima")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("seasonality1")+ theme(legend.position="none")+ylab("mstlarima")
 
 p11 <- ggplot(data= y_pacf5gridH, aes_string(x=y_pacf5gridH$y_pacf5, y="mstlarima")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("y_pacf5")+ theme(legend.position="none")+ylab("")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("y_pacf5")+ theme(legend.position="none")+ylab("")
 
 p12 <- ggplot(data=curvaturegridH, aes_string(x=curvaturegridH$curvature, y="mstlarima")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seas_pacf")+ theme(legend.position="none")+ylab("")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("seas_pacf")+ theme(legend.position="none")+ylab("")
 
 # mstlets
 p13 <- ggplot(data=seasonality1gridH, aes_string(x=seasonality1gridH$seasonal_strength1, y="mstlarima")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality1")+ theme(legend.position="none")+ylab("mstlets")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("seasonality1")+ theme(legend.position="none")+ylab("mstlets")
 p14 <- ggplot(data= y_pacf5gridH, aes_string(x=y_pacf5gridH$y_pacf5, y="mstlets")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("y_pacf5")+ theme(legend.position="none")+ylab("")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("y_pacf5")+ theme(legend.position="none")+ylab("")
 p15 <- ggplot(data=diff2y_acf1gridH, aes_string(x=diff2y_acf1gridH$diff2y_acf1, y="mstlets")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("diff2y_acf1")+ theme(legend.position="none")+ylab("")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("diff2y_acf1")+ theme(legend.position="none")+ylab("")
 
 #tbats
 p16 <- ggplot(data=seasonality1gridH, aes_string(x=seasonality1gridH$seasonal_strength1, y="tbats")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality1")+ theme(legend.position="none")+ylab("tbats")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("seasonality1")+ theme(legend.position="none")+ylab("tbats")
 p17 <- ggplot(data= y_pacf5gridH, aes_string(x=y_pacf5gridH$y_pacf5, y="tbats")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("y_pacf5")+ theme(legend.position="none")+ylab("")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("y_pacf5")+ theme(legend.position="none")+ylab("")
 p18 <- ggplot(data=entropygridH, aes_string(x=entropygridH$entropy, y="tbats")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("entropy")+ theme(legend.position="none")+ylab("")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("entropy")+ theme(legend.position="none")+ylab("")
 
 
 #stlar
 p19 <- ggplot(data=seasonality1gridH, aes_string(x=seasonality1gridH$seasonal_strength1, y="stlar")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality1")+ theme(legend.position="none")+ylab("stlar")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("seasonality1")+ theme(legend.position="none")+ylab("stlar")
 p20 <- ggplot(data= linearitygridH, aes_string(x=linearitygridH$linearity, y="stlar")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ theme(legend.position="none")+ylab("")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("linearity")+ theme(legend.position="none")+ylab("")
 p21 <- ggplot(data=seas_pacfgridH, aes_string(x=seas_pacfgridH$seas_pacf, y="stlar")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seas_pacf")+ theme(legend.position="none")+ylab("")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("seas_pacf")+ theme(legend.position="none")+ylab("")
 
 
 # theta
 p22 <- ggplot(data=seasonality1gridH, aes_string(x=seasonality1gridH$seasonal_strength1, y="theta")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality1")+ theme(legend.position="none")+ylab("theta")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("seasonality1")+ theme(legend.position="none")+ylab("theta")
 p23 <- ggplot(data= y_pacf5gridH, aes_string(x=y_pacf5gridH$y_pacf5, y="theta")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("y_pacf5")+ theme(legend.position="none")+ylab("")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("y_pacf5")+ theme(legend.position="none")+ylab("")
 p24 <- ggplot(data=linearitygridH, aes_string(x=linearitygridH$linearity, y="theta")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ theme(legend.position="none")+ylab("")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("linearity")+ theme(legend.position="none")+ylab("")
 
 ## nn
 p25 <- ggplot(data=seasonality1gridH, aes_string(x=seasonality1gridH$seasonal_strength1, y="nn")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality1")+ theme(legend.position="none")+ylab("nn")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("seasonality1")+ theme(legend.position="none")+ylab("nn")
 p26 <- ggplot(data= y_pacf5gridH, aes_string(x=y_pacf5gridH$y_pacf5, y="nn")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("y_pacf5")+ theme(legend.position="none")+ylab("")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("y_pacf5")+ theme(legend.position="none")+ylab("")
 p27 <- ggplot(data= sediff_seacf1gridH, aes_string(x=sediff_seacf1gridH$sediff_seacf1, y="nn")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("sediff_seacf1")+ theme(legend.position="none")+ylab("") 
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("sediff_seacf1")+ theme(legend.position="none")+ylab("") 
 
 ## wn
 p28 <- ggplot(data=seasonality1gridH, aes_string(x=seasonality1gridH$seasonal_strength1, y="wn")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality1")+ theme(legend.position="none")+ylab("wn")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("seasonality1")+ theme(legend.position="none")+ylab("wn")
 p29 <- ggplot(data=entropygridH, aes_string(x=entropygridH$entropy, y="wn")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("entropy")+ theme(legend.position="none")+ylab("")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("entropy")+ theme(legend.position="none")+ylab("")
 p30 <- ggplot(data=trendgridH, aes_string(x=trendgridH$trend, y="wn")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+ theme(legend.position="none")+ylab("")
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("trend")+ theme(legend.position="none")+ylab("")
 
 
 (p1|p2|p3)/(p4|p5|p6)/(p7|p8|p9)/(p10|p11|p12)/(p13|p14|p15)/(p16|p17|p18)/(p19|p20|p21)/(p22|p23|p24)/(p25|p26|p27)/(p28|p29|p30)
 
+
+
+## ---- pca_hourly
+load("data/hourly/trainH_votes.rda")
+pcaHvariables <- hourly_training[, 1:26]
+pcaM4H <- prcomp(pcaHvariables, center = TRUE, scale = TRUE)
+# summary(pcaM4W)
+PC1m4h <- pcaM4H$x[, 1]
+PC2m4h <- pcaM4H$x[, 2]
+PC3m4h <- pcaM4H$x[, 3]
+m4hPCAresults1 <- data.frame(PC1 = PC1m4h, PC2 = PC2m4h, PC3 = PC3m4h, pcaHvariables)
+m4hPCAresults1$predicted <- trainH_predictions_oob
+trainH_votes1 <- data.frame(trainH_votes)
+m4hPCAresults <- dplyr::bind_cols(m4hPCAresults1, trainH_votes1)
+
+pca1M4H_rwd <- ggplot(m4hPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+  geom_point(colour = "firebrick1") +
+  theme(
+    legend.position = "none",
+    aspect.ratio = 1
+  ) +
+  geom_point(data = m4hPCAresults[m4hPCAresults$predicted == "rwd", ], aes(x = PC1, y = PC2), color = "forestgreen") +
+  labs(subtitle = "rwd") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
+
+pca1M4H_rw <- ggplot(m4hPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+  geom_point(colour = "firebrick1") +
+  theme(
+    legend.position = "none",
+    aspect.ratio = 1
+  ) +
+  geom_point(data = m4hPCAresults[m4hPCAresults$predicted == "rw", ], aes(x = PC1, y = PC2), color = "forestgreen") +
+  labs(subtitle = "rw") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
+
+pca1M4H_wn <- ggplot(m4hPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+  geom_point(colour = "firebrick1") +
+  theme(
+    legend.position = "none",
+    aspect.ratio = 1
+  ) +
+  geom_point(data = m4hPCAresults[m4hPCAresults$predicted == "wn", ], aes(x = PC1, y = PC2), color = "forestgreen") +
+  labs(subtitle = "wn") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
+
+pca1M4H_theta <- ggplot(m4hPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+  geom_point(colour = "firebrick1") +
+  theme(
+    legend.position = "none",
+    aspect.ratio = 1
+  ) +
+  geom_point(data = m4hPCAresults[m4hPCAresults$predicted == "theta", ], aes(x = PC1, y = PC2), color = "forestgreen") +
+  labs(subtitle = "theta") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
+
+pca1M4H_nn <- ggplot(m4hPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+  geom_point(colour = "firebrick1") +
+  theme(
+    legend.position = "none",
+    aspect.ratio = 1
+  ) +
+  geom_point(data = m4hPCAresults[m4hPCAresults$predicted == "nn", ], aes(x = PC1, y = PC2), color = "forestgreen") +
+  labs(subtitle = "nn") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
+
+pca1M4H_tbats <- ggplot(m4hPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+  geom_point(colour = "firebrick1") +
+  theme(
+    legend.position = "none",
+    aspect.ratio = 1
+  ) +
+  geom_point(data = m4hPCAresults[m4hPCAresults$predicted == "tbats", ], aes(x = PC1, y = PC2), color = "forestgreen") +
+  labs(subtitle = "tbats") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
+
+pca1M4H_mstlets <- ggplot(m4hPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+  geom_point(colour = "firebrick1") +
+  theme(
+    legend.position = "none",
+    aspect.ratio = 1
+  ) +
+  geom_point(data = m4hPCAresults[m4hPCAresults$predicted == "mstlets", ], aes(x = PC1, y = PC2), color = "forestgreen") +
+  labs(subtitle = "mstlets") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
+
+pca1M4H_mstlarima <- ggplot(m4hPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+  geom_point(colour = "firebrick1") +
+  theme(
+    legend.position = "none",
+    aspect.ratio = 1
+  ) +
+  geom_point(data = m4hPCAresults[m4hPCAresults$predicted == "mstlarima", ], aes(x = PC1, y = PC2), color = "forestgreen") +
+  labs(subtitle = "mstlarima") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
+
+
+pca1M4H_stlar <- ggplot(m4hPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+  geom_point(colour = "firebrick1") +
+  theme(
+    legend.position = "none",
+    aspect.ratio = 1
+  ) +
+  geom_point(data = m4hPCAresults[m4hPCAresults$predicted == "stlar", ], aes(x = PC1, y = PC2), color = "forestgreen") +
+  labs(subtitle = "stlar") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
+
+
+pca1M4H_snaive <- ggplot(m4hPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
+  geom_point(colour = "firebrick1") +
+  theme(
+    legend.position = "none",
+    aspect.ratio = 1
+  ) +
+  geom_point(data = m4hPCAresults[m4hPCAresults$predicted == "snaive", ], aes(x = PC1, y = PC2), color = "forestgreen") +
+  labs(subtitle = "snaive") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
+
+(pca1M4H_snaive|pca1M4H_rwd|pca1M4H_rw |pca1M4H_mstlarima|pca1M4H_mstlets )/( pca1M4H_tbats|
+                                                                                     pca1M4H_stlar | pca1M4H_theta | pca1M4H_nn|pca1M4H_wn)
