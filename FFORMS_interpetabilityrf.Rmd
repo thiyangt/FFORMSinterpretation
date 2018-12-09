@@ -38,6 +38,7 @@ knitr::opts_chunk$set(echo = FALSE, cache=TRUE, messages=FALSE, warning=FALSE, f
 #devtools::install_github("rstudio/bookdown")
 read_chunk("src/main.R")
 read_chunk("src/main_weekly.R")
+read_chunk("src/main_daily.R")
 library(ggplot2)
 library(patchwork)
 library(tidyverse)
@@ -458,6 +459,14 @@ For quarterly and monthly data same set of features and class-labels are used in
 \newpage
 
 ## Daily
+
+```{r oob_daily, fig.height=10, fig.width=10, fig.cap="Distribution of proportion of times each weekly time series was assigned to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. There are ten rows in the plot corresponds to each predicted class represented by Y-axis. X-axis denotes the proportion of times a time series is classified in each class. On each row, the true class label match with the predicted class label category dominated the top, indicating a fairly good classification of the model fitted.", fig.pos="h", cache=TRUE}
+```
+
+\newpage
+
+```{r vi_daily, fig.height=15, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```
 
 
 \newpage
