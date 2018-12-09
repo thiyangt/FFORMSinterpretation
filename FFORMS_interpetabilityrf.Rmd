@@ -39,6 +39,7 @@ knitr::opts_chunk$set(echo = FALSE, cache=TRUE, messages=FALSE, warning=FALSE, f
 read_chunk("src/main.R")
 read_chunk("src/main_weekly.R")
 read_chunk("src/main_daily.R")
+read_chunk("src/main_hourly.R")
 library(ggplot2)
 library(patchwork)
 library(tidyverse)
@@ -468,6 +469,12 @@ For quarterly and monthly data same set of features and class-labels are used in
 ```{r vi_daily, fig.height=15, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
 ```
 
+\newpage
+
+```{r daily_pdp, fig.height=14.7, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures(daily series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class.", fig.pos="h"}
+```
+
+
 
 \newpage
 
@@ -476,6 +483,10 @@ For quarterly and monthly data same set of features and class-labels are used in
 ```{r hourly_oob, fig.height=30, fig.width=20, fig.cap="", fig.pos="h"}
 ```
 
+\newpage
+
+```{r vi_hourly, fig.height=10, fig.width=10, fig.cap="Feature importance plot yearly series. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h"}
+```
 
 # Discussion and Conclusions{#conclusions}
 
