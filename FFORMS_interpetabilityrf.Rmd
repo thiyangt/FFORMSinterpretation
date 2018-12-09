@@ -456,6 +456,10 @@ For quarterly and monthly data same set of features and class-labels are used in
 ```{r weekly_pdp2, fig.height=5, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures(weekly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class(cont.).", fig.pos="h"}
 ```
 
+\newpage
+
+```{r pca_weekly, fig.height=15, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```
 
 \newpage
 
@@ -474,7 +478,10 @@ For quarterly and monthly data same set of features and class-labels are used in
 ```{r daily_pdp, fig.height=14.7, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures(daily series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class.", fig.pos="h"}
 ```
 
+\newpage
 
+```{r pca_daily, fig.height=15, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```
 
 \newpage
 
@@ -491,6 +498,12 @@ For quarterly and monthly data same set of features and class-labels are used in
 \newpage
 
 ```{r hourly_pdp, fig.height=14.7, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures(hourly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class.", fig.pos="h"}
+```
+
+\newpage
+
+```{r pca_hourly, fig.height=15, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```
 
 # Discussion and Conclusions{#conclusions}
 
