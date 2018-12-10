@@ -279,7 +279,7 @@ where $n$ is the number of observations in the training dataset. Partial denpend
 
 ### ICE plots
 
-While partial dependence plots. However, in the presence of substantial interaction between features, the partial dependence response curves can be misleading. ICE curves are an extension of PD-plots but, rather than plot the average marginal effect on the response variable, we plot the change in the predicted response variable for each observation as we vary each feature. 
+While partial dependence plots. However, in the presence of substantial interaction between features, the partial dependence response curves can be misleading.  @goldstein2015peeking proposed the Individual Conditional Expectation (ICE) curves to address this issue.   ICE curves are an extension of PD-plots but, rather than plot the average marginal effect on the response variable, we plot the change in the predicted response variable for each observation as we vary each feature. 
 
 
 ### Variable importance measure based on ICE curves
