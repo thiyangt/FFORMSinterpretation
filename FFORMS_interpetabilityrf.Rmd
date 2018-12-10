@@ -40,6 +40,7 @@ read_chunk("src/main.R")
 read_chunk("src/main_weekly.R")
 read_chunk("src/main_daily.R")
 read_chunk("src/main_hourly.R")
+read_chunk("src/main_lime.R")
 library(ggplot2)
 library(patchwork)
 library(tidyverse)
@@ -59,7 +60,7 @@ library(RColorBrewer)
 library(iml) #machine learning interpretability package
 library(ggcorrplot) # to draw  ggcorrplot
 library(ggpubr)
-
+library(lime)
 ```
 
 
@@ -333,13 +334,13 @@ The relative strength of two-way interaction between features were determined us
 ```{r friedmany, fig.height=30, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic", fig.pos="h", message=FALSE, warning=FALSE}
 ```
 
-
 \newpage
 
-### PCA space
 
-```{r yearly_pca, fig.height=10, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```{r yearly_lime, fig.height=10, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
 ```
+
+
 
 ### LIME
 
@@ -388,10 +389,6 @@ Similar to the results of yearly time series trend and linearity also listed amo
 ```
 
 
-\newpage
-
-```{r quarterly_pca, fig.height=20, fig.width=20, fig.cap="PCA(Quarterly)", fig.pos="h"}
-```
 
 \newpage
 ## Monthly
@@ -458,6 +455,13 @@ For quarterly and monthly data same set of features and class-labels are used in
 
 \newpage
 
+```{r friedmanHW, fig.height=30, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic for weekly data.", fig.pos="h", message=FALSE, warning=FALSE}
+
+```
+
+
+\newpage
+
 ```{r pca_weekly, fig.height=15, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
 ```
 
@@ -512,5 +516,18 @@ Since several number of features are used to build the framework with comparable
 our proposed method selects a specific feature subset for each class. 
 Feature-based time series analysis should develop support systems that incorporate these features whenever feasible and appropriate. We also demonstrate how feature contributions can be applied to understand the dependencies between time series features and their predicted classification and to assess the reliability of prediction. Feature contribution provide valuable information about the reliability of FFORMS prediction for a particular instance. Application of feature contributions for model interpretation is particularly valuable for ongoing research in  the field of feature-based time series analysis. We argue this analysis of provides a more refine 
 picture of time series features and forecast model selection.
+
+# Appendix {-}
+
+\newpage
+## PCA space{-}
+
+```{r yearly_pca, fig.height=10, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```
+
+
+```{r quarterly_pca, fig.height=20, fig.width=20, fig.cap="PCA(Quarterly)", fig.pos="h"}
+```
+
 
 # References
