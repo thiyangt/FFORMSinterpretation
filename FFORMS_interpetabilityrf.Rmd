@@ -254,6 +254,11 @@ $g$.
 
 Global interpretability evaluate the behavior of a model on entire data set. Global perspective of model interpretation helps users to understand the overall modeled relationship between features and the model outcome. For example, which features are contribute mostly to the predictive mechanism of the fitted model, complex interactions between features, etc. In the following subsections we provide a description of tools we use to explore the global perspective of the model.  
 
+### Mean decrease in Gini coefficient
+
+Mean decrease in Gini coefficient is a measure of how each feature contributes to the homogeneity of the nodes and leaves in the resulting random forest proposed by @breiman2001random.
+
+
 ### Permutation-based variable importance measure
 
 The permutation-based variable importance introduced by @breiman2001random measures the the prediction
@@ -270,23 +275,26 @@ Partial dependence plot can be used to graphically examine how each feature is r
 \[g_s(X_s)=E_{x_c}[g(x_s, X_c)]=\int{g(x_s, x_c)dP(x_c).}\] 
 In practice, PDP can be estimated from a training data set as 
 \[\bar{g_s}(x_s)=\frac{1}{n}\sum_{i=1}^{n}g(x_s, X_{iC}),\]
-where $n$ is the number of observations in the training dataset. Partial denpendency curve can be created by plotting the pairs of $\{(x_s^k, g_s(xsk))\}_{k=1}^{m}$ using grid of points $\{x_{s1}, x_{s2},\dots, x_{sm}\}$ defined on $X_s$.
+where $n$ is the number of observations in the training dataset. Partial denpendency curve can be created by plotting the pairs of $\{(x_s^k, \bar{g}_s(x_{sk}))\}_{k=1}^{m}$ defined on grid of points $\{x_{s1}, x_{s2},\dots, x_{sm}\}$ based on $X_s$.
 
 
 ### Variable importance measure based on PDP
 
-@Greenwell2018 introduced a variable importance measure based on the partial dependency curves. The idea is to measure the “flatness” of partial dependence curves for each feature. A feature whose PDP curve is flat, relative to the other features, indicates that the feature does not have much influence on the predicted value as it changes while taking into account the average effect of the other features in the model. The flatness of the curve is measured using the standard deviation of the values $\{\bar{g}_s(x_{sk})\}_{k=1}^{m}$.
+@Greenwell2018 introduced a variable importance measure based on the partial dependency curves. The idea is to measure the “flatness” of partial dependence curves for each feature. A feature whose PDP curve is flat, relative to the other features, indicates that the feature does not have much influence on the predicted value as it changes while taking into account the average effect of the other features in the model. The flatness of the curve is measured using the standard deviation of the values $\{\bar{g}_{s}(x_{sk})\}_{k=1}^{m}$.
 
-### ICE plots
+### Individual Conditional Expectation (ICE) curves
 
-While partial dependence plots. However, in the presence of substantial interaction between features, the partial dependence response curves can be misleading.  @goldstein2015peeking proposed the Individual Conditional Expectation (ICE) curves to address this issue.   ICE curves are an extension of PD-plots but, rather than plot the average marginal effect on the response variable, we plot the change in the predicted response variable for each observation as we vary each feature. 
+While partial dependency curves are useful in understanding the estimated relationship between feature and predicted outcome in the presence of substantial interaction between features, it can be misleading.  @goldstein2015peeking proposed the Individual Conditional Expectation (ICE) curves to address this issue. Instead of
+averaging $g(x_s, X_{iC})$ over all observations in the training data, ICE plots the individual response curves by plotting the pairs $\{(x_s^k, g(x_{sk}, X_{iC}))\}_{k=1}^{m}$ defined on grid of points $\{x_{s1}, x_{s2},\dots, x_{sm}\}$ based on $X_s$. In other words partial dependency curve is simply the average of all the ICE curves. 
 
 
 ### Variable importance measure based on ICE curves
 
-This method is similar to the PDP-based VI scores above, but are based on measuring the “flatness” of the individual conditional expectation curves. We calculated standard deviations of each curve and subsequenty considered the mean of those standard deviations as a feature importance measure.  A higher value indicates a higher degree of interactivity with other features. 
+This method is similar to the PDP-based VI scores above, but are based on measuring the “flatness” of the individual conditional expectation curves. We calculated standard deviations of each ICE curve.  We then computed a ICE based variable importance score – simply the average of all the standard deviations. A higher value indicates a higher degree of interactivity with other features. 
 
-PD plots, ICE curves and PD-, ICE-associated measures are computationally intensive to create, especially when there are large number of observations in the training set. Hence, in our experiments ICE and PDP-based variable importance are measured based on the subset of randomly selected training examples.
+### Friedman's H-Statistic
+
+PD plots, ICE curves and PD-, ICE-associated measures and Friedman's H-statistic are computationally intensive to compute, especially when there are large number of observations in the training set. Hence, in our experiments ICE and PDP-based variable importance are measured based on the subset of randomly selected training examples.
 
 ## Representation of model in the data space (m-in-ds) and data in the model space (d-in-ms)
 
@@ -533,7 +541,7 @@ picture of time series features and forecast model selection.
 ```
 
 
-```{r quarterly_pca, fig.height=20, fig.width=20, fig.cap="PCA(Quarterly)", fig.pos="h"}
+```{r quarterly_pca, fig.height=15, fig.width=20, fig.cap="PCA(Quarterly)", fig.pos="h"}
 ```
 
 
