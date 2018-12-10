@@ -1,14 +1,19 @@
 ---
 title: "Peeking inside FFORMS: Feature-based FORecast Model Selection"
 author:
-- familyname: Troy
-  othernames: Helen
-  address: University of Greece\newline Athens
-  email: helen.troy@gmail.com
-  correspondingauthor: true
-- familyname: Khan
-  othernames: Genghis
-  address: Mongolian Institute
+  - familyname: Talagala
+    othernames: Thiyanga S
+    address: Department of Econometrics and Business Statistics, \newline Monash University, VIC 3800, Australia.
+    email : thiyanga.talagala@monash.edu
+    correspondingauthor: true
+  - familyname: Hyndman
+    othernames: Rob J
+    address: Department of Econometrics and Business Statistics, \newline Monash University, VIC 3800, Australia.
+    email : rob.hyndman@monash.edu
+  - familyname: Athanasopoulos
+    othernames: George
+    address: Department of Econometrics and Business Statistics, \newline Monash University, VIC 3145, Australia.
+    email : george.athanasopoulos@monash.edu
 abstract: " This study investigates the relationship between features of time series and forecast-model selection using FFORMS framework. It is becoming more of a challenge to not only build state-of-the-art predictive models, but also gain an understanding of what's really going on in the data. We explore the impact of features in three levels, globally, subset of observations and individual  level. We use model-agnostic appraches to explore the impact of time series features towards forecast-model selection. Graphical representations are used to visualize both main and interaction effects of features."
 keywords: "FFORMS, machine learning, interpretability, partia-dependece, time series"
 wpnumber: no/yr
@@ -279,8 +284,7 @@ Partial dependence plot can be used to graphically examine how each feature is r
 \[g_s(X_s)=E_{x_c}[g(x_s, X_c)]=\int{g(x_s, x_c)dP(x_c).}\] 
 In practice, PDP can be estimated from a training data set as 
 \[\bar{g_s}(x_s)=\frac{1}{n}\sum_{i=1}^{n}g(x_s, X_{iC}),\]
-where $n$ is the number of observations in the training dataset. Partial denpendency curve can be created by plotting the pairs of $\{(x_s^k, \bar{g}_s(x_{sk}))\}_{k=1}^{m}$ defined on grid of points $\{x_{s1}, x_{s2},\dots, x_{sm}\}$ based on $X_s$.
-
+where $n$ is the number of observations in the training dataset. Partial denpendency curve can be created by plotting the pairs of $\{(x_s^k, \bar{g}_s(x_{sk}))\}_{k=1}^{m}$ defined on grid of points $\{x_{s1}, x_{s2},\dots, x_{sm}\}$ based on $X_s$. FFORMS framework have treated the forecast-model selection problem as a classification problem. Hence, in this paper partial dependency functions displays the probability of certain class occurring given different values of feature $X_s$.
 
 ### Variable importance measure based on PDP
 
@@ -540,7 +544,7 @@ For quarterly and monthly data same set of features and class-labels are used in
 # Discussion and Conclusions{#conclusions}
 
 This paper explores the use of feature-based forecast model selection framework to investigate the relationship between features of time series and forecast-model selection.
-Since several number of features are used to build the framework with comparable contributions, and thus, all individual contributions are small. We explore the global relationship of features with the probability of certain class  occuring at different values of the features. However, partial dependency plots confirms these individual feature effects captures the expected principles in the field of time series forecasting. 
+Since several number of features are used to build the framework with comparable contributions, and thus, all individual contributions are small. We explore the global relationship of features with the probability of certain forecast-model class occuring at different values of the features. However, partial dependency plots confirms these individual feature effects captures the expected principles in the field of time series forecasting. 
 
 our proposed method selects a specific feature subset for each class. 
 Feature-based time series analysis should develop support systems that incorporate these features whenever feasible and appropriate. We also demonstrate how feature contributions can be applied to understand the dependencies between time series features and their predicted classification and to assess the reliability of prediction. Feature contribution provide valuable information about the reliability of FFORMS prediction for a particular instance. Application of feature contributions for model interpretation is particularly valuable for ongoing research in  the field of feature-based time series analysis. We argue this analysis of provides a more refine 
