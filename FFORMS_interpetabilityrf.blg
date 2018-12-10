@@ -1,0 +1,15 @@
+[0] Config.pm:302> INFO - This is Biber 2.11
+[0] Config.pm:305> INFO - Logfile is 'FFORMS_interpetabilityrf.blg'
+[46] biber-MSWIN32:313> INFO - === 
+[86] Biber.pm:371> INFO - Reading 'FFORMS_interpetabilityrf.bcf'
+[286] Biber.pm:857> INFO - Found 15 citekeys in bib section 0
+[319] Biber.pm:3976> INFO - Processing section 0
+[347] Biber.pm:4136> INFO - Looking for bibtex format file 'references.bib' for section 0
+[351] bibtex.pm:1500> INFO - LaTeX decoding ...
+[387] bibtex.pm:1316> INFO - Found BibTeX data source 'references.bib'
+[608] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[608] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[608] Biber.pm:3804> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[608] Biber.pm:3810> INFO - No sort tailoring available for locale 'en-US'
+[667] bbl.pm:617> INFO - Writing 'FFORMS_interpetabilityrf.bbl' with encoding 'UTF-8'
+[681] bbl.pm:720> INFO - Output to FFORMS_interpetabilityrf.bbl
