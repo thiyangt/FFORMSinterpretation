@@ -302,8 +302,6 @@ This method is similar to the PDP-based VI scores above, but are based on measur
 
 ## Assessment of Inteaction Effect
 
-### Friedman's H-Statistic
-
 Friedman's H-statistic (@friedman2008predictive) is use to test the presence of interaction between all possible pair of features. This statistic is computed based on the partial dependence functions. For two way interaction between two specific variable $x_j$ and $x_k$, Friedman's H-statistic is defined as follow,
 
 \[H_{jk}^2=\sum_{i=1}^{n}[\bar{g}_{s}(x_{ij}, x_{jk})-\bar{g}_{s}(x_{ij})-\bar{g}_{s}(x_{ik})]^2/\sum_{i=1}^{n}\bar{g}^2_{s}(x_{ij}, x_{jk}).\]
@@ -543,12 +541,13 @@ For quarterly and monthly data same set of features and class-labels are used in
 
 # Discussion and Conclusions{#conclusions}
 
+Explaining predictions is an important aspect in getting humans to trust and use machine learning effectively, if the explanations are faithful and intelligible. Humans usually have prior knowledge about the application domain, which they can use to accept(trust) or reject prediction if they understand the reasons behind it. Accuracy may of ten not be a suitable metric to evaluate the model.
+
 This paper explores the use of feature-based forecast model selection framework to investigate the relationship between features of time series and forecast-model selection.
 Since several number of features are used to build the framework with comparable contributions, and thus, all individual contributions are small. We explore the global relationship of features with the probability of certain forecast-model class occuring at different values of the features. However, partial dependency plots confirms these individual feature effects captures the expected principles in the field of time series forecasting. 
 
 our proposed method selects a specific feature subset for each class. 
-Feature-based time series analysis should develop support systems that incorporate these features whenever feasible and appropriate. We also demonstrate how feature contributions can be applied to understand the dependencies between time series features and their predicted classification and to assess the reliability of prediction. Feature contribution provide valuable information about the reliability of FFORMS prediction for a particular instance. Application of feature contributions for model interpretation is particularly valuable for ongoing research in  the field of feature-based time series analysis. We argue this analysis of provides a more refine 
-picture of time series features and forecast model selection.
+Feature-based time series analysis should develop support systems that incorporate these features whenever feasible and appropriate. We also demonstrate how feature contributions can be applied to understand the dependencies between time series features and their predicted classification and to assess the reliability of prediction. Feature contribution provide valuable information about the reliability of FFORMS prediction for a particular instance. Application of feature contributions for model interpretation is particularly valuable for ongoing research in  the field of feature-based time series analysis. We argue this analysis of provides a more refine picture of time series features and forecast model selection.
 
 \newpage
 
