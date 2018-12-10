@@ -9,7 +9,7 @@ author:
 - familyname: Khan
   othernames: Genghis
   address: Mongolian Institute
-abstract: "This paper explores the use of feature-based forecast model selection framework to investigate the relationship between features of time series and forecast-model selection. This study investigates the relationship between features of time series and forecast-model selection using FFORMS framework. It is becoming more of a challenge to not only build state-of-the-art predictive models, but also gain an understanding of what's really going on in the data. We explore the impact of features in three levels, globally, subset of observations and individual  level. In this paper we use model-agnostic appraches to explore the impact of time series features towards forecast-model selection. Graphical representations are used to visualize both main and interaction effects."
+abstract: " This study investigates the relationship between features of time series and forecast-model selection using FFORMS framework. It is becoming more of a challenge to not only build state-of-the-art predictive models, but also gain an understanding of what's really going on in the data. We explore the impact of features in three levels, globally, subset of observations and individual  level. We use model-agnostic appraches to explore the impact of time series features towards forecast-model selection. Graphical representations are used to visualize both main and interaction effects."
 keywords: "FFORMS, machine learning, interpretability, partia-dependece, time series"
 wpnumber: no/yr
 jelcodes: C10,C14,C22
@@ -41,6 +41,7 @@ read_chunk("src/main_weekly.R")
 read_chunk("src/main_daily.R")
 read_chunk("src/main_hourly.R")
 read_chunk("src/main_lime.R")
+library(Mcomp)
 library(ggplot2)
 library(patchwork)
 library(tidyverse)
@@ -61,12 +62,13 @@ library(iml) #machine learning interpretability package
 library(ggcorrplot) # to draw  ggcorrplot
 library(ggpubr)
 library(lime)
+library(seer)
 ```
 
 
 # Introduction{#intro}
 
-The time series forecasting field has been evolving for a long time and has introduced a wide variety of forecasting methods. However, for a given time series the selection of an appropriate forecasting-method among many possibilities is not straight forward. This selection is one of the most difficult tasks as each method perform best for some but not all tasks. The features of time series are considered to be an important factor in identifying suitable forecasting models[ref, Meade, MakrikadisM3].[This goes back to 1972]. However, a description of relationship between the features and the performance of algorithms is rarely discussed in the field of forecasting. 
+The time series forecasting field has been evolving for a long time and has introduced a wide variety of forecasting methods. However, for a given time series the selection of an appropriate forecasting-method among many possibilities is not straight forward. This selection is one of the most difficult tasks as each method perform best for some but not all tasks. The features of time series are considered to be an important factor in identifying suitable forecasting models(@meade2000evidence; @makridakis2000m3).[This goes back to 1972]. However, a description of relationship between the features and the performance of algorithms is rarely discussed in the field of forecasting. 
 
 There have been several recent studies on use of machine learning algorithms to automate the forecast model selection based on the features computed from the time series. Meta-learning approach provides a systematic guidance on model selection based on knowledge acquire from historical data set, in our case historical collection of time series. The key idea behind these framework is, forecast-model selection is posed as a supervised learning task. Each time series in the meta-data set is represented as a vector of features and labeled according to the "best" forecasting method(i.e. lowest MASE, etc.). Then a meta-learner is trained to identify suitable forecasting models. With the era of big data, such an automated model selection process is necessary because the cost of invoking all possible forecasting method is prohibitive. However, these work suffer from the limitation of providing meaningful interpretations that can enhance understanding of relations between features and model outcomes. To best of our knowledge, very limited efforts have been taken to understand how the models are making its decisions and what is really happening inside these complex model structures.  This results in less transparency of the model which lead to the questions of
 
@@ -511,6 +513,7 @@ For quarterly and monthly data same set of features and class-labels are used in
 
 # Discussion and Conclusions{#conclusions}
 
+This paper explores the use of feature-based forecast model selection framework to investigate the relationship between features of time series and forecast-model selection.
 Since several number of features are used to build the framework with comparable contributions, and thus, all individual contributions are small.However, patial dependency plots confirms these individual feature effects captures the expected principles in the field of time series forecasting. 
 
 our proposed method selects a specific feature subset for each class. 
