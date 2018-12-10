@@ -256,7 +256,7 @@ Global interpretability evaluate the behavior of a model on entire data set. Glo
 
 ## Analysis of Feature contribution
 
-@jiang2002 explains variable importance under three different views: i) causality: change in the value of Y for a increase or decrease in the value of x, ii) contribution of X based on out-of-sample prediction accuracy and iii) face value of X on prediction function $g$, for example in linear regression model estimated coefficients of each predictor can be considered as a measure of variable importance. See @jiang2002 for comparable face value interpretation for machine learning models. In this paper we use the first two notions of vaiable importance. 
+@jiang2002 explains variable importance under three different views: i) causality: change in the value of Y for a increase or decrease in the value of x, ii) contribution of X based on out-of-sample prediction accuracy and iii) face value of X on prediction function $g$, for example in linear regression model estimated coefficients of each predictor can be considered as a measure of variable importance. See @jiang2002 for comparable face value interpretation for machine learning models. In this paper we use the first two notions of vaiable importance. Partial dependency functions and individual conditional expectation curves are used to explore the "causality" notion of vaiable importance while Mean decrease in Gini coefficient and Permutation-based variable importance are used to capture the second notion of variable importance-features contribution to the predictive accuracy(@Zhao). We will introduce each of these variable importance measures below.  
 
 ### Mean decrease in Gini coefficient
 
@@ -300,15 +300,13 @@ This method is similar to the PDP-based VI scores above, but are based on measur
 
 ### Friedman's H-Statistic
 
+Friedman's H-statistic (@friedman2008predictive) is use to test the presence of interaction between all possible pair of features. This statistic is computed based on the partial dependence functions. For two way interaction between two specific variable $x_j$ and $x_k$, Friedman's H-statistic is defined as follow,
 
+\[H_{jk}^2=\sum_{i=1}^{n}[\bar{g}_{s}(x_{ij}, x_{jk})-\bar{g}_{s}(x_{ij})-\bar{g}_{s}(x_{ik})]^2/\sum_{i=1}^{n}\bar{g}^2_{s}(x_{ij}, x_{jk}).\]
 
-PD plots, ICE curves and PD-, ICE-associated measures and Friedman's H-statistic are computationally intensive to compute, especially when there are large number of observations in the training set. Hence, in our experiments ICE and PDP-based variable importance are measured based on the subset of randomly selected training examples.
+The Friedman's H-statistic measures the fraction of variance of two-variable partial dependency, $\bar{g}_{s}(x_{ij}, x_{jk})$ not captured by sum of the respective individual partial dependencies, $\bar{g}_{s}(x_{ij})+\bar{g}_{s}(x_{ik})$. Inaddition to Friedman's H-statistic we also use the PDP of two variables to visualize the interaction effect. 
 
-## Representation of model in the data space (m-in-ds) and data in the model space (d-in-ms)
-
-## Local Interpretability Methods
-
-Global interpretations help us to understand entire modeled relationship.  Local interpretations help us understand the predictions of the model for a single instance or a group of similar instances. Local view of feature contribution provides valuable information about the reliability of FFORMS prediction for a particular instance.
+Note that the, PD plots, ICE curves and PD-, ICE-associated measures and Friedman's H-statistic are computationally intensive to compute, especially when there are large number of observations in the training set. Hence, in our experiments ICE and PDP-based variable importance are measured based on the subset of randomly selected training examples.
 
 ## Model-diagnostics
 
@@ -317,6 +315,14 @@ In addition to the previews discussions xx propose a novel application of
 ### Out-of-bag(OOB) error and uncertainty measure for each observation
 
 It is argued in order to estimate the test error of a bagged model it is not necessary to perform cross-validation approach, because each tree is grown using different bootstrap samples from  the training set and a part of training data is not used in the tree construction [ref]. In general, each bagged tree does not make use of around one third of observations to construct the decision tree. These observations are referred to as the out-of-bag(OOB) observations. Each tree is grown based on different bootstrap samples hence, each tree has different set of OOB observations. These OOB samples can be used to calculate internal estimation of the test set error, which is known as OOB error. 
+
+
+### Representation of model in the data space (m-in-ds) and data in the model space (d-in-ms)
+
+## Local Interpretability Methods
+
+Global interpretations help us to understand entire modeled relationship.  Local interpretations help us understand the predictions of the model for a single instance or a group of similar instances. Local view of feature contribution provides valuable information about the reliability of FFORMS prediction for a particular instance.
+
 
 \newpage
 
