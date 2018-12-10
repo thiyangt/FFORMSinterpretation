@@ -540,15 +540,16 @@ For quarterly and monthly data same set of features and class-labels are used in
 # Discussion and Conclusions{#conclusions}
 
 This paper explores the use of feature-based forecast model selection framework to investigate the relationship between features of time series and forecast-model selection.
-Since several number of features are used to build the framework with comparable contributions, and thus, all individual contributions are small.However, partial dependency plots confirms these individual feature effects captures the expected principles in the field of time series forecasting. 
+Since several number of features are used to build the framework with comparable contributions, and thus, all individual contributions are small. We explore the global relationship of features with the probability of certain class  occuring at different values of the features. However, partial dependency plots confirms these individual feature effects captures the expected principles in the field of time series forecasting. 
 
 our proposed method selects a specific feature subset for each class. 
 Feature-based time series analysis should develop support systems that incorporate these features whenever feasible and appropriate. We also demonstrate how feature contributions can be applied to understand the dependencies between time series features and their predicted classification and to assess the reliability of prediction. Feature contribution provide valuable information about the reliability of FFORMS prediction for a particular instance. Application of feature contributions for model interpretation is particularly valuable for ongoing research in  the field of feature-based time series analysis. We argue this analysis of provides a more refine 
 picture of time series features and forecast model selection.
 
+\newpage
+
 # Appendix {-}
 
-\newpage
 ## PCA space{-}
 
 ```{r yearly_pca, fig.height=10, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
@@ -558,5 +559,5 @@ picture of time series features and forecast model selection.
 ```{r quarterly_pca, fig.height=15, fig.width=20, fig.cap="PCA(Quarterly)", fig.pos="h"}
 ```
 
-
+\newpage
 # References
