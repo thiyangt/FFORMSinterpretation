@@ -240,8 +240,19 @@ A random forest with class priors is used to develop the classifier. We build se
 
 The online phase of the algorithm involves generating point forecasts and 95% prediction intervals for the M4 competition data. First, the corresponding features are calculated based on the full length of the training period provided by the M4 competition. Second, point forecasts and 95% prediction intervals are calculated based on the predicted class labels, in this case forecast-models. Finally, all negative values are set to zero.
 
+# Peeking inside FFORMS{#machinelearning}
 
-# Machine Learning Interpretability{#machinelearning}
+## Model-diagnostics
+
+Model-diagnostic is an important aspect 
+
+### Out-of-bag(OOB) error and uncertainty measure for each observation
+
+It is argued in order to estimate the test error of a bagged model it is not necessary to perform cross-validation approach, because each tree is grown using different bootstrap samples from  the training set and a part of training data is not used in the tree construction (@breiman2001random; @chen2004using). In general, each bagged tree does not make use of around one third of observations to construct the decision tree. These observations are referred to as the out-of-bag(OOB) observations. Each tree is grown based on different bootstrap samples hence, each tree has different set of OOB observations. These OOB samples can be used to calculate internal estimation of the test set error.
+
+### Representation of model in the data space (m-in-ds) and data in the model space (d-in-ms)
+
+## Machine Learning Interpretability
 
 In recent years, there have been a growing interest for interpretability of machine learning algorithms with European General Data Projection Regulation (GDPR) stipulates the explainability of all automatically made decision concerning individuals. We explore the role of features in three different angles: i) global interpretability, and ii) local interpretability. We will introduce each of these ideas briefly below. Model-diagnostics tools are used. 
 
@@ -310,16 +321,6 @@ The Friedman's H-statistic measures the fraction of variance of two-variable par
 
 Note that the, PD plots, ICE curves and PD-, ICE-associated measures and Friedman's H-statistic are computationally intensive to compute, especially when there are large number of observations in the training set. Hence, in our experiments ICE and PDP-based variable importance are measured based on the subset of randomly selected training examples.
 
-## Model-diagnostics
-
-In addition to the previews discussions xx propose a novel application of 
-
-### Out-of-bag(OOB) error and uncertainty measure for each observation
-
-It is argued in order to estimate the test error of a bagged model it is not necessary to perform cross-validation approach, because each tree is grown using different bootstrap samples from  the training set and a part of training data is not used in the tree construction [ref]. In general, each bagged tree does not make use of around one third of observations to construct the decision tree. These observations are referred to as the out-of-bag(OOB) observations. Each tree is grown based on different bootstrap samples hence, each tree has different set of OOB observations. These OOB samples can be used to calculate internal estimation of the test set error, which is known as OOB error. 
-
-
-### Representation of model in the data space (m-in-ds) and data in the model space (d-in-ms)
 
 ## Local Interpretability Methods
 
