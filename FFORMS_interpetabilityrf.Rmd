@@ -9,7 +9,7 @@ author:
 - familyname: Khan
   othernames: Genghis
   address: Mongolian Institute
-abstract: " This study investigates the relationship between features of time series and forecast-model selection using FFORMS framework. It is becoming more of a challenge to not only build state-of-the-art predictive models, but also gain an understanding of what's really going on in the data. We explore the impact of features in three levels, globally, subset of observations and individual  level. We use model-agnostic appraches to explore the impact of time series features towards forecast-model selection. Graphical representations are used to visualize both main and interaction effects."
+abstract: " This study investigates the relationship between features of time series and forecast-model selection using FFORMS framework. It is becoming more of a challenge to not only build state-of-the-art predictive models, but also gain an understanding of what's really going on in the data. We explore the impact of features in three levels, globally, subset of observations and individual  level. We use model-agnostic appraches to explore the impact of time series features towards forecast-model selection. Graphical representations are used to visualize both main and interaction effects of features."
 keywords: "FFORMS, machine learning, interpretability, partia-dependece, time series"
 wpnumber: no/yr
 jelcodes: C10,C14,C22
@@ -255,6 +255,8 @@ $g$.
 Global interpretability evaluate the behavior of a model on entire data set. Global perspective of model interpretation helps users to understand the overall modeled relationship between features and the model outcome. For example, which features are contribute mostly to the predictive mechanism of the fitted model, complex interactions between features, etc. In the following subsections we provide a description of tools we use to explore the global perspective of the model.  
 
 ## Analysis of Feature contribution
+
+@jiang2002 explains variable importance under three different views: i) causality: change in the value of Y for a increase or decrease in the value of x, ii) contribution of X based on out-of-sample prediction accuracy and iii) face value of X on prediction function $g$, for example in linear regression model estimated coefficients of each predictor can be considered as a measure of variable importance. See @jiang2002 for comparable face value interpretation for machine learning models. In this paper we use the first two notions of vaiable importance. 
 
 ### Mean decrease in Gini coefficient
 
