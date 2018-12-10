@@ -245,10 +245,10 @@ In recent years, there have been a growing interest for interpretability of mach
 Let \(\mathcal{P}=\{(\mathbf{x^{(i)}}, y^{(i)})\}_{i=1}^{N}\) be the
 historical data set we use to train the classifier. Consider a
 p-dimensional feature vector \(X=(X_1, X_2, ..., X_p)\) and a dependent
-variable, best forecasting method for each series \(Y\). Let \(\mathcal{F}\) be the unkown relationship between \(X\) and
+variable, best forecasting method for each series \(Y\). Let \(\mathcal{G}\) be the unkown relationship between \(X\) and
 \(Y\). @Zhao term this as "law of nature". Inside the FFORMS framework, random forest algorithm tries to learn this relationship using
 the historical data we provided. We denote the predicted function as
-\(\hat{\mathcal{F}}\).
+$g$.
 
 ## Global Interpretability Methods
 
@@ -266,23 +266,27 @@ Permutation-based variable importance measures provide a useful starting point f
 
 ### Partial dependence plot (PDP)
 
-Partial dependence plot can be used to graphically examine how each feature is related to the model prediction while accounting for the average effect of other features in the model. This method is particularly useful to discover complex model structures in "black box" models. Let $X_s$ be the feature we want examine partial dependencies for and $X_c$ be the remaining set of features in $X$.  Then $f_s$, the partial dependence function on $x_s$ is defines as 
-\{f_s=E_x}
+Partial dependence plot can be used to graphically examine how each feature is related to the model prediction while accounting for the average effect of other features in the model. Let $X_s$ be the subset of feature we want examine partial dependencies for and $X_c$ be the remaining set of features in $X$.  Then $g_s$, the partial dependence function on $X_s$ is defines as 
+\[g_s(X_s)=E_{x_c}[g(x_s, X_c)]=\int{g(x_s, x_c)dP(x_c).}\] 
+In practice, PDP can be estimated from a training data set as 
+\[\bar{g_s}(x_s)=\frac{1}{n}\sum_{i=1}^{n}g(x_s, X_{iC}),\]
+where $n$ is the number of observations in the training dataset. Partial denpendency curve can be created by plotting the pairs of $\{(x_s^k, g_s(xsk))\}_{k=1}^{m}$ using grid of points $\{x_{s1}, x_{s2},\dots, x_{sm}\}$ defined on $X_s$.
 
 
 ### Variable importance measure based on PDP
 
+@Greenwell2018 introduced a variable importance measure based on the partial dependency curves. The idea is to measure the “flatness” of partial dependence curves for each feature. A feature whose PDP curve is flat, relative to the other features, indicates that the feature does not have much influence on the predicted value as it changes while taking into account the average effect of the other features in the model. The flatness of the curve is measured using the standard deviation of the values $\{\bar{g}_s(x_{sk})\}_{k=1}^{m}$.
+
 ### ICE plots
 
-While partial dependence plots. However, in the presence of substantial interaction between features, the partial dependence response curves can be misleading. 
-ICE curves are an extension of PD-plots but, rather than plot the average marginal effect on the response variable, we plot the change in the predicted response variable for each observation as we vary each feature. 
+While partial dependence plots. However, in the presence of substantial interaction between features, the partial dependence response curves can be misleading. ICE curves are an extension of PD-plots but, rather than plot the average marginal effect on the response variable, we plot the change in the predicted response variable for each observation as we vary each feature. 
 
 
 ### Variable importance measure based on ICE curves
 
-PD plots, ICE curves and PD-, ICE-associated measures are computationally intensive to create, especially when there are large number of observations in the training set. Hence those measures are calculated based on the subset of randomly selected training examples.
+This method is similar to the PDP-based VI scores above, but are based on measuring the “flatness” of the individual conditional expectation curves. We calculated standard deviations of each curve and subsequenty considered the mean of those standard deviations as a feature importance measure.  A higher value indicates a higher degree of interactivity with other features. 
 
-Many of the other techniques exist for visualizing the relationship between the predictors and the response based on a fitted model. For example, 
+PD plots, ICE curves and PD-, ICE-associated measures are computationally intensive to create, especially when there are large number of observations in the training set. Hence, in our experiments ICE and PDP-based variable importance are measured based on the subset of randomly selected training examples.
 
 ## Representation of model in the data space (m-in-ds) and data in the model space (d-in-ms)
 

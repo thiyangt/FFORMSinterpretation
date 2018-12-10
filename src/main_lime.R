@@ -60,7 +60,7 @@ p6 <- autoplot(limeyts[[3]][[1]])+theme(legend.position="none")+
                                #axis.text.x=element_blank(),
                                axis.text.y=element_blank())+ylab("")
 pp <- p1 + p2 + p3 + p4 + p5+ p6 + plot_layout(ncol = 1)
-pca+pp+plot_layout(ncol = 2, widths =  c(2, 1))
+pca+pp+plot_layout(ncol = 2)
 plot_features(explanationy, ncol = 2)
                        
                                                                              
