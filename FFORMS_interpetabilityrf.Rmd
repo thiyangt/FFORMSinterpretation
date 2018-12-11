@@ -337,6 +337,8 @@ Global interpretations help us to understand entire modeled relationship.  Local
 \item Obtain similarity scores by calculating distance between permuted data and selected observation.
 \item Obtain predicted outcomes for all permuted data using the black-box model.
 \item Select $m$ number of features best descibing the black-box model outcome. This can be accomplished by applying feature slection algorithms such as ridge regression, lasso, ridge regression, etc.
+\item Fit a simple linear model to the permuted data based on $m$ selected features and similarity scores in step 3 as weights and complex model prediction outcomes in step 4 as response variable.
+\item Use the estimated coefficients of simple linear model to explain the local behaviour corresponds to the selected observation in step 1.
 
 \end{enumerate}
 
