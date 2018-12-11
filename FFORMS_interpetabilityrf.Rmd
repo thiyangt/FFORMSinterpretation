@@ -14,7 +14,7 @@ author:
     othernames: George
     address: Department of Econometrics and Business Statistics, \newline Monash University, VIC 3145, Australia.
     email : george.athanasopoulos@monash.edu
-abstract: " This study investigates the relationship between features of time series and forecast-model selection using FFORMS framework. It is becoming more of a challenge to not only build state-of-the-art predictive models, but also gain an understanding of what's really going on in the data. We explore the impact of features in three levels, globally, subset of observations and individual  level. We use model-agnostic appraches to explore the impact of time series features towards forecast-model selection. Graphical representations are used to visualize both main and interaction effects of features."
+abstract: " This study investigates the relationship between features of time series and the choice of forecast-model selection using FFORMS framework. It is becoming more of a challenge to not only build state-of-the-art predictive models, but also gain an understanding of what's really going on in the data. We explore the role of features in two different perspectives: i) Global perspective of feature contribution : overall role of features in the choice of different forecast model selection and ii) Local contribution of feature contribution: what features are most influential for the prediction of a specific time series?. This is accomplished by using model-agnostic machine learning interpretability approaches. Graphical representations are used to visualize both main and interaction effects of features.  "
 keywords: "FFORMS, machine learning, interpretability, partia-dependece, time series"
 wpnumber: no/yr
 jelcodes: C10,C14,C22
@@ -260,7 +260,7 @@ gain an understanding of the nature of the relationship between features predict
 
 ## Machine Learning Interpretability
 
-In recent years, there have been a growing interest for interpretability of machine learning algorithms with European General Data Protection Regulation (GDPR) stipulates the explainability of all automatically made decision concerning individuals. We explore the role of features in three different angles: i) global interpretability, and ii) local interpretability. We will introduce each of these ideas briefly below. Model-diagnostics tools are used. 
+In recent years, there have been a growing interest for interpretability of machine learning algorithms with European General Data Protection Regulation (GDPR) stipulates the explainability of all automatically made decision concerning individuals. We explore the role of features in two different perspectives: i) global iexplanation of feature contribution: overall role of features in the choice of different forecast model selection, and ii) local explanation of feature contribution: nature of the contributions features make for a prediction of a specific instance. We will introduce each of these ideas briefly below. Model-diagnostics tools are used. 
 
 ## General Notation
 
@@ -317,7 +317,7 @@ averaging $g(x_s, X_{iC})$ over all observations in the training data, ICE plots
 
 This method is similar to the PDP-based VI scores above, but are based on measuring the “flatness” of the individual conditional expectation curves. We calculated standard deviations of each ICE curve.  We then computed a ICE based variable importance score – simply the average of all the standard deviations. A higher value indicates a higher degree of interactivity with other features. 
 
-## Assessment of Inteaction Effect
+## Assessment of Interaction Effect
 
 Friedman's H-statistic (@friedman2008predictive) is use to test the presence of interaction between all possible pair of features. This statistic is computed based on the partial dependence functions. For two way interaction between two specific variable $x_j$ and $x_k$, Friedman's H-statistic is defined as follow,
 
@@ -542,7 +542,7 @@ This paper explores the use of feature-based forecast model selection framework 
 Since several number of features are used to build the framework with comparable contributions, and thus, all individual contributions are small. We explore the global relationship of features with the probability of certain forecast-model class occuring at different values of the features. However, partial dependency plots confirms these individual feature effects captures the expected principles in the field of time series forecasting. 
 
 our proposed method selects a specific feature subset for each class. 
-Feature-based time series analysis should develop support systems that incorporate these features whenever feasible and appropriate. We also demonstrate how feature contributions can be applied to understand the dependencies between time series features and their predicted classification and to assess the reliability of prediction. Feature contribution provide valuable information about the reliability of FFORMS prediction for a particular instance. Application of feature contributions for model interpretation is particularly valuable for ongoing research in  the field of feature-based time series analysis. We argue this analysis of provides a more refine picture of time series features and forecast model selection.
+Feature-based time series analysis should develop support systems that incorporate these features whenever feasible and appropriate. We also demonstrate how feature contributions can be applied to understand the dependencies between time series features and their predicted classification and to assess the reliability of prediction. Feature contribution provide valuable information about the reliability of FFORMS prediction for a particular instance. Application of feature contributions for model interpretation is particularly valuable for ongoing research in  the field of feature-based time series analysis. We argue this analysis of provides a more refine picture of time series features and forecast model selection. Global and local role of feature contribution provides valuable information about reliability of the predictions of FFORMS framework.
 
 \newpage
 
