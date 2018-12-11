@@ -327,7 +327,7 @@ The Friedman's H-statistic measures the fraction of variance of two-variable par
 Note that the, PD plots, ICE curves and PD-, ICE-associated measures and Friedman's H-statistic are computationally intensive to compute, especially when there are large number of observations in the training set. Hence, in our experiments ICE and PDP-based variable importance are measured based on the subset of randomly selected training examples.
 
 
-## Local Interpretability Methods
+## Local Interpretable Mode-agnostic Explanations(LIME)
 
 Global interpretations help us to understand entire modeled relationship.  Local interpretations help us understand the predictions of the model for a single instance or a group of similar instances. Local view of feature contribution provides valuable information about the reliability of FFORMS prediction for a particular instance.
 
@@ -373,11 +373,11 @@ The relative strength of two-way interaction between features were determined us
 \newpage
 
 
-```{r yearly_lime, fig.height=5, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```{r yearly_lime, fig.height=8, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
 ```
 
 
-```{r yearly_lime2, fig.height=10, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```{r yearly_lime2, fig.height=12, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
 ```
 
 
@@ -427,8 +427,6 @@ Similar to the results of yearly time series trend and linearity also listed amo
 ```{r friedmanQ2, fig.height=10, fig.width=30, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic for quarterly data(cont).", fig.pos="h", message=FALSE, warning=FALSE}
 ```
 
-
-
 \newpage
 ## Monthly
 
@@ -464,10 +462,7 @@ For quarterly and monthly data same set of features and class-labels are used in
 ```{r friedmanM2, fig.height=30, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic for monthly data.", fig.pos="h", message=FALSE, warning=FALSE}
 ```
 
-\newpage
 
-```{r monthly_pca, fig.height=20, fig.width=20, fig.cap="PCA(Monthly)", fig.pos="h"}
-```
 
 \newpage
 ## Weekly
@@ -499,10 +494,7 @@ For quarterly and monthly data same set of features and class-labels are used in
 ```
 
 
-\newpage
 
-```{r pca_weekly, fig.height=15, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
-```
 
 \newpage
 
@@ -521,10 +513,6 @@ For quarterly and monthly data same set of features and class-labels are used in
 ```{r daily_pdp, fig.height=14.7, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures(daily series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class.", fig.pos="h"}
 ```
 
-\newpage
-
-```{r pca_daily, fig.height=15, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
-```
 
 \newpage
 
@@ -543,10 +531,7 @@ For quarterly and monthly data same set of features and class-labels are used in
 ```{r hourly_pdp, fig.height=14.7, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures(hourly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class.", fig.pos="h"}
 ```
 
-\newpage
 
-```{r pca_hourly, fig.height=15, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
-```
 
 # Discussion and Conclusions{#conclusions}
 
@@ -569,6 +554,22 @@ Feature-based time series analysis should develop support systems that incorpora
 
 
 ```{r quarterly_pca, fig.height=15, fig.width=20, fig.cap="PCA(Quarterly)", fig.pos="h"}
+```
+
+\newpage
+
+```{r monthly_pca, fig.height=15, fig.width=20, fig.cap="PCA(Monthly)", fig.pos="h"}
+```
+
+```{r pca_weekly, fig.height=15, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```
+
+\newpage
+
+```{r pca_daily, fig.height=5, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```
+
+```{r pca_hourly, fig.height=5, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
 ```
 
 \newpage
