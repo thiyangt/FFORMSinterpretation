@@ -242,15 +242,19 @@ The online phase of the algorithm involves generating point forecasts and 95% pr
 
 # Peeking inside FFORMS{#machinelearning}
 
+The main theme of this paper is to explore the nature of the relationship between features and forecast-model selection. We use both model-diagnostic approaches and machine learning interpretability approaches.
+
 ## Model-diagnostics
 
-Model-diagnostic is an important aspect 
+Model-diagnostic is an important aspect in evaluating the accuracy of the model's predictions as well as the model's understanding of the nature of the relationship between features and predicted outcome. 
 
 ### Out-of-bag(OOB) error and uncertainty measure for each observation
 
 It is argued in order to estimate the test error of a bagged model it is not necessary to perform cross-validation approach, because each tree is grown using different bootstrap samples from  the training set and a part of training data is not used in the tree construction (@breiman2001random; @chen2004using). In general, each bagged tree does not make use of around one third of observations to construct the decision tree. These observations are referred to as the out-of-bag(OOB) observations. Each tree is grown based on different bootstrap samples hence, each tree has different set of OOB observations. These OOB samples can be used to calculate internal estimation of the test set error.
 
-### Representation of model in the data space (m-in-ds) and data in the model space (d-in-ms)
+### Representation of model in the data space and data in the model space (d-in-ms)
+
+@wickham2015visualizing explains the importance of displaying the "model in the data space (m-in-ds)" and "data in the model space (d-in-ms)". Displaying the data in the model space(d-in-ms) is the most commonly used approach for model-diagnostics. For example, plot of fitted values versus residuals (@wickham2015visualizing). D-in-MS is a visualisation of embedding high-dimensional data into a low-dimensional space generated from the model. @wickham2015visualizing and @da2017interactive have highlighted the 
 
 ## Machine Learning Interpretability
 
