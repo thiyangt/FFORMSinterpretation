@@ -5,6 +5,7 @@
 #which.max(m4yPCAresults1$PC2)  #480357
 #which(yearly_training$PC1 < -10 & yearly_training$classlabels=="nn")
 # which(yearly_training$PC1 == median(yearly_training$PC1)) ##277166
+
 load("data/yearly/train_votes.rda")
 pcaYvariables <- yearly_training[, 1:25]
 pcaM4Y <- prcomp(pcaYvariables, center = TRUE, scale = TRUE)
@@ -32,30 +33,29 @@ pca <- ggplot(m4yPCAresults1, aes(x = PC1, y = PC2)) +
     point.padding = unit(0.3, "lines")
   )
 load("data/yearly/explanationy.rda")
-p1 <- autoplot(ts(c(M3[[192]]$x, M3[[192]]$xx)))+theme(legend.position="none")+
+load("data/ts_lime_ypca.rda")
+p1 <- autoplot(ts_lime_ypca[[1]])+theme(legend.position="none")+
   ggtitle("1: ARMA/AR/MA")+xlab("")+theme(axis.title.x=element_blank(),
         #                     axis.text.x=element_blank(),
                              axis.text.y=element_blank())+ylab("")
 
-load("data/limeyts.rda")
-data(M4)
-p2 <- autoplot(ts(limeyts[[1]][[1]]))+theme(legend.position="none")+
+p2 <- autoplot(ts_lime_ypca[[2]])+theme(legend.position="none")+
   ggtitle("2: ETS-trend")+xlab("")+theme(axis.title.x=element_blank(),
                       #       axis.text.x=element_blank(),
                              axis.text.y=element_blank())+ylab("")
-p3 <- autoplot(limeyts[[2]][[1]])+theme(legend.position="none")+
+p3 <- autoplot(ts_lime_ypca[[3]])+theme(legend.position="none")+
   ggtitle("3: ETS-notrendnoseasonal")+xlab("")+theme(axis.title.x=element_blank(),
                             # axis.text.x=element_blank(),
                              axis.text.y=element_blank())+ylab("")
-p4 <- autoplot(M4[["Y22891"]]$x)+theme(legend.position="none")+
+p4 <- autoplot(ts_lime_ypca[[4]])+theme(legend.position="none")+
   ggtitle("4: nn")+xlab("")+theme(axis.title.x=element_blank(),
                             # axis.text.x=element_blank(),
                              axis.text.y=element_blank())+ylab("")
-p5 <- autoplot(M4[["Y13190"]]$x)+theme(legend.position="none")+
+p5 <- autoplot(ts_lime_ypca[[5]])+theme(legend.position="none")+
   ggtitle("5: nn")+xlab("")+theme(axis.title.x=element_blank(),
                              #axis.text.x=element_blank(),
                              axis.text.y=element_blank())+ylab("")
-p6 <- autoplot(limeyts[[3]][[1]])+theme(legend.position="none")+
+p6 <- autoplot(ts_lime_ypca[[6]])+theme(legend.position="none")+
   ggtitle("6: rw")+xlab("")+theme(axis.title.x=element_blank(),
                                #axis.text.x=element_blank(),
                                axis.text.y=element_blank())+ylab("")
