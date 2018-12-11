@@ -328,9 +328,9 @@ The Friedman's H-statistic measures the fraction of variance of two-variable par
 Note that the, PD plots, ICE curves and PD-, ICE-associated measures and Friedman's H-statistic are computationally intensive to compute, especially when there are large number of observations in the training set. Hence, in our experiments ICE and PDP-based variable importance are measured based on the subset of randomly selected training examples.
 
 
-## Local Interpretable Mode-agnostic Explanations(LIME)
+## Local Interpretable Model-agnostic Explanations(LIME)
 
-Global interpretations help us to understand entire modeled relationship.  Local interpretations help us to understand the predictions of the model for a single instance or a group of similar instances. In other words this allows users to zoom into a particular instance or a subset and explore how different features affect the resulting prediction. 
+Global interpretations help us to understand entire modeled relationship.  Local interpretations help us to understand the predictions of the model for a single instance or a group of similar instances. In other words this allows users to zoom into a particular instance or a subset and explore how different features affect the resulting prediction. We use Local Interpretable Model-agnostic Explanations (LIME) approach introduce by @ribeiro2016should for explaining individual predictions which relies on the assumption that "every complex model is linear on a local scale". This is accomplished by locally approximating the complex black-box model with a simple interpretable model. @ribeiro2016should highlighted features that are globally important may not be in the local context and vice versa. LIME 
 
 
 \newpage
