@@ -330,7 +330,7 @@ Note that the, PD plots, ICE curves and PD-, ICE-associated measures and Friedma
 
 ## Local Interpretable Mode-agnostic Explanations(LIME)
 
-Global interpretations help us to understand entire modeled relationship.  Local interpretations help us understand the predictions of the model for a single instance or a group of similar instances. Local view of feature contribution provides valuable information about the reliability of FFORMS prediction for a particular instance.
+Global interpretations help us to understand entire modeled relationship.  Local interpretations help us to understand the predictions of the model for a single instance or a group of similar instances. In other words this allows users to zoom into a particular instance or a subset and explore how different features affect the resulting prediction. 
 
 
 \newpage
@@ -539,7 +539,7 @@ For quarterly and monthly data same set of features and class-labels are used in
 Explaining predictions is an important aspect in getting humans to trust and use machine learning effectively, if the explanations are faithful and intelligible. Humans usually have prior knowledge about the application domain, which they can use to accept(trust) or reject prediction if they understand the reasons behind it. Accuracy may of ten not be a suitable metric to evaluate the model.
 
 This paper explores the use of feature-based forecast model selection framework to investigate the relationship between features of time series and forecast-model selection.
-Since several number of features are used to build the framework with comparable contributions, and thus, all individual contributions are small. We explore the global relationship of features with the probability of certain forecast-model class occuring at different values of the features. However, partial dependency plots confirms these individual feature effects captures the expected principles in the field of time series forecasting. 
+Since several number of features are used to build the framework with comparable contributions, and thus, all individual contributions are small. We explore the global relationship of features with the probability of certain forecast-model class occuring at different values of the features. However, partial dependency plots confirms these individual feature effects captures the expected principles in the field of time series forecasting  provides valuable information about the reliability of FFORMS prediction. Exploring the conditions learnt by the fforms framework also support practitioners to make a good educated guess on suitable forecast-model for a given problem. 
 
 our proposed method selects a specific feature subset for each class. 
 Feature-based time series analysis should develop support systems that incorporate these features whenever feasible and appropriate. We also demonstrate how feature contributions can be applied to understand the dependencies between time series features and their predicted classification and to assess the reliability of prediction. Feature contribution provide valuable information about the reliability of FFORMS prediction for a particular instance. Application of feature contributions for model interpretation is particularly valuable for ongoing research in  the field of feature-based time series analysis. We argue this analysis of provides a more refine picture of time series features and forecast model selection. Global and local role of feature contribution provides valuable information about reliability of the predictions of FFORMS framework.
