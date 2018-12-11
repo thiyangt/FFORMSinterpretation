@@ -61,6 +61,42 @@ p6 <- autoplot(ts_lime_ypca[[6]])+theme(legend.position="none")+
                                axis.text.y=element_blank())+ylab("")
 pp <- p1 + p2 + p3 + p4 + p5+ p6 + plot_layout(ncol = 1)
 pca+pp+plot_layout(ncol = 2)
+
+## ---- yearly_lime2
 plot_features(explanationy, ncol = 2)
                        
-                                                                             
+## ---- quarterly_lime
+load("data/quarterly/trainQ_votes.rda")
+pcaQvariables <- quarterly_training[, 1:30]
+pcaM4Q <- prcomp(pcaQvariables, center = TRUE, scale = TRUE)
+PC1m4q <- pcaM4Q$x[, 1]
+PC2m4q <- pcaM4Q$x[, 2]
+PC3m4q <- pcaM4Q$x[, 3]
+m4qPCAresults <- data.frame(PC1 = PC1m4q, PC2 = PC2m4q, PC3 = PC3m4q, pcaQvariables)
+quarterly_training$PC1 <- PC1m4q
+quarterly_training$PC2 <- PC2m4q
+
+pcaQ <- ggplot(m4qPCAresults, aes(x = PC1, y = PC2)) +
+  geom_point(colour = "firebrick1") +
+  theme(
+    legend.position = "none",
+    aspect.ratio = 1
+  ) +
+  geom_point(data =quarterly_training[c(25,405, 653, 908),], aes(x = PC1, y = PC2), color = "black", size=5) +
+  theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))+
+  geom_text_repel(
+    data = quarterly_training[c(25,405, 653, 908),],
+    aes(label = c("1: SARIMA", "2: rwd", "3: ETS-trendnoseasonal", "4: tbats")),
+    size = 5,
+    box.padding = unit(0.35, "lines"),
+    point.padding = unit(0.3, "lines")
+  )
+
+
+m4qPCAresults1 <- m4qPCAresults[1:1000,]
+#which.min(m4qPCAresults1$PC1)  #405
+#which.min(m4qPCAresults1$PC2)  #653
+#which.max(m4qPCAresults1$PC1)  #908
+#which.max(m4qPCAresults1$PC2)  #405
+# which(0.46 < m4qPCAresults1$PC2 < 0.4692441) ##277166
+
