@@ -254,18 +254,19 @@ It is argued in order to estimate the test error of a bagged model it is not nec
 
 ### Representation of model in the data space and data in the model space (d-in-ms)
 
-@wickham2015visualizing explains the importance of displaying the "model in the data space (m-in-ds)" and "data in the model space (d-in-ms)". Displaying the data in the model space(d-in-ms) is the most commonly used approach for model-diagnostics. For example, plot of fitted values versus residuals (@wickham2015visualizing). D-in-MS is a visualisation of embedding high-dimensional data into a low-dimensional space generated from the model. @wickham2015visualizing and @da2017interactive have highlighted the 
+@wickham2015visualizing explains the importance of displaying the "model in the data space (m-in-ds)" and "data in the model space (d-in-ms)". Displaying the data in the model space(d-in-ms) is the most commonly used approach for model-diagnostics. For example, plot of fitted values versus residuals (@wickham2015visualizing). D-in-MS is a visualisation of embedding high-dimensional data into a low-dimensional space generated from the model. Visualisation of D-in-MS do not help to
+gain an understanding of the nature of the relationship between features predicted outcome.    Inorder to address this issue @wickham2015visualizing and @da2017interactive have highlighted the importance of visualisations of model in the data space. 
 
 ## Machine Learning Interpretability
 
-In recent years, there have been a growing interest for interpretability of machine learning algorithms with European General Data Projection Regulation (GDPR) stipulates the explainability of all automatically made decision concerning individuals. We explore the role of features in three different angles: i) global interpretability, and ii) local interpretability. We will introduce each of these ideas briefly below. Model-diagnostics tools are used. 
+In recent years, there have been a growing interest for interpretability of machine learning algorithms with European General Data Protection Regulation (GDPR) stipulates the explainability of all automatically made decision concerning individuals. We explore the role of features in three different angles: i) global interpretability, and ii) local interpretability. We will introduce each of these ideas briefly below. Model-diagnostics tools are used. 
 
 ## General Notation
 
 Let \(\mathcal{P}=\{(\mathbf{x^{(i)}}, y^{(i)})\}_{i=1}^{N}\) be the
 historical data set we use to train the classifier. Consider a
 p-dimensional feature vector \(X=(X_1, X_2, ..., X_p)\) and a dependent
-variable, best forecasting method for each series \(Y\). Let \(\mathcal{G}\) be the unkown relationship between \(X\) and
+variable, best forecasting method for each series \(Y\). Let \(\mathcal{G}\) be the unknown relationship between \(X\) and
 \(Y\). @Zhao term this as "law of nature". Inside the FFORMS framework, random forest algorithm tries to learn this relationship using
 the historical data we provided. We denote the predicted function as
 $g$.
@@ -276,7 +277,7 @@ Global interpretability evaluate the behavior of a model on entire data set. Glo
 
 ## Analysis of Feature contribution
 
-@jiang2002 explains variable importance under three different views: i) causality: change in the value of Y for a increase or decrease in the value of x, ii) contribution of X based on out-of-sample prediction accuracy and iii) face value of X on prediction function $g$, for example in linear regression model estimated coefficients of each predictor can be considered as a measure of variable importance. See @jiang2002 for comparable face value interpretation for machine learning models. In this paper we use the first two notions of vaiable importance. Partial dependency functions and individual conditional expectation curves are used to explore the "causality" notion of vaiable importance while Mean decrease in Gini coefficient and Permutation-based variable importance are used to capture the second notion of variable importance-features contribution to the predictive accuracy(@Zhao). We will introduce each of these variable importance measures below.  
+@jiang2002 explains variable importance under three different views: i) causality: change in the value of Y for a increase or decrease in the value of x, ii) contribution of X based on out-of-sample prediction accuracy and iii) face value of X on prediction function $g$, for example in linear regression model estimated coefficients of each predictor can be considered as a measure of variable importance. See @jiang2002 for comparable face value interpretation for machine learning models. In this paper we use the first two notions of variable importance. Partial dependency functions and individual conditional expectation curves are used to explore the "causality" notion of variable importance while Mean decrease in Gini coefficient and Permutation-based variable importance are used to capture the second notion of variable importance-features contribution to the predictive accuracy(@Zhao). We will introduce each of these variable importance measures below.  
 
 ### Mean decrease in Gini coefficient
 
@@ -299,7 +300,7 @@ Partial dependence plot can be used to graphically examine how each feature is r
 \[g_s(X_s)=E_{x_c}[g(x_s, X_c)]=\int{g(x_s, x_c)dP(x_c).}\] 
 In practice, PDP can be estimated from a training data set as 
 \[\bar{g_s}(x_s)=\frac{1}{n}\sum_{i=1}^{n}g(x_s, X_{iC}),\]
-where $n$ is the number of observations in the training dataset. Partial denpendency curve can be created by plotting the pairs of $\{(x_s^k, \bar{g}_s(x_{sk}))\}_{k=1}^{m}$ defined on grid of points $\{x_{s1}, x_{s2},\dots, x_{sm}\}$ based on $X_s$. FFORMS framework have treated the forecast-model selection problem as a classification problem. Hence, in this paper partial dependency functions displays the probability of certain class occurring given different values of feature $X_s$.
+where $n$ is the number of observations in the training data set. Partial dependency curve can be created by plotting the pairs of $\{(x_s^k, \bar{g}_s(x_{sk}))\}_{k=1}^{m}$ defined on grid of points $\{x_{s1}, x_{s2},\dots, x_{sm}\}$ based on $X_s$. FFORMS framework have treated the forecast-model selection problem as a classification problem. Hence, in this paper partial dependency functions displays the probability of certain class occurring given different values of feature $X_s$.
 
 ### Variable importance measure based on PDP
 
@@ -321,7 +322,7 @@ Friedman's H-statistic (@friedman2008predictive) is use to test the presence of 
 
 \[H_{jk}^2=\sum_{i=1}^{n}[\bar{g}_{s}(x_{ij}, x_{jk})-\bar{g}_{s}(x_{ij})-\bar{g}_{s}(x_{ik})]^2/\sum_{i=1}^{n}\bar{g}^2_{s}(x_{ij}, x_{jk}).\]
 
-The Friedman's H-statistic measures the fraction of variance of two-variable partial dependency, $\bar{g}_{s}(x_{ij}, x_{jk})$ not captured by sum of the respective individual partial dependencies, $\bar{g}_{s}(x_{ij})+\bar{g}_{s}(x_{ik})$. Inaddition to Friedman's H-statistic we also use the PDP of two variables to visualize the interaction effect. 
+The Friedman's H-statistic measures the fraction of variance of two-variable partial dependency, $\bar{g}_{s}(x_{ij}, x_{jk})$ not captured by sum of the respective individual partial dependencies, $\bar{g}_{s}(x_{ij})+\bar{g}_{s}(x_{ik})$. In addition to Friedman's H-statistic we also use the PDP of two variables to visualize the interaction effect. 
 
 Note that the, PD plots, ICE curves and PD-, ICE-associated measures and Friedman's H-statistic are computationally intensive to compute, especially when there are large number of observations in the training set. Hence, in our experiments ICE and PDP-based variable importance are measured based on the subset of randomly selected training examples.
 
