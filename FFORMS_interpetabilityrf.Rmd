@@ -255,7 +255,8 @@ It is argued in order to estimate the test error of a bagged model it is not nec
 ### Representation of model in the data space and data in the model space (d-in-ms)
 
 @wickham2015visualizing explains the importance of displaying the "model in the data space (m-in-ds)" and "data in the model space (d-in-ms)". Displaying the data in the model space(d-in-ms) is the most commonly used approach for model-diagnostics. For example, plot of fitted values versus residuals (@wickham2015visualizing). D-in-MS is a visualisation of embedding high-dimensional data into a low-dimensional space generated from the model. Visualisation of D-in-MS do not help to
-gain an understanding of the nature of the relationship between features predicted outcome. Inorder to address this issue @wickham2015visualizing and @da2017interactive have highlighted the importance of visualisations of model in the data space. See @wickham2015visualizing for visualisation method of this kind and @da2017interactive for comparable method for random forest algorithms.  
+gain an understanding of the nature of the relationship between features predicted outcome. Inorder to address this issue @wickham2015visualizing and @da2017interactive have highlighted the importance of visualisations of model in the data space. In the context of classification, representation of m-in-ds could be achieved by first, projecting the training data set into meaningful low-dimensional feature space and then visualize the complete prediction regions or their boundaries. In other words this can be considered as the visualization of predictor space in the context of the data space. See @wickham2015visualizing for visualisation method of this kind and @da2017interactive for comparable method for random forest algorithms. 
+
 
 ## Machine Learning Interpretability
 
