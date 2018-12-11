@@ -339,10 +339,9 @@ Global interpretations help us to understand entire modeled relationship.  Local
 \item Select $m$ number of features best descibing the black-box model outcome. This can be accomplished by applying feature slection algorithms such as ridge regression, lasso, ridge regression, etc.
 \item Fit a simple linear model to the permuted data based on $m$ selected features and similarity scores in step 3 as weights and complex model prediction outcomes in step 4 as response variable.
 \item Use the estimated coefficients of simple linear model to explain the local behaviour corresponds to the selected observation in step 1.
-
 \end{enumerate}
 
-
+An alternative for explaining local behaviour of complex models is proposed by @lundberg2017unified based on game theory named "Shapley values".
 
 \newpage
 
