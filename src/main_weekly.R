@@ -350,7 +350,7 @@ p30 <- ggplot(data = linearityW_includeout, aes_string(x = linearityW_includeout
 p1 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "theta")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none") + ylab("wn")
+  theme(legend.position = "none") + ylab("theta")
 p2 <- ggplot(data = stabilityW_includeout, aes_string(x = stabilityW_includeout$stability, y = "theta")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("stability") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
