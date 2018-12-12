@@ -478,26 +478,23 @@ For quarterly and monthly data same set of features and class-labels are used to
 
 ## Weekly
 
-\autoref{fig::oob_weekly} poportion of times each time series was classified to each class. Unlike, yearly, quarterly and monthly data theta models have low chance of being selected to forecast weekly data. The random walk with drift, tbat models and theta have higher chance of being selected. Except ARMA/AR/MA class the distribution corresponds to the true class label dominates others. ARMA/AR/MA class shows some unusual behaviour within some categories due to class imbalance ratio, ARMA/AR/MA class contains fewer number of observations in the training set. Acording to the results of \autoref{fig::vi_weekly} spikiness, linearity, trend, strength of seasonality, stability and lumpiness has been assigned a high importance. This is similar to the results of yearly, quarterly and monthly data. The length of series has been selected among top 5 by mstlets, tbats, theta and neural network models. According to the results of \autoref{fig::weekly_pdp} for mstlets models probability of being selected increases as the length of series increases while the opposite relationship was observed at neural network models. The tabts models show a non-monotonic relationship with the length of series. 
+\autoref{fig::oob_weekly} poportion of times each time series was classified to each class. Unlike, yearly, quarterly and monthly data theta models have low chance of being selected to forecast weekly data. The random walk with drift, tbat models and theta have higher chance of being selected. Except ARMA/AR/MA class the distribution corresponds to the true class label dominates others. ARMA/AR/MA class shows some unusual behaviour within some categories due to class imbalance ratio, ARMA/AR/MA class contains fewer number of observations in the training set. Acording to the results of \autoref{fig::vi_weekly} spikiness, linearity, trend, strength of seasonality, stability and lumpiness has been assigned a high importance. This is similar to the results of yearly, quarterly and monthly data. The length of series has been selected among top 5 by mstlets, tbats, theta and neural network models. According to the results of \autoref{fig::weekly_pdp} for mstlets models probability of being selected increases as the length of series increases while the opposite relationship was observed at neural network models. The tabts models show a non-monotonic relationship with the length of series. It is surprisi
 
 ```{r oob_weekly, fig.height=10, fig.width=10, fig.cap="Distribution of proportion of times each weekly time series was classified to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. There are ten rows in the plot corresponds to each predicted class represented by Y-axis. X-axis denotes the proportion of times a time series is classified in each class. On each row, the true class label match with the predicted class label category dominated the top, indicating a fairly good classification of the model fitted.", fig.pos="h", cache=TRUE}
 ```
 
 \newpage
 
-```{r vi_weekly, fig.height=15, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```{r vi_weekly, fig.height=10, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```
+
+
+```{r weekly_pdp, fig.height=5, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures(weekly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class.", fig.pos="h"}
 ```
 
 \newpage
 
-\newpage
-
-```{r weekly_pdp, fig.height=14.7, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures(weekly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class.", fig.pos="h"}
-```
-
-\newpage
-
-```{r weekly_pdp2, fig.height=5, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures(weekly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class(cont.).", fig.pos="h"}
+```{r weekly_pdp2, fig.height=14.7, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures(weekly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class(cont.).", fig.pos="h"}
 ```
 
 \newpage
@@ -527,11 +524,9 @@ For quarterly and monthly data same set of features and class-labels are used to
 ```
 
 
-\newpage
-
 ## Hourly
 
-```{r hourly_oob, fig.height=30, fig.width=20, fig.cap="", fig.pos="h"}
+```{r hourly_oob, fig.height=15, fig.width=20, fig.cap="", fig.pos="h"}
 ```
 
 \newpage
@@ -579,11 +574,14 @@ Feature-based time series analysis should develop support systems that incorpora
 
 \newpage
 
-```{r pca_daily, fig.height=5, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```{r pca_daily, fig.height=5, fig.width=10, fig.cap="", fig.pos="h", fig.align="center"}
 ```
-
-```{r pca_hourly, fig.height=5, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
-```
-
 \newpage
-# References
+```{r pca_hourly, fig.height=5, fig.width=10, fig.cap="", fig.pos="h", fig.align="center"}
+```
+
+\break
+\newpage
+
+
+
