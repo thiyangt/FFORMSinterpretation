@@ -342,40 +342,40 @@ p30 <- ggplot(data = linearityW_includeout, aes_string(x = linearityW_includeout
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none") + ylab("")
 
-(p1|p2|p3)/(p4|p5|p6)/(p7|p8|p9)/(p10|p11|p12)/(p13|p14|p15)/(p16|p17|p18)/(p19|p20|p21)/(p22|p23|p24)/(p25|p26|p27)/(p28|p29|p30)
+(p1|p2|p3)/(p4|p5|p6)
 
 
 ## ---- weekly_pdp2
 ## theta
-p1 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "theta")) +
+p28 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "theta")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none") + ylab("theta")
-p2 <- ggplot(data = stabilityW_includeout, aes_string(x = stabilityW_includeout$stability, y = "theta")) +
+p29 <- ggplot(data = stabilityW_includeout, aes_string(x = stabilityW_includeout$stability, y = "theta")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("stability") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none") + ylab("")
-p3 <- ggplot(data = linearityW_includeout, aes_string(x = linearityW_includeout$linearity, y = "theta")) +
+p30 <- ggplot(data = linearityW_includeout, aes_string(x = linearityW_includeout$linearity, y = "theta")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("y_pacf5") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none") + ylab("")
 
 ## nn
-p4 <- ggplot(data = y_pacf5W_includeout, aes_string(x = y_pacf5W_includeout$y_pacf5, y = "nn")) +
+p31 <- ggplot(data = y_pacf5W_includeout, aes_string(x = y_pacf5W_includeout$y_pacf5, y = "nn")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("y_pacf5") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none") + ylab("nn")
-p5 <- ggplot(data = NW_includeout, aes_string(x = NW_includeout$N, y = "nn")) +
+p32 <- ggplot(data = NW_includeout, aes_string(x = NW_includeout$N, y = "nn")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("N") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none") + ylab("")
-p6 <- ggplot(data = diff2y_acf1W_includeout, aes_string(x = diff2y_acf1W_includeout$diff2y_acf1, y = "nn")) +
+p33 <- ggplot(data = diff2y_acf1W_includeout, aes_string(x = diff2y_acf1W_includeout$diff2y_acf1, y = "nn")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff2y_acf1") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none") + ylab("")
 
 
-(p1|p2|p3)/(p4|p5|p6)
+(p7|p8|p9)/(p10|p11|p12)/(p13|p14|p15)/(p16|p17|p18)/(p19|p20|p21)/(p22|p23|p24)/(p25|p26|p27)/(p28|p29|p30)/(p31|p32|p33)
 
 ## ---- friedmanHW
 
@@ -794,5 +794,5 @@ pca1M4W_snaive <- ggplot(m4wPCAresults, aes(x = PC1, y = PC2, color = predicted)
   geom_point(data = m4wPCAresults[m4wPCAresults$predicted == "snaive", ], aes(x = PC1, y = PC2), color = "forestgreen") +
   labs(subtitle = "snaive") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
-(pca1M4W_snaive|pca1M4W_rwd | pca1M4W_rw | pca1M4W_ARIMA | pca1M4W_SARIMA )/( pca1M4W_stlar|
-  pca1M4W_mstlets | pca1M4W_tbats | pca1M4W_wn)/(pca1M4W_theta| pca1M4W_nn)
+pca1M4W_snaive+pca1M4W_rwd+pca1M4W_rw+pca1M4W_ARIMA + pca1M4W_SARIMA + pca1M4W_stlar+
+  pca1M4W_mstlets + pca1M4W_tbats + pca1M4W_wn + pca1M4W_theta+ pca1M4W_nn+plot_layout(ncol = 5, nrow = 3)

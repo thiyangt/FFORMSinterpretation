@@ -392,5 +392,5 @@ pca1M4H_snaive <- ggplot(m4hPCAresults, aes(x = PC1, y = PC2, color = predicted)
   geom_point(data = m4hPCAresults[m4hPCAresults$predicted == "snaive", ], aes(x = PC1, y = PC2), color = "forestgreen") +
   labs(subtitle = "snaive") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
-(pca1M4H_snaive|pca1M4H_rwd|pca1M4H_rw |pca1M4H_mstlarima|pca1M4H_mstlets )/( pca1M4H_tbats|
-                                                                                     pca1M4H_stlar | pca1M4H_theta | pca1M4H_nn|pca1M4H_wn)
+pca1M4H_snaive+pca1M4H_rwd+pca1M4H_rw +pca1M4H_mstlarima+pca1M4H_mstlets + pca1M4H_tbats+
+pca1M4H_stlar + pca1M4H_theta + pca1M4H_nn+pca1M4H_wn+plot_layout(ncol = 5, nrow = 2)
