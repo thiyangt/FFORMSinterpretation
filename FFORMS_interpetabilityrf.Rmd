@@ -436,7 +436,7 @@ Similar to the results of yearly time series trend and linearity also listed amo
 
 \newpage
 
-```{r friedmanQ2, fig.height=10, fig.width=30, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic for quarterly data(cont).", fig.pos="h", message=FALSE, warning=FALSE}
+```{r friedmanQ2, fig.height=15, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic for quarterly data(cont).", fig.pos="h", message=FALSE, warning=FALSE}
 ```
 
 ## Monthly
@@ -531,6 +531,8 @@ Variable importance graph for daily data is shown in \autoref{fig::vi_daily}. Ov
 ```
 
 ## Hourly
+
+
 
 ```{r hourly_oob, fig.height=10, fig.width=10, fig.cap="Distribution of proportion of times each hourly time series was classified to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. There are ten rows in the plot corresponds to each predicted class represented by Y-axis. X-axis denotes the proportion of times a time series is classified in each class. On each row, the true class label match with the predicted class label category dominated the top, indicating a fairly good classification of the model fitted.", fig.pos="h"}
 ```
