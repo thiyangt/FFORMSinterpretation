@@ -518,6 +518,8 @@ According to \autoref{fig::oob_daily} only the distributions corresponds to obse
 ```{r vi_daily, fig.height=15, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
 ```
 
+Variable importance graph for daily data is shown in \autoref{fig::vi_daily}. Overall, simila to the previous results most important features for determining suitable forecast-models for daily time series are, strength of seasonality corresponds to the weekly seasonality (7), stability, trend, lumpiness and linearity. Further more, length of the series is important in determining random walk, random walk with drift, mstlarima, mstlets, stlar, theta and nn classes. Strength of seasonality corresponds to the annual seasonality (365.25) is appeared to be important in determining the selection of theta models. \autoref{fig::daily_pdp} shows the patial dependency plots of the top 3 features from the FFORMS framework. According to the results of \autoref{fig::daily_pdp}  shorter series tends to select random walk with drift models while probability of selecting tbats, and theta models increases as the length of series increases. Neural network models shows a non-monotonic relationship with length of the series (N). The theta models tends to be selected for series with high annual seasonality but very low weekly seasonality.
+
 \newpage
 
 ```{r daily_pdp, fig.height=14.7, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures(daily series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class.", fig.pos="h"}
