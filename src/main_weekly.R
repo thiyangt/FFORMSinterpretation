@@ -398,9 +398,9 @@ cormat <- round(cormat,2)
 cormat1 <- reorder_cormat(cormat)
 p1 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
-                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
-                       name="")+
+  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
+                       low = "#fee8c8", high = "#e34a33",  
+                       name="", na.value = "transparent")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("snaive")
 
@@ -422,9 +422,9 @@ cormat <- round(cormat,2)
 cormat1 <- reorder_cormat(cormat)
 p2 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
-                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
-                       name="")+
+  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
+                       low = "#fee8c8", high = "#e34a33",  
+                       name="", na.value = "transparent")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("rwd")
 
@@ -446,9 +446,9 @@ cormat <- round(cormat,2)
 cormat1 <- reorder_cormat(cormat)
 p3 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
-                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
-                       name="")+
+  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
+                       low = "#fee8c8", high = "#e34a33",  
+                       name="", na.value = "transparent")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("rw")
 
@@ -470,9 +470,9 @@ cormat <- round(cormat,2)
 cormat1 <- reorder_cormat(cormat)
 p4 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
-                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
-                       name="")+
+  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
+                       low = "#fee8c8", high = "#e34a33",  
+                       name="", na.value = "transparent")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("ARIMA")
 
@@ -494,9 +494,9 @@ cormat <- round(cormat,2)
 cormat1 <- reorder_cormat(cormat)
 p5 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
-                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
-                       name="")+
+  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
+                       low = "#fee8c8", high = "#e34a33",  
+                       name="", na.value = "transparent")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("rw")
 
@@ -518,9 +518,9 @@ cormat <- round(cormat,2)
 cormat1 <- reorder_cormat(cormat)
 p6 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
-                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
-                       name="")+
+  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
+                       low = "#fee8c8", high = "#e34a33",  
+                       name="", na.value = "transparent")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("stlar")
 
@@ -542,9 +542,9 @@ cormat <- round(cormat,2)
 cormat1 <- reorder_cormat(cormat)
 p7 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
-                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
-                       name="")+
+  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
+                       low = "#fee8c8", high = "#e34a33",  
+                       name="", na.value = "transparent")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("mstlets")
 
@@ -567,9 +567,9 @@ cormat <- round(cormat,2)
 cormat1 <- reorder_cormat(cormat)
 p8 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
-                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
-                       name="")+
+  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
+                       low = "#fee8c8", high = "#e34a33",  
+                       name="", na.value = "transparent")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("tbats")
 
@@ -592,9 +592,9 @@ cormat <- round(cormat,2)
 cormat1 <- reorder_cormat(cormat)
 p9 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
-                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
-                       name="")+
+  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
+                       low = "#fee8c8", high = "#e34a33",  
+                       name="", na.value = "transparent")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("ARMA.AR.MA")
 
@@ -616,9 +616,9 @@ cormat <- round(cormat,2)
 cormat1 <- reorder_cormat(cormat)
 p10 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
-                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
-                       name="")+
+  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
+                       low = "#fee8c8", high = "#e34a33",  
+                       name="", na.value = "transparent")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("wn")
 
@@ -640,9 +640,9 @@ cormat <- round(cormat,2)
 cormat1 <- reorder_cormat(cormat)
 p11 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
-                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
-                       name="")+
+  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
+                       low = "#fee8c8", high = "#e34a33",  
+                       name="", na.value = "transparent")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("theta")
 ## nn
@@ -663,9 +663,9 @@ cormat <- round(cormat,2)
 cormat1 <- reorder_cormat(cormat)
 p12 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
-                       midpoint = 0.5, limit = c(0,1), space = "Lab", 
-                       name="")+
+  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
+                       low = "#fee8c8", high = "#e34a33",  
+                       name="", na.value = "transparent")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("nn")
 

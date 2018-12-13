@@ -568,6 +568,7 @@ Feature-based time series analysis should develop support systems that incorpora
 ```{r yearly_pca, fig.height=10, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
 ```
 
+\clearpage
 
 ```{r quarterly_pca, fig.height=15, fig.width=20, fig.cap="PCA(Quarterly)", fig.pos="h"}
 ```
@@ -577,18 +578,23 @@ Feature-based time series analysis should develop support systems that incorpora
 ```{r monthly_pca, fig.height=15, fig.width=20, fig.cap="PCA(Monthly)", fig.pos="h"}
 ```
 
+\clearpage
+
 ```{r pca_weekly, fig.height=15, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
 ```
 
-\newpage
+\clearpage
 
 ```{r pca_daily, fig.height=5, fig.width=10, fig.cap="", fig.pos="h", fig.align="center"}
 ```
-\newpage
+
+
 ```{r pca_hourly, fig.height=5, fig.width=10, fig.cap="", fig.pos="h", fig.align="center"}
 ```
 
-\newpage
+\clearpage
+
+# References
 
 
 
