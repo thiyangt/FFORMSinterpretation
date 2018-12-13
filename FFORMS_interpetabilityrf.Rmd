@@ -449,12 +449,12 @@ For quarterly and monthly data same set of features and class-labels are used to
 ```{r oob_monthly, fig.height=30, fig.width=20, fig.cap="", fig.pos="h"}
 ```
 
-\newpage
+\clearpage
 
 ```{r vi_monthly, fig.height=25, fig.width=30, fig.cap="", fig.pos="h", fig.align="center"}
 ```
 
-\newpage
+\clearpage
 
 ```{r pdp_monthly1, fig.height=45, fig.width=35, fig.cap="Partial dependence plots for top three features in each category (Monthly)", fig.pos="h"}
 ```
@@ -471,7 +471,7 @@ For quarterly and monthly data same set of features and class-labels are used to
 
 \newpage
 
-```{r friedmanM2, fig.height=10, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic for monthly data.", fig.pos="h", message=FALSE, warning=FALSE}
+```{r friedmanM2, fig.height=15, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic for monthly data.", fig.pos="h", message=FALSE, warning=FALSE}
 ```
 
 
@@ -480,7 +480,7 @@ For quarterly and monthly data same set of features and class-labels are used to
 
 \autoref{fig::oob_weekly} poportion of times each time series was classified to each class. Unlike, yearly, quarterly and monthly data theta models have low chance of being selected to forecast weekly data. The random walk with drift, tbat models and theta have higher chance of being selected. Except ARMA/AR/MA class the distribution corresponds to the true class label dominates others. ARMA/AR/MA class shows some unusual behaviour within some categories due to class imbalance ratio, ARMA/AR/MA class contains fewer number of observations in the training set. Acording to the results of \autoref{fig::vi_weekly} spikiness, linearity, trend, strength of seasonality, stability and lumpiness has been assigned a high importance. This is similar to the results of yearly, quarterly and monthly data. The length of series has been selected among top 5 by mstlets, tbats, theta and neural network models. According to the results of \autoref{fig::weekly_pdp} for mstlets models probability of being selected increases as the length of series increases while the opposite relationship was observed at neural network models. The tabts models show a non-monotonic relationship with the length of series. It is surprising to observe that for mstlets models probability of being selected decreases an seasonality incresases. This could be due to the interaction effect of seasonality with others. For weekly data, the number of pairs showing a particular degree of interaction strength is relatively low compared to other yearly, quarterly and monthly data. In tbats class, trend, linearity, spikiness, seasonality and first autocorrelation coefficient of the seasonall differenced series interact heavily with other features.
 
-```{r oob_weekly, fig.height=15, fig.width=10, fig.cap="Distribution of proportion of times each weekly time series was classified to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. There are ten rows in the plot corresponds to each predicted class represented by Y-axis. X-axis denotes the proportion of times a time series is classified in each class. On each row, the true class label match with the predicted class label category dominated the top, indicating a fairly good classification of the model fitted.", fig.pos="h", cache=TRUE}
+```{r oob_weekly, fig.height=15, fig.width=10, fig.cap="Distribution of proportion of times each weekly time series was classified to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. There are ten rows in the plot corresponds to each predicted class represented by Y-axis. X-axis denotes the proportion of times a time series is classified in each class.", fig.pos="h", cache=TRUE}
 ```
 
 \newpage
