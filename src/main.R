@@ -642,8 +642,8 @@ colNamestl <- colnames(trend.linearityrmout.y)[27:36]
 int1 <- ggplot(
   data = trend.urpprmout.y, aes_string(x = trend.urpprmout.y$trend,y = trend.urpprmout.y$ur_pp, z = colNamestrur[8], fill = colNamestrur[8]
   ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.4), breaks = seq(0, 0.4, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("ur_pp") + theme(legend.position="none")+ggtitle("rwd (H=0.32)")
+  scale_fill_viridis_c(limits = c(0, 0.4), breaks = seq(0, 0.4, 100),option = "A", direction = -1)+
+  xlab("trend") + ylab("ur_pp") + theme(legend.position="none")+ggtitle("rwd")
   
 int2 <- ggplot(
   data = spikiness.diff1y_acf5.y,
@@ -651,24 +651,24 @@ int2 <- ggplot(
     x = spikiness.diff1y_acf5.y$spikiness,
     y = spikiness.diff1y_acf5.y$diff1y_acf5, z = colNamessd[8], fill = colNamessd[8]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.25), breaks = seq(0, 0.25, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("spikiness") + ylab("diff1y_acf5")+ theme(legend.position="none")+ggtitle("rwd (H=0.88)")
+  scale_fill_viridis_c(limits = c(0, 0.25), breaks = seq(0, 0.25, 100), option = "A", direction = -1) +
+  xlab("spikiness") + ylab("diff1y_acf5")+ theme(legend.position="none")+ggtitle("rwd")
 int3 <- ggplot(
   data = hurst.trend.y,
   aes_string(
     x = hurst.trend.y$hurst,
     y = hurst.trend.y$trend, z = colNamessd[8], fill = colNamessd[8]
   )) + geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.4), breaks = seq(0, 0.4, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("hurst") + ylab("trend")+ theme(legend.position="none")+ggtitle("rwd (H=0.14)")
+  scale_fill_viridis_c(limits = c(0, 0.4), breaks = seq(0, 0.4, 100), option = "A", direction = -1) +
+  xlab("hurst") + ylab("trend")+ theme(legend.position="none")+ggtitle("rwd")
 int4 <- ggplot(
   data = trend.linearityrmout.y,
   aes_string(
     x = trend.linearityrmout.y$trend,
     y = trend.linearityrmout.y$linearity, z = colNamestl[8], fill = colNamestl[8]
   )) + geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.25), breaks = seq(0, 0.25, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("linearity")+ theme(legend.position="none")+ggtitle("rwd (H=1.00)")
+  scale_fill_viridis_c(limits = c(0, 0.25), breaks = seq(0, 0.25, 100), option = "A", direction = -1) +
+  xlab("trend") + ylab("linearity")+ theme(legend.position="none")+ggtitle("rwd")
 ## rw
 int5 <- ggplot(
   data = trend.urpprmout.y,
@@ -676,32 +676,32 @@ int5 <- ggplot(
     x = trend.urpprmout.y$trend,
     y = trend.urpprmout.y$ur_pp, z = colNamestrur[7], fill = colNamestrur[7]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.15), breaks = seq(0, 0.15, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("ur_pp")+ theme(legend.position="none")+ggtitle("rw (H=0.40)")
+  scale_fill_viridis_c(limits = c(0, 0.15), breaks = seq(0, 0.15, 100), option = "A", direction = -1) +
+  xlab("trend") + ylab("ur_pp")+ theme(legend.position="none")+ggtitle("rw")
 int6 <- ggplot(
   data = spikiness.diff1y_acf5.y,
   aes_string(
     x = spikiness.diff1y_acf5.y$spikiness,
     y = spikiness.diff1y_acf5.y$diff1y_acf5, z = colNamessd[7], fill = colNamessd[7]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("spikiness") + ylab("diff1y_acf5")+ theme(legend.position="none")+ggtitle("rw (H=0.80)")
+  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), option = "A", direction = -1) +
+  xlab("spikiness") + ylab("diff1y_acf5")+ theme(legend.position="none")+ggtitle("rw")
 int7 <- ggplot(
   data = hurst.trend.y,
   aes_string(
     x = hurst.trend.y$hurst,
     y = hurst.trend.y$trend, z = colNamessd[7], fill = colNamessd[7]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.15), breaks = seq(0, 0.15, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("hurst") + ylab("trend")+ theme(legend.position="none")+ggtitle("rw (H=0.63)")
+  scale_fill_viridis_c(limits = c(0, 0.15), breaks = seq(0, 0.15, 100),option = "A", direction = -1) +
+  xlab("hurst") + ylab("trend")+ theme(legend.position="none")+ggtitle("rw")
 int8 <- ggplot(
   data = trend.linearityrmout.y,
   aes_string(
     x = trend.linearityrmout.y$trend,
     y = trend.linearityrmout.y$linearity, z = colNamestl[7], fill = colNamestl[7]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("linearity")+ theme(legend.position="none")+ggtitle("rw (H=0.63)")
+  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), option = "A", direction = -1) +
+  xlab("trend") + ylab("linearity")+ theme(legend.position="none")+ggtitle("rw")
 # ETS-trend
 int9 <- ggplot(
   data = trend.urpprmout.y,
@@ -709,16 +709,16 @@ int9 <- ggplot(
     x = trend.urpprmout.y$trend,
     y = trend.urpprmout.y$ur_pp, z = colNamestrur[5], fill = colNamestrur[5]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("ur_pp")+ theme(legend.position="none")+ggtitle("ETS-T (H=0.24)")
+  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100),option = "A", direction = -1) +
+  xlab("trend") + ylab("ur_pp")+ theme(legend.position="none")+ggtitle("ETS-Trend")
 int10 <- ggplot(
   data = spikiness.diff1y_acf5.y,
   aes_string(
     x = spikiness.diff1y_acf5.y$spikiness,
     y = spikiness.diff1y_acf5.y$diff1y_acf5, z = colNamessd[5], fill = colNamessd[5]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("spikiness") + ylab("diff1y_acf5")+ theme(legend.position="none")+ggtitle("ETS-T (H=1.00)")
+  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100),option = "A", direction = -1) +
+  xlab("spikiness") + ylab("diff1y_acf5")+ theme(legend.position="none")+ggtitle("ETS-Trend")
 int11 <- ggplot(
   data = hurst.trend.y,
   aes_string(
@@ -726,16 +726,16 @@ int11 <- ggplot(
     y = hurst.trend.y$trend, z = colNamessd[5], fill = colNamessd[5]
   )) +
   geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("hurst") + ylab("trend")+ theme(legend.position="none")+ggtitle("ETS-T (H=0.13)")
+  scale_fill_viridis_c(limits = c(0, 0.3), breaks = seq(0, 0.3, 100),option = "A", direction = -1) +
+  xlab("hurst") + ylab("trend")+ theme(legend.position="none")+ggtitle("ETS-Trend")
 int12 <- ggplot(
   data = trend.linearityrmout.y,
   aes_string(
     x = trend.linearityrmout.y$trend,
     y = trend.linearityrmout.y$linearity, z = colNamestl[5], fill = colNamestl[5]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("linearity")+ theme(legend.position="none")+ggtitle("ETS-T (H=0.25)")
+  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100),option = "A", direction = -1) +
+  xlab("trend") + ylab("linearity")+ theme(legend.position="none")+ggtitle("ETS-Trend")
 ## ETS_dampedtrend
 int13 <- ggplot(
   data = trend.urpprmout.y,
@@ -743,24 +743,24 @@ int13 <- ggplot(
     x = trend.urpprmout.y$trend,
     y = trend.urpprmout.y$ur_pp, z = colNamestrur[3], fill = colNamestrur[3]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("ur_pp")+ theme(legend.position="none")+ggtitle("ETS-DT (H=0.56)")
+  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100),option = "A", direction = -1) +
+  xlab("trend") + ylab("ur_pp")+ theme(legend.position="none")+ggtitle("ETS-dampedtrend")
 int14 <- ggplot(
   data = spikiness.diff1y_acf5.y,
   aes_string(
     x = spikiness.diff1y_acf5.y$spikiness,
     y = spikiness.diff1y_acf5.y$diff1y_acf5, z = colNamessd[3], fill = colNamessd[3]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("spikiness") + ylab("diff1y_acf5")+ theme(legend.position="none")+ggtitle("ETS-DT (H=0.87)")
+  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100),option = "A", direction = -1) +
+  xlab("spikiness") + ylab("diff1y_acf5")+ theme(legend.position="none")+ggtitle("ETS-dampedtrend")
 int15 <- ggplot(
   data = hurst.trend.y,
   aes_string(
     x = hurst.trend.y$hurst,
     y = hurst.trend.y$trend, z = colNamessd[3], fill = colNamessd[3]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.04), breaks = seq(0, 0.04, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("hurst") + ylab("trend")+ theme(legend.position="none")+ggtitle("ETS-DT (H=0.29)")
+  scale_fill_viridis_c(limits = c(0, 0.04), breaks = seq(0, 0.04, 100),option = "A", direction = -1) +
+  xlab("hurst") + ylab("trend")+ theme(legend.position="none")+ggtitle("ETS-dampedtrend")
 
 int16 <- ggplot(
   data = trend.linearityrmout.y,
@@ -768,8 +768,8 @@ int16 <- ggplot(
     x = trend.linearityrmout.y$trend,
     y = trend.linearityrmout.y$linearity, z = colNamestl[3], fill = colNamestl[3]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("linearity")+ theme(legend.position="none")+ggtitle("ETS-DT (H=0.31)")
+  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100),option = "A", direction = -1) +
+  xlab("trend") + ylab("linearity")+ theme(legend.position="none")+ggtitle("ETS-dampedtrend")
 # ETS-notrendseasonal
 int17 <- ggplot(
   data = trend.urpprmout.y,
@@ -777,32 +777,32 @@ int17 <- ggplot(
     x = trend.urpprmout.y$trend,
     y = trend.urpprmout.y$ur_pp, z = colNamestrur[4], fill = colNamestrur[4]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("ur_pp")+ theme(legend.position="none")+ggtitle("ETS-NTNS (H=0.64)")
+  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100),option = "A", direction = -1) +
+  xlab("trend") + ylab("ur_pp")+ theme(legend.position="none")+ggtitle("ETS-notrendseasonal")
 int18 <- ggplot(
   data = spikiness.diff1y_acf5.y,
   aes_string(
     x = spikiness.diff1y_acf5.y$spikiness,
     y = spikiness.diff1y_acf5.y$diff1y_acf5, z = colNamessd[4], fill = colNamessd[4]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("spikiness") + ylab("diff1y_acf5")+ theme(legend.position="none")+ggtitle("ETS-DT (H=0.71)")
+  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100),option = "A", direction = -1) +
+  xlab("spikiness") + ylab("diff1y_acf5")+ theme(legend.position="none")+ggtitle("ETS-notrendseasonal")
 int19 <- ggplot(
   data = hurst.trend.y,
   aes_string(
     x = hurst.trend.y$hurst,
     y = hurst.trend.y$trend, z = colNamessd[4], fill = colNamessd[4]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("hurst") + ylab("trend")+ theme(legend.position="none")+ggtitle("ETS-DT (H=0.29)")
+  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100),option = "A", direction = -1) +
+  xlab("hurst") + ylab("trend")+ theme(legend.position="none")+ggtitle("ETS-notrendseasonal")
 int20 <- ggplot(
   data = trend.linearityrmout.y,
   aes_string(
     x = trend.linearityrmout.y$trend,
     y = trend.linearityrmout.y$linearity, z = colNamestl[4], fill = colNamestl[4]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("linearity")+ theme(legend.position="none")+ggtitle("ETS-DT (H=1.00)")
+  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100),option = "A", direction = -1) +
+  xlab("trend") + ylab("linearity")+ theme(legend.position="none")+ggtitle("ETS-notrendseasonal)")
 
 (int1 | int3 | int4) / (int5 | int7 | int8) / (int9 | int11 | int12) / (int13 | int14 | int15)/(int17|int19|int20)
 
@@ -812,8 +812,8 @@ int20 <- ggplot(
 int1 <- ggplot(
   data = trend.urpprmout.y, aes_string(x = trend.urpprmout.y$trend,y = trend.urpprmout.y$ur_pp, z = colNamestrur[1], fill = colNamestrur[1]
   ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.4), breaks = seq(0, 0.4, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("ur_pp") + theme(legend.position="none")+ggtitle("ARIMA (H=0.50)")
+  scale_fill_viridis_c(limits = c(0, 0.4), breaks = seq(0, 0.4, 100), option = "A", direction = -1) +
+  xlab("trend") + ylab("ur_pp") + theme(legend.position="none")+ggtitle("ARIMA")
 
 int2 <- ggplot(
   data = spikiness.diff1y_acf5.y,
@@ -821,24 +821,24 @@ int2 <- ggplot(
     x = spikiness.diff1y_acf5.y$spikiness,
     y = spikiness.diff1y_acf5.y$diff1y_acf5, z = colNamessd[1], fill = colNamessd[1]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.25), breaks = seq(0, 0.25, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("spikiness") + ylab("diff1y_acf5")+ theme(legend.position="none")+ggtitle("ARIMA (H=0.94)")
+  scale_fill_viridis_c(limits = c(0, 0.25), breaks = seq(0, 0.25, 100),option = "A", direction = -1) +
+  xlab("spikiness") + ylab("diff1y_acf5")+ theme(legend.position="none")+ggtitle("ARIMA")
 int3 <- ggplot(
   data = hurst.trend.y,
   aes_string(
     x = hurst.trend.y$hurst,
     y = hurst.trend.y$trend, z = colNamessd[1], fill = colNamessd[1]
   )) + geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.4), breaks = seq(0, 0.4, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("hurst") + ylab("trend")+ theme(legend.position="none")+ggtitle("ARIMA (H=0.87)")
+  scale_fill_viridis_c(limits = c(0, 0.4), breaks = seq(0, 0.4, 100),option = "A", direction = -1) +
+  xlab("hurst") + ylab("trend")+ theme(legend.position="none")+ggtitle("ARIMA")
 int4 <- ggplot(
   data = trend.linearityrmout.y,
   aes_string(
     x = trend.linearityrmout.y$trend,
     y = trend.linearityrmout.y$linearity, z = colNamestl[1], fill = colNamestl[1]
   )) + geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.25), breaks = seq(0, 0.25, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("linearity")+ theme(legend.position="none")+ggtitle("ARIMA (H=0.71)")
+  scale_fill_viridis_c(limits = c(0, 0.25), breaks = seq(0, 0.25, 100), option = "A", direction = -1) +
+  xlab("trend") + ylab("linearity")+ theme(legend.position="none")+ggtitle("ARIMA")
 ## ARMA
 int5 <- ggplot(
   data = trend.urpprmout.y,
@@ -846,32 +846,32 @@ int5 <- ggplot(
     x = trend.urpprmout.y$trend,
     y = trend.urpprmout.y$ur_pp, z = colNamestrur[2], fill = colNamestrur[2]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.06), breaks = seq(0, 0.06, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("ur_pp")+ theme(legend.position="none")+ggtitle("ARMA (H=0.77)")
+  scale_fill_viridis_c(limits = c(0, 0.06), breaks = seq(0, 0.06, 100),option = "A", direction = -1) +
+  xlab("trend") + ylab("ur_pp")+ theme(legend.position="none")+ggtitle("ARMA/AR/MA")
 int6 <- ggplot(
   data = spikiness.diff1y_acf5.y,
   aes_string(
     x = spikiness.diff1y_acf5.y$spikiness,
     y = spikiness.diff1y_acf5.y$diff1y_acf5, z = colNamessd[2], fill = colNamessd[2]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.06), breaks = seq(0, 0.06, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("spikiness") + ylab("diff1y_acf5")+ theme(legend.position="none")+ggtitle("ARMA (H=0.77)")
+  scale_fill_viridis_c(limits = c(0, 0.06), breaks = seq(0, 0.06, 100), option = "A", direction = -1) +
+  xlab("spikiness") + ylab("diff1y_acf5")+ theme(legend.position="none")+ggtitle("ARMA/AR/MA")
 int7 <- ggplot(
   data = hurst.trend.y,
   aes_string(
     x = hurst.trend.y$hurst,
     y = hurst.trend.y$trend, z = colNamessd[2], fill = colNamessd[2]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("hurst") + ylab("trend")+ theme(legend.position="none")+ggtitle("ARMA (H=0.87)")
+  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), option = "A", direction = -1) +
+  xlab("hurst") + ylab("trend")+ theme(legend.position="none")+ggtitle("ARMA/AR/MA")
 int8 <- ggplot(
   data = trend.linearityrmout.y,
   aes_string(
     x = trend.linearityrmout.y$trend,
     y = trend.linearityrmout.y$linearity, z = colNamestl[2], fill = colNamestl[2]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("linearity")+ theme(legend.position="none")+ggtitle("ARMA (H=1.00)")
+  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100),option = "A", direction = -1) +
+  xlab("trend") + ylab("linearity")+ theme(legend.position="none")+ggtitle("ARMA/AR/MA")
 # wn
 int9 <- ggplot(
   data = trend.urpprmout.y,
@@ -879,16 +879,16 @@ int9 <- ggplot(
     x = trend.urpprmout.y$trend,
     y = trend.urpprmout.y$ur_pp, z = colNamestrur[10], fill = colNamestrur[10]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.8), breaks = seq(0, 0.8, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("ur_pp")+ theme(legend.position="none")+ggtitle("wn (H=0.53)")
+  scale_fill_viridis_c(limits = c(0, 0.8), breaks = seq(0, 0.8, 100),option = "A", direction = -1) +
+  xlab("trend") + ylab("ur_pp")+ theme(legend.position="none")+ggtitle("wn")
 int10 <- ggplot(
   data = spikiness.diff1y_acf5.y,
   aes_string(
     x = spikiness.diff1y_acf5.y$spikiness,
     y = spikiness.diff1y_acf5.y$diff1y_acf5, z = colNamessd[10], fill = colNamessd[10]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 1), breaks = seq(0, 1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("spikiness") + ylab("diff1y_acf5")+ theme(legend.position="none")+ggtitle("wn (H=0.5)")
+  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100),option = "A", direction = -1) +
+  xlab("spikiness") + ylab("diff1y_acf5")+ theme(legend.position="none")+ggtitle("wn")
 int11 <- ggplot(
   data = hurst.trend.y,
   aes_string(
@@ -896,16 +896,16 @@ int11 <- ggplot(
     y = hurst.trend.y$trend, z = colNamessd[10], fill = colNamessd[10]
   )) +
   geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.8), breaks = seq(0, 0.8, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("hurst") + ylab("trend")+ theme(legend.position="none")+ggtitle("wn (H=0.18)")
+  scale_fill_viridis_c(limits = c(0, 0.8), breaks = seq(0, 0.8, 100), option = "A", direction = -1) +
+  xlab("hurst") + ylab("trend")+ theme(legend.position="none")+ggtitle("wn")
 int12 <- ggplot(
   data = trend.linearityrmout.y,
   aes_string(
     x = trend.linearityrmout.y$trend,
     y = trend.linearityrmout.y$linearity, z = colNamestl[10], fill = colNamestl[10]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("linearity")+ theme(legend.position="none")+ggtitle("wn(H=0.49)")
+  scale_fill_viridis_c(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), option = "A", direction = -1) +
+  xlab("trend") + ylab("linearity")+ theme(legend.position="none")+ggtitle("wn")
 ## theta
 int13 <- ggplot(
   data = trend.urpprmout.y,
@@ -913,24 +913,24 @@ int13 <- ggplot(
     x = trend.urpprmout.y$trend,
     y = trend.urpprmout.y$ur_pp, z = colNamestrur[9], fill = colNamestrur[9]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("ur_pp")+ theme(legend.position="none")+ggtitle("theta (H=0.53)")
+  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), option = "A", direction = -1) +
+  xlab("trend") + ylab("ur_pp")+ theme(legend.position="none")+ggtitle("theta")
 int14 <- ggplot(
   data = spikiness.diff1y_acf5.y,
   aes_string(
     x = spikiness.diff1y_acf5.y$spikiness,
     y = spikiness.diff1y_acf5.y$diff1y_acf5, z = colNamessd[9], fill = colNamessd[9]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("spikiness") + ylab("diff1y_acf5")+ theme(legend.position="none")+ggtitle("theta (H=1.00)")
+  scale_fill_viridis_c(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), option = "A", direction = -1) +
+  xlab("spikiness") + ylab("diff1y_acf5")+ theme(legend.position="none")+ggtitle("theta")
 int15 <- ggplot(
   data = hurst.trend.y,
   aes_string(
     x = hurst.trend.y$hurst,
     y = hurst.trend.y$trend, z = colNamessd[9], fill = colNamessd[9]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("hurst") + ylab("trend")+ theme(legend.position="none")+ggtitle("theta (H=0.38)")
+  scale_fill_viridis_c(limits = c(0, 0.15), breaks = seq(0, 0.2, 100),option = "A", direction = -1) +
+  xlab("hurst") + ylab("trend")+ theme(legend.position="none")+ggtitle("theta")
 
 int16 <- ggplot(
   data = trend.linearityrmout.y,
@@ -938,8 +938,8 @@ int16 <- ggplot(
     x = trend.linearityrmout.y$trend,
     y = trend.linearityrmout.y$linearity, z = colNamestl[9], fill = colNamestl[9]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("linearity")+ theme(legend.position="none")+ggtitle("theta (H=0.58)")
+  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), option = "A", direction = -1) +
+  xlab("trend") + ylab("linearity")+ theme(legend.position="none")+ggtitle("theta")
 # nn
 int17 <- ggplot(
   data = trend.urpprmout.y,
@@ -947,34 +947,34 @@ int17 <- ggplot(
     x = trend.urpprmout.y$trend,
     y = trend.urpprmout.y$ur_pp, z = colNamestrur[6], fill = colNamestrur[6]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("ur_pp")+ theme(legend.position="none")+ggtitle("nn (H=0.68)")
+  scale_fill_viridis_c(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), option = "A", direction = -1) +
+  xlab("trend") + ylab("ur_pp")+ theme(legend.position="none")+ggtitle("nn")
 int18 <- ggplot(
   data = spikiness.diff1y_acf5.y,
   aes_string(
     x = spikiness.diff1y_acf5.y$spikiness,
     y = spikiness.diff1y_acf5.y$diff1y_acf5, z = colNamessd[6], fill = colNamessd[6]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("spikiness") + ylab("diff1y_acf5")+ theme(legend.position="none")+ggtitle("nn (H=1.00)")
+  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), option = "A", direction = -1) +
+  xlab("spikiness") + ylab("diff1y_acf5")+ theme(legend.position="none")+ggtitle("nn")
 int19 <- ggplot(
   data = hurst.trend.y,
   aes_string(
     x = hurst.trend.y$hurst,
     y = hurst.trend.y$trend, z = colNamessd[6], fill = colNamessd[6]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("hurst") + ylab("trend")+ theme(legend.position="none")+ggtitle("nn (H=0.58)")
+  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), option = "A", direction = -1) +
+  xlab("hurst") + ylab("trend")+ theme(legend.position="none")+ggtitle("nn")
 int20 <- ggplot(
   data = trend.linearityrmout.y,
   aes_string(
     x = trend.linearityrmout.y$trend,
     y = trend.linearityrmout.y$linearity, z = colNamestl[6], fill = colNamestl[6]
   )) +geom_tile() +
-  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("linearity")+ theme(legend.position="none")+ggtitle("nn (H=0.58)")
+  scale_fill_viridis_c(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), option = "A", direction = -1) +
+  xlab("trend") + ylab("linearity")+ theme(legend.position="none")+ggtitle("nn")
 
-(int1 | int3 | int4) / (int5 | int7 | int8) / (int9 | int10 | int12) / (int13 | int14 | int15)/(int17|int19|int20)
+(int1 | int3 | int4) / (int5 | int7 | int8) / (int9 | int12 | int11) / (int13 | int16 | int15)/(int17|int19|int20)
 
 
 

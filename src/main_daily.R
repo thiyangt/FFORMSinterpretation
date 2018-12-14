@@ -559,10 +559,10 @@ rownames(cormat) <- colnames(cormat)
 cormat <- round(cormat,2)
 cormat1 <- reorder_cormat(cormat)
 p5 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
-                 outline.col = "transparent")+
+                 outline.col = "white")+
   scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
                        low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "white")+
+                       name="", na.value = "transparent")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("mstlets")
 
@@ -574,7 +574,7 @@ df1 <- data.frame(Var1=names(table(tbats_DFH_cor$Var1)),
                   Var2=names(table(tbats_DFH_cor$Var1)),
                   value=rep(1.00, 26))
 
-cormat <- dplyr::bind_rows(mstlets_DFH_cor, df1)
+cormat <- dplyr::bind_rows(tbats_DFH_cor, df1)
 cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
 colnames(cormat)[1] <- ""
 cormat <- data.matrix(cormat)
@@ -623,7 +623,7 @@ df1 <- data.frame(Var1=names(table(theta_DFH_cor$Var1)),
                   Var2=names(table(theta_DFH_cor$Var1)),
                   value=rep(1.00, 26))
 
-cormat <- dplyr::bind_rows(stlar_DFH_cor, df1)
+cormat <- dplyr::bind_rows(theta_DFH_cor, df1)
 cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
 colnames(cormat)[1] <- ""
 cormat <- data.matrix(cormat)
@@ -673,7 +673,7 @@ df1 <- data.frame(Var1=names(table(wn_DFH_cor$Var1)),
                   Var2=names(table(wn_DFH_cor$Var1)),
                   value=rep(1.00, 26))
 
-cormat <- dplyr::bind_rows(nn_DFH_cor, df1)
+cormat <- dplyr::bind_rows(wn_DFH_cor, df1)
 cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
 colnames(cormat)[1] <- ""
 cormat <- data.matrix(cormat)

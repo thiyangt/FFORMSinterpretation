@@ -383,6 +383,18 @@ The relative strength of two-way interaction between features were determined us
 
 \newpage
 
+```{r two_way_interaction_yearly1, fig.height=30, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Two-way "}
+
+```
+
+\newpage
+
+```{r two_way_interaction_yearly2, fig.height=30, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Two-way "}
+
+```
+
+\newpage
+
 **Local Interpretable Model-agnostic Explanations: yearly series**
 
 ```{r yearly_lime, fig.height=8, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
