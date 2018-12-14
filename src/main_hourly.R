@@ -2,7 +2,7 @@
 ################################################################
 #              Hourly data                                     #
 ################################################################
-## ---- hourly_oob
+## ---- hourlyoob
 load("data/hourly/trainH_votes.rda") #oob votes from the random forest
 load("data/hourly/trainH_predictions_oob.rda") # based on oob prediction
 load("data/hourly/hourly_training.rda") # random forest training set
@@ -30,7 +30,7 @@ horizontalbar_hourly <- ggplot(votes_oobH, aes(x = variable, y = value, fill = c
 horizontalbar_hourly
 
 
-## ---- vi_hourly
+## ---- vihourly
 # All variable scores into one dataframe
 load("data/hourly/trainH_importance.rda")
 load(file = "data/hourly/sd_pdf_dfH.rda")
@@ -113,7 +113,7 @@ feaImp_hourly <- ggplot(meanrank_hourly, aes(y = rank, x = feature,fill=as.facto
   scale_fill_manual(breaks=c("0","1"), values=c("black","red"), guide="none")
 feaImp_hourly
 
-## ----hourly_pdp
+## ----hourlypdp
 load("data/hourly/hiceout/curvaturegridH.rda")
 curvaturegridH$variable <- rep(1:1000, 20)
 load("data/hourly/hiceout/diff1y_acf1gridH.rda")
@@ -287,7 +287,7 @@ p30 <- ggplot(data=trendgridH, aes_string(x=trendgridH$trend, y="wn")) +
 
 
 
-## ---- pca_hourly
+## ---- pcahourly
 load("data/hourly/trainH_votes.rda")
 pcaHvariables <- hourly_training[, 1:26]
 pcaM4H <- prcomp(pcaHvariables, center = TRUE, scale = TRUE)

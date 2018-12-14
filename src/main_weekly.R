@@ -1,7 +1,7 @@
 #################################################################
 #                  Weekly data                                  #
 #################################################################
-## ---- oob_weekly
+## ---- oobweekly
 load("data/weekly/trainW_votes.rda") # oob votes from the random forest
 load("data/weekly/trainW_predictions_oob.rda") # based on oob prediction
 load("data/weekly/weekly_training.rda") # random forest training set
@@ -31,7 +31,7 @@ oob_boxplot_weekly <- ggplot(votes_oobW, aes(x = variable, y = value, fill = cla
   coord_flip()
 oob_boxplot_weekly
 
-## ---- vi_weekly
+## ---- viweekly
 # All variable scores into one dataframe
 load("data/weekly/trainW_importance.rda")
 load(file = "data/weekly/sd_pdf_dfW.rda")
@@ -119,7 +119,7 @@ feaImp_weekly <- ggplot(meanrank_weekly, aes(y = rank, x = feature,fill=as.facto
   scale_fill_manual(breaks=c("0","1"), values=c("black","red"), guide="none")
 feaImp_weekly
 
-## ---- weekly_pdp
+## ---- weeklypdp
 ## load ICE calculation files
 ## entropy
 load("data/weekly/pdp_ice/entropyW_includeout.rda")
@@ -345,7 +345,7 @@ p30 <- ggplot(data = linearityW_includeout, aes_string(x = linearityW_includeout
 (p1|p2|p3)/(p4|p5|p6)
 
 
-## ---- weekly_pdp2
+## ---- weeklypdp2
 ## theta
 p28 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "theta")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
@@ -671,7 +671,7 @@ p12 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
 
 p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+p11+p12+plot_layout(ncol = 3, nrow = 4)
 
-## ---- pca_weekly
+## ---- pcaweekly
 load("data/weekly/trainW_votes.rda")
 pcaWvariables <- weekly_training[, c(1:26, 28)]
 pcaM4W <- prcomp(pcaWvariables, center = TRUE, scale = TRUE)
