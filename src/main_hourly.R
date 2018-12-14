@@ -626,7 +626,7 @@ df1 <- data.frame(Var1=names(table(wn_DFH_cor$Var1)),
                   Var2=names(table(wn_DFH_cor$Var1)),
                   value=rep(1.00, 26))
 
-cormat <- dplyr::bind_rows(nn_DFH_cor, df1)
+cormat <- dplyr::bind_rows(wn_DFH_cor, df1)
 cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
 colnames(cormat)[1] <- ""
 cormat <- data.matrix(cormat)
