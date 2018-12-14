@@ -543,6 +543,8 @@ The poportion of times each time series was classified to each class for yearly 
 ```{r vi_hourly, fig.height=10, fig.width=10, fig.cap="Feature importance plot yearly series. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h"}
 ```
 
+THe patial dependency plots showd that probability of selecting random walk, random walk with drift, theta model and white noise process decrese with higher strength of daily seasonality, opposite relationship hold for other classes. It is  
+
 \newpage
 
 ```{r hourly_pdp, fig.height=14.7, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures(hourly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class.", fig.pos="h"}
