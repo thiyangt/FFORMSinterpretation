@@ -23,7 +23,7 @@ source("src/reordercormat.R")
 #                  Yearly data                               #
 #################################################################
 
-## ---- yearly_oob
+## ---- yearlyoob
 load("data/yearly/train_votes.rda") # oob votes from the random forest
 load("data/yearly/train_predictions_oob.rda") # based on oob prediction
 load("data/yearly/yearly_training.rda") # random forest training set
@@ -80,7 +80,7 @@ oob_boxplot_yearly <- ggplot(votes_oob, aes(
   coord_flip()
 oob_boxplot_yearly
 
-## ---- vi_yearly
+## ---- viyearly
 # All variable scores into one dataframe
 load("data/yearly/train_importance.rda")
 load(file = "data/yearly/sd_pdf_df.rda")
@@ -180,7 +180,7 @@ feaImp_yearly <- ggplot(meanrank_yearly, aes(y = rank, x = feature, fill=as.fact
   scale_fill_manual(breaks=c("0","1"), values=c("black","red"), guide="none")
 feaImp_yearly
 
-## ---- pdp_yearly
+## ---- pdpyearly
 load("data/yearly/pdp_yearly/trendgrid.rda")
 trendgrid$variable <- rep(1:1000, 20)
 load("data/yearly/pdp_yearly/y_acf1grid.rda")
@@ -356,7 +356,7 @@ p30 <- ggplot(data = linearitygrid_rmout, aes_string(x = linearitygrid_rmout$lin
 
 (p3 | p2 | p1) / (p4 | p5 | p6) / (p7 | p8 | p9) / (p10 | p11 | p12) / (p13 | p14 | p15) / (p16 | p17 | p18) / (p19 | p20 | p21) / (p22 | p23 | p24) / (p25 | p26 | p27) / (p28 | p29 | p30)
 
-## ---- sankey_yearly
+## ---- sankeyyearly
 load("data/yearly/rf.yearly.all.paths.rda")
 nd3y <- rf_sankey(all.paths.out = rf.yearly.all.paths, all.nodes = FALSE, plot.node.lim = 6)
 sankeyNetwork(
@@ -627,7 +627,7 @@ p10 <- ggcorrplot(cormatnn1, hc.order = TRUE, type = "upper",
 
 p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+plot_layout(ncol = 3, nrow = 4)
 
-## ---- two_way_interaction_yearly1
+## ---- twowayinteractionyearly1
 load("data/yearly/trend.urpprmout.y.rda")
 load("data/yearly/spikiness.diff1y_acf5.y.rda")
 load("data/yearly/hurst.trend.y.rda")
@@ -804,10 +804,10 @@ int20 <- ggplot(
   scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100),option = "A", direction = -1) +
   xlab("trend") + ylab("linearity")+ theme(legend.position="none")+ggtitle("ETS-notrendseasonal)")
 
-(int1 | int3 | int4) / (int5 | int7 | int8) / (int9 | int11 | int12) / (int13 | int14 | int15)/(int17|int19|int20)
+(int1 | int3 | int4) / (int5 | int7 | int8) / (int9 | int11 | int12) / (int13 | int15 | int16)/(int17|int19|int20)
 
 
-## ---- two_way_interaction_yearly2
+## ---- twowayinteractionyearly2
 # ARIMA
 int1 <- ggplot(
   data = trend.urpprmout.y, aes_string(x = trend.urpprmout.y$trend,y = trend.urpprmout.y$ur_pp, z = colNamestrur[1], fill = colNamestrur[1]
@@ -974,11 +974,11 @@ int20 <- ggplot(
   scale_fill_viridis_c(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), option = "A", direction = -1) +
   xlab("trend") + ylab("linearity")+ theme(legend.position="none")+ggtitle("nn")
 
-(int1 | int3 | int4) / (int5 | int7 | int8) / (int9 | int12 | int11) / (int13 | int16 | int15)/(int17|int19|int20)
+(int1 | int3 | int4) / (int5 | int7 | int8) / (int9 | int11 | int12) / (int13 | int15 | int16)/(int17|int19|int20)
 
 
 
-## ---- yearly_pca
+## ---- yearlypca
 load("data/yearly/train_votes.rda")
 pcaYvariables <- yearly_training[, 1:25]
 pcaM4Y <- prcomp(pcaYvariables, center = TRUE, scale = TRUE)
@@ -1092,7 +1092,7 @@ pca1M4Y_nn <- ggplot(m4yPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
 #                  Quarterly data                               #
 #################################################################
 
-## ---- oob_quarterly
+## ---- oobquarterly
 load("data/quarterly/trainQ_votes.rda") # oob votes from the random forest
 load("data/quarterly/trainQ_predictions_oob.rda") # based on oob prediction
 load("data/quarterly/quarterly_training.rda") # random forest training set
@@ -1122,7 +1122,7 @@ oob_boxplot_quarterly <- ggplot(votes_oobQ, aes(x = variable, y = value, fill = 
   coord_flip()
 oob_boxplot_quarterly
 
-## ---- vi_quarterly
+## ---- viquarterly
 # All variable scores into one dataframe
 load("data/quarterly/trainQ_importance.rda")
 load(file = "data/quarterly/sd_pdf_dfQ.rda")
@@ -1210,7 +1210,7 @@ feaImp_quarterly <- ggplot(meanrank_quarterly, aes(y = rank, x = feature,fill=as
   scale_fill_manual(breaks=c("0","1"), values=c("black","red"), guide="none")
 feaImp_quarterly
 
-#### ---- pdp_quarterly1
+#### ---- pdpquarterly1
 load("data/quarterly/pdp_quarterly/alphagridQ.rda")
 alphagridQ$variable <- rep(1:1700, 20)
 load("data/quarterly/pdp_quarterly/betagridQ.rda")
@@ -1410,7 +1410,7 @@ p30 <- ggplot(data=diff1y_acf5gridQ, aes_string(x=diff1y_acf5gridQ$diff1y_acf5, 
   (p19|p20|p21)/(p22|p23|p24)/(p25|p26|p27)/(p28|p29|p30)
 
 
-## ---- pdp_quarterly2
+## ---- pdpquarterly2
 
 ## ARIMA
 p1 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="ARIMA")) +
@@ -1936,7 +1936,7 @@ p17 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
 
 p13+p14+p15+p16+p17+plot_layout(ncol = 3, nrow = 2)
 
-## ---- two_way_quarterly1
+## ---- twowayquarterly1
 load("data/quarterly/trend.seasonality.q.rda")
 load("data/quarterly/seasonality.spikiness.q.rda")
 load("data/quarterly/seasonality.lumpiness.q.rda")
@@ -2030,7 +2030,7 @@ int15 <- ggplot(
 
 (int1|int2|int3)/(int4|int5|int6)/(int7|int8|int9)/(int10|int11|int12)/(int13|int14|int15)
 
-## ---- two_way_quarterly2
+## ---- twowayquarterly2
 ## ETS-t
 int16 <- ggplot(
   data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[7], fill = colNames[7]
@@ -2117,7 +2117,7 @@ int30 <- ggplot(
 
 (int16|int17|int18)/(int19|int20|int21)/(int22|int23|int24)/(int25|int26|int27)/(int28|int29|int30)
 
-## ---- two_way_quarterly3
+## ---- twowayquarterly3
 ## ARIMA
 int31 <- ggplot(
   data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[1], fill = colNames[1]
@@ -2203,7 +2203,7 @@ int45 <- ggplot(
 
 (int31|int32|int33)/(int34|int35|int36)/(int37|int38|int39)/(int40|int41|int42)/(int43|int44|int45)
 
-## ---- two_way_quarterly4
+## ---- twowayquarterly4
 ## theta
 int46 <- ggplot(
   data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[16], fill = colNames[16]
@@ -2240,7 +2240,7 @@ int51 <- ggplot(
 
 (int46|int47|int48)/(int49|int50|int51)
 
-## ---- quarterly_pca
+## ---- quarterlypca
 pcaQvariables <- quarterly_training[, 1:30]
 pcaM4Q <- prcomp(pcaQvariables, center = TRUE, scale = TRUE)
 # summary(pcaM1Y)
@@ -2413,7 +2413,7 @@ pca1M4Q_snaive+pca1M4Q_rwd+pca1M4Q_rw+pca1M4Q_notrend+pca1M4Q_etsdamtrend+
 #                      Monthly  data                                           #
 ################################################################################
 
-## ---- oob_monthly
+## ---- oobmonthly
 load("data/monthly/trainM_votes.rda") #oob votes from the random forest
 load("data/monthly/trainM_predictions_oob.rda") # based on oob prediction
 load("data/monthly/monthly_training.rda") # random forest training set
@@ -2438,7 +2438,7 @@ oob_monthly <- ggplot(votes_oobM, aes(x = variable, y = value, fill = classlabel
   coord_flip() 
 oob_monthly
 
-## ---- vi_monthly
+## ---- vimonthly
 load("data/monthly/trainM_importance.rda")
 load(file="data/monthly/sd_pdf_dfM.rda")
 load(file="data/monthly/sd_ice_dfM.rda")
@@ -2525,7 +2525,7 @@ feaImp_monthly <- ggplot(meanrank_monthly, aes(y = rank, x = feature,fill=as.fac
 feaImp_monthly
 
 
-## ---- pdp_monthly1
+## ---- pdpmonthly1
 load("data/monthly/pdp_monthly/alphagridM.rda")
 alphagridM$variable <- rep(1:1700, 20)
 load("data/monthly/pdp_monthly/betagridM.rda")
@@ -2702,7 +2702,7 @@ p30 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="SARIMA")) +
 (p1|p2|p3)/(p4|p5|p6)/(p7|p8|p9)/(p10|p11|p12)/(p13|p14|p15)/(p16|p17|p18)/
   (p19|p20|p21)/(p22|p23|p24)/(p25|p26|p27)/(p28|p29|p30)
 
-## ---- pdp_monthly2
+## ---- pdpmonthly2
 ## ARIMA
 p1 <- ggplot(data=seasonalitygridM, aes_string(x=seasonalitygridM$seasonality, y="ARIMA"))+ 
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
@@ -3225,7 +3225,7 @@ p17 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
 
 p13+p14+p15+p16+p17+plot_layout(ncol = 3, nrow = 2)
 
-## ---- two_way_monthly1
+## ---- twowaymonthly1
 load("data/monthly/seasinality.trend.m.rda")
 load("data/monthly/N.seasonality.m.rda")
 load("data/monthly/N.hwgamma.m.rda")
@@ -3330,7 +3330,7 @@ int15 <- ggplot(
 
 (int1|int2|int3)/(int4|int5|int6)/(int7|int8|int9)/(int10|int11|int12)/(int13|int14|int15)
 
-## ---- monthly_pca
+## ---- monthlypca
 pcaMvariables <- monthly_training[, 1:30]
 pcaM4M <- prcomp(pcaMvariables, center = TRUE, scale = TRUE)
 PC1m4m <- pcaM4M$x[, 1]

@@ -14,7 +14,7 @@ author:
     othernames: George
     address: Department of Econometrics and Business Statistics, \newline Monash University, VIC 3145, Australia.
     email : george.athanasopoulos@monash.edu
-abstract: " This study investigates the relationship between features of time series and the choice of forecast-model selection using FFORMS framework. FFORMS framework build a mapping that relates the features of time series to the \"best\" forecast-model using random forest algorithm. In this paper we make a novel use of FFORMS framework to explore the nature of the role of features to the predictive mechanism.  We explore the role of features in two different perspectives: i) Global contribution of features: overall role of features in the choice of different forecast model selection and ii) Local contribution of feature contribution: what features are most influential for the prediction of a specific time series?. This is accomplished by using model-agnostic machine learning interpretability approaches. Graphical representations are used to visualize both main and interaction effects of features.  The results of this this study provides a more refine picture of the relationship between features and the choice of forecast-model which is particularly valuable for ongoing research in the field of feature-based time series analysis."
+abstract: " This study investigates the relationship between features of time series and the choice of forecast-model selection using FFORMS framework. FFORMS framework build a mapping that relates the features of time series to the \"best\" forecast-model using random forest algorithm. In this paper we make a novel use of FFORMS framework to explore the nature of the role of features to the predictive mechanism.  We explore the role of features in two different perspectives: i) Global contribution of features: overall role of features in the choice of different forecast model selection and ii) Local contribution of features: what features are most influential for the prediction of a specific time series?. This is accomplished by using model-agnostic machine learning interpretability approaches. Partial-dependency plots are used to visualize both main and interaction effects of features.   The results of this study provides a more refine picture of the relationship between features and the choice of forecast-model which is particularly valuable for ongoing research in the field of feature-based time series analysis."
 keywords: "FFORMS, time series, machine learning interpretability, black-box models, LIME"
 wpnumber: no/yr
 jelcodes: C10,C14,C22
@@ -73,24 +73,19 @@ library(seer)
 
 # Introduction{#intro}
 
-The time series forecasting field has been evolving for a long time and has introduced a wide variety of forecasting methods. However, for a given time series the selection of an appropriate forecasting-method among many possibilities is not straight forward. This selection is one of the most difficult tasks as each method perform best for some but not all tasks. The features of time series are considered to be an important factor in identifying suitable forecasting models(@meade2000evidence; @makridakis2000m3).[This goes back to 1972]. However, a description of relationship between the features and the performance of algorithms is rarely discussed in the field of forecasting. 
+The time series forecasting field has been evolving for a long time and has introduced a wide variety of forecasting methods. However, for a given time series the selection of an appropriate forecasting-method among many possibilities is not straight forward. This selection is one of the most difficult tasks as each method perform best for some but not all tasks. The features of time series are considered to be an important factor in identifying suitable forecasting models(@meade2000evidence; @makridakis2000m3).However, a description of relationship between the features and the performance of algorithms is rarely discussed in the field of forecasting. 
 
-There have been several recent studies on use of machine learning algorithms to automate the forecast model selection based on the features computed from the time series. Meta-learning approach provides a systematic guidance on model selection based on knowledge acquire from historical data set, in our case historical collection of time series. The key idea behind these framework is, forecast-model selection is posed as a supervised learning task. Each time series in the meta-data set is represented as a vector of features and labeled according to the "best" forecasting method(i.e. lowest MASE, etc.). Then a meta-learner is trained to identify suitable forecasting models. With the era of big data, such an automated model selection process is necessary because the cost of invoking all possible forecasting method is prohibitive. However, these work suffer from the limitation of providing meaningful interpretations that can enhance understanding of relations between features and model outcomes. To best of our knowledge, very limited efforts have been taken to understand how the models are making its decisions and what is really happening inside these complex model structures.  This results in less transparency of the model which lead to the questions of
+There have been several recent studies on use of supervised learning algorithms to automate the forecast model selection based on the features computed from the time series [@shah1997model; @prudencio2004meta; @lemke2010meta; @kuck2016meta]. Meta-learning approach provides a systematic guidance on model selection based on knowledge acquire from historical data set, in our case historical collection of time series. The key idea behind these framework is, forecast-model selection is posed as a supervised learning task. Each time series in the meta-data set is represented as a vector of features and labeled according to the "best" forecasting method(i.e. lowest MASE, etc.). Then a meta-learner is trained to identify suitable forecasting models. With the era of big data, such an automated model selection process is necessary because the cost of invoking all possible forecasting method is prohibitive. However, these work suffer from the limitation of providing meaningful interpretations that can enhance understanding of relations between features and model outcomes. To best of our knowledge, very limited efforts have been taken to understand how the models are making its decisions and what is really happening inside these complex model structures.  This results in less transparency of the model which lead to the questions of
 
-\begin{enumerate}
-  \item How features are related to the property being modeled?
-  \item How features interact with each other to identify the suitable forecasting method?
-  \item Why one forecasting method is preferable over other? 
-  \item How different features contribute to the model prediction or how they affect the model performance?
-  \item Why certain features were responsible in driving certain decisions?
-  \item Why is your model less accurate in some areas of the instance space?
-  \item Which features contribute the most to classify a specific instance?
-\end{enumerate}
+1. How features are related to the property being modeled?
+2. How features interact with each other to identify the suitable forecasting method?
+3. Why certain features were responsible in driving certain decisions?
+4. Which features contribute the most to classify a specific instance?
 
-On the other hand, aside from the goal of developing automated forecast-model selection framework few researchers have made an attempt to provide a description of relationship between the features and the performance of algorithms. One of the first attempts to identify the relationship between features and forecast-model performance was presented in xx. However, these studies are limited by the scale of problem instances used, diversity of forecasting-methods used, quality of features considered, and modelling approached used to identify the relationship between features and forecast model performance. Most of these studies are typically restricted to simple statistical techniques such as...[do not capture the complex interaction effects]
+On the other hand, aside from the goal of developing automated forecast-model selection framework few researchers have made an attempt to provide a description of relationship between the features and the performance of algorithms [@schnaars1984situational;  @wang2009rule;@lemke2010meta; @petropoulos2014horses]. However, these studies are limited by the scale of problem instances used, diversity of forecasting-methods used, quality of features considered, and modelling approached used to identify the relationship between features and forecast model performance. Most of these studies are typically restricted to simple statistical techniques such as simple linear models, decision trees, etc.
 
 
-To explore these points further, this paper makes a first step towards providing a comprehensive explanation of the relationship between time series features and forecast-model selection using machine learning interpretability techniques. This paper builds on the method from our previous work ref,  in which we introduced the FFORMS (Feature-based FORecast Model Selection) framework. The random forest algorithm is used to model the relationship between features and "best" performing forecast-model. [Large time series collection is used to train the model] We use 30 features to capture morphology of time series. One of the principal advantages of random forest algorithm  is their ability to model complex variable interactions. One noticeable significance of our approach is this can be parallized to for any given computing budget and time. Even though the prediction accuracy of random forest algorithm is high, it is not easy to interpret what is happening inside the forest because of the two-step randomization.In this work we aim at providing a deeper understanding of the underlying mechanism and influence of features in forecast-model selection.  
+To fill this gap, this paper makes a first step towards providing a comprehensive explanation of the relationship between time series features and forecast-model selection using machine learning interpretability techniques. This paper builds on the method from our previous work ref,  in which we introduced the FFORMS (Feature-based FORecast Model Selection) framework. The random forest algorithm is used to model the relationship between features and "best" performing forecast-model. A large collection of time series is used to train the model. We use 35 features to capture different characteristics of time series. The reason for the choice of  random forest algorithm  is its ability to model complex variable interactions. One noticeable significance of our approach is this can be parallized to for any given computing budget and time. Although the prediction accuracy of random forest algorithm is high, it is not easy to interpret what is happening inside the forest because of the two-step randomization. In this work we aim at providing a deeper understanding of the underlying mechanism and influence of features in forecast-model selection.  
  
 [What is the usefulness of analyzing the relationship between features and model performance?] Understanding the role of features is worthwhile even if producing an accurate and generalizable model is the only objective of the modelling. This is because the less transparency of the model may be distrusted regardless of their predictive performance. The methodology we propose here is a novel application of machine learning interpretability methods to visualize and explore the role of features in forecast-model selection. 
 
@@ -331,15 +326,14 @@ Note that the, PD plots, ICE curves and PD-, ICE-associated measures and Friedma
 ## Local Interpretable Model-agnostic Explanations (LIME)
 
 Global interpretations help us to understand entire modeled relationship.  Local interpretations help us to understand the predictions of the model for a single instance or a group of similar instances. In other words this allows users to zoom into a particular instance or a subset and explore how different features affect the resulting prediction. We use Local Interpretable Model-agnostic Explanations (LIME) approach introduce by @ribeiro2016should for explaining individual predictions which relies on the assumption that "every complex model is linear on a local scale". This is accomplished by locally approximating the complex black-box model with a simple interpretable model. @ribeiro2016should highlighted features that are globally important may not be in the local context and vice versa. The algorithm steps can be summarized as follow: 
-\begin{enumerate}
-\item Select an observation of interest which we need to have explanations for its black-box prediction
-\item Create a permuted data set based on the selected observation. Permuted data set is created by making slight modifications to the features of selected observations
-\item Obtain similarity scores by calculating distance between permuted data and selected observation.
-\item Obtain predicted outcomes for all permuted data using the black-box model.
-\item Select $m$ number of features best descibing the black-box model outcome. This can be accomplished by applying feature slection algorithms such as ridge regression, lasso, ridge regression, etc.
-\item Fit a simple linear model to the permuted data based on $m$ selected features and similarity scores in step 3 as weights and complex model prediction outcomes in step 4 as response variable.
-\item Use the estimated coefficients of simple linear model to explain the local behaviour corresponds to the selected observation in step 1.
-\end{enumerate}
+
+1. Select an observation of interest which we need to have explanations for its black-box prediction.
+2. Create a permuted data set based on the selected observation. Permuted data set is created by making slight modifications to the features of selected observations.
+3. Obtain similarity scores by calculating distance between permuted data and selected observation.
+4. Obtain predicted outcomes for all permuted data using the black-box model.
+5. Select $m$ number of features best descibing the black-box model outcome. This can be accomplished by applying feature slection algorithms such as ridge regression, lasso, ridge regression, etc.
+6. Fit a simple linear model to the permuted data based on $m$ selected features and similarity scores in step 3 as weights and complex model prediction outcomes in step 4 as response variable.
+7. Use the estimated coefficients of simple linear model to explain the local behaviour corresponds to the selected observation in step 1.
 
 An alternative for explaining local behaviour of complex models is proposed by @lundberg2017unified based on game theory named "Shapley values".
 
@@ -351,16 +345,16 @@ An alternative for explaining local behaviour of complex models is proposed by @
 
 **Model diagnostic: FFORMS framework,Yearly series**
 
-```{r yearly_oob, fig.height=10, fig.width=10, fig.cap="Distribution of proportion of times each yearly time series was assigned to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. There are ten rows in the plot corresponds to each predicted class represented by Y-axis. X-axis denotes the proportion of times a time series is classified in each class. On each row, the true class label match with the predicted class label category dominated the top, indicating a fairly good classification of the model fitted.", fig.pos="h", cache=TRUE}
+```{r yearlyoob, fig.height=10, fig.width=10, fig.cap="Distribution of proportion of times each yearly time series was assigned to each class in the forest.  Each row represent the predicted class label and colours of boxplots corresponds to true class label. There are ten rows in the plot corresponds to each predicted class represented by Y-axis. X-axis denotes the proportion of times a time series is classified in each class. On each row, distribution of correctly classified class dominated the top, indicating a fairly good classification of the model fitted.", fig.pos="h", cache=TRUE}
 ```
 
-\ref{fig:yearly_oob} shows the distribution of proportion of times each observation (in our case each time series) was assigned to each class based on OOB sample. Each row represent the **predicted class label** and colour of boxplots corresponds to **true class label**. The proportion 1 indicates, that the time series was always predicted to the corresponding class and 0 being never. This is an alternative way of visualizing the vote-matrix information in the random forest model. The other way of representing vote matrix involves ternary plot (@sutherland2000orca) and jittered side-by-side dotplot [@ehrlinger2015ggrandomforests; @da2017interactive]. To over come the problem of overlapping classes arises due to the scale of the training data set, number of classes and similar types of classes of data, boxplot diagrams are used. On each row of \autoref{fig:yearly_oob} the distribution of proportions corresponds to the time series in which the predicted class label and true class label are the same dominates the top indicating a fairly good classification of the model. In addition to that, in each row the distributions corresponds to the time series labeled similar to the predicted class label also dominate the others. For example, within ETS-trend predicted class, the distributions correspond to the true class labels, ETS-damped trend, ARIMA, were also assigned with high probability and less values were assigned to ARMA/AR/MA, White noise process and ETS (ANN)/ETS(MNN). This confirms that our FFORMS framework successfully learnt the similarities and dissimilarities between the classes itself. (Each series is classified as random walk in some instances, yearly time series has high chance of getting classified as random walk). One reason for this is as shown in @kang2018efficient yearly series of M1, M3 and M4 are generally trended. (Results of M3 and M4 competition) This diagram helps to evaluate the model performance in the data space (model-in-the-data-space) (@da2017interactive).
+\autoref{fig:yearlyoob} shows the distribution of proportion of times each observation (in our case each time series) was assigned to each class based on OOB sample. Each row represent the **predicted class label** and colour of boxplots corresponds to **true class label**. The proportion 1 indicates, that the time series was always predicted to the corresponding class and 0 being never. This is an alternative way of visualizing the vote-matrix information in the random forest model. The other way of representing vote matrix involves ternary plot (@sutherland2000orca) and jittered side-by-side dotplot [@ehrlinger2015ggrandomforests; @da2017interactive]. To over come the problem of overlapping classes arises due to the scale of the training data set, number of classes and similar types of classes of data, boxplot diagrams are used. On each row of \autoref{fig:yearlyoob} the distribution of proportions corresponds to the time series in which the predicted class label and true class label are the same dominates the top indicating a fairly good classification of the model. In addition to that, in each row the distributions corresponds to the time series labeled similar to the predicted class label also dominate the others. For example, within ETS-trend predicted class, the distributions correspond to the true class labels, ETS-damped trend, ARIMA, were also assigned with high probability and less values were assigned to ARMA/AR/MA, White noise process and ETS (ANN)/ETS(MNN). This confirms that our FFORMS framework successfully learnt the similarities and dissimilarities between the classes itself. (Each series is classified as random walk in some instances, yearly time series has high chance of getting classified as random walk). One reason for this is as shown in @kang2018efficient yearly series of M1, M3 and M4 are generally trended. (Results of M3 and M4 competition) This diagram helps to evaluate the model performance in the data space (model-in-the-data-space) (@da2017interactive).
 
 **Feature importance and main effects**
 
-Permutation-based variable importance and Gini feature importance measure are used to evaluate the overall feature importance. Moreover, most important features for each class is identified based on three measures: i) permutation-based variable importance, ii) partial dependence functions based variable importance and iii) ICE-curves based variable importance measure. The one that shows the highest importance is ranked 25, the second best is ranked 24, and so on. Finally, for each category, an average rank for each feature is computed based on the mean value of all rankings across all the feature importance metrics considered. The corresponding results are shown in \autoref{fig:vi_yearly}. The features strength of trend and test statistic of Phillips–Perron(PP) unit root test, linearity, first autocorrelation coefficient of the differenced series are appear to be most important features in each class. On the other hand, sum of squares of first five autocorrelation coefficients of the twice-difference series and lumpiness show lowest contribution across many classes. The length of time series (N) is assigned a high importance in neural-network class compared to others. This could be due to neural network approach may be beneficial in forecasting time series with long history of observations. Further, first correlation coefficient of the twice-differenced series is appear to be most important in ARIMA class as this category contains the higher order differenced series. Hurst exponent and entropy appear to be equally important in stationary classes. Within ETS-damped trend category beta and curvature ranked as important features. 
+Permutation-based variable importance and Gini feature importance measure are used to evaluate the overall feature importance. Moreover, most important features for each class is identified based on three measures: i) permutation-based variable importance, ii) partial dependence functions based variable importance and iii) ICE-curves based variable importance measure. The one that shows the highest importance is ranked 25, the second best is ranked 24, and so on. Finally, for each category, an average rank for each feature is computed based on the mean value of all rankings across all the feature importance metrics considered. The corresponding results are shown in \autoref{fig:viyearly}. The features strength of trend and test statistic of Phillips–Perron(PP) unit root test, linearity, first autocorrelation coefficient of the differenced series are appear to be most important features in each class. On the other hand, sum of squares of first five autocorrelation coefficients of the twice-difference series and lumpiness show lowest contribution across many classes. The length of time series (N) is assigned a high importance in neural-network class compared to others. This could be due to neural network approach may be beneficial in forecasting time series with long history of observations. Further, first correlation coefficient of the twice-differenced series is appear to be most important in ARIMA class as this category contains the higher order differenced series. Hurst exponent and entropy appear to be equally important in stationary classes. Within ETS-damped trend category beta and curvature ranked as important features. 
 
-```{r vi_yearly, fig.height=10, fig.width=10, fig.cap="Feature importance plot yearly series. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h"}
+```{r viyearly, fig.height=10, fig.width=10, fig.cap="Feature importance plot for yearly series. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h"}
 ```
 
 **Partial dependency curves**
@@ -369,11 +363,11 @@ Partial dependency, and associated confidence intervals corresponds to top-three
 
 **Two-way interaction between features**
 
-The relative strength of two-way interaction between features were determined using formulae developed by @friedman2008predictive, which is implemented in the iml(@molnar2018iml,) package in R. xx shows the heat maps of relative strength of all possible pairwise interactions for each class. The test statistic of Phillip-Perron test, strength of trend, and linearity show a weak interaction  with other features in all the class. These two features are appear to be among top 5 in all the classes according to the variable importance measures. Further, narrow confidence bands corresponds to these features in the partial dependency plots also confirms the less interactivity. In almost all the cases partial correlation and auto-correlation based features are heavily interacting. However, the first correlation coefficient of the difference series do not interact with other features heavily in the case of ARIMA  class. Further, almost all pair of features appear to be interacting with in neural network category.
+The relative strength of two-way interaction between features were determined using formulae developed by @friedman2008predictive, which is implemented in the iml (@molnar2018iml,) package in R. \autoref{fig:friedmany} shows the heat maps of relative strength of all possible pairwise interactions for each class. The test statistic of Phillip-Perron test, strength of trend, and linearity show a weak interaction  with other features in all the class. These two features are appear to be among top 5 in all the classes according to the variable importance measures. Further, narrow confidence bands corresponds to these features in the partial dependency plots also confirms the less interactivity. In almost all the cases partial correlation and auto-correlation based features are heavily interacting. However, the first correlation coefficient of the difference series do not interact with other features heavily in the case of ARIMA  class. Further, almost all pair of features appear to be interacting with in neural network category. \autoref{fig:twowayinteractionyearly1} and \autoref{fig:twowayinteractionyearly2} communicate more information about the nature of two-way feature interaction effect.
 
 \newpage
 
-```{r pdp_yearly, fig.height=14.7, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class.", fig.pos="h"}
+```{r pdpyearly, fig.height=14.7, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class.", fig.pos="h"}
 ```
 
 \newpage
@@ -383,13 +377,13 @@ The relative strength of two-way interaction between features were determined us
 
 \newpage
 
-```{r two_way_interaction_yearly1, fig.height=30, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Two-way "}
+```{r twowayinteractionyearly1, fig.height=30, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Visualisation of two-way interactions using partial-dependence plots for yearly data."}
 
 ```
 
 \newpage
 
-```{r two_way_interaction_yearly2, fig.height=30, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Two-way "}
+```{r twowayinteractionyearly2, fig.height=30, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Visualisation of two-way interactions using partial-dependence plots for yearly data."}
 
 ```
 
@@ -397,18 +391,18 @@ The relative strength of two-way interaction between features were determined us
 
 **Local Interpretable Model-agnostic Explanations: yearly series**
 
-```{r yearly_lime, fig.height=8, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```{r yearlylime, fig.height=8, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
 ```
 
 
-```{r yearly_lime2, fig.height=12, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```{r yearlylime2, fig.height=12, fig.width=20, fig.cap="Local interpretable Model-agnostic explanations for six selected yearly time series. Features denoted with green colour are supporting features for an outcome label and length of the bar is proportional to the weight of a feature.", fig.pos="h", fig.align="center"}
 ```
 
-\autoref{fig::yearly_lime2} shows the feature contribution for the instances highlighted in \autoref{fig::yearly_lime}. The low linearity with a trend value of less than 0.616, low values for Phillip-Perron test-statistic, Hurst exponent, autocorrelation coefficients of the time series and spikiness of the series causes it FFORMS frame work classify the first series with ARMA/AR/MA. On the other hand LIME indicated the low value of first autocorrelation coefficients of original series and residual series of linear regression model contradicts to this decision. The reson might be these properties of autocorrelation coefficients native to the random walk models. It is interesting to note that eventhough 2, 5 and 6 series located close proximity to each other in the PCA space their, varying degree of trend, spikiness, first autocorrelation coefficient of the difference series, entropy, led them to classify as ETS-trend, neural-network and random walk respectively. 
+\autoref{fig:yearlylime2} shows the feature contribution for the instances highlighted in \autoref{fig:yearlylime}. The low linearity with a trend value of less than 0.616, low values for Phillip-Perron test-statistic, Hurst exponent, autocorrelation coefficients of the time series and spikiness of the series causes it FFORMS frame work classify the first series with ARMA/AR/MA. On the other hand LIME indicated the low value of first autocorrelation coefficients of original series and residual series of linear regression model contradicts to this decision. The reson might be these properties of autocorrelation coefficients native to the random walk models. It is interesting to note that eventhough 2, 5 and 6 series located close proximity to each other in the PCA space their, varying degree of trend, spikiness, first autocorrelation coefficient of the difference series, entropy, led them to classify as ETS-trend, neural-network and random walk respectively. 
 
 ## Quarterly data
 
-\autoref{fig::oob_quarterly} shows proportion of times each series was classified to each class by true class labels. For all ETS models the proportion of times the true class label was identified was higher than other categories. Within snaive, stlar, tbats and white noise classes ETS-seasonal, SARIMA, ETS-trend and ARMA/AR/MA slightly dominates respectively. It could be due to the high-similarity to one another. Further, withing the neural network category ETS (ANN/MNN), ARMA/AR/MA and white noise processes dominates equally. This indicates neural network models share similar type of features with those three classes. Furthermore, except the time series labeled as a ETS models with seasonal component or SARIMA models all other time series have a high probability of being in random walk with drift class irrespective of their true class labels. These results are consisted with the random walk model fitted to yearly data. Except the time series labeled as ARMA/AR/MA all other quarterly time series have a very low chance of being to ARMA/AR/MA class. Further, all distributions corresponds to the tbats row located further away from zero. This indicates all time series are being classified as tats model more than once in the forest. Except few outliars,  distributions within neural network category also show a slight upward deviation from zero. However, the upper boundary of these distributions do not surpass the upper boundaries of dominating box plots in the random walk with drift class and SARIMA class. These types of diversity in the distributions indicates the  the appropriateness of using combination forecasting.  Further, these information are useful in identifying potential time series models for combination forecast and improve the existing combination approaches proposed in the M4-competition. 
+\autoref{fig:oobquarterly} shows proportion of times each series was classified to each class by true class labels. For all ETS models the proportion of times the true class label was identified was higher than other categories. Within snaive, stlar, tbats and white noise classes ETS-seasonal, SARIMA, ETS-trend and ARMA/AR/MA slightly dominates respectively. It could be due to the high-similarity to one another. Further, withing the neural network category ETS (ANN/MNN), ARMA/AR/MA and white noise processes dominates equally. This indicates neural network models share similar type of features with those three classes. Furthermore, except the time series labeled as a ETS models with seasonal component or SARIMA models all other time series have a high probability of being in random walk with drift class irrespective of their true class labels. These results are consisted with the random walk model fitted to yearly data. Except the time series labeled as ARMA/AR/MA all other quarterly time series have a very low chance of being to ARMA/AR/MA class. Further, all distributions corresponds to the tbats row located further away from zero. This indicates all time series are being classified as tats model more than once in the forest. Except few outliars,  distributions within neural network category also show a slight upward deviation from zero. However, the upper boundary of these distributions do not surpass the upper boundaries of dominating box plots in the random walk with drift class and SARIMA class. These types of diversity in the distributions indicates the  the appropriateness of using combination forecasting.  Further, these information are useful in identifying potential time series models for combination forecast and improve the existing combination approaches proposed in the M4-competition. 
 
 **Variable importance: quarterly data**
 
@@ -417,28 +411,28 @@ Similar to the results of yearly time series trend and linearity also listed amo
 
 **Partial dependency curves: quarterly data**
 
-\autoref{fig::pdp_quarterly1} shows the partial dependency functions for top three features with in each category. Seasonality shows a linear relationship with probability of being to snaive class. Random walk, random walk with drift, all ETS models without seasonal component, ARIMA and white noise process show a similar pattern of relationship with seasonality with vary degree of width of confidence band while all ETS models with seasonal components and SARIMA hold the opposite patter. SARIMA and ARIMA classes shows a non-monotonic relationship with seasonality. Neural network class shows a non-linear relationship with seasonality, and wide confidence bands indicated seasonality interact with other features when deciding probability of being into neural network class. According to the partial dependency functions corresponds to the rows ETS-NTNS, ETS-DT, ETS-T and ETS-TS confirms how well the model's understanding of feature behaviour matches the domain's expert knowledge which gives rise to the trustability of the FFORMS framework. For example, highly trended and low seasonality time series have a high chance of being classified to ETS-Trend class while  the opposite relationship can be seen in ETS-seasonal category with low trended and highly seasonally oscillated time series have a high chance of being classified to ETS-seasonal. Even though, two different portfolio of time series are used to train two different classifiers for yearly and quaterly data  partial dependency functions show a consistency between the results of yearly framework and quarterly framework. For example, partial dependency function of linearity within ARMA/AR/MA class, partial dependency functions corresponds to trend, etc.  \autoref{fig:friedmanQ} shows heat maps of relative strength of all possible pairwise interactions calculated based on Friedman’s H-statistic. Within all classes strength of seasonality shows less interactivity with other features. Except ETS-damped trend, SARIMA and ARIMA classes trend interact highly with other features. Further, Friedman's H statistic reflect high interactivity between autocorrelation and partial autocorrelation in SARIMA, ARIMA and ARMA/AR/MA classes. The features alpha and curvature shows very high interactivity with other features within ETS-damped trend, ETS-trend and neural network classes. Length of the time series show very low interactivity with others within snaive class.
+\autoref{fig:pdpquarterly1} shows the partial dependency functions for top three features with in each category. Seasonality shows a linear relationship with probability of being to snaive class. Random walk, random walk with drift, all ETS models without seasonal component, ARIMA and white noise process show a similar pattern of relationship with seasonality with vary degree of width of confidence band while all ETS models with seasonal components and SARIMA hold the opposite patter. SARIMA and ARIMA classes shows a non-monotonic relationship with seasonality. Neural network class shows a non-linear relationship with seasonality, and wide confidence bands indicated seasonality interact with other features when deciding probability of being into neural network class. According to the partial dependency functions corresponds to the rows ETS-NTNS, ETS-DT, ETS-T and ETS-TS confirms how well the model's understanding of feature behaviour matches the domain's expert knowledge which gives rise to the trustability of the FFORMS framework. For example, highly trended and low seasonality time series have a high chance of being classified to ETS-Trend class while  the opposite relationship can be seen in ETS-seasonal category with low trended and highly seasonally oscillated time series have a high chance of being classified to ETS-seasonal. Even though, two different portfolio of time series are used to train two different classifiers for yearly and quaterly data  partial dependency functions show a consistency between the results of yearly framework and quarterly framework. For example, partial dependency function of linearity within ARMA/AR/MA class, partial dependency functions corresponds to trend, etc.  \autoref{fig:friedmanQ} shows heat maps of relative strength of all possible pairwise interactions calculated based on Friedman’s H-statistic. Within all classes strength of seasonality shows less interactivity with other features. Except ETS-damped trend, SARIMA and ARIMA classes trend interact highly with other features. Further, Friedman's H statistic reflect high interactivity between autocorrelation and partial autocorrelation in SARIMA, ARIMA and ARMA/AR/MA classes. The features alpha and curvature shows very high interactivity with other features within ETS-damped trend, ETS-trend and neural network classes. Length of the time series show very low interactivity with others within snaive class.
 
 
 \newpage
 
-```{r oob_quarterly, fig.height=28, fig.width=20, fig.cap="Distribution of proportion of times each quarterly time series was assigned to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. X-axis denotes the proportion of times a time series is classified in each class.", fig.pos="h"}
+```{r oobquarterly, fig.height=28, fig.width=20, fig.cap="Distribution of proportion of times each quarterly time series was assigned to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. X-axis denotes the proportion of times a time series is classified in each class.", fig.pos="h"}
 ```
 
 \newpage
 
-```{r vi_quarterly, fig.height=15, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```{r viquarterly, fig.height=15, fig.width=20, fig.cap="Feature importance plot for quarterly series. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h", fig.align="center"}
 ```
 
 
 \newpage
 
-```{r pdp_quarterly1, fig.height=45, fig.width=35, fig.cap="Partial dependence plots for top three features in each category (Quarterly)", fig.pos="h"}
+```{r pdpquarterly1, fig.height=45, fig.width=35, fig.cap="Partial dependence plots for top three features in each category (Quarterly)", fig.pos="h"}
 ```
 
 \newpage
 
-```{r pdp_quarterly2, fig.height=30, fig.width=20, fig.cap="Partial dependence plots for top three features in each category (Quarterly)", fig.pos="h"}
+```{r pdpquarterly2, fig.height=30, fig.width=20, fig.cap="Partial dependence plots for top three features in each category (Quarterly)", fig.pos="h"}
 ```
 
 \newpage
@@ -454,26 +448,27 @@ Similar to the results of yearly time series trend and linearity also listed amo
 ## Monthly
 
 
-\autoref{fig:oob_monthly} can be interpreted similar to the results of quarterly data.
-For quarterly and monthly data same set of features and class-labels are used to training the model. Hence, this consistency between the results of quarterly and monthly series would provide evidence in support of the validity and trustability of the model.  Seasonality, trend, spikiness and linearity appear to be most important features across all categories. Further, features calculated based on parameter estimates of ETS(A,A,A), ACF and PACF-based features related to seasonal lags and seasonally differenced series were assigned higher importance than the results of quarterly series. One notable difference between quarterly series and monthly series is, length of the series was assigned a very high importance specially in random walk with drift, random walk, ETS with out seasonal and trend components, ETS with seasonal components, SARIMA and ARMA/AR/MA classes. Partial dependence plots of the top 3 features of each class is represented in \autoref{fig:pdp_monthly1} and \autoref{fig:pdp_monthly2}. Probability of selecting a model with a paramter to capture the  seasonal effect 
+\autoref{fig:oobmonthly} can be interpreted similar to the results of quarterly data.
+For quarterly and monthly data same set of features and class-labels are used to training the model. Hence, this consistency between the results of quarterly and monthly series would provide evidence in support of the validity and trustability of the model.  Seasonality, trend, spikiness and linearity appear to be most important features across all categories. Further, features calculated based on parameter estimates of ETS(A,A,A), ACF and PACF-based features related to seasonal lags and seasonally differenced series were assigned higher importance than the results of quarterly series. One notable difference between quarterly series and monthly series is, length of the series was assigned a very high importance specially in random walk with drift, random walk, ETS with out seasonal and trend components, ETS with seasonal components, SARIMA and ARMA/AR/MA classes. Partial dependence plots of the top 3 features of each class is represented in \autoref{fig:pdpmonthly1} and \autoref{fig:pdpmonthly2}. Probability of selecting a model with a paramter to capture the  seasonal effect 
 (snaive, all ETS models with seasoanl component, SARIMA, tbats, theta, stlar) increases as the seasonality increases. Probability of selecting a neural network approach decreases as seasonality increases but this probability increases as stability increases. PPD plots also reveals  FFORMS framework select ETS-trend models for short, less seasonally and highly trended(strength of trend close to 1) time series while random walk with drift and random walk series are suitable for short, less seasonally series with trend vary between 0.75 to 0.85. According to figures  \autoref{fig:friedmanM} and \autoref{fig:friedmanM2} within random walk and ARMA/AR/MA classes trend, seasonality, stability and length of the time series show less interactivity with other features. Trend shows high interactivity with other features within random walk, all classes with ETS model with damped trend component and theta . In general, spikiness, also shows interactivity with other features within many classes.
 
-```{r oob_monthly, fig.height=30, fig.width=20, fig.cap="", fig.pos="h"}
-```
 
-\clearpage
-
-```{r vi_monthly, fig.height=25, fig.width=30, fig.cap="", fig.pos="h", fig.align="center"}
-```
-
-\clearpage
-
-```{r pdp_monthly1, fig.height=45, fig.width=35, fig.cap="Partial dependence plots for top three features in each category (Monthly)", fig.pos="h"}
+```{r oobmonthly, fig.height=30, fig.width=20, fig.cap="Distribution of proportion of times each monthly time series was assigned to each class in the forest.  Each row represent the predicted class label and colours of boxplots corresponds to true class label. There are ten rows in the plot corresponds to each predicted class represented by Y-axis. X-axis denotes the proportion of times a time series is classified in each class.", fig.pos="h"}
 ```
 
 \newpage
 
-```{r pdp_monthly2, fig.height=30, fig.width=20, fig.cap="Partial dependence plots for top three features in each category (Monthly)", fig.pos="h"}
+```{r vimonthly, fig.height=25, fig.width=30, fig.cap="Feature importance plot for monthly series. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h", fig.align="center"}
+```
+
+\clearpage
+
+```{r pdpmonthly1, fig.height=45, fig.width=35, fig.cap="Partial dependence plots for top three features in each category (Monthly)", fig.pos="h"}
+```
+
+\newpage
+
+```{r pdpmonthly2, fig.height=30, fig.width=20, fig.cap="Partial dependence plots for top three features in each category (Monthly)", fig.pos="h"}
 ```
 
 \newpage
@@ -490,23 +485,23 @@ For quarterly and monthly data same set of features and class-labels are used to
 
 ## Weekly
 
-\autoref{fig::oob_weekly} poportion of times each time series was classified to each class. Unlike, yearly, quarterly and monthly data theta models have low chance of being selected to forecast weekly data. The random walk with drift, tbat models and theta have higher chance of being selected. Except ARMA/AR/MA class the distribution corresponds to the true class label dominates others. ARMA/AR/MA class shows some unusual behaviour within some categories due to class imbalance ratio, ARMA/AR/MA class contains fewer number of observations in the training set. Acording to the results of \autoref{fig::vi_weekly} spikiness, linearity, trend, strength of seasonality, stability and lumpiness has been assigned a high importance. This is similar to the results of yearly, quarterly and monthly data. The length of series has been selected among top 5 by mstlets, tbats, theta and neural network models. According to the results of \autoref{fig::weekly_pdp} for mstlets models probability of being selected increases as the length of series increases while the opposite relationship was observed at neural network models. The tabts models show a non-monotonic relationship with the length of series. It is surprising to observe that for mstlets models probability of being selected decreases an seasonality incresases. This could be due to the interaction effect of seasonality with others. For weekly data, the number of pairs showing a particular degree of interaction strength is relatively low compared to other yearly, quarterly and monthly data. In tbats class, trend, linearity, spikiness, seasonality and first autocorrelation coefficient of the seasonall differenced series interact heavily with other features.
+\autoref{fig:oobweekly} poportion of times each time series was classified to each class. Unlike, yearly, quarterly and monthly data theta models have low chance of being selected to forecast weekly data. The random walk with drift, tbat models and theta have higher chance of being selected. Except ARMA/AR/MA class the distribution corresponds to the true class label dominates others. ARMA/AR/MA class shows some unusual behaviour within some categories due to class imbalance ratio, ARMA/AR/MA class contains fewer number of observations in the training set. Acording to the results of \autoref{fig:viweekly} spikiness, linearity, trend, strength of seasonality, stability and lumpiness has been assigned a high importance. This is similar to the results of yearly, quarterly and monthly data. The length of series has been selected among top 5 by mstlets, tbats, theta and neural network models. According to the results of \autoref{fig:weeklypdp} for mstlets models probability of being selected increases as the length of series increases while the opposite relationship was observed at neural network models. The tabts models show a non-monotonic relationship with the length of series. It is surprising to observe that for mstlets models probability of being selected decreases an seasonality incresases. This could be due to the interaction effect of seasonality with others. For weekly data, the number of pairs showing a particular degree of interaction strength is relatively low compared to other yearly, quarterly and monthly data. In tbats class, trend, linearity, spikiness, seasonality and first autocorrelation coefficient of the seasonall differenced series interact heavily with other features.
 
-```{r oob_weekly, fig.height=10, fig.width=10, fig.cap="Distribution of proportion of times each weekly time series was classified to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. There are ten rows in the plot corresponds to each predicted class represented by Y-axis. X-axis denotes the proportion of times a time series is classified in each class.", fig.pos="h", cache=TRUE}
+```{r oobweekly, fig.height=10, fig.width=10, fig.cap="Distribution of proportion of times each weekly time series was classified to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. There are ten rows in the plot corresponds to each predicted class represented by Y-axis. X-axis denotes the proportion of times a time series is classified in each class.", fig.pos="h", cache=TRUE}
 ```
 
 \clearpage
 
-```{r vi_weekly, fig.height=15, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```{r viweekly, fig.height=15, fig.width=20, fig.cap="Feature importance plot for weekly series. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h", fig.align="center"}
 ```
 
 
-```{r weekly_pdp, fig.height=5, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures(weekly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class.", fig.pos="h"}
+```{r weeklypdp, fig.height=5, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures(weekly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class.", fig.pos="h"}
 ```
 
 \newpage
 
-```{r weekly_pdp2, fig.height=14.7, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures(weekly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class(cont.).", fig.pos="h"}
+```{r weeklypdp2, fig.height=14.7, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures(weekly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class(cont.).", fig.pos="h"}
 ```
 
 \newpage
@@ -520,21 +515,21 @@ For quarterly and monthly data same set of features and class-labels are used to
 
 ## Daily
 
-According to \autoref{fig::oob_daily} only the distributions corresponds to observations that have been correctly classified dominate the top, indicating a fairly good classification from FFORMS framework. However, there are few observations that have been incorrectly classified to tbats class with very high probabilities. In general, neural network models have higher chance of being selected for daily time series. 
+According to \autoref{fig:oobdaily} only the distributions corresponds to observations that have been correctly classified dominate the top, indicating a fairly good classification from FFORMS framework. However, there are few observations that have been incorrectly classified to tbats class with very high probabilities. In general, neural network models have higher chance of being selected for daily time series. 
 
-```{r oob_daily, fig.height=10, fig.width=10, fig.cap="Distribution of proportion of times each weekly time series was assigned to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. There are ten rows in the plot corresponds to each predicted class represented by Y-axis. X-axis denotes the proportion of times a time series is classified in each class. On each row, the true class label match with the predicted class label category dominated the top, indicating a fairly good classification of the model fitted.", fig.pos="h", cache=TRUE}
+```{r oobdaily, fig.height=10, fig.width=10, fig.cap="Distribution of proportion of times each daily time series was assigned to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. There are ten rows in the plot corresponds to each predicted class represented by Y-axis. X-axis denotes the proportion of times a time series is classified in each class. On each row, distribution of  correctly classified class dominated the top, indicating a fairly good classification of the model fitted.", fig.pos="h", cache=TRUE}
 ```
 
 \newpage
 
-```{r vi_daily, fig.height=15, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```{r vidaily, fig.height=15, fig.width=20, fig.cap="Feature importance plot for daily series. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h", fig.align="center"}
 ```
 
-Variable importance graph for daily data is shown in \autoref{fig::vi_daily}. Overall, simila to the previous results most important features for determining suitable forecast-models for daily time series are, strength of seasonality corresponds to the weekly seasonality (7), stability, trend, lumpiness and linearity. Further more, length of the series is important in determining random walk, random walk with drift, mstlarima, mstlets, stlar, theta and nn classes. Strength of seasonality corresponds to the annual seasonality (365.25) is appeared to be important in determining the selection of theta models. \autoref{fig::daily_pdp} shows the patial dependency plots of the top 3 features from the FFORMS framework. According to the results of \autoref{fig::daily_pdp}  shorter series tends to select random walk with drift models while probability of selecting tbats, and theta models increases as the length of series increases. Neural network models shows a non-monotonic relationship with length of the series (N). The theta models tends to be selected for series with high annual seasonality but very low weekly seasonality.
+Variable importance graph for daily data is shown in \autoref{fig:vidaily}. Overall, simila to the previous results most important features for determining suitable forecast-models for daily time series are, strength of seasonality corresponds to the weekly seasonality (7), stability, trend, lumpiness and linearity. Further more, length of the series is important in determining random walk, random walk with drift, mstlarima, mstlets, stlar, theta and nn classes. Strength of seasonality corresponds to the annual seasonality (365.25) is appeared to be important in determining the selection of theta models. \autoref{fig:dailypdp} shows the patial dependency plots of the top 3 features from the FFORMS framework. According to the results of \autoref{fig:dailypdp}  shorter series tends to select random walk with drift models while probability of selecting tbats, and theta models increases as the length of series increases. Neural network models shows a non-monotonic relationship with length of the series (N). The theta models tends to be selected for series with high annual seasonality but very low weekly seasonality.
 
 \newpage
 
-```{r daily_pdp, fig.height=14.7, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures(daily series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class.", fig.pos="h"}
+```{r dailypdp, fig.height=14.7, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures(daily series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class.", fig.pos="h"}
 ```
 
 \newpage
@@ -544,22 +539,22 @@ Variable importance graph for daily data is shown in \autoref{fig::vi_daily}. Ov
 
 ## Hourly
 
-The poportion of times each time series was classified to each class for yearly series are shown in \autoref{fig::hourly_oob}. Except neural network class, the distribution corresponds to the correct classification dominated the top. It is important to note that, in neural network category, distribution corresponds to snaive class slightly dominateds the distribution corresonds to neural network category. Overall, for hourly series random walk with drift models, tbats and neural network models have high chance of being selected. Furthurmore, all distributions corresponds to the neural network category located furthur away from zero with respect to  x-axis indicats, every time series selects neural network models at least once from the trees in the random forest. In general, strength of daily seasonality (period=24) appear to be more important than than the strength of weekly seasonality (period=168).  Furthuremore, entropy, linearity, sum of squares of first 5 coefficients of PACF, curvature, trend, spikiness and stability were found to be the most important features in determining best forecasting method for hourly time series. Although the length of the series found to be one of the most important feature from previous results, only snaive category ranked it among top 5 for hourly time series. The strength of seasonality corresponds to weekly seasonality seems to be one of the most important feature for the classes snaive, random walk, mstlarima, and tbats. 
+The poportion of times each time series was classified to each class for yearly series are shown in \autoref{fig:hourlyoob}. Except neural network class, the distribution corresponds to the correct classification dominated the top. It is important to note that, in neural network category, distribution corresponds to snaive class slightly dominateds the distribution corresonds to neural network category. Overall, for hourly series random walk with drift models, tbats and neural network models have high chance of being selected. Furthurmore, all distributions corresponds to the neural network category located furthur away from zero with respect to  x-axis indicats, every time series selects neural network models at least once from the trees in the random forest. In general, strength of daily seasonality (period=24) appear to be more important than than the strength of weekly seasonality (period=168).  Furthuremore, entropy, linearity, sum of squares of first 5 coefficients of PACF, curvature, trend, spikiness and stability were found to be the most important features in determining best forecasting method for hourly time series. Although the length of the series found to be one of the most important feature from previous results, only snaive category ranked it among top 5 for hourly time series. The strength of seasonality corresponds to weekly seasonality seems to be one of the most important feature for the classes snaive, random walk, mstlarima, and tbats. 
 
 
-```{r hourly_oob, fig.height=10, fig.width=10, fig.cap="Distribution of proportion of times each hourly time series was classified to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. There are ten rows in the plot corresponds to each predicted class represented by Y-axis. X-axis denotes the proportion of times a time series is classified in each class. On each row, the distribution coreesponds to the correct classification dominated the top.", fig.pos="h"}
+```{r hourlyoob, fig.height=10, fig.width=10, fig.cap="Distribution of proportion of times each hourly time series was classified to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. There are ten rows in the plot corresponds to each predicted class represented by Y-axis. X-axis denotes the proportion of times a time series is classified in each class. On each row, the distribution of correct classification dominated the top.", fig.pos="h"}
 ```
 
 \newpage
 
-```{r vi_hourly, fig.height=10, fig.width=10, fig.cap="Feature importance plot yearly series. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h"}
+```{r vi_hourly, fig.height=10, fig.width=10, fig.cap="Feature importance plot hourly series. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h"}
 ```
 
 The patial dependency plots showd that probability of selecting random walk, random walk with drift, theta model and white noise process decresed with higher strength of daily seasonality, while the  opposite relationship hold for other classes.On the other hand, probability of selecting random walk model increased with the increase in strength of weekly seasonality. 
 
 \newpage
 
-```{r hourly_pdp, fig.height=14.7, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures(hourly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class.", fig.pos="h"}
+```{r hourlypdp, fig.height=14.7, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures(hourly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class.", fig.pos="h"}
 ```
 
 \newpage
@@ -570,13 +565,7 @@ The patial dependency plots showd that probability of selecting random walk, ran
 
 # Discussion and Conclusions{#conclusions}
 
-Explaining predictions is an important aspect in getting humans to trust and use machine learning effectively, if the explanations are faithful and intelligible. Humans usually have prior knowledge about the application domain, which they can use to accept(trust) or reject prediction if they understand the reasons behind it. Accuracy may of ten not be a suitable metric to evaluate the model.
 
-This paper explores the use of feature-based forecast model selection framework to investigate the relationship between features of time series and forecast-model selection.
-Since several number of features are used to build the framework with comparable contributions, and thus, all individual contributions are small. We explore the global relationship of features with the probability of certain forecast-model class occuring at different values of the features. However, partial dependency plots confirms these individual feature effects captures the expected principles in the field of time series forecasting  provides valuable information about the reliability of FFORMS prediction. Exploring the conditions learnt by the fforms framework also support practitioners to make a good educated guess on suitable forecast-model for a given problem. 
-
-our proposed method selects a specific feature subset for each class. 
-Feature-based time series analysis should develop support systems that incorporate these features whenever feasible and appropriate. We also demonstrate how feature contributions can be applied to understand the dependencies between time series features and their predicted classification and to assess the reliability of prediction. Feature contribution provide valuable information about the reliability of FFORMS prediction for a particular instance. Application of feature contributions for model interpretation is particularly valuable for ongoing research in  the field of feature-based time series analysis. We argue this analysis of provides a more refine picture of time series features and forecast model selection. Global and local role of feature contribution provides valuable information about reliability of the predictions of FFORMS framework.
 
 \newpage
 
@@ -584,31 +573,31 @@ Feature-based time series analysis should develop support systems that incorpora
 
 ## PCA space{-}
 
-```{r yearly_pca, fig.height=10, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```{r yearlypca, fig.height=10, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
 ```
 
 \clearpage
 
-```{r quarterly_pca, fig.height=15, fig.width=20, fig.cap="PCA(Quarterly)", fig.pos="h"}
+```{r quarterlypca, fig.height=15, fig.width=20, fig.cap="PCA(Quarterly)", fig.pos="h"}
 ```
 
 \newpage
 
-```{r monthly_pca, fig.height=15, fig.width=20, fig.cap="PCA(Monthly)", fig.pos="h"}
+```{r monthlypca, fig.height=15, fig.width=20, fig.cap="PCA(Monthly)", fig.pos="h"}
 ```
 
 \clearpage
 
-```{r pca_weekly, fig.height=15, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```{r pcaweekly, fig.height=15, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
 ```
 
 \clearpage
 
-```{r pca_daily, fig.height=5, fig.width=10, fig.cap="", fig.pos="h", fig.align="center"}
+```{r pcadaily, fig.height=5, fig.width=10, fig.cap="", fig.pos="h", fig.align="center"}
 ```
 
 
-```{r pca_hourly, fig.height=5, fig.width=10, fig.cap="", fig.pos="h", fig.align="center"}
+```{r pcahourly, fig.height=5, fig.width=10, fig.cap="", fig.pos="h", fig.align="center"}
 ```
 
 \clearpage

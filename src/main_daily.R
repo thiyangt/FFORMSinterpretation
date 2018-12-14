@@ -1,7 +1,7 @@
 #################################################################
 #                  Daily data                                  #
 #################################################################
-## ---- oob_daily
+## ---- oobdaily
 load("data/daily/trainD_votes.rda") # oob votes from the random forest
 load("data/daily/trainD_predictions_oob.rda") # based on oob prediction
 load("data/daily/daily_training.rda") # random forest training set
@@ -27,7 +27,7 @@ oob_boxplot_daily <- ggplot(votes_oobD, aes(x = variable, y = value, fill = clas
   coord_flip()
 oob_boxplot_daily
 
-## ---- vi_daily
+## ---- vidaily
 # All variable scores into one dataframe
 load("data/daily/trainD_importance.rda")
 load(file = "data/daily/sd_pdf_dfD.rda")
@@ -110,7 +110,7 @@ feaImp_daily <- ggplot(meanrank_daily, aes(y = rank, x = feature,fill=as.factor(
   scale_fill_manual(breaks=c("0","1"), values=c("black","red"), guide="none")
 feaImp_daily
 
-## ---- daily_pdp
+## ---- dailypdp
 ## load ICE calculation files
 ## entropy
 load("data/daily/pdp_ice_daily/entropyD_includeout.rda")
@@ -335,7 +335,7 @@ p30 <- ggplot(data = hurstD_includeout, aes_string(x = hurstD_includeout$hurst, 
 (p1|p2|p3)/(p4|p5|p6)/(p7|p8|p9)/(p10|p11|p12)/(p13|p14|p15)/(p16|p17|p18)/(p19|p20|p21)/(p22|p23|p24)/(p25|p26|p27)/(p28|p29|p30)
 
 
-## ---- pca_daily
+## ---- pcadaily
 load("data/daily/trainD_votes.rda")
 pcaDvariables <- daily_training[, 1:26]
 pcaM4D <- prcomp(pcaDvariables, center = TRUE, scale = TRUE)
