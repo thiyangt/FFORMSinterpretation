@@ -47,6 +47,49 @@
       \field{pages}{5\bibrangedash 32}
       \range{pages}{28}
     \endentry
+    \entry{chen2004using}{report}{}
+      \name{author}{3}{}{%
+        {{hash=531c7be3c2524682e36a7baa8d7ab92f}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Chao},
+           giveni={C\bibinitperiod}}}%
+        {{hash=ee295e0da4839bf52318f9d0907272db}{%
+           family={Liaw},
+           familyi={L\bibinitperiod},
+           given={Andy},
+           giveni={A\bibinitperiod}}}%
+        {{hash=132b7100417675d55d5d4d8b244f7a34}{%
+           family={Breiman},
+           familyi={B\bibinitperiod},
+           given={Leo},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {University of California, Berkeley}%
+      }
+      \strng{namehash}{31054f6c2ce3a483c8be257a14b3d202}
+      \strng{fullhash}{31054f6c2ce3a483c8be257a14b3d202}
+      \strng{bibnamehash}{31054f6c2ce3a483c8be257a14b3d202}
+      \strng{authorbibnamehash}{31054f6c2ce3a483c8be257a14b3d202}
+      \strng{authornamehash}{31054f6c2ce3a483c8be257a14b3d202}
+      \strng{authorfullhash}{31054f6c2ce3a483c8be257a14b3d202}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Using random forest to learn imbalanced data}
+      \field{type}{techreport}
+      \field{year}{2004}
+      \verb{urlraw}
+      \verb http://statistics.berkeley.edu/sites/default/files/tech-reports/666.pdf
+      \endverb
+      \verb{url}
+      \verb http://statistics.berkeley.edu/sites/default/files/tech-reports/666.pdf
+      \endverb
+    \endentry
     \entry{ehrlinger2015ggrandomforests}{article}{}
       \name{author}{1}{}{%
         {{hash=5aa85f9e615ebc83f02b41db9d18ed9a}{%
@@ -331,6 +374,112 @@
       \field{type}{techreport}
       \field{year}{2018}
     \endentry
+    \entry{kuck2016meta}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=cf8509af347a140f6b3a4e4d80e16f0a}{%
+           family={K{ü}ck},
+           familyi={K\bibinitperiod},
+           given={Mirko},
+           giveni={M\bibinitperiod}}}%
+        {{hash=ab3bb7f51b67b998bd8f897e0b5a8ff9}{%
+           family={Crone},
+           familyi={C\bibinitperiod},
+           given={Sven\bibnamedelima F},
+           giveni={S\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=c66a0246ae1b13f8ac3140a1c10fb0db}{%
+           family={Freitag},
+           familyi={F\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{e3d1783a6b5f1d9e3076d6b0cc0002d2}
+      \strng{fullhash}{e3d1783a6b5f1d9e3076d6b0cc0002d2}
+      \strng{bibnamehash}{e3d1783a6b5f1d9e3076d6b0cc0002d2}
+      \strng{authorbibnamehash}{e3d1783a6b5f1d9e3076d6b0cc0002d2}
+      \strng{authornamehash}{e3d1783a6b5f1d9e3076d6b0cc0002d2}
+      \strng{authorfullhash}{e3d1783a6b5f1d9e3076d6b0cc0002d2}
+      \field{sortinit}{K}
+      \field{sortinithash}{9fd838a31ba64d981e8f44562bd33f89}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Neural Networks (IJCNN), 2016 International Joint Conference on}
+      \field{title}{Meta-learning with neural networks and landmarking for forecasting model selection an empirical evaluation of different feature sets applied to industry data}
+      \field{year}{2016}
+      \field{pages}{1499\bibrangedash 1506}
+      \range{pages}{8}
+    \endentry
+    \entry{lemke2010meta}{article}{}
+      \name{author}{2}{}{%
+        {{hash=2f301251734a2a3f20f5fa4cad84d275}{%
+           family={Lemke},
+           familyi={L\bibinitperiod},
+           given={Christiane},
+           giveni={C\bibinitperiod}}}%
+        {{hash=0c229a393a01c59213ce12b19d582c46}{%
+           family={Gabrys},
+           familyi={G\bibinitperiod},
+           given={Bogdan},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{8f039b7583d314a680883cc2dc044cc1}
+      \strng{fullhash}{8f039b7583d314a680883cc2dc044cc1}
+      \strng{bibnamehash}{8f039b7583d314a680883cc2dc044cc1}
+      \strng{authorbibnamehash}{8f039b7583d314a680883cc2dc044cc1}
+      \strng{authornamehash}{8f039b7583d314a680883cc2dc044cc1}
+      \strng{authorfullhash}{8f039b7583d314a680883cc2dc044cc1}
+      \field{sortinit}{L}
+      \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Neurocomputing}
+      \field{number}{10}
+      \field{title}{Meta-learning for time series forecasting and forecast combination}
+      \field{volume}{73}
+      \field{year}{2010}
+      \field{pages}{2006\bibrangedash 2016}
+      \range{pages}{11}
+    \endentry
+    \entry{lundberg2017unified}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=6ad998e6231517ac517bb7db805696d0}{%
+           family={Lundberg},
+           familyi={L\bibinitperiod},
+           given={Scott\bibnamedelima M},
+           giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=ee964079d93879aaef2382a5fff343d3}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Su-In},
+           giveni={S\bibinithyphendelim I\bibinitperiod}}}%
+      }
+      \strng{namehash}{18fa3cf3ed3fb884c809c1e5f75dc29d}
+      \strng{fullhash}{18fa3cf3ed3fb884c809c1e5f75dc29d}
+      \strng{bibnamehash}{18fa3cf3ed3fb884c809c1e5f75dc29d}
+      \strng{authorbibnamehash}{18fa3cf3ed3fb884c809c1e5f75dc29d}
+      \strng{authornamehash}{18fa3cf3ed3fb884c809c1e5f75dc29d}
+      \strng{authorfullhash}{18fa3cf3ed3fb884c809c1e5f75dc29d}
+      \field{sortinit}{L}
+      \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Advances in Neural Information Processing Systems}
+      \field{title}{A unified approach to interpreting model predictions}
+      \field{year}{2017}
+      \field{pages}{4765\bibrangedash 4774}
+      \range{pages}{10}
+    \endentry
     \entry{makridakis2000m3}{article}{}
       \name{author}{2}{}{%
         {{hash=ba8241955b5282793fdcf2d43c398cc6}{%
@@ -424,11 +573,194 @@
       \field{labeltitlesource}{title}
       \field{journaltitle}{The Journal of Open Source Software}
       \field{number}{786}
-      \field{title}{Iml: An r package for interpretable machine learning}
+      \field{title}{Iml: An R package for interpretable machine learning}
       \field{volume}{3}
       \field{year}{2018}
       \field{pages}{10\bibrangedash 21105}
       \range{pages}{21096}
+    \endentry
+    \entry{petropoulos2014horses}{article}{}
+      \name{author}{4}{}{%
+        {{hash=8a8906bc431b0399f6be129d2e1271a1}{%
+           family={Petropoulos},
+           familyi={P\bibinitperiod},
+           given={Fotios},
+           giveni={F\bibinitperiod}}}%
+        {{hash=ba8241955b5282793fdcf2d43c398cc6}{%
+           family={Makridakis},
+           familyi={M\bibinitperiod},
+           given={Spyros},
+           giveni={S\bibinitperiod}}}%
+        {{hash=c84a88720d8401a0259918f2eb3bec78}{%
+           family={Assimakopoulos},
+           familyi={A\bibinitperiod},
+           given={Vassilios},
+           giveni={V\bibinitperiod}}}%
+        {{hash=10fdf01556b8158a0de2cf0700e66358}{%
+           family={Nikolopoulos},
+           familyi={N\bibinitperiod},
+           given={Konstantinos},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{20ac7f018d68562ead57de4ddc175579}
+      \strng{fullhash}{f92d689148dd3dca35af688896fa4af9}
+      \strng{bibnamehash}{f92d689148dd3dca35af688896fa4af9}
+      \strng{authorbibnamehash}{f92d689148dd3dca35af688896fa4af9}
+      \strng{authornamehash}{20ac7f018d68562ead57de4ddc175579}
+      \strng{authorfullhash}{f92d689148dd3dca35af688896fa4af9}
+      \field{sortinit}{P}
+      \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{European Journal of Operational Research}
+      \field{number}{1}
+      \field{title}{‘Horses for Courses’ in demand forecasting}
+      \field{volume}{237}
+      \field{year}{2014}
+      \field{pages}{152\bibrangedash 163}
+      \range{pages}{12}
+    \endentry
+    \entry{prudencio2004meta}{article}{}
+      \name{author}{2}{}{%
+        {{hash=2a2e5cde515a7763a6d496b13e00378e}{%
+           family={Prud{ê}ncio},
+           familyi={P\bibinitperiod},
+           given={Ricardo\bibnamedelima BC},
+           giveni={R\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=ce7cbfa6f323ed547236e9d3c81c1a55}{%
+           family={Ludermir},
+           familyi={L\bibinitperiod},
+           given={Teresa\bibnamedelima B},
+           giveni={T\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{7feb2a8435b75d8b3197e8400cde5675}
+      \strng{fullhash}{7feb2a8435b75d8b3197e8400cde5675}
+      \strng{bibnamehash}{7feb2a8435b75d8b3197e8400cde5675}
+      \strng{authorbibnamehash}{7feb2a8435b75d8b3197e8400cde5675}
+      \strng{authornamehash}{7feb2a8435b75d8b3197e8400cde5675}
+      \strng{authorfullhash}{7feb2a8435b75d8b3197e8400cde5675}
+      \field{sortinit}{P}
+      \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Neurocomputing}
+      \field{title}{Meta-learning approaches to selecting time series models}
+      \field{volume}{61}
+      \field{year}{2004}
+      \field{pages}{121\bibrangedash 137}
+      \range{pages}{17}
+    \endentry
+    \entry{ribeiro2016should}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=3eb86ce401344495cd2509779cc25930}{%
+           family={Ribeiro},
+           familyi={R\bibinitperiod},
+           given={Marco\bibnamedelima Tulio},
+           giveni={M\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=0b9694812f0dc77974d99bb875a76d48}{%
+           family={Singh},
+           familyi={S\bibinitperiod},
+           given={Sameer},
+           giveni={S\bibinitperiod}}}%
+        {{hash=c9ab8ac486d7f85ac914b1a8e51e512b}{%
+           family={Guestrin},
+           familyi={G\bibinitperiod},
+           given={Carlos},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{659a94cf50e87564ffb850f6b18b6974}
+      \strng{fullhash}{659a94cf50e87564ffb850f6b18b6974}
+      \strng{bibnamehash}{659a94cf50e87564ffb850f6b18b6974}
+      \strng{authorbibnamehash}{659a94cf50e87564ffb850f6b18b6974}
+      \strng{authornamehash}{659a94cf50e87564ffb850f6b18b6974}
+      \strng{authorfullhash}{659a94cf50e87564ffb850f6b18b6974}
+      \field{sortinit}{R}
+      \field{sortinithash}{da6b42bd3ab22fee61abed031ee405f7}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD'16). ACM, New York, NY, USA}
+      \field{title}{Why should I trust you?: Explaining the predictions of any classifier}
+      \field{year}{2016}
+      \field{pages}{1135\bibrangedash 1144}
+      \range{pages}{10}
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/2939672.2939778
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/2939672.2939778
+      \endverb
+    \endentry
+    \entry{schnaars1984situational}{article}{}
+      \name{author}{1}{}{%
+        {{hash=8338681a74e9a1ec1973683a5b5841ed}{%
+           family={Schnaars},
+           familyi={S\bibinitperiod},
+           given={Steven\bibnamedelima P},
+           giveni={S\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {JSTOR}%
+      }
+      \strng{namehash}{8338681a74e9a1ec1973683a5b5841ed}
+      \strng{fullhash}{8338681a74e9a1ec1973683a5b5841ed}
+      \strng{bibnamehash}{8338681a74e9a1ec1973683a5b5841ed}
+      \strng{authorbibnamehash}{8338681a74e9a1ec1973683a5b5841ed}
+      \strng{authornamehash}{8338681a74e9a1ec1973683a5b5841ed}
+      \strng{authorfullhash}{8338681a74e9a1ec1973683a5b5841ed}
+      \field{sortinit}{S}
+      \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of marketing research}
+      \field{title}{Situational factors affecting forecast accuracy}
+      \field{year}{1984}
+      \field{pages}{290\bibrangedash 297}
+      \range{pages}{8}
+    \endentry
+    \entry{shah1997model}{article}{}
+      \name{author}{1}{}{%
+        {{hash=1bef8870858d58aba26f9976df754d54}{%
+           family={Shah},
+           familyi={S\bibinitperiod},
+           given={Chandra},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{1bef8870858d58aba26f9976df754d54}
+      \strng{fullhash}{1bef8870858d58aba26f9976df754d54}
+      \strng{bibnamehash}{1bef8870858d58aba26f9976df754d54}
+      \strng{authorbibnamehash}{1bef8870858d58aba26f9976df754d54}
+      \strng{authornamehash}{1bef8870858d58aba26f9976df754d54}
+      \strng{authorfullhash}{1bef8870858d58aba26f9976df754d54}
+      \field{sortinit}{S}
+      \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Forecasting}
+      \field{number}{4}
+      \field{title}{Model selection in univariate time series forecasting using discriminant analysis}
+      \field{volume}{13}
+      \field{year}{1997}
+      \field{pages}{489\bibrangedash 500}
+      \range{pages}{12}
     \endentry
     \entry{da2017interactive}{article}{}
       \name{author}{3}{}{%
@@ -560,6 +892,82 @@
       \field{journaltitle}{Technical Report 6/18, Monash University.}
       \field{title}{Meta-learning how to forecast time series}
       \field{year}{2018}
+    \endentry
+    \entry{wang2009rule}{article}{}
+      \name{author}{3}{}{%
+        {{hash=5b69e6ba0b371c9e63de77da3521a49c}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Xiaozhe},
+           giveni={X\bibinitperiod}}}%
+        {{hash=e600c1c37474d42bf9bbd1414d413c62}{%
+           family={Smith-Miles},
+           familyi={S\bibinithyphendelim M\bibinitperiod},
+           given={Kate},
+           giveni={K\bibinitperiod}}}%
+        {{hash=100217a51bc73b09255a8a65a1a5e504}{%
+           family={Hyndman},
+           familyi={H\bibinitperiod},
+           given={Rob\bibnamedelima J},
+           giveni={R\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \strng{namehash}{8734826698e9278d8159fafacfc9e754}
+      \strng{fullhash}{8734826698e9278d8159fafacfc9e754}
+      \strng{bibnamehash}{8734826698e9278d8159fafacfc9e754}
+      \strng{authorbibnamehash}{8734826698e9278d8159fafacfc9e754}
+      \strng{authornamehash}{8734826698e9278d8159fafacfc9e754}
+      \strng{authorfullhash}{8734826698e9278d8159fafacfc9e754}
+      \field{sortinit}{W}
+      \field{sortinithash}{ecb89ff85896a47dc313960773ac311d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Neurocomputing}
+      \field{number}{10}
+      \field{title}{Rule induction for forecasting method selection: meta-learning the characteristics of univariate time series}
+      \field{volume}{72}
+      \field{year}{2009}
+      \field{pages}{2581\bibrangedash 2594}
+      \range{pages}{14}
+    \endentry
+    \entry{wickham2015visualizing}{article}{}
+      \name{author}{3}{}{%
+        {{hash=1d0f6977ce2d043e298a59a1cd75b7ef}{%
+           family={Wickham},
+           familyi={W\bibinitperiod},
+           given={Hadley},
+           giveni={H\bibinitperiod}}}%
+        {{hash=703a76ee965b0aabaf5b41a58ab3995c}{%
+           family={Cook},
+           familyi={C\bibinitperiod},
+           given={Dianne},
+           giveni={D\bibinitperiod}}}%
+        {{hash=aab385203b295bcea3e72bd9a22eebae}{%
+           family={Hofmann},
+           familyi={H\bibinitperiod},
+           given={Heike},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{3c0b78622bfddf6bdf2c0653441f0f40}
+      \strng{fullhash}{3c0b78622bfddf6bdf2c0653441f0f40}
+      \strng{bibnamehash}{3c0b78622bfddf6bdf2c0653441f0f40}
+      \strng{authorbibnamehash}{3c0b78622bfddf6bdf2c0653441f0f40}
+      \strng{authornamehash}{3c0b78622bfddf6bdf2c0653441f0f40}
+      \strng{authorfullhash}{3c0b78622bfddf6bdf2c0653441f0f40}
+      \field{sortinit}{W}
+      \field{sortinithash}{ecb89ff85896a47dc313960773ac311d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Statistical Analysis and Data Mining: The ASA Data Science Journal}
+      \field{number}{4}
+      \field{title}{Visualizing statistical models: Removing the blindfold}
+      \field{volume}{8}
+      \field{year}{2015}
+      \field{pages}{203\bibrangedash 225}
+      \range{pages}{23}
     \endentry
     \entry{Zhao}{article}{}
       \name{author}{2}{}{%
