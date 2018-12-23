@@ -1294,12 +1294,12 @@ p4 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("rwd")
-p5 <- ggplot(data= diff1y_pacf5gridQ, aes_string(x=diff1y_pacf5gridQ$diff1y_pacf5, y="rwd")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("diff1y_pacf5")+
+p5 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="rwd")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("")
-p6 <- ggplot(data=y_pacf5gridQ, aes_string(x=y_pacf5gridQ$y_pacf5, y="rwd")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("y_pacf5")+ 
+p6 <- ggplot(data=diff1y_pacf5gridQ, aes_string(x=diff1y_pacf5gridQ$diff1y_pacf5, y="rwd")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("diff1y_pacf5")+ 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("")
 
@@ -1308,12 +1308,12 @@ p7 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("rw")
-p8 <- ggplot(data= diff1y_pacf5gridQ, aes_string(x=diff1y_pacf5gridQ$diff1y_pacf5, y="rw")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("diff1y_pacf5")+
+p8 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="rw")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("")
-p9 <- ggplot(data=y_pacf5gridQ, aes_string(x=y_pacf5gridQ$y_pacf5, y="rw")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("y_pacf5")+ 
+p9 <- ggplot(data=diff1y_pacf5gridQ, aes_string(x=diff1y_pacf5gridQ$diff1y_pacf5, y="rw")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("diff1y_pacf5")+ 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("")
 
@@ -1337,12 +1337,12 @@ p13 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, 
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+ 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("ETS.DT")
-p14 <- ggplot(data= diff1y_acf1gridQ, aes_string(x=diff1y_acf1gridQ$diff1y_acf1, y="ETS.dampedtrend")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("diff1y_acf1")+ 
+p14 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="ETS.dampedtrend")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+ 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("")
-p15 <- ggplot(data=betagridQ, aes_string(x=betagridQ$beta, y="ETS.dampedtrend")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("beta")+ 
+p15 <- ggplot(data=diff1y_pacf5gridQ, aes_string(x=diff1y_pacf5gridQ$diff1y_pacf5, y="ETS.dampedtrend")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("diff1y_pacf5")+ 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("")
 
@@ -1355,8 +1355,8 @@ p17 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="ETS.trend")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+ 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("")
-p18 <- ggplot(data=y_pacf5gridQ, aes_string(x=y_pacf5gridQ$y_pacf5, y="ETS.trend")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("y_pacf5")+ 
+p18 <- ggplot(data=diff1y_pacf5gridQ, aes_string(x=diff1y_pacf5gridQ$diff1y_pacf5, y="ETS.trend")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("diff1y_pacf5")+ 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("")
 
@@ -1366,22 +1366,22 @@ p19 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, 
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+ 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+
   theme(legend.position="none", text = element_text(size=20))+ylab("ETS.DTS")
-p20 <- ggplot(data= diff1y_pacf5gridQ, aes_string(x=diff1y_pacf5gridQ$diff1y_pacf5, y="ETS.dampedtrendseasonal")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("diff1y_pacf5")+ 
+p20 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="ETS.dampedtrendseasonal")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+ 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none",text = element_text(size=20))+ylab("")
-p21 <- ggplot(data=curvaturegridQ, aes_string(x=curvaturegridQ$curvature, y="ETS.dampedtrendseasonal")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("curvature")+ 
+p21 <- ggplot(data=diff1y_pacf5gridQ, aes_string(x=diff1y_pacf5gridQ$diff1y_pacf5, y="ETS.dampedtrendseasonal")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("diff1y_pacf5")+ 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 
 ## ETS.TS
 p22 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="ETS.trendseasonal")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+ 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("ETS.TS")
-p23 <- ggplot(data= diff1y_pacf5gridQ, aes_string(x=diff1y_pacf5gridQ$diff1y_pacf5, y="ETS.trendseasonal")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("diff1y_pacf5")+
+p23 <- ggplot(data=trendgridQ, aes_string(x=trendgridQ$trend, y="ETS.trendseasonal")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none",text = element_text(size=20))+ylab("")
-p24 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="ETS.trendseasonal")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+
+p24 <- ggplot(data=diff1y_pacf5gridQ, aes_string(x=diff1y_pacf5gridQ$diff1y_pacf5, y="ETS.trendseasonal")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("diff1y_pacf5")+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 
 ## ETS.S
@@ -1391,19 +1391,19 @@ p25 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, 
 p26 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="ETS.seasonal")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
-p27 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="ETS.seasonal")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
+p27 <- ggplot(data=diff1y_pacf5gridQ, aes_string(x=diff1y_pacf5gridQ$diff1y_pacf5, y="ETS.seasonal")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("diff1y_pacf5")+ 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 
 ## SARIMA
 p28 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="SARIMA")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+ 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("SARIMA")
-p29 <- ggplot(data= diff1y_pacf5gridQ, aes_string(x=diff1y_pacf5gridQ$diff1y_pacf5, y="SARIMA")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("diff1y_pacf5")+
+p29 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="SARIMA")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
-p30 <- ggplot(data=diff1y_acf5gridQ, aes_string(x=diff1y_acf5gridQ$diff1y_acf5, y="SARIMA")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("diff1y_acf5")+ 
+p30 <- ggplot(data=diff1y_pacf5gridQ, aes_string(x=diff1y_pacf5gridQ$diff1y_pacf5, y="SARIMA")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("diff1y_pacf5")+ 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 
 (p1|p2|p3)/(p4|p5|p6)/(p7|p8|p9)/(p10|p11|p12)/(p13|p14|p15)/(p16|p17|p18)/
@@ -1419,19 +1419,19 @@ p1 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y
 p2 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="ARIMA")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
-p3 <- ggplot(data=diff1y_acf1gridQ, aes_string(x=diff1y_acf1gridQ$diff1y_acf1, y="ARIMA")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("diff1y_acf1")+ 
+p3 <- ggplot(data=diff1y_pacf5gridQ, aes_string(x=diff1y_pacf5gridQ$diff1y_pacf5, y="ARIMA")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("diff1y_pacf5")+ 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 
 ## ARMA
-p4 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="ARMA.AR.MA")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+
+p4 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="ARMA.AR.MA")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("ARMA.AR.MA")
 p5 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="ARMA.AR.MA")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+ 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
-p6 <- ggplot(data=y_acf5gridQ, aes_string(x=y_acf5gridQ$y_acf5, y="ARMA.AR.MA")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("y_acf5")+ 
+p6 <- ggplot(data=diff1y_pacf5gridQ, aes_string(x=diff1y_pacf5gridQ$diff1y_pacf5, y="ARMA.AR.MA")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("diff1y_pacf5")+ 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 
 
@@ -1442,13 +1442,13 @@ p7 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y
 p8 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="stlar")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+ 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none",text = element_text(size=20))+ylab("")
-p9 <- ggplot(data=y_pacf5gridQ, aes_string(x=y_pacf5gridQ$y_pacf5, y="stlar")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("y_pacf5")+ 
+p9 <- ggplot(data=diff1y_pacf5gridQ, aes_string(x=diff1y_pacf5gridQ$diff1y_pacf5, y="stlar")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("diff1y_pacf5")+ 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 
 ##tbats
-p10 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="tbats")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
+p10 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="tbats")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+ 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("tbats")
 p11 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="tbats")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+ 
@@ -1464,19 +1464,19 @@ p13 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, 
 p14 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="wn")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+ 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
-p15 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="wn")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
+p15 <- ggplot(data=diff1y_pacf5gridQ, aes_string(x=diff1y_pacf5gridQ$diff1y_pacf5, y="wn")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("diff1y_pacf5")+ 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 
 ## theta
-p16 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="theta")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+
+p16 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="theta")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("theta")
 p17 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="theta")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 p18 <- ggplot(data=diff1y_pacf5gridQ, aes_string(x=diff1y_pacf5gridQ$diff1y_pacf5, y="theta")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("sediff_acf5")+ 
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("diff1y_pacf5")+ 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 
 
@@ -1484,11 +1484,11 @@ p18 <- ggplot(data=diff1y_pacf5gridQ, aes_string(x=diff1y_pacf5gridQ$diff1y_pacf
 p19 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="nn")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("nn")
-p20 <- ggplot(data= y_pacf5gridQ, aes_string(x=y_pacf5gridQ$y_pacf5, y="nn")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("y_pacf5")+ 
+p20 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="nn")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+ 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
-p21 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="nn")) +
-  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity") + 
+p21 <- ggplot(data=diff1y_pacf5gridQ, aes_string(x=diff1y_pacf5gridQ$diff1y_pacf5, y="nn")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("diff1y_pacf5") + 
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+
 theme(legend.position="none", text = element_text(size=20)) +ylab("")
 
