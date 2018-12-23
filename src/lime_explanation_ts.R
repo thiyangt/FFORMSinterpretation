@@ -25,3 +25,5 @@ ts_lime_qpca <- list(ts1=ts(c(M1q[[25]]$x, M1q[[25]]$xx)),
                      ts3=ts(c(M3q[[451]]$x, M3q[[451]]$xx)),
                      ts4=ts(c(M3q[[705]]$x, M3q[[705]]$xx)))
 save(ts_lime_qpca, file="data/ts_lime_qpca.rda")
+
+## monthly series

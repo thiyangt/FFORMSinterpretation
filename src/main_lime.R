@@ -124,5 +124,61 @@ pcaQ+pp+plot_layout(ncol = 2)
 ## ---- quarterlylime2
 plot_features(explanationq, ncol = 2)
 
+## ---- monthlylime
+#which.min(m4mPCAresults$PC1)  #632
+#which.min(m4mPCAresults$PC2)  #403
+#which.max(m4mPCAresults$PC1)  #1810
+#which.max(m4mPCAresults$PC2)  #445
+# which((-2 > m4mPCAresults$PC2 )==TRUE )##277166
+load("data/monthly/trainM_votes.rda")
+pcaMvariables <- monthly_training[, 1:30]
+pcaM4M <- prcomp(pcaMvariables, center = TRUE, scale = TRUE)
+PC1m4m <- pcaM4M$x[, 1]
+PC2m4m <- pcaM4M$x[, 2]
+PC3m4m <- pcaM4M$x[, 3]
+m4mPCAresults <- data.frame(PC1 = PC1m4m, PC2 = PC2m4m, PC3 = PC3m4m, pcaMvariables)
+monthly_training$PC1 <- PC1m4m
+monthly_training$PC2 <- PC2m4m
 
+pcaM <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2)) +
+  geom_point(colour = "firebrick1") +
+  theme(
+    legend.position = "none",
+    aspect.ratio = 1
+  ) +
+  geom_point(data =monthly_training[c(1, 971, 980, 632, 403, 1810, 445, 999, 997, 2036),], aes(x = PC1, y = PC2), color = "black", size=5) +
+  theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))+
+  geom_text_repel(
+    data = monthly_training[c(1, 971, 980, 632, 403, 1810, 445),],
+    aes(label = c("1: wn", "2: SARIMA", "3: tbats", "4: theta")),
+    size = 5,
+    box.padding = unit(0.35, "lines"),
+    point.padding = unit(0.3, "lines")
+  )
 
+## ---- limeweekly 
+load("data/monthly/trainM_votes.rda")
+pcaMvariables <- monthly_training[, 1:30]
+pcaM4M <- prcomp(pcaMvariables, center = TRUE, scale = TRUE)
+PC1m4m <- pcaM4M$x[, 1]
+PC2m4m <- pcaM4M$x[, 2]
+PC3m4m <- pcaM4M$x[, 3]
+m4mPCAresults <- data.frame(PC1 = PC1m4m, PC2 = PC2m4m, PC3 = PC3m4m, pcaMvariables)
+monthly_training$PC1 <- PC1m4m
+monthly_training$PC2 <- PC2m4m
+
+pcaM <- ggplot(m4mPCAresults, aes(x = PC1, y = PC2)) +
+  geom_point(colour = "firebrick1") +
+  theme(
+    legend.position = "none",
+    aspect.ratio = 1
+  ) +
+  geom_point(data =monthly_training[c(1, 971, 980, 632, 403, 1810, 445, 999, 997, 2036),], aes(x = PC1, y = PC2), color = "black", size=5) +
+  theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))+
+  geom_text_repel(
+    data = monthly_training[c(1, 971, 980, 632, 403, 1810, 445),],
+    aes(label = c("1: wn", "2: SARIMA", "3: tbats", "4: theta")),
+    size = 5,
+    box.padding = unit(0.35, "lines"),
+    point.padding = unit(0.3, "lines")
+  )
