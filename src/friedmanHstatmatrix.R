@@ -25,7 +25,7 @@ friedmanHstat_matrix <- function(dataframe_FH, number_of_features){
 }
 
 ## usage
-rwd_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="rw",]
+rwd_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="rwd",]
 rwd_YFH_cormat <- friedmanHstat_matrix(rwd_YFH, 25)
 col.order <- c("trend", "ur_pp","spikiness", "beta",
                "diff1y_acf1", "linearity", "diff1y_acf5", "curvature",
@@ -33,11 +33,11 @@ col.order <- c("trend", "ur_pp","spikiness", "beta",
                "alpha", "diff1y_pacf5", "hurst", "entropy", "e_acf1", "y_acf5",
                "diff2y_pacf5",
                "diff2y_acf1", "N", "diff2y_acf5", "lumpiness", "stability")
-rwd_YFH_cormat  <- rwd_YFH_cormat[col.order,]
+col.order <- rev(col.order)
+rwd_YFH_cormat  <- rwd_YFH_cormat[,col.order]
 p1 <- ggcorrplot(rwd_YFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                      low="blue", mid= "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("rwd")
