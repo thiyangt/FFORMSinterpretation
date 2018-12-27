@@ -36,15 +36,16 @@ friedmanHstat_matrix <- function(dataframe_FH, number_of_features, order){
 }
 
 ## usage
-# rwd_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="rwd",]
+# load("data/friedmanHstat_yearly.rda")
+# rwd_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="rw",]
 # rwd_YFH[rwd_YFH$feature1=="trend",]
 # rwd_YFH[rwd_YFH$feature2=="trend",]
 #order <- c("trend", "ur_pp","spikiness", "beta",
-#           "diff1y_acf1", "linearity", "diff1y_acf5", "curvature",
-#           "lmres_acf1","y_pacf5", "ur_kpss", "y_acf1", "nonlinearity",
-#           "alpha", "diff1y_pacf5", "hurst", "entropy", "e_acf1", "y_acf5",
-#           "diff2y_pacf5",
-#           "diff2y_acf1", "N", "diff2y_acf5", "lumpiness", "stability")
+#          "diff1y_acf1", "linearity", "diff1y_acf5", "curvature",
+#          "lmres_acf1","y_pacf5", "ur_kpss", "y_acf1", "nonlinearity",
+#          "alpha", "diff1y_pacf5", "hurst", "entropy", "e_acf1", "y_acf5",
+#          "diff2y_pacf5",
+#          "diff2y_acf1", "N", "diff2y_acf5", "lumpiness", "stability")
 #number_of_features = 25
 #rwd_YFH_cormat <- friedmanHstat_matrix(rwd_YFH, 25,rev(order))
 #p1 <- ggcorrplot(rwd_YFH_cormat, hc.order = FALSE, type = "upper",

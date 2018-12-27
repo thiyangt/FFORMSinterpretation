@@ -1381,68 +1381,186 @@ p1 <- ggcorrplot(snaive_QFH_cormat, hc.order = FALSE, type = "upper",
 
 ## random walk with drift
 rwd_QFH <- friedmanHstat_quarterly[friedmanHstat_quarterly$class=="rwd",]
-snaive_QFH_cormat <- friedmanHstat_matrix(snaive_QFH, 30, rev(col.order))
+rwd_QFH_cormat <- friedmanHstat_matrix(rwd_QFH, 30, rev(col.order))
 #snaive_QFH_cormat  <- snaive_QFH_cormat[,col.order]
-p2 <- ggcorrplot(snaive_QFH_cormat, hc.order = FALSE, type = "upper",
+p2 <- ggcorrplot(rwd_QFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
                        low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
-  guides(fill=FALSE, color=FALSE)+ggtitle("snaive")
+  guides(fill=FALSE, color=FALSE)+ggtitle("rwd")
 ## random walk
 rw_QFH <- friedmanHstat_quarterly[friedmanHstat_quarterly$class=="rw",]
-
+rw_QFH_cormat <- friedmanHstat_matrix(rw_QFH, 30, rev(col.order))
+p3 <- ggcorrplot(rw_QFH_cormat, hc.order = FALSE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("rw")
 
 ## ETSNTNS
 etsntns_QFH <- friedmanHstat_quarterly[friedmanHstat_quarterly$class=="ETS.notrendnoseasonal",]
+etsntns_QFH_cormat <- friedmanHstat_matrix(etsntns_QFH, 30, rev(col.order))
+p4 <- ggcorrplot(etsntns_QFH_cormat, hc.order = FALSE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("ETS-notrendnoseasonal")
+
 
 ## ETS-damped trend
 etsdt_QFH <- friedmanHstat_quarterly[friedmanHstat_quarterly$class=="ETS.dampedtrend",]
+etsdt_QFH_cormat <- friedmanHstat_matrix(etsdt_QFH, 30, rev(col.order))
+p5 <- ggcorrplot(etsdt_QFH_cormat, hc.order = FALSE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("ETS-dampedtrend")
+
 
 ## ETS-trend
 etst_QFH <- friedmanHstat_quarterly[friedmanHstat_quarterly$class=="ETS.trend",]
-
+etst_QFH_cormat <- friedmanHstat_matrix(etst_QFH, 30, rev(col.order))
+p6 <- ggcorrplot(etsdt_QFH_cormat, hc.order = FALSE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("ETS-trend")
 
 ## ETS-dampedtrendseasonal
 etsdts_QFH <- friedmanHstat_quarterly[friedmanHstat_quarterly$class=="ETS.dampedtrendseasonal",]
-
+etsdts_QFH_cormat <- friedmanHstat_matrix(etsdts_QFH , 30, rev(col.order))
+p7 <- ggcorrplot(etsdts_QFH_cormat, hc.order = FALSE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("ETS-dampedtrendseasonal")
 
 ## ETS-trendseasonal
 etsts_QFH <- friedmanHstat_quarterly[friedmanHstat_quarterly$class=="ETS.trendseasonal",]
+etsts_QFH_cormat <- friedmanHstat_matrix(etsts_QFH , 30, rev(col.order))
+p8 <- ggcorrplot(etsts_QFH_cormat, hc.order = FALSE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("ETS-trendseasonal")
 
 ## ETS-seasonal
 etss_QFH <- friedmanHstat_quarterly[friedmanHstat_quarterly$class=="ETS.seasonal",]
-
+etss_QFH_cormat <- friedmanHstat_matrix(etss_QFH , 30, rev(col.order))
+p9 <- ggcorrplot(etss_QFH_cormat, hc.order = FALSE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("ETS-seasonal")
 
 ## SARIMA
 sarima_QFH <- friedmanHstat_quarterly[friedmanHstat_quarterly$class=="SARIMA",]
+sarima_QFH_cormat <- friedmanHstat_matrix(sarima_QFH , 30, rev(col.order))
+p10 <- ggcorrplot(sarima_QFH_cormat, hc.order = FALSE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("SARIMA")
 
 
 ## ARIMA
 arima_QFH <- friedmanHstat_quarterly[friedmanHstat_quarterly$class=="ARIMA",]
+arima_QFH_cormat <- friedmanHstat_matrix(arima_QFH , 30, rev(col.order))
+p11 <- ggcorrplot(arima_QFH_cormat, hc.order = FALSE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("ARIMA")
 
 ## ARMA
 arma_QFH <- friedmanHstat_quarterly[friedmanHstat_quarterly$class=="ARMA.AR.MA",]
+arma_QFH_cormat <- friedmanHstat_matrix(arma_QFH , 30, rev(col.order))
+p12 <- ggcorrplot(arma_QFH_cormat, hc.order = FALSE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("ARMA/AR/MA")
 
 p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+p11+p12+plot_layout(ncol = 3, nrow = 4)
 
 ## ----friedmanQ2
 ## stlar
 stlar_QFH <- friedmanHstat_quarterly[friedmanHstat_quarterly$class=="stlar",]
+stlar_QFH_cormat <- friedmanHstat_matrix(stlar_QFH , 30, rev(col.order))
+p13 <- ggcorrplot(stlar_QFH_cormat, hc.order = FALSE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("stlar")
 
 ## tbats
 tbats_QFH <- friedmanHstat_quarterly[friedmanHstat_quarterly$class=="tbats",]
+tbats_QFH_cormat <- friedmanHstat_matrix(tbats_QFH , 30, rev(col.order))
+p14 <- ggcorrplot(tbats_QFH_cormat, hc.order = FALSE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("tbats")
 
 ## wn
 wn_QFH <- friedmanHstat_quarterly[friedmanHstat_quarterly$class=="wn",]
+wn_QFH_cormat <- friedmanHstat_matrix(wn_QFH , 30, rev(col.order))
+p15 <- ggcorrplot(wn_QFH_cormat, hc.order = FALSE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("wn")
 
 ## theta
 theta_QFH <- friedmanHstat_quarterly[friedmanHstat_quarterly$class=="theta",]
+theta_QFH_cormat <- friedmanHstat_matrix(theta_QFH , 30, rev(col.order))
+p16 <- ggcorrplot(theta_QFH_cormat, hc.order = FALSE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("theta")
 
 
 ## nn
 nn_QFH <- friedmanHstat_quarterly[friedmanHstat_quarterly$class=="nn",]
+nn_QFH_cormat <- friedmanHstat_matrix(nn_QFH , 30, rev(col.order))
+p17 <- ggcorrplot(nn_QFH_cormat, hc.order = FALSE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("nn")
 
 
 p13+p14+p15+p16+p17+plot_layout(ncol = 3, nrow = 2)
