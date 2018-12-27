@@ -2415,444 +2415,212 @@ p21 <- ggplot(data=stabilitygridM, aes_string(x=stabilitygridM$stability, y="nn"
 
 
 ## ---- friedmanM
-reorder_cormat <- function(cormat){
-  # Use correlation between variables as distance
-  dd <- as.dist((1-cormat)/2)
-  hc <- hclust(dd)
-  cormat <-cormat[hc$order, hc$order]
-}
 load("data/friedmanHstat_monthly.rda")
+col.order <- c("seasonality", "linearity","lumpiness", "trend",
+               "spikiness", "stability", "y_pacf5", "hwgamma", "hwalpha",
+               "sediff_acf5", "sediff_seacf1", "seas_pacf",
+               "curvature", "beta", "N", "nonlinearity", "e_acf1", "hurst", "entropy",
+               "hwbeta", "sediff_acf1", "y_acf5", "diff1y_pacf5", "alpha",
+               "y_acf1", "diff1y_acf5", "diff1y_acf1", "diff2y_acf5",
+               "diff2y_acf1", "diff2y_pacf5"
+               )
 
 ## snaive
 snaive_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="snaive",]
-snaive_MFH_cor <- snaive_MFH %>% select(c("feature1", "feature2", "interaction"))
-names(snaive_MFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(snaive_MFH_cor$Var1)),
-                  Var2=names(table(snaive_MFH_cor$Var1)),
-                  value=rep(1.00, 30))
-
-cormat <- dplyr::bind_rows(snaive_MFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p1 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+snaive_MFH_cormat <- friedmanHstat_matrix(snaive_MFH, 30, rev(col.order))
+p1 <- ggcorrplot(snaive_MFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("snaive")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("snaive")
+
 ## random walk with drift
 rwd_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="rwd",]
-rwd_MFH_cor <- rwd_MFH %>% select(c("feature1", "feature2", "interaction"))
-names(rwd_MFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(rwd_MFH_cor$Var1)),
-                  Var2=names(table(rwd_MFH_cor$Var1)),
-                  value=rep(1.00, 30))
-
-cormat <- dplyr::bind_rows(rwd_MFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p2 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
+rwd_MFH_cormat <- friedmanHstat_matrix(rwd_MFH, 30, rev(col.order))
+p2 <- ggcorrplot(rwd_MFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("rwd")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("rwd")
 ## random walk
 rw_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="rw",]
-rw_MFH_cor <- rw_MFH %>% select(c("feature1", "feature2", "interaction"))
-names(rw_MFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(rw_MFH_cor$Var1)),
-                  Var2=names(table(rw_MFH_cor$Var1)),
-                  value=rep(1.00, 30))
-
-cormat <- dplyr::bind_rows(rw_MFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p3 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+rw_MFH_cormat <- friedmanHstat_matrix(rw_MFH, 30, rev(col.order))
+p3 <- ggcorrplot(rw_MFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
-  ggtitle("rw")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("rw")
 
 ## ETSNTNS
 etsntns_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="ETS.notrendnoseasonal",]
-etsntns_MFH_cor <- etsntns_MFH %>% select(c("feature1", "feature2", "interaction"))
-names(etsntns_MFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(etsntns_MFH_cor$Var1)),
-                  Var2=names(table(etsntns_MFH_cor$Var1)),
-                  value=rep(1.00, 30))
-
-cormatetsntns <- dplyr::bind_rows(etsntns_MFH_cor, df1)
-cormatetsntns <- dcast(cormatetsntns, Var1 ~ Var2, value.var="value")
-colnames(cormatetsntns)[1] <- ""
-cormatetsntns <- data.matrix(cormatetsntns)
-cormatetsntns <- cormatetsntns[,-1]
-rownames(cormatetsntns) <- colnames(cormatetsntns)
-cormat <- round(cormatetsntns,2)
-cormatetsntns1 <- reorder_cormat(cormatetsntns)
-p4 <- ggcorrplot(cormatetsntns, hc.order = TRUE, type = "upper",
+etsntns_MFH_cormat <- friedmanHstat_matrix(etsntns_QFH, 30, rev(col.order))
+p4 <- ggcorrplot(etsntns_MFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
-  ggtitle("ETS-notrendnoseasonal")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("ETS-notrendnoseasonal")
+
 
 ## ETS-damped trend
 etsdt_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="ETS.dampedtrend",]
-etsdt_MFH_cor <- etsdt_MFH %>% select(c("feature1", "feature2", "interaction"))
-names(etsdt_MFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(etsdt_MFH_cor$Var1)),
-                  Var2=names(table(etsdt_MFH_cor$Var1)),
-                  value=rep(1.00, 30))
-
-cormat <- dplyr::bind_rows(etsdt_MFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p5 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+etsdt_MFH_cormat <- friedmanHstat_matrix(etsdt_MFH, 30, rev(col.order))
+p5 <- ggcorrplot(etsdt_MFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
-  ggtitle("ETS-dampedtrend")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("ETS-dampedtrend")
+
 
 ## ETS-trend
 etst_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="ETS.trend",]
-etst_MFH_cor <- etst_MFH %>% select(c("feature1", "feature2", "interaction"))
-names(etst_MFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(etst_MFH_cor$Var1)),
-                  Var2=names(table(etst_MFH_cor$Var1)),
-                  value=rep(1.00, 30))
-
-cormat <- dplyr::bind_rows(etst_MFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p6 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+etst_MFH_cormat <- friedmanHstat_matrix(etst_MFH, 30, rev(col.order))
+p6 <- ggcorrplot(etsdt_MFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
-  ggtitle("ETS-trend")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("ETS-trend")
 
 ## ETS-dampedtrendseasonal
 etsdts_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="ETS.dampedtrendseasonal",]
-etsdts_MFH_cor <- etsdts_MFH %>% select(c("feature1", "feature2", "interaction"))
-names(etsdts_MFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(etsdts_MFH_cor$Var1)),
-                  Var2=names(table(etsdts_MFH_cor$Var1)),
-                  value=rep(1.00, 30))
-
-cormat <- dplyr::bind_rows(etsdts_MFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p7 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+etsdts_MFH_cormat <- friedmanHstat_matrix(etsdts_MFH , 30, rev(col.order))
+p7 <- ggcorrplot(etsdts_MFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
-  ggtitle("ETS-dampedtrendseasonal")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("ETS-dampedtrendseasonal")
 
 ## ETS-trendseasonal
 etsts_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="ETS.trendseasonal",]
-etsts_MFH_cor <- etsts_MFH %>% select(c("feature1", "feature2", "interaction"))
-names(etsts_MFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(etsts_MFH_cor$Var1)),
-                  Var2=names(table(etsts_MFH_cor$Var1)),
-                  value=rep(1.00, 30))
-
-cormat <- dplyr::bind_rows(etsts_MFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p8 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+etsts_MFH_cormat <- friedmanHstat_matrix(etsts_MFH , 30, rev(col.order))
+p8 <- ggcorrplot(etsts_MFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
-  ggtitle("ETS-dampedtrendseasonal")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("ETS-trendseasonal")
 
 ## ETS-seasonal
 etss_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="ETS.seasonal",]
-etss_MFH_cor <- etss_MFH %>% select(c("feature1", "feature2", "interaction"))
-names(etss_MFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(etss_MFH_cor$Var1)),
-                  Var2=names(table(etss_MFH_cor$Var1)),
-                  value=rep(1.00, 30))
-
-cormat <- dplyr::bind_rows(etss_MFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p9 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+etss_MFH_cormat <- friedmanHstat_matrix(etss_MFH , 30, rev(col.order))
+p9 <- ggcorrplot(etss_MFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
-  ggtitle("ETS-dampedtrendseasonal")
-
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("ETS-seasonal")
 
 ## SARIMA
 sarima_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="SARIMA",]
-sarima_MFH_cor <- sarima_MFH %>% select(c("feature1", "feature2", "interaction"))
-names(sarima_MFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(sarima_MFH_cor$Var1)),
-                  Var2=names(table(sarima_MFH_cor$Var1)),
-                  value=rep(1.00, 30))
-
-cormat <- dplyr::bind_rows(sarima_MFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p10 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+sarima_MFH_cormat <- friedmanHstat_matrix(sarima_MFH , 30, rev(col.order))
+p10 <- ggcorrplot(sarima_MFH_cormat, hc.order = FALSE, type = "upper",
                   outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
-  ggtitle("SARIMA")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("SARIMA")
 
 
 ## ARIMA
 arima_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="ARIMA",]
-arima_MFH_cor <- arima_MFH %>% select(c("feature1", "feature2", "interaction"))
-names(arima_MFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(arima_MFH_cor$Var1)),
-                  Var2=names(table(arima_MFH_cor$Var1)),
-                  value=rep(1.00, 30))
-
-cormat <- dplyr::bind_rows(arima_MFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p11 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+arima_MFH_cormat <- friedmanHstat_matrix(arima_MFH , 30, rev(col.order))
+p11 <- ggcorrplot(arima_MFH_cormat, hc.order = FALSE, type = "upper",
                   outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
-  ggtitle("ARIMA")
-
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("ARIMA")
 
 ## ARMA
 arma_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="ARMA.AR.MA",]
-arma_MFH_cor <- arma_MFH %>% select(c("feature1", "feature2", "interaction"))
-names(arma_MFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(arma_MFH_cor$Var1)),
-                  Var2=names(table(arma_MFH_cor$Var1)),
-                  value=rep(1.00, 30))
-
-cormat <- dplyr::bind_rows(arma_MFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p12 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+arma_MFH_cormat <- friedmanHstat_matrix(arma_MFH , 30, rev(col.order))
+p12 <- ggcorrplot(arma_MFH_cormat, hc.order = FALSE, type = "upper",
                   outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
-  ggtitle("ARMA/AR/MA")
-
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("ARMA/AR/MA")
 
 p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+p11+p12+plot_layout(ncol = 3, nrow = 4)
 
 ## ----friedmanM2
 ## stlar
 stlar_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="stlar",]
-stlar_MFH_cor <- stlar_MFH %>% select(c("feature1", "feature2", "interaction"))
-names(stlar_MFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(stlar_MFH_cor$Var1)),
-                  Var2=names(table(stlar_MFH_cor$Var1)),
-                  value=rep(1.00, 30))
-
-cormat <- dplyr::bind_rows(stlar_MFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p13 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+stlar_MFH_cormat <- friedmanHstat_matrix(stlar_MFH , 30, rev(col.order))
+p13 <- ggcorrplot(stlar_MFH_cormat, hc.order = FALSE, type = "upper",
                   outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
-  ggtitle("stlar")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("stlar")
 
 ## tbats
 tbats_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="tbats",]
-tbats_MFH_cor <- tbats_QFH %>% select(c("feature1", "feature2", "interaction"))
-names(tbats_MFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(tbats_MFH_cor$Var1)),
-                  Var2=names(table(tbats_MFH_cor$Var1)),
-                  value=rep(1.00, 30))
-
-cormat <- dplyr::bind_rows(tbats_MFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p14 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+tbats_MFH_cormat <- friedmanHstat_matrix(tbats_MFH , 30, rev(col.order))
+p14 <- ggcorrplot(tbats_MFH_cormat, hc.order = FALSE, type = "upper",
                   outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
-  ggtitle("tbats")
-
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("tbats")
 
 ## wn
 wn_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="wn",]
-wn_MFH_cor <- wn_MFH %>% select(c("feature1", "feature2", "interaction"))
-names(wn_MFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(wn_MFH_cor$Var1)),
-                  Var2=names(table(wn_MFH_cor$Var1)),
-                  value=rep(1.00, 30))
-
-cormat <- dplyr::bind_rows(wn_MFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p15 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+wn_MFH_cormat <- friedmanHstat_matrix(wn_MFH , 30, rev(col.order))
+p15 <- ggcorrplot(wn_QFH_cormat, hc.order = FALSE, type = "upper",
                   outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
-  ggtitle("wn")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("wn")
 
 ## theta
 theta_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="theta",]
-theta_MFH_cor <- theta_MFH %>% select(c("feature1", "feature2", "interaction"))
-names(theta_MFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(theta_MFH_cor$Var1)),
-                  Var2=names(table(theta_MFH_cor$Var1)),
-                  value=rep(1.00, 30))
-
-cormat <- dplyr::bind_rows(theta_MFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p16 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+theta_MFH_cormat <- friedmanHstat_matrix(theta_MFH , 30, rev(col.order))
+p16 <- ggcorrplot(theta_MFH_cormat, hc.order = FALSE, type = "upper",
                   outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
-  ggtitle("theta")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("theta")
+
 
 ## nn
 nn_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="nn",]
-nn_MFH_cor <- nn_MFH %>% select(c("feature1", "feature2", "interaction"))
-names(nn_MFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(nn_MFH_cor$Var1)),
-                  Var2=names(table(nn_MFH_cor$Var1)),
-                  value=rep(1.00, 30))
-
-cormat <- dplyr::bind_rows(nn_MFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p17 <- ggcorrplot(cormat, hc.order = TRUE, type = "upper",
+nn_MFH_cormat <- friedmanHstat_matrix(nn_MFH , 30, rev(col.order))
+p17 <- ggcorrplot(nn_MFH_cormat, hc.order = FALSE, type = "upper",
                   outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+
-  ggtitle("nn")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("nn")
+
 
 p13+p14+p15+p16+p17+plot_layout(ncol = 3, nrow = 2)
+
 
 ## ---- twowaymonthly1
 load("data/monthly/seasinality.trend.m.rda")
