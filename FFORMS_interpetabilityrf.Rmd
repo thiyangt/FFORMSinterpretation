@@ -70,7 +70,7 @@ library(lime)
 library(seer)
 ```
 
-```{r load2}
+```{r functionfriedman}
 
 ```
 
@@ -375,7 +375,7 @@ The relative strength of two-way interaction between features were determined us
 
 \newpage
 
-```{r friedmany, fig.height=30, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic", fig.pos="h", message=FALSE, warning=FALSE}
+```{r friedmany, fig.height=30, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic", fig.pos="h", message=FALSE, warning=FALSE, cache=FALSE}
 ```
 
 \newpage
@@ -440,12 +440,12 @@ Similar to the results of yearly time series trend and linearity also listed amo
 
 \newpage
 
-```{r friedmanQ, fig.height=30, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic for quarterly data.", fig.pos="h", message=FALSE, warning=FALSE}
+```{r friedmanQ, fig.height=30, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic for quarterly data.", fig.pos="h", message=FALSE, warning=FALSE, cache=FALSE}
 ```
 
 \newpage
 
-```{r friedmanQ2, fig.height=15, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic for quarterly data(cont).", fig.pos="h", message=FALSE, warning=FALSE}
+```{r friedmanQ2, fig.height=15, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic for quarterly data(cont).", fig.pos="h", message=FALSE, warning=FALSE, cache=FALSE}
 ```
 
 \newpage
