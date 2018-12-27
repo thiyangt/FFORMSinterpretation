@@ -18,7 +18,7 @@ library(RColorBrewer)
 library(iml) #machine learning interpretability package
 library(ggcorrplot) # to draw  ggcorrplot
 
-## ---- load2
+## ---- functionfriedman
 source("src/friedmanHstatmatrix.R")
 
 #################################################################
@@ -376,10 +376,10 @@ col.order <- c("trend", "ur_pp","spikiness", "beta",
                "alpha", "diff1y_pacf5", "hurst", "entropy", "e_acf1", "y_acf5",
                "diff2y_pacf5",
                "diff2y_acf1", "N", "diff2y_acf5", "lumpiness", "stability")
-col.order <- rev(col.order)
+
 ## random walk with drift
 rwd_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="rwd",]
-rwd_YFH_cormat <- friedmanHstat_matrix(rwd_YFH, 25)
+rwd_YFH_cormat <- friedmanHstat_matrix(rwd_YFH, 25, rev(col.order))
 p1 <- ggcorrplot(rwd_YFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
@@ -389,7 +389,7 @@ p1 <- ggcorrplot(rwd_YFH_cormat, hc.order = FALSE, type = "upper",
   guides(fill=FALSE, color=FALSE)+ggtitle("rwd")
 ## random walk
 rw_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="rw",]
-rw_YFH_cormat <- friedmanHstat_matrix(rw_YFH, 25)
+rw_YFH_cormat <- friedmanHstat_matrix(rw_YFH, 25, rev(col.order))
 p2 <- ggcorrplot(rw_YFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
@@ -399,7 +399,7 @@ p2 <- ggcorrplot(rw_YFH_cormat, hc.order = FALSE, type = "upper",
   guides(fill=FALSE, color=FALSE)+ggtitle("rw")
 ## ETS-trend
 etst_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="ETS.trend",]
-etst_YFH_cormat <- friedmanHstat_matrix(etst_YFH, 25)
+etst_YFH_cormat <- friedmanHstat_matrix(etst_YFH, 25, rev(col.order))
 p3 <- ggcorrplot(etst_YFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
@@ -409,7 +409,7 @@ p3 <- ggcorrplot(etst_YFH_cormat, hc.order = FALSE, type = "upper",
   guides(fill=FALSE, color=FALSE)+ggtitle("ETS-trend")
 ## ETS-dampedtrend
 etsdt_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="ETS.dampedtrend",]
-etsdt_YFH_cormat <- friedmanHstat_matrix(etsdt_YFH, 25)
+etsdt_YFH_cormat <- friedmanHstat_matrix(etsdt_YFH, 25, rev(col.order))
 p4 <- ggcorrplot(etsdt_YFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
@@ -420,7 +420,7 @@ p4 <- ggcorrplot(etsdt_YFH_cormat, hc.order = FALSE, type = "upper",
 
 ## ETS-notrendnoseasonal
 etsntns_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="ETS.notrendnoseasonal",]
-etsntns_YFH_cormat <- friedmanHstat_matrix(etsntns_YFH, 25)
+etsntns_YFH_cormat <- friedmanHstat_matrix(etsntns_YFH, 25, rev(col.order))
 p5 <- ggcorrplot(etsntns_YFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
@@ -431,7 +431,7 @@ p5 <- ggcorrplot(etsntns_YFH_cormat, hc.order = FALSE, type = "upper",
 
 ## ARIMA
 arima_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="ARIMA",]
-arima_YFH_cormat <- friedmanHstat_matrix(arima_YFH, 25)
+arima_YFH_cormat <- friedmanHstat_matrix(arima_YFH, 25, rev(col.order))
 p6 <- ggcorrplot(arima_YFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
@@ -442,7 +442,7 @@ p6 <- ggcorrplot(arima_YFH_cormat, hc.order = FALSE, type = "upper",
 
 ##  ARMA.AR.MA 
 arma_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="ARMA.AR.MA",]
-arma_YFH_cormat <- friedmanHstat_matrix(arma_YFH, 25)
+arma_YFH_cormat <- friedmanHstat_matrix(arma_YFH, 25, rev(col.order))
 p7 <- ggcorrplot(arma_YFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
@@ -453,7 +453,7 @@ p7 <- ggcorrplot(arma_YFH_cormat, hc.order = FALSE, type = "upper",
 
 ##  wn 
 wn_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="wn",]
-wn_YFH_cormat <- friedmanHstat_matrix(wn_YFH, 25)
+wn_YFH_cormat <- friedmanHstat_matrix(wn_YFH, 25, rev(col.order))
 p8 <- ggcorrplot(wn_YFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
@@ -464,7 +464,7 @@ p8 <- ggcorrplot(wn_YFH_cormat, hc.order = FALSE, type = "upper",
 
 ## theta
 theta_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="theta",]
-theta_YFH_cormat <- friedmanHstat_matrix(theta_YFH, 25)
+theta_YFH_cormat <- friedmanHstat_matrix(theta_YFH, 25, rev(col.order))
 p9 <- ggcorrplot(theta_YFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
@@ -475,7 +475,7 @@ p9 <- ggcorrplot(theta_YFH_cormat, hc.order = FALSE, type = "upper",
 
 ## nn
 nn_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="nn",]
-nn_YFH_cormat <- friedmanHstat_matrix(nn_YFH, 25)
+nn_YFH_cormat <- friedmanHstat_matrix(nn_YFH, 25, rev(col.order))
 p10 <- ggcorrplot(nn_YFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
@@ -1368,8 +1368,8 @@ col.order <- c("seasonality", "lumpiness","diff1y_pacf5", "trend",
 
 
 ## snaive
-snaive_QFH <- friedmanHstat_quarterly[friedmanHstat_quarterly$class=="nn",]
-snaive_QFH_cormat <- friedmanHstat_matrix(snaive_QFH, 30, col.order)
+snaive_QFH <- friedmanHstat_quarterly[friedmanHstat_quarterly$class=="snaive",]
+snaive_QFH_cormat <- friedmanHstat_matrix(snaive_QFH, 30, rev(col.order))
 #snaive_QFH_cormat  <- snaive_QFH_cormat[,col.order]
 p1 <- ggcorrplot(snaive_QFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
@@ -1381,7 +1381,15 @@ p1 <- ggcorrplot(snaive_QFH_cormat, hc.order = FALSE, type = "upper",
 
 ## random walk with drift
 rwd_QFH <- friedmanHstat_quarterly[friedmanHstat_quarterly$class=="rwd",]
-
+snaive_QFH_cormat <- friedmanHstat_matrix(snaive_QFH, 30, rev(col.order))
+#snaive_QFH_cormat  <- snaive_QFH_cormat[,col.order]
+p2 <- ggcorrplot(snaive_QFH_cormat, hc.order = FALSE, type = "upper",
+                 outline.col = "white")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("snaive")
 ## random walk
 rw_QFH <- friedmanHstat_quarterly[friedmanHstat_quarterly$class=="rw",]
 
