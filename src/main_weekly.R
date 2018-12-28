@@ -378,296 +378,147 @@ p33 <- ggplot(data = diff2y_acf1W_includeout, aes_string(x = diff2y_acf1W_includ
 (p7|p8|p9)/(p10|p11|p12)/(p13|p14|p15)/(p16|p17|p18)/(p19|p20|p21)/(p22|p23|p24)/(p25|p26|p27)/(p28|p29|p30)/(p31|p32|p33)
 
 ## ---- friedmanHW
-
 load("data/friedmanHstat_weekly.rda")
+col.order <- c("spikiness", "linearity", "trend", "seasonality", "stability",
+               "lumpiness", "curvature", "sediff_acf5", "entropy", "beta","y_pacf5",
+               "seas_pacf", "N", "diff2y_acf5", "nonlinearity", "sediff_seacf1",
+               "y_acf5", "diff1y_pacf5", "y_acf1", "diff1y_acf5", "diff2y_pacf5", 
+               "e_acf1", "sediff_acf1", "diff2y_acf1", "hurst", "alpha", "diff1y_acf1")
+  
 ## snaive
 snaive_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="snaive",]
-snaive_WFH_cor <- snaive_WFH %>% select(c("feature1", "feature2", "interaction"))
-names(snaive_WFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(snaive_WFH_cor$Var1)),
-                  Var2=names(table(snaive_WFH_cor$Var1)),
-                  value=rep(1.00, 27))
-
-cormat <- dplyr::bind_rows(snaive_WFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p1 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
+snaive_WFH_cormat <- friedmanHstat_matrix(snaive_WFH, 27, rev(col.order))
+p1 <- ggcorrplot(snaive_WFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("snaive")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("snaive")
 
 ## rwd
 rwd_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="rwd",]
-rwd_WFH_cor <- rwd_WFH %>% select(c("feature1", "feature2", "interaction"))
-names(rwd_WFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(rwd_WFH_cor$Var1)),
-                  Var2=names(table(rwd_WFH_cor$Var1)),
-                  value=rep(1.00, 27))
-
-cormat <- dplyr::bind_rows(rwd_WFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p2 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
+rwd_WFH_cormat <- friedmanHstat_matrix(rwd_WFH, 27, rev(col.order))
+p2 <- ggcorrplot(rwd_WFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("rwd")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("rwd")
 
 ## rw
 rw_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="rw",]
-rw_WFH_cor <- rw_WFH %>% select(c("feature1", "feature2", "interaction"))
-names(rw_WFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(rw_WFH_cor$Var1)),
-                  Var2=names(table(rw_WFH_cor$Var1)),
-                  value=rep(1.00, 27))
-
-cormat <- dplyr::bind_rows(rw_WFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p3 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
+rw_WFH_cormat <- friedmanHstat_matrix(rw_WFH, 27, rev(col.order))
+p3 <- ggcorrplot(rw_WFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("rw")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("rw")
 
 ## ARIMA
 arima_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="ARIMA",]
-arima_WFH_cor <- arima_WFH %>% select(c("feature1", "feature2", "interaction"))
-names(arima_WFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(arima_WFH_cor$Var1)),
-                  Var2=names(table(arima_WFH_cor$Var1)),
-                  value=rep(1.00, 27))
-
-cormat <- dplyr::bind_rows(arima_WFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p4 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
+arima_WFH_cormat <- friedmanHstat_matrix(arima_WFH, 27, rev(col.order))
+p4 <- ggcorrplot(arima_WFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("ARIMA")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("ARIMA")
 
 ## SARIMA
 sarima_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="SARIMA",]
-sarima_WFH_cor <- sarima_WFH %>% select(c("feature1", "feature2", "interaction"))
-names(sarima_WFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(sarima_WFH_cor$Var1)),
-                  Var2=names(table(sarima_WFH_cor$Var1)),
-                  value=rep(1.00, 27))
-
-cormat <- dplyr::bind_rows(sarima_WFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p5 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
+sarima_WFH_cormat <- friedmanHstat_matrix(sarima_WFH, 27, rev(col.order))
+p5 <- ggcorrplot(sarima_WFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("rw")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("SARIMA")
 
 ## stlar
 stlar_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="stlar",]
-stlar_WFH_cor <- rwd_WFH %>% select(c("feature1", "feature2", "interaction"))
-names(stlar_WFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(stlar_WFH_cor$Var1)),
-                  Var2=names(table(stlar_WFH_cor$Var1)),
-                  value=rep(1.00, 27))
-
-cormat <- dplyr::bind_rows(stlar_WFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p6 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
+stlar_WFH_cormat <- friedmanHstat_matrix(stlar_WFH, 27, rev(col.order))
+p6 <- ggcorrplot(stlar_WFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("stlar")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("stlar")
 
 ## mstlets
 mstlets_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="mstlets",]
-mstlets_WFH_cor <- mstlets_WFH %>% select(c("feature1", "feature2", "interaction"))
-names(mstlets_WFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(mstlets_WFH_cor$Var1)),
-                  Var2=names(table(mstlets_WFH_cor$Var1)),
-                  value=rep(1.00, 27))
-
-cormat <- dplyr::bind_rows(mstlets_WFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p7 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
+mstlets_WFH_cormat <- friedmanHstat_matrix(mstlets_WFH, 27, rev(col.order))
+p7 <- ggcorrplot(mstlets_WFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("mstlets")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("mstlets")
 
 
 ## tbats
 tbats_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="tbats",]
-tbats_WFH_cor <- tbats_WFH %>% select(c("feature1", "feature2", "interaction"))
-names(tbats_WFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(tbats_WFH_cor$Var1)),
-                  Var2=names(table(tbats_WFH_cor$Var1)),
-                  value=rep(1.00, 27))
-
-cormat <- dplyr::bind_rows(tbats_WFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p8 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
+tbats_WFH_cormat <- friedmanHstat_matrix(tbats_WFH, 27, rev(col.order))
+p8 <- ggcorrplot(tbats_WFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("tbats")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("tbats")
 
 
 ## ARMA
 arma_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="ARMA.AR.MA",]
-arma_WFH_cor <- arma_WFH %>% select(c("feature1", "feature2", "interaction"))
-names(arma_WFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(arma_WFH_cor$Var1)),
-                  Var2=names(table(arma_WFH_cor$Var1)),
-                  value=rep(1.00, 27))
-
-cormat <- dplyr::bind_rows(arma_WFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p9 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
+arma_WFH_cormat <- friedmanHstat_matrix(arma_WFH, 27, rev(col.order))
+p9 <- ggcorrplot(arma_WFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("ARMA.AR.MA")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("ARMA/AR/MA")
 
 ## wn
 wn_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="wn",]
-wn_WFH_cor <- wn_WFH %>% select(c("feature1", "feature2", "interaction"))
-names(wn_WFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(wn_WFH_cor$Var1)),
-                  Var2=names(table(wn_WFH_cor$Var1)),
-                  value=rep(1.00, 27))
-
-cormat <- dplyr::bind_rows(wn_WFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p10 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
+wn_WFH_cormat <- friedmanHstat_matrix(wn_WFH, 27, rev(col.order))
+p10 <- ggcorrplot(wn_WFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("wn")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("wn")
 
 ## theta
 theta_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="theta",]
-theta_WFH_cor <- theta_WFH %>% select(c("feature1", "feature2", "interaction"))
-names(theta_WFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(theta_WFH_cor$Var1)),
-                  Var2=names(table(theta_WFH_cor$Var1)),
-                  value=rep(1.00, 27))
-
-cormat <- dplyr::bind_rows(theta_WFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p11 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
-                 outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+theta_WFH_cormat <- friedmanHstat_matrix(theta_WFH, 27, rev(col.order))
+p11 <- ggcorrplot(theta_WFH_cormat, hc.order = FALSE, type = "upper",
+                  outline.col = "white")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("theta")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("theta")
+
 ## nn
 nn_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="nn",]
-nn_WFH_cor <- nn_WFH %>% select(c("feature1", "feature2", "interaction"))
-names(nn_WFH_cor) <- c("Var1", "Var2", "value")
-df1 <- data.frame(Var1=names(table(nn_WFH_cor$Var1)),
-                  Var2=names(table(nn_WFH_cor$Var1)),
-                  value=rep(1.00, 27))
-
-cormat <- dplyr::bind_rows(nn_WFH_cor, df1)
-cormat <- dcast(cormat, Var1 ~ Var2, value.var="value")
-colnames(cormat)[1] <- ""
-cormat <- data.matrix(cormat)
-cormat <- cormat[,-1]
-rownames(cormat) <- colnames(cormat)
-cormat <- round(cormat,2)
-cormat1 <- reorder_cormat(cormat)
-p12 <- ggcorrplot(cormat1, hc.order = TRUE, type = "upper",
-                 outline.col = "white")+
-  scale_fill_gradient2(limits=c(0.5, 1), breaks=seq(0.5,1,100), 
-                       low = "#fee8c8", high = "#e34a33",  
-                       name="", na.value = "transparent")+
+nn_WFH_cormat <- friedmanHstat_matrix(nn_WFH, 27, rev(col.order))
+p12 <- ggcorrplot(nn_WFH_cormat, hc.order = FALSE, type = "upper",
+                  outline.col = "white")+
+  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+guides(fill=FALSE, color=FALSE)+ggtitle("nn")
+                                   size = 12, hjust = 1))+
+  guides(fill=FALSE, color=FALSE)+ggtitle("nn")
+
 
 p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+p11+p12+plot_layout(ncol = 3, nrow = 4)
 
