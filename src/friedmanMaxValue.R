@@ -139,6 +139,10 @@ quarterly_mean <- (snaive_QFH_cormat + rwd_QFH_cormat + rw_QFH_cormat +
                      stlar_QFH_cormat + tbats_QFH_cormat + wn_QFH_cormat + theta_QFH_cormat +
                      nn_QFH_cormat)/17
 friedmanMaxValue(quarterly_mean,3)
+#        row       col
+#1 diff1y_acf5         N
+#2 diff1y_acf5      beta
+#3 diff1y_acf5 stability
 
 # monthly----
 load("data/friedmanHstat_monthly.rda")
@@ -210,6 +214,11 @@ monthly_mean <- (snaive_MFH_cormat + rwd_MFH_cormat + rw_MFH_cormat +
   stlar_MFH_cormat + tbats_MFH_cormat + wn_MFH_cormat +
   theta_MFH_cormat + nn_MFH_cormat)/17 
 friedmanMaxValue(monthly_mean,3)
+#    row       col
+#1 spikiness     hurst
+#2 spikiness   hwalpha
+#3 lumpiness spikiness
+
 
 # weekly----
 load("data/friedmanHstat_weekly.rda")
@@ -261,6 +270,12 @@ weekly_mean <- (snaive_WFH_cormat + rwd_WFH_cormat + rw_WFH_cormat +
   mstlets_WFH_cormat + tbats_WFH_cormat + arma_WFH_cormat +
   wn_WFH_cormat + theta_WFH_cormat + nn_WFH_cormat)/12
 friedmanMaxValue(weekly_mean,3)
+#      row          col
+#1 lumpiness nonlinearity
+#2 lumpiness         beta
+#3     trend      entropy
+#4 stability    lumpiness
+#5     trend    lumpiness
 
 # daily----
 load("data/friedmanHstat_daily.rda")
@@ -305,6 +320,11 @@ daily_mean <- (snaive_DFH_cormat + rw_DFH_cormat + rwd_DFH_cormat +
   mstlarima_DFH_cormat + mstlets_DFH_cormat + tbats_DFH_cormat +
   stlar_DFH_cormat + theta_DFH_cormat + nn_DFH_cormat + wn_DFH_cormat)/10
 friedmanMaxValue(daily_mean,4)
+#              row         col
+#1        sediff_acf5 sediff_acf1
+#2          curvature   seas_pacf
+#3 seasonal_strength1      e_acf1
+#4 seasonal_strength1   curvature
 
 # hourly----
 load("data/friedmanHstat_hourly.rda")
@@ -349,7 +369,11 @@ hourly_mean <- (snaive_HFH_cormat+rw_HFH_cormat+rwd_HFH_cormat+mstlarima_HFH_cor
   mstlets_HFH_cormat + tbats_HFH_cormat + stlar_HFH_cormat + theta_HFH_cormat +
   nn_HFH_cormat+wn_HFH_cormat)/10
 friedmanMaxValue(hourly_mean,3)
-
+#      row           col
+#1 linearity  diff2y_pacf5
+#2 linearity  nonlinearity
+#3 linearity sediff_seacf1
+#4   entropy         trend
 
 
 
