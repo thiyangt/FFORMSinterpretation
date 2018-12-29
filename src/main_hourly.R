@@ -242,7 +242,7 @@ p19 <- ggplot(data=seasonality1gridH, aes_string(x=seasonality1gridH$seasonal_st
 p20 <- ggplot(data= entropygridH, aes_string(x=entropygridH$entropy, y="stlar")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("entropy")+ theme(legend.position="none")+ylab("")
-p21 <- ggplot(data=linearitygridH, aes_string(x=linearitygridH$seas_pacf, y="stlar")) +
+p21 <- ggplot(data=linearitygridH, aes_string(x=linearitygridH$linearity, y="stlar")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("linearity")+ theme(legend.position="none")+ylab("")
 

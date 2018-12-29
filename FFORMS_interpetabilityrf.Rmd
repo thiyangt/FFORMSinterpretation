@@ -37,7 +37,7 @@ output:
 
 ```{r setup, include=FALSE}
 library(knitr)
-knitr::opts_chunk$set(echo = FALSE, cache=TRUE, messages=FALSE, warning=FALSE, fig.path = 'figures/', dev=c('png'), fig.pos= "h", external = TRUE)
+knitr::opts_chunk$set(echo = FALSE, cache=FALSE, messages=FALSE, warning=FALSE, fig.path = 'figures/', dev=c('png'), fig.pos= "h", external = TRUE)
 # Make sure you have the latest version of rmarkdown and bookdown
 #devtools::install_github("rstudio/rmarkdown")
 #devtools::install_github("rstudio/bookdown")
@@ -375,7 +375,7 @@ The relative strength of two-way interaction between features were determined us
 
 \newpage
 
-```{r friedmany, fig.height=30, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic", fig.pos="h", message=FALSE, warning=FALSE, cache=FALSE}
+```{r friedmany, fig.height=30, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic", fig.pos="h", message=FALSE, warning=FALSE}
 ```
 
 \newpage
@@ -419,7 +419,7 @@ Similar to the results of yearly time series trend and linearity also listed amo
 
 \newpage
 
-```{r oobquarterly, fig.height=28, fig.width=20, fig.cap="Distribution of proportion of times each quarterly time series was assigned to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. X-axis denotes the proportion of times a time series is classified in each class.", fig.pos="h"}
+```{r oobquarterly, fig.height=28, fig.width=20, fig.cap="Distribution of proportion of times each quarterly time series was assigned to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. X-axis denotes the proportion of times a time series is classified in each class.", fig.pos="h", cache=TRUE}
 ```
 
 \newpage
@@ -440,12 +440,12 @@ Similar to the results of yearly time series trend and linearity also listed amo
 
 \newpage
 
-```{r friedmanQ, fig.height=30, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic for quarterly data.", fig.pos="h", message=FALSE, warning=FALSE, cache=FALSE}
+```{r friedmanQ, fig.height=30, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic for quarterly data.", fig.pos="h", message=FALSE, warning=FALSE}
 ```
 
 \newpage
 
-```{r friedmanQ2, fig.height=15, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic for quarterly data(cont).", fig.pos="h", message=FALSE, warning=FALSE, cache=FALSE}
+```{r friedmanQ2, fig.height=15, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic for quarterly data(cont).", fig.pos="h", message=FALSE, warning=FALSE}
 ```
 
 \newpage
@@ -469,7 +469,7 @@ For quarterly and monthly data same set of features and class-labels are used to
 
 \clearpage
 
-```{r oobmonthly, fig.height=28, fig.width=20, fig.cap="Distribution of proportion of times each monthly time series was assigned to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. X-axis denotes the proportion of times a time series is classified in each class.", fig.pos="h"}
+```{r oobmonthly, fig.height=28, fig.width=20, fig.cap="Distribution of proportion of times each monthly time series was assigned to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. X-axis denotes the proportion of times a time series is classified in each class.", fig.pos="h", cache=TRUE}
 ```
 
 \newpage
@@ -558,12 +558,12 @@ Variable importance graph for daily data is shown in \autoref{fig:vidaily}. Over
 The proportion of times each time series was classified to each class for hourly series are shown in \autoref{fig:hourlyoob}. Except neural network class, the distribution corresponds to the correct classification dominated the top. It is important to note that, in neural network category, distribution corresponds to snaive class slightly dominated the distribution corresponds to neural network category. Overall, for hourly series random walk with drift models, tbats and neural network models have high chance of being selected. Furthermore, all distributions corresponds to the neural network category located further away from zero with respect to  x-axis indicates, every time series selects neural network models at least once from the trees in the random forest. In general, strength of daily seasonality (period=24) appear to be more important than than the strength of weekly seasonality (period=168).  Furthermore, entropy, linearity, sum of squares of first 5 coefficients of PACF, curvature, trend, spikiness and stability were found to be the most important features in determining best forecasting method for hourly time series. Although the length of the series found to be one of the most important feature from previous results, only snaive category ranked it among top 5 for hourly time series. The strength of seasonality corresponds to weekly seasonality also seems to be one of the most important feature for the classes snaive, random walk, mstlarima, and tbats. The partial dependency plots shows that probability of selecting random walk, random walk with drift, theta model and white noise process decreased with higher strength of daily seasonality, while the  opposite relationship hold for other classes.On the other hand, probability of selecting random walk model increased with the increase in strength of weekly seasonality. 
 
 
-```{r hourlyoob, fig.height=10, fig.width=10, fig.cap="Distribution of proportion of times each hourly time series was classified to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. There are ten rows in the plot corresponds to each predicted class represented by Y-axis. X-axis denotes the proportion of times a time series is classified in each class. On each row, the distribution of correct classification dominated the top.", fig.pos="h"}
+```{r hourlyoob, fig.height=10, fig.width=10, fig.cap="Distribution of proportion of times each hourly time series was classified to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. There are ten rows in the plot corresponds to each predicted class represented by Y-axis. X-axis denotes the proportion of times a time series is classified in each class. On each row, the distribution of correct classification dominated the top.", fig.pos="h", cache=TRUE}
 ```
 
 \newpage
 
-```{r vi_hourly, fig.height=10, fig.width=10, fig.cap="Feature importance plot hourly series. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h"}
+```{r vihourly, fig.height=10, fig.width=10, fig.cap="Feature importance plot hourly series. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h"}
 ```
 
 
@@ -591,31 +591,31 @@ The proportion of times each time series was classified to each class for hourly
 
 
 
-```{r yearlypca, fig.height=10, fig.width=20, fig.cap="Distribution of prediction space across instance space for yearly time series. PC1 and PC2 are the first two principal components.", fig.pos="h", fig.align="center"}
+```{r yearlypca, fig.height=10, fig.width=20, fig.cap="Distribution of prediction space across instance space for yearly time series. PC1 and PC2 are the first two principal components.", fig.pos="h", fig.align="center", cache=TRUE}
 ```
 
 \clearpage
 
-```{r quarterlypca, fig.height=15, fig.width=20, fig.cap="Distribution of prediction space across instance space for quarterly time series. PC1 and PC2 are the first two principal components.", fig.pos="h"}
+```{r quarterlypca, fig.height=15, fig.width=20, fig.cap="Distribution of prediction space across instance space for quarterly time series. PC1 and PC2 are the first two principal components.", fig.pos="h", cache=TRUE}
 ```
 
 \newpage
 
-```{r monthlypca, fig.height=15, fig.width=20, fig.cap="Distribution of prediction space across instance space for monthly time series. PC1 and PC2 are the first two principal components.", fig.pos="h"}
+```{r monthlypca, fig.height=15, fig.width=20, fig.cap="Distribution of prediction space across instance space for monthly time series. PC1 and PC2 are the first two principal components.", fig.pos="h", cache=TRUE}
 ```
 
 \clearpage
 
-```{r pcaweekly, fig.height=15, fig.width=20, fig.cap="Distribution of prediction space across instance space for weekly time series. PC1 and PC2 are the first two principal components.", fig.pos="h", fig.align="center"}
+```{r pcaweekly, fig.height=15, fig.width=20, fig.cap="Distribution of prediction space across instance space for weekly time series. PC1 and PC2 are the first two principal components.", fig.pos="h", fig.align="center", cache=TRUE}
 ```
 
 \clearpage
 
-```{r pcadaily, fig.height=5, fig.width=10, fig.cap="Distribution of prediction space across instance space for daily time series. PC1 and PC2 are the first two principal components.", fig.pos="h", fig.align="center"}
+```{r pcadaily, fig.height=5, fig.width=10, fig.cap="Distribution of prediction space across instance space for daily time series. PC1 and PC2 are the first two principal components.", fig.pos="h", fig.align="center", cache=TRUE}
 ```
 
 
-```{r pcahourly, fig.height=5, fig.width=10, fig.cap="Distribution of prediction space across instance space for hourly time series. PC1 and PC2 are the first two principal components.", fig.pos="h", fig.align="center"}
+```{r pcahourly, fig.height=5, fig.width=10, fig.cap="Distribution of prediction space across instance space for hourly time series. PC1 and PC2 are the first two principal components.", fig.pos="h", fig.align="center", cache=TRUE}
 ```
 
 \clearpage
