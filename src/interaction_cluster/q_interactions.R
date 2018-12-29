@@ -13,22 +13,17 @@ load("phdproject2/rfu_m4quarterly.rda") # random forest model
 load("phdproject2/subset_quarterly.rda")
 subset_quarterly <- subset_quarterly[,1:30]
 
-trend.seasonality.q <- twowayinteraction(rfu_m4quarterly, trend, seasonality, 
+diff1y_acf5.N.q <- twowayinteraction(rfu_m4quarterly, diff1y_acf5, N, 
                                   fulldf = quarterly_training,
                                   subsetdf = subset_quarterly, grid.resolution=20)
-save(trend.seasonality.q, file="phdproject2/trend.seasonality.q.rda")
+save(diff1y_acf5.N.q, file="phdproject2/diff1y_acf5.N.q.rda")
 
-seasonality.lumpiness.q <- twowayinteraction(rfu_m4quarterly, seasonality, lumpiness, 
+diff1y_acf5.beta.q <- twowayinteraction(rfu_m4quarterly, diff1y_acf5, beta, 
                                              fulldf = quarterly_training,
                                              subsetdf = subset_quarterly, grid.resolution=20)
-save(seasonality.lumpiness.q, file="phdproject2/seasonality.lumpiness.q.rda")
+save(diff1y_acf5.beta.q, file="phdproject2/diff1y_acf5.beta.q.rda")
 
-diff1ypacf5.seasonality.q <- twowayinteraction(rfu_m4quarterly, diff1y_pacf5, seasonality, 
+diff1y_acf5.stability.q <- twowayinteraction(rfu_m4quarterly, diff1y_acf5, stability, 
                                          fulldf = quarterly_training,
                                          subsetdf = subset_quarterly, grid.resolution=20)
-save(diff1ypacf5.seasonality.q, file="phdproject2/diff1ypacf5.seasonality.q.rda")
-
-seasonality.spikiness.q <- twowayinteraction(rfu_m4quarterly, seasonality, spikiness, 
-                                             fulldf = quarterly_training,
-                                             subsetdf = subset_quarterly, grid.resolution=20)
-save(seasonality.spikiness.q, file="phdproject2/seasonality.spikiness.q.rda")
+save(diff1y_acf5.stability.q, file="phdproject2/diff1y_acf5.stability.q.rda")
