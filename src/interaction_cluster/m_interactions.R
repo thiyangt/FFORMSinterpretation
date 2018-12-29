@@ -14,22 +14,17 @@ load("phdproject2/subset_monthly.rda")
 
 subset_monthly <- subset_monthly[,1:30]
 
-#N.seasonality.m <- twowayinteraction(rfu_m4monthly, N, seasonality, 
-#                                  fulldf = monthly_training,
-#                                  subsetdf = subset_monthly, grid.resolution=20)
-#save(N.seasonality.m, file="phdproject2/N.seasonality.m.rda")
-
-#N.diff1y_acf1.m <- twowayinteraction(rfu_m4monthly, N, diff1y_acf1, 
-#                                             fulldf = monthly_training,
-#                                             subsetdf = subset_monthly, grid.resolution=20)
-#save(N.diff1y_acf1.m, file="phdproject2/N.diff1y_acf1.m.rda")
-
-N.hwgamma.m <- twowayinteraction(rfu_m4monthly, N, hwgamma, 
+spikiness.hwalpha.m <- twowayinteraction(rfu_m4monthly, spikiness, hwalpha, 
                                      fulldf = monthly_training,
                                      subsetdf = subset_monthly, grid.resolution=20)
-save(N.hwgamma.m, file="phdproject2/N.hwgamma.m.rda")
+save(spikiness.hwalpha.m, file="phdproject2/spikiness.hwalpha.m.rda")
 
-seasinality.trend.m <- twowayinteraction(rfu_m4monthly, seasonality, trend, 
+spikiness.hurst.m <- twowayinteraction(rfu_m4monthly, spikiness, hurst, 
                                      fulldf = monthly_training,
                                      subsetdf = subset_monthly, grid.resolution=20)
-save(seasinality.trend.m, file="phdproject2/seasinality.trend.m.rda")
+save(spikiness.hurst.m, file="phdproject2/spikiness.hurst.m.rda")
+
+spikiness.lumpiness.m <- twowayinteraction(rfu_m4monthly, spikiness, lumpiness, 
+                                         fulldf = monthly_training,
+                                         subsetdf = subset_monthly, grid.resolution=20, trim2 = TRUE)
+save(spikiness.lumpiness.m, file="phdproject2/spikiness.lumpiness.m.rda")

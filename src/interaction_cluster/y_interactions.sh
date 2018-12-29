@@ -1,7 +1,7 @@
 #!/bin/env bash
 #SBATCH --job-name=y_interactions
 #SBATCH --time=10:00:00
-#SBATCH --mem=40G
+#SBATCH --mem=50G
 #SBATCH --ntasks=1
 #SBATCH --partition=short
 #SBATCH --mail-type=BEGIN,END,FAIL
