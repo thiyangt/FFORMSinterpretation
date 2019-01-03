@@ -35,7 +35,7 @@ output:
     citation_package: biblatex
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, cache=FALSE}
 library(knitr)
 knitr::opts_chunk$set(echo = FALSE, cache=TRUE, messages=FALSE, warning=FALSE, fig.path = 'figures/', dev=c('png'), fig.pos= "h", external = TRUE)
 # Make sure you have the latest version of rmarkdown and bookdown
@@ -46,6 +46,7 @@ read_chunk("src/main_weekly.R")
 read_chunk("src/main_daily.R")
 read_chunk("src/main_hourly.R")
 read_chunk("src/main_lime.R")
+read_chunk("src/twowayPDPplots.R")
 library(Mcomp)
 library(ggplot2)
 library(patchwork)
@@ -616,6 +617,11 @@ The proportion of times each time series was classified to each class for hourly
 
 
 ```{r pcahourly, fig.height=5, fig.width=10, fig.cap="Distribution of prediction space across instance space for hourly time series. PC1 and PC2 are the first two principal components.", fig.pos="h", fig.align="center", cache=TRUE}
+```
+
+\newpage
+
+```{r qpdptwo, fig.height=30, fig.width=20, cache=FALSE}
 ```
 
 \clearpage

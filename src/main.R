@@ -596,14 +596,14 @@ int12 <- ggplot(
     x = hurst.e_acf1.y$hurst,
     y = hurst.e_acf1.y$e_acf1, z = colNameshe[5], fill = colNameshe[5]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), option = "A", direction = -1) +
   xlab("hurst") + ylab("e_acf1")+ theme(legend.position="none")+ggtitle("ETS-trend")
 
 ## ETS_dampedtrend
 int13 <- ggplot(
   data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[3], fill = colNamesls[3]
   ))+geom_tile() + 
-  scale_fill_viridis_c(limits = c(0, 0.02), breaks = seq(0, 0.02, 100),option = "A", direction = -1)+
+  scale_fill_viridis_c(limits = c(0, 0.01), breaks = seq(0, 0.01, 100),option = "A", direction = -1)+
   xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("ETS-dampedtrend")
 
 int14 <- ggplot(
@@ -612,7 +612,7 @@ int14 <- ggplot(
     x = eacf1.diff2yacf1.y$e_acf1,
     y = eacf1.diff2yacf1.y$diff2y_acf1, z = colNamesed[3], fill = colNamesed[3]
   )) +geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.01), breaks = seq(0, 0.01, 100), option = "A", direction = -1) +
   xlab("e_acf1") + ylab("diff2y_acf1")+ theme(legend.position="none")+ggtitle("ETS-dampedtrend")
 
 int15 <- ggplot(
@@ -621,7 +621,7 @@ int15 <- ggplot(
     x = hurst.y_acf5.y$hurst,
     y = hurst.y_acf5.y$y_acf5, z = colNamesha[3], fill = colNamesha[3]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.01), breaks = seq(0, 0.01, 100), option = "A", direction = -1) +
   xlab("hurst") + ylab("y_acf5")+ theme(legend.position="none")+ggtitle("ETS-dampedtrend")
 
 int16 <- ggplot(
@@ -630,7 +630,7 @@ int16 <- ggplot(
     x = hurst.e_acf1.y$hurst,
     y = hurst.e_acf1.y$e_acf1, z = colNameshe[3], fill = colNameshe[3]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.01), breaks = seq(0, 0.01, 100), option = "A", direction = -1) +
   xlab("hurst") + ylab("e_acf1")+ theme(legend.position="none")+ggtitle("ETS-dampedtrend")
 
 # ETS-notrendseasonal
@@ -735,13 +735,13 @@ int8 <- ggplot(
     x = hurst.e_acf1.y$hurst,
     y = hurst.e_acf1.y$e_acf1, z = colNameshe[2], fill = colNameshe[2]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), option = "A", direction = -1) +
   xlab("hurst") + ylab("e_acf1")+ theme(legend.position="none")+ggtitle("ARMA/AR/MA")
 # wn
 int9 <- ggplot(
   data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[10], fill = colNamesls[10]
   ))+geom_tile() + 
-  scale_fill_viridis_c(limits = c(0, 0.5), breaks = seq(0, 0.5, 100),option = "A", direction = -1)+
+  scale_fill_viridis_c(limits = c(0, 0.8), breaks = seq(0, 0.8, 100),option = "A", direction = -1)+
   xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("wn")
 
 int10 <- ggplot(
@@ -759,7 +759,7 @@ int11 <- ggplot(
     x = hurst.y_acf5.y$hurst,
     y = hurst.y_acf5.y$y_acf5, z = colNamesha[10], fill = colNamesha[10]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.8), breaks = seq(0, 0.8, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
   xlab("hurst") + ylab("y_acf5")+ theme(legend.position="none")+ggtitle("wn")
 
 int12 <- ggplot(
@@ -768,7 +768,7 @@ int12 <- ggplot(
     x = hurst.e_acf1.y$hurst,
     y = hurst.e_acf1.y$e_acf1, z = colNameshe[10], fill = colNameshe[10]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
   xlab("hurst") + ylab("e_acf1")+ theme(legend.position="none")+ggtitle("wn")
 ## theta
 int13 <- ggplot(
