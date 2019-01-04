@@ -10,7 +10,7 @@ colNamesds <- colnames(diff1y_acf5.stability.q)[32:48]
 int1 <- ggplot(
   data = diff1y_acf5.N.q, aes_string(x = diff1y_acf5.N.q$diff1y_acf5, y = diff1y_acf5.N.q$N, z = colNamesdn[13], fill = colNamesdn[13]
   ))+geom_tile() + 
-  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100),option = "A", direction = -1)+
+  scale_fill_viridis_c(limits = c(0, 0.08), breaks = seq(0, 0.08, 100),option = "A", direction = -1)+
   xlab("diff1y_acf5") + ylab("N") + theme(legend.position="none")+ggtitle("snaive")
 int2 <- ggplot(
   data = diff1y_acf5.beta.q,
@@ -32,7 +32,7 @@ int3 <- ggplot(
 # rwd(42)
 
 int4 <- ggplot(
-  data = diff1y_acf5.N.q, aes_string(x = diff1y_acf5.N.q$diff1y_acf5, y = diff1y_acf5.N.q$N, z = colNamesdn[42], fill = colNamesdn[42]
+  data = diff1y_acf5.N.q, aes_string(x = diff1y_acf5.N.q$diff1y_acf5, y = diff1y_acf5.N.q$N, z = colNamesdn[11], fill = colNamesdn[11]
   ))+geom_tile() + 
   scale_fill_viridis_c(limits = c(0, 0.5), breaks = seq(0, 0.5, 100),option = "A", direction = -1)+
   xlab("diff1y_acf5") + ylab("N") + theme(legend.position="none")+ggtitle("rwd")
@@ -401,4 +401,4 @@ int51 <- ggplot(
   scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), option = "A", direction = -1) +
   xlab("diff1y_acf5") + ylab("stability")+ theme(legend.position="none")+ggtitle("nn")
 
-(int1|int2|int3|int4)/(int5|int6|int7|int8)/(int9|int10|int11|int12)/(int13|int14|int15|int16)/(int17|int18|int19|int20)
+(int1|int2|int3)/(int4|int5|int6)/(int7|int8|int9)/(int10|int11|int12)/(int13|int14|int15)

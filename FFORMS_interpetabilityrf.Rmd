@@ -351,7 +351,7 @@ An alternative for explaining local behaviour of complex models is proposed by @
 
 **Model diagnostic: FFORMS framework,Yearly series**
 
-```{r yearlyoob, fig.height=10, fig.width=10, fig.cap="Distribution of proportion of times each yearly time series was assigned to each class in the forest.  Each row represent the predicted class label and colours of boxplots corresponds to true class label. There are ten rows in the plot corresponds to each predicted class represented by Y-axis. X-axis denotes the proportion of times a time series is classified in each class. On each row, distribution of correctly classified class dominated the top, indicating a fairly good classification of the model fitted.", fig.pos="h", cache=TRUE}
+```{r yearlyoob, fig.height=10, fig.width=10, fig.cap="Distribution of proportion of times each yearly time series was assigned to each class based on OOB sample.  Each row represent the predicted class label and colours of boxplots corresponds to class label of \"best\" forecasting method. There are ten rows in the plot corresponds to each predicted class represented by Y-axis. X-axis denotes the proportion of times the time series was predicted into each class. On each row, distribution of correctly classified class dominated the top, indicating a fairly good classification of the model fitted.", fig.pos="h", cache=TRUE}
 ```
 
 \autoref{fig:yearlyoob} shows the distribution of proportion of times each observation (in our case each time series) was assigned to each class based on OOB sample. Each row represent the **predicted class label** and colour of boxplots corresponds to **true class label**. The proportion 1 indicates, that the time series was always predicted to the corresponding class and 0 being never. This is an alternative way of visualizing the vote-matrix information in the random forest model. The other way of representing vote matrix involves ternary plot (@sutherland2000orca) and jittered side-by-side dotplot [@ehrlinger2015ggrandomforests; @da2017interactive]. To over come the problem of overlapping classes arises due to the scale of the training data set, number of classes and similar types of classes of data, boxplot diagrams are used. On each row of \autoref{fig:yearlyoob} the distribution of proportions corresponds to the time series in which the predicted class label and true class label are the same dominates the top indicating a fairly good classification of the model. In addition to that, in each row the distributions corresponds to the time series labeled similar to the predicted class label also dominate the others. For example, within ETS-trend predicted class, the distributions correspond to the true class labels, ETS-damped trend, ARIMA, were also assigned with high probability and less values were assigned to ARMA/AR/MA, White noise process and ETS (ANN)/ ETS(MNN). This confirms that our FFORMS framework successfully learnt the similarities and dissimilarities between the classes itself. Irrespective of the class-labels yearly series have a high chance of selecting random walk with drift models. One reason for this is as shown in @kang2018efficient yearly series of M1, M3 and M4 are generally trended. (Results of M3 and M4 competition) This diagram helps to evaluate the model performance in the data space (model-in-the-data-space) (@da2017interactive).
@@ -619,6 +619,11 @@ The proportion of times each time series was classified to each class for hourly
 
 
 ```{r pcahourly, fig.height=5, fig.width=10, fig.cap="Distribution of prediction space across instance space for hourly time series. PC1 and PC2 are the first two principal components.", fig.pos="h", fig.align="center", cache=TRUE}
+```
+
+\clearpage
+
+```{r qpdptwo, fig.height=30, fig.width=10}
 ```
 
 \clearpage
