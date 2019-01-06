@@ -390,7 +390,7 @@ An alternative for explaining local behaviour of complex models is proposed by @
 
 \autoref{fig:yearlylime2} shows the feature contribution for the instances highlighted in \autoref{fig:yearlylime}. The low linearity, with a trend value of less than 0.616, low values for Phillip-Perron test-statistic, Hurst exponent, autocorrelation coefficients of the time series and spikiness of the series causes the FFORMS framework to classify the first series with ARMA/AR/MA. On the other hand, LIME indicated the low value of first autocorrelation coefficients of the original series and the residual series of linear regression model contradicts to this decision. The reason might be these properties of autocorrelation coefficients native to the random walk models not to the stationary ARMA/AR/MA models. It is interesting to note that even though 2, 5 and 6 series located close proximity to each other in the PCA space their, varying degree of trend, spikiness, first autocorrelation coefficient of the difference series, entropy, led them to classify as ETS-trend, neural-network and random walk respectively. The wide confidence bands around the partial dependency functions of diff1y_acf1 indicated the higher variablility of ICE curves. 
 
-## Quarterly data
+## Quarterly and Monthly data
 
 \autoref{fig:oobquarterly} shows proportion of times each series was classified to each class by true class labels. For all ETS models the proportion of times the true class label was identified was higher than other categories. Within snaive, stlar, tbats and white noise classes ETS-seasonal, SARIMA, ETS-trend and ARMA/AR/MA slightly dominates respectively. It could be due to the high-similarity to one another. Further, withing the neural network category ETS (ANN/MNN), ARMA/AR/MA and white noise processes dominates equally. This indicates neural network models share similar type of features with those three classes. Furthermore, except the time series labeled as a ETS models with seasonal component or SARIMA models all other time series have a high probability of being in random walk with drift class irrespective of their true class labels. These results are consisted with the random walk model fitted to yearly data. Except the time series labeled as ARMA/AR/MA all other quarterly time series have a very low chance of being to ARMA/AR/MA class. Further, all distributions corresponds to the tbats row located further away from zero. This indicates all time series select tbats model at least once from the individual trees in the forest. Except few outliars,  distributions within neural network category also show a slight upward deviation from zero. However, the upper boundary of these distributions do not surpass the upper boundaries of dominating box plots in the random walk with drift class and SARIMA class. These types of diversity in the distributions indicates the  the appropriateness of using combination forecasting.  Further, these information are useful in identifying potential time series models for combination forecast and improve the existing combination approaches proposed in the M4-competition. 
 
@@ -403,21 +403,23 @@ Similar to the results of yearly time series trend and linearity also listed amo
 
 \autoref{fig:pdpquarterly1} shows the partial dependency functions for top three features with in each category. Seasonality shows a linear relationship with probability of being to snaive class. Random walk, random walk with drift, all ETS models without seasonal component, ARIMA and white noise process show a similar pattern of relationship with seasonality with vary degree of width of confidence band while all ETS models with seasonal components and SARIMA hold the opposite patter. SARIMA and ARIMA classes shows a non-monotonic relationship with seasonality. Neural network class shows a non-linear relationship with seasonality, and wide confidence bands indicated seasonality interact with other features when deciding probability of being into neural network class. According to the partial dependency functions corresponds to the rows ETS-NTNS, ETS-DT, ETS-T and ETS-TS confirms how well the model's understanding of feature behaviour matches the domain's expert knowledge which gives rise to the trustability of the FFORMS framework. For example, highly trended and low seasonality time series have a high chance of being classified to ETS-Trend class while  the opposite relationship can be seen in ETS-seasonal category with low trended and highly seasonally oscillated time series have a high chance of being classified to ETS-seasonal. Even though, two different portfolio of time series are used to train two different classifiers for yearly and quarterly data  partial dependency functions show a consistency between the results of yearly framework and quarterly framework. For example, partial dependency function of linearity within ARMA/AR/MA class, partial dependency functions corresponds to trend, etc.  \autoref{fig:friedmanQ} shows heat maps of relative strength of all possible pairwise interactions calculated based on Friedman’s H-statistic. Within all classes strength of seasonality shows less interactivity with other features. Except ETS-damped trend, SARIMA and ARIMA classes trend interact highly with other features. Further, Friedman's H statistic reflect high interactivity between autocorrelation and partial autocorrelation in SARIMA, ARIMA and ARMA/AR/MA classes. The features alpha and curvature shows very high interactivity with other features within ETS-damped trend, ETS-trend and neural network classes. Length of the time series show very low interactivity with others within snaive class.
 
+\clearpage
 
-\newpage
-
-```{r oobquarterly, fig.height=28, fig.width=20, fig.cap="Distribution of proportion of times each quarterly time series was assigned to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. X-axis denotes the proportion of times a time series is classified in each class.", fig.pos="h", cache=TRUE}
+```{r oobquarterlymonthly, fig.height=28, fig.width=20, fig.cap="Distribution of proportion of times each monthly time series was assigned to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. X-axis denotes the proportion of times a time series is classified in each class.", fig.pos="h", cache=FALSE}
 ```
 
-\newpage
+\clearpage
 
 ```{r viquarterly, fig.height=15, fig.width=20, fig.cap="Feature importance plot for quarterly series. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h", fig.align="center"}
 ```
 
 
-\newpage
+```{r vimonthly, fig.height=15, fig.width=20, fig.cap="Feature importance plot for quarterly series. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h", fig.align="center"}
+```
 
-```{r pdpquarterly1, fig.height=45, fig.width=35, fig.cap="Partial dependence plots for top three features in each category (Quarterly)", fig.pos="h"}
+\clearpage
+
+```{r pdpquarterly1, fig.height=30, fig.width=20, fig.cap="Partial dependence plots for top three features in each category (Quarterly)", fig.pos="h"}
 ```
 
 \newpage
@@ -435,44 +437,6 @@ Similar to the results of yearly time series trend and linearity also listed amo
 ```{r friedmanQ2, fig.height=15, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic for quarterly data(cont).", fig.pos="h", message=FALSE, warning=FALSE}
 ```
 
-\newpage
-
-**Local Interpretable Model-agnostic Explanations: quarterly series**
-
-
-```{r quarterlylime, fig.height=8, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
-```
-
-
-```{r quarterlylime2, fig.height=12, fig.width=20, fig.cap="Local interpretable Model-agnostic explanations for four selected quarterly time series. Features denoted with green colour are supporting features for an outcome label and length of the bar is proportional to the weight of a feature.", fig.pos="h", fig.align="center"}
-```
-
-## Monthly
-
-
-\autoref{fig:oobmonthly} can be interpreted similar to the results of monthly data.
-For quarterly and monthly data same set of features and class-labels are used to training the model. Hence, this consistency between the results of quarterly and monthly series would provide evidence in support of the validity and trustability of the model.  Seasonality, trend, spikiness and linearity appear to be most important features across all categories. Further, features calculated based on parameter estimates of ETS(A,A,A), ACF and PACF-based features related to seasonal lags and seasonally differenced series were assigned higher importance than the results of quarterly series. One notable difference between quarterly series and monthly series is, length of the series was assigned a very high importance specially in random walk with drift, random walk, ETS with out seasonal and trend components, ETS with seasonal components, SARIMA and ARMA/AR/MA classes. Partial dependence plots of the top 3 features of each class is represented in \autoref{fig:pdpmonthly1} and \autoref{fig:pdpmonthly2}. Probability of selecting a model with a parameter to capture the  seasonal effect 
-(snaive, all ETS models with seasonal component, SARIMA, tbats, theta, stlar) increases as the seasonality increases. Probability of selecting a neural network approach decreases as seasonality increases but this probability increases as stability increases. PPD plots also reveals  FFORMS framework select ETS-trend models for short, less seasonally and highly trended (strength of trend close to 1) time series while random walk with drift and random walk series are suitable for short, less seasonally series with trend vary between 0.75 to 0.85. According to  \autoref{fig:friedmanM} and \autoref{fig:friedmanM2} within random walk and ARMA/AR/MA classes trend, seasonality, stability and length of the time series show less interactivity with other features. Trend shows high interactivity with other features within random walk, all classes with ETS model with damped trend component and theta . In general, spikiness, also shows interactivity with other features within many classes.
-
-\clearpage
-
-```{r oobmonthly, fig.height=28, fig.width=20, fig.cap="Distribution of proportion of times each monthly time series was assigned to each class in the forest.  Each row represent the predicted class label and colour of boxplots corresponds to true class label. X-axis denotes the proportion of times a time series is classified in each class.", fig.pos="h", cache=TRUE}
-```
-
-\newpage
-
-```{r vimonthly, fig.height=25, fig.width=30, fig.cap="Feature importance plot for monthly series. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h", fig.align="center"}
-```
-
-\clearpage
-
-```{r pdpmonthly1, fig.height=45, fig.width=35, fig.cap="Partial dependence plots for top three features in each category (Monthly)", fig.pos="h"}
-```
-
-\newpage
-
-```{r pdpmonthly2, fig.height=30, fig.width=20, fig.cap="Partial dependence plots for top three features in each category (Monthly)", fig.pos="h"}
-```
 
 \newpage
 
@@ -484,6 +448,19 @@ For quarterly and monthly data same set of features and class-labels are used to
 ```{r friedmanM2, fig.height=15, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calclated based on Friedman's H-statistic for monthly data.", fig.pos="h", message=FALSE, warning=FALSE}
 ```
 
+
+
+\newpage
+
+**Local Interpretable Model-agnostic Explanations: quarterly series**
+
+
+```{r quarterlylime, fig.height=8, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```
+
+
+```{r quarterlylime2, fig.height=12, fig.width=20, fig.cap="Local interpretable Model-agnostic explanations for four selected quarterly time series. Features denoted with green colour are supporting features for an outcome label and length of the bar is proportional to the weight of a feature.", fig.pos="h", fig.align="center"}
+```
 
 
 ## Weekly
