@@ -1158,6 +1158,8 @@ load("data/monthly/pdp_monthly/seasonalitygridM.rda")
 seasonalitygridM$variable <- rep(1:1700, 20)
 load("data/monthly/pdp_monthly/trendgridM.rda")
 trendgridM$variable <- rep(1:1700, 20)
+load("data/monthly/pdp_monthly/NgridM.rda")
+NgridM$variable <- rep(1:1700, 20)
 
 #snaive
 pq1 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="snaive")) +
@@ -1177,6 +1179,12 @@ pq3 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="sna
   ylab("")
 pq4 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="snaive")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
+  theme(legend.position="none", text = element_text(size=20))+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none")+
+  ylab("")
+pmn1 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="snaive")) +
+  stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none")+
@@ -1201,7 +1209,12 @@ pq8 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="rwd
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
-
+pmn2 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="rwd")) +
+  stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
+  theme(legend.position="none", text = element_text(size=20))+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none")+
+  ylab("")
 
 ## rw
 pq9 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="rw")) +
@@ -1222,6 +1235,12 @@ pq12 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="rw
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
+pmn3 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="rw")) +
+  stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
+  theme(legend.position="none", text = element_text(size=20))+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none")+
+  ylab("")
 
 ## rw_monthly
 pm7 <- ggplot(data=seasonalitygridM, aes_string(x=seasonalitygridM$seasonality, y="rw")) +
@@ -1233,7 +1252,12 @@ pm8 <- ggplot(data= trendgridM, aes_string(x=trendgridM$trend, y="rw")) +
 pm9 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="rw")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("linearity")+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
-
+pmn4 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="rw")) +
+  stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
+  theme(legend.position="none", text = element_text(size=20))+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none")+
+  ylab("")
 
 ## ETS.NTNS
 pq13 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="ETS.notrendnoseasonal")) +
@@ -1250,6 +1274,12 @@ pq15 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="ET
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq16 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="ETS.notrendnoseasonal")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
+  theme(legend.position="none", text = element_text(size=20))+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none")+
+  ylab("")
+pmn5 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="ETS.notrendnoseasonal")) +
+  stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none")+
@@ -1274,6 +1304,12 @@ pq20 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="ET
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
+pmn6 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="ETS.dampedtrend")) +
+  stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
+  theme(legend.position="none", text = element_text(size=20))+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none")+
+  ylab("")
 
 ## ETS.T
 pq21 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="ETS.trend")) +
@@ -1290,6 +1326,12 @@ pq23 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="ET
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq24 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="ETS.trend")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
+  theme(legend.position="none", text = element_text(size=20))+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none")+
+  ylab("")
+pmn7 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="ETS.trend")) +
+  stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none")+
@@ -1312,6 +1354,12 @@ pq28 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="ET
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
+pmn8 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="ETS.dampedtrendseasonal")) +
+  stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
+  theme(legend.position="none", text = element_text(size=20))+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none")+
+  ylab("")
 
 ## ETS.TS
 pq29 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="ETS.trendseasonal")) +
@@ -1325,6 +1373,12 @@ pq31 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="ET
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq32 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="snaive")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("ETS.trendseasonal")+ 
+  theme(legend.position="none", text = element_text(size=20))+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none")+
+  ylab("")
+pmn9 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="ETS.trendseasonal")) +
+  stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none")+
@@ -1346,6 +1400,12 @@ pq36 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="ET
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
+pmn10 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="ETS.seasonal")) +
+  stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
+  theme(legend.position="none", text = element_text(size=20))+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none")+
+  ylab("")
 
 ## SARIMA
 pq37 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="SARIMA")) +
@@ -1363,8 +1423,14 @@ pq40 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="SA
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
-(pq1|pq2|pq4|pq3)/(pq5|pq6|pq8|pq7)/(pq9|pq10|pq12|pq11)/(pm7|pm8|pq12|pm9)/(pq13|pq14|pq16|pq15)/(pq17|pq18|pq20|pq19)/(pq21|pq22|pq24|pq23)/
-  (pq25|pq26|pq28|pq27)/(pq29|pq30|pq32|pq31)
+pmn11 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="SARIMA")) +
+  stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
+  theme(legend.position="none", text = element_text(size=20))+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none")+
+  ylab("")
+(pq1|pq2|pq4|pq3|pmn1)/(pq5|pq6|pq8|pq7|pmn2)/(pq9|pq10|pq12|pq11|pmn3)/(pm7|pm8|pq12|pm9|pmn4)/(pq13|pq14|pq16|pq15|pmn5)/(pq17|pq18|pq20|pq19|pmn6)/(pq21|pq22|pq24|pq23|pmn7)/
+  (pq25|pq26|pq28|pq27|pmn8)/(pq29|pq30|pq32|pq31|pmn9)
 
 
 ## ---- pdpquarterly2
@@ -1381,6 +1447,12 @@ pq43 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="AR
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq44 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="ARIMA")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
+  theme(legend.position="none", text = element_text(size=20))+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none")+
+  ylab("")
+pmn12 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="ARIMA")) +
+  stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none")+
@@ -1402,6 +1474,12 @@ pq48 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="AR
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
+pmn13 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="ARMA.AR.MA")) +
+  stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
+  theme(legend.position="none", text = element_text(size=20))+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none")+
+  ylab("")
 
 #stlar
 pq49 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="stlar")) +
@@ -1415,6 +1493,12 @@ pq51 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="st
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq52 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="stlar")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
+  theme(legend.position="none", text = element_text(size=20))+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none")+
+  ylab("")
+pmn14 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="stlar")) +
+  stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none")+
@@ -1436,6 +1520,12 @@ pq56 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="tb
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
+pmn15 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="tbats")) +
+  stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
+  theme(legend.position="none", text = element_text(size=20))+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none")+
+  ylab("")
 
 ## WN
 pq57 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="wn")) +
@@ -1453,6 +1543,12 @@ pq60 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="wn
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
+pmn16 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="wn")) +
+  stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
+  theme(legend.position="none", text = element_text(size=20))+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none")+
+  ylab("")
 
 ## theta
 pq61 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="theta")) +
@@ -1466,6 +1562,12 @@ pq63 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="th
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq64 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="theta")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
+  theme(legend.position="none", text = element_text(size=20))+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none")+
+  ylab("")
+pmn17 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="theta")) +
+  stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none")+
@@ -1488,9 +1590,15 @@ pq68 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="nn
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
+pmn18 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="nn")) +
+  stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
+  theme(legend.position="none", text = element_text(size=20))+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none")+
+  ylab("")
 
-(pq33|pq34|pq36|pq35)/(pq37|pq38|pq40|pq39)/(pq41|pq42|pq44|pq43)/(pq45|pq46|pq48|pq47)/(pq49|pq50|pq52|pq51)/(pq53|pq54|pq56|pq55)/(pq57|pq58|pq60|pq59)/
-  (pq61|pq62|pq64|pq63)/(pq65|pq66|pq68|pq67)
+(pq33|pq34|pq36|pq35|pmn10)/(pq37|pq38|pq40|pq39|pmn11)/(pq41|pq42|pq44|pq43|pmn12)/(pq45|pq46|pq48|pq47|pmn13)/(pq49|pq50|pq52|pq51|pmn14)/(pq53|pq54|pq56|pq55|pmn15)/(pq57|pq58|pq60|pq59|pmn16)/
+  (pq61|pq62|pq64|pq63|pmn17)/(pq65|pq66|pq68|pq67|pmn18)
 
 
 ## ---- friedmanQ
@@ -2181,7 +2289,6 @@ pca1M4Q_snaive+pca1M4Q_rwd+pca1M4Q_rw+pca1M4Q_notrend+pca1M4Q_etsdamtrend+
 ################################################################################
 
 ## ---- vimonthly
-
 # monthly feature importance
 load("data/monthly/trainM_importance.rda")
 load(file="data/monthly/sd_pdf_dfM.rda")
