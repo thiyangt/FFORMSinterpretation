@@ -1749,9 +1749,6 @@ p12 <- ggcorrplot(arma_QFH_cormat, hc.order = FALSE, type = "upper",
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("ARMA/AR/MA")
 
-p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+p11+p12+plot_layout(ncol = 3, nrow = 4)
-
-## ----friedmanQ2
 ## stlar
 stlar_QFH <- friedmanHstat_quarterly[friedmanHstat_quarterly$class=="stlar",]
 stlar_QFH_cormat <- friedmanHstat_matrix(stlar_QFH , 30, rev(col.order))
@@ -1809,7 +1806,7 @@ p17 <- ggcorrplot(nn_QFH_cormat, hc.order = FALSE, type = "upper",
   guides(fill=FALSE, color=FALSE)+ggtitle("nn")
 
 
-p13+p14+p15+p16+p17+plot_layout(ncol = 3, nrow = 2)
+p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+p11+p12+p13+p14+p15+p16+p17+plot_layout(ncol = 4, nrow = 5)
 
 ## ---- twowayquarterly1
 load("data/quarterly/trend.seasonality.q.rda")
@@ -2513,9 +2510,6 @@ p12 <- ggcorrplot(arma_MFH_cormat, hc.order = FALSE, type = "upper",
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("ARMA/AR/MA")
 
-p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+p11+p12+plot_layout(ncol = 3, nrow = 4)
-
-## ----friedmanM2
 ## stlar
 stlar_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="stlar",]
 stlar_MFH_cormat <- friedmanHstat_matrix(stlar_MFH , 30, rev(col.order))
@@ -2573,7 +2567,7 @@ p17 <- ggcorrplot(nn_MFH_cormat, hc.order = FALSE, type = "upper",
   guides(fill=FALSE, color=FALSE)+ggtitle("nn")
 
 
-p13+p14+p15+p16+p17+plot_layout(ncol = 3, nrow = 2)
+p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+p11+p12+p13+p14+p15+p16+p17+plot_layout(ncol = 4, nrow = 5)
 
 
 ## ---- twowaymonthly1
