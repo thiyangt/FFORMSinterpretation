@@ -1,35 +1,6 @@
-
 ################################################################
 #              Hourly data                                     #
 ################################################################
-## ---- hourlyoob
-load("data/hourly/trainH_votes.rda") #oob votes from the random forest
-load("data/hourly/trainH_predictions_oob.rda") # based on oob prediction
-load("data/hourly/hourly_training.rda") # random forest training set
-votes_oobH <- data.frame(trainH_votes)
-names(votes_oobH) <- names(table(trainH_predictions_oob))
-votes_oobH$predicted <- trainH_predictions_oob
-votes_oobH$classlabel <- hourly_training$classlabels
-votes_oobH <- votes_oobH %>% mutate(id=seq_len(n())) %>%
-  melt(id.var=c('classlabel','id','predicted'), na.rm=T) %>%
-  select(-id)
-#new addition to arrange labels 
-votes_oobH$classlabel <- factor(votes_oobH$classlabel, 
-                                levels=rev(c("snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
-                                             "theta","nn","wn"))
-)
-horizontalbar_hourly <- ggplot(votes_oobH, aes(x = variable, y = value, fill = classlabel)) +
-  geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
-  ylab("Proportion") +
-  xlab("") + 
-  theme(legend.position = "right", legend.title = element_blank(), legend.text.align = 0, text = element_text(size=20)) + 
-  guides(fill=guide_legend(reverse=TRUE)) +
-  scale_x_discrete(limits=rev(c("snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
-                                "theta","nn","wn"))) +
-  coord_flip() 
-horizontalbar_hourly
-
-
 ## ---- vihourly
 # All variable scores into one dataframe
 load("data/hourly/trainH_importance.rda")
@@ -110,7 +81,8 @@ feaImp_hourly <- ggplot(meanrank_hourly, aes(y = rank, x = feature,fill=as.facto
   geom_bar(position = "dodge", stat = "identity") +
   facet_wrap(~class, ncol = 6, nrow = 2) +
   coord_flip() + ylab("Average rank")+ 
-  scale_fill_manual(breaks=c("0","1"), values=c("black","red"), guide="none")
+  scale_fill_manual(breaks=c("0","1"), values=c("black","red"), guide="none")+
+  theme(text=element_text(size = 20))
 feaImp_hourly
 
 ## ----hourlypdp
@@ -178,6 +150,10 @@ p2 <- ggplot(data= entropygridH, aes_string(x=entropygridH$entropy, y="snaive"))
 p3 <- ggplot(data=linearitygridH, aes_string(x=linearitygridH$linearity, y="snaive")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("linearity")+ theme(legend.position="none")+ylab("")
+ps1 <- ggplot(data=seasonality2gridH, aes_string(x=seasonality2gridH$seasonal_strength2, y="snaive")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("seasonal_strength2")+ theme(legend.position="none")+ylab("")
+
 
 # rw
 p4 <- ggplot(data=seasonality1gridH, aes_string(x=seasonality1gridH$seasonal_strength1, y="rw")) +
@@ -189,6 +165,9 @@ stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 
 p6 <- ggplot(data=linearitygridH, aes_string(x=linearitygridH$linearity, y="rw")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("linearity")+ theme(legend.position="none")+ylab("")
+ps2 <- ggplot(data=seasonality2gridH, aes_string(x=seasonality2gridH$seasonal_strength2, y="rw")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("seasonal_strength2")+ theme(legend.position="none")+ylab("")
 
 #rwd
 p7 <- ggplot(data=seasonality1gridH, aes_string(x=seasonality1gridH$seasonal_strength1, y="rwd")) +
@@ -200,6 +179,9 @@ p8 <- ggplot(data=entropygridH, aes_string(x=entropygridH$entropy, y="rwd")) +
 p9 <- ggplot(data=linearitygridH, aes_string(x=linearitygridH$linearity, y="rwd")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("linearity")+ theme(legend.position="none")+ylab("")
+ps3 <- ggplot(data=seasonality2gridH, aes_string(x=seasonality2gridH$seasonal_strength2, y="rwd")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("seasonal_strength2")+ theme(legend.position="none")+ylab("")
 
 #mstlarima
 p10 <- ggplot(data=seasonality1gridH, aes_string(x=seasonality1gridH$seasonal_strength1, y="mstlarima")) +
@@ -211,9 +193,12 @@ p11 <- ggplot(data= entropygridH, aes_string(x=entropygridH$entropy, y="mstlarim
 p12 <- ggplot(data=linearitygridH, aes_string(x=linearitygridH$linearity, y="mstlarima")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("linearity")+ theme(legend.position="none")+ylab("")
+ps4 <- ggplot(data=seasonality2gridH, aes_string(x=seasonality2gridH$seasonal_strength2, y="mstlarima")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("seasonal_strength2")+ theme(legend.position="none")+ylab("")
 
 # mstlets
-p13 <- ggplot(data=seasonality1gridH, aes_string(x=seasonality1gridH$seasonal_strength1, y="mstlarima")) +
+p13 <- ggplot(data=seasonality1gridH, aes_string(x=seasonality1gridH$seasonal_strength1, y="mstlets")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("seasonality1")+ theme(legend.position="none")+ylab("mstlets")
 p14 <- ggplot(data= entropygridH, aes_string(x=entropygridH$entropy, y="mstlets")) +
@@ -222,6 +207,9 @@ p14 <- ggplot(data= entropygridH, aes_string(x=entropygridH$entropy, y="mstlets"
 p15 <- ggplot(data=linearitygridH, aes_string(x=linearitygridH$linearity, y="mstlets")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("linearity")+ theme(legend.position="none")+ylab("")
+ps5 <- ggplot(data=seasonality2gridH, aes_string(x=seasonality2gridH$seasonal_strength2, y="mstlets")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("seasonal_strength2")+ theme(legend.position="none")+ylab("")
 
 #tbats
 p16 <- ggplot(data=seasonality1gridH, aes_string(x=seasonality1gridH$seasonal_strength1, y="tbats")) +
@@ -233,6 +221,9 @@ p17 <- ggplot(data= entropygridH, aes_string(x=entropygridH$entropy, y="tbats"))
 p18 <- ggplot(data=linearitygridH, aes_string(x=linearitygridH$linearity, y="tbats")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("linearity")+ theme(legend.position="none")+ylab("")
+ps6 <- ggplot(data=seasonality2gridH, aes_string(x=seasonality2gridH$seasonal_strength2, y="tbats")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("seasonal_strength2")+ theme(legend.position="none")+ylab("")
 
 
 #stlar
@@ -245,6 +236,9 @@ p20 <- ggplot(data= entropygridH, aes_string(x=entropygridH$entropy, y="stlar"))
 p21 <- ggplot(data=linearitygridH, aes_string(x=linearitygridH$linearity, y="stlar")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("linearity")+ theme(legend.position="none")+ylab("")
+ps7 <- ggplot(data=seasonality2gridH, aes_string(x=seasonality2gridH$seasonal_strength2, y="stlar")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("seasonal_strength2")+ theme(legend.position="none")+ylab("")
 
 
 # theta
@@ -257,6 +251,9 @@ p23 <- ggplot(data= entropygridH, aes_string(x=entropygridH$entropy, y="theta"))
 p24 <- ggplot(data=linearitygridH, aes_string(x=linearitygridH$linearity, y="theta")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("linearity")+ theme(legend.position="none")+ylab("")
+ps8 <- ggplot(data=seasonality2gridH, aes_string(x=seasonality2gridH$seasonal_strength2, y="theta")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("seasonal_strength2")+ theme(legend.position="none")+ylab("")
 
 ## nn
 p25 <- ggplot(data=seasonality1gridH, aes_string(x=seasonality1gridH$seasonal_strength1, y="nn")) +
@@ -268,6 +265,9 @@ p26 <- ggplot(data= entropygridH, aes_string(x=entropygridH$entropy, y="nn")) +
 p27 <- ggplot(data= linearitygridH, aes_string(x=linearitygridH$linearity, y="nn")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("linearity")+ theme(legend.position="none")+ylab("") 
+ps9 <- ggplot(data=seasonality2gridH, aes_string(x=seasonality2gridH$seasonal_strength2, y="nn")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("seasonal_strength2")+ theme(legend.position="none")+ylab("")
 
 ## wn
 p28 <- ggplot(data=seasonality1gridH, aes_string(x=seasonality1gridH$seasonal_strength1, y="wn")) +
@@ -279,9 +279,12 @@ p29 <- ggplot(data=entropygridH, aes_string(x=entropygridH$entropy, y="wn")) +
 p30 <- ggplot(data=linearitygridH, aes_string(x=linearitygridH$linearity, y="wn")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("linearity")+ theme(legend.position="none")+ylab("")
+ps10 <- ggplot(data=seasonality2gridH, aes_string(x=seasonality2gridH$seasonal_strength2, y="wn")) +
+  stat_summary(fun.y = mean, geom = "line", col="red", size=1)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +xlab("seasonal_strength2")+ theme(legend.position="none")+ylab("")
 
 
-(p1|p2|p3)/(p4|p5|p6)/(p7|p8|p9)/(p10|p11|p12)/(p13|p14|p15)/(p16|p17|p18)/(p19|p20|p21)/(p22|p23|p24)/(p25|p26|p27)/(p28|p29|p30)
+(p1|ps1|p2|p3)/(p4|ps2|p5|p6)/(p7|ps3|p8|p9)/(p10|ps4|p11|p12)/(p13|ps5|p14|p15)/(p16|ps6|p17|p18)/(p19|ps7|p20|p21)/(p22|ps8|p23|p24)/(p25|ps9|p26|p27)/(p28|ps10|p29|p30)
 
 
 
@@ -397,12 +400,12 @@ pca1M4H_stlar + pca1M4H_theta + pca1M4H_nn+pca1M4H_wn+plot_layout(ncol = 5, nrow
 
 ## ---- friedmanhourly
 load("data/friedmanHstat_hourly.rda")
-col.order <- c("seasonal_strength1", "entropy", "linearity", "y_pacf5",
-               "curvature", "spikiness", "trend", "stability", "lumpiness",
-               "y_acf5", "diff2y_acf1","sediff_seacf1", "nonlinearity", "seas_pacf",
-               "diff2y_pacf5", "seasonal_strength2", "hurst", "y_acf1", "diff1y_pacf5",
-               "sediff_acf5", "diff1y_acf1", "diff2y_acf5", "diff1y_acf5",
-               "e_acf1", "sediff_acf1", "N")
+col.order <- c("seasonal_strength1", "stability", "trend", "lumpiness",
+               "linearity", "nonlinearity", "y_pacf5", "curvature", "e_acf1",
+               "spikiness", "sediff_seacf1","seas_pacf", "N", "sediff_acf5",
+               "entropy", "y_acf5", "y_acf1", "diff1y_acf5", "sediff_acf1",
+               "diff1y_pacf5", "diff1y_acf1", "hurst", "seasonal_strength2",
+               "diff2y_acf1", "diff2y_acf5", "diff2y_pacf5")
 ## snaive
 snaive_HFH <- friedmanHstat_hourly[friedmanHstat_hourly$class=="snaive",]
 snaive_HFH_cormat <- friedmanHstat_matrix(snaive_HFH, 26, rev(col.order))

@@ -401,7 +401,7 @@ p9sp <- ggplot(data = spikinessW_includeout, aes_string(x = spikinessW_includeou
 
 ## wn
 p28 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "wn")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("spikiness") +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none") + ylab("wn")
 p29 <- ggplot(data = trendW_includeout, aes_string(x = trendW_includeout$trend, y = "wn")) +
@@ -445,7 +445,7 @@ p11sp <- ggplot(data = spikinessW_includeout, aes_string(x = spikinessW_includeo
 
 ## nn
 p34 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "nn")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("y_pacf5") +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none") + ylab("nn")
 p35 <- ggplot(data = trendW_includeout, aes_string(x = trendW_includeout$trend, y = "nn")) +
@@ -610,7 +610,7 @@ p12 <- ggcorrplot(nn_WFH_cormat, hc.order = FALSE, type = "upper",
   guides(fill=FALSE, color=FALSE)+ggtitle("nn")
 
 
-p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+p11+p12+plot_layout(ncol = 3, nrow = 4)
+p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+p11+p12+plot_layout(ncol = 4, nrow = 3)
 
 ## ---- pcaweekly
 load("data/weekly/trainW_votes.rda")
