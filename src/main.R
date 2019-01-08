@@ -255,7 +255,10 @@ p3 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none") + ylab("")
-
+pda1 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "rwd")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
 
 # rw
 p4 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "rw")) +
@@ -267,6 +270,10 @@ p5 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "rw")) +
 p6 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "rw")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
+pda2 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "rw")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
 
 # ETS-trend
 p7 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "ETS.trend")) +
@@ -278,6 +285,10 @@ p8 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "ETS.trend"))
 p9 <- ggplot(data =linearitygrid, aes_string(x = linearitygrid$linearity, y = "ETS.trend")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
+pda3 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "ETS.trend")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
 
 # ETS-dampedtrend
 p10 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "ETS.dampedtrend")) +
@@ -289,7 +300,10 @@ p11 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "ETS.dampedt
 p12 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "ETS.dampedtrend")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
-
+pda4 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "ETS.dampedtrend")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
 # ETS-notrendnoseasonal
 p13 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "ETS.notrendnoseasonal")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
@@ -300,7 +314,10 @@ p14 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "ETS.notrend
 p15 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "ETS.notrendnoseasonal")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
-
+pda5 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "ETS.notrendnoseasonal")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
 # ARIMA
 p16 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "ARIMA")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
@@ -311,7 +328,10 @@ p17 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "ARIMA")) +
 p18 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "ARIMA")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
-
+pda6 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "ARIMA")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
 # ARMA.AR.MA
 p19 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "ARMA.AR.MA")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
@@ -322,7 +342,10 @@ p20 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "ARMA.AR.MA"
 p21 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "ARMA.AR.MA")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
-
+pda7 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "ARMA.AR.MA")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
 # wn
 p22 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "wn")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
@@ -333,7 +356,10 @@ p23 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "wn")) +
 p24 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "wn")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
-
+pda8 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "wn")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
 # theta
 p25 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "theta")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
@@ -344,7 +370,10 @@ p26 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "theta")) +
 p27 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "theta")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
-
+pda9 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "theta")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
 ## nn
 p28 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "nn")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
@@ -355,8 +384,11 @@ p29 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "nn")) +
 p30 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "nn")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
-
-(p1 | p2 | p3) / (p4 | p5 | p6) / (p7 | p8 | p9) / (p10 | p11 | p12) / (p13 | p14 | p15) / (p16 | p17 | p18) / (p19 | p20 | p21) / (p22 | p23 | p24) / (p25 | p26 | p27) / (p28 | p29 | p30)
+pda10 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "nn")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none") + ylab("")
+(p1 | p2 | p3|pda1) / (p4 | p5 | p6|pda2) / (p7 | p8 | p9|pda3) / (p10 | p11 | p12|pda4) / (p13 | p14 | p15|pda5) / (p16 | p17 | p18|pda6) / (p19 | p20 | p21|pda7) / (p22 | p23 | p24|pda8) / (p25 | p26 | p27|pda9) / (p28 | p29 | p30|pda10)
 
 ## ---- sankeyyearly
 load("data/yearly/rf.yearly.all.paths.rda")
@@ -487,359 +519,6 @@ p10 <- ggcorrplot(nn_YFH_cormat, hc.order = FALSE, type = "upper",
 
 p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+plot_layout(ncol = 3, nrow = 4)
 
-## ---- twowayinteractionyearly1
-load("data/yearly/lumpiness.stability.y.rda")
-load("data/yearly/eacf1.diff2yacf1.y.rda")
-load("data/yearly/hurst.y_acf5.y.rda")
-load("data/yearly/hurst.e_acf1.y.rda")
-colNamesls <- colnames(lumpiness.stability.y)[27:36]
-colNamesed <- colnames(eacf1.diff2yacf1.y)[27:36]
-colNamesha <- colnames(hurst.y_acf5.y)[27:36]
-colNameshe <- colnames(hurst.e_acf1.y)[27:36]
-
-
-# rwd
-int1 <- ggplot(
-  data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[8], fill = colNamesls[8]
-  ))+geom_tile() + 
-  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100),option = "A", direction = -1)+
-  xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("rwd")
-  
-int2 <- ggplot(
-  data = eacf1.diff2yacf1.y,
-  aes_string(
-    x = eacf1.diff2yacf1.y$e_acf1,
-    y = eacf1.diff2yacf1.y$diff2y_acf1, z = colNamesed[8], fill = colNamesed[8]
-  )) +geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.4), breaks = seq(0, 0.4, 100), option = "A", direction = -1) +
-  xlab("e_acf1") + ylab("diff2y_acf1")+ theme(legend.position="none")+ggtitle("rwd")
-
-int3 <- ggplot(
-  data = hurst.y_acf5.y,
-  aes_string(
-    x = hurst.y_acf5.y$hurst,
-    y = hurst.y_acf5.y$y_acf5, z = colNamesha[8], fill = colNamesha[8]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.4), breaks = seq(0, 0.4, 100), option = "A", direction = -1) +
-  xlab("hurst") + ylab("y_acf5")+ theme(legend.position="none")+ggtitle("rwd")
-
-int4 <- ggplot(
-  data = hurst.e_acf1.y,
-  aes_string(
-    x = hurst.e_acf1.y$hurst,
-    y = hurst.e_acf1.y$e_acf1, z = colNameshe[8], fill = colNameshe[8]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), option = "A", direction = -1) +
-  xlab("hurst") + ylab("e_acf1")+ theme(legend.position="none")+ggtitle("rwd")
-## rw
-int5 <- ggplot(
-  data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[7], fill = colNamesls[7]
-  ))+geom_tile() + 
-  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100),option = "A", direction = -1)+
-  xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("rw")
-
-int6 <- ggplot(
-  data = eacf1.diff2yacf1.y,
-  aes_string(
-    x = eacf1.diff2yacf1.y$e_acf1,
-    y = eacf1.diff2yacf1.y$diff2y_acf1, z = colNamesed[7], fill = colNamesed[7]
-  )) +geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), option = "A", direction = -1) +
-  xlab("e_acf1") + ylab("diff2y_acf1")+ theme(legend.position="none")+ggtitle("rw")
-
-int7 <- ggplot(
-  data = hurst.y_acf5.y,
-  aes_string(
-    x = hurst.y_acf5.y$hurst,
-    y = hurst.y_acf5.y$y_acf5, z = colNamesha[7], fill = colNamesha[7]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), option = "A", direction = -1) +
-  xlab("hurst") + ylab("y_acf5")+ theme(legend.position="none")+ggtitle("rw")
-
-int8 <- ggplot(
-  data = hurst.e_acf1.y,
-  aes_string(
-    x = hurst.e_acf1.y$hurst,
-    y = hurst.e_acf1.y$e_acf1, z = colNameshe[7], fill = colNameshe[7]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), option = "A", direction = -1) +
-  xlab("hurst") + ylab("e_acf1")+ theme(legend.position="none")+ggtitle("rw")
-
-# ETS-trend
-int9 <- ggplot(
-  data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[5], fill = colNamesls[5]
-  ))+geom_tile() + 
-  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100),option = "A", direction = -1)+
-  xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("ETS-trend")
-
-int10 <- ggplot(
-  data = eacf1.diff2yacf1.y,
-  aes_string(
-    x = eacf1.diff2yacf1.y$e_acf1,
-    y = eacf1.diff2yacf1.y$diff2y_acf1, z = colNamesed[5], fill = colNamesed[5]
-  )) +geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), option = "A", direction = -1) +
-  xlab("e_acf1") + ylab("diff2y_acf1")+ theme(legend.position="none")+ggtitle("ETS-trend")
-
-int11 <- ggplot(
-  data = hurst.y_acf5.y,
-  aes_string(
-    x = hurst.y_acf5.y$hurst,
-    y = hurst.y_acf5.y$y_acf5, z = colNamesha[5], fill = colNamesha[5]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), option = "A", direction = -1) +
-  xlab("hurst") + ylab("y_acf5")+ theme(legend.position="none")+ggtitle("ETS-trend")
-
-int12 <- ggplot(
-  data = hurst.e_acf1.y,
-  aes_string(
-    x = hurst.e_acf1.y$hurst,
-    y = hurst.e_acf1.y$e_acf1, z = colNameshe[5], fill = colNameshe[5]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), option = "A", direction = -1) +
-  xlab("hurst") + ylab("e_acf1")+ theme(legend.position="none")+ggtitle("ETS-trend")
-
-## ETS_dampedtrend
-int13 <- ggplot(
-  data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[3], fill = colNamesls[3]
-  ))+geom_tile() + 
-  scale_fill_viridis_c(limits = c(0, 0.01), breaks = seq(0, 0.01, 100),option = "A", direction = -1)+
-  xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("ETS-dampedtrend")
-
-int14 <- ggplot(
-  data = eacf1.diff2yacf1.y,
-  aes_string(
-    x = eacf1.diff2yacf1.y$e_acf1,
-    y = eacf1.diff2yacf1.y$diff2y_acf1, z = colNamesed[3], fill = colNamesed[3]
-  )) +geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.01), breaks = seq(0, 0.01, 100), option = "A", direction = -1) +
-  xlab("e_acf1") + ylab("diff2y_acf1")+ theme(legend.position="none")+ggtitle("ETS-dampedtrend")
-
-int15 <- ggplot(
-  data = hurst.y_acf5.y,
-  aes_string(
-    x = hurst.y_acf5.y$hurst,
-    y = hurst.y_acf5.y$y_acf5, z = colNamesha[3], fill = colNamesha[3]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.01), breaks = seq(0, 0.01, 100), option = "A", direction = -1) +
-  xlab("hurst") + ylab("y_acf5")+ theme(legend.position="none")+ggtitle("ETS-dampedtrend")
-
-int16 <- ggplot(
-  data = hurst.e_acf1.y,
-  aes_string(
-    x = hurst.e_acf1.y$hurst,
-    y = hurst.e_acf1.y$e_acf1, z = colNameshe[3], fill = colNameshe[3]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.01), breaks = seq(0, 0.01, 100), option = "A", direction = -1) +
-  xlab("hurst") + ylab("e_acf1")+ theme(legend.position="none")+ggtitle("ETS-dampedtrend")
-
-# ETS-notrendseasonal
-int17 <- ggplot(
-  data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[4], fill = colNamesls[4]
-  ))+geom_tile() + 
-  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100),option = "A", direction = -1)+
-  xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("ETS-notrendnoseasonal")
-
-int18 <- ggplot(
-  data = eacf1.diff2yacf1.y,
-  aes_string(
-    x = eacf1.diff2yacf1.y$e_acf1,
-    y = eacf1.diff2yacf1.y$diff2y_acf1, z = colNamesed[4], fill = colNamesed[4]
-  )) +geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), option = "A", direction = -1) +
-  xlab("e_acf1") + ylab("diff2y_acf1")+ theme(legend.position="none")+ggtitle("ETS-notrendnoseasonal")
-
-int19 <- ggplot(
-  data = hurst.y_acf5.y,
-  aes_string(
-    x = hurst.y_acf5.y$hurst,
-    y = hurst.y_acf5.y$y_acf5, z = colNamesha[4], fill = colNamesha[4]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), option = "A", direction = -1) +
-  xlab("hurst") + ylab("y_acf5")+ theme(legend.position="none")+ggtitle("ETS-notrendnoseasonal")
-
-int20 <- ggplot(
-  data = hurst.e_acf1.y,
-  aes_string(
-    x = hurst.e_acf1.y$hurst,
-    y = hurst.e_acf1.y$e_acf1, z = colNameshe[4], fill = colNameshe[4]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), option = "A", direction = -1) +
-  xlab("hurst") + ylab("e_acf1")+ theme(legend.position="none")+ggtitle("ETS-notrendnoseasonal")
-(int1 | int3 | int4) / (int5 | int7 | int8) / (int9 | int11 | int12) / (int13 | int15 | int16)/(int17|int19|int20)
-
-
-## ---- twowayinteractionyearly2
-# ARIMA
-int1 <- ggplot(
-  data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[1], fill = colNamesls[1]
-  ))+geom_tile() + 
-  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100),option = "A", direction = -1)+
-  xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("ARIMA")
-
-int2 <- ggplot(
-  data = eacf1.diff2yacf1.y,
-  aes_string(
-    x = eacf1.diff2yacf1.y$e_acf1,
-    y = eacf1.diff2yacf1.y$diff2y_acf1, z = colNamesed[1], fill = colNamesed[1]
-  )) +geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), option = "A", direction = -1) +
-  xlab("e_acf1") + ylab("diff2y_acf1")+ theme(legend.position="none")+ggtitle("ARIMA")
-
-int3 <- ggplot(
-  data = hurst.y_acf5.y,
-  aes_string(
-    x = hurst.y_acf5.y$hurst,
-    y = hurst.y_acf5.y$y_acf5, z = colNamesha[1], fill = colNamesha[1]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), option = "A", direction = -1) +
-  xlab("hurst") + ylab("y_acf5")+ theme(legend.position="none")+ggtitle("ARIMA")
-
-int4 <- ggplot(
-  data = hurst.e_acf1.y,
-  aes_string(
-    x = hurst.e_acf1.y$hurst,
-    y = hurst.e_acf1.y$e_acf1, z = colNameshe[1], fill = colNameshe[1]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), option = "A", direction = -1) +
-  xlab("hurst") + ylab("e_acf1")+ theme(legend.position="none")+ggtitle("ARIMA")
-
-## ARMA
-int5 <- ggplot(
-  data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[2], fill = colNamesls[2]
-  ))+geom_tile() + 
-  scale_fill_viridis_c(limits = c(0, 0.02), breaks = seq(0, 0.02, 100),option = "A", direction = -1)+
-  xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("ARMA/AR/MA")
-
-int6 <- ggplot(
-  data = eacf1.diff2yacf1.y,
-  aes_string(
-    x = eacf1.diff2yacf1.y$e_acf1,
-    y = eacf1.diff2yacf1.y$diff2y_acf1, z = colNamesed[2], fill = colNamesed[2]
-  )) +geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), option = "A", direction = -1) +
-  xlab("e_acf1") + ylab("diff2y_acf1")+ theme(legend.position="none")+ggtitle("ARMA/AR/MA")
-
-int7 <- ggplot(
-  data = hurst.y_acf5.y,
-  aes_string(
-    x = hurst.y_acf5.y$hurst,
-    y = hurst.y_acf5.y$y_acf5, z = colNamesha[2], fill = colNamesha[2]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), option = "A", direction = -1) +
-  xlab("hurst") + ylab("y_acf5")+ theme(legend.position="none")+ggtitle("ARMA/AR/MA")
-
-int8 <- ggplot(
-  data = hurst.e_acf1.y,
-  aes_string(
-    x = hurst.e_acf1.y$hurst,
-    y = hurst.e_acf1.y$e_acf1, z = colNameshe[2], fill = colNameshe[2]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), option = "A", direction = -1) +
-  xlab("hurst") + ylab("e_acf1")+ theme(legend.position="none")+ggtitle("ARMA/AR/MA")
-# wn
-int9 <- ggplot(
-  data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[10], fill = colNamesls[10]
-  ))+geom_tile() + 
-  scale_fill_viridis_c(limits = c(0, 0.8), breaks = seq(0, 0.8, 100),option = "A", direction = -1)+
-  xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("wn")
-
-int10 <- ggplot(
-  data = eacf1.diff2yacf1.y,
-  aes_string(
-    x = eacf1.diff2yacf1.y$e_acf1,
-    y = eacf1.diff2yacf1.y$diff2y_acf1, z = colNamesed[10], fill = colNamesed[10]
-  )) +geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.8), breaks = seq(0, 0.8, 100), option = "A", direction = -1) +
-  xlab("e_acf1") + ylab("diff2y_acf1")+ theme(legend.position="none")+ggtitle("wn")
-
-int11 <- ggplot(
-  data = hurst.y_acf5.y,
-  aes_string(
-    x = hurst.y_acf5.y$hurst,
-    y = hurst.y_acf5.y$y_acf5, z = colNamesha[10], fill = colNamesha[10]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
-  xlab("hurst") + ylab("y_acf5")+ theme(legend.position="none")+ggtitle("wn")
-
-int12 <- ggplot(
-  data = hurst.e_acf1.y,
-  aes_string(
-    x = hurst.e_acf1.y$hurst,
-    y = hurst.e_acf1.y$e_acf1, z = colNameshe[10], fill = colNameshe[10]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
-  xlab("hurst") + ylab("e_acf1")+ theme(legend.position="none")+ggtitle("wn")
-## theta
-int13 <- ggplot(
-  data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[9], fill = colNamesls[9]
-  ))+geom_tile() + 
-  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100),option = "A", direction = -1)+
-  xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("theta")
-
-int14 <- ggplot(
-  data = eacf1.diff2yacf1.y,
-  aes_string(
-    x = eacf1.diff2yacf1.y$e_acf1,
-    y = eacf1.diff2yacf1.y$diff2y_acf1, z = colNamesed[9], fill = colNamesed[9]
-  )) +geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), option = "A", direction = -1) +
-  xlab("e_acf1") + ylab("diff2y_acf1")+ theme(legend.position="none")+ggtitle("theta")
-
-int15 <- ggplot(
-  data = hurst.y_acf5.y,
-  aes_string(
-    x = hurst.y_acf5.y$hurst,
-    y = hurst.y_acf5.y$y_acf5, z = colNamesha[9], fill = colNamesha[9]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), option = "A", direction = -1) +
-  xlab("hurst") + ylab("y_acf5")+ theme(legend.position="none")+ggtitle("theta")
-
-int16 <- ggplot(
-  data = hurst.e_acf1.y,
-  aes_string(
-    x = hurst.e_acf1.y$hurst,
-    y = hurst.e_acf1.y$e_acf1, z = colNameshe[9], fill = colNameshe[9]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), option = "A", direction = -1) +
-  xlab("hurst") + ylab("e_acf1")+ theme(legend.position="none")+ggtitle("theta")
-# nn
-int17 <- ggplot(
-  data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[6], fill = colNamesls[6]
-  ))+geom_tile() + 
-  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100),option = "A", direction = -1)+
-  xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("nn")
-
-int18 <- ggplot(
-  data = eacf1.diff2yacf1.y,
-  aes_string(
-    x = eacf1.diff2yacf1.y$e_acf1,
-    y = eacf1.diff2yacf1.y$diff2y_acf1, z = colNamesed[6], fill = colNamesed[6]
-  )) +geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), option = "A", direction = -1) +
-  xlab("e_acf1") + ylab("diff2y_acf1")+ theme(legend.position="none")+ggtitle("nn")
-
-int19 <- ggplot(
-  data = hurst.y_acf5.y,
-  aes_string(
-    x = hurst.y_acf5.y$hurst,
-    y = hurst.y_acf5.y$y_acf5, z = colNamesha[6], fill = colNamesha[6]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), option = "A", direction = -1) +
-  xlab("hurst") + ylab("y_acf5")+ theme(legend.position="none")+ggtitle("nn")
-
-int20 <- ggplot(
-  data = hurst.e_acf1.y,
-  aes_string(
-    x = hurst.e_acf1.y$hurst,
-    y = hurst.e_acf1.y$e_acf1, z = colNameshe[6], fill = colNameshe[6]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), option = "A", direction = -1) +
-  xlab("hurst") + ylab("e_acf1")+ theme(legend.position="none")+ggtitle("nn")
-(int1 | int3 | int4) / (int5 | int7 | int8) / (int9 | int11 | int12) / (int13 | int15 | int16)/(int17|int19|int20)
-
-
-
 ## ---- yearlypca
 load("data/yearly/train_votes.rda")
 pcaYvariables <- yearly_training[, 1:25]
@@ -946,9 +625,6 @@ pca1M4Y_nn <- ggplot(m4yPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
 
 (pca1M4Y_rwd | pca1M4Y_rw | pca1M4Y_etstrend | pca1M4Y_etsdamtrend | pca1M4Y_notrend) /
   (pca1M4Y_ARIMA | pca1M4Y_ARMA | pca1M4Y_wn | pca1M4Y_theta | pca1M4Y_nn)
-
-## ---- limeyearly
-
 
 #################################################################
 #                  Quarterly and Monthly data                               #
@@ -1807,310 +1483,6 @@ p17 <- ggcorrplot(nn_QFH_cormat, hc.order = FALSE, type = "upper",
 
 
 p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+p11+p12+p13+p14+p15+p16+p17+plot_layout(ncol = 4, nrow = 5)
-
-## ---- twowayquarterly1
-load("data/quarterly/trend.seasonality.q.rda")
-load("data/quarterly/seasonality.spikiness.q.rda")
-load("data/quarterly/seasonality.lumpiness.q.rda")
-colNames <- colnames(trend.seasonality.q)[32:48]
-
-# snaive
-int1 <- ggplot(
-  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[13], fill = colNames[13]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("snaive (H=0.48)")
-
-int2 <- ggplot(
-  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[13], fill = colNames[13]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("snaive (H=0.33)")
-
-int3 <- ggplot(
-  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[13], fill = colNames[13]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("snaive (H=0.57)")
-
-# rwd
-int4 <- ggplot(
-  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[11], fill = colNames[11]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("rwd (H=0.49)")
-int5 <- ggplot(
-  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[11], fill = colNames[11]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("rwd (H=0.67)")
-int6 <- ggplot(
-  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[11], fill = colNames[11]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("rwd (H=0.90)")
-#rw
-int7 <- ggplot(
-  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[10], fill = colNames[10]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("rw (H=0.22)")
-int8 <- ggplot(
-  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[10], fill = colNames[10]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("rw (H=0.22)")
-int9 <- ggplot(
-  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[10], fill = colNames[10]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("rw (H=0.26)")
-
-## ETS-notrendnoseasonal
-int10 <- ggplot(
-  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[5], fill = colNames[5]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ETS-NTNS (H=0.24)")
-int11 <- ggplot(
-  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[5], fill = colNames[5]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("ETS-NTNS (H=0.29)")
-int12 <- ggplot(
-  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[5], fill = colNames[5]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("ETS-NTNS (H=0.33)")
-
-## ETS-dt
-int13 <- ggplot(
-  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[3], fill = colNames[3]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ETS-DT (H=0.19)")
-int14 <- ggplot(
-  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[3], fill = colNames[3]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("ETS-DT (H=0.14)")
-int15 <- ggplot(
-  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[3], fill = colNames[3]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("ETS-DT (H=0.12)")
-
-(int1|int2|int3)/(int4|int5|int6)/(int7|int8|int9)/(int10|int11|int12)/(int13|int14|int15)
-
-## ---- twowayquarterly2
-## ETS-t
-int16 <- ggplot(
-  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[7], fill = colNames[7]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ETS-Trend (H=0.34)")
-int17 <- ggplot(
-  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[7], fill = colNames[7]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("ETS-Trend (H=0.09)")
-int18 <- ggplot(
-  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[7], fill = colNames[7]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("ETS-Trend (H=0.13)")
-
-## ETS-dampedtrendseasonal
-int19 <- ggplot(
-  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[4], fill = colNames[4]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ETS-DTS (H=0.49)")
-int20 <- ggplot(
-  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[4], fill = colNames[4]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("ETS-DTS (H=0.36)")
-int21 <- ggplot(
-  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[4], fill = colNames[4]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("ETS-DTS (H=0.25)")
-
-## ETS-trendseasonal
-int22 <- ggplot(
-  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[8], fill = colNames[8]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ETS-TS (H=0.49)")
-int23 <- ggplot(
-  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[8], fill = colNames[8]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("ETS-TS (H=0.37)")
-int24 <- ggplot(
-  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[8], fill = colNames[8]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("ETS-TS (H=0.31)")
-
-## ETS-seasonal
-int25 <- ggplot(
-  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[6], fill = colNames[6]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ETS-S (H=0.36)")
-int26 <- ggplot(
-  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[6], fill = colNames[6]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("ETS-S (H=0.40)")
-int27 <- ggplot(
-  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[6], fill = colNames[6]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("ETS-S (H=0.56)")
-## SARIMA
-int28 <- ggplot(
-  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[12], fill = colNames[12]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("SARIMA (H=0.18)")
-int29 <- ggplot(
-  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[12], fill = colNames[12]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("SARIMA (H=0.21)")
-int30 <- ggplot(
-  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[12], fill = colNames[12]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("SARIMA (H=0.15)")
-
-(int16|int17|int18)/(int19|int20|int21)/(int22|int23|int24)/(int25|int26|int27)/(int28|int29|int30)
-
-## ---- twowayquarterly3
-## ARIMA
-int31 <- ggplot(
-  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[1], fill = colNames[1]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ARIMA (H=0.20)")
-int32 <- ggplot(
-  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[1], fill = colNames[1]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("ARIMA (H=0.13)")
-int33 <- ggplot(
-  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[1], fill = colNames[1]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("ARIMA (H=0.16)")
-## ARMA
-int34 <- ggplot(
-  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[2], fill = colNames[2]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ARMA (H=0.29)")
-int35 <- ggplot(
-  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[2], fill = colNames[2]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("ARMA (H=0.34)")
-int36 <- ggplot(
-  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[2], fill = colNames[2]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("ARMA (H=0.39)")
-
-##stlar
-int37 <- ggplot(
-  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[14], fill = colNames[14]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("stlar (H=0.87)")
-int38 <- ggplot(
-  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[14], fill = colNames[14]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("stlar (H=1.00)")
-int39 <- ggplot(
-  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[14], fill = colNames[14]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("stlar (H=0.79)")
-##tbats
-int40 <- ggplot(
-  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[15], fill = colNames[15]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("tbats (H=0.85)")
-int41 <- ggplot(
-  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[15], fill = colNames[15]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("tbats (H=0.56)")
-int42 <- ggplot(
-  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[15], fill = colNames[15]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("tbats (H=0.59)")
-
-##wn
-int43 <- ggplot(
-  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[17], fill = colNames[17]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.6), breaks = seq(0, 0.6, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("wn (H=0.34)")
-int44 <- ggplot(
-  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[17], fill = colNames[17]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.6), breaks = seq(0, 0.6, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("wn (H=0.31)")
-int45 <- ggplot(
-  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[17], fill = colNames[17]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.6), breaks = seq(0, 0.6, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("wn (H=0.40)")
-
-(int31|int32|int33)/(int34|int35|int36)/(int37|int38|int39)/(int40|int41|int42)/(int43|int44|int45)
-
-## ---- twowayquarterly4
-## theta
-int46 <- ggplot(
-  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[16], fill = colNames[16]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("theta (H=1.00)")
-int47 <- ggplot(
-  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[16], fill = colNames[16]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("theta (H=0.89)")
-int48 <- ggplot(
-  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[16], fill = colNames[16]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("theta (H=0.74)")
-
-## nn
-int49 <- ggplot(
-  data = trend.seasonality.q, aes_string(x = trend.seasonality.q$trend,y = trend.seasonality.q$seasonality, z = colNames[9], fill = colNames[9]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("nn (H=0.77)")
-int50 <- ggplot(
-  data = seasonality.spikiness.q, aes_string(x = seasonality.spikiness.q$seasonality,y = seasonality.spikiness.q$spikiness, z = colNames[9], fill = colNames[9]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("spikiness") + theme(legend.position="none")+ggtitle("nn (H=0.33)")
-int51 <- ggplot(
-  data = seasonality.lumpiness.q, aes_string(x = seasonality.lumpiness.q$seasonality,y = seasonality.lumpiness.q$lumpiness, z = colNames[9], fill = colNames[9]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("seasonality") + ylab("lumpiness") + theme(legend.position="none")+ggtitle("nn (H=0.66)")
-
-(int46|int47|int48)/(int49|int50|int51)
 
 ## ---- quarterlypca
 pcaQvariables <- quarterly_training[, 1:30]
