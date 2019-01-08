@@ -469,7 +469,7 @@ According to \autoref{fig:oobdaily} the distributions corresponds to observation
 
 \newpage
 
-```{r hourlypdp, fig.height=14.7, fig.width=10, fig.cap="Partial dependence plots for the top ranked features from variable importance measures(daily series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class.", fig.pos="h"}
+```{r hourlypdp, fig.height=28, fig.width=20, fig.cap="Partial dependence plots for the top ranked features from variable importance measures(daily series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class.", fig.pos="h"}
 ```
 
 \newpage
