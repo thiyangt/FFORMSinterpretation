@@ -22,12 +22,12 @@ pca <- ggplot(m4yPCAresults1, aes(x = PC1, y = PC2)) +
     legend.position = "none",
     aspect.ratio = 1
   ) +
-  geom_point(data =yearly_training[c(373, 227743, 393474,  22719, 13442, 480357),], aes(x = PC1, y = PC2), color = "black", size=5) +
+  geom_point(data =yearly_training[c(373, 227743, 393474, 13442, 480357),], aes(x = PC1, y = PC2), color = "black", size=5) +
  theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))+
   geom_text_repel(
-    data = yearly_training[c(373, 227743, 393474,  22719, 13442, 480357),],
-    aes(label = c("1: ARMA/AR/MA", "2: ETS-trend", "3: ETS-notrendnoseasonal", "4: nn",
-                  "5: nn", "6: rw")),
+    data = yearly_training[c(373, 227743, 393474, 13442, 480357),],
+    aes(label = c("1: ARMA/AR/MA", "2: ETS-trend", "3: ETS-notrendnoseasonal", 
+                  "4: nn", "5: rw")),
     size = 5,
     box.padding = unit(0.35, "lines"),
     point.padding = unit(0.3, "lines")
@@ -47,23 +47,24 @@ p3 <- autoplot(ts_lime_ypca[[3]])+theme(legend.position="none")+
   ggtitle("3: ETS-notrendnoseasonal")+xlab("")+theme(axis.title.x=element_blank(),
                             # axis.text.x=element_blank(),
                              axis.text.y=element_blank())+ylab("")
-p4 <- autoplot(ts_lime_ypca[[4]])+theme(legend.position="none")+
-  ggtitle("4: nn")+xlab("")+theme(axis.title.x=element_blank(),
-                            # axis.text.x=element_blank(),
-                             axis.text.y=element_blank())+ylab("")
+# p4 <- autoplot(ts_lime_ypca[[4]])+theme(legend.position="none")+
+#   ggtitle("4: nn")+xlab("")+theme(axis.title.x=element_blank(),
+#                             # axis.text.x=element_blank(),
+#                              axis.text.y=element_blank())+ylab("")
 p5 <- autoplot(ts_lime_ypca[[5]])+theme(legend.position="none")+
-  ggtitle("5: nn")+xlab("")+theme(axis.title.x=element_blank(),
+  ggtitle("4: nn")+xlab("")+theme(axis.title.x=element_blank(),
                              #axis.text.x=element_blank(),
                              axis.text.y=element_blank())+ylab("")
 p6 <- autoplot(ts_lime_ypca[[6]])+theme(legend.position="none")+
-  ggtitle("6: rw")+xlab("")+theme(axis.title.x=element_blank(),
+  ggtitle("5: rw")+xlab("")+theme(axis.title.x=element_blank(),
                                #axis.text.x=element_blank(),
                                axis.text.y=element_blank())+ylab("")
-pp <- p1 + p2 + p3 + p4 + p5+ p6 + plot_layout(ncol = 1)
+pp <- p1 + p2 + p3 + p5+ p6 + plot_layout(ncol = 1)
 pca+pp+plot_layout(ncol = 2)
 
 ## ---- yearlylime2
-plot_features(explanationy, ncol = 2)
+load("data/yearly/explanationy.rda")
+lime::plot_features(explanationy, ncol = 3)
                        
 ## ---- quarterlylime
 #which.min(m4qPCAresults1$PC1)  #405
@@ -122,7 +123,7 @@ pp <- p1 + p2 + p3 + p4 + plot_layout(ncol = 1)
 pcaQ+pp+plot_layout(ncol = 2)
 
 ## ---- quarterlylime2
-plot_features(explanationq, ncol = 2)
+plot_features(explanationq, ncol = 3)
 
 ## ---- monthlylime
 #which.min(m4mPCAresults$PC1)  #632

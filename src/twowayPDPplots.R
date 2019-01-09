@@ -30,7 +30,7 @@ int3 <- ggplot(
 int4 <- ggplot(
   data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[3], fill = colNamesls[3]
   ))+geom_tile() + 
-  scale_fill_viridis_c(limits = c(0, 0.5), breaks = seq(0, 0.5, 100),option = "A", direction = -1)+
+  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100),option = "A", direction = -1)+
   xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("ETS-dampedtrend")
 # ETS-notrendseasonal
 int5 <- ggplot(
@@ -198,7 +198,7 @@ int12 <- ggplot(
     x = diff1y_acf5.stability.q$diff1y_acf5,
     y = diff1y_acf5.stability.q$stability, z = colNamesds[2], fill = colNamesds[2]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.0001), breaks = seq(0, 0.0001, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.01), breaks = seq(0, 0.01, 100), option = "A", direction = -1) +
   xlab("diff1y_acf5") + ylab("stability")+ theme(legend.position="none")+ggtitle("ARMA/AR/MA")
 
 # stlar(45)
@@ -308,7 +308,7 @@ int6 <- ggplot(
     x = sediff_acf5.sediff_seacf1.m$sediff_acf5,
     y = sediff_acf5.sediff_seacf1.m$sediff_seacf1, z = colNamesds[7], fill = colNamesds[7]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), option = "A", direction = -1) +
   xlab("sediff_acf5") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("ETS-trend")
 # ETS-dampedtrendseasonal(35)
 int7 <- ggplot(
@@ -317,7 +317,7 @@ int7 <- ggplot(
     x = sediff_acf5.sediff_seacf1.m$sediff_acf5,
     y = sediff_acf5.sediff_seacf1.m$sediff_seacf1, z = colNamesds[4], fill = colNamesds[4]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), option = "A", direction = -1) +
   xlab("sediff_acf5") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("ETS-dampedtrendseasonal")
 # ETS-trendseasonal(39)
 int8 <- ggplot(
@@ -326,7 +326,7 @@ int8 <- ggplot(
     x = sediff_acf5.sediff_seacf1.m$sediff_acf5,
     y = sediff_acf5.sediff_seacf1.m$sediff_seacf1, z = colNamesds[8], fill = colNamesds[8]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), option = "A", direction = -1) +
   xlab("sediff_acf5") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("ETS-trendseasonal")
 # ETS-seasonal(37)
 int9 <- ggplot(
@@ -335,7 +335,7 @@ int9 <- ggplot(
     x = sediff_acf5.sediff_seacf1.m$sediff_acf5,
     y = sediff_acf5.sediff_seacf1.m$sediff_seacf1, z = colNamesds[6], fill = colNamesds[6]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), option = "A", direction = -1) +
   xlab("sediff_acf5") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("ETS-seasonal")
 # SARIMA(43)
 int10 <- ggplot(

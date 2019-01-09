@@ -4,7 +4,7 @@ library(randomForest)
 load("phdproject2/yearly_training.rda") # training data
 load("phdproject2/rfu_m4yearly.rda") # random forest model
 
-ytest <- yearly_training[c(373, 227743, 393474,  22719, 13442, 480357), 1:25]
+ytest <- yearly_training[c(373, 227743, 393474, 13442, 480357), 1:25]
 model_type.randomForest <- function(x,...){
   return("classification")
 }
