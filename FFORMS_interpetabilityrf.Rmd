@@ -512,9 +512,8 @@ Quality of the fforms framework depends on the features, data used for the train
 
 ```
 
-\newpage
 
-```{r qtwopdp, fig.height=8, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Visualisation of two-way interactions using partial-dependence plots for yearly data."}
+```{r qtwopdp, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Visualisation of two-way interactions using partial-dependence plots for yearly data."}
 
 ```
 
@@ -524,7 +523,14 @@ Quality of the fforms framework depends on the features, data used for the train
 
 
 
-\clearpage
+```{r wtwopdp, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Visualisation of two-way interactions using partial-dependence plots for yearly data."}
+
+```
+
+
+```{r htwopdp, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Visualisation of two-way interactions using partial-dependence plots for yearly data."}
+
+```
 
 # References
 

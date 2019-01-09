@@ -299,7 +299,7 @@ int5 <- ggplot(
     x = sediff_acf5.sediff_seacf1.m$sediff_acf5,
     y = sediff_acf5.sediff_seacf1.m$sediff_seacf1, z = colNamesds[3], fill = colNamesds[3]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.001), breaks = seq(0, 0.001, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.005), breaks = seq(0, 0.005, 100), option = "A", direction = -1) +
   xlab("sediff_acf5") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("ETS-dampedtrend")
 # ETS-trend(38)
 int6 <- ggplot(
@@ -371,7 +371,7 @@ int13 <- ggplot(
     x = sediff_acf5.sediff_seacf1.m$sediff_acf5,
     y = sediff_acf5.sediff_seacf1.m$sediff_seacf1, z = colNamesds[14], fill = colNamesds[14]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), option = "A", direction = -1) +
   xlab("sediff_acf5") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("stlar")
 # tbats(46)
 int14 <- ggplot(
@@ -420,16 +420,16 @@ int1 <- ggplot(
   data = trend.entropy.w,
   aes_string(
     x = trend.entropy.w$trend,
-    y = trend.entropy.w$entropy, z = colNamesds[8], fill = colNamesds[8]
+    y = trend.entropy.w$entropy, z = colNameste[8], fill = colNameste[8]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), option = "A", direction = -1) +
   xlab("trend") + ylab("entropy")+ theme(legend.position="none")+ggtitle("snaive")
 #rwd
 int2 <- ggplot(
   data = trend.entropy.w,
   aes_string(
     x = trend.entropy.w$trend,
-    y = trend.entropy.w$entropy, z = colNamesds[6], fill = colNamesds[6]
+    y = trend.entropy.w$entropy, z = colNameste[6], fill = colNameste[6]
   )) + geom_tile() +
   scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
   xlab("trend") + ylab("entropy")+ theme(legend.position="none")+ggtitle("rwd")
@@ -438,7 +438,7 @@ int3 <- ggplot(
   data = trend.entropy.w,
   aes_string(
     x = trend.entropy.w$trend,
-    y = trend.entropy.w$entropy, z = colNamesds[5], fill = colNamesds[5]
+    y = trend.entropy.w$entropy, z = colNameste[5], fill = colNameste[5]
   )) + geom_tile() +
   scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
   xlab("trend") + ylab("entropy")+ theme(legend.position="none")+ggtitle("rw")
@@ -447,7 +447,7 @@ int4 <- ggplot(
   data = trend.entropy.w,
   aes_string(
     x = trend.entropy.w$trend,
-    y = trend.entropy.w$entropy, z = colNamesds[1], fill = colNamesds[1]
+    y = trend.entropy.w$entropy, z = colNameste[1], fill = colNameste[1]
   )) + geom_tile() +
   scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
   xlab("trend") + ylab("entropy")+ theme(legend.position="none")+ggtitle("ARIMA")
@@ -456,7 +456,7 @@ int5 <- ggplot(
   data = trend.entropy.w,
   aes_string(
     x = trend.entropy.w$trend,
-    y = trend.entropy.w$entropy, z = colNamesds[7], fill = colNamesds[7]
+    y = trend.entropy.w$entropy, z = colNameste[7], fill = colNameste[7]
   )) + geom_tile() +
   scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
   xlab("trend") + ylab("entropy")+ theme(legend.position="none")+ggtitle("SARIMA")
@@ -465,7 +465,7 @@ int6 <- ggplot(
   data = trend.entropy.w,
   aes_string(
     x = trend.entropy.w$trend,
-    y = trend.entropy.w$entropy, z = colNamesds[9], fill = colNamesds[9]
+    y = trend.entropy.w$entropy, z = colNameste[9], fill = colNameste[9]
   )) + geom_tile() +
   scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
   xlab("trend") + ylab("entropy")+ theme(legend.position="none")+ggtitle("stlar")
@@ -474,54 +474,54 @@ int7 <- ggplot(
   data = trend.entropy.w,
   aes_string(
     x = trend.entropy.w$trend,
-    y = trend.entropy.w$entropy, z = colNamesds[3], fill = colNamesds[3]
+    y = trend.entropy.w$entropy, z = colNameste[3], fill = colNameste[3]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), option = "A", direction = -1) +
   xlab("trend") + ylab("entropy")+ theme(legend.position="none")+ggtitle("mstlets")
 #tbats
 int8 <- ggplot(
   data = trend.entropy.w,
   aes_string(
     x = trend.entropy.w$trend,
-    y = trend.entropy.w$entropy, z = colNamesds[10], fill = colNamesds[10]
+    y = trend.entropy.w$entropy, z = colNameste[10], fill = colNameste[10]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), option = "A", direction = -1) +
   xlab("trend") + ylab("entropy")+ theme(legend.position="none")+ggtitle("tbats")
 #ARMA/AR/MA
 int9 <- ggplot(
   data = trend.entropy.w,
   aes_string(
     x = trend.entropy.w$trend,
-    y = trend.entropy.w$entropy, z = colNamesds[2], fill = colNamesds[2]
+    y = trend.entropy.w$entropy, z = colNameste[2], fill = colNameste[2]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), option = "A", direction = -1) +
   xlab("trend") + ylab("entropy")+ theme(legend.position="none")+ggtitle("ARMA/AR/MA")
 #wn
 int10 <- ggplot(
   data = trend.entropy.w,
   aes_string(
     x = trend.entropy.w$trend,
-    y = trend.entropy.w$entropy, z = colNamesds[12], fill = colNamesds[12]
+    y = trend.entropy.w$entropy, z = colNameste[12], fill = colNameste[12]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.8), breaks = seq(0, 0.8, 100), option = "A", direction = -1) +
   xlab("trend") + ylab("entropy")+ theme(legend.position="none")+ggtitle("wn")
 #theta
 int11 <- ggplot(
   data = trend.entropy.w,
   aes_string(
     x = trend.entropy.w$trend,
-    y = trend.entropy.w$entropy, z = colNamesds[11], fill = colNamesds[11]
+    y = trend.entropy.w$entropy, z = colNameste[11], fill = colNameste[11]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), option = "A", direction = -1) +
   xlab("trend") + ylab("entropy")+ theme(legend.position="none")+ggtitle("theta")
 #nn
 int12 <- ggplot(
   data = trend.entropy.w,
   aes_string(
     x = trend.entropy.w$trend,
-    y = trend.entropy.w$entropy, z = colNamesds[4], fill = colNamesds[4]
+    y = trend.entropy.w$entropy, z = colNameste[4], fill = colNameste[4]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), option = "A", direction = -1) +
   xlab("trend") + ylab("entropy")+ theme(legend.position="none")+ggtitle("nn")
 
 int1+int2+int3+int4+int5+int6+int7+int8+int9+int10+int11+int12+plot_layout(ncol = 6, nrow = 2)
@@ -536,7 +536,7 @@ int1 <- ggplot(
     x = sediff_acf5.seasonal_strength2.d$sediff_acf5,
     y = sediff_acf5.seasonal_strength2.d$seasonal_strength2, z = colNamesss[7], fill = colNamesss[7]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
   xlab("sediff_acf5") + ylab("seasonal_strength2")+ theme(legend.position="none")+ggtitle("snaive")
 
 ## rw
@@ -557,5 +557,100 @@ int1 <- ggplot(
 
 ## wn
 
-
+int1
 ## ---- htwopdp
+load("data/hourly/linearity.sediff_seacf1.h.rda")
+colNamesss <- colnames(linearity.sediff_seacf1.h)[28:37]
+# snaive
+int1 <- ggplot(
+  data = linearity.sediff_seacf1.h,
+  aes_string(
+    x = linearity.sediff_seacf1.h$linearity,
+    y = linearity.sediff_seacf1.h$sediff_seacf1, z = colNamesss[6], fill = colNamesss[6]
+  )) + geom_tile() +
+  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
+  xlab("linearity") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("snaive")
+
+## rw
+int2 <- ggplot(
+  data = linearity.sediff_seacf1.h,
+  aes_string(
+    x = linearity.sediff_seacf1.h$linearity,
+    y = linearity.sediff_seacf1.h$sediff_seacf1, z = colNamesss[4], fill = colNamesss[4]
+  )) + geom_tile() +
+  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), option = "A", direction = -1) +
+  xlab("linearity") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("rw")
+## rwd
+int3 <- ggplot(
+  data = linearity.sediff_seacf1.h,
+  aes_string(
+    x = linearity.sediff_seacf1.h$linearity,
+    y = linearity.sediff_seacf1.h$sediff_seacf1, z = colNamesss[5], fill = colNamesss[5]
+  )) + geom_tile() +
+  scale_fill_viridis_c(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), option = "A", direction = -1) +
+  xlab("linearity") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("rwd")
+## mstlarima
+int4 <- ggplot(
+  data = linearity.sediff_seacf1.h,
+  aes_string(
+    x = linearity.sediff_seacf1.h$linearity,
+    y = linearity.sediff_seacf1.h$sediff_seacf1, z = colNamesss[1], fill = colNamesss[1]
+  )) + geom_tile() +
+  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
+  xlab("linearity") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("mstlarima")
+## mstlets
+int5 <- ggplot(
+  data = linearity.sediff_seacf1.h,
+  aes_string(
+    x = linearity.sediff_seacf1.h$linearity,
+    y = linearity.sediff_seacf1.h$sediff_seacf1, z = colNamesss[2], fill = colNamesss[2]
+  )) + geom_tile() +
+  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
+  xlab("linearity") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("mstlets")
+## tbats
+int6 <- ggplot(
+  data = linearity.sediff_seacf1.h,
+  aes_string(
+    x = linearity.sediff_seacf1.h$linearity,
+    y = linearity.sediff_seacf1.h$sediff_seacf1, z = colNamesss[8], fill = colNamesss[8]
+  )) + geom_tile() +
+  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), option = "A", direction = -1) +
+  xlab("linearity") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("tbats")
+## stlar
+int7 <- ggplot(
+  data = linearity.sediff_seacf1.h,
+  aes_string(
+    x = linearity.sediff_seacf1.h$linearity,
+    y = linearity.sediff_seacf1.h$sediff_seacf1, z = colNamesss[7], fill = colNamesss[7]
+  )) + geom_tile() +
+  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), option = "A", direction = -1) +
+  xlab("linearity") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("stlar")
+## theta
+int8 <- ggplot(
+  data = linearity.sediff_seacf1.h,
+  aes_string(
+    x = linearity.sediff_seacf1.h$linearity,
+    y = linearity.sediff_seacf1.h$sediff_seacf1, z = colNamesss[9], fill = colNamesss[9]
+  )) + geom_tile() +
+  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
+  xlab("linearity") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("theta")
+## nn
+int9 <- ggplot(
+  data = linearity.sediff_seacf1.h,
+  aes_string(
+    x = linearity.sediff_seacf1.h$linearity,
+    y = linearity.sediff_seacf1.h$sediff_seacf1, z = colNamesss[3], fill = colNamesss[3]
+  )) + geom_tile() +
+  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), option = "A", direction = -1) +
+  xlab("linearity") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("nn")
+## wn
+int10 <- ggplot(
+  data = linearity.sediff_seacf1.h,
+  aes_string(
+    x = linearity.sediff_seacf1.h$linearity,
+    y = linearity.sediff_seacf1.h$sediff_seacf1, z = colNamesss[10], fill = colNamesss[10]
+  )) + geom_tile() +
+  scale_fill_viridis_c(limits = c(0, 0.8), breaks = seq(0, 0.8, 100), option = "A", direction = -1) +
+  xlab("linearity") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("wn")
+
+int1+int2+int3+int4+int5+int6+int7+int8+int9+int10+plot_layout(ncol = 5, nrow = 2)
