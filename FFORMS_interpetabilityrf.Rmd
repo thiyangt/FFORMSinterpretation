@@ -505,53 +505,24 @@ Quality of the fforms framework depends on the features, data used for the train
 
 # Appendix {-}
 
-## PCA space{-}
-
-
-
-```{r yearlypca, fig.height=10, fig.width=20, fig.cap="Distribution of prediction space across instance space for yearly time series. PC1 and PC2 are the first two principal components.", fig.pos="h", fig.align="center", cache=TRUE}
-```
-
-\clearpage
-
-```{r quarterlypca, fig.height=15, fig.width=20, fig.cap="Distribution of prediction space across instance space for quarterly time series. PC1 and PC2 are the first two principal components.", fig.pos="h", cache=TRUE}
-```
 
 \newpage
 
-```{r monthlypca, fig.height=15, fig.width=20, fig.cap="Distribution of prediction space across instance space for monthly time series. PC1 and PC2 are the first two principal components.", fig.pos="h", cache=TRUE}
-```
-
-\clearpage
-
-```{r pcaweekly, fig.height=15, fig.width=20, fig.cap="Distribution of prediction space across instance space for weekly time series. PC1 and PC2 are the first two principal components.", fig.pos="h", fig.align="center", cache=TRUE}
-```
-
-\clearpage
-
-```{r pcadaily, fig.height=5, fig.width=10, fig.cap="Distribution of prediction space across instance space for daily time series. PC1 and PC2 are the first two principal components.", fig.pos="h", fig.align="center", cache=TRUE}
-```
-
-
-```{r pcahourly, fig.height=5, fig.width=10, fig.cap="Distribution of prediction space across instance space for hourly time series. PC1 and PC2 are the first two principal components.", fig.pos="h", fig.align="center", cache=TRUE}
-```
-
-\newpage
-
-```{r twowayinteractionyearly1, fig.height=30, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Visualisation of two-way interactions using partial-dependence plots for yearly data."}
+```{r ytwopdp, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Visualisation of two-way interactions using partial-dependence plots for yearly data.", cache=FALSE}
 
 ```
 
 \newpage
 
-```{r twowayinteractionyearly2, fig.height=30, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Visualisation of two-way interactions using partial-dependence plots for yearly data."}
+```{r qtwopdp, fig.height=8, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Visualisation of two-way interactions using partial-dependence plots for yearly data."}
 
 ```
 
-\clearpage
+```{r mtwopdp, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Visualisation of two-way interactions using partial-dependence plots for yearly data."}
 
-```{r qpdptwo, fig.height=30, fig.width=10}
 ```
+
+
 
 \clearpage
 

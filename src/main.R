@@ -1907,7 +1907,7 @@ p14 <- ggcorrplot(tbats_MFH_cormat, hc.order = FALSE, type = "upper",
 ## wn
 wn_MFH <- friedmanHstat_monthly[friedmanHstat_monthly$class=="wn",]
 wn_MFH_cormat <- friedmanHstat_matrix(wn_MFH , 30, rev(col.order))
-p15 <- ggcorrplot(wn_QFH_cormat, hc.order = FALSE, type = "upper",
+p15 <- ggcorrplot(wn_MFH_cormat, hc.order = FALSE, type = "upper",
                   outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
                        low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
@@ -1941,111 +1941,6 @@ p17 <- ggcorrplot(nn_MFH_cormat, hc.order = FALSE, type = "upper",
 
 p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+p11+p12+p13+p14+p15+p16+p17+plot_layout(ncol = 4, nrow = 5)
 
-
-## ---- twowaymonthly1
-load("data/monthly/seasinality.trend.m.rda")
-load("data/monthly/N.seasonality.m.rda")
-load("data/monthly/N.hwgamma.m.rda")
-colNames <- colnames(seasinality.trend.m)[32:48]
-
-# snaive
-int1 <- ggplot(
-  data = seasinality.trend.m, aes_string(x = seasinality.trend.m$trend,y = seasinality.trend.m$seasonality, z = colNames[13], fill = colNames[13]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("snaive (H=0.72)")
-int2 <- ggplot(
-  data = N.seasonality.m, aes_string(x = N.seasonality.m$N,y = N.seasonality.m$seasonality, z = colNames[13], fill = colNames[13]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("N") + ylab("seasonality") + theme(legend.position="none")+ggtitle("snaive (H=0.79)")
-int3 <- ggplot(
-  data = N.hwgamma.m, aes_string(x = N.hwgamma.m$N,y = N.hwgamma.m$hwgamma, z = colNames[13], fill = colNames[13]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.15), breaks = seq(0, 0.15, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("N") + ylab("hwgamma") + theme(legend.position="none")+ggtitle("snaive (H=0.58)")
-## rwd
-int4 <- ggplot(
-  data = seasinality.trend.m, aes_string(x = seasinality.trend.m$trend,y = seasinality.trend.m$seasonality, z = colNames[11], fill = colNames[11]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("rwd (H=0.32)")
-int5 <- ggplot(
-  data = N.seasonality.m, aes_string(x = N.seasonality.m$N,y = N.seasonality.m$seasonality, z = colNames[11], fill = colNames[11]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("N") + ylab("seasonality") + theme(legend.position="none")+ggtitle("rwd (H=0.53)")
-int6 <- ggplot(
-  data = N.hwgamma.m, aes_string(x = N.hwgamma.m$N,y = N.hwgamma.m$hwgamma, z = colNames[11], fill = colNames[11]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.15), breaks = seq(0, 0.15, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("N") + ylab("hwgamma") + theme(legend.position="none")+ggtitle("rwd (H=0.24)")
-## rw
-int7 <- ggplot(
-  data = seasinality.trend.m, aes_string(x = seasinality.trend.m$trend,y = seasinality.trend.m$seasonality, z = colNames[10], fill = colNames[10]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("rw (H=0.15)")
-int8 <- ggplot(
-  data = N.seasonality.m, aes_string(x = N.seasonality.m$N,y = N.seasonality.m$seasonality, z = colNames[10], fill = colNames[10]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("N") + ylab("seasonality") + theme(legend.position="none")+ggtitle("rw (H=0.28)")
-int9 <- ggplot(
-  data = N.hwgamma.m, aes_string(x = N.hwgamma.m$N,y = N.hwgamma.m$hwgamma, z = colNames[10], fill = colNames[10]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("N") + ylab("hwgamma") + theme(legend.position="none")+ggtitle("rw (H=0.46)")
-## ETS-notnos
-int7 <- ggplot(
-  data = seasinality.trend.m, aes_string(x = seasinality.trend.m$trend,y = seasinality.trend.m$seasonality, z = colNames[5], fill = colNames[5]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ETS-NTNS (H=0.34)")
-int8 <- ggplot(
-  data = N.seasonality.m, aes_string(x = N.seasonality.m$N,y = N.seasonality.m$seasonality, z = colNames[5], fill = colNames[5]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("N") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ETS-NTNS (H=0.73)")
-int9 <- ggplot(
-  data = N.hwgamma.m, aes_string(x = N.hwgamma.m$N,y = N.hwgamma.m$hwgamma, z = colNames[5], fill = colNames[5]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("N") + ylab("hwgamma") + theme(legend.position="none")+ggtitle("ETS-NTNS ")
-## ETS-dt
-int10 <- ggplot(
-  data = seasinality.trend.m, aes_string(x = seasinality.trend.m$trend,y = seasinality.trend.m$seasonality, z = colNames[3], fill = colNames[3]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ETS-DT (H=0.13)")
-int11 <- ggplot(
-  data = N.seasonality.m, aes_string(x = N.seasonality.m$N,y = N.seasonality.m$seasonality, z = colNames[3], fill = colNames[3]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("N") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ETS-DT (H=0.37)")
-int12 <- ggplot(
-  data = N.hwgamma.m, aes_string(x = N.hwgamma.m$N,y = N.hwgamma.m$hwgamma, z = colNames[3], fill = colNames[3]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("N") + ylab("hwgamma") + theme(legend.position="none")+ggtitle("ETS-DT (H=0.57)")
-## rw
-int13 <- ggplot(
-  data = seasinality.trend.m, aes_string(x = seasinality.trend.m$trend,y = seasinality.trend.m$seasonality, z = colNames[7], fill = colNames[7]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("trend") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ETS-T (H=0.37)")
-int14 <- ggplot(
-  data = N.seasonality.m, aes_string(x = N.seasonality.m$N,y = N.seasonality.m$seasonality, z = colNames[7], fill = colNames[7]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("N") + ylab("seasonality") + theme(legend.position="none")+ggtitle("ETS-T (H=0.17)")
-int15 <- ggplot(
-  data = N.hwgamma.m, aes_string(x = N.hwgamma.m$N,y = N.hwgamma.m$hwgamma, z = colNames[7], fill = colNames[7]
-  ))+geom_tile() + 
-  scale_fill_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), low = "#edf8b1", high = "#2c7fb8") +
-  xlab("N") + ylab("hwgamma") + theme(legend.position="none")+ggtitle("ETS-T (H=0.41)")
-
-(int1|int2|int3)/(int4|int5|int6)/(int7|int8|int9)/(int10|int11|int12)/(int13|int14|int15)
 
 ## ---- monthlypca
 pcaMvariables <- monthly_training[, 1:30]
