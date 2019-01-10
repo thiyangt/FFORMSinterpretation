@@ -415,7 +415,7 @@ rwd_YFH_cormat <- friedmanHstat_matrix(rwd_YFH, 25, rev(col.order))
 p1 <- ggcorrplot(rwd_YFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                        high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("rwd")
@@ -425,7 +425,7 @@ rw_YFH_cormat <- friedmanHstat_matrix(rw_YFH, 25, rev(col.order))
 p2 <- ggcorrplot(rw_YFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("rw")
@@ -435,7 +435,7 @@ etst_YFH_cormat <- friedmanHstat_matrix(etst_YFH, 25, rev(col.order))
 p3 <- ggcorrplot(etst_YFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                      , high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("ETS-trend")
@@ -445,7 +445,7 @@ etsdt_YFH_cormat <- friedmanHstat_matrix(etsdt_YFH, 25, rev(col.order))
 p4 <- ggcorrplot(etsdt_YFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("ETS-dampedtrend")
@@ -456,7 +456,7 @@ etsntns_YFH_cormat <- friedmanHstat_matrix(etsntns_YFH, 25, rev(col.order))
 p5 <- ggcorrplot(etsntns_YFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                      high = "#ef8a62", low = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("ETS-notrendnoseasonal")
@@ -467,7 +467,7 @@ arima_YFH_cormat <- friedmanHstat_matrix(arima_YFH, 25, rev(col.order))
 p6 <- ggcorrplot(arima_YFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                        high = "#ef8a62", low = "#f7f7f7", midpoint = 0.5)+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("ARIMA")
@@ -478,7 +478,7 @@ arma_YFH_cormat <- friedmanHstat_matrix(arma_YFH, 25, rev(col.order))
 p7 <- ggcorrplot(arma_YFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                        high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("ARMA/AR/MA")
@@ -489,7 +489,7 @@ wn_YFH_cormat <- friedmanHstat_matrix(wn_YFH, 25, rev(col.order))
 p8 <- ggcorrplot(wn_YFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                        high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("wn")
@@ -500,7 +500,7 @@ theta_YFH_cormat <- friedmanHstat_matrix(theta_YFH, 25, rev(col.order))
 p9 <- ggcorrplot(theta_YFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                        high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("theta")
@@ -511,7 +511,7 @@ nn_YFH_cormat <- friedmanHstat_matrix(nn_YFH, 25, rev(col.order))
 p10 <- ggcorrplot(nn_YFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5,
+                        high = "#ef8a62", low = "#f7f7f7",
                        name = "Friedman's H-statistic")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
@@ -1296,7 +1296,7 @@ snaive_QFH_cormat <- friedmanHstat_matrix(snaive_QFH, 30, rev(col.order))
 p1 <- ggcorrplot(snaive_QFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("snaive")
@@ -1308,7 +1308,7 @@ rwd_QFH_cormat <- friedmanHstat_matrix(rwd_QFH, 30, rev(col.order))
 p2 <- ggcorrplot(rwd_QFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("rwd")
@@ -1318,7 +1318,7 @@ rw_QFH_cormat <- friedmanHstat_matrix(rw_QFH, 30, rev(col.order))
 p3 <- ggcorrplot(rw_QFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("rw")
@@ -1329,7 +1329,7 @@ etsntns_QFH_cormat <- friedmanHstat_matrix(etsntns_QFH, 30, rev(col.order))
 p4 <- ggcorrplot(etsntns_QFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("ETS-notrendnoseasonal")
@@ -1341,7 +1341,7 @@ etsdt_QFH_cormat <- friedmanHstat_matrix(etsdt_QFH, 30, rev(col.order))
 p5 <- ggcorrplot(etsdt_QFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("ETS-dampedtrend")
@@ -1353,7 +1353,7 @@ etst_QFH_cormat <- friedmanHstat_matrix(etst_QFH, 30, rev(col.order))
 p6 <- ggcorrplot(etsdt_QFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("ETS-trend")
@@ -1364,7 +1364,7 @@ etsdts_QFH_cormat <- friedmanHstat_matrix(etsdts_QFH , 30, rev(col.order))
 p7 <- ggcorrplot(etsdts_QFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("ETS-dampedtrendseasonal")
@@ -1375,7 +1375,7 @@ etsts_QFH_cormat <- friedmanHstat_matrix(etsts_QFH , 30, rev(col.order))
 p8 <- ggcorrplot(etsts_QFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("ETS-trendseasonal")
@@ -1386,7 +1386,7 @@ etss_QFH_cormat <- friedmanHstat_matrix(etss_QFH , 30, rev(col.order))
 p9 <- ggcorrplot(etss_QFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("ETS-seasonal")
@@ -1397,7 +1397,7 @@ sarima_QFH_cormat <- friedmanHstat_matrix(sarima_QFH , 30, rev(col.order))
 p10 <- ggcorrplot(sarima_QFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("SARIMA")
@@ -1409,7 +1409,7 @@ arima_QFH_cormat <- friedmanHstat_matrix(arima_QFH , 30, rev(col.order))
 p11 <- ggcorrplot(arima_QFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("ARIMA")
@@ -1420,7 +1420,7 @@ arma_QFH_cormat <- friedmanHstat_matrix(arma_QFH , 30, rev(col.order))
 p12 <- ggcorrplot(arma_QFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("ARMA/AR/MA")
@@ -1431,7 +1431,7 @@ stlar_QFH_cormat <- friedmanHstat_matrix(stlar_QFH , 30, rev(col.order))
 p13 <- ggcorrplot(stlar_QFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("stlar")
@@ -1442,7 +1442,7 @@ tbats_QFH_cormat <- friedmanHstat_matrix(tbats_QFH , 30, rev(col.order))
 p14 <- ggcorrplot(tbats_QFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("tbats")
@@ -1453,7 +1453,7 @@ wn_QFH_cormat <- friedmanHstat_matrix(wn_QFH , 30, rev(col.order))
 p15 <- ggcorrplot(wn_QFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("wn")
@@ -1464,7 +1464,7 @@ theta_QFH_cormat <- friedmanHstat_matrix(theta_QFH , 30, rev(col.order))
 p16 <- ggcorrplot(theta_QFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("theta")
@@ -1476,7 +1476,7 @@ nn_QFH_cormat <- friedmanHstat_matrix(nn_QFH , 30, rev(col.order))
 p17 <- ggcorrplot(nn_QFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("nn")
