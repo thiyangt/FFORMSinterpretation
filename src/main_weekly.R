@@ -481,7 +481,7 @@ snaive_WFH_cormat <- friedmanHstat_matrix(snaive_WFH, 27, rev(col.order))
 p1 <- ggcorrplot(snaive_WFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("snaive")
@@ -492,7 +492,7 @@ rwd_WFH_cormat <- friedmanHstat_matrix(rwd_WFH, 27, rev(col.order))
 p2 <- ggcorrplot(rwd_WFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("rwd")
@@ -503,7 +503,7 @@ rw_WFH_cormat <- friedmanHstat_matrix(rw_WFH, 27, rev(col.order))
 p3 <- ggcorrplot(rw_WFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("rw")
@@ -514,7 +514,7 @@ arima_WFH_cormat <- friedmanHstat_matrix(arima_WFH, 27, rev(col.order))
 p4 <- ggcorrplot(arima_WFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("ARIMA")
@@ -525,7 +525,7 @@ sarima_WFH_cormat <- friedmanHstat_matrix(sarima_WFH, 27, rev(col.order))
 p5 <- ggcorrplot(sarima_WFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("SARIMA")
@@ -536,7 +536,7 @@ stlar_WFH_cormat <- friedmanHstat_matrix(stlar_WFH, 27, rev(col.order))
 p6 <- ggcorrplot(stlar_WFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("stlar")
@@ -547,7 +547,7 @@ mstlets_WFH_cormat <- friedmanHstat_matrix(mstlets_WFH, 27, rev(col.order))
 p7 <- ggcorrplot(mstlets_WFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("mstlets")
@@ -559,7 +559,7 @@ tbats_WFH_cormat <- friedmanHstat_matrix(tbats_WFH, 27, rev(col.order))
 p8 <- ggcorrplot(tbats_WFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("tbats")
@@ -571,7 +571,7 @@ arma_WFH_cormat <- friedmanHstat_matrix(arma_WFH, 27, rev(col.order))
 p9 <- ggcorrplot(arma_WFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("ARMA/AR/MA")
@@ -582,7 +582,7 @@ wn_WFH_cormat <- friedmanHstat_matrix(wn_WFH, 27, rev(col.order))
 p10 <- ggcorrplot(wn_WFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("wn")
@@ -593,7 +593,7 @@ theta_WFH_cormat <- friedmanHstat_matrix(theta_WFH, 27, rev(col.order))
 p11 <- ggcorrplot(theta_WFH_cormat, hc.order = FALSE, type = "upper",
                   outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("theta")
@@ -604,7 +604,7 @@ nn_WFH_cormat <- friedmanHstat_matrix(nn_WFH, 27, rev(col.order))
 p12 <- ggcorrplot(nn_WFH_cormat, hc.order = FALSE, type = "upper",
                   outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("nn")

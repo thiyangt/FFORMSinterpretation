@@ -67,7 +67,7 @@ snaive_DFH_cormat <- friedmanHstat_matrix(snaive_DFH, 26, rev(col.order))
 fd1 <- ggcorrplot(snaive_DFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("snaive-daily")
@@ -78,7 +78,7 @@ rw_DFH_cormat <- friedmanHstat_matrix(rw_DFH, 26, rev(col.order))
 fd2 <- ggcorrplot(rw_DFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("rw-daily")
@@ -88,7 +88,7 @@ rwd_DFH_cormat <- friedmanHstat_matrix(rwd_DFH, 26, rev(col.order))
 fd3 <- ggcorrplot(rwd_DFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("rwd-daily")
@@ -99,7 +99,7 @@ mstlarima_DFH_cormat <- friedmanHstat_matrix(mstlarima_DFH, 26, rev(col.order))
 fd4 <- ggcorrplot(mstlarima_DFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("mstlarima-daily")
@@ -110,7 +110,7 @@ mstlets_DFH_cormat <- friedmanHstat_matrix(mstlets_DFH, 26, rev(col.order))
 fd5 <- ggcorrplot(mstlets_DFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("mstlets-daily")
@@ -120,7 +120,7 @@ tbats_DFH_cormat <- friedmanHstat_matrix(tbats_DFH, 26, rev(col.order))
 fd6 <- ggcorrplot(tbats_DFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("tbats-daily")
@@ -131,7 +131,7 @@ stlar_DFH_cormat <- friedmanHstat_matrix(stlar_DFH, 26, rev(col.order))
 fd7 <- ggcorrplot(stlar_DFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("stlar-daily")
@@ -143,7 +143,7 @@ theta_DFH_cormat <- friedmanHstat_matrix(theta_DFH, 26, rev(col.order))
 fd8 <- ggcorrplot(theta_DFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("theta-daily")
@@ -155,7 +155,7 @@ nn_DFH_cormat <- friedmanHstat_matrix(nn_DFH, 26, rev(col.order))
 fd9 <- ggcorrplot(nn_DFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("nn-daily")
@@ -166,7 +166,7 @@ wn_DFH_cormat <- friedmanHstat_matrix(wn_DFH, 26, rev(col.order))
 fd10 <- ggcorrplot(wn_DFH_cormat, hc.order = FALSE, type = "upper",
                   outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("wn-daily")
@@ -185,7 +185,7 @@ snaive_HFH_cormat <- friedmanHstat_matrix(snaive_HFH, 26, rev(col.order))
 fh1 <- ggcorrplot(snaive_HFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("snaive-hourly")
@@ -196,7 +196,7 @@ rw_HFH_cormat <- friedmanHstat_matrix(rw_HFH, 26, rev(col.order))
 fh2 <- ggcorrplot(rw_HFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("rw-hourly")
@@ -207,7 +207,7 @@ rwd_HFH_cormat <- friedmanHstat_matrix(rwd_HFH, 26, rev(col.order))
 fh3 <- ggcorrplot(rwd_HFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("rwd-hourly")
@@ -218,7 +218,7 @@ mstlarima_HFH_cormat <- friedmanHstat_matrix(mstlarima_HFH, 26, rev(col.order))
 fh4 <- ggcorrplot(mstlarima_HFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("mstlarima-hourly")
@@ -229,7 +229,7 @@ mstlets_HFH_cormat <- friedmanHstat_matrix(mstlets_HFH, 26, rev(col.order))
 fh5 <- ggcorrplot(mstlets_HFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("mstlets-hourly")
@@ -240,7 +240,7 @@ tbats_HFH_cormat <- friedmanHstat_matrix(tbats_HFH, 26, rev(col.order))
 fh6 <- ggcorrplot(tbats_HFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("tbats-hourly")
@@ -251,7 +251,7 @@ stlar_HFH_cormat <- friedmanHstat_matrix(stlar_HFH, 26, rev(col.order))
 fh7 <- ggcorrplot(stlar_HFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("stlar-hourly")
@@ -263,7 +263,7 @@ theta_HFH_cormat <- friedmanHstat_matrix(theta_HFH, 26, rev(col.order))
 fh8 <- ggcorrplot(theta_HFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("theta-hourly")
@@ -274,7 +274,7 @@ nn_HFH_cormat <- friedmanHstat_matrix(nn_HFH, 26, rev(col.order))
 fh9 <- ggcorrplot(theta_HFH_cormat, hc.order = FALSE, type = "upper",
                  outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("nn-hourly")
@@ -285,7 +285,7 @@ wn_HFH_cormat <- friedmanHstat_matrix(wn_HFH, 26, rev(col.order))
 fh10 <- ggcorrplot(wn_HFH_cormat, hc.order = FALSE, type = "upper",
                   outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       low = "#67a9cf", high = "#ef8a62", mid = "#f7f7f7", midpoint = 0.5)+
+                       high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
   guides(fill=FALSE, color=FALSE)+ggtitle("wn-hourly")
