@@ -87,7 +87,7 @@ To fill this gap, this paper makes a first step towards providing a comprehensiv
  
  The methodology we propose here is a novel application of machine learning interpretability methods to visualize and explore the role of features in forecast-model selection. 
 
-This paper proceeds as follows. In \autoref{fforms} we describe the application of FFORMS framework to M4competition data. The main contribution of this from our previous work @fforms  is we extend the FFORMS framework to model weekly, daily and hourly series. \autoref{machinelearning} gives background on machine learning interpretability techniques that are used to identify role of features in forecast model selection. In \autoref{results} we discuss the results. \autoref{conclusions} concludes.
+This paper proceeds as follows. In \autoref{fforms} we describe the application of FFORMS framework to M4competition data. \autoref{machinelearning} gives background on machine learning interpretability techniques that are used to identify role of features in forecast model selection. In \autoref{results} we discuss the results. \autoref{conclusions} concludes.
 
 # FFORMS Application to M4 competition data{#fforms}
 
