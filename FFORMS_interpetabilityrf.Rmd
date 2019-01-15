@@ -324,7 +324,7 @@ Friedman's H-statistic (@friedman2008predictive) is use to test the presence of 
 
 The Friedman's H-statistic measures the fraction of variance of two-variable partial dependency, $\bar{g}_{s}(x_{ij}, x_{jk})$ not captured by sum of the respective individual partial dependencies, $\bar{g}_{s}(x_{ij})+\bar{g}_{s}(x_{ik})$. In addition to Friedman's H-statistic we also use the PDP of two variables to visualize the interaction effect. 
 
-Note that the, PD plots, ICE curves and PD-, ICE-associated measures and Friedman's H-statistic are computationally intensive to compute, especially when there are large number of observations in the training set. Hence, in our experiments ICE and PDP-based variable importance are measured based on the subset of randomly selected training examples.
+Note that the, PD plots, ICE curves and PD-, ICE-associated measures and Friedman's H-statistic are computationally intensive to compute, especially when there are large number of observations in the training set. Hence, in our experiments ICE and PDP-based variable importance are computed based on the subset of randomly selected training examples.
 
 
 ## Local Interpretable Model-agnostic Explanations (LIME)
