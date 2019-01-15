@@ -22,7 +22,7 @@
 \usepackage[unicode=true]{hyperref}
 \hypersetup{
             pdftitle={Peeking inside FFORMS: Feature-based FORecast Model Selection},
-            pdfkeywords={FFORMS, time series, machine learning interpretability, black-box
+            pdfkeywords={forecasting, time series, machine learning interpretability, black-box
 models, LIME},
             pdfborder={0 0 0},
             breaklinks=true}
@@ -310,26 +310,26 @@ models, LIME},
 \maketitle
 \begin{abstract}
 Features of time series are considered to be an important factor in
-identifying suitable forecast models. We proposed a classification
-framework, called FFORMS (Feature-based FORecast Model Selection), which
-selects forecast models based on features calculated from the time
-series. FFORMS framework builds a mapping that relates the features of
-time series to the ``best'' forecast-model using random forest
-algorithm. In this paper we make an effort to explore what is happening
-under the hood of FFORMS framework and thereby gain an understanding of
-what features led to the different choices of forecast-models and how
-different features influence the predicted outcome. This is accomplished
-by using model-agnostic machine learning interpretability approaches.
-Partial-dependency plots are used to visualize both main and interaction
-effects of features. The results of this study provide a valuable
-insight into how different features and their interactions affect the
-choice of forecast-model selection and give a more refine picture of the
-relationship between features and the choice of forecast-model which is
-particularly valuable for ongoing research in the field of feature-based
-time series analysis.
+identifying suitable forecast models. \textcite{fforms} proposed a
+classification framework, called FFORMS (Feature-based FORecast Model
+Selection), which selects forecast models based on features calculated
+from the time series. FFORMS framework builds a mapping that relates the
+features of time series to the ``best'' forecast-model using random
+forest algorithm. In this paper we make an effort to explore what is
+happening under the hood of FFORMS framework and thereby gain an
+understanding of what features led to the different choices of
+forecast-models and how different features influence the predicted
+outcome. This is accomplished by using model-agnostic machine learning
+interpretability approaches. Partial-dependency plots are used to
+visualize both main and interaction effects of features. The results of
+this study provide a valuable insight into how different features and
+their interactions affect the choice of forecast-model selection and
+give a more refine picture of the relationship between features and the
+choice of forecast-model which is particularly valuable for ongoing
+research in the field of feature-based time series analysis.
 \end{abstract}
 \begin{keywords}
-FFORMS, time series, machine learning interpretability, black-box
+forecasting, time series, machine learning interpretability, black-box
 models, LIME
 \end{keywords}
 
@@ -342,11 +342,12 @@ among many possibilities is not straight forward. This selection is one
 of the most difficult tasks as each method perform best for some but not
 all tasks. The features of time series are considered to be an important
 factor in identifying suitable forecasting models
-\autocites{meade2000evidence}{makridakis2000m3}. However, a description
-of relationship between the features and the performance of algorithms
-is rarely discussed in the field of forecasting.
+\autocites{collopy1992rule}{meade2000evidence}{makridakis2000m3}{wang2009rule}.
+However, a description of relationship between the features and the
+performance of algorithms is rarely discussed in the field of
+forecasting.
 
-There have been several recent studies on use of meta-learning
+There have been several recent studies on the use of meta-learning
 approaches to automate the forecast model selection based on the
 features computed from the time series
 \autocites{shah1997model}{prudencio2004meta}{lemke2010meta}{kuck2016meta}.
@@ -354,32 +355,24 @@ Meta-learning approach provides a systematic guidance on model selection
 based on knowledge acquire from historical data set. The key idea is,
 forecast-model selection is posed as a supervised learning task. Each
 time series in the meta-data set is represented as a vector of features
-and labeled according to the ``best'' forecasting method(i.e.~lowest
+and labeled according to the ``best'' forecasting method (i.e.~lowest
 MASE, etc.). Then a meta-learner is trained to identify suitable
-forecasting models. {[}Usually a machine learning algorithm is used.{]}
-With the era of big data, such an automated model selection process is
+forecasting models (usually a machine learning algorithm is used). With
+the era of big data, such an automated model selection process is
 necessary because the cost of invoking all possible forecasting method
 is prohibitive. However, these work suffer from the limitation of
-providing meaningful interpretations that can enhance understanding of
-relations between features and model outcomes which leads to the
-questions of
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  How features are related to the property being modeled?
-\item
-  How features interact with each other to identify the suitable
-  forecasting method?
-\item
-  Which features contribute the most to classify a specific instance?
-\end{enumerate}
-
-This results in less transparency and trustability of the model. To best
-of our knowledge, very limited efforts have been taken to understand how
-the models are making its decisions and what is really happening inside
-these complex model structures.
+providing answers to the questions of: i) How features are related to
+the property being modeled?; ii) How features interact with each other
+to identify the suitable forecasting method?; and iii) Which features
+contribute the most to classification process? that can enhance the
+understanding of relations between features and model outcomes. To the
+best of our knowledge, very limited efforts have been taken to
+understand how the models are making its decisions and what is really
+happening inside these complex model structures. Understanding the role
+of features is worthwhile even if producing an accurate predictions is
+the only objective of the modelling. This is because the less
+transparency of the model may be distrusted regardless of their
+predictive performance.
 
 On the other hand, aside from the goal of developing automated
 forecast-model selection framework few researchers have made an attempt
@@ -387,43 +380,75 @@ to provide a description of relationship between the features and the
 performance of algorithms
 \autocites{schnaars1984situational}{wang2009rule}{lemke2010meta}{petropoulos2014horses}.
 However, these studies are limited by the scale of problem instances
-used, diversity of forecasting-methods used, quality of features
+used, diversity of forecasting-methods used, limited of features
 considered, and modelling approached used to identify the relationship
 between features and forecast model performance. Most of these studies
 are typically restricted to simple statistical techniques such as simple
-linear models, decision trees, etc.
+linear models, decision trees, cluster analysis, etc.
 
 To fill this gap, this paper makes a first step towards providing a
 comprehensive explanation of the relationship between time series
 features and forecast-model selection using machine learning
 interpretability techniques. This paper builds on the method from our
-previous work ref, in which we introduced the FFORMS (Feature-based
-FORecast Model Selection) framework. The random forest algorithm is used
-to model the relationship between features and ``best'' performing
-forecast-model. A large collection of time series is used to train the
-model. We use 35 features to capture different characteristics of time
-series. The reason for the choice of random forest algorithm is its
-ability to model complex variable interactions. One noticeable
-significance of our approach is this can be parallized to for any given
-computing budget and time. Although the prediction accuracy of random
-forest algorithm is high, it is not easy to interpret what is happening
-inside the forest because of the two-step randomization. In this work we
-aim at providing a deeper understanding of the underlying mechanism and
-influence of features in forecast-model selection.
+previous work \textcite{fforms}, in which we introduced the FFORMS
+(Feature-based FORecast Model Selection) framework. The random forest
+algorithm is used to model the relationship between features and
+``best'' performing forecast-model. A large collection of time series is
+used to train the model. One noticeable significance of our approach is
+this can be parallized to for any given computing budget and time.
+Although the prediction accuracy of random forest algorithm is high, it
+is not easy to interpret what is happening inside the forest because of
+the two-step randomization. In this work we aim at providing a deeper
+understanding of influence of features in forecast-model selection by
+exploiting the underlying model structure of FFORMS framework.
 
-{[}What is the usefulness of analyzing the relationship between features
-and model performance?{]} Understanding the role of features is
-worthwhile even if producing an accurate and generalizable model is the
-only objective of the modelling. This is because the less transparency
-of the model may be distrusted regardless of their predictive
-performance. The methodology we propose here is a novel application of
-machine learning interpretability methods to visualize and explore the
-role of features in forecast-model selection.
+In this article, we make the following contributions:
 
-This paper proceeds as follows. In \autoref{fforms} we describe the
-application of FFORMS framework to M4competition data. The main
-contribution of this from our previous work \textcite{fforms} is we
-extend the FFORMS framework to model weekly, daily and hourly series.
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  We extend the FFORMS framework to handle weekly, daily and hourly
+  series. We also extends the diversity of forecast-models used as
+  classlabels. Given that contribution of our framework differ from
+  previously published work related to meta-learning in three ways: i)
+  extensive collection of features (35 different feature types which are
+  simple and easy to compute), ii) diversity of forecast-models used as
+  class labels, and iii) capability of handling high fequency data;
+\item
+  We explain the application of FFORMS framework to the M4-competition
+  data. Out of 248 registrations only 18 participants were able to
+  submit pediction intervals for the 100000 time series due to the
+  computational cost (\textcite{Makridakis2018dx}). We generated point
+  forecasts and prediction intervals for the M4-competition time series
+  data based on FFORMS framework and ranked 8th in the prediction
+  interval category (\textcite{Makridakis2018dx}). Except the top
+  ranking Hybrid method all the other top six submissions are based on
+  aggregate selection rule which is slower than FFORMS approach (because
+  forecasts from different models need to be compute). Our approach
+  achieved a high accuracy rate based on individual selection rule. This
+  shows the computational efficiency of our framework without
+  substantially degrading the performance.
+\item
+  The main contribution of this paper is to explore the relationship
+  between features of time series and the choice of forecast-model
+  selection using the FFORMS famework. We explore the role of features
+  in two different perspectives: i) Global perspective of feature
+  contribution: overall role of features in the choice of different
+  forecast model selection and ii) Local perspective of feature
+  contribution: zoom into local regions of the data to identify which
+  features contribute most to classify a specific instance.
+\item
+  The results we present here is a novel application of machine learning
+  interpretability methods to visualize and explore the role of features
+  in forecast-model selection;
+\item
+  We further explore the rules learnt by displaying the ``model in the
+  data space'' and ``data in the model space''.
+\end{enumerate}
+
+The remainder of the paper is structured as follows. In \autoref{fforms}
+we describe the application of FFORMS framework to M4competition data.
 \autoref{machinelearning} gives background on machine learning
 interpretability techniques that are used to identify role of features
 in forecast model selection. In \autoref{results} we discuss the
@@ -631,8 +656,8 @@ ARIMA models are used to forecast seasonally adjusted data respectively.
 \subsubsection{Train a random forest
 classifier}\label{train-a-random-forest-classifier}
 
-A random forest with class priors is used to develop the classifier. We
-build separate random forest classifiers for yearly, quarterly, monthly,
+A random forest algorithm is used to train the meta-learner. We build
+separate random forest classifiers for yearly, quarterly, monthly,
 weekly, daily and hourly time series. The wrapper function called
 \texttt{build\_rf} in the \texttt{seer} package enables the training of
 a random forest and returns class labels(``best'' forecast-model) for
@@ -647,23 +672,26 @@ corresponding features are calculated based on the full length of the
 training period provided by the M4 competition. Second, point forecasts
 and 95\% prediction intervals are calculated based on the predicted
 class labels, in this case forecast-models. Finally, all negative values
-are set to zero.
+of forecasts are set to zero.
 
 \section{Peeking inside FFORMS}\label{machinelearning}
 
-The main theme of this paper is to explore the nature of the
-relationship between features and forecast-model selection. We use both
-model-diagnostic approaches and machine learning interpretability
-approaches.
+The main objective of this paper is to explore the nature of the
+relationship between features and forecast-model selection learned by
+the FFOMS framework. Morespecifically, to identify which of the features
+are important for model predictions and how different features and their
+interactions led to the different choices. We use both model-diagnostic
+approaches and machine learning interpretability approaches.
 
 \subsection{Model-diagnostics}\label{model-diagnostics}
 
 Model-diagnostic is an important aspect in evaluating the accuracy of
 the model's predictions as well as the model's understanding of the
-nature of the relationship between features and predicted outcome.
+nature of the relationship between features and predicted outcome. We
+next explain the model-diagnostics tools considered in this paper.
 
-\subsubsection{Out-of-bag(OOB) error and uncertainty measure for each
-observation}\label{out-of-bagoob-error-and-uncertainty-measure-for-each-observation}
+\subsubsection{Out-of-bag (OOB) error and uncertainty measure for each
+observation}\label{out-of-bag-oob-error-and-uncertainty-measure-for-each-observation}
 
 It is argued in order to estimate the test error of a bagged model it is
 not necessary to perform cross-validation approach, because each tree is
@@ -677,14 +705,14 @@ bootstrap samples hence, each tree has different set of OOB
 observations. These OOB samples can be used to calculate internal
 estimation of the test set error.
 
-\subsubsection{Representation of model in the data space and data in the
-model space
-(d-in-ms)}\label{representation-of-model-in-the-data-space-and-data-in-the-model-space-d-in-ms}
+\subsubsection{Representation of model in the data space (m-in-ds) and
+data in the model space
+(d-in-ms)}\label{representation-of-model-in-the-data-space-m-in-ds-and-data-in-the-model-space-d-in-ms}
 
 \textcite{wickham2015visualizing} explains the importance of displaying
 the ``model in the data space (m-in-ds)'' and ``data in the model space
-(d-in-ms)''. Displaying the data in the model space(d-in-ms) is the most
-commonly used approach for model-diagnostics. For example, plot of
+(d-in-ms)''. Displaying the data in the model space (d-in-ms) is the
+most commonly used approach for model-diagnostics. For example, plot of
 fitted values versus residuals (\textcite{wickham2015visualizing}).
 D-in-MS is a visualisation of embedding high-dimensional data into a
 low-dimensional space generated from the model. Visualisation of D-in-MS
@@ -699,7 +727,7 @@ regions or their boundaries. In other words this can be considered as
 the visualization of predictor space in the context of the data space.
 See \textcite{wickham2015visualizing} for visualisation method of this
 kind and \textcite{da2017interactive} for comparable method for random
-forest algorithms.
+forest algorithm.
 
 \subsection{Machine Learning
 Interpretability}\label{machine-learning-interpretability}
@@ -713,14 +741,14 @@ contribution: overall role of features in the choice of different
 forecast model selection, and ii) local explanation of feature
 contribution: nature of the contributions features make for a prediction
 of a specific instance. We will introduce each of these ideas briefly
-below. Model-diagnostics tools are used.
+below.
 
 \subsection{General Notation}\label{general-notation}
 
 Let \(\mathcal{P}=\{(\mathbf{x^{(i)}}, y^{(i)})\}_{i=1}^{N}\) be the
 historical data set we use to train the classifier. Consider a
 p-dimensional feature vector \(X=(X_1, X_2, ..., X_p)\) and a dependent
-variable, best forecasting method for each series \(Y\). Let
+variable, the best forecasting method for each series \(Y\). Let
 \(\mathcal{G}\) be the unknown relationship between \(X\) and \(Y\).
 \textcite{Zhao} term this as ``law of nature''. Inside the FFORMS
 framework, random forest algorithm tries to learn this relationship
@@ -754,7 +782,7 @@ conditional expectation curves are used to explore the ``causality''
 notion of variable importance while Mean decrease in Gini coefficient
 and Permutation-based variable importance are used to capture the second
 notion of variable importance-features contribution to the predictive
-accuracy(\textcite{Zhao}). We will introduce each of these variable
+accuracy (\textcite{Zhao}). We will introduce each of these variable
 importance measures below.
 
 \subsubsection{Mean decrease in Gini
@@ -870,7 +898,7 @@ Note that the, PD plots, ICE curves and PD-, ICE-associated measures and
 Friedman's H-statistic are computationally intensive to compute,
 especially when there are large number of observations in the training
 set. Hence, in our experiments ICE and PDP-based variable importance are
-measured based on the subset of randomly selected training examples.
+computed based on the subset of randomly selected training examples.
 
 \subsection{Local Interpretable Model-agnostic Explanations
 (LIME)}\label{local-interpretable-model-agnostic-explanations-lime}
@@ -886,8 +914,8 @@ for explaining individual predictions which relies on the assumption
 that ``every complex model is linear on a local scale''. This is
 accomplished by locally approximating the complex black-box model with a
 simple interpretable model. \textcite{ribeiro2016should} highlighted
-features that are globally important may not be in the local context and
-vice verse. The algorithm steps can be summarized as follow:
+features that are globally important may not be important in the local
+context and vice verse. The algorithm steps can be summarized as follow:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -911,7 +939,7 @@ vice verse. The algorithm steps can be summarized as follow:
   algorithms such as ridge regression, lasso, ridge regression, etc.
 \item
   Fit a simple linear model to the permuted data based on \(m\) selected
-  features and similarity scores in step 3 as weights and complex model
+  features, similarity scores in step 3 as weights and complex model
   prediction outcomes in step 4 as response variable.
 \item
   Use the estimated coefficients of simple linear model to explain the
@@ -927,8 +955,6 @@ proposed by \textcite{lundberg2017unified} based on game theory named
 \section{Results}\label{results}
 
 \subsection{Yearly data}\label{yearly-data}
-
-\textbf{Model diagnostic: FFORMS framework,Yearly series}
 
 \begin{figure}
 \centering
@@ -958,7 +984,7 @@ come the problem of overlapping data points due to the scale of the
 training data set, similarity of classes and relatively large number of
 class labels, boxplot diagrams are used. This \autoref{fig:yearlyoob}
 helps to evaluate the model performance in the data space
-(model-in-the-data-space) (\textcite{da2017interactive}).On each row of
+(model-in-the-data-space) (\textcite{da2017interactive}). On each row of
 \autoref{fig:yearlyoob} the distribution of proportions corresponds to
 the time series in which the predicted class label and true class label
 are the same dominates the top indicating a fairly good classification
@@ -996,8 +1022,8 @@ classification, except ARIMA category even though it does not appear to
 be among top five features, spikiness has been assigned a relatively
 high importance among all categories. These results indicates on average
 the features related to trend, nonstationarity, overall shape of the
-trend (linear(measured by linearity), damped(measured by beta),
-exponential(measured by curvature)) and randomness (from spikiness, and
+trend (linear: measured by linearity, damped:measured by beta,
+exponential: measured by curvature) and randomness (from spikiness, and
 lmres\_acf1) are important for the choice of yearly time series
 forecasting methods. Further, y\_acf1 is appear to be important in
 random walk with drift class and ARMA/AR/MA class. The length of time
@@ -1048,9 +1074,9 @@ show an opposite relationship.
 possible pairwise interactions for each class. The relative strength of
 two-way interaction between features were determined using formulae
 developed by \textcite{friedman2008predictive}, which is implemented in
-the iml (\textcite{molnar2018iml},) package in R. The test statistic of
-Phillip-Perron test, strength of trend, and linearity show a weak
-interaction with other features in all the class. However, except
+the \texttt{iml} (\textcite{molnar2018iml},) package in R. The test
+statistic of Phillip-Perron test, strength of trend, and linearity show
+a weak interaction with other features in all the class. However, except
 ETS-trend class, trend and ur\_pp shows an high level of interactivity.
 These two features are appear to be among top 5 in all the classes
 according to the variable importance measures. Further, narrow
@@ -1060,10 +1086,10 @@ partial correlation and auto-correlation based features are heavily
 interacting. However, the first correlation coefficient of the
 difference series do not interact with other features heavily in the
 case of ARIMA class. Further, almost all pair of features appear to be
-interacting with in neural network category.
-\autoref{fig:twowayinteractionyearly1} and
-\autoref{fig:twowayinteractionyearly2} communicate more information
-about the nature of two-way feature interaction effect.
+interacting with in neural network category. The features stability and
+lumpiness show interactivity within each class. \autoref{fig:ytwopdp}
+communicate more information about the nature of two-way feature
+interaction effect of stability and lumpiness.
 
 \begin{figure}
 \centering
@@ -1105,10 +1131,10 @@ data}\label{quarterly-and-monthly-data}
 \autoref{fig:oobquarterlymonthly} shows oob error-based classification
 for quarterly and monthly data. According to
 \autoref{fig:oobquarterlymonthly} the corresponding distributions
-depicted similar patterns both quarterly and monthly data. For quarterly
-and monthly data, the same set of features and class-labels are used to
-train the model. Hence, this consistency between the results of
-quarterly and monthly series would provide evidence in support of the
+depicted similar patterns for both quarterly and monthly data. For
+quarterly and monthly data, the same set of features and class-labels
+are used to train the model. Hence, this consistency between the results
+of quarterly and monthly series would provide evidence in support of the
 validity and trustability of the model. On each row of ETS models a
 single distribution corresponds the correct classification class
 dominates the top. However, on average probability of selecting

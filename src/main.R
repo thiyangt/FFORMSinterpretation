@@ -676,14 +676,34 @@ votes_oobQ$classlabel <- factor(votes_oobQ$classlabel, levels = rev(c(
   "snaive", "rwd", "rw", "ETS-notrendnoseasonal", "ETS-dampedtrend", "ETS-trend", "ETS-dampedtrendseasonal", "ETS-trendseasonal", "ETS-seasonal", "SARIMA",
   "ARIMA", "ARMA/AR/MA", "stlar", "tbats", "wn", "theta", "nn"
 )))
-oob_boxplot_quarterly <- ggplot(votes_oobQ, aes(x = variable, y = value, fill = classlabel)) +
+
+#Part 1 of the oob plot
+part1 <- c("snaive", "rwd", "rw", "ETS-notrendnoseasonal", "ETS-dampedtrend", "ETS-trend", "ETS-dampedtrendseasonal", "ETS-trendseasonal")
+part2 <- c("ETS-seasonal", "SARIMA", "ARIMA", "ARMA/AR/MA", "stlar", "tbats", "wn", "theta", "nn")
+
+part1_votes_oobQ <- subset(votes_oobQ, votes_oobQ$predicted %in% part1)
+part2_votes_oobQ <- subset(votes_oobQ,  votes_oobQ$predicted %in% part2)
+# Part 1_quarterly
+oob_boxplot_quarterly_p1 <- ggplot(part1_votes_oobQ, aes(x = variable, y = value, fill = classlabel)) +
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
   ylab("Proportion") +
   xlab("") +
   theme(legend.position = "none", legend.title = element_blank(), legend.text.align = 0, text = element_text(size = 20)) +
   guides(fill = guide_legend(reverse = TRUE)) +
   scale_x_discrete(limits = rev(c(
-    "snaive", "rwd", "rw", "ETS-notrendnoseasonal", "ETS-dampedtrend", "ETS-trend", "ETS-dampedtrendseasonal", "ETS-trendseasonal", "ETS-seasonal", "SARIMA",
+    "snaive", "rwd", "rw", "ETS-notrendnoseasonal", "ETS-dampedtrend", "ETS-trend", "ETS-dampedtrendseasonal", "ETS-trendseasonal"
+  ))) +
+  coord_flip()+labs(subtitle = "A: Quarterly")
+
+# Part 2_quarterly
+oob_boxplot_quarterly_p2 <- ggplot(part2_votes_oobQ, aes(x = variable, y = value, fill = classlabel)) +
+  geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
+  ylab("Proportion") +
+  xlab("") +
+  theme(legend.position = "none", legend.title = element_blank(), legend.text.align = 0, text = element_text(size = 20)) +
+  guides(fill = guide_legend(reverse = TRUE)) +
+  scale_x_discrete(limits = rev(c(
+     "ETS-seasonal", "SARIMA",
     "ARIMA", "ARMA/AR/MA", "stlar", "tbats", "wn", "theta", "nn"
   ))) +
   coord_flip()+labs(subtitle = "A: Quarterly")
@@ -701,17 +721,30 @@ votes_oobM <- votes_oobM %>% mutate(id=seq_len(n())) %>%
 votes_oobM$classlabel <- factor(votes_oobM$classlabel, levels=rev(c("snaive","rwd", "rw", "ETS-notrendnoseasonal","ETS-dampedtrend", "ETS-trend", "ETS-dampedtrendseasonal", "ETS-trendseasonal","ETS-seasonal","SARIMA",
                                                                     "ARIMA", "ARMA/AR/MA","stlar" ,"tbats","wn", "theta","nn"))
 )
-oob_monthly <- ggplot(votes_oobM, aes(x = variable, y = value, fill = classlabel)) +
+
+part1_votes_oobM <- subset(votes_oobM, votes_oobM$predicted %in% part1)
+part2_votes_oobM <- subset(votes_oobM, votes_oobM$predicted %in% part2)
+
+oob_monthly_part1 <- ggplot(part1_votes_oobM, aes(x = variable, y = value, fill = classlabel)) +
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
   ylab("Proportion") +
   xlab("") + 
   guides(fill=guide_legend(reverse=TRUE)) +
-  scale_x_discrete(limits=rev(c("snaive","rwd", "rw", "ETS-notrendnoseasonal","ETS-dampedtrend", "ETS-trend", "ETS-dampedtrendseasonal", "ETS-trendseasonal","ETS-seasonal","SARIMA",
+  scale_x_discrete(limits=rev(c("snaive","rwd", "rw", "ETS-notrendnoseasonal","ETS-dampedtrend", "ETS-trend", "ETS-dampedtrendseasonal", "ETS-trendseasonal"))) +
+  theme(legend.position = "right", legend.title = element_blank(), legend.text.align = 0, text = element_text(size=20),  axis.text.y = element_blank()) + 
+  coord_flip()+labs(subtitle = "B: Monthly")
+
+oob_monthly_part2 <- ggplot(part2_votes_oobM, aes(x = variable, y = value, fill = classlabel)) +
+  geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
+  ylab("Proportion") +
+  xlab("") + 
+  guides(fill=guide_legend(reverse=TRUE)) +
+  scale_x_discrete(limits=rev(c("ETS-seasonal","SARIMA",
                                 "ARIMA", "ARMA/AR/MA","stlar" ,"tbats","wn", "theta","nn"))) +
   theme(legend.position = "right", legend.title = element_blank(), legend.text.align = 0, text = element_text(size=20),  axis.text.y = element_blank()) + 
   coord_flip()+labs(subtitle = "B: Monthly")
 
-oob_boxplot_quarterly|oob_monthly
+oob_boxplot_quarterly_p1|oob_monthly_part1
 
 
 ## ---- viquarterly

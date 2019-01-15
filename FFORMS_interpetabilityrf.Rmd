@@ -383,7 +383,7 @@ An alternative for explaining local behaviour of complex models is proposed by @
 
 \clearpage
 
-```{r oobquarterlymonthly, fig.height=28, fig.width=15, fig.cap="Distribution of proportion of times each time series was assigned to each class based on OOB sample.  Each row represent the predicted class label and colours of boxplots corresponds to class label of \"best\" forecasting method. X-axis denotes the proportion of times the time series was predicted into each class. Results for quarterly and monthly series are shown in Figures A and B respectively.", fig.pos="h", cache=TRUE}
+```{r oobquarterlymonthly, fig.height=20, fig.width=15, fig.cap="Distribution of proportion of times each time series was assigned to each class based on OOB sample.  Each row represent the predicted class label and colours of boxplots corresponds to class label of \"best\" forecasting method. X-axis denotes the proportion of times the time series was predicted into each class. Results for quarterly and monthly series are shown in Figures A and B respectively.", fig.pos="h", cache=FALSE}
 ```
 
 \clearpage

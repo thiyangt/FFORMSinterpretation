@@ -118,7 +118,7 @@ int4 <- ggplot(
     x = diff1y_acf5.stability.q$diff1y_acf5,
     y = diff1y_acf5.stability.q$stability, z = colNamesds[5], fill = colNamesds[5]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.005), breaks = seq(0, 0.005, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.008), breaks = seq(0, 0.008, 100), option = "A", direction = -1) +
   xlab("diff1y_acf5") + ylab("stability")+ theme(legend.position="none")+ggtitle("ETS-notrendnoseasonal")
 
 # ETS-dampedtrend(34)
@@ -128,7 +128,7 @@ int5 <- ggplot(
     x = diff1y_acf5.stability.q$diff1y_acf5,
     y = diff1y_acf5.stability.q$stability, z = colNamesds[3], fill = colNamesds[3]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.005), breaks = seq(0, 0.005, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.01), breaks = seq(0, 0.01, 100), option = "A", direction = -1) +
   xlab("diff1y_acf5") + ylab("stability")+ theme(legend.position="none")+ggtitle("ETS-dampedtrend")
 
 # ETS-trend(38)
@@ -138,7 +138,7 @@ int6 <- ggplot(
     x = diff1y_acf5.stability.q$diff1y_acf5,
     y = diff1y_acf5.stability.q$stability, z = colNamesds[7], fill = colNamesds[7]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.005), breaks = seq(0, 0.005, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.008), breaks = seq(0, 0.008, 100), option = "A", direction = -1) +
   xlab("diff1y_acf5") + ylab("stability")+ theme(legend.position="none")+ggtitle("ETS-trend")
 
 # ETS-dampedtrendseasonal(35)

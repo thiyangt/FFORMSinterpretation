@@ -90,6 +90,39 @@
       \verb http://statistics.berkeley.edu/sites/default/files/tech-reports/666.pdf
       \endverb
     \endentry
+    \entry{collopy1992rule}{article}{}
+      \name{author}{2}{}{%
+        {{hash=4764f77d895df5185ebf446cc866f705}{%
+           family={Collopy},
+           familyi={C\bibinitperiod},
+           given={Fred},
+           giveni={F\bibinitperiod}}}%
+        {{hash=98760fe8e822a8904bd8aa07a249e0e9}{%
+           family={Armstrong},
+           familyi={A\bibinitperiod},
+           given={J\bibnamedelima Scott},
+           giveni={J\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{e2f5172aebd09f148148a8814e1d71e9}
+      \strng{fullhash}{e2f5172aebd09f148148a8814e1d71e9}
+      \strng{bibnamehash}{e2f5172aebd09f148148a8814e1d71e9}
+      \strng{authorbibnamehash}{e2f5172aebd09f148148a8814e1d71e9}
+      \strng{authornamehash}{e2f5172aebd09f148148a8814e1d71e9}
+      \strng{authorfullhash}{e2f5172aebd09f148148a8814e1d71e9}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Management Science}
+      \field{number}{10}
+      \field{title}{Rule-based forecasting: development and validation of an expert systems approach to combining time series extrapolations}
+      \field{volume}{38}
+      \field{year}{1992}
+      \field{pages}{1394\bibrangedash 1414}
+      \range{pages}{21}
+    \endentry
     \entry{ehrlinger2015ggrandomforests}{article}{}
       \name{author}{1}{}{%
         {{hash=5aa85f9e615ebc83f02b41db9d18ed9a}{%
@@ -512,6 +545,45 @@
       \field{year}{2000}
       \field{pages}{451\bibrangedash 476}
       \range{pages}{26}
+    \endentry
+    \entry{Makridakis2018dx}{article}{}
+      \name{author}{3}{}{%
+        {{hash=ba8241955b5282793fdcf2d43c398cc6}{%
+           family={Makridakis},
+           familyi={M\bibinitperiod},
+           given={Spyros},
+           giveni={S\bibinitperiod}}}%
+        {{hash=1bbd058009b400578fd6334102fc8dec}{%
+           family={Spiliotis},
+           familyi={S\bibinitperiod},
+           given={Evangelos},
+           giveni={E\bibinitperiod}}}%
+        {{hash=c84a88720d8401a0259918f2eb3bec78}{%
+           family={Assimakopoulos},
+           familyi={A\bibinitperiod},
+           given={Vassilios},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{79b1cdab2388adc969bf628908c61838}
+      \strng{fullhash}{79b1cdab2388adc969bf628908c61838}
+      \strng{bibnamehash}{79b1cdab2388adc969bf628908c61838}
+      \strng{authorbibnamehash}{79b1cdab2388adc969bf628908c61838}
+      \strng{authornamehash}{79b1cdab2388adc969bf628908c61838}
+      \strng{authorfullhash}{79b1cdab2388adc969bf628908c61838}
+      \field{sortinit}{M}
+      \field{sortinithash}{cfd219b90152c06204fab207bc6c7cab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Forecasting}
+      \field{month}{10}
+      \field{number}{4}
+      \field{title}{The {M4} Competition: Results, findings, conclusion and way forward}
+      \field{volume}{34}
+      \field{year}{2018}
+      \field{pages}{802\bibrangedash 808}
+      \range{pages}{7}
     \endentry
     \entry{meade2000evidence}{article}{}
       \name{author}{1}{}{%
