@@ -659,7 +659,7 @@ pca1M4Y_nn <- ggplot(m4yPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
 #                  Quarterly and Monthly data                               #
 #################################################################
 
-## ---- oobquarterlymonthly
+## ---- oobquarterlymonthly1
 load("data/quarterly/trainQ_votes.rda") # oob votes from the random forest
 load("data/quarterly/trainQ_predictions_oob.rda") # based on oob prediction
 load("data/quarterly/quarterly_training.rda") # random forest training set
@@ -678,8 +678,8 @@ votes_oobQ$classlabel <- factor(votes_oobQ$classlabel, levels = rev(c(
 )))
 
 #Part 1 of the oob plot
-part1 <- c("snaive", "rwd", "rw", "ETS-notrendnoseasonal", "ETS-dampedtrend", "ETS-trend", "ETS-dampedtrendseasonal", "ETS-trendseasonal")
-part2 <- c("ETS-seasonal", "SARIMA", "ARIMA", "ARMA/AR/MA", "stlar", "tbats", "wn", "theta", "nn")
+part1 <- c("snaive", "rwd", "rw", "ETS-notrendnoseasonal", "ETS-dampedtrend", "ETS-trend", "ETS-dampedtrendseasonal")
+part2 <- c("ETS-trendseasonal","ETS-seasonal", "SARIMA", "ARIMA", "ARMA/AR/MA", "stlar", "tbats", "wn", "theta", "nn")
 
 part1_votes_oobQ <- subset(votes_oobQ, votes_oobQ$predicted %in% part1)
 part2_votes_oobQ <- subset(votes_oobQ,  votes_oobQ$predicted %in% part2)
@@ -691,8 +691,7 @@ oob_boxplot_quarterly_p1 <- ggplot(part1_votes_oobQ, aes(x = variable, y = value
   theme(legend.position = "none", legend.title = element_blank(), legend.text.align = 0, text = element_text(size = 20)) +
   guides(fill = guide_legend(reverse = TRUE)) +
   scale_x_discrete(limits = rev(c(
-    "snaive", "rwd", "rw", "ETS-notrendnoseasonal", "ETS-dampedtrend", "ETS-trend", "ETS-dampedtrendseasonal", "ETS-trendseasonal"
-  ))) +
+    "snaive", "rwd", "rw", "ETS-notrendnoseasonal", "ETS-dampedtrend", "ETS-trend", "ETS-dampedtrendseasonal"))) +
   coord_flip()+labs(subtitle = "A: Quarterly")
 
 # Part 2_quarterly
@@ -703,7 +702,7 @@ oob_boxplot_quarterly_p2 <- ggplot(part2_votes_oobQ, aes(x = variable, y = value
   theme(legend.position = "none", legend.title = element_blank(), legend.text.align = 0, text = element_text(size = 20)) +
   guides(fill = guide_legend(reverse = TRUE)) +
   scale_x_discrete(limits = rev(c(
-     "ETS-seasonal", "SARIMA",
+    "ETS-trendseasonal", "ETS-seasonal", "SARIMA",
     "ARIMA", "ARMA/AR/MA", "stlar", "tbats", "wn", "theta", "nn"
   ))) +
   coord_flip()+labs(subtitle = "A: Quarterly")
@@ -730,7 +729,7 @@ oob_monthly_part1 <- ggplot(part1_votes_oobM, aes(x = variable, y = value, fill 
   ylab("Proportion") +
   xlab("") + 
   guides(fill=guide_legend(reverse=TRUE)) +
-  scale_x_discrete(limits=rev(c("snaive","rwd", "rw", "ETS-notrendnoseasonal","ETS-dampedtrend", "ETS-trend", "ETS-dampedtrendseasonal", "ETS-trendseasonal"))) +
+  scale_x_discrete(limits=rev(c("snaive","rwd", "rw", "ETS-notrendnoseasonal","ETS-dampedtrend", "ETS-trend", "ETS-dampedtrendseasonal"))) +
   theme(legend.position = "right", legend.title = element_blank(), legend.text.align = 0, text = element_text(size=20),  axis.text.y = element_blank()) + 
   coord_flip()+labs(subtitle = "B: Monthly")
 
@@ -739,13 +738,15 @@ oob_monthly_part2 <- ggplot(part2_votes_oobM, aes(x = variable, y = value, fill 
   ylab("Proportion") +
   xlab("") + 
   guides(fill=guide_legend(reverse=TRUE)) +
-  scale_x_discrete(limits=rev(c("ETS-seasonal","SARIMA",
+  scale_x_discrete(limits=rev(c("ETS-trendseasonal","ETS-seasonal","SARIMA",
                                 "ARIMA", "ARMA/AR/MA","stlar" ,"tbats","wn", "theta","nn"))) +
   theme(legend.position = "right", legend.title = element_blank(), legend.text.align = 0, text = element_text(size=20),  axis.text.y = element_blank()) + 
   coord_flip()+labs(subtitle = "B: Monthly")
 
 oob_boxplot_quarterly_p1|oob_monthly_part1
 
+## ---- oobquarterlymonthly2
+oob_boxplot_quarterly_p2|oob_monthly_part2
 
 ## ---- viquarterly
 # All variable scores into one dataframe
