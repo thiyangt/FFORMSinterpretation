@@ -1,10 +1,10 @@
 library(lime)
 library(randomForest)
 # create a test set
-load("phdproject2/quarterly_training.rda") # training data
-load("phdproject2/rfu_m4quarterly.rda") # random forest model
+load("phdproject2/hourly_training.rda") # training data
+load("phdproject2/rfu_m4hourly.rda") # random forest model
 
-qtest <- quarterly_training[c(25,178, 653, 182), 1:30]
+htest <- hourly_training[c(125,199, 196, 137), 1:26]
 model_type.randomForest <- function(x,...){
   return("classification")
 }
@@ -12,13 +12,13 @@ predict_model.randomForest = function(x, newdata, type, ...){
   results <- as.data.frame(predict(x, newdata, type="prob"))
   return(results)}
 
-explainer <- lime(qtest, rfu_m4quarterly)
+explainer <- lime(htest, rfu_m4hourly)
 
-explanationq <- explain(
-  qtest,
+explanationh <- explain(
+  htest,
   explainer = explainer,
   n_labels=1,
   n_features=10
 )
 
-save(explanationq, file="phdproject2/explanationq.rda")
+save(explanationh, file="phdproject2/explanationh.rda")

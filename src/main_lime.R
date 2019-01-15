@@ -64,7 +64,7 @@ pca+pp+plot_layout(ncol = 2)
 
 ## ---- yearlylime2
 load("data/yearly/explanationy.rda")
-lime::plot_features(explanationy, ncol = 3)
+lime::plot_features(explanationy, ncol = 2)
                        
 ## ---- quarterlylime
 #which.min(m4qPCAresults1$PC1)  #405
@@ -88,11 +88,11 @@ pcaQ <- ggplot(m4qPCAresults, aes(x = PC1, y = PC2)) +
     legend.position = "none",
     aspect.ratio = 1
   ) +
-  geom_point(data =quarterly_training[c(25,405, 653, 908),], aes(x = PC1, y = PC2), color = "black", size=5) +
+  geom_point(data =quarterly_training[c(25,178, 653, 182),], aes(x = PC1, y = PC2), color = "black", size=5) +
   theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))+
   geom_text_repel(
-    data = quarterly_training[c(25,405, 653, 908),],
-    aes(label = c("1: SARIMA", "2: rwd", "3: ETS-trendseasonal", "4: tbats")),
+    data = quarterly_training[c(25,178, 653, 182),],
+    aes(label = c("1: SARIMA", "2: rwd", "3: ETS-trendseasonal", "4: ETS-seasonal")),
     size = 5,
     box.padding = unit(0.35, "lines"),
     point.padding = unit(0.3, "lines")
@@ -115,7 +115,7 @@ p3 <- autoplot(ts_lime_qpca[[3]])+theme(legend.position="none")+
                                                      # axis.text.x=element_blank(),
                                                      axis.text.y=element_blank())+ylab("")
 p4 <- autoplot(ts_lime_qpca[[4]])+theme(legend.position="none")+
-  ggtitle("4: tbats")+xlab("")+theme(axis.title.x=element_blank(),
+  ggtitle("4: ETS-seasonal")+xlab("")+theme(axis.title.x=element_blank(),
                                   # axis.text.x=element_blank(),
                                   axis.text.y=element_blank())+ylab("")
 
@@ -123,7 +123,79 @@ pp <- p1 + p2 + p3 + p4 + plot_layout(ncol = 1)
 pcaQ+pp+plot_layout(ncol = 2)
 
 ## ---- quarterlylime2
-plot_features(explanationq, ncol = 3)
+plot_features(explanationq, ncol = 2)
+
+
+## ---- hourlylime
+pcaHvariables <- hourly_training[, 1:26]
+pcaM4H <- prcomp(pcaHvariables, center = TRUE, scale = TRUE)
+PC1m4h <- pcaM4H$x[, 1]
+PC2m4h <- pcaM4H$x[, 2]
+PC3m4h <- pcaM4H$x[, 3]
+m4hPCAresults <- data.frame(PC1 = PC1m4h, PC2 = PC2m4h, PC3 = PC3m4h, pcaHvariables)
+hourly_training$PC1 <- PC1m4h
+hourly_training$PC2 <- PC2m4h
+
+pcaH <- ggplot(m4hPCAresults, aes(x = PC1, y = PC2)) +
+  geom_point(colour = "firebrick1") +
+  theme(
+    legend.position = "none",
+    aspect.ratio = 1
+  ) +
+  geom_point(data =hourly_training[c(125,199, 196, 137),], aes(x = PC1, y = PC2), color = "black", size=5) +
+  theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))+
+  geom_text_repel(
+    data = hourly_training[c(125,199, 196, 137),],
+    aes(label = c("1: snaive", "2: nn", "3: tbats", "4: mstlarima")),
+    size = 5,
+    box.padding = unit(0.35, "lines"),
+    point.padding = unit(0.3, "lines")
+  )
+
+
+load("data/hourly/explanationh.rda")
+load("data/ts_lime_hpca.rda")
+p1 <- autoplot(ts_lime_hpca[[1]])+theme(legend.position="none")+
+  ggtitle("1: snaive")+xlab("")+theme(axis.title.x=element_blank(),
+                                      #                     axis.text.x=element_blank(),
+                                      axis.text.y=element_blank())+ylab("")
+
+p2 <- autoplot(ts_lime_hpca[[2]])+theme(legend.position="none")+
+  ggtitle("2: nn")+xlab("")+theme(axis.title.x=element_blank(),
+                                   #       axis.text.x=element_blank(),
+                                   axis.text.y=element_blank())+ylab("")
+p3 <- autoplot(ts_lime_hpca[[3]])+theme(legend.position="none")+
+  ggtitle("3: tbats")+xlab("")+theme(axis.title.x=element_blank(),
+                                                 # axis.text.x=element_blank(),
+                                                 axis.text.y=element_blank())+ylab("")
+p4 <- autoplot(ts_lime_hpca[[4]])+theme(legend.position="none")+
+  ggtitle("4: mstlarima")+xlab("")+theme(axis.title.x=element_blank(),
+                                            # axis.text.x=element_blank(),
+                                            axis.text.y=element_blank())+ylab("")
+
+pp <- p1 + p2 + p3 + p4 + plot_layout(ncol = 1)
+pcaH+pp+plot_layout(ncol = 2)
+
+## ---- houlylime2
+plot_features(explanationh, ncol = 2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## ---- monthlylime
 #which.min(m4mPCAresults$PC1)  #632
