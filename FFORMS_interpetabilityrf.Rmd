@@ -89,12 +89,11 @@ In this article, we make the following contributions:
 
 1. We extend the FFORMS framework to handle weekly, daily and hourly series. We also extends the diversity of forecast-models used as classlabels. Given that contribution of our framework differ from previously published work related to meta-learning in three ways: i) extensive collection of features (35 different feature types which are simple and easy to compute) used in the FFORMS framework ii) diversity of forecast-methods used as class labels, and iii) capability of handling high fequency data;
 1. Application of FFORMS framework to the M4-competition data. Out of 248 registrations only 18 participants were able to submit pediction intervals for the 100000 time series due to the computational cost (@Makridakis2018dx). We generated point forecasts and prediction intervals for the M4-competition time series data based on FFORMS framework and ranked 8th in the prediction interval category (@Makridakis2018dx).  Except the top ranking Hybrid method all the other top six submissions are based on aggregate selection rule which is slower than FFORMS approach (because forecasts from different models need to be compute). Our approach achieved a high accuracy rate based on individual selection rule. This shows the computational efficiency of our framework without substantially degrading the performance.
-1. The results we present here is a novel application of machine learning interpretability methods to visualize and explore the role of features in forecast-model selection. 
-1. data in the moel space model in the data space;
-1. LIME
+1. We explore the role of features in two different perspectives: i) Global perspective of feature contribution: overall role of features ii) Local perspective of feature contribution: zoom into local regions of the data to identify which features contribute most to classify a specific instance. 
+1. The results we present here is a novel application of machine learning interpretability methods to visualize and explore the role of features in forecast-model selection; 
+1. We further explore the rules learnt by displaying the "model in the data space" and "data in the model space".
 
-
-This paper proceeds as follows. In \autoref{fforms} we describe the application of FFORMS framework to M4competition data. \autoref{machinelearning} gives background on machine learning interpretability techniques that are used to identify role of features in forecast model selection. In \autoref{results} we discuss the results. \autoref{conclusions} concludes.
+The remainder of the paper is structured as follows. In \autoref{fforms} we describe the application of FFORMS framework to M4competition data. \autoref{machinelearning} gives background on machine learning interpretability techniques that are used to identify role of features in forecast model selection. In \autoref{results} we discuss the results. \autoref{conclusions} concludes.
 
 # FFORMS Application to M4 competition data{#fforms}
 
