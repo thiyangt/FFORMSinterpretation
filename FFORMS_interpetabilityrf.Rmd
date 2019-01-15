@@ -329,14 +329,14 @@ Note that the, PD plots, ICE curves and PD-, ICE-associated measures and Friedma
 
 ## Local Interpretable Model-agnostic Explanations (LIME)
 
-Global interpretations help us to understand entire modeled relationship.  Local interpretations help us to understand the predictions of the model for a single instance or a group of similar instances. In other words this allows users to zoom into a particular instance or a subset and explore how different features affect the resulting prediction. We use Local Interpretable Model-agnostic Explanations (LIME) approach introduce by @ribeiro2016should for explaining individual predictions which relies on the assumption that "every complex model is linear on a local scale". This is accomplished by locally approximating the complex black-box model with a simple interpretable model. @ribeiro2016should highlighted features that are globally important may not be in the local context and vice verse. The algorithm steps can be summarized as follow: 
+Global interpretations help us to understand entire modeled relationship.  Local interpretations help us to understand the predictions of the model for a single instance or a group of similar instances. In other words this allows users to zoom into a particular instance or a subset and explore how different features affect the resulting prediction. We use Local Interpretable Model-agnostic Explanations (LIME) approach introduce by @ribeiro2016should for explaining individual predictions which relies on the assumption that "every complex model is linear on a local scale". This is accomplished by locally approximating the complex black-box model with a simple interpretable model. @ribeiro2016should highlighted features that are globally important may not be important in the local context and vice verse. The algorithm steps can be summarized as follow: 
 
 1. Select an observation of interest which we need to have explanations for its black-box prediction.
 2. Create a permuted data set based on the selected observation. Permuted data set is created by making slight modifications to the features of selected observations.
 3. Obtain similarity scores by calculating distance between permuted data and selected observation.
 4. Obtain predicted outcomes for all permuted data using the black-box model.
 5. Select $m$ number of features best describing the black-box model outcome. This can be accomplished by applying feature selection algorithms such as ridge regression, lasso, ridge regression, etc.
-6. Fit a simple linear model to the permuted data based on $m$ selected features and similarity scores in step 3 as weights and complex model prediction outcomes in step 4 as response variable.
+6. Fit a simple linear model to the permuted data based on $m$ selected features, similarity scores in step 3 as weights and complex model prediction outcomes in step 4 as response variable.
 7. Use the estimated coefficients of simple linear model to explain the local behaviour corresponds to the selected observation in step 1.
 
 An alternative for explaining local behaviour of complex models is proposed by @lundberg2017unified based on game theory named "Shapley values".
