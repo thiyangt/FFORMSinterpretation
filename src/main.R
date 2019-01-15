@@ -247,147 +247,176 @@ curvaturegrid_rmout$variable <- rep(1:1000, 20)
 ## rwd
 p1 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "rwd")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("rwd")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none",text = element_text(size=20)) + ylab("rwd")
 p2 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "rwd")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + 
+  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
 p3 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "rwd")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none") + ylab("")
+  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
 pda1 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "rwd")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none") + ylab("")
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 
 # rw
 p4 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "rw")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + xlab("ur_pp") + ylab("random walk")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none", text = element_text(size=20)) + xlab("ur_pp") + ylab("random walk")
 p5 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "rw")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + 
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 p6 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "rw")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 pda2 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "rw")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none") + ylab("")
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 
 # ETS-trend
 p7 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "ETS.trend")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + xlab("ur_pp") + ylab("ETS-trend")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + 
+  theme(legend.position = "none", text = element_text(size=20)) + xlab("ur_pp") + ylab("ETS-trend")
 p8 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "ETS.trend")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + 
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 p9 <- ggplot(data =linearitygrid, aes_string(x = linearitygrid$linearity, y = "ETS.trend")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + 
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 pda3 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "ETS.trend")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none") + ylab("")
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 
 # ETS-dampedtrend
 p10 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "ETS.dampedtrend")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + xlab("ur_pp") + ylab("ETS-dampedtrend")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none", text = element_text(size=20)) + xlab("ur_pp") + ylab("ETS-dampedtrend")
 p11 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "ETS.dampedtrend")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + 
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 p12 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "ETS.dampedtrend")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 pda4 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "ETS.dampedtrend")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none") + ylab("")
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 # ETS-notrendnoseasonal
 p13 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "ETS.notrendnoseasonal")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("ETS-notrendnoseasonal")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("ETS-notrendnoseasonal")
 p14 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "ETS.notrendnoseasonal")) +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") + theme(legend.position = "none") + ylab("")
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") + 
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 p15 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "ETS.notrendnoseasonal")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + 
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 pda5 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "ETS.notrendnoseasonal")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none") + ylab("")
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 # ARIMA
 p16 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "ARIMA")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("ARIMA")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("ARIMA")
 p17 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "ARIMA")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 p18 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "ARIMA")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + 
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 pda6 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "ARIMA")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none") + ylab("")
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 # ARMA.AR.MA
 p19 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "ARMA.AR.MA")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("ARMA.AR.MA")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("ARMA.AR.MA")
 p20 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "ARMA.AR.MA")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + 
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 p21 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "ARMA.AR.MA")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 pda7 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "ARMA.AR.MA")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none") + ylab("")
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 # wn
 p22 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "wn")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("wn")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("wn")
 p23 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "wn")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 p24 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "wn")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 pda8 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "wn")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none") + ylab("")
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 # theta
 p25 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "theta")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("theta")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("theta")
 p26 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "theta")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 p27 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "theta")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + 
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 pda9 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "theta")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none") + ylab("")
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 ## nn
 p28 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "nn")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("nn")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + 
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("nn")
 p29 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "nn")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 p30 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "nn")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + theme(legend.position = "none") + ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 pda10 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "nn")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none") + ylab("")
+  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
 (p1 | p2 | p3|pda1) / (p4 | p5 | p6|pda2) / (p7 | p8 | p9|pda3) / (p10 | p11 | p12|pda4) / (p13 | p14 | p15|pda5) / (p16 | p17 | p18|pda6) / (p19 | p20 | p21|pda7) / (p22 | p23 | p24|pda8) / (p25 | p26 | p27|pda9) / (p28 | p29 | p30|pda10)
 
 ## ---- sankeyyearly
@@ -841,268 +870,268 @@ NgridM$variable <- rep(1:1700, 20)
 pq1 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="snaive")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3) +
   theme(legend.position = "none")+ylab("snaive")
 pq2 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="snaive")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none",text = element_text(size=20))+ylab("")
 pq3 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="snaive")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("linearity")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 pq4 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="snaive")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 pmn1 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="snaive")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 
 ## rwd
 pq5 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="rwd")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("rwd")
 pq6 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="rwd")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq7 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="rwd")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("linearity")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), fill="blue",alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq8 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="rwd")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), fill="red",alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 pmn2 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="rwd")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 
 ## rw
 pq9 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="rw")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red",alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("rw")
 pq10 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="rw")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq11 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="rw")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("linearity")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq12 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="rw")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 pmn3 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="rw")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 
 ## rw_monthly
 pm7 <- ggplot(data=seasonalitygridM, aes_string(x=seasonalitygridM$seasonality, y="rw")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("seasonality")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("rw")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("rw")
 pm8 <- ggplot(data= trendgridM, aes_string(x=trendgridM$trend, y="rw")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("trend")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 pm9 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="rw")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("linearity")+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 pmn4 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="rw")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 
 ## ETS.NTNS
 pq13 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="ETS.notrendnoseasonal")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("ETS.NTNS")
 pq14 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="ETS.notrendnoseasonal")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), fill="red",alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq15 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="ETS.notrendnoseasonal")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("linearity")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq16 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="ETS.notrendnoseasonal")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 pmn5 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="ETS.notrendnoseasonal")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), fill="blue",alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 
 ## ETS.DT
 pq17 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="ETS.dampedtrend")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), fill="red",alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("ETS.DT")
 pq18 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="ETS.dampedtrend")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq19 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="ETS.dampedtrend")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("linearity")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), fill="blue",alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq20 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="ETS.dampedtrend")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), fill="red",alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 pmn6 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="ETS.dampedtrend")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), fill="blue",alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 
 ## ETS.T
 pq21 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="ETS.trend")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("ETS.T")
 pq22 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="ETS.trend")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq23 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="ETS.trend")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("linearity")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), fill="blue",alpha = 0.3) +
   theme(legend.position = "none") + theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq24 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="ETS.trend")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 pmn7 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="ETS.trend")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), fill="blue",alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 
 #ETS-DTS
 pq25 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="ETS.dampedtrendseasonal")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3)+
   theme(legend.position="none", text = element_text(size=20))+ylab("ETS.DTS")
 pq26 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="ETS.dampedtrendseasonal")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none",text = element_text(size=20))+ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3)+theme(legend.position="none",text = element_text(size=20))+ylab("")
 pq27 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="ETS.dampedtrendseasonal")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("linearity")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), fill="blue",alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq28 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="ETS.dampedtrendseasonal")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), fill="red",alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 pmn8 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="ETS.dampedtrendseasonal")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), fill="blue",alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 
 ## ETS.TS
 pq29 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="ETS.trendseasonal")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("ETS.TS")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("ETS.TS")
 pq30 <- ggplot(data=trendgridQ, aes_string(x=trendgridQ$trend, y="ETS.trendseasonal")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none",text = element_text(size=20))+ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3)+theme(legend.position="none",text = element_text(size=20))+ylab("")
 pq31 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="ETS.trendseasonal")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("linearity")+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq32 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="snaive")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("ETS.trendseasonal")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 pmn9 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="ETS.trendseasonal")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 
 ## ETS.S
 pq33 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="ETS.seasonal")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("ETS.seasonal")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), fill="red",alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("ETS.seasonal")
 pq34 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="ETS.seasonal")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq35 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="ETS.seasonal")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("linearity")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq36 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="ETS.seasonal")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 pmn10 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="ETS.seasonal")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 
 ## SARIMA
 pq37 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="SARIMA")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("SARIMA")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), fill="red",alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("SARIMA")
 pq38 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="SARIMA")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq39 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="SARIMA")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("linearity")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq40 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="SARIMA")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 pmn11 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="SARIMA")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 (pq1|pq2|pq4|pq3|pmn1)/(pq5|pq6|pq8|pq7|pmn2)/(pq9|pq10|pq12|pq11|pmn3)/(pm7|pm8|pq12|pm9|pmn4)/(pq13|pq14|pq16|pq15|pmn5)/(pq17|pq18|pq20|pq19|pmn6)/(pq21|pq22|pq24|pq23|pmn7)/
@@ -1114,162 +1143,162 @@ pmn11 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="SARIMA")) +
 ## ARIMA
 pq41 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="ARIMA")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("ARIMA")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("ARIMA")
 pq42 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="ARIMA")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq43 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="ARIMA")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("linearity")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq44 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="ARIMA")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 pmn12 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="ARIMA")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 
 ## ARMA
 pq45 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="ARMA.AR.MA")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("ARMA.AR.MA")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("ARMA.AR.MA")
 pq46 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="ARMA.AR.MA")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq47 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="ARMA.AR.MA")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("linearity")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq48 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="ARMA.AR.MA")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 pmn13 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="ARMA.AR.MA")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 
 #stlar
 pq49 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="stlar")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("stlar")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("stlar")
 pq50 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="stlar")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none",text = element_text(size=20))+ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), fill="red",alpha = 0.3)+theme(legend.position="none",text = element_text(size=20))+ylab("")
 pq51 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="stlar")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("linearity")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq52 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="stlar")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 pmn14 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="stlar")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 
 ##tbats
 pq53 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="tbats")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("tbats")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("tbats")
 pq54 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="tbats")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq55 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="tbats")) +
-  stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("linearity")+stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+ 
+  stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("linearity")+stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3)+ 
   theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq56 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="tbats")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), fill="red",alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 pmn15 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="tbats")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 
 ## WN
 pq57 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="wn")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("wn")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("wn")
 pq58 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="wn")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq59 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="wn")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("linearity")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq60 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="wn")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 pmn16 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="wn")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 
 ## theta
 pq61 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="theta")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("theta")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), fill="red",alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("theta")
 pq62 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="theta")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq63 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="theta")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("linearity")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq64 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="theta")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 pmn17 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="theta")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 
 ## nn
 pq65 <- ggplot(data=seasonalitygridQ, aes_string(x=seasonalitygridQ$seasonality, y="nn")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("seasonality")+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("nn")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), fill="red",alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("nn")
 pq66 <- ggplot(data= trendgridQ, aes_string(x=trendgridQ$trend, y="nn")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("trend")+ 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), fill="red",alpha = 0.3)+theme(legend.position="none", text = element_text(size=20))+ylab("")
 pq67 <- ggplot(data=linearitygridM, aes_string(x=linearitygridM$linearity, y="nn")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("linearity") + 
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3)+
 theme(legend.position="none", text = element_text(size=20)) +ylab("")
 pq68 <- ggplot(data=linearitygridQ, aes_string(x=linearitygridQ$linearity, y="nn")) +
   stat_summary(fun.y = mean, geom = "line", col="red", size=1)+xlab("linearity")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="red", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 pmn18 <- ggplot(data=NgridM, aes_string(x=NgridM$N, y="nn")) +
   stat_summary(fun.y = mean, geom = "line", col="blue", size=1)+xlab("N")+ 
   theme(legend.position="none", text = element_text(size=20))+
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
+  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1),fill="blue", alpha = 0.3) +
   theme(legend.position = "none")+
   ylab("")
 
