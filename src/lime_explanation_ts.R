@@ -34,7 +34,7 @@ save(ts_lime_qpca, file="data/ts_lime_qpca.rda")
 library(seer)
 data(M4)
 ts_lime_hpca <- list(ts1=ts(M4[["H62"]]$x),
-                     ts2=ts(M4[["H413"]]$x),
-                     ts3=ts(M4[["H216"]]$x),
+                     ts2=ts(M4[["H154"]]$x),
+                     ts3=ts(M4[["H413"]]$x),
                      ts4=ts(M4[["H166"]]$x))
 save(ts_lime_hpca, file="data/ts_lime_hpca.rda")

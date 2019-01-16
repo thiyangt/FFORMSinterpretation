@@ -3,7 +3,7 @@
 #SBATCH --time=10:00:00
 #SBATCH --mem=40G
 #SBATCH --ntasks=1
-#SBATCH --partition=comp
+#SBATCH --partition=short
 #SBATCH --mail-type=BEGIN,END,FAIL
 #SBATCH --mail-user=thiyanga.talagala@monash.edu
 #SBATCH --output=limeyearly.txt

@@ -534,30 +534,114 @@ int1 <- ggplot(
   data = sediff_acf5.seasonal_strength2.d,
   aes_string(
     x = sediff_acf5.seasonal_strength2.d$sediff_acf5,
-    y = sediff_acf5.seasonal_strength2.d$seasonal_strength2, z = colNamesss[7], fill = colNamesss[7]
+    y = sediff_acf5.seasonal_strength2.d$seasonal_strength2, 
+    z = colNamesss[6], fill = colNamesss[6]
   )) + geom_tile() +
   scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
-  xlab("sediff_acf5") + ylab("seasonal_strength2")+ theme(legend.position="none")+ggtitle("snaive")
+  xlab("sediff_acf5") + ylab("seasonal_strength2")+ theme(legend.position="none")+
+  ggtitle("snaive")
 
 ## rw
-
+int1 <- ggplot(
+  data = sediff_acf5.seasonal_strength2.d,
+  aes_string(
+    x = sediff_acf5.seasonal_strength2.d$sediff_acf5,
+    y = sediff_acf5.seasonal_strength2.d$seasonal_strength2, 
+    z = colNamesss[4], fill = colNamesss[4]
+  )) + geom_tile() +
+  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
+  xlab("sediff_acf5") + ylab("seasonal_strength2")+ theme(legend.position="none")+
+  ggtitle("rw")
 ## rwd
-
+int1 <- ggplot(
+  data = sediff_acf5.seasonal_strength2.d,
+  aes_string(
+    x = sediff_acf5.seasonal_strength2.d$sediff_acf5,
+    y = sediff_acf5.seasonal_strength2.d$seasonal_strength2, 
+    z = colNamesss[6], fill = colNamesss[6]
+  )) + geom_tile() +
+  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
+  xlab("sediff_acf5") + ylab("seasonal_strength2")+ theme(legend.position="none")+
+  ggtitle("snaive")
 ## mstlarima
-
+int1 <- ggplot(
+  data = sediff_acf5.seasonal_strength2.d,
+  aes_string(
+    x = sediff_acf5.seasonal_strength2.d$sediff_acf5,
+    y = sediff_acf5.seasonal_strength2.d$seasonal_strength2, 
+    z = colNamesss[6], fill = colNamesss[6]
+  )) + geom_tile() +
+  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
+  xlab("sediff_acf5") + ylab("seasonal_strength2")+ theme(legend.position="none")+
+  ggtitle("snaive")
 ## mstlets
-
+int1 <- ggplot(
+  data = sediff_acf5.seasonal_strength2.d,
+  aes_string(
+    x = sediff_acf5.seasonal_strength2.d$sediff_acf5,
+    y = sediff_acf5.seasonal_strength2.d$seasonal_strength2, 
+    z = colNamesss[6], fill = colNamesss[6]
+  )) + geom_tile() +
+  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
+  xlab("sediff_acf5") + ylab("seasonal_strength2")+ theme(legend.position="none")+
+  ggtitle("snaive")
 ## tbats
-
+int1 <- ggplot(
+  data = sediff_acf5.seasonal_strength2.d,
+  aes_string(
+    x = sediff_acf5.seasonal_strength2.d$sediff_acf5,
+    y = sediff_acf5.seasonal_strength2.d$seasonal_strength2, 
+    z = colNamesss[6], fill = colNamesss[6]
+  )) + geom_tile() +
+  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
+  xlab("sediff_acf5") + ylab("seasonal_strength2")+ theme(legend.position="none")+
+  ggtitle("snaive")
 ## stlar
-
+int1 <- ggplot(
+  data = sediff_acf5.seasonal_strength2.d,
+  aes_string(
+    x = sediff_acf5.seasonal_strength2.d$sediff_acf5,
+    y = sediff_acf5.seasonal_strength2.d$seasonal_strength2, 
+    z = colNamesss[6], fill = colNamesss[6]
+  )) + geom_tile() +
+  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
+  xlab("sediff_acf5") + ylab("seasonal_strength2")+ theme(legend.position="none")+
+  ggtitle("snaive")
 ## theta
-
+int1 <- ggplot(
+  data = sediff_acf5.seasonal_strength2.d,
+  aes_string(
+    x = sediff_acf5.seasonal_strength2.d$sediff_acf5,
+    y = sediff_acf5.seasonal_strength2.d$seasonal_strength2, 
+    z = colNamesss[6], fill = colNamesss[6]
+  )) + geom_tile() +
+  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
+  xlab("sediff_acf5") + ylab("seasonal_strength2")+ theme(legend.position="none")+
+  ggtitle("snaive")
 ## nn
-
+int1 <- ggplot(
+  data = sediff_acf5.seasonal_strength2.d,
+  aes_string(
+    x = sediff_acf5.seasonal_strength2.d$sediff_acf5,
+    y = sediff_acf5.seasonal_strength2.d$seasonal_strength2, 
+    z = colNamesss[6], fill = colNamesss[6]
+  )) + geom_tile() +
+  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
+  xlab("sediff_acf5") + ylab("seasonal_strength2")+ theme(legend.position="none")+
+  ggtitle("snaive")
 ## wn
+int1 <- ggplot(
+  data = sediff_acf5.seasonal_strength2.d,
+  aes_string(
+    x = sediff_acf5.seasonal_strength2.d$sediff_acf5,
+    y = sediff_acf5.seasonal_strength2.d$seasonal_strength2, 
+    z = colNamesss[6], fill = colNamesss[6]
+  )) + geom_tile() +
+  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
+  xlab("sediff_acf5") + ylab("seasonal_strength2")+ theme(legend.position="none")+
+  ggtitle("snaive")
+int1+int2+int3+int4+int5+int6+int7+int8+int9+int10+plot_layout(ncol = 5, nrow = 2)
 
-int1
 ## ---- htwopdp
 load("data/hourly/linearity.sediff_seacf1.h.rda")
 colNamesss <- colnames(linearity.sediff_seacf1.h)[28:37]

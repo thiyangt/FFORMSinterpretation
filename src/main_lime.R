@@ -143,10 +143,10 @@ pcaH <- ggplot(m4hPCAresults, aes(x = PC1, y = PC2)) +
     legend.position = "none",
     aspect.ratio = 1
   ) +
-  geom_point(data =hourly_training[c(53,199, 196, 137),], aes(x = PC1, y = PC2), color = "black", size=5) +
+  geom_point(data =hourly_training[c(53,126, 199, 137),], aes(x = PC1, y = PC2), color = "black", size=5) +
   theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))+
   geom_text_repel(
-    data = hourly_training[c(53,199, 196, 137),],
+    data = hourly_training[c(53,126, 199, 137),],
     aes(label = c("1: snaive", "2: nn", "3: tbats", "4: mstlarima")),
     size = 5,
     box.padding = unit(0.35, "lines"),
@@ -162,11 +162,11 @@ p1 <- autoplot(ts_lime_hpca[[1]])+theme(legend.position="none")+
                                       axis.text.y=element_blank())+ylab("")
 
 p2 <- autoplot(ts_lime_hpca[[2]])+theme(legend.position="none")+
-  ggtitle("2: nn")+xlab("")+theme(axis.title.x=element_blank(),
+  ggtitle("2: tbats")+xlab("")+theme(axis.title.x=element_blank(),
                                    #       axis.text.x=element_blank(),
                                    axis.text.y=element_blank())+ylab("")
 p3 <- autoplot(ts_lime_hpca[[3]])+theme(legend.position="none")+
-  ggtitle("3: tbats")+xlab("")+theme(axis.title.x=element_blank(),
+  ggtitle("3: nn")+xlab("")+theme(axis.title.x=element_blank(),
                                                  # axis.text.x=element_blank(),
                                                  axis.text.y=element_blank())+ylab("")
 p4 <- autoplot(ts_lime_hpca[[4]])+theme(legend.position="none")+
