@@ -1,6 +1,6 @@
 #!/bin/env bash
 #SBATCH --job-name=limeyearly
-#SBATCH --time=100:00:00
+#SBATCH --time=10:00:00
 #SBATCH --mem=40G
 #SBATCH --ntasks=1
 #SBATCH --partition=comp

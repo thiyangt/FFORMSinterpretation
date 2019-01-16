@@ -4,7 +4,7 @@ library(randomForest)
 load("phdproject2/hourly_training.rda") # training data
 load("phdproject2/rfu_m4hourly.rda") # random forest model
 
-htest <- hourly_training[c(125,199, 196, 137), 1:26]
+htest <- hourly_training[c(53,199, 196, 137), 1:26]
 model_type.randomForest <- function(x,...){
   return("classification")
 }
