@@ -87,7 +87,7 @@ To fill this gap, this paper makes a first step towards providing a comprehensiv
  
 In this article, we make the following contributions:
 
-1. We extend the FFORMS framework to handle weekly, daily and hourly series. We also extends the diversity of forecast-models used as class labels. Given that contribution of our framework differ from previously published work related to meta-learning in three ways: i) extensive collection of features (35 different feature types which are simple and easy to compute), ii) diversity of forecast-models used as class labels, and iii) capability of handling high frequency data;
+1. We extend the FFORMS framework to handle weekly, daily and hourly series. We also extends the diversity of forecast-models used as class labels. Given that contribution of our framework differ from previously published work [@prudencio2004meta; @lemke2010meta; @kuck2016meta] related to meta-learning in three ways: i) extensive collection of features (35 different feature types which are simple and easy to compute), ii) diversity of forecast-models used as class labels, and iii) capability of handling high frequency data;
 1. We explain the application of FFORMS framework to the M4-competition data. Out of 248 registrations only 18 participants were able to submit prediction intervals for the 100000 time series due to the computational cost (@Makridakis2018dx). We generated point forecasts and prediction intervals for the M4-competition time series data based on FFORMS framework and ranked 8th in the prediction interval category (@Makridakis2018dx).  Except the top ranking Hybrid method all the other top six submissions are based on aggregate selection rule which is slower than FFORMS approach (because forecasts from different models need to be compute). Our approach achieved a high accuracy rate based on individual selection rule. This shows the computational efficiency of our framework without substantially degrading the performance.
 1. The main contribution of this paper is to explore the relationship between features of time series and the choice of forecast-model selection using the FFORMS framework. We explore the role of features in two different perspectives: i) Global perspective of feature contribution: overall role of features in the choice of different forecast model selection and ii) Local perspective of feature contribution: zoom into local regions of the data to identify which features contribute most to classify a specific instance. 
 1. The results we present here is a novel application of machine learning interpretability methods to visualize and explore the role of features in forecast-model selection; 
@@ -448,7 +448,7 @@ According to the results of \autoref{fig:viweekly} spikiness, linearity, trend, 
 
 ## Daily and Hourly data
 
-According to \autoref{fig:oobdailyhourly} the distributions corresponds to observations that have been correctly classified dominate the top for daily data.  However, within daily series there are few observations that have been incorrectly classified to tbats class with very high probabilities. In general, neural network models have higher chance of being selected for daily time series. Overall, for hourly series random walk with drift models, tbats and neural network models have high chance of being selected. Furthermore,  it is important to note that all hourly series have been assigned non-zero probability of getting selected to neural network class. Variable importance graph for daily and hourly data are shown in \autoref{fig:vidaily} and \autoref{fig:vihourly} respectively. The most
+According to \autoref{fig:oobdailyhourly} the distributions corresponds to observations that have been correctly classified dominated the top for daily data.  However, within daily series there are few observations that have been incorrectly classified to tbats class with very high probabilities. In general, neural network models have higher chance of getting selected for daily time series. Overall, for hourly series random walk with drift models, tbats and neural network models have high chance of getting selected. Furthermore,  it is important to note that all hourly series have been assigned non-zero probability of getting selected to neural network class. Variable importance graph for daily and hourly data are shown in \autoref{fig:vidaily} and \autoref{fig:vihourly} respectively. The most
 important features for determining suitable forecast-models for daily
 time series are, strength of seasonality corresponds to the weekly
 seasonality (7), stability, trend, lumpiness and linearity. Strength of seasonality corresponds to the annual seasonality (365.25)
@@ -556,27 +556,30 @@ Exploration of conditions learnt by the FFORMS framework also support practition
 # Appendix {-}
 
 
-```{r ytwopdp, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependece plot of model selection probability and the interaction of stability and lumpiness for yearly data."}
+```{r ytwopdp, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependece plot of model selection probability and the interaction of stability and lumpiness for yearly data. As seen in Figure 1 ETS-dampedtrend and ARMA/AR/MA has low probability of selecting. Hence less diversity is observed in the corresponding two-way interaction plots. ETS-notrendnoseasonal, ARIMA and theta classes show similar pattern of interactivity. "}
 
 ```
 
 
-```{r qtwopdp, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of stability and diff1y_acf5 for quarterly data"}
+```{r qtwopdp, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of stability and diff1y_acf5 for quarterly data. The classes snaive, random walk and random walk with drift show similar pattern of interactivity while the white noise class hold the opposite pattern of interactivity. ETS-dampedtrend and ARMA/AR/MA classes low probability of selecting for forecasting quarterly time series hennce low variation in the interaction pattern can be observed."}
 
 ```
 
-```{r mtwopdp, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of sediff_seacf1 and sediff_acf5 for monthly data"}
-
-```
-
-
-
-```{r wtwopdp, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of trend and entropy for weekly data."}
+```{r mtwopdp, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of sediff_seacf1 and sediff_acf5 for monthly data. Interaction between sediff_seacf1 and sediff_acf5 do not influence the choice of ETS-dampedtrend and ARMA/AR/MA."}
 
 ```
 
 
-```{r htwopdp, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of sediff_seacf1 and linearity for hourly data."}
+
+```{r wtwopdp, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of trend and entropy for weekly data. Unique pattern of interactivity exist within each class. ARIMA and white noise class show opposite direction of interactivity between trend and entropy."}
+
+```
+
+```{r dtwopdp, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of sediff_acf5 and seasonal_strength2 for daily data. With in each class unique pattern of interaction pattern exist between sediff_acf5 and seasonal_strength2.", cache=FALSE}
+
+```
+
+```{r htwopdp, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of sediff_seacf1 and linearity for hourly data. Random walk and random walk with drift class show opposite pattern of interactivity between sediff_seacf1 and linearity."}
 
 ```
 

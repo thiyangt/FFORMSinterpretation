@@ -67,7 +67,7 @@ int10 <- ggplot(
   data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[6], fill = colNamesls[6]
   ))+geom_tile() + 
   scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100),option = "A", direction = -1)+
-  xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("nn")
+  xlab("lumpiness") + ylab("stability") +ggtitle("nn")
 
 int1+int2+int3+int4+int5+int6+int7+int8+int9+int10+plot_layout(ncol = 5, nrow = 2)
 
@@ -198,7 +198,7 @@ int12 <- ggplot(
     x = diff1y_acf5.stability.q$diff1y_acf5,
     y = diff1y_acf5.stability.q$stability, z = colNamesds[2], fill = colNamesds[2]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.0001), breaks = seq(0, 0.0001, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.001), breaks = seq(0, 0.001, 1000), option = "A", direction = -1) +
   xlab("diff1y_acf5") + ylab("stability")+ theme(legend.position="none")+ggtitle("ARMA/AR/MA")
 
 # stlar(45)
@@ -249,7 +249,7 @@ int17 <- ggplot(
     y = diff1y_acf5.stability.q$stability, z = colNamesds[9], fill = colNamesds[9]
   )) + geom_tile() +
   scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
-  xlab("diff1y_acf5") + ylab("stability")+ theme(legend.position="none")+ggtitle("nn")
+  xlab("diff1y_acf5") + ylab("stability")+ggtitle("nn")
 
 int1+int2+int3+int4+int5+int6+int7+int8+int9+int10+int11+int12+int13+int14+int15+int16+int17+plot_layout(ncol = 6, nrow = 3)
 
@@ -308,7 +308,7 @@ int6 <- ggplot(
     x = sediff_acf5.sediff_seacf1.m$sediff_acf5,
     y = sediff_acf5.sediff_seacf1.m$sediff_seacf1, z = colNamesds[7], fill = colNamesds[7]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.03), breaks = seq(0, 0.03, 100), option = "A", direction = -1) +
   xlab("sediff_acf5") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("ETS-trend")
 # ETS-dampedtrendseasonal(35)
 int7 <- ggplot(
@@ -317,7 +317,7 @@ int7 <- ggplot(
     x = sediff_acf5.sediff_seacf1.m$sediff_acf5,
     y = sediff_acf5.sediff_seacf1.m$sediff_seacf1, z = colNamesds[4], fill = colNamesds[4]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.01), breaks = seq(0, 0.01, 100), option = "A", direction = -1) +
   xlab("sediff_acf5") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("ETS-dampedtrendseasonal")
 # ETS-trendseasonal(39)
 int8 <- ggplot(
@@ -326,7 +326,7 @@ int8 <- ggplot(
     x = sediff_acf5.sediff_seacf1.m$sediff_acf5,
     y = sediff_acf5.sediff_seacf1.m$sediff_seacf1, z = colNamesds[8], fill = colNamesds[8]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.01), breaks = seq(0, 0.01, 100), option = "A", direction = -1) +
   xlab("sediff_acf5") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("ETS-trendseasonal")
 # ETS-seasonal(37)
 int9 <- ggplot(
@@ -335,7 +335,7 @@ int9 <- ggplot(
     x = sediff_acf5.sediff_seacf1.m$sediff_acf5,
     y = sediff_acf5.sediff_seacf1.m$sediff_seacf1, z = colNamesds[6], fill = colNamesds[6]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.01), breaks = seq(0, 0.01, 100), option = "A", direction = -1) +
   xlab("sediff_acf5") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("ETS-seasonal")
 # SARIMA(43)
 int10 <- ggplot(
@@ -353,7 +353,7 @@ int11 <- ggplot(
     x = sediff_acf5.sediff_seacf1.m$sediff_acf5,
     y = sediff_acf5.sediff_seacf1.m$sediff_seacf1, z = colNamesds[1], fill = colNamesds[1]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.01), breaks = seq(0, 0.01, 100), option = "A", direction = -1) +
   xlab("sediff_acf5") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("ARIMA")
 # ARMA/AR/MA(33)
 int12 <- ggplot(
@@ -362,7 +362,7 @@ int12 <- ggplot(
     x = sediff_acf5.sediff_seacf1.m$sediff_acf5,
     y = sediff_acf5.sediff_seacf1.m$sediff_seacf1, z = colNamesds[2], fill = colNamesds[2]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.02), breaks = seq(0, 0.02, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.001), breaks = seq(0, 0.001, 100), option = "A", direction = -1) +
   xlab("sediff_acf5") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("ARMA/AR/MA")
 # stlar(45)
 int13 <- ggplot(
@@ -407,8 +407,8 @@ int17 <- ggplot(
     x = sediff_acf5.sediff_seacf1.m$sediff_acf5,
     y = sediff_acf5.sediff_seacf1.m$sediff_seacf1, z = colNamesds[9], fill = colNamesds[9]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.8), breaks = seq(0, 0.8, 100), option = "A", direction = -1) +
-  xlab("sediff_acf5") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("nn")
+  scale_fill_viridis_c(limits = c(0, 0.5), breaks = seq(0, 0.5, 100), option = "A", direction = -1) +
+  xlab("sediff_acf5") + ylab("sediff_seacf1")+ggtitle("nn")
 
 int1+int2+int3+int4+int5+int6+int7+int8+int9+int10+int11+int12+int13+int14+int15+int16+int17+plot_layout(ncol = 6, nrow = 3)
 
@@ -522,7 +522,7 @@ int12 <- ggplot(
     y = trend.entropy.w$entropy, z = colNameste[4], fill = colNameste[4]
   )) + geom_tile() +
   scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100), option = "A", direction = -1) +
-  xlab("trend") + ylab("entropy")+ theme(legend.position="none")+ggtitle("nn")
+  xlab("trend") + ylab("entropy")+ggtitle("nn")
 
 int1+int2+int3+int4+int5+int6+int7+int8+int9+int10+int11+int12+plot_layout(ncol = 6, nrow = 2)
 
@@ -537,109 +537,109 @@ int1 <- ggplot(
     y = sediff_acf5.seasonal_strength2.d$seasonal_strength2, 
     z = colNamesss[6], fill = colNamesss[6]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
   xlab("sediff_acf5") + ylab("seasonal_strength2")+ theme(legend.position="none")+
   ggtitle("snaive")
 
 ## rw
-int1 <- ggplot(
+int2 <- ggplot(
   data = sediff_acf5.seasonal_strength2.d,
   aes_string(
     x = sediff_acf5.seasonal_strength2.d$sediff_acf5,
     y = sediff_acf5.seasonal_strength2.d$seasonal_strength2, 
     z = colNamesss[4], fill = colNamesss[4]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
   xlab("sediff_acf5") + ylab("seasonal_strength2")+ theme(legend.position="none")+
   ggtitle("rw")
 ## rwd
-int1 <- ggplot(
+int3 <- ggplot(
   data = sediff_acf5.seasonal_strength2.d,
   aes_string(
     x = sediff_acf5.seasonal_strength2.d$sediff_acf5,
     y = sediff_acf5.seasonal_strength2.d$seasonal_strength2, 
-    z = colNamesss[6], fill = colNamesss[6]
+    z = colNamesss[5], fill = colNamesss[5]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), option = "A", direction = -1) +
   xlab("sediff_acf5") + ylab("seasonal_strength2")+ theme(legend.position="none")+
-  ggtitle("snaive")
+  ggtitle("rwd")
 ## mstlarima
-int1 <- ggplot(
+int4 <- ggplot(
   data = sediff_acf5.seasonal_strength2.d,
   aes_string(
     x = sediff_acf5.seasonal_strength2.d$sediff_acf5,
     y = sediff_acf5.seasonal_strength2.d$seasonal_strength2, 
-    z = colNamesss[6], fill = colNamesss[6]
+    z = colNamesss[1], fill = colNamesss[1]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
   xlab("sediff_acf5") + ylab("seasonal_strength2")+ theme(legend.position="none")+
-  ggtitle("snaive")
+  ggtitle("mstlarima")
 ## mstlets
-int1 <- ggplot(
+int5 <- ggplot(
   data = sediff_acf5.seasonal_strength2.d,
   aes_string(
     x = sediff_acf5.seasonal_strength2.d$sediff_acf5,
     y = sediff_acf5.seasonal_strength2.d$seasonal_strength2, 
-    z = colNamesss[6], fill = colNamesss[6]
+    z = colNamesss[2], fill = colNamesss[2]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100), option = "A", direction = -1) +
   xlab("sediff_acf5") + ylab("seasonal_strength2")+ theme(legend.position="none")+
-  ggtitle("snaive")
+  ggtitle("mstlets")
 ## tbats
-int1 <- ggplot(
+int6 <- ggplot(
   data = sediff_acf5.seasonal_strength2.d,
   aes_string(
     x = sediff_acf5.seasonal_strength2.d$sediff_acf5,
     y = sediff_acf5.seasonal_strength2.d$seasonal_strength2, 
-    z = colNamesss[6], fill = colNamesss[6]
+    z = colNamesss[8], fill = colNamesss[8]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), option = "A", direction = -1) +
   xlab("sediff_acf5") + ylab("seasonal_strength2")+ theme(legend.position="none")+
-  ggtitle("snaive")
+  ggtitle("tbats")
 ## stlar
-int1 <- ggplot(
+int7 <- ggplot(
   data = sediff_acf5.seasonal_strength2.d,
   aes_string(
     x = sediff_acf5.seasonal_strength2.d$sediff_acf5,
     y = sediff_acf5.seasonal_strength2.d$seasonal_strength2, 
-    z = colNamesss[6], fill = colNamesss[6]
+    z = colNamesss[7], fill = colNamesss[7]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), option = "A", direction = -1) +
   xlab("sediff_acf5") + ylab("seasonal_strength2")+ theme(legend.position="none")+
-  ggtitle("snaive")
+  ggtitle("stlar")
 ## theta
-int1 <- ggplot(
+int8 <- ggplot(
   data = sediff_acf5.seasonal_strength2.d,
   aes_string(
     x = sediff_acf5.seasonal_strength2.d$sediff_acf5,
     y = sediff_acf5.seasonal_strength2.d$seasonal_strength2, 
-    z = colNamesss[6], fill = colNamesss[6]
+    z = colNamesss[9], fill = colNamesss[9]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), option = "A", direction = -1) +
   xlab("sediff_acf5") + ylab("seasonal_strength2")+ theme(legend.position="none")+
-  ggtitle("snaive")
+  ggtitle("theta")
 ## nn
-int1 <- ggplot(
+int9 <- ggplot(
   data = sediff_acf5.seasonal_strength2.d,
   aes_string(
     x = sediff_acf5.seasonal_strength2.d$sediff_acf5,
     y = sediff_acf5.seasonal_strength2.d$seasonal_strength2, 
-    z = colNamesss[6], fill = colNamesss[6]
+    z = colNamesss[3], fill = colNamesss[3]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.3), breaks = seq(0, 0.3, 100), option = "A", direction = -1) +
   xlab("sediff_acf5") + ylab("seasonal_strength2")+ theme(legend.position="none")+
-  ggtitle("snaive")
+  ggtitle("nn")
 ## wn
-int1 <- ggplot(
+int10 <- ggplot(
   data = sediff_acf5.seasonal_strength2.d,
   aes_string(
     x = sediff_acf5.seasonal_strength2.d$sediff_acf5,
     y = sediff_acf5.seasonal_strength2.d$seasonal_strength2, 
-    z = colNamesss[6], fill = colNamesss[6]
+    z = colNamesss[10], fill = colNamesss[10]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 1), breaks = seq(0, 1, 100), option = "A", direction = -1) +
-  xlab("sediff_acf5") + ylab("seasonal_strength2")+ theme(legend.position="none")+
-  ggtitle("snaive")
+  scale_fill_viridis_c(limits = c(0, 0.9), breaks = seq(0, 0.9, 100), option = "A", direction = -1) +
+  xlab("sediff_acf5") + ylab("seasonal_strength2")+
+  ggtitle("wn")
 int1+int2+int3+int4+int5+int6+int7+int8+int9+int10+plot_layout(ncol = 5, nrow = 2)
 
 ## ---- htwopdp
@@ -735,6 +735,6 @@ int10 <- ggplot(
     y = linearity.sediff_seacf1.h$sediff_seacf1, z = colNamesss[10], fill = colNamesss[10]
   )) + geom_tile() +
   scale_fill_viridis_c(limits = c(0, 0.8), breaks = seq(0, 0.8, 100), option = "A", direction = -1) +
-  xlab("linearity") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("wn")
+  xlab("linearity") + ylab("sediff_seacf1")+ggtitle("wn")
 
 int1+int2+int3+int4+int5+int6+int7+int8+int9+int10+plot_layout(ncol = 5, nrow = 2)
