@@ -31,13 +31,15 @@ pca <- ggplot(m4yPCAresults1, aes(x = PC1, y = PC2)) +
     size = 5,
     box.padding = unit(0.35, "lines"),
     point.padding = unit(0.3, "lines")
-  )
+  )+ggtitle("A")
 load("data/yearly/explanationy.rda")
 load("data/ts_lime_yearpca.rda")
 p1 <- autoplot(ts_lime_yearpca[[1]])+theme(legend.position="none")+
-  ggtitle("1: ARMA/AR/MA")+xlab("")+theme(axis.title.x=element_blank(),
+  xlab("")+theme(axis.title.x=element_blank(),
         #                     axis.text.x=element_blank(),
-                             axis.text.y=element_blank())+ylab("")
+                             axis.text.y=element_blank())+ylab("")+labs(
+                               title = paste("B"),
+                               subtitle = "1: ARMA/AR/MA")
 
 p2 <- autoplot(ts_lime_yearpca[[2]])+theme(legend.position="none")+
   ggtitle("2: ETS-trend")+xlab("")+theme(axis.title.x=element_blank(),
@@ -64,7 +66,7 @@ pca+pp+plot_layout(ncol = 2)
 
 ## ---- yearlylime2
 load("data/yearly/explanationy.rda")
-lime::plot_features(explanationy, ncol = 2)
+lime::plot_features(explanationy, ncol = 2)+ggtitle("C")
                        
 ## ---- quarterlylime
 #which.min(m4qPCAresults1$PC1)  #405
@@ -96,15 +98,17 @@ pcaQ <- ggplot(m4qPCAresults, aes(x = PC1, y = PC2)) +
     size = 5,
     box.padding = unit(0.35, "lines"),
     point.padding = unit(0.3, "lines")
-  )
+  )+ggtitle("A")
 
 
 load("data/quarterly/explanationq.rda")
 load("data/ts_lime_qpca.rda")
 p1 <- autoplot(ts_lime_qpca[[1]])+theme(legend.position="none")+
-  ggtitle("1: SARIMA")+xlab("")+theme(axis.title.x=element_blank(),
+  xlab("")+theme(axis.title.x=element_blank(),
                                           #                     axis.text.x=element_blank(),
-                                          axis.text.y=element_blank())+ylab("")
+                                          axis.text.y=element_blank())+ylab("")+labs(
+                                            title = paste("B"),
+                                            subtitle = "1: SARIMA")
 
 p2 <- autoplot(ts_lime_qpca[[2]])+theme(legend.position="none")+
   ggtitle("2: rwd")+xlab("")+theme(axis.title.x=element_blank(),
@@ -123,7 +127,7 @@ pp <- p1 + p2 + p3 + p4 + plot_layout(ncol = 1)
 pcaQ+pp+plot_layout(ncol = 2)
 
 ## ---- quarterlylime2
-plot_features(explanationq, ncol = 2)
+plot_features(explanationq, ncol = 2)+ggtitle("C")
 
 
 ## ---- hourlylime
@@ -151,15 +155,17 @@ pcaH <- ggplot(m4hPCAresults, aes(x = PC1, y = PC2)) +
     size = 5,
     box.padding = unit(0.35, "lines"),
     point.padding = unit(0.3, "lines")
-  )
+  )+ggtitle("A")
 
 
 load("data/hourly/explanationh.rda")
 load("data/ts_lime_hpca.rda")
 p1 <- autoplot(ts_lime_hpca[[1]])+theme(legend.position="none")+
-  ggtitle("1: snaive")+xlab("")+theme(axis.title.x=element_blank(),
+  xlab("")+theme(axis.title.x=element_blank(),
                                       #                     axis.text.x=element_blank(),
-                                      axis.text.y=element_blank())+ylab("")
+                                      axis.text.y=element_blank())+labs(
+                                        title = paste("B"),
+                                        subtitle = "1: snaive")
 
 p2 <- autoplot(ts_lime_hpca[[2]])+theme(legend.position="none")+
   ggtitle("2: tbats")+xlab("")+theme(axis.title.x=element_blank(),
@@ -174,11 +180,11 @@ p4 <- autoplot(ts_lime_hpca[[4]])+theme(legend.position="none")+
                                             # axis.text.x=element_blank(),
                                             axis.text.y=element_blank())+ylab("")
 
-pp <- p1 + p2 + p3 + p4 + plot_layout(ncol = 1)
+pp <- p1 + p2 + p3 + p4 + plot_layout(ncol = 1)+labs("B")
 pcaH+pp+plot_layout(ncol = 2)
 
 ## ---- hourlylime2
-plot_features(explanationh, ncol = 2)
+plot_features(explanationh, ncol = 2)+ggtitle("C")
 
 ## ---- monthlylime
 #which.min(m4mPCAresults$PC1)  #632

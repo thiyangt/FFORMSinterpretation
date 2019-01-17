@@ -607,10 +607,10 @@ p12 <- ggcorrplot(nn_WFH_cormat, hc.order = FALSE, type = "upper",
                        high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
-  guides(fill=FALSE, color=FALSE)+ggtitle("nn")
+  ggtitle("nn")
 
 
-p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+p11+p12+plot_layout(ncol = 4, nrow = 3)
+p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+p11+p12+plot_layout(ncol = 3, nrow = 4)
 
 ## ---- pcaweekly
 load("data/weekly/trainW_votes.rda")

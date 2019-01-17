@@ -169,7 +169,7 @@ fd10 <- ggcorrplot(wn_DFH_cormat, hc.order = FALSE, type = "upper",
                        high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
-  guides(fill=FALSE, color=FALSE)+ggtitle("wn-daily")
+  ggtitle("wn-daily")
 
 # hourly data
 load("data/friedmanHstat_hourly.rda")
@@ -288,7 +288,7 @@ fh10 <- ggcorrplot(wn_HFH_cormat, hc.order = FALSE, type = "upper",
                        high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
-  guides(fill=FALSE, color=FALSE)+ggtitle("wn-hourly")
+  ggtitle("wn-hourly")
 
 fd1+fd2+fh1+fh2+fd3+fd4+fh3+fh4+fd5+fd6+fh5+fh6+fd7+fd8+fh7+fh8+fd9+fd10+fh9+fh10+plot_layout(ncol = 4, nrow = 5)
 

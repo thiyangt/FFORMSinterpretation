@@ -355,14 +355,14 @@ Meta-learning approach provides a systematic guidance on model selection
 based on knowledge acquire from historical data set. The key idea is,
 forecast-model selection is posed as a supervised learning task. Each
 time series in the meta-data set is represented as a vector of features
-and labeled according to the ``best'' forecast-model (i.e.~lowest MASE,
+and labelled according to the ``best'' forecast-model (i.e.~lowest MASE,
 etc.). Then a meta-learner is trained to identify suitable
 forecast-model (usually a machine learning algorithm is used). With the
 era of big data, such an automated model selection process is necessary
 because the cost of invoking all possible forecas-models is prohibitive.
 However, these work suffer from the limitation of providing answers to
 the questions of: i) How features are related to the property being
-modeled?; ii) How features interact with each other to identify the
+modelled?; ii) How features interact with each other to identify the
 suitable forecasting method?; and iii) Which features contribute the
 most to classification process?, that can enhance the understanding of
 relations between features and model outcomes. To the best of our
@@ -761,7 +761,7 @@ Methods}\label{global-interpretability-methods}
 
 Global interpretability evaluate the behavior of a model on entire data
 set. Global perspective of model interpretation helps users to
-understand the overall modeled relationship between features and the
+understand the overall modelled relationship between features and the
 model outcome. For example, which features are contribute mostly to the
 predictive mechanism of the fitted model, complex interactions between
 features, etc. In the following subsections we provide a description of
@@ -981,11 +981,11 @@ that the time series was always predicted to the corresponding class and
 information in the random forest model. The other way of representing
 vote matrix involves ternary plot (\textcite{sutherland2000orca}) and
 jittered side-by-side dotplot
-\autocites{ehrlinger2015ggrandomforests}{da2017interactive}. To over
-come the problem of overlapping data points due to the scale of the
-training data set, similarity of classes and relatively large number of
-class labels, boxplot diagrams are used. This \autoref{fig:yearlyoob}
-helps to evaluate the model performance in the data space
+\autocites{ehrlinger2015ggrandomforests}{da2017interactive}. To overcome
+the problem of overlapping data points due to the scale of the training
+data set, similarity of classes and relatively large number of class
+labels, boxplot diagrams are used. This \autoref{fig:yearlyoob} helps to
+evaluate the model performance in the data space
 (model-in-the-data-space) (\textcite{da2017interactive}). On each row of
 \autoref{fig:yearlyoob} the distribution of proportions corresponds to
 the time series in which the predicted class label and true class label
@@ -1060,7 +1060,7 @@ trend increases. The theta class shows parabolic relationship with
 trend. It is interesting to observe that probability of selecting neural
 network models decreases with very high trend value. The reason could be
 very clear highly trended series are more likely to select ETS-trend,
-ETS-dampedtrend and ARIMA models which lesson the chance of neural
+ETS-dampedtrend and ARIMA models which lessen the chance of neural
 network models for them. The wide confidence bands around the partial
 dependency functions of linearity indicated the higher variability of
 ICE curves. Narrow confidence band corresponds to the random walk with
@@ -1079,7 +1079,7 @@ developed by \textcite{friedman2008predictive}, which is implemented in
 the \texttt{iml} (\textcite{molnar2018iml},) package in R. The test
 statistic of Phillip-Perron test, strength of trend, and linearity show
 a weak interaction with other features in all the class. However, except
-ETS-trend class, trend and ur\_pp shows an high level of interactivity.
+ETS-trend class, trend and ur\_pp shows a high level of interactivity.
 These two features are appear to be among top 5 in all the classes
 according to the variable importance measures. Further, narrow
 confidence bands corresponds to these features in the partial dependency
@@ -1088,7 +1088,7 @@ partial correlation and auto-correlation based features are heavily
 interacting. However, the first correlation coefficient of the
 difference series do not interact with other features heavily in the
 case of ARIMA class. Further, almost all pair of features appear to be
-interacting with in neural network category. The features stability and
+interacting within neural network category. The features stability and
 lumpiness show interactivity within each class. \autoref{fig:ytwopdp}
 communicate more information about the nature of two-way feature
 interaction effect of stability and lumpiness.
@@ -1097,7 +1097,7 @@ interaction effect of stability and lumpiness.
 \centering
 \includegraphics{figures/viyearly-1.png}
 \caption{\label{fig:viyearly}Feature importance plot for yearly series.
-Permutation-based VI measure and mean decrease in gini coefficients are
+Permutation-based VI measure and mean decrease in Gini coefficients are
 used to evaluate overall feature importance. Class-specific feature
 importance is evaluated based on three measures: i) permutation-based
 variable importance, PD-based VI measure, and ICE-based VI measure.
@@ -1120,7 +1120,7 @@ corresponding class.}
 
 \begin{figure}
 \centering
-\includegraphics{figures/friedmany-1.png}
+\includegraphics{figures/friedmany-1.pdf}
 \caption{\label{fig:friedmany}Heat maps of relative strength of all possible
 pairwise interactions calclated based on Friedman's H-statistic}
 \end{figure}
@@ -1166,7 +1166,7 @@ in their respective instance space.
 importance plots for quarterly and monthly data respectively. For both
 quarterly and monthly data strength of seasonality, trend, linearity and
 spikiness are the most important features across all categories. Even
-though the lumpiness does not appear as an top five feature within
+though the lumpiness does not appear as a top five feature within
 classes it is appear to be an important feature in the overall
 classification process and a relatively high rank is assigned within
 many classes. In the case of yearly data low variable importance is
@@ -1234,12 +1234,11 @@ lead to the choice of forecast-model selection.
 \centering
 \includegraphics{figures/oobquarterlymonthly1-1.png}
 \caption{\label{fig:oobquarterlymonthly1}Distribution of proportion of times
-each time series was assigned to each class based on OOB sample. Each
-row represent the predicted class label and colours of boxplots
-corresponds to class label of ``best'' forecasting method. X-axis
-denotes the proportion of times the time series was predicted into each
-class. Results for quarterly and monthly series are shown in Figures A
-and B respectively.}
+each quarterly time series was assigned to each class based on OOB
+sample. Each row represent the predicted class label and colours of
+boxplots corresponds to class label of ``best'' forecasting method.
+X-axis denotes the proportion of times the time series was predicted
+into each class.}
 \end{figure}
 
 \clearpage
@@ -1248,12 +1247,11 @@ and B respectively.}
 \centering
 \includegraphics{figures/oobquarterlymonthly2-1.png}
 \caption{\label{fig:oobquarterlymonthly2} Distribution of proportion of
-times each time series was assigned to each class based on OOB sample.
-Each row represent the predicted class label and colours of boxplots
-corresponds to class label of ``best'' forecasting method. X-axis
-denotes the proportion of times the time series was predicted into each
-class. Results for quarterly and monthly series are shown in Figures A
-and B respectively.(Continue from Figure 5)}
+times each monthly time series was assigned to each class based on OOB
+sample. Each row represent the predicted class label and colours of
+boxplots corresponds to class label of ``best'' forecasting method.
+X-axis denotes the proportion of times the time series was predicted
+into each class.}
 \end{figure}
 
 \clearpage
@@ -1309,7 +1307,7 @@ colour is for the PDP drawn based on monthly data.(Continue from Figure
 
 \begin{figure}
 \centering
-\includegraphics{figures/friedmanQ-1.png}
+\includegraphics{figures/friedmanQ-1.pdf}
 \caption{\label{fig:friedmanQ}Heat maps of relative strength of all possible
 pairwise interactions calclated based on Friedman's H-statistic for
 quarterly data.}
@@ -1319,7 +1317,7 @@ quarterly data.}
 
 \begin{figure}
 \centering
-\includegraphics{figures/friedmanM-1.png}
+\includegraphics{figures/friedmanM-1.pdf}
 \caption{\label{fig:friedmanM}Heat maps of relative strength of all possible
 pairwise interactions calclated based on Friedman's H-statistic for
 monthly data.}
@@ -1357,7 +1355,7 @@ top 5 by mstlets, tbats, theta and neural network models. According to
 the results of \autoref{fig:weeklypdp} for mstlets models probability of
 being selected increases as the linearity increases while the opposite
 relationship was observed at SARIMA models. It is surprising to observe
-that for mstlets models probability of being selected decreases an
+that for mstlets models probability of being selected decreases as
 seasonality increases. This could be due to the interaction effect of
 seasonality with others. According to \autoref{fig:friedmanHW}, for
 weekly data, the number of pairs showing a particular degree of
@@ -1390,7 +1388,7 @@ belong to corresponding class.}
 
 \begin{figure}
 \centering
-\includegraphics{figures/friedmanHW-1.png}
+\includegraphics{figures/friedmanHW-1.pdf}
 \caption{\label{fig:friedmanHW}Heat maps of relative strength of all
 possible pairwise interactions calclated based on Friedman's H-statistic
 for weekly data.}
@@ -1508,10 +1506,10 @@ seasonality and seasonal\_strength2 for weekly seasonality)}
 
 \begin{figure}
 \centering
-\includegraphics{figures/friedmandailyhourly-1.png}
+\includegraphics{figures/friedmandailyhourly-1.pdf}
 \caption{\label{fig:friedmandailyhourly}Heat maps of relative strength of
 all possible pairwise interactions calclated based on Friedman's
-H-statistic for daily data.}
+H-statistic for daily and hourly data.}
 \end{figure}
 
 \newpage
@@ -1580,7 +1578,7 @@ the choice of a particular neighbourhood over alternative destinations.
 
 }
 
-\caption{Local interpretable Model-agnostic explanations for six selected yearly time series. Features denoted with green colour are supporting features for an outcome label and length of the bar is proportional to the weight of a feature.}\label{fig:yearlylime2}
+\caption{Panel A: Distribution of yearly time series in the PCA space. Panel B: Time series corresponds to the highlighted points in the PCA space. Panel C: Local interpretable Model-agnostic explanations for six selected yearly time series. Features denoted with green colour are supporting features for an outcome label and length of the bar is proportional to the weight of a feature.}\label{fig:yearlylime2}
 \end{figure}
 
 \clearpage
@@ -1599,7 +1597,7 @@ the choice of a particular neighbourhood over alternative destinations.
 
 }
 
-\caption{Local interpretable Model-agnostic explanations for four selected quaterly time series. Features denoted with green colour are supporting features for an outcome label and length of the bar is proportional to the weight of a feature.}\label{fig:quarterlylime2}
+\caption{Panel A: Distribution of quarterly time series in the PCA space. Panel B: Time series corresponds to the highlighted points in the PCA space. Panel C:Local interpretable Model-agnostic explanations for four selected quaterly time series. Features denoted with green colour are supporting features for an outcome label and length of the bar is proportional to the weight of a feature.}\label{fig:quarterlylime2}
 \end{figure}
 
 \clearpage
@@ -1618,7 +1616,7 @@ the choice of a particular neighbourhood over alternative destinations.
 
 }
 
-\caption{Local interpretable Model-agnostic explanations for four selected hourly time series. Features denoted with green colour are supporting features for an outcome label and length of the bar is proportional to the weight of a feature.}\label{fig:hourlylime2}
+\caption{Panel A: Distribution of hourly time series in the PCA space. Panel B: Time series corresponds to the highlighted points in the PCA space. Panel C:Local interpretable Model-agnostic explanations for four selected hourly time series. Features denoted with green colour are supporting features for an outcome label and length of the bar is proportional to the weight of a feature.}\label{fig:hourlylime2}
 \end{figure}
 
 \clearpage
@@ -1652,7 +1650,7 @@ frequency category. \textcite{lemke2010meta} also pointed out features
 related to nonstationarity and seasonality of a series are important
 factors for choosing a forecasting method. Features that frequently
 appear can be considered as more relevant than those that tend to appear
-less frequently. Partial dependency plots are used to visualized the
+less frequently. Partial dependency plots are used to visualize the
 learned relationship between features and the model predictions. The
 displayed relationships confirm to domain knowledge expectations.
 However, since several number of features are used to build the
@@ -1749,7 +1747,7 @@ entropy.}
 \includegraphics{figures/dtwopdp-1.png}
 \caption{\label{fig:dtwopdp}Partial dependence plot of model selection
 probability and the interaction of sediff\_acf5 and seasonal\_strength2
-for daily data. With in each class unique pattern of interaction pattern
+for daily data. Within each class unique pattern of interaction pattern
 exist between sediff\_acf5 and seasonal\_strength2.}
 \end{figure}
 

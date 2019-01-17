@@ -692,20 +692,25 @@ oob_boxplot_quarterly_p1 <- ggplot(part1_votes_oobQ, aes(x = variable, y = value
   guides(fill = guide_legend(reverse = TRUE)) +
   scale_x_discrete(limits = rev(c(
     "snaive", "rwd", "rw", "ETS-notrendnoseasonal", "ETS-dampedtrend", "ETS-trend", "ETS-dampedtrendseasonal"))) +
-  coord_flip()+labs(subtitle = "A: Quarterly")
+  coord_flip()
 
 # Part 2_quarterly
 oob_boxplot_quarterly_p2 <- ggplot(part2_votes_oobQ, aes(x = variable, y = value, fill = classlabel)) +
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
   ylab("Proportion") +
   xlab("") +
-  theme(legend.position = "none", legend.title = element_blank(), legend.text.align = 0, text = element_text(size = 20)) +
+  theme(legend.position = "right", legend.title = element_blank(), legend.text.align = 0, text = element_text(size = 20)) +
   guides(fill = guide_legend(reverse = TRUE)) +
   scale_x_discrete(limits = rev(c(
     "ETS-trendseasonal", "ETS-seasonal", "SARIMA",
     "ARIMA", "ARMA/AR/MA", "stlar", "tbats", "wn", "theta", "nn"
   ))) +
-  coord_flip()+labs(subtitle = "A: Quarterly")
+  coord_flip()
+
+
+oob_boxplot_quarterly_p1|oob_boxplot_quarterly_p2
+
+## ---- oobquarterlymonthly2
 
 load("data/monthly/trainM_votes.rda") #oob votes from the random forest
 load("data/monthly/trainM_predictions_oob.rda") # based on oob prediction
@@ -724,14 +729,16 @@ votes_oobM$classlabel <- factor(votes_oobM$classlabel, levels=rev(c("snaive","rw
 part1_votes_oobM <- subset(votes_oobM, votes_oobM$predicted %in% part1)
 part2_votes_oobM <- subset(votes_oobM, votes_oobM$predicted %in% part2)
 
+
+
 oob_monthly_part1 <- ggplot(part1_votes_oobM, aes(x = variable, y = value, fill = classlabel)) +
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
   ylab("Proportion") +
   xlab("") + 
   guides(fill=guide_legend(reverse=TRUE)) +
   scale_x_discrete(limits=rev(c("snaive","rwd", "rw", "ETS-notrendnoseasonal","ETS-dampedtrend", "ETS-trend", "ETS-dampedtrendseasonal"))) +
-  theme(legend.position = "right", legend.title = element_blank(), legend.text.align = 0, text = element_text(size=20),  axis.text.y = element_blank()) + 
-  coord_flip()+labs(subtitle = "B: Monthly")
+  theme(legend.position = "none", legend.title = element_blank(), legend.text.align = 0, text = element_text(size=20)) + 
+  coord_flip()
 
 oob_monthly_part2 <- ggplot(part2_votes_oobM, aes(x = variable, y = value, fill = classlabel)) +
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
@@ -740,13 +747,10 @@ oob_monthly_part2 <- ggplot(part2_votes_oobM, aes(x = variable, y = value, fill 
   guides(fill=guide_legend(reverse=TRUE)) +
   scale_x_discrete(limits=rev(c("ETS-trendseasonal","ETS-seasonal","SARIMA",
                                 "ARIMA", "ARMA/AR/MA","stlar" ,"tbats","wn", "theta","nn"))) +
-  theme(legend.position = "right", legend.title = element_blank(), legend.text.align = 0, text = element_text(size=20),  axis.text.y = element_blank()) + 
-  coord_flip()+labs(subtitle = "B: Monthly")
+  theme(legend.position = "right", legend.title = element_blank(), legend.text.align = 0, text = element_text(size=20)) + 
+  coord_flip()
 
-oob_boxplot_quarterly_p1|oob_monthly_part1
-
-## ---- oobquarterlymonthly2
-oob_boxplot_quarterly_p2|oob_monthly_part2
+oob_monthly_part1|oob_monthly_part2
 
 ## ---- viquarterly
 # All variable scores into one dataframe
@@ -1542,7 +1546,7 @@ p17 <- ggcorrplot(nn_QFH_cormat, hc.order = FALSE, type = "upper",
                        high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
-  guides(fill=FALSE, color=FALSE)+ggtitle("nn")
+  ggtitle("nn")
 
 
 p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+p11+p12+p13+p14+p15+p16+p17+plot_layout(ncol = 4, nrow = 5)
@@ -1999,7 +2003,7 @@ p17 <- ggcorrplot(nn_MFH_cormat, hc.order = FALSE, type = "upper",
                        high = "#ef8a62", low = "#f7f7f7")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
                                    size = 12, hjust = 1))+
-  guides(fill=FALSE, color=FALSE)+ggtitle("nn")
+  ggtitle("nn")
 
 
 p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+p11+p12+p13+p14+p15+p16+p17+plot_layout(ncol = 4, nrow = 5)
