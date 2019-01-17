@@ -198,7 +198,7 @@ int12 <- ggplot(
     x = diff1y_acf5.stability.q$diff1y_acf5,
     y = diff1y_acf5.stability.q$stability, z = colNamesds[2], fill = colNamesds[2]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.001), breaks = seq(0, 0.001, 1000), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.005), breaks = seq(0, 0.005, 1000), option = "A", direction = -1) +
   xlab("diff1y_acf5") + ylab("stability")+ theme(legend.position="none")+ggtitle("ARMA/AR/MA")
 
 # stlar(45)
@@ -362,7 +362,7 @@ int12 <- ggplot(
     x = sediff_acf5.sediff_seacf1.m$sediff_acf5,
     y = sediff_acf5.sediff_seacf1.m$sediff_seacf1, z = colNamesds[2], fill = colNamesds[2]
   )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.001), breaks = seq(0, 0.001, 100), option = "A", direction = -1) +
+  scale_fill_viridis_c(limits = c(0, 0.005), breaks = seq(0, 0.005, 100), option = "A", direction = -1) +
   xlab("sediff_acf5") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("ARMA/AR/MA")
 # stlar(45)
 int13 <- ggplot(
