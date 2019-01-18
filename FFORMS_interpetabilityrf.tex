@@ -1111,9 +1111,9 @@ highlighted in red.}
 \centering
 \includegraphics{figures/pdpyearly-1.png}
 \caption{\label{fig:pdpyearly}Partial dependence plots for the top-three
-features get selected most within each class. The shading shows the 95\%
-confidence intervals. Y-axis denotes the probability of belong to
-corresponding class.}
+features get selected most within each class for yearly series. The
+shading shows the 95\% confidence intervals. Y-axis denotes the
+probability of belong to corresponding class.}
 \end{figure}
 
 \newpage
@@ -1122,7 +1122,8 @@ corresponding class.}
 \centering
 \includegraphics{figures/friedmany-1.pdf}
 \caption{\label{fig:friedmany}Heat maps of relative strength of all possible
-pairwise interactions calclated based on Friedman's H-statistic}
+pairwise interactions calclated based on Friedman's H-statistic (yearly
+series)}
 \end{figure}
 
 \newpage
@@ -1232,7 +1233,7 @@ lead to the choice of forecast-model selection.
 
 \begin{figure}
 \centering
-\includegraphics{figures/oobquarterlymonthly1-1.pdf}
+\includegraphics{figures/oobquarterlymonthly1-1.png}
 \caption{\label{fig:oobquarterlymonthly1}Distribution of proportion of times
 each quarterly time series was assigned to each class based on OOB
 sample. Each row represent the predicted class label and colours of
@@ -1245,7 +1246,7 @@ into each class.}
 
 \begin{figure}
 \centering
-\includegraphics{figures/oobquarterlymonthly2-1.pdf}
+\includegraphics{figures/oobquarterlymonthly2-1.png}
 \caption{\label{fig:oobquarterlymonthly2} Distribution of proportion of
 times each monthly time series was assigned to each class based on OOB
 sample. Each row represent the predicted class label and colours of
@@ -1448,13 +1449,13 @@ seasonality.
 \centering
 \includegraphics{figures/oobdailyhourly-1.png}
 \caption{\label{fig:oobdailyhourly}Distribution of proportion of times each
-daily time series was assigned to each class in the forest. Each row
-represent the predicted class label and colour of boxplots corresponds
-to true class label. There are ten rows in the plot corresponds to each
-predicted class represented by Y-axis. X-axis denotes the proportion of
-times a time series is classified in each class. On each row,
-distribution of correctly classified class dominated the top, indicating
-a fairly good classification of the model fitted.}
+daily and hourly time series were assigned to each class in the forest.
+Each row represent the predicted class label and colour of boxplots
+corresponds to true class label. There are ten rows in the plot
+corresponds to each predicted class represented by Y-axis. X-axis
+denotes the proportion of times a time series is classified in each
+class. On each row, distribution of correctly classified class dominated
+the top, indicating a fairly good classification of the model fitted.}
 \end{figure}
 
 \newpage
@@ -1530,38 +1531,39 @@ with ARMA/AR/MA. On the other hand, LIME indicated the low value of
 first autocorrelation coefficients of the original series and the
 residual series of linear regression model contradicts to this decision.
 It is interesting to note that even though 2, 4 and 5 series located
-close proximity to each other in the PCA space their varying degree of
-trend, spikiness, first autocorrelation coefficient of the difference
-series, entropy, led them to classify as ETS-trend, neural-network and
-random walk respectively. From \autoref{fig:quarterlylime2} we can see
-how the different variation in strength of seasonality influence the
-FFORMS framework to select different types of forecast-models. For
-example, SARIMA models was selected when the seasonality vary between
-0.579 and 0.787 (case 1), ETS-seasonal models is selected when the
-strength of seasonality is greater than 0.787 (case 4), random walk with
-drift when the seasonality with lower than 0.579 (case 2) and for the
-highly trended and seasonal series (strength of seasonality
-\textgreater{} 0.895) ETS model with a trend and seasonal component is
-selected (case 3). According to \autoref{fig:hourlylime2} FFORMS
-framework selected \texttt{mstlarima} for the fourth series due to
-strong multiple seasonality corresponds to weekly (measured my
-seasonal\_strength2) and daily (measured my seasonal\_strength1). From
-the global explanations we observed that strength of daily seasonality
-has been assigned a very high importance. In addition to that, according
-to the LIME explanation strong weekly seasonality present in the data
-supports the decision of selecting mstlarima models. For the second
-hourly series the strength of seasonality corresponds to both weekly and
-daily supports the decision of selecting tbats models. This is true as
-the TBATS models are capable of handling series with multiple complex
-seasonalities. Further, lime explanation of hourly series suggests high
-value of trend, low value of spikiness contradicts to the decision of
-selecting neural network model to the third hourly series but ACF-based
-features related to seasonal lags, high length, high linearity (value
-increases as time index increases) and long term positive
-autocorrelation (Hurst exponent \textgreater{} 0.99) support the FFORMS
-decision in selecting neural network model. From LIME approach we can
-gain insight into the local neighbourhood characteristics which lead to
-the choice of a particular neighbourhood over alternative destinations.
+close proximity to each other in the PCA space
+(\autoref{fig:yearlylime2}) their varying degree of trend, spikiness,
+first autocorrelation coefficient of the difference series, entropy, led
+them to classify as ETS-trend, neural-network and random walk
+respectively. From \autoref{fig:quarterlylime2} we can see how the
+different variation in strength of seasonality influence the FFORMS
+framework to select different types of forecast-models. For example,
+SARIMA models was selected when the seasonality vary between 0.579 and
+0.787 (case 1), ETS-seasonal models is selected when the strength of
+seasonality is greater than 0.787 (case 4), random walk with drift when
+the seasonality with lower than 0.579 (case 2) and for the highly
+trended and seasonal series (strength of seasonality \textgreater{}
+0.895) ETS model with a trend and seasonal component is selected (case
+3). According to \autoref{fig:hourlylime2} FFORMS framework selected
+\texttt{mstlarima} for the fourth series due to strong multiple
+seasonality corresponds to weekly (measured my seasonal\_strength2) and
+daily (measured my seasonal\_strength1). From the global explanations we
+observed that strength of daily seasonality has been assigned a very
+high importance. In addition to that, according to the LIME explanation
+strong weekly seasonality present in the data supports the decision of
+selecting mstlarima models. For the second hourly series the strength of
+seasonality corresponds to both weekly and daily supports the decision
+of selecting tbats models. This is true as the TBATS models are capable
+of handling series with multiple complex seasonalities. Further, lime
+explanation of hourly series suggests high value of trend, low value of
+spikiness contradicts to the decision of selecting neural network model
+to the third hourly series but ACF-based features related to seasonal
+lags, high length, high linearity (value increases as time index
+increases) and long term positive autocorrelation (Hurst exponent
+\textgreater{} 0.99) support the FFORMS decision in selecting neural
+network model. From LIME approach we can gain insight into the local
+neighbourhood characteristics which lead to the choice of a particular
+neighbourhood over alternative destinations.
 
 \clearpage
 
