@@ -688,7 +688,7 @@ oob_boxplot_quarterly_p1 <- ggplot(part1_votes_oobQ, aes(x = variable, y = value
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
   ylab("Proportion") +
   xlab("") +
-  theme(legend.position = "none", legend.title = element_blank(), legend.text.align = 0, text = element_text(size = 20)) +
+  theme(legend.position = "none", legend.title = element_blank(), legend.text.align = 0, text = element_text(size = 25)) +
   guides(fill = guide_legend(reverse = TRUE)) +
   scale_x_discrete(limits = rev(c(
     "snaive", "rwd", "rw", "ETS-notrendnoseasonal", "ETS-dampedtrend", "ETS-trend", "ETS-dampedtrendseasonal"))) +
@@ -699,7 +699,7 @@ oob_boxplot_quarterly_p2 <- ggplot(part2_votes_oobQ, aes(x = variable, y = value
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
   ylab("Proportion") +
   xlab("") +
-  theme(legend.position = "right", legend.title = element_blank(), legend.text.align = 0, text = element_text(size = 20)) +
+  theme(legend.position = "right", legend.title = element_blank(), legend.text.align = 0, text = element_text(size = 25)) +
   guides(fill = guide_legend(reverse = TRUE)) +
   scale_x_discrete(limits = rev(c(
     "ETS-trendseasonal", "ETS-seasonal", "SARIMA",
@@ -737,7 +737,7 @@ oob_monthly_part1 <- ggplot(part1_votes_oobM, aes(x = variable, y = value, fill 
   xlab("") + 
   guides(fill=guide_legend(reverse=TRUE)) +
   scale_x_discrete(limits=rev(c("snaive","rwd", "rw", "ETS-notrendnoseasonal","ETS-dampedtrend", "ETS-trend", "ETS-dampedtrendseasonal"))) +
-  theme(legend.position = "none", legend.title = element_blank(), legend.text.align = 0, text = element_text(size=20)) + 
+  theme(legend.position = "none", legend.title = element_blank(), legend.text.align = 0, text = element_text(size=25)) + 
   coord_flip()
 
 oob_monthly_part2 <- ggplot(part2_votes_oobM, aes(x = variable, y = value, fill = classlabel)) +
@@ -747,7 +747,7 @@ oob_monthly_part2 <- ggplot(part2_votes_oobM, aes(x = variable, y = value, fill 
   guides(fill=guide_legend(reverse=TRUE)) +
   scale_x_discrete(limits=rev(c("ETS-trendseasonal","ETS-seasonal","SARIMA",
                                 "ARIMA", "ARMA/AR/MA","stlar" ,"tbats","wn", "theta","nn"))) +
-  theme(legend.position = "right", legend.title = element_blank(), legend.text.align = 0, text = element_text(size=20)) + 
+  theme(legend.position = "right", legend.title = element_blank(), legend.text.align = 0, text = element_text(size=25)) + 
   coord_flip()
 
 oob_monthly_part1|oob_monthly_part2
