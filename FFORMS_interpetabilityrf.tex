@@ -273,25 +273,13 @@ models, LIME},
 
 
 
+\blind
 
-\author{Thiyanga S~Talagala, Rob J~Hyndman, George~Athanasopoulos}
-\addresses{\textbf{Thiyanga S Talagala}\newline
-Department of Econometrics and Business Statistics, \newline Monash
-University, VIC 3800, Australia.
-\newline{Email: \href{mailto:thiyanga.talagala@monash.edu}{\nolinkurl{thiyanga.talagala@monash.edu}}}\newline Corresponding author\\[1cm]
-\textbf{Rob J Hyndman}\newline
-Department of Econometrics and Business Statistics, \newline Monash
-University, VIC 3800, Australia.
-\newline{Email: \href{mailto:rob.hyndman@monash.edu}{\nolinkurl{rob.hyndman@monash.edu}}}\\[1cm]
-\textbf{George Athanasopoulos}\newline
-Department of Econometrics and Business Statistics, \newline Monash
-University, VIC 3145, Australia.
-\newline{Email: \href{mailto:george.athanasopoulos@monash.edu}{\nolinkurl{george.athanasopoulos@monash.edu}}}\\[1cm]
-}
+
 
 \date{\sf\Date~\Month~\Year}
 \makeatletter
- \lfoot{\sf Talagala, Hyndman, Athanasopoulos: \@date}
+ \lfoot{\sf\@date}
 \makeatother
 
 %% Any special functions or other packages can be loaded here.
@@ -1134,7 +1122,8 @@ highlighted in red.}
 \caption{\label{fig:pdpyearly}Partial dependence plots for the top-three
 features get selected most within each class for yearly series. The
 shading shows the 95\% confidence intervals. Y-axis denotes the
-probability of belong to corresponding class.}
+probability of belong to corresponding class. All features show a
+nonlinear relationship with predicted probabilities.}
 \end{figure}
 
 \newpage
@@ -1303,7 +1292,7 @@ features get selected most within each class inside quarterly and
 monthly FFORMS frameworks. Additionaly, N is included to observe the
 effects stated in the liteature. The shading shows the 95\% confidence
 interval. Y-axis denotes the probability of belonging to corresponding
-class. Red coulour is for PDP drawn based on quarterly data and blue
+class. Red colour is for PDP drawn based on quarterly data and blue
 colour is for the PDP drawn based on monthly data.}
 \end{figure}
 
@@ -1317,7 +1306,7 @@ features get selected most within each class inside quarterly and
 monthly FFORMS frameworks. Additionaly, N is included to observe the
 effects stated in the liteature. The shading shows the 95\% confidence
 interval. Y-axis denotes the probability of belonging to corresponding
-class. Red coulour is for PDP drawn based on quarterly data and blue
+class. Red colour is for PDP drawn based on quarterly data and blue
 colour is for the PDP drawn based on monthly data.(Continue from Figure
 9)}
 \end{figure}
@@ -1530,72 +1519,48 @@ hourly data. Random walk and random walk with drift class show opposite
 pattern of interactivity between sediff\_seacf1 and linearity.}
 \end{figure}
 
-\newpage
+\clearpage
+
+\begin{figure}
+\centering
+\includegraphics{figures/quarterlypca-1.png}
+\caption{\label{fig:quarterlypca}Distribution of prediction space across
+instance space for quarterly time series. PC1 and PC2 are the first two
+principal components. All classes tightly clustered into a paticular
+region of the PCA space}
+\end{figure}
 
 \subsection{Local Interpretable Model-agnostic
 Explanations}\label{local-interpretable-model-agnostic-explanations}
 
-\autoref{fig:yearlylime2}-\autoref{fig:hourlylime2} show the feature
-contribution for the instances highlighted in the PCA-space for yearly,
-quarterly and hourly series respectively. Different types of time series
-under different frequency categories that are classified with high
-probability are highlighted. The low linearity, with a trend value of
-less than 0.616, low values for Phillip-Perron test-statistic, Hurst
-exponent, autocorrelation coefficients of the time series and spikiness
-of the series causes the FFORMS framework to classify the first series
-with ARMA/AR/MA. On the other hand, LIME indicated the low value of
-first autocorrelation coefficients of the original series and the
-residual series of linear regression model contradicts to this decision.
-Eventhough case 1 and case 3 share similar characteristics, low values
-of autocorrelation coefficients in differenced series corresponds to
-case 3 From \autoref{fig:quarterlylime2} we can see how the different
-variation in strength of seasonality influence the FFORMS framework to
-select different types of forecast-models. For example, SARIMA models
-was selected when the seasonality vary between 0.579 and 0.787 (case 1),
-ETS-seasonal models is selected when the strength of seasonality is
-greater than 0.787 (case 4), random walk with drift when the seasonality
-with lower than 0.579 (case 2) and for the highly trended and seasonal
-series (strength of seasonality \textgreater{} 0.895) ETS model with a
-trend and seasonal component is selected (case 3). According to
-\autoref{fig:hourlylime2} FFORMS framework selected \texttt{mstlarima}
-for the fourth series due to strong multiple seasonality corresponds to
-weekly (measured my seasonal\_strength2) and daily (measured my
-seasonal\_strength1). From the global explanations we observed that
-strength of daily seasonality has been assigned a very high importance.
-In addition to that, according to the LIME explanation strong weekly
-seasonality present in the data supports the decision of selecting
-mstlarima models. For the second hourly series the strength of
-seasonality corresponds to both weekly and daily supports the decision
-of selecting tbats models. This is true as the TBATS models are capable
-of handling series with multiple complex seasonalities. Further, lime
-explanation of hourly series suggests high value of trend, low value of
-spikiness contradicts to the decision of selecting neural network model
-to the third hourly series but ACF-based features related to seasonal
-lags, high length, high linearity (value increases as time index
-increases) and long term positive autocorrelation (Hurst exponent
-\textgreater{} 0.99) support the FFORMS decision in selecting neural
-network model. From LIME approach we can gain insight into the local
-neighbourhood characteristics which lead to the choice of a particular
-neighbourhood over alternative destinations.
-
-\clearpage
-
-\begin{figure}[h]
-
-{\centering \includegraphics{figures/yearlylime-1} 
-
-}
-
-\end{figure}
-
-\begin{figure}[h]
-
-{\centering \includegraphics{figures/yearlylime2-1} 
-
-}
-
-\caption{Panel A: Distribution of yearly time series in the PCA space. Panel B: Time series corresponds to the highlighted points in the PCA space. Panel C: Local interpretable Model-agnostic explanations for six selected yearly time series. Features denoted with green colour are supporting features for an outcome label and length of the bar is proportional to the weight of a feature.}\label{fig:yearlylime2}
-\end{figure}
+\autoref{fig:quarterlypca} shows the distribution of prediction space
+across instance space for quarterly time series data.
+\autoref{fig:quarterlypca} is a global representation of model-in-data
+space. All classes clustered into particular region of the instance
+space. However, we can not observe a clear separation of boundaries.
+This is because it is hard to define a ``best'' forecast-model for a
+given series, most time series could inherit a pattern of mutliple types
+of forecast-models. We now illustrate how LIME approach can be used to
+zoom into local regions of the data to identify which features
+contribute most to classify a specific instance. For the illustration we
+select for different types of time series classified with high
+probability. \autoref{fig:quarterlylime2} shows the feature contribution
+for the instances highlighted on the PCA-space of quarterly series. We
+can see how the different strength of seasonality influence the FFORMS
+framework to select different types of seasonal forecast-models. For
+example, SARIMA models was selected when the seasonality vary between
+0.579 and 0.787 (case 1), ETS-seasonal models is selected when the
+strength of seasonality is greater than 0.787 (case 4), random walk with
+drift when the seasonality with lower than 0.579 (case 2) and for the
+highly trended and seasonal series (strength of seasonality
+\textgreater{} 0.895) ETS model with a trend and seasonal component is
+selected (case 3). Further, high value of diff1y\_acf5 in supports the
+selection of SARIMA for case 1 while, moderate value of diff1y\_acf5
+supports the selection of ETS-seasonal for the case 4. Similarly, we can
+explore the reasons for other instances in all frequency categories.
+From LIME approach we can gain insight into the local neighbourhood
+characteristics which lead to the choice of a particular neighbourhood
+over alternative destinations.
 
 \clearpage
 
@@ -1614,25 +1579,6 @@ neighbourhood over alternative destinations.
 }
 
 \caption{Panel A: Distribution of quarterly time series in the PCA space. Panel B: Time series corresponds to the highlighted points in the PCA space. Panel C:Local interpretable Model-agnostic explanations for four selected quaterly time series. Features denoted with green colour are supporting features for an outcome label and length of the bar is proportional to the weight of a feature.}\label{fig:quarterlylime2}
-\end{figure}
-
-\clearpage
-
-\begin{figure}[h]
-
-{\centering \includegraphics{figures/hourlylime-1} 
-
-}
-
-\end{figure}
-
-\begin{figure}[h]
-
-{\centering \includegraphics{figures/hourlylime2-1} 
-
-}
-
-\caption{Panel A: Distribution of hourly time series in the PCA space. Panel B: Time series corresponds to the highlighted points in the PCA space. Panel C:Local interpretable Model-agnostic explanations for four selected hourly time series. Features denoted with green colour are supporting features for an outcome label and length of the bar is proportional to the weight of a feature.}\label{fig:hourlylime2}
 \end{figure}
 
 \clearpage
@@ -1700,22 +1646,6 @@ practitioners to make a good educated guess on suitable forecast-model
 for a given problem. Further the results of this study is useful in
 identifying new ways to improve forecasting accuracy by capturing
 different features of time series.
-
-\newpage
-
-\section*{Appendix}\label{appendix}
-\addcontentsline{toc}{section}{Appendix}
-
-\begin{figure}
-\centering
-\includegraphics{figures/ytwopdp-1.png}
-\caption{\label{fig:ytwopdp}Partial dependece plot of model selection
-probability and the interaction of stability and lumpiness for yearly
-data. As seen in Figure 1 ETS-dampedtrend and ARMA/AR/MA has low
-probability of selecting. Hence less diversity is observed in the
-corresponding two-way interaction plots. ETS-notrendnoseasonal, ARIMA
-and theta classes show similar pattern of interactivity.}
-\end{figure}
 
 \newpage
 

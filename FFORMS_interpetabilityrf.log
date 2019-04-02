@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2019.3.20)  2 APR 2019 11:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2019.3.20)  2 APR 2019 13:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1669,35 +1669,35 @@ File: english.lbx 2018/11/02 v3.12 biblatex localization (PK/MW)
 (./FFORMS_interpetabilityrf.aux)
 \openout1 = `FFORMS_interpetabilityrf.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 334.
-LaTeX Font Info:    ... okay on input line 334.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 334.
-LaTeX Font Info:    ... okay on input line 334.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 334.
-LaTeX Font Info:    ... okay on input line 334.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 334.
-LaTeX Font Info:    ... okay on input line 334.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 334.
-LaTeX Font Info:    ... okay on input line 334.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 334.
-LaTeX Font Info:    ... okay on input line 334.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 334.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 334.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 322.
+LaTeX Font Info:    ... okay on input line 322.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 322.
+LaTeX Font Info:    ... okay on input line 322.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 322.
+LaTeX Font Info:    ... okay on input line 322.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 322.
+LaTeX Font Info:    ... okay on input line 322.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 322.
+LaTeX Font Info:    ... okay on input line 322.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 322.
+LaTeX Font Info:    ... okay on input line 322.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 322.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 322.
 
 (c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 334.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 334.
-LaTeX Font Info:    ... okay on input line 334.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 334.
-LaTeX Font Info:    ... okay on input line 334.
-LaTeX Font Info:    Try loading font information for T1+ppl on input line 334.
+LaTeX Font Info:    ... okay on input line 322.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 322.
+LaTeX Font Info:    ... okay on input line 322.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 322.
+LaTeX Font Info:    ... okay on input line 322.
+LaTeX Font Info:    Try loading font information for T1+ppl on input line 322.
 
 (c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/t1ppl.fd
 File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
 )
-LaTeX Info: Redefining \microtypecontext on input line 334.
+LaTeX Info: Redefining \microtypecontext on input line 322.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
@@ -1713,7 +1713,7 @@ l.cfg
 File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 )
 \AtBeginShipoutBox=\box71
-Package hyperref Info: Link coloring ON on input line 334.
+Package hyperref Info: Link coloring ON on input line 322.
 
 (c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/namere
 f.sty
@@ -1725,9 +1725,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count449
 )
-LaTeX Info: Redefining \ref on input line 334.
-LaTeX Info: Redefining \pageref on input line 334.
-LaTeX Info: Redefining \nameref on input line 334.
+LaTeX Info: Redefining \ref on input line 322.
+LaTeX Info: Redefining \pageref on input line 322.
+LaTeX Info: Redefining \nameref on input line 322.
 (./FFORMS_interpetabilityrf.out) (./FFORMS_interpetabilityrf.out)
 \@outlinefile=\write5
 \openout5 = `FFORMS_interpetabilityrf.out'.
@@ -1774,8 +1774,8 @@ Package biblatex Info: Data encoding 'utf8' specified.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'FFORMS_interpetabilityrf.bbl' found.
 (./FFORMS_interpetabilityrf.bbl)
-Package biblatex Info: Reference section=0 on input line 334.
-Package biblatex Info: Reference segment=0 on input line 334.
+Package biblatex Info: Reference section=0 on input line 322.
+Package biblatex Info: Reference segment=0 on input line 322.
 
 (c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/oberdiek/epstop
 df-base.sty
@@ -1806,75 +1806,46 @@ ABD: EveryShipout initializing macros
 Package todonotes Warning: The length marginparwidth is less than 2cm and will 
 most likely cause issues with the appearance of inserted todonotes. The issue c
 an be solved by adding a line like \setlength {\marginparwidth }{2cm} prior to 
-loading the todonotes package. on input line 334.
+loading the todonotes package. on input line 322.
 
-LaTeX Font Info:    Try loading font information for T1+fvs on input line 335.
+LaTeX Font Info:    Try loading font information for T1+fvs on input line 323.
 (c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/bera/t1fvs.fd
 File: t1fvs.fd 2004/09/07 scalable font definitions for T1/fvs.
 )
 LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
-(Font)              scaled to size 9.85492pt on input line 335.
+(Font)              scaled to size 9.85492pt on input line 323.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `fvs' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<monash2.jpg, id=162, 228.855pt x 68.8974pt>
-File: monash2.jpg Graphic file (type jpg)
-<use monash2.jpg>
-Package pdftex.def Info: monash2.jpg  used on input line 335.
-(pdftex.def)             Requested size: 142.26926pt x 42.83052pt.
-<MBusSchool.jpg, id=163, 621.32124pt x 503.8825pt>
-File: MBusSchool.jpg Graphic file (type jpg)
-<use MBusSchool.jpg>
-Package pdftex.def Info: MBusSchool.jpg  used on input line 335.
-(pdftex.def)             Requested size: 59.74664pt x 48.45366pt.
-<AACSB.png, id=164, 1204.5pt x 406.51875pt>
-File: AACSB.png Graphic file (type png)
-<use AACSB.png>
-Package pdftex.def Info: AACSB.png  used on input line 335.
-(pdftex.def)             Requested size: 58.99712pt x 19.91151pt.
-<EQUIS.png, id=166, 175.857pt x 126.4725pt>
-File: EQUIS.png Graphic file (type png)
-<use EQUIS.png>
-Package pdftex.def Info: EQUIS.png  used on input line 335.
-(pdftex.def)             Requested size: 27.69225pt x 19.91565pt.
-<AMBA.png, id=167, 276.03125pt x 83.31125pt>
-File: AMBA.png Graphic file (type png)
-<use AMBA.png>
-Package pdftex.def Info: AMBA.png  used on input line 335.
-(pdftex.def)             Requested size: 65.9877pt x 19.91628pt.
 LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
-(Font)              scaled to size 12.9599pt on input line 335.
-LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
-(Font)              scaled to size 8.09995pt on input line 335.
-LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
-(Font)              scaled to size 22.39185pt on input line 335.
+(Font)              scaled to size 22.39185pt on input line 323.
 LaTeX Font Info:    Font shape `T1/fvs/b/n' will be
-(Font)              scaled to size 22.39185pt on input line 335.
-LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
-(Font)              scaled to size 15.55188pt on input line 335.
-LaTeX Font Info:    Try loading font information for OT1+ppl on input line 335.
+(Font)              scaled to size 22.39185pt on input line 323.
+LaTeX Font Info:    Font shape `T1/fvs/b/n' will be
+(Font)              scaled to size 9.85492pt on input line 324.
+LaTeX Font Info:    Try loading font information for OT1+ppl on input line 343.
 
 
 (c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/ot1ppl.f
 d
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
-LaTeX Font Info:    Try loading font information for OML+zplm on input line 335
+LaTeX Font Info:    Try loading font information for OML+zplm on input line 343
 .
 
 (c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/omlzplm.
 fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMS+zplm on input line 335
+LaTeX Font Info:    Try loading font information for OMS+zplm on input line 343
 .
 
 (c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/omszplm.
 fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMX+zplm on input line 335
+LaTeX Font Info:    Try loading font information for OMX+zplm on input line 343
 .
 
 (c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/omxzplm.
@@ -1882,313 +1853,275 @@ fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 11.40997pt on input line 335.
+(Font)              scaled to size 11.40997pt on input line 343.
 
 (c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-ms
 a.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 8.33606pt on input line 335.
+(Font)              scaled to size 8.33606pt on input line 343.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 335.
+(Font)              scaled to size 6.25204pt on input line 343.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 11.40997pt on input line 335.
+(Font)              scaled to size 11.40997pt on input line 343.
 
 (c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-ms
 b.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 8.33606pt on input line 335.
+(Font)              scaled to size 8.33606pt on input line 343.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 335.
-LaTeX Font Info:    Try loading font information for OT1+zplm on input line 335
+(Font)              scaled to size 6.25204pt on input line 343.
+LaTeX Font Info:    Try loading font information for OT1+zplm on input line 343
 .
 
 (c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/ot1zplm.
 fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
-) [0
+)
+LaTeX Font Info:    Font shape `T1/fvs/b/n' will be
+(Font)              scaled to size 13.49991pt on input line 349.
+[1
 
 {c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pd
-ftex.map} <./monash2.jpg> <./MBusSchool.jpg> <./AACSB.png> <./EQUIS.png> <./AMB
-A.png>]
+ftex.map}]
 LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
-(Font)              scaled to size 10.79993pt on input line 335.
+(Font)              scaled to size 12.9599pt on input line 414.
 LaTeX Font Info:    Font shape `T1/fvs/b/n' will be
-(Font)              scaled to size 10.79993pt on input line 335.
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 12.50409pt on input line 335.
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 335.
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 335.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 12.50409pt on input line 335.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 335.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 335.
-
-Underfull \hbox (badness 10000) in paragraph at lines 335--335
-
- []
-
-[1]
+(Font)              scaled to size 12.9599pt on input line 414.
+[2] [3]
 LaTeX Font Info:    Font shape `T1/fvs/b/n' will be
-(Font)              scaled to size 9.85492pt on input line 336.
-LaTeX Font Info:    Font shape `T1/fvs/b/n' will be
-(Font)              scaled to size 13.49991pt on input line 361.
-[2]
-LaTeX Font Info:    Font shape `T1/fvs/b/n' will be
-(Font)              scaled to size 12.9599pt on input line 426.
-[3] [4]
-LaTeX Font Info:    Try loading font information for T1+fvm on input line 532.
+(Font)              scaled to size 10.79993pt on input line 483.
+LaTeX Font Info:    Try loading font information for T1+fvm on input line 520.
 (c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/bera/t1fvm.fd
 File: t1fvm.fd 2004/09/07 scalable font definitions for T1/fvm.
 )
 LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 9.85492pt on input line 532.
-[5]
+(Font)              scaled to size 9.85492pt on input line 520.
+[4]
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 583.
+(Font)              scaled to size 9.37807pt on input line 571.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 7.29405pt on input line 571.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 5.21004pt on input line 571.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 583.
-[6]
-Overfull \hbox (24.3851pt too wide) in paragraph at lines 644--666
+(Font)              scaled to size 9.37807pt on input line 571.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 7.29405pt on input line 571.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 5.21004pt on input line 571.
+[5]
+Overfull \hbox (24.3851pt too wide) in paragraph at lines 632--654
  [][] 
  []
 
-[7] [8] [9] [10] [11] [12] [13] [14]
-<figures/yearlyoob-1.png, id=348, 722.7pt x 722.7pt>
+[6] [7] [8] [9] [10] [11] [12] [13]
+<figures/yearlyoob-1.png, id=325, 722.7pt x 722.7pt>
 File: figures/yearlyoob-1.png Graphic file (type png)
 <use figures/yearlyoob-1.png>
-Package pdftex.def Info: figures/yearlyoob-1.png  used on input line 989.
+Package pdftex.def Info: figures/yearlyoob-1.png  used on input line 977.
 (pdftex.def)             Requested size: 455.24826pt x 455.24826pt.
-[15 <./figures/yearlyoob-1.png>] [16] [17]
-<figures/viyearly-1.png, id=383, 1445.4pt x 867.24pt>
+[14 <./figures/yearlyoob-1.png>] [15] [16]
+<figures/viyearly-1.png, id=360, 1445.4pt x 867.24pt>
 File: figures/viyearly-1.png Graphic file (type png)
 <use figures/viyearly-1.png>
-Package pdftex.def Info: figures/viyearly-1.png  used on input line 1119.
+Package pdftex.def Info: figures/viyearly-1.png  used on input line 1107.
 (pdftex.def)             Requested size: 455.23724pt x 273.14235pt.
-[18 <./figures/viyearly-1.png>]
-<figures/pdpyearly-1.png, id=390, 1445.4pt x 2023.56pt>
+[17 <./figures/viyearly-1.png>]
+<figures/pdpyearly-1.png, id=366, 1445.4pt x 2023.56pt>
 File: figures/pdpyearly-1.png Graphic file (type png)
 <use figures/pdpyearly-1.png>
-Package pdftex.def Info: figures/pdpyearly-1.png  used on input line 1133.
+Package pdftex.def Info: figures/pdpyearly-1.png  used on input line 1121.
 (pdftex.def)             Requested size: 455.23724pt x 637.33215pt.
-[19 <./figures/pdpyearly-1.png>]
-<figures/friedmany-1.pdf, id=396, 1445.4pt x 2168.1pt>
+[18 <./figures/pdpyearly-1.png>]
+<figures/friedmany-1.pdf, id=372, 1445.4pt x 2168.1pt>
 File: figures/friedmany-1.pdf Graphic file (type pdf)
 <use figures/friedmany-1.pdf>
-Package pdftex.def Info: figures/friedmany-1.pdf  used on input line 1144.
+Package pdftex.def Info: figures/friedmany-1.pdf  used on input line 1133.
 (pdftex.def)             Requested size: 455.23724pt x 682.85588pt.
 
 Overfull \vbox (14.0728pt too high) has occurred while \output is active []
 
-[20 <./figures/friedmany-1.pdf>] [21]
-<figures/oobquarterlymonthly1-1.png, id=430, 1806.75pt x 2168.1pt>
+[19 <./figures/friedmany-1.pdf>] [20]
+<figures/oobquarterlymonthly1-1.png, id=407, 1806.75pt x 2168.1pt>
 File: figures/oobquarterlymonthly1-1.png Graphic file (type png)
 <use figures/oobquarterlymonthly1-1.png>
 Package pdftex.def Info: figures/oobquarterlymonthly1-1.png  used on input line
- 1254.
+ 1243.
 (pdftex.def)             Requested size: 455.24277pt x 546.29132pt.
-[22] [23 <./figures/oobquarterlymonthly1-1.png>]
-<figures/oobquarterlymonthly2-1.png, id=444, 2168.1pt x 2746.26pt>
+[21] [22 <./figures/oobquarterlymonthly1-1.png>]
+<figures/oobquarterlymonthly2-1.png, id=421, 2168.1pt x 2746.26pt>
 File: figures/oobquarterlymonthly2-1.png Graphic file (type png)
 <use figures/oobquarterlymonthly2-1.png>
 Package pdftex.def Info: figures/oobquarterlymonthly2-1.png  used on input line
- 1267.
+ 1256.
 (pdftex.def)             Requested size: 455.2152pt x 576.60591pt.
-[24
+[23
 
  <./figures/oobquarterlymonthly2-1.png>]
-<figures/viquarterly-1.pdf, id=451, 1662.21pt x 794.97pt>
+<figures/viquarterly-1.pdf, id=427, 1662.21pt x 794.97pt>
 File: figures/viquarterly-1.pdf Graphic file (type pdf)
 <use figures/viquarterly-1.pdf>
-Package pdftex.def Info: figures/viquarterly-1.pdf  used on input line 1280.
+Package pdftex.def Info: figures/viquarterly-1.pdf  used on input line 1269.
 (pdftex.def)             Requested size: 455.24496pt x 217.72585pt.
-<figures/vimonthly-1.pdf, id=452, 1662.21pt x 794.97pt>
+<figures/vimonthly-1.pdf, id=428, 1662.21pt x 794.97pt>
 File: figures/vimonthly-1.pdf Graphic file (type pdf)
 <use figures/vimonthly-1.pdf>
-Package pdftex.def Info: figures/vimonthly-1.pdf  used on input line 1289.
+Package pdftex.def Info: figures/vimonthly-1.pdf  used on input line 1278.
 (pdftex.def)             Requested size: 455.24496pt x 217.72585pt.
-[25
+[24
 
  <./figures/viquarterly-1.pdf> <./figures/vimonthly-1.pdf>]
-<figures/pdpquarterly1-1.png, id=468, 1445.4pt x 2023.56pt>
+<figures/pdpquarterly1-1.png, id=443, 1445.4pt x 2023.56pt>
 File: figures/pdpquarterly1-1.png Graphic file (type png)
 <use figures/pdpquarterly1-1.png>
-Package pdftex.def Info: figures/pdpquarterly1-1.png  used on input line 1300.
+Package pdftex.def Info: figures/pdpquarterly1-1.png  used on input line 1289.
 (pdftex.def)             Requested size: 455.23724pt x 637.33215pt.
 
 Overfull \vbox (4.54907pt too high) has occurred while \output is active []
 
-[26 <./figures/pdpquarterly1-1.png>]
-<figures/pdpquarterly2-1.png, id=474, 1445.4pt x 2023.56pt>
+[25 <./figures/pdpquarterly1-1.png>]
+<figures/pdpquarterly2-1.png, id=450, 1445.4pt x 2023.56pt>
 File: figures/pdpquarterly2-1.png Graphic file (type png)
 <use figures/pdpquarterly2-1.png>
-Package pdftex.def Info: figures/pdpquarterly2-1.png  used on input line 1314.
+Package pdftex.def Info: figures/pdpquarterly2-1.png  used on input line 1303.
 (pdftex.def)             Requested size: 455.23724pt x 637.33215pt.
 
 Overfull \vbox (4.54907pt too high) has occurred while \output is active []
 
-[27 <./figures/pdpquarterly2-1.png>]
-<figures/friedmanQ-1.pdf, id=480, 1445.4pt x 2168.1pt>
+[26 <./figures/pdpquarterly2-1.png>]
+<figures/friedmanQ-1.pdf, id=457, 1445.4pt x 2168.1pt>
 File: figures/friedmanQ-1.pdf Graphic file (type pdf)
 <use figures/friedmanQ-1.pdf>
-Package pdftex.def Info: figures/friedmanQ-1.pdf  used on input line 1329.
+Package pdftex.def Info: figures/friedmanQ-1.pdf  used on input line 1318.
 (pdftex.def)             Requested size: 455.23724pt x 682.85588pt.
 
 Overfull \vbox (14.0728pt too high) has occurred while \output is active []
 
-[28 <./figures/friedmanQ-1.pdf>]
-<figures/friedmanM-1.pdf, id=491, 1445.4pt x 2168.1pt>
+[27 <./figures/friedmanQ-1.pdf>]
+<figures/friedmanM-1.pdf, id=468, 1445.4pt x 2168.1pt>
 File: figures/friedmanM-1.pdf Graphic file (type pdf)
 <use figures/friedmanM-1.pdf>
-Package pdftex.def Info: figures/friedmanM-1.pdf  used on input line 1339.
+Package pdftex.def Info: figures/friedmanM-1.pdf  used on input line 1328.
 (pdftex.def)             Requested size: 455.23724pt x 682.85588pt.
 
 Overfull \vbox (14.0728pt too high) has occurred while \output is active []
 
-[29 <./figures/friedmanM-1.pdf>]
-<figures/oobweekly-1.png, id=503, 722.7pt x 686.565pt>
+[28 <./figures/friedmanM-1.pdf>]
+<figures/oobweekly-1.png, id=480, 722.7pt x 686.565pt>
 File: figures/oobweekly-1.png Graphic file (type png)
 <use figures/oobweekly-1.png>
-Package pdftex.def Info: figures/oobweekly-1.png  used on input line 1359.
+Package pdftex.def Info: figures/oobweekly-1.png  used on input line 1348.
 (pdftex.def)             Requested size: 455.24826pt x 432.48586pt.
-[30 <./figures/oobweekly-1.png>]
-<figures/viweekly-1.png, id=513, 1445.4pt x 1084.05pt>
+[29 <./figures/oobweekly-1.png>]
+<figures/viweekly-1.png, id=489, 1445.4pt x 1084.05pt>
 File: figures/viweekly-1.png Graphic file (type png)
 <use figures/viweekly-1.png>
-Package pdftex.def Info: figures/viweekly-1.png  used on input line 1381.
+Package pdftex.def Info: figures/viweekly-1.png  used on input line 1370.
 (pdftex.def)             Requested size: 455.23724pt x 341.42793pt.
-[31
+[30
 
  <./figures/viweekly-1.png>]
-<figures/weeklypdp-1.png, id=521, 1445.4pt x 2023.56pt>
+<figures/weeklypdp-1.png, id=497, 1445.4pt x 2023.56pt>
 File: figures/weeklypdp-1.png Graphic file (type png)
 <use figures/weeklypdp-1.png>
-Package pdftex.def Info: figures/weeklypdp-1.png  used on input line 1392.
+Package pdftex.def Info: figures/weeklypdp-1.png  used on input line 1381.
 (pdftex.def)             Requested size: 455.23724pt x 637.33215pt.
-[32 <./figures/weeklypdp-1.png>]
-<figures/oobdailyhourly-1.png, id=534, 1084.05pt x 1445.4pt>
+[31 <./figures/weeklypdp-1.png>]
+<figures/oobdailyhourly-1.png, id=511, 1084.05pt x 1445.4pt>
 File: figures/oobdailyhourly-1.png Graphic file (type png)
 <use figures/oobdailyhourly-1.png>
-Package pdftex.def Info: figures/oobdailyhourly-1.png  used on input line 1450.
+Package pdftex.def Info: figures/oobdailyhourly-1.png  used on input line 1439.
 
 (pdftex.def)             Requested size: 455.24828pt x 606.99771pt.
-[33] [34 <./figures/oobdailyhourly-1.png>]
-<figures/vidaily-1.png, id=549, 1662.21pt x 794.97pt>
+[32] [33 <./figures/oobdailyhourly-1.png>]
+<figures/vidaily-1.png, id=526, 1662.21pt x 794.97pt>
 File: figures/vidaily-1.png Graphic file (type png)
 <use figures/vidaily-1.png>
-Package pdftex.def Info: figures/vidaily-1.png  used on input line 1465.
+Package pdftex.def Info: figures/vidaily-1.png  used on input line 1454.
 (pdftex.def)             Requested size: 455.24496pt x 217.72585pt.
-<figures/vihourly-1.png, id=550, 1662.21pt x 794.97pt>
+<figures/vihourly-1.png, id=527, 1662.21pt x 794.97pt>
 File: figures/vihourly-1.png Graphic file (type png)
 <use figures/vihourly-1.png>
-Package pdftex.def Info: figures/vihourly-1.png  used on input line 1474.
+Package pdftex.def Info: figures/vihourly-1.png  used on input line 1463.
 (pdftex.def)             Requested size: 455.24496pt x 217.72585pt.
-[35 <./figures/vidaily-1.png> <./figures/vihourly-1.png>]
-<figures/dailypdp-1.png, id=557, 1445.4pt x 2023.56pt>
+[34 <./figures/vidaily-1.png> <./figures/vihourly-1.png>]
+<figures/dailypdp-1.png, id=534, 1445.4pt x 2023.56pt>
 File: figures/dailypdp-1.png Graphic file (type png)
 <use figures/dailypdp-1.png>
-Package pdftex.def Info: figures/dailypdp-1.png  used on input line 1487.
+Package pdftex.def Info: figures/dailypdp-1.png  used on input line 1476.
 (pdftex.def)             Requested size: 455.23724pt x 637.33215pt.
-[36 <./figures/dailypdp-1.png>]
-<figures/hourlypdp-1.png, id=564, 1445.4pt x 2023.56pt>
+[35 <./figures/dailypdp-1.png>]
+<figures/hourlypdp-1.png, id=540, 1445.4pt x 2023.56pt>
 File: figures/hourlypdp-1.png Graphic file (type png)
 <use figures/hourlypdp-1.png>
-Package pdftex.def Info: figures/hourlypdp-1.png  used on input line 1499.
+Package pdftex.def Info: figures/hourlypdp-1.png  used on input line 1488.
 (pdftex.def)             Requested size: 455.23724pt x 637.33215pt.
-[37 <./figures/hourlypdp-1.png>]
-<figures/dtwopdp-1.png, id=572, 1445.4pt x 722.7pt>
+[36 <./figures/hourlypdp-1.png>]
+<figures/dtwopdp-1.png, id=548, 1445.4pt x 722.7pt>
 File: figures/dtwopdp-1.png Graphic file (type png)
 <use figures/dtwopdp-1.png>
-Package pdftex.def Info: figures/dtwopdp-1.png  used on input line 1517.
+Package pdftex.def Info: figures/dtwopdp-1.png  used on input line 1506.
 (pdftex.def)             Requested size: 455.23724pt x 227.61862pt.
-<figures/htwopdp-1.png, id=573, 1445.4pt x 722.7pt>
+<figures/htwopdp-1.png, id=549, 1445.4pt x 722.7pt>
 File: figures/htwopdp-1.png Graphic file (type png)
 <use figures/htwopdp-1.png>
-Package pdftex.def Info: figures/htwopdp-1.png  used on input line 1526.
+Package pdftex.def Info: figures/htwopdp-1.png  used on input line 1515.
 (pdftex.def)             Requested size: 455.23724pt x 227.61862pt.
-[38 <./figures/dtwopdp-1.png (PNG copy)> <./figures/htwopdp-1.png (PNG copy)>] 
-[39]
-<figures/yearlylime-1.png, id=591, 1445.4pt x 578.16pt>
-File: figures/yearlylime-1.png Graphic file (type png)
-<use figures/yearlylime-1.png>
-Package pdftex.def Info: figures/yearlylime-1.png  used on input line 1585.
-(pdftex.def)             Requested size: 455.23724pt x 182.0949pt.
-<figures/yearlylime2-1.pdf, id=592, 1084.05pt x 722.7pt>
-File: figures/yearlylime2-1.pdf Graphic file (type pdf)
-<use figures/yearlylime2-1.pdf>
-Package pdftex.def Info: figures/yearlylime2-1.pdf  used on input line 1593.
-(pdftex.def)             Requested size: 455.24828pt x 303.49884pt.
-[40
+[37 <./figures/dtwopdp-1.png (PNG copy)> <./figures/htwopdp-1.png (PNG copy)>]
+<figures/quarterlypca-1.png, id=557, 1445.4pt x 1084.05pt>
+File: figures/quarterlypca-1.png Graphic file (type png)
+<use figures/quarterlypca-1.png>
+Package pdftex.def Info: figures/quarterlypca-1.png  used on input line 1526.
+(pdftex.def)             Requested size: 455.23724pt x 341.42793pt.
+[38
 
- <./figures/yearlylime-1.png> <./figures/yearlylime2-1.pdf>]
-<figures/quarterlylime-1.png, id=605, 1445.4pt x 578.16pt>
+ <./figures/quarterlypca-1.png>] [39]
+<figures/quarterlylime-1.png, id=572, 1445.4pt x 578.16pt>
 File: figures/quarterlylime-1.png Graphic file (type png)
 <use figures/quarterlylime-1.png>
-Package pdftex.def Info: figures/quarterlylime-1.png  used on input line 1604.
+Package pdftex.def Info: figures/quarterlylime-1.png  used on input line 1569.
 (pdftex.def)             Requested size: 455.23724pt x 182.0949pt.
-<figures/quarterlylime2-1.pdf, id=606, 1084.05pt x 722.7pt>
+<figures/quarterlylime2-1.pdf, id=573, 1084.05pt x 578.16pt>
 File: figures/quarterlylime2-1.pdf Graphic file (type pdf)
 <use figures/quarterlylime2-1.pdf>
-Package pdftex.def Info: figures/quarterlylime2-1.pdf  used on input line 1612.
+Package pdftex.def Info: figures/quarterlylime2-1.pdf  used on input line 1577.
 
-(pdftex.def)             Requested size: 455.24828pt x 303.49884pt.
-[41
+(pdftex.def)             Requested size: 455.24828pt x 242.79907pt.
+[40
 
- <./figures/quarterlylime-1.png> <./figures/quarterlylime2-1.pdf>]
-<figures/hourlylime-1.png, id=620, 1445.4pt x 578.16pt>
-File: figures/hourlylime-1.png Graphic file (type png)
-<use figures/hourlylime-1.png>
-Package pdftex.def Info: figures/hourlylime-1.png  used on input line 1623.
-(pdftex.def)             Requested size: 455.23724pt x 182.0949pt.
-<figures/hourlylime2-1.pdf, id=621, 1084.05pt x 722.7pt>
-File: figures/hourlylime2-1.pdf Graphic file (type pdf)
-<use figures/hourlylime2-1.pdf>
-Package pdftex.def Info: figures/hourlylime2-1.pdf  used on input line 1631.
-(pdftex.def)             Requested size: 455.24828pt x 303.49884pt.
-[42
+ <./figures/quarterlylime-1.png> <./figures/quarterlylime2-1.pdf>] [41
 
- <./figures/hourlylime-1.png> <./figures/hourlylime2-1.pdf>] [43
-
-] [44]
-<figures/ytwopdp-1.png, id=645, 1445.4pt x 722.7pt>
-File: figures/ytwopdp-1.png Graphic file (type png)
-<use figures/ytwopdp-1.png>
-Package pdftex.def Info: figures/ytwopdp-1.png  used on input line 1711.
-(pdftex.def)             Requested size: 455.23724pt x 227.61862pt.
-[45 <./figures/ytwopdp-1.png (PNG copy)>] [46] [47]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1724.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1724.
+] [42] [43] [44]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1654.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1654.
 (./FFORMS_interpetabilityrf.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1724.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1724.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1654.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1654.
 
 Package rerunfilecheck Info: File `FFORMS_interpetabilityrf.out' has not change
 d.
-(rerunfilecheck)             Checksum: AB7296347A4244FC122FCF1B000588D7;8068.
+(rerunfilecheck)             Checksum: A2C5AE67A5E60FD8A6B3A5136CD896E8;7985.
 Package logreq Info: Writing requests to 'FFORMS_interpetabilityrf.run.xml'.
 \openout1 = `FFORMS_interpetabilityrf.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1724.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1654.
  )
 (\end occurred inside a group at level 1)
 
 ### semi simple group (level 1) entered at line 188 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 43080 strings out of 494562
- 796763 string characters out of 6175863
- 1234895 words of memory out of 5000000
- 45673 multiletter control sequences out of 15000+600000
- 655511 words of font info for 367 fonts, out of 8000000 for 9000
+ 42981 strings out of 494562
+ 795074 string characters out of 6175863
+ 1233248 words of memory out of 5000000
+ 45606 multiletter control sequences out of 15000+600000
+ 630075 words of font info for 339 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 55i,15n,92p,1149b,18405s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,15n,92p,1149b,18409s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc
 /dvips/base/8r.enc}<c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmex10.pfb><c:/Users/Thiyanga/AppData/Roaming/TinyTeX/
@@ -2205,10 +2138,10 @@ Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb
 ><c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/palatino
 /uplr8a.pfb><c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/u
 rw/palatino/uplri8a.pfb>
-Output written on FFORMS_interpetabilityrf.pdf (48 pages, 1646324 bytes).
+Output written on FFORMS_interpetabilityrf.pdf (44 pages, 1354731 bytes).
 PDF statistics:
- 741 PDF objects out of 1000 (max. 8388607)
- 591 compressed objects within 6 object streams
- 154 named destinations out of 1000 (max. 500000)
- 37407 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 687 PDF objects out of 1000 (max. 8388607)
+ 556 compressed objects within 6 object streams
+ 146 named destinations out of 1000 (max. 500000)
+ 27114 words of extra memory for PDF output out of 29859 (max. 10000000)
 
