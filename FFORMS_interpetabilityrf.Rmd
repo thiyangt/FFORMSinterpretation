@@ -72,8 +72,6 @@ library(lime)
 library(seer)
 ```
 
-```{r functionfriedman}
-```
 
 # Introduction{#intro}
 
@@ -349,6 +347,10 @@ An alternative for explaining local behaviour of complex models is proposed by @
 
 ## Yearly data
 
+```{r functionfriedman}
+```
+
+
 ```{r yearlyoob, fig.height=10, fig.width=10, fig.cap="Distribution of proportion of times each yearly time series was assigned to each class based on OOB sample.  Each row represent the predicted class label and colours of boxplots corresponds to class label of \"best\" forecasting method. There are ten rows in the plot corresponds to each predicted class represented by Y-axis. X-axis denotes the proportion of times the time series was predicted into each class. On each row, distribution of correctly classified class dominated the top, indicating a fairly good classification of the model fitted.", fig.pos="h"}
 ```
 
@@ -515,7 +517,7 @@ For daily series within each category, sediff_acf5 and weekly seasonality (seaso
 
 ## Local Interpretable Model-agnostic Explanations
 
-\autoref{fig:quarterlypca} shows the distribution of prediction space across instance space for quarterly time series data. \autoref{fig:quarterlypca} is a global representation of model-in-data space. All classes clustered into particular region of the instance space. However, we can not observe a clear separation of boundaries. This is because it is hard to define a "best" forecast-model for a given series, most time series could inherit a pattern of mutliple types of forecast-models. We now illustrate how LIME approach can be used to zoom into local regions of the data to identify which features contribute most to classify a specific instance. For the illustration we select for different types of time series classified with high probability. \autoref{fig:quarterlylime2} shows the feature contribution for the instances highlighted on the PCA-space of quarterly series. We can see how the different strength of seasonality influence the FFORMS framework to select different types of seasonal  forecast-models. For example, SARIMA models was selected when the seasonality vary between 0.579 and 0.787 (case 1), ETS-seasonal models is selected when the strength of seasonality is greater than 0.787 (case 4), random walk with drift when the seasonality with lower than 0.579 (case 2) and for the highly trended and seasonal series (strength of seasonality > 0.895) ETS model with a trend and seasonal component is selected (case 3). Further, high value of diff1y_acf5 in supports the selection of SARIMA for case 1 while, moderate value of diff1y_acf5 supports the selection of ETS-seasonal for the case 4. Similarly, we can explore the reasons for other instances in all frequency categories. From LIME approach we can gain insight into the local neighbourhood characteristics which lead to the choice of a particular neighbourhood over alternative destinations.
+\autoref{fig:quarterlypca} shows the distribution of prediction space across instance space for quarterly time series data. \autoref{fig:quarterlypca} is a global representation of model-in-data space. All classes clustered into particular ra egion of the instance space. However, we can not observe a clear separation of boundaries. This is because it is hard to define a "best" forecast-model for a given series, most time series could inherit a pattern of mutliple types of forecast-models. We now illustrate how LIME approach can be used to zoom into local regions of the data to identify which features contribute most to classify a specific instance. For the illustration we select for different types of time series classified with high probability. \autoref{fig:quarterlylime2} shows the feature contribution for the instances highlighted on the PCA-space of quarterly series. We can see how the different strength of seasonality influence the FFORMS framework to select different types of seasonal  forecast-models. For example, SARIMA models was selected when the seasonality vary between 0.579 and 0.787 (case 1), ETS-seasonal models is selected when the strength of seasonality is greater than 0.787 (case 4), random walk with drift when the seasonality with lower than 0.579 (case 2) and for the highly trended and seasonal series (strength of seasonality > 0.895) ETS model with a trend and seasonal component is selected (case 3). Further, high value of diff1y_acf5 in supports the selection of SARIMA for case 1 while, moderate value of diff1y_acf5 supports the selection of ETS-seasonal for the case 4. Similarly, we can explore the reasons for other instances in all frequency categories. From LIME approach we can gain insight into the local neighbourhood characteristics which lead to the choice of a particular neighbourhood over alternative destinations.
 
 
 \clearpage
@@ -528,8 +530,6 @@ For daily series within each category, sediff_acf5 and weekly seasonality (seaso
 ```
 
 
-\clearpage
-
 # Discussion and Conclusions{#conclusions}
 
 Forecast model selection is both time and computer cost intensive process. Consequently, the application of machine-learning approaches to predict suitable forecasting model from large number of potentially relevant time series features is a topic growing popularity in the field of time series forecasting. In this paper we used model-agnostic machine learning interpretability tools to explore what was happening under the hood of FFORMS framework and to gain an understanding of what features led to the choices of FFORMS framework. Further, explaining predictions is an important aspect in getting humans trust and use the proposed framework effectively, if the explanations are faithful and intelligible. Humans usually have prior knowledge about the application domain, which they can use to accept (trust) or reject prediction if they understand the reasons behind it. 
@@ -541,7 +541,6 @@ As FFORMS framework is developed on top of random forest algorithm takes into ac
 Exploration of conditions learnt by the FFORMS framework also support practitioners to make a good educated guess on suitable forecast-model for a given problem. Further the results of this study is useful in identifying new ways to improve forecasting accuracy by capturing different features of time series.
 
 
-\newpage
 # References
 
 
