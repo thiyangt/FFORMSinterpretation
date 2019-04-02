@@ -350,7 +350,7 @@ models, LIME
 
 The time series forecasting field has been evolving for a long time and
 has introduced a wide variety of forecasting methods. However, for a
-given time series the selection of an appropriate forecast-models among
+given time series the selection of an appropriate forecast-model among
 many possibilities is not straight forward. This selection is one of the
 most difficult tasks as each method perform best for some but not all
 tasks. The features of time series are considered to be an important
@@ -361,7 +361,7 @@ features and the performance of algorithms is rarely discussed in the
 field of forecasting.
 
 There have been several recent studies on the use of meta-learning
-approaches to automate the forecast model selection based on the
+approaches to automate the forecast-model selection based on the
 features computed from the time series
 \autocites{shah1997model}{prudencio2004meta}{lemke2010meta}{kuck2016meta}.
 Meta-learning approach provides a systematic guidance on model selection
@@ -851,7 +851,7 @@ is the number of observations in the training data set. Partial
 dependency curve can be created by plotting the pairs of
 \(\{(x_s^k, \bar{g}_s(x_{sk}))\}_{k=1}^{m}\) defined on grid of points
 \(\{x_{s1}, x_{s2},\dots, x_{sm}\}\) based on \(X_s\). FFORMS framework
-have treated the forecast-model selection problem as a classification
+has treated the forecast-model selection problem as a classification
 problem. Hence, in this paper partial dependency functions displays the
 probability of certain class occurring given different values of feature
 \(X_s\).
@@ -872,7 +872,7 @@ standard deviation of the values \(\{\bar{g}_{s}(x_{sk})\}_{k=1}^{m}\).
 curves}\label{individual-conditional-expectation-ice-curves}
 
 While partial dependency curves are useful in understanding the
-estimated relationship between feature and predicted outcome in the
+estimated relationship between features and the predicted outcome in the
 presence of substantial interaction between features, it can be
 misleading. \textcite{goldstein2015peeking} proposed the Individual
 Conditional Expectation (ICE) curves to address this issue. Instead of
@@ -952,7 +952,7 @@ context and vice verse. The algorithm steps can be summarized as follow:
 \item
   Select \(m\) number of features best describing the black-box model
   outcome. This can be accomplished by applying feature selection
-  algorithms such as ridge regression, lasso, ridge regression, etc.
+  algorithms such as ridge regression, lasso, etc.
 \item
   Fit a simple linear model to the permuted data based on \(m\) selected
   features, similarity scores in step 3 as weights and complex model
