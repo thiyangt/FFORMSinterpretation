@@ -812,8 +812,8 @@ random forest proposed by \textcite{breiman2001random}.
 measure}\label{permutation-based-variable-importance-measure}
 
 The permutation-based variable importance introduced by
-\textcite{breiman2001random} measures the the prediction strength of
-each feature. This measure is calculated based on the out-of-bag (OOB)
+\textcite{breiman2001random} measures the prediction strength of each
+feature. This measure is calculated based on the out-of-bag (OOB)
 observations. The calculation of variable importance is formalized as
 follow: Let \(\bar{\mathcal{B}}^{(k)}\) be the OOB sample for a tree
 \(k\), with \(k\in \{1,...,ntree\}\), where \(ntree\) is the number of
@@ -919,7 +919,7 @@ computed based on the subset of randomly selected training examples.
 \subsection{Local Interpretable Model-agnostic Explanations
 (LIME)}\label{local-interpretable-model-agnostic-explanations-lime}
 
-Global interpretations help us to understand the entire modeled
+Global interpretations help us to understand the entire modelled
 relationship. Local interpretations help us to understand the
 predictions of the model for a single instance or a group of similar
 instances. In other words this allows users to zoom into a particular
@@ -1034,7 +1034,7 @@ classification, except ARIMA category, even though it does not appear to
 be among top five features, spikiness has been assigned a relatively
 high importance among all categories. These results indicates on average
 the features related to trend, nonstationarity, overall shape of the
-trend (linear: measured by linearity, damped:measured by beta,
+trend (linear: measured by linearity, damped trend:measured by beta,
 exponential: measured by curvature) and randomness (from spikiness, and
 lmres\_acf1) are important for the choice of yearly time series
 forecasting methods. Further, y\_acf1 is appear to be important in
@@ -1156,23 +1156,23 @@ single distribution corresponds to the correct classification class
 dominates the top. However, on average probability of selecting
 ETS-models for forecasting quarterly and monthly data is relatively low
 compared to the random walk with drift, stlar, tbats and neural network
-models. Except the time series labeled as ARMA/AR/MA all other quarterly
-time series have a very low chance of classified to ARMA/AR/MA class.
-Further, all distributions corresponds to the tbats row located further
-away from zero. This indicates all time series select tbats model at
-least once from the individual trees in the forest. Except few outliars,
-distributions within neural network category also show a slight upward
-deviation from zero. However, the upper boundary of these distributions
-do not surpass the upper boundaries of dominating box plots in the
-random walk with drift class and SARIMA class. Further, within stlar,
-tbats, theta and neural network classes all distributions level at
-similar proportionalities. These types of similarities in the
+models. Except the time series labelled as ARMA/AR/MA all other
+quarterly time series have a very low chance of classified to ARMA/AR/MA
+class. Further, all distributions corresponds to the tbats row located
+further away from zero. This indicates all time series select tbats
+model at least once from the individual trees in the forest. Except few
+outliers, distributions within neural network category also show a
+slight upward deviation from zero. However, the upper boundary of these
+distributions do not surpass the upper boundaries of dominating box
+plots in the random walk with drift class and SARIMA class. Further,
+within stlar, tbats, theta and neural network classes all distributions
+level at similar proportionalities. These types of similarities in the
 distributions indicates the the appropriateness of using combination
 forecasting. Further, these information are useful in identifying
 potential time series models for combination forecast and improve the
 existing combination approaches proposed in the M4-competition
 (\textcite{Makridakis2018dx}). In addition to that the similarities and
-diversities observed in the boxplots indicate the neighborhood of cases
+diversities observed in the boxplots indicate the neighbourhood of cases
 in their respective instance space.
 
 \autoref{fig:viquarterly} and \autoref{fig:vimonthly} show variable
@@ -1263,7 +1263,7 @@ sample. Each row represent the predicted class label and colours of
 boxplots corresponds to class label of ``best'' forecasting method.
 X-axis denotes the proportion of times the time series was predicted
 into each class. Few series corresponds to stlar and nn have been
-corectly classified with a very high probability.}
+correctly classified with a very high probability.}
 \end{figure}
 
 \clearpage
@@ -1293,8 +1293,8 @@ corectly classified with a very high probability.}
 \includegraphics{figures/pdpquarterly1-1.png}
 \caption{\label{fig:pdpquarterly1}Partial dependence plots for the top-three
 features get selected most within each class inside quarterly and
-monthly FFORMS frameworks. Additionaly, N is included to observe the
-effects stated in the liteature. The shading shows the 95\% confidence
+monthly FFORMS frameworks. Additionally, N is included to observe the
+effects stated in the literature. The shading shows the 95\% confidence
 interval. Y-axis denotes the probability of belonging to corresponding
 class. Red colour is for PDP drawn based on quarterly data and blue
 colour is for the PDP drawn based on monthly data.}
@@ -1307,8 +1307,8 @@ colour is for the PDP drawn based on monthly data.}
 \includegraphics{figures/pdpquarterly2-1.png}
 \caption{\label{fig:pdpquarterly2}Partial dependence plots for the top-three
 features get selected most within each class inside quarterly and
-monthly FFORMS frameworks. Additionaly, N is included to observe the
-effects stated in the liteature. The shading shows the 95\% confidence
+monthly FFORMS frameworks. Additionally, N is included to observe the
+effects stated in the literature. The shading shows the 95\% confidence
 interval. Y-axis denotes the probability of belonging to corresponding
 class. Red colour is for PDP drawn based on quarterly data and blue
 colour is for the PDP drawn based on monthly data.(Continue from Figure
@@ -1321,7 +1321,7 @@ colour is for the PDP drawn based on monthly data.(Continue from Figure
 \centering
 \includegraphics{figures/friedmanQ-1.pdf}
 \caption{\label{fig:friedmanQ}Heat maps of relative strength of all possible
-pairwise interactions calclated based on Friedman's H-statistic for
+pairwise interactions calculated based on Friedman's H-statistic for
 quarterly data.}
 \end{figure}
 
@@ -1331,7 +1331,7 @@ quarterly data.}
 \centering
 \includegraphics{figures/friedmanM-1.pdf}
 \caption{\label{fig:friedmanM}Heat maps of relative strength of all possible
-pairwise interactions calclated based on Friedman's H-statistic for
+pairwise interactions calculated based on Friedman's H-statistic for
 monthly data.}
 \end{figure}
 
@@ -1375,7 +1375,7 @@ relationship was observed at SARIMA models.
 
 }
 
-\caption{Feature importance plot for weekly data. Permutation-based VI measure and mean decrease in Gini coefficient are used to evaluate overall feature impotance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.}\label{fig:viweekly}
+\caption{Feature importance plot for weekly data. Permutation-based VI measure and mean decrease in Gini coefficient are used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.}\label{fig:viweekly}
 \end{figure}
 
 \newpage
@@ -1566,8 +1566,6 @@ From LIME approach we can gain insight into the local neighbourhood
 characteristics which lead to the choice of a particular neighbourhood
 over alternative destinations.
 
-\clearpage
-
 \begin{figure}[h]
 
 {\centering \includegraphics{figures/quarterlylime-1} 
@@ -1627,9 +1625,8 @@ forecasts with longer time series as these are more parameterized
 models.
 
 As FFORMS framework is developed on top of random forest algorithm takes
-into account every possible interactions. We used Friedman's H-statistic
-to identify most important two-way interactions. It was apparent from
-the heat matrices of Friedman's H-Statistic presented that a substantial
+into account every possible interactions. It was apparent from the heat
+matrices of Friedman's H-Statistic presented that a substantial
 interaction effect exist between the features. The strength trend showed
 less interactivity in yearly series data,reflecting that these features
 are more important on their own. The features involve in interaction and
