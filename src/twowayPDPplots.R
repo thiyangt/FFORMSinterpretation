@@ -638,7 +638,7 @@ int10 <- ggplot(
     z = colNamesss[10], fill = colNamesss[10]
   )) + geom_tile() +
   scale_fill_viridis_c(limits = c(0, 0.9), breaks = seq(0, 0.9, 100), option = "A", direction = -1) +
-  xlab("sediff_acf5") + ylab("seasonal_strength2")+
+  xlab("sediff_acf5") + ylab("seasonal_strength2")+theme(legend.title=element_blank())+
   ggtitle("wn")
 int1+int2+int3+int4+int5+int6+int7+int8+int9+int10+plot_layout(ncol = 5, nrow = 2)
 
@@ -735,6 +735,6 @@ int10 <- ggplot(
     y = linearity.sediff_seacf1.h$sediff_seacf1, z = colNamesss[10], fill = colNamesss[10]
   )) + geom_tile() +
   scale_fill_viridis_c(limits = c(0, 0.8), breaks = seq(0, 0.8, 100), option = "A", direction = -1) +
-  xlab("linearity") + ylab("sediff_seacf1")+ggtitle("wn")
+  xlab("linearity") + ylab("sediff_seacf1")+ggtitle("wn")+theme(legend.title=element_blank())
 
 int1+int2+int3+int4+int5+int6+int7+int8+int9+int10+plot_layout(ncol = 5, nrow = 2)

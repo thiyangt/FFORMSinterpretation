@@ -1567,7 +1567,7 @@ pca1M4Q_snaive <- ggplot(m4qPCAresults, aes(x = PC1, y = PC2, color = predicted)
     aspect.ratio = 1
   ) +
   geom_point(data = m4qPCAresults[m4qPCAresults$predicted == "snaive", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "rwd") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
+  labs(subtitle = "snaive") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
 pca1M4Q_rwd <- ggplot(m4qPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   geom_point(colour = "firebrick1") +
@@ -1685,7 +1685,7 @@ pca1M4Q_tbats <- ggplot(m4qPCAresults, aes(x = PC1, y = PC2, color = predicted))
     aspect.ratio = 1
   ) +
   geom_point(data = m4qPCAresults[m4qPCAresults$predicted == "tbats", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "stlar") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
+  labs(subtitle = "tbats") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
 pca1M4Q_wn <- ggplot(m4qPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   geom_point(colour = "firebrick1") +
@@ -1715,9 +1715,9 @@ pca1M4Q_nn <- ggplot(m4qPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   labs(subtitle = "nn") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
 
-pca1M4Q_snaive+pca1M4Q_rwd+pca1M4Q_rw+pca1M4Q_notrend+pca1M4Q_etsdamtrend+
-  pca1M4Q_etstrend+pca1M4Q_etsdtrends+pca1M4Q_trends+pca1M4Q_s+pca1M4Q_sarima+
-  pca1M4Q_ARIMA+pca1M4Q_ARMA+pca1M4Q_stlar+pca1M4Q_tbats+pca1M4Q_wn+
+pca1M4Q_wn+pca1M4Q_ARMA+pca1M4Q_ARIMA+pca1M4Q_rwd+pca1M4Q_rw+pca1M4Q_notrend+pca1M4Q_etsdamtrend+
+  pca1M4Q_etstrend+pca1M4Q_etsdtrends+pca1M4Q_trends+pca1M4Q_s+pca1M4Q_sarima+pca1M4Q_snaive+
+  pca1M4Q_stlar+pca1M4Q_tbats+
   pca1M4Q_theta+pca1M4Q_nn+plot_layout(ncol = 5, nrow = 4)
 
 ################################################################################
