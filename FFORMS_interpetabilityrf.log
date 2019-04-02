@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2019.3.20)  2 APR 2019 13:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2019.3.20)  2 APR 2019 14:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1934,13 +1934,13 @@ Package pdftex.def Info: figures/viyearly-1.png  used on input line 1107.
 <figures/pdpyearly-1.png, id=366, 1445.4pt x 2023.56pt>
 File: figures/pdpyearly-1.png Graphic file (type png)
 <use figures/pdpyearly-1.png>
-Package pdftex.def Info: figures/pdpyearly-1.png  used on input line 1121.
+Package pdftex.def Info: figures/pdpyearly-1.png  used on input line 1122.
 (pdftex.def)             Requested size: 455.23724pt x 637.33215pt.
 [18 <./figures/pdpyearly-1.png>]
 <figures/friedmany-1.pdf, id=372, 1445.4pt x 2168.1pt>
 File: figures/friedmany-1.pdf Graphic file (type pdf)
 <use figures/friedmany-1.pdf>
-Package pdftex.def Info: figures/friedmany-1.pdf  used on input line 1133.
+Package pdftex.def Info: figures/friedmany-1.pdf  used on input line 1134.
 (pdftex.def)             Requested size: 455.23724pt x 682.85588pt.
 
 Overfull \vbox (14.0728pt too high) has occurred while \output is active []
@@ -1950,14 +1950,14 @@ Overfull \vbox (14.0728pt too high) has occurred while \output is active []
 File: figures/oobquarterlymonthly1-1.png Graphic file (type png)
 <use figures/oobquarterlymonthly1-1.png>
 Package pdftex.def Info: figures/oobquarterlymonthly1-1.png  used on input line
- 1243.
+ 1245.
 (pdftex.def)             Requested size: 455.24277pt x 546.29132pt.
 [21] [22 <./figures/oobquarterlymonthly1-1.png>]
 <figures/oobquarterlymonthly2-1.png, id=421, 2168.1pt x 2746.26pt>
 File: figures/oobquarterlymonthly2-1.png Graphic file (type png)
 <use figures/oobquarterlymonthly2-1.png>
 Package pdftex.def Info: figures/oobquarterlymonthly2-1.png  used on input line
- 1256.
+ 1259.
 (pdftex.def)             Requested size: 455.2152pt x 576.60591pt.
 [23
 
@@ -1965,12 +1965,12 @@ Package pdftex.def Info: figures/oobquarterlymonthly2-1.png  used on input line
 <figures/viquarterly-1.pdf, id=427, 1662.21pt x 794.97pt>
 File: figures/viquarterly-1.pdf Graphic file (type pdf)
 <use figures/viquarterly-1.pdf>
-Package pdftex.def Info: figures/viquarterly-1.pdf  used on input line 1269.
+Package pdftex.def Info: figures/viquarterly-1.pdf  used on input line 1273.
 (pdftex.def)             Requested size: 455.24496pt x 217.72585pt.
 <figures/vimonthly-1.pdf, id=428, 1662.21pt x 794.97pt>
 File: figures/vimonthly-1.pdf Graphic file (type pdf)
 <use figures/vimonthly-1.pdf>
-Package pdftex.def Info: figures/vimonthly-1.pdf  used on input line 1278.
+Package pdftex.def Info: figures/vimonthly-1.pdf  used on input line 1282.
 (pdftex.def)             Requested size: 455.24496pt x 217.72585pt.
 [24
 
@@ -1978,7 +1978,7 @@ Package pdftex.def Info: figures/vimonthly-1.pdf  used on input line 1278.
 <figures/pdpquarterly1-1.png, id=443, 1445.4pt x 2023.56pt>
 File: figures/pdpquarterly1-1.png Graphic file (type png)
 <use figures/pdpquarterly1-1.png>
-Package pdftex.def Info: figures/pdpquarterly1-1.png  used on input line 1289.
+Package pdftex.def Info: figures/pdpquarterly1-1.png  used on input line 1293.
 (pdftex.def)             Requested size: 455.23724pt x 637.33215pt.
 
 Overfull \vbox (4.54907pt too high) has occurred while \output is active []
@@ -1987,7 +1987,7 @@ Overfull \vbox (4.54907pt too high) has occurred while \output is active []
 <figures/pdpquarterly2-1.png, id=450, 1445.4pt x 2023.56pt>
 File: figures/pdpquarterly2-1.png Graphic file (type png)
 <use figures/pdpquarterly2-1.png>
-Package pdftex.def Info: figures/pdpquarterly2-1.png  used on input line 1303.
+Package pdftex.def Info: figures/pdpquarterly2-1.png  used on input line 1307.
 (pdftex.def)             Requested size: 455.23724pt x 637.33215pt.
 
 Overfull \vbox (4.54907pt too high) has occurred while \output is active []
@@ -1996,7 +1996,7 @@ Overfull \vbox (4.54907pt too high) has occurred while \output is active []
 <figures/friedmanQ-1.pdf, id=457, 1445.4pt x 2168.1pt>
 File: figures/friedmanQ-1.pdf Graphic file (type pdf)
 <use figures/friedmanQ-1.pdf>
-Package pdftex.def Info: figures/friedmanQ-1.pdf  used on input line 1318.
+Package pdftex.def Info: figures/friedmanQ-1.pdf  used on input line 1322.
 (pdftex.def)             Requested size: 455.23724pt x 682.85588pt.
 
 Overfull \vbox (14.0728pt too high) has occurred while \output is active []
@@ -2005,7 +2005,7 @@ Overfull \vbox (14.0728pt too high) has occurred while \output is active []
 <figures/friedmanM-1.pdf, id=468, 1445.4pt x 2168.1pt>
 File: figures/friedmanM-1.pdf Graphic file (type pdf)
 <use figures/friedmanM-1.pdf>
-Package pdftex.def Info: figures/friedmanM-1.pdf  used on input line 1328.
+Package pdftex.def Info: figures/friedmanM-1.pdf  used on input line 1332.
 (pdftex.def)             Requested size: 455.23724pt x 682.85588pt.
 
 Overfull \vbox (14.0728pt too high) has occurred while \output is active []
@@ -2014,13 +2014,13 @@ Overfull \vbox (14.0728pt too high) has occurred while \output is active []
 <figures/oobweekly-1.png, id=480, 722.7pt x 686.565pt>
 File: figures/oobweekly-1.png Graphic file (type png)
 <use figures/oobweekly-1.png>
-Package pdftex.def Info: figures/oobweekly-1.png  used on input line 1348.
+Package pdftex.def Info: figures/oobweekly-1.png  used on input line 1352.
 (pdftex.def)             Requested size: 455.24826pt x 432.48586pt.
 [29 <./figures/oobweekly-1.png>]
 <figures/viweekly-1.png, id=489, 1445.4pt x 1084.05pt>
 File: figures/viweekly-1.png Graphic file (type png)
 <use figures/viweekly-1.png>
-Package pdftex.def Info: figures/viweekly-1.png  used on input line 1370.
+Package pdftex.def Info: figures/viweekly-1.png  used on input line 1374.
 (pdftex.def)             Requested size: 455.23724pt x 341.42793pt.
 [30
 
@@ -2028,54 +2028,54 @@ Package pdftex.def Info: figures/viweekly-1.png  used on input line 1370.
 <figures/weeklypdp-1.png, id=497, 1445.4pt x 2023.56pt>
 File: figures/weeklypdp-1.png Graphic file (type png)
 <use figures/weeklypdp-1.png>
-Package pdftex.def Info: figures/weeklypdp-1.png  used on input line 1381.
+Package pdftex.def Info: figures/weeklypdp-1.png  used on input line 1385.
 (pdftex.def)             Requested size: 455.23724pt x 637.33215pt.
 [31 <./figures/weeklypdp-1.png>]
 <figures/oobdailyhourly-1.png, id=511, 1084.05pt x 1445.4pt>
 File: figures/oobdailyhourly-1.png Graphic file (type png)
 <use figures/oobdailyhourly-1.png>
-Package pdftex.def Info: figures/oobdailyhourly-1.png  used on input line 1439.
+Package pdftex.def Info: figures/oobdailyhourly-1.png  used on input line 1443.
 
 (pdftex.def)             Requested size: 455.24828pt x 606.99771pt.
 [32] [33 <./figures/oobdailyhourly-1.png>]
 <figures/vidaily-1.png, id=526, 1662.21pt x 794.97pt>
 File: figures/vidaily-1.png Graphic file (type png)
 <use figures/vidaily-1.png>
-Package pdftex.def Info: figures/vidaily-1.png  used on input line 1454.
+Package pdftex.def Info: figures/vidaily-1.png  used on input line 1458.
 (pdftex.def)             Requested size: 455.24496pt x 217.72585pt.
 <figures/vihourly-1.png, id=527, 1662.21pt x 794.97pt>
 File: figures/vihourly-1.png Graphic file (type png)
 <use figures/vihourly-1.png>
-Package pdftex.def Info: figures/vihourly-1.png  used on input line 1463.
+Package pdftex.def Info: figures/vihourly-1.png  used on input line 1467.
 (pdftex.def)             Requested size: 455.24496pt x 217.72585pt.
 [34 <./figures/vidaily-1.png> <./figures/vihourly-1.png>]
 <figures/dailypdp-1.png, id=534, 1445.4pt x 2023.56pt>
 File: figures/dailypdp-1.png Graphic file (type png)
 <use figures/dailypdp-1.png>
-Package pdftex.def Info: figures/dailypdp-1.png  used on input line 1476.
+Package pdftex.def Info: figures/dailypdp-1.png  used on input line 1480.
 (pdftex.def)             Requested size: 455.23724pt x 637.33215pt.
 [35 <./figures/dailypdp-1.png>]
 <figures/hourlypdp-1.png, id=540, 1445.4pt x 2023.56pt>
 File: figures/hourlypdp-1.png Graphic file (type png)
 <use figures/hourlypdp-1.png>
-Package pdftex.def Info: figures/hourlypdp-1.png  used on input line 1488.
+Package pdftex.def Info: figures/hourlypdp-1.png  used on input line 1492.
 (pdftex.def)             Requested size: 455.23724pt x 637.33215pt.
 [36 <./figures/hourlypdp-1.png>]
 <figures/dtwopdp-1.png, id=548, 1445.4pt x 722.7pt>
 File: figures/dtwopdp-1.png Graphic file (type png)
 <use figures/dtwopdp-1.png>
-Package pdftex.def Info: figures/dtwopdp-1.png  used on input line 1506.
+Package pdftex.def Info: figures/dtwopdp-1.png  used on input line 1510.
 (pdftex.def)             Requested size: 455.23724pt x 227.61862pt.
 <figures/htwopdp-1.png, id=549, 1445.4pt x 722.7pt>
 File: figures/htwopdp-1.png Graphic file (type png)
 <use figures/htwopdp-1.png>
-Package pdftex.def Info: figures/htwopdp-1.png  used on input line 1515.
+Package pdftex.def Info: figures/htwopdp-1.png  used on input line 1519.
 (pdftex.def)             Requested size: 455.23724pt x 227.61862pt.
 [37 <./figures/dtwopdp-1.png (PNG copy)> <./figures/htwopdp-1.png (PNG copy)>]
 <figures/quarterlypca-1.png, id=557, 1445.4pt x 1084.05pt>
 File: figures/quarterlypca-1.png Graphic file (type png)
 <use figures/quarterlypca-1.png>
-Package pdftex.def Info: figures/quarterlypca-1.png  used on input line 1526.
+Package pdftex.def Info: figures/quarterlypca-1.png  used on input line 1530.
 (pdftex.def)             Requested size: 455.23724pt x 341.42793pt.
 [38
 
@@ -2083,12 +2083,12 @@ Package pdftex.def Info: figures/quarterlypca-1.png  used on input line 1526.
 <figures/quarterlylime-1.png, id=572, 1445.4pt x 578.16pt>
 File: figures/quarterlylime-1.png Graphic file (type png)
 <use figures/quarterlylime-1.png>
-Package pdftex.def Info: figures/quarterlylime-1.png  used on input line 1569.
+Package pdftex.def Info: figures/quarterlylime-1.png  used on input line 1573.
 (pdftex.def)             Requested size: 455.23724pt x 182.0949pt.
 <figures/quarterlylime2-1.pdf, id=573, 1084.05pt x 578.16pt>
 File: figures/quarterlylime2-1.pdf Graphic file (type pdf)
 <use figures/quarterlylime2-1.pdf>
-Package pdftex.def Info: figures/quarterlylime2-1.pdf  used on input line 1577.
+Package pdftex.def Info: figures/quarterlylime2-1.pdf  used on input line 1581.
 
 (pdftex.def)             Requested size: 455.24828pt x 242.79907pt.
 [40
@@ -2096,11 +2096,11 @@ Package pdftex.def Info: figures/quarterlylime2-1.pdf  used on input line 1577.
  <./figures/quarterlylime-1.png> <./figures/quarterlylime2-1.pdf>] [41
 
 ] [42] [43] [44]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1654.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1654.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1658.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1658.
 (./FFORMS_interpetabilityrf.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1654.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1654.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1658.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1658.
 
 Package rerunfilecheck Info: File `FFORMS_interpetabilityrf.out' has not change
 d.
@@ -2108,7 +2108,7 @@ d.
 Package logreq Info: Writing requests to 'FFORMS_interpetabilityrf.run.xml'.
 \openout1 = `FFORMS_interpetabilityrf.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1654.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1658.
  )
 (\end occurred inside a group at level 1)
 
@@ -2117,7 +2117,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1654.
 Here is how much of TeX's memory you used:
  42981 strings out of 494562
  795074 string characters out of 6175863
- 1233248 words of memory out of 5000000
+ 1233583 words of memory out of 5000000
  45606 multiletter control sequences out of 15000+600000
  630075 words of font info for 339 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -2138,7 +2138,7 @@ Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb
 ><c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/palatino
 /uplr8a.pfb><c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/u
 rw/palatino/uplri8a.pfb>
-Output written on FFORMS_interpetabilityrf.pdf (44 pages, 1354731 bytes).
+Output written on FFORMS_interpetabilityrf.pdf (44 pages, 1354943 bytes).
 PDF statistics:
  687 PDF objects out of 1000 (max. 8388607)
  556 compressed objects within 6 object streams

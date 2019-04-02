@@ -1111,7 +1111,8 @@ used to evaluate overall feature importance. Class-specific feature
 importance is evaluated based on three measures: i) permutation-based
 variable importance, PD-based VI measure, and ICE-based VI measure.
 Longer bars indicate more important features. Top 5 features are
-highlighted in red.}
+highlighted in red. Strength of trend appear to be the most important
+feature.}
 \end{figure}
 
 \newpage
@@ -1133,7 +1134,8 @@ nonlinear relationship with predicted probabilities.}
 \includegraphics{figures/friedmany-1.pdf}
 \caption{\label{fig:friedmany}Heat maps of relative strength of all possible
 pairwise interactions calclated based on Friedman's H-statistic (yearly
-series)}
+series). Strength of trend shows less interactivity with other
+features.}
 \end{figure}
 
 \newpage
@@ -1246,7 +1248,8 @@ each quarterly time series was assigned to each class based on OOB
 sample. Each row represent the predicted class label and colours of
 boxplots corresponds to class label of ``best'' forecasting method.
 X-axis denotes the proportion of times the time series was predicted
-into each class.}
+into each class. ARMA/AR/MA has a low chance of being selected while
+random walk with drift has a high chance of being selected.}
 \end{figure}
 
 \clearpage
@@ -1259,7 +1262,8 @@ times each monthly time series was assigned to each class based on OOB
 sample. Each row represent the predicted class label and colours of
 boxplots corresponds to class label of ``best'' forecasting method.
 X-axis denotes the proportion of times the time series was predicted
-into each class.}
+into each class. Few series corresponds to stlar and nn have been
+corectly classified with a very high probability.}
 \end{figure}
 
 \clearpage
