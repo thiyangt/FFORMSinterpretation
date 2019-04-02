@@ -137,12 +137,19 @@ models, LIME},
 \def\nojel{\def\showjel{}}
 \def\addresses#1{\gdef\@addresses{#1}}\def\@addresses{??}
 \def\cover{{\sffamily\setcounter{page}{0}
-        \thispagestyle{empty}%
-        \vspace*{-2cm}
-        \centerline{\raisebox{-1.8cm}{\includegraphics[width=5cm]{MBSportrait}}\hspace*{9cm} ISSN 1440-771X}\vspace{0.99cm}
+        \thispagestyle{empty}
+        \placefig{2}{1.5}{width=5cm}{monash2}
+        \placefig{16.9}{1.5}{width=2.1cm}{MBusSchool}
+        \begin{textblock}{4}(16.9,4)ISSN 1440-771X\end{textblock}
+        \begin{textblock}{7}(12.7,27.9)\hfill
+        \includegraphics[height=0.7cm]{AACSB}~~~
+        \includegraphics[height=0.7cm]{EQUIS}~~~
+        \includegraphics[height=0.7cm]{AMBA}
+        \end{textblock}
+        \vspace*{2cm}
         \begin{center}\Large
         Department of Econometrics and Business Statistics\\[.5cm]
-        \scriptsize http://business.monash.edu/econometrics-and-business-statistics/research/publications
+        \footnotesize http://monash.edu/business/ebs/research/publications
         \end{center}\vspace{2cm}
         \begin{center}
         \fbox{\parbox{14cm}{\begin{onehalfspace}\centering\Huge\vspace*{0.3cm}
@@ -154,7 +161,7 @@ models, LIME},
                 \begin{center}\Large
                 \Month~\Year\\[1cm]
                 Working Paper \@wp
-        \end{center}}}
+        \end{center}\vspace*{2cm}}}
 \def\pageone{{\sffamily\setstretch{1}%
         \thispagestyle{empty}%
         \vbox to \textheight{%
@@ -258,6 +265,12 @@ models, LIME},
 
 \wp{no/yr}
 \jel{C10,C14,C22}
+
+\RequirePackage[absolute,overlay]{textpos}
+\setlength{\TPHorizModule}{1cm}
+\setlength{\TPVertModule}{1cm}
+\def\placefig#1#2#3#4{\begin{textblock}{.1}(#1,#2)\rlap{\includegraphics[#3]{#4}}\end{textblock}}
+
 
 
 
@@ -367,23 +380,24 @@ Meta-learning approach provides a systematic guidance on model selection
 based on knowledge acquire from historical data set. The key idea is,
 forecast-model selection is posed as a supervised learning task. Each
 time series in the meta-data set is represented as a vector of features
-and labelled according to the ``best'' forecast-model (i.e.~lowest MASE,
-etc.). Then a meta-learner is trained to identify suitable
-forecast-model (usually a machine learning algorithm is used). With the
-era of big data, such an automated model selection process is necessary
-because the cost of invoking all possible forecas-models is prohibitive.
-However, these work suffer from the limitation of providing answers to
-the questions of: i) How features are related to the property being
-modelled?; ii) How features interact with each other to identify the
-suitable forecasting method?; and iii) Which features contribute the
-most to classification process?, that can enhance the understanding of
-relations between features and model outcomes. To the best of our
-knowledge, very limited efforts have been taken to understand how the
-models are making its decisions and what is really happening inside
-these complex model structures. Understanding the role of features is
-worthwhile even if producing an accurate predictions is the only
-objective of the modelling. This is because the less transparency of the
-model may be distrusted regardless of their predictive performance.
+and labelled according to the ``best'' forecast-model (i.e.~for example
+model with lowest MASE, etc.). Then a meta-learner is trained to
+identify a suitable forecast-model (usually a machine learning algorithm
+is used). With the era of big data, such an automated model selection
+process is necessary because the cost of invoking all possible
+forecast-models is prohibitive. However, these work suffer from the
+limitation of providing answers to the questions of: i) How features are
+related to the property being modelled?; ii) How features interact with
+each other to identify a suitable forecasting method?; and iii) Which
+features contribute most to the classification process?, that can
+enhance the understanding of relations between features and model
+outcomes. To the best of our knowledge, very limited effort has been
+taken to understand how the models are making its decisions and what is
+really happening inside these complex model structures. Understanding
+the role of features is worthwhile even if producing an accurate
+predictions is the only objective of the modelling. This is because the
+less transparency of the model may be distrusted regardless of their
+predictive performance.
 
 On the other hand, aside from the goal of developing automated
 forecast-model selection framework few researchers have made an attempt
@@ -394,8 +408,8 @@ However, these studies are limited by the scale of problem instances
 used, diversity of forecasting-methods used, limited number of features
 considered, and modelling approached used to identify the relationship
 between features and forecast model performance. Most of these studies
-are typically restricted to simple statistical techniques such as simple
-linear models, decision trees, cluster analysis, etc.
+are typically restricted to statistical techniques such as simple linear
+models, decision trees, cluster analysis, etc.
 
 To fill this gap, this paper makes a first step towards providing a
 comprehensive explanation of the relationship between time series
@@ -405,8 +419,10 @@ previous work \textcite{fforms}, in which we introduced the FFORMS
 (Feature-based FORecast Model Selection) framework. The random forest
 algorithm is used to model the relationship between features and
 ``best'' performing forecast-model. A large collection of time series is
-used to train the model. One noticeable significance of our approach is
-this can be parallized to for any given computing budget and time.
+used to train the model. One noticeable significance of our FFORMS
+approach is this can be parallized for any given computing budget and
+time.
+
 Although the prediction accuracy of random forest algorithm is high, it
 is not easy to interpret what is happening inside the forest because of
 the two-step randomization. In this work we aim at providing a deeper
@@ -460,7 +476,7 @@ In this article, we make the following contributions:
 \end{enumerate}
 
 The remainder of the paper is structured as follows. In \autoref{fforms}
-we describe the application of FFORMS framework to M4competition data.
+we describe the application of FFORMS framework to M4-competition data.
 \autoref{machinelearning} gives background on machine learning
 interpretability techniques that are used to identify role of features
 in forecast model selection. In \autoref{results} we discuss the
@@ -522,19 +538,19 @@ competition database from the corresponding algorithm and then simulate
 multiple time series from the selected models. Before simulating time
 series from daily and hourly series we convert the time series into
 multiple seasonal time series (msts) objects. For daily time series with
-length less 366 the frequency is set to 7 and if the time series is long
-enough to take more than a year (length \textgreater{} 366), the series
-is converted to a multiple seasonal time series objects with frequencies
-7 and 365.25. For hourly series, if the series length is shorter than
-168, frequency is set to 24, if the length of the series is greater than
-168 and less than or equals to 8766 only daily and weekly seasonality
-are allowed setting the frequencies to 24 and 168. In this experiment
-the length of the simulated time series is set to be equal to: length of
-the training period specified in the M4 competition + length of the
-forecast horizon specified in the competition. For example, the series
-with id ``Y13190'' contains a training period of length 835. The length
-of the simulated series generated based on this series is equals to 841
-(835+6).
+length less than 366, the frequency is set to 7 and if the time series
+is long enough to take more than a year (length \textgreater{} 366), the
+series is converted to a multiple seasonal time series objects with
+frequencies 7 and 365.25. For hourly series, if the series length is
+shorter than 168, frequency is set to 24, if the length of the series is
+greater than 168 and less than or equals to 8766 only daily and weekly
+seasonality are allowed setting the frequencies to 24 and 168. In this
+experiment the length of the simulated time series is set to be equal
+to: length of the training period specified in the M4 competition +
+length of the forecast horizon specified in the competition. For
+example, the series with id ``Y13190'' contains a training period of
+length 835. The length of the simulated series generated based on this
+series is equals to 841 (835+6).
 
 \begin{table}[!h]
 \centering
@@ -671,9 +687,9 @@ classifier}\label{train-a-random-forest-classifier}
 A random forest algorithm is used to train the meta-learner. We build
 separate random forest classifiers for yearly, quarterly, monthly,
 weekly, daily and hourly time series. The wrapper function called
-\texttt{build\_rf} in the \texttt{seer} package enables the training of
-a random forest and returns class labels(``best'' forecast-model) for
-each time series.
+\texttt{build\_rf} in the \texttt{seer} package (available at:
+\url{https://github.com/thiyangt/seer}) enables the training of a random
+forest.
 
 \subsection{FFORMS framework: online
 phase}\label{fforms-framework-online-phase}
@@ -683,18 +699,17 @@ and 95\% prediction intervals for the M4 competition data. First, the
 corresponding features are calculated based on the full length of the
 training period provided by the M4 competition. Second, point forecasts
 and 95\% prediction intervals are calculated based on the predicted
-class labels, in this case forecast-models. Finally, all negative values
-of forecasts are set to zero.
+class labels. Finally, all negative values of forecasts are set to zero.
 
 \section{Peeking inside FFORMS}\label{machinelearning}
 
 The main objective of this paper is to explore the nature of the
 relationship between features and forecast-model selection learned by
-the FFOMS framework. More specifically, to identify which of the
+the FFORMS framework. More specifically, to identify which of the
 features are important for model predictions and how different features
 and their interactions led to the different choices. We use both
 model-diagnostic approaches and machine learning interpretability
-approaches.
+approaches to evaluate our framework.
 
 \subsection{Model-diagnostics}\label{model-diagnostics}
 
@@ -713,7 +728,7 @@ of training data is not used in the tree construction
 (\textcite{breiman2001random}; \textcite{chen2004using}). In general,
 each bagged tree does not make use of around one third of observations
 to construct the decision tree. These observations are referred to as
-the out-of-bag(OOB) observations. Each tree is grown based on different
+the out-of-bag (OOB) observations. Each tree is grown based on different
 bootstrap samples hence, each tree has different set of OOB
 observations. These OOB samples can be used to calculate internal
 estimation of the test set error.
@@ -746,7 +761,7 @@ forest algorithm.
 Interpretability}\label{machine-learning-interpretability}
 
 In recent years, there have been a growing interest for interpretability
-of machine learning algorithms with European General Data Protection
+of machine learning algorithms with the European General Data Protection
 Regulation (GDPR) stipulates the explainability of all automatically
 made decision concerning individuals. We explore the role of features in
 two different perspectives: i) global explanation of feature
@@ -759,7 +774,7 @@ below.
 \subsection{General Notation}\label{general-notation}
 
 Let \(\mathcal{P}=\{(\mathbf{x^{(i)}}, y^{(i)})\}_{i=1}^{N}\) be the
-historical data set we use to train the classifier. Consider a
+historical data set we use to train a classifier. Consider a
 p-dimensional feature vector \(X=(X_1, X_2, ..., X_p)\) and a dependent
 variable, the best forecasting method for each series \(Y\). Let
 \(\mathcal{G}\) be the unknown relationship between \(X\) and \(Y\).
@@ -916,7 +931,7 @@ computed based on the subset of randomly selected training examples.
 \subsection{Local Interpretable Model-agnostic Explanations
 (LIME)}\label{local-interpretable-model-agnostic-explanations-lime}
 
-Global interpretations help us to understand entire modeled
+Global interpretations help us to understand the entire modeled
 relationship. Local interpretations help us to understand the
 predictions of the model for a single instance or a group of similar
 instances. In other words this allows users to zoom into a particular
@@ -987,40 +1002,35 @@ classification of the model fitted.}
 each observation (in our case each time series) was assigned to each
 class based on OOB sample. Each row represent the \textbf{predicted
 class label} and colours of boxplots corresponds to \textbf{class label
-of best forecast-model (true class label)}. The proportion 1 indicates,
-that the time series was always predicted to the corresponding class and
-0 being never. This is an alternative way of visualizing the vote-matrix
-information in the random forest model. The other way of representing
-vote matrix involves ternary plot (\textcite{sutherland2000orca}) and
-jittered side-by-side dotplot
+of the best forecast-model (true class label)}. The proportion 1
+indicates, that the time series was always predicted to the
+corresponding class and 0 being never. This is an alternative way of
+visualizing the vote-matrix information in the random forest model. The
+other way of representing vote matrix involves ternary plot
+(\textcite{sutherland2000orca}) and jittered side-by-side dotplot
 \autocites{ehrlinger2015ggrandomforests}{da2017interactive}. To overcome
 the problem of overlapping data points due to the scale of the training
-data set, similarity of classes and relatively large number of class
-labels, boxplot diagrams are used. This \autoref{fig:yearlyoob} helps to
-evaluate the model performance in the data space
-(model-in-the-data-space) (\textcite{da2017interactive}). On each row of
-\autoref{fig:yearlyoob} the distribution of proportions corresponds to
-the time series in which the predicted class label and true class label
-are the same dominates the top indicating a fairly good classification
-of the model. In addition to that, in each row the distributions
-corresponds to the classes similar to the properties of the predicted
-class label also dominate the others. For example, within ETS-trend
-predicted class, the distributions correspond to the true class labels,
-ETS-damped trend, ARIMA, were also assigned with high probability and
-less values were assigned to ARMA/AR/MA, White noise process and ETS
-(ANN)/ ETS(MNN). This confirms that our FFORMS framework successfully
-learnt the similarities and dissimilarities between the classes itself.
-On average, random walk with drift have a high chance of getting
-selected with yearly time series. The results of M3-competition also
-concluded random walk with drift perform well for yearly time series.
-One reason for this is as shown in \textcite{kang2018efficient} on
-average yearly series of M1, M3 and M4 are generally trended.
+data set, high similarity between classes and relatively large number of
+class labels, boxplot diagrams are used. This \autoref{fig:yearlyoob}
+helps to evaluate the model performance in the data space
+(model-in-the-data-space) (\textcite{da2017interactive}). According to
+\autoref{fig:yearlyoob} FFORMS framework successfully learnt the
+similarities and dissimilarities between the classes itself. For
+example, within ETS-trend predicted class, the distributions correspond
+to the true class labels, ETS-damped trend, ARIMA, were also assigned
+with high probability and less values were assigned to ARMA/AR/MA, White
+noise process and ETS (ANN)/ ETS(MNN). On average, random walk with
+drift have a high chance of getting selected with yearly time series.
+The results of M4-competition also shows random walk with drift perform
+well for yearly time series (average MASE across all series is 3.06).
+The graphical representations of \textcite{kang2018efficient} show
+feature distribution of M4-competition data are generally trended.
 
 \autoref{fig:viyearly} shows the contribution of features to the
 predictive mechanism of the FFORMS framework with respect to variable
 importance scores. Permutation-based variable importance and Gini
 feature importance measure are used to evaluate the overall feature
-importance. Moreover, most important features for each class is
+importance. Furthermore, most important features for each class is
 identified based on three measures: i) permutation-based variable
 importance, ii) partial dependence functions based variable importance
 and iii) ICE-curves based variable importance measure. The one that
@@ -1059,7 +1069,7 @@ many classes.
 \autoref{fig:pdpyearly} shows the partial dependency curves, and
 associated confidence intervals of the top-three features that get
 selected most in each class. The three features shows a non-linear
-relationship with predicted outcome within each class. Probability of
+relationship with predicted class probabilities. Probability of
 selecting ETS-trend, ARIMA, ETS-without seasonal and trend component and
 neural network models increases steadily as ur\_pp increases. As
 expected probability of selecting stationary models decreases as the
@@ -1075,12 +1085,12 @@ very clear highly trended series are more likely to select ETS-trend,
 ETS-dampedtrend and ARIMA models which lessen the chance of neural
 network models for them. The wide confidence bands around the partial
 dependency functions of linearity indicated the higher variability of
-ICE curves. Narrow confidence band corresponds to the random walk with
-drift indicate all individual ICE curves rise sharply around the value
-linearity = 0 and remained stable beyond value linearity=5. Random walk
-class depicted the mirror image of random walk with drift class. For
-ARMA/AR/MA class all the ICE curves increase sharply around 0 and
-decline steadily after that. Similar relationship appeared in white
+ICE curves. Narrow confidence band corresponds to linearity of random
+walk with drift indicate all individual ICE curves rise sharply around
+the value linearity = 0 and remained stable beyond value linearity=5.
+Random walk class depicted the mirror image of random walk with drift
+class. For ARMA/AR/MA class all the ICE curves increase sharply around 0
+and decline steadily after that. Similar relationship appeared in white
 noise class with wide confidence bands whereas ARIMA and neural network
 show an opposite relationship.
 
@@ -1101,9 +1111,8 @@ interacting. However, the first correlation coefficient of the
 difference series do not interact with other features heavily in the
 case of ARIMA class. Further, almost all pair of features appear to be
 interacting within neural network category. The features stability and
-lumpiness show interactivity within each class. \autoref{fig:ytwopdp}
-communicate more information about the nature of two-way feature
-interaction effect of stability and lumpiness.
+lumpiness show the most commonly appeared interactivity within each
+class.
 
 \begin{figure}
 \centering
@@ -1221,27 +1230,24 @@ framework trained on monthly data indicates probability of selecting
 random walk models increases as trend increases. This could be due to
 the interaction effect of trend with other features. As shown in
 \autoref{fig:friedmanQ} and \autoref{fig:friedmanM} trend shows a high
-interactivity with other features within random walk class. The
-characterization of the relationship with linearity differ between
-quarterly and monthly data for snaive, random walk,
-ETS-dampedtrendseasonal, SARIMA, stlar, tbats, white noise and neural
-network class. \autoref{fig:friedmanQ} and \autoref{fig:friedmanM} show
-the heat maps of relative strength of all possible pairwise interactions
-calculated based on Friedman's H-statistic for quarterly and monthly
-data respectively. Within all classes seasonality show less
-interactivity with other features, whereas lumpiness show high
-interactivity with other features. In addition to that, for quarterly
-diff1y\_pacf5 shows a very high interactivity with other features and
-for monthly data within many classes linearity, spikiness, y\_pacf5, and
-ACF/PACF-based features related to seasonal lags and beta show an
-interactivity with all features. For quarterly data y\_acf1 and y\_acf5
-show higher interactivity within random walk with drift, ETS-seasonal
-and SARIMA while for monthly all classes show a high interactivity
-between y\_acf1 and y\_acf5. Further within each class, a subset of
-ACF/PACF-based features shows some interactivity. In general
-interactivity between features related to correlation structure of a
-time series and overall shape (spikiness, linearity, curvature, etc)
-lead to the choice of forecast-model selection.
+interactivity with other features within random walk class.
+\autoref{fig:friedmanQ} and \autoref{fig:friedmanM} show the heat maps
+of relative strength of all possible pairwise interactions calculated
+based on Friedman's H-statistic for quarterly and monthly data
+respectively. Within all classes seasonality show less interactivity
+with other features, whereas lumpiness show high interactivity with
+other features. In addition to that, for quarterly diff1y\_pacf5 shows a
+very high interactivity with other features and for monthly data within
+many classes linearity, spikiness, y\_pacf5, and ACF/PACF-based features
+related to seasonal lags and beta show an interactivity with all
+features. For quarterly data y\_acf1 and y\_acf5 show higher
+interactivity within random walk with drift, ETS-seasonal and SARIMA
+while for monthly all classes show a high interactivity between y\_acf1
+and y\_acf5. Further within each class, a subset of ACF/PACF-based
+features shows some interactivity. In general interactivity between
+features related to correlation structure of a time series and overall
+shape (spikiness, linearity, curvature, etc) lead to the choice of
+forecast-model selection.
 
 \begin{figure}
 \centering
@@ -1368,15 +1374,7 @@ quarterly and monthly data. The length of series has been selected among
 top 5 by mstlets, tbats, theta and neural network models. According to
 the results of \autoref{fig:weeklypdp} for mstlets models probability of
 being selected increases as the linearity increases while the opposite
-relationship was observed at SARIMA models. It is surprising to observe
-that for mstlets models probability of being selected decreases as
-seasonality increases. This could be due to the interaction effect of
-seasonality with others. According to \autoref{fig:friedmanHW}, for
-weekly data, the number of pairs showing a particular degree of
-interaction strength is relatively low compared to other yearly,
-quarterly and monthly data. In tbats class, trend, linearity, spikiness,
-seasonality and first autocorrelation coefficient of the seasonally
-differenced series interact heavily with other features.
+relationship was observed at SARIMA models.
 
 \begin{figure}[h]
 
@@ -1396,16 +1394,6 @@ differenced series interact heavily with other features.
 features from variable importance measures (weekly series). The shading
 shows the 95\% confidence intervals. Y-axis denotes the probability of
 belong to corresponding class.}
-\end{figure}
-
-\newpage
-
-\begin{figure}
-\centering
-\includegraphics{figures/friedmanHW-1.pdf}
-\caption{\label{fig:friedmanHW}Heat maps of relative strength of all
-possible pairwise interactions calclated based on Friedman's H-statistic
-for weekly data.}
 \end{figure}
 
 \newpage
@@ -1516,14 +1504,30 @@ belong to corresponding class.(seasonal\_strength1 denotes daily
 seasonality and seasonal\_strength2 for weekly seasonality)}
 \end{figure}
 
-\newpage
+For daily series within each category, sediff\_acf5 and weekly
+seasonality (seasonal\_strength2) show high interactivity within each
+class (Friedman's H-statistic close to 0.9), while for hourly series
+sediff\_seacf1 and linearity show high interactivity within each class.
+The associated figures are shown in \autoref{fig:dtwopdp} and
+\autoref{fig:htwopdp}. Each plot shows a unique pattern of interactivity
+which are useful in separating one from another.
 
 \begin{figure}
 \centering
-\includegraphics{figures/friedmandailyhourly-1.pdf}
-\caption{\label{fig:friedmandailyhourly}Heat maps of relative strength of
-all possible pairwise interactions calclated based on Friedman's
-H-statistic for daily and hourly data.}
+\includegraphics{figures/dtwopdp-1.png}
+\caption{\label{fig:dtwopdp}Partial dependence plot of model selection
+probability and the interaction of sediff\_acf5 and seasonal\_strength2
+for daily data. Within each class unique pattern of interaction pattern
+exist between sediff\_acf5 and seasonal\_strength2.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{figures/htwopdp-1.png}
+\caption{\label{fig:htwopdp}Partial dependence plot of model selection
+probability and the interaction of sediff\_seacf1 and linearity for
+hourly data. Random walk and random walk with drift class show opposite
+pattern of interactivity between sediff\_seacf1 and linearity.}
 \end{figure}
 
 \newpage
@@ -1542,28 +1546,25 @@ of the series causes the FFORMS framework to classify the first series
 with ARMA/AR/MA. On the other hand, LIME indicated the low value of
 first autocorrelation coefficients of the original series and the
 residual series of linear regression model contradicts to this decision.
-It is interesting to note that even though 2, 4 and 5 series located
-close proximity to each other in the PCA space
-(\autoref{fig:yearlylime2}) their varying degree of trend, spikiness,
-first autocorrelation coefficient of the difference series, entropy, led
-them to classify as ETS-trend, neural-network and random walk
-respectively. From \autoref{fig:quarterlylime2} we can see how the
-different variation in strength of seasonality influence the FFORMS
-framework to select different types of forecast-models. For example,
-SARIMA models was selected when the seasonality vary between 0.579 and
-0.787 (case 1), ETS-seasonal models is selected when the strength of
-seasonality is greater than 0.787 (case 4), random walk with drift when
-the seasonality with lower than 0.579 (case 2) and for the highly
-trended and seasonal series (strength of seasonality \textgreater{}
-0.895) ETS model with a trend and seasonal component is selected (case
-3). According to \autoref{fig:hourlylime2} FFORMS framework selected
-\texttt{mstlarima} for the fourth series due to strong multiple
-seasonality corresponds to weekly (measured my seasonal\_strength2) and
-daily (measured my seasonal\_strength1). From the global explanations we
-observed that strength of daily seasonality has been assigned a very
-high importance. In addition to that, according to the LIME explanation
-strong weekly seasonality present in the data supports the decision of
-selecting mstlarima models. For the second hourly series the strength of
+Eventhough case 1 and case 3 share similar characteristics, low values
+of autocorrelation coefficients in differenced series corresponds to
+case 3 From \autoref{fig:quarterlylime2} we can see how the different
+variation in strength of seasonality influence the FFORMS framework to
+select different types of forecast-models. For example, SARIMA models
+was selected when the seasonality vary between 0.579 and 0.787 (case 1),
+ETS-seasonal models is selected when the strength of seasonality is
+greater than 0.787 (case 4), random walk with drift when the seasonality
+with lower than 0.579 (case 2) and for the highly trended and seasonal
+series (strength of seasonality \textgreater{} 0.895) ETS model with a
+trend and seasonal component is selected (case 3). According to
+\autoref{fig:hourlylime2} FFORMS framework selected \texttt{mstlarima}
+for the fourth series due to strong multiple seasonality corresponds to
+weekly (measured my seasonal\_strength2) and daily (measured my
+seasonal\_strength1). From the global explanations we observed that
+strength of daily seasonality has been assigned a very high importance.
+In addition to that, according to the LIME explanation strong weekly
+seasonality present in the data supports the decision of selecting
+mstlarima models. For the second hourly series the strength of
 seasonality corresponds to both weekly and daily supports the decision
 of selecting tbats models. This is true as the TBATS models are capable
 of handling series with multiple complex seasonalities. Further, lime
@@ -1642,17 +1643,12 @@ Forecast model selection is both time and computer cost intensive
 process. Consequently, the application of machine-learning approaches to
 predict suitable forecasting model from large number of potentially
 relevant time series features is a topic growing popularity in the field
-of time series forecasting. Recently we introduced a computationally
-efficient framework for individual forecast models selection based on
-the features computed from the time series. We called this framework
-FFORMS: Feature-based FORecast Model-Selection. The M4-competition
-submission based on FFORMS framework was placed eighth under prediction
-interval category. In this paper we used model-agnostic machine learning
-interpretability tools to explore what was happening under the hood of
-FFORMS framework and to gain an understanding of what features led to
-the choices of FFORMS framework. On the other hand explaining
-predictions is an important aspect in getting humans trust and use the
-proposed framework effectively, if the explanations are faithful and
+of time series forecasting. In this paper we used model-agnostic machine
+learning interpretability tools to explore what was happening under the
+hood of FFORMS framework and to gain an understanding of what features
+led to the choices of FFORMS framework. Further, explaining predictions
+is an important aspect in getting humans trust and use the proposed
+framework effectively, if the explanations are faithful and
 intelligible. Humans usually have prior knowledge about the application
 domain, which they can use to accept (trust) or reject prediction if
 they understand the reasons behind it.
@@ -1695,13 +1691,9 @@ hourly) as well as forecast-models (random walk, ETS models, etc.).
 However, it is interesting to note that in each frequency category all
 or subset of ACF/PACF-based features interact each other. This confirm
 that information regarding correlation structure of the time series is
-an essential information for the choice of model selection.
-\autoref{fig:ytwopdp} - \autoref{fig:htwopdp} show partial dependency
-plot for most frequently appeared interacting feature combination in
-each of the frequency categories. According to figures
-\autoref{fig:ytwopdp} - \autoref{fig:htwopdp} the unique pattern of
-interactivity exist within each class are useful for separating one from
-another.
+an essential information for the choice of model selection. A unique
+pattern of interactivity exist within each class are useful for
+separating one from another.
 
 Exploration of conditions learnt by the FFORMS framework also support
 practitioners to make a good educated guess on suitable forecast-model
@@ -1723,56 +1715,6 @@ data. As seen in Figure 1 ETS-dampedtrend and ARMA/AR/MA has low
 probability of selecting. Hence less diversity is observed in the
 corresponding two-way interaction plots. ETS-notrendnoseasonal, ARIMA
 and theta classes show similar pattern of interactivity.}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics{figures/qtwopdp-1.png}
-\caption{\label{fig:qtwopdp}Partial dependence plot of model selection
-probability and the interaction of stability and diff1y\_acf5 for
-quarterly data. The classes snaive, random walk and random walk with
-drift show similar pattern of interactivity while the white noise class
-hold the opposite pattern of interactivity. ETS-dampedtrend and
-ARMA/AR/MA classes low probability of selecting for forecasting
-quarterly time series hennce low variation in the interaction pattern
-can be observed.}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics{figures/mtwopdp-1.png}
-\caption{\label{fig:mtwopdp}Partial dependence plot of model selection
-probability and the interaction of sediff\_seacf1 and sediff\_acf5 for
-monthly data. Interaction between sediff\_seacf1 and sediff\_acf5 do not
-influence the choice of ETS-dampedtrend and ARMA/AR/MA.}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics{figures/wtwopdp-1.png}
-\caption{\label{fig:wtwopdp}Partial dependence plot of model selection
-probability and the interaction of trend and entropy for weekly data.
-Unique pattern of interactivity exist within each class. ARIMA and white
-noise class show opposite direction of interactivity between trend and
-entropy.}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics{figures/dtwopdp-1.png}
-\caption{\label{fig:dtwopdp}Partial dependence plot of model selection
-probability and the interaction of sediff\_acf5 and seasonal\_strength2
-for daily data. Within each class unique pattern of interaction pattern
-exist between sediff\_acf5 and seasonal\_strength2.}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics{figures/htwopdp-1.png}
-\caption{\label{fig:htwopdp}Partial dependence plot of model selection
-probability and the interaction of sediff\_seacf1 and linearity for
-hourly data. Random walk and random walk with drift class show opposite
-pattern of interactivity between sediff\_seacf1 and linearity.}
 \end{figure}
 
 \newpage
