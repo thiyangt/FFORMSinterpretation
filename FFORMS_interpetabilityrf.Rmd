@@ -485,7 +485,7 @@ seasonality.
 ```
 
 
-```{r vihourly, fig.height=11, fig.width=23, fig.cap="Feature importance plot hourly series. Permutation-based VI measure and mean decrease in Gini coefficients are used to evaluate overall feature importance. Class-specific featue importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h"}
+```{r vihourly, fig.height=11, fig.width=23, fig.cap="Feature importance plot hourly series. Permutation-based VI measure and mean decrease in Gini coefficients are used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h"}
 ```
 
 
@@ -496,7 +496,7 @@ seasonality.
 
 \newpage
 
-```{r hourlypdp, fig.height=28, fig.width=20, fig.cap="Partial dependence plots for the top ranked features from variable importance measures(hourly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class.(seasonal_strength1 denotes daily seasonality and seasonal_strength2 for weekly seasonality)", fig.pos="h"}
+```{r hourlypdp, fig.height=28, fig.width=20, fig.cap="Partial dependence plots for the top ranked features from variable importance measures (hourly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class.(seasonal_strength1 denotes daily seasonality and seasonal_strength2 for weekly seasonality)", fig.pos="h"}
 ```
 
 For daily series within each category, sediff_acf5 and weekly seasonality (seasonal_strength2) show high interactivity within each class (Friedman's H-statistic close to 0.9), while for hourly series sediff_seacf1 and linearity show high interactivity within each class. The associated figures are shown in \autoref{fig:dtwopdp} and \autoref{fig:htwopdp}. Each plot shows a unique pattern of interactivity which are useful in separating one from another. 
@@ -512,18 +512,18 @@ For daily series within each category, sediff_acf5 and weekly seasonality (seaso
 
 \clearpage
 
-```{r quarterlypca, fig.height=15, fig.width=20, fig.cap="Distribution of prediction space across instance space for quarterly time series. PC1 and PC2 are the first two principal components. All classes tightly clustered into a paticular region of the PCA space", fig.pos="h", cache=TRUE}
+```{r quarterlypca, fig.height=15, fig.width=20, fig.cap="Distribution of prediction space across instance space for quarterly time series. PC1 and PC2 are the first two principal components. All classes tightly clustered into a particular region of the PCA space", fig.pos="h", cache=TRUE}
 ```
 
 ## Local Interpretable Model-agnostic Explanations
 
-\autoref{fig:quarterlypca} shows the distribution of prediction space across instance space for quarterly time series data. \autoref{fig:quarterlypca} is a global representation of model-in-data space. All classes clustered into particular ra egion of the instance space. However, we can not observe a clear separation of boundaries. This is because it is hard to define a "best" forecast-model for a given series, most time series could inherit a pattern of mutliple types of forecast-models. We now illustrate how LIME approach can be used to zoom into local regions of the data to identify which features contribute most to classify a specific instance. For the illustration we select for different types of time series classified with high probability. \autoref{fig:quarterlylime2} shows the feature contribution for the instances highlighted on the PCA-space of quarterly series. We can see how the different strength of seasonality influence the FFORMS framework to select different types of seasonal  forecast-models. For example, SARIMA models was selected when the seasonality vary between 0.579 and 0.787 (case 1), ETS-seasonal models is selected when the strength of seasonality is greater than 0.787 (case 4), random walk with drift when the seasonality with lower than 0.579 (case 2) and for the highly trended and seasonal series (strength of seasonality > 0.895) ETS model with a trend and seasonal component is selected (case 3). Further, high value of diff1y_acf5 in supports the selection of SARIMA for case 1 while, moderate value of diff1y_acf5 supports the selection of ETS-seasonal for the case 4. Similarly, we can explore the reasons for other instances in all frequency categories. From LIME approach we can gain insight into the local neighbourhood characteristics which lead to the choice of a particular neighbourhood over alternative destinations.
+\autoref{fig:quarterlypca} shows the distribution of prediction space across instance space for quarterly time series data. \autoref{fig:quarterlypca} is a global representation of model-in-data space. All classes clustered into particular region of the instance space. However, we can not observe a clear separation of boundaries. This is because it is hard to define a "best" forecast-model for a given series, most time series could inherit a pattern of multiple types of forecast-models. We now illustrate how LIME approach can be used to zoom into local regions of the data to identify which features contribute most to classify a specific instance. For the illustration we select for different types of time series classified with high probability. \autoref{fig:quarterlylime2} shows the feature contribution for the instances highlighted on the PCA-space of quarterly series. We can see how the different strength of seasonality influence the FFORMS framework to select different types of seasonal  forecast-models. For example, SARIMA models was selected when the seasonality vary between 0.579 and 0.787 (case 1), ETS-seasonal models is selected when the strength of seasonality is greater than 0.787 (case 4), random walk with drift when the seasonality with lower than 0.579 (case 2) and for the highly trended and seasonal series (strength of seasonality > 0.895) ETS model with a trend and seasonal component is selected (case 3). Further, high value of diff1y_acf5 in supports the selection of SARIMA for case 1 while, moderate value of diff1y_acf5 supports the selection of ETS-seasonal for the case 4. Similarly, we can explore the reasons for other instances in all frequency categories. From LIME approach we can gain insight into the local neighbourhood characteristics which lead to the choice of a particular neighbourhood over alternative destinations.
 
 ```{r quarterlylime, fig.height=8, fig.width=20, fig.cap="", fig.pos="h", fig.align="center",  dev='png'}
 ```
 
 
-```{r quarterlylime2, fig.height=8, fig.width=15, fig.cap="Panel A: Distribution of quarterly time series in the PCA space. Panel B: Time series corresponds to the highlighted points in the PCA space. Panel C:Local interpretable Model-agnostic explanations for four selected quaterly time series. Features denoted with green colour are supporting features for an outcome label and length of the bar is proportional to the weight of a feature.", fig.pos="h", fig.align="center", cache=FALSE, dev='pdf'}
+```{r quarterlylime2, fig.height=8, fig.width=15, fig.cap="Panel A: Distribution of quarterly time series in the PCA space. Panel B: Time series corresponds to the highlighted points in the PCA space. Panel C:Local interpretable Model-agnostic explanations for four selected quarterly time series. Features denoted with green colour are supporting features for an outcome label and length of the bar is proportional to the weight of a feature.", fig.pos="h", fig.align="center", cache=FALSE, dev='pdf'}
 ```
 
 

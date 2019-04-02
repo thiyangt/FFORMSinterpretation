@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2019.3.20)  2 APR 2019 15:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2019.3.20)  2 APR 2019 15:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2112,11 +2112,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1651.
 ### semi simple group (level 1) entered at line 188 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 42973 strings out of 494562
- 794983 string characters out of 6175863
- 1233591 words of memory out of 5000000
+ 42976 strings out of 494562
+ 795010 string characters out of 6175863
+ 1233592 words of memory out of 5000000
  45605 multiletter control sequences out of 15000+600000
- 629765 words of font info for 335 fonts, out of 8000000 for 9000
+ 629920 words of font info for 337 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  55i,15n,92p,1149b,18409s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc
@@ -2135,7 +2135,7 @@ Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb
 ><c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/palatino
 /uplr8a.pfb><c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/u
 rw/palatino/uplri8a.pfb>
-Output written on FFORMS_interpetabilityrf.pdf (43 pages, 1353258 bytes).
+Output written on FFORMS_interpetabilityrf.pdf (43 pages, 1353247 bytes).
 PDF statistics:
  681 PDF objects out of 1000 (max. 8388607)
  551 compressed objects within 6 object streams
