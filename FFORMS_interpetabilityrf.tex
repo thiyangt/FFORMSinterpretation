@@ -322,24 +322,20 @@ models, LIME},
 \begin{document}
 \maketitle
 \begin{abstract}
-Features of time series are useful in identifying suitable forecast
-models. Talagala, Hyndman \& Athanasopoulos (2018) proposed a
-classification framework, called FFORMS (Feature-based FORecast Model
+Features of time series are useful in identifying suitable models for
+forecasting. Talagala, Hyndman \& Athanasopoulos (2018) proposed a
+classification framework, labelled FFORMS (Feature-based FORecast Model
 Selection), which selects forecast models based on features calculated
 from the time series. The FFORMS framework builds a mapping that relates
 the features of a time series to the ``best'' forecast model using the
 random forest algorithm. In this paper we explore what is happening
-under the hood of the FFORMS framework and thereby gain an understanding
-of what features lead to the different choices of forecast models and
-how different features influence the predicted outcome. This is
-accomplished using model-agnostic machine learning interpretability
-approaches. Partial-dependency plots are used to visualize both main and
-interaction effects of features. The results of this study provide a
-valuable insight into how different features and their interactions
-affect the choice of forecast model selection. This gives a more refined
-picture of the relationship between features and the choice of forecast
-model which is particularly valuable for ongoing research in the field
-of feature-based time series analysis.
+under the hood of the FFORMS framework. This is accomplished using
+model-agnostic machine learning interpretability approaches. The
+analysis provides a valuable insight into how different features and
+their interactions affect the choice of forecast model selection. This
+gives a more refined picture of the relationship between features and
+the choice of forecast model which is particularly valuable for ongoing
+research in the field of feature-based time series analysis.
 \end{abstract}
 \begin{keywords}
 forecasting, time series, machine learning interpretability, black-box
@@ -348,44 +344,42 @@ models, LIME
 
 \section{Introduction}\label{intro}
 
-The time series forecasting field has been evolving for a long time and
-has introduced a wide variety of forecasting methods. However, for a
-given time series the selection of an appropriate forecast-model among
-many possibilities is not straight forward. This selection is one of the
-most difficult tasks as each method perform best for some but not all
-tasks. The features of time series are considered to be an important
-factor in identifying suitable forecasting models
+The filed of time series forecasting field has been evolving for a few
+decades now and has introduced a wide variety of models for forecasting.
+However, for a given time series the selection of an appropriate
+forecast-model among many possibilities is not straight forward. This
+selection is one of the most difficult tasks as each method perform best
+for some but not all tasks. The features of a time series are considered
+to be an important factor in identifying suitable forecasting models
 \autocites{collopy1992rule}{meade2000evidence}{makridakis2000m3}{wang2009rule}.
-However, a comprehensive description of relationship between the
-features and the performance of algorithms is rarely discussed in the
-field of forecasting.
+However, a comprehensive description of the relationship between the
+features and the performance of algorithms is rarely discussed.
 
 There have been several recent studies on the use of meta-learning
 approaches to automate the forecast-model selection based on the
 features computed from the time series
 \autocites{shah1997model}{prudencio2004meta}{lemke2010meta}{kuck2016meta}.
 Meta-learning approach provides a systematic guidance on model selection
-based on knowledge acquire from historical data set. The key idea is,
+based on knowledge acquired from historical data sets. The key idea is,
 forecast-model selection is posed as a supervised learning task. Each
 time series in the meta-data set is represented as a vector of features
 and labelled according to the ``best'' forecast-model (i.e.~for example
-model with lowest MASE, etc.). Then a meta-learner is trained to
-identify a suitable forecast-model (usually a machine learning algorithm
-is used). With the era of big data, such an automated model selection
-process is necessary because the cost of invoking all possible
-forecast-models is prohibitive. However, these work suffer from the
-limitation of providing answers to the questions of: i) How features are
-related to the property being modelled?; ii) How features interact with
-each other to identify a suitable forecasting method?; and iii) Which
-features contribute most to the classification process?, that can
-enhance the understanding of relations between features and model
-outcomes. To the best of our knowledge, very limited effort has been
-taken to understand how the models are making its decisions and what is
-really happening inside these complex model structures. Understanding
-the role of features is worthwhile even if producing an accurate
-predictions is the only objective of the modelling. This is because the
-less transparency of the model may be distrusted regardless of their
-predictive performance.
+model with lowest MASE over a test set, etc.). Then a meta-learner is
+trained to identify a suitable forecast-model (usually a machine
+learning algorithm is used). In the era of big data, such an automated
+model selection process is necessary because the cost of invoking all
+possible forecast-models is prohibitive. However, existing literature
+suffers from the limitation of providing answers to questions such as:
+i) How features are related to the property being modelled?; ii) How
+features interact with each other to identify a suitable
+forecast-model?; iii) Which features contribute most to the
+classification process?, etc. Addressing such questions can enhance the
+understanding of the relations between features and model selection
+outcomes. To the best of our knowledge, a very limited effort has been
+taken to understand how the meta-learners are making its decisions and
+what is really happening inside these complex model structures.
+Providing transparency will result to building trust in the prediction
+results of the meta-learner.
 
 On the other hand, aside from the goal of developing automated
 forecast-model selection framework few researchers have made an attempt
@@ -395,9 +389,7 @@ performance of algorithms
 However, these studies are limited by the scale of problem instances
 used, diversity of forecasting-methods used, limited number of features
 considered, and modelling approached used to identify the relationship
-between features and forecast model performance. Most of these studies
-are typically restricted to statistical techniques such as simple linear
-models, decision trees, cluster analysis, etc.
+between features and forecast model performance.
 
 To fill this gap, this paper makes a first step towards providing a
 comprehensive explanation of the relationship between time series
@@ -410,12 +402,6 @@ algorithm is used to model the relationship between features and
 used to train the model. One noticeable significance of our FFORMS
 approach is this can be parallized for any given computing budget and
 time.
-
-Although the prediction accuracy of random forest algorithm is high, it
-is not easy to interpret what is happening inside the forest because of
-the two-step randomization. In this work we aim at providing a deeper
-understanding of influence of features in forecast-model selection by
-exploiting the underlying model structure of FFORMS framework.
 
 In this article, we make the following contributions:
 
@@ -454,13 +440,6 @@ In this article, we make the following contributions:
   forecast model selection and ii) Local perspective of feature
   contribution: zoom into local regions of the data to identify which
   features contribute most to classify a specific instance.
-\item
-  The results we present here is a novel application of machine learning
-  interpretability methods to visualize and explore the role of features
-  in forecast-model selection;
-\item
-  We further explore the rules learnt by displaying the ``model in the
-  data space'' and ``data in the model space''.
 \end{enumerate}
 
 The remainder of the paper is structured as follows. In \autoref{fforms}
