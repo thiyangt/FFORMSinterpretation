@@ -392,14 +392,14 @@ features considered to identify the relationship between features and
 forecast-model performance.
 
 To fill this gap, this paper makes a first step towards providing a
-comprehensive explanation of the relationship between time series
-features and forecast-model selection using machine learning
-interpretability techniques. This paper builds on the method from our
-previous work \textcite{fforms}, in which we introduced the FFORMS
-(Feature-based FORecast Model Selection) framework. The random forest
-algorithm is used to model the relationship between features and
-``best'' performing forecast-model. A large collection of time series is
-used to train the model.
+comprehensive analysis of the relationship between time series features
+and forecast-model selection using machine learning interpretability
+techniques. This paper builds on the method from our previous work
+\textcite{fforms}, in which we introduced the FFORMS (Feature-based
+FORecast Model Selection) framework. A random forest is used to model
+the relationship between features and ``best'' performing
+forecast-model. A large collection of time series is used to train the
+meta-learner.
 
 In this article, we make the following contributions:
 
@@ -409,35 +409,30 @@ In this article, we make the following contributions:
 \item
   We extend the FFORMS framework to handle weekly, daily and hourly
   series. We also extend the diversity of forecast-models used as class
-  labels. Given that, the contribution of our framework differs from the
-  previously published work related to meta-learning in three ways
-  \autocites{prudencio2004meta}{lemke2010meta}{kuck2016meta}: i)
-  extensive collection of features (35 different feature types which are
-  simple and easy to compute), ii) diversity of forecast-models used as
-  class labels, and iii) capability of handling high frequency data;
+  labels. The contribution of this paper differs from previously
+  published work related to meta-learning
+  \autocites{prudencio2004meta}{lemke2010meta}{kuck2016meta} in three
+  ways : i) a more extensive collection of features is used (35
+  different feature types are used which are simple and easy to
+  compute), ii) the diversity of forecast-models considered as class
+  labels, and iii) capability of handling high frequency data;
 \item
-  We explain the application of FFORMS framework to the M4-competition
-  data. Out of 248 registrations only 18 participants were able to
-  submit prediction intervals for the 100000 time series due to the
-  computational cost (\textcite{Makridakis2018dx}). We generated point
-  forecasts and prediction intervals for the M4-competition time series
-  data based on FFORMS framework and ranked 8th in the prediction
-  interval category (\textcite{Makridakis2018dx}). Except the top
-  ranking Hybrid method all the other top six submissions are based on
-  aggregate selection rule which is slower than FFORMS approach (because
-  forecasts from different models need to be compute). Our approach
-  achieved a high accuracy rate based on individual selection rule. This
-  shows the computational efficiency of our framework without
-  substantially degrading the performance.
+  We analyse the application of the FFORMS framework to the
+  M4-competition data. We generated point forecasts and prediction
+  intervals for the M4-competition time series data, and is shown to
+  yield accurate forecast comparable to several benchmarks and other
+  commonly used automated approaches of time series forecasting. Our
+  approach achieved a high accuracy rate based on individual
+  forecast-model selection rule.
 \item
-  The main contribution of this paper is to explore the relationship
+  The main contribution of the paper is to explore the relationship
   between features of time series and the choice of forecast-model
   selection using the FFORMS framework. We explore the role of features
   in two different perspectives: i) Global perspective of feature
-  contribution: overall role of features in the choice of different
-  forecast model selection and ii) Local perspective of feature
-  contribution: zoom into local regions of the data to identify which
-  features contribute most to classify a specific instance.
+  contribution: the overall role of features in the choice of different
+  forecast-models and ii) Local perspective of feature contribution: we
+  zoom into local regions of the data to identify which features
+  contribute most to classify a specific instance.
 \end{enumerate}
 
 The remainder of the paper is structured as follows. In \autoref{fforms}
