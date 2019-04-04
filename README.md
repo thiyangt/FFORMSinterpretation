@@ -1,1 +1,1 @@
-## What is happening behind the FFORMS framework?
+## What is happening inside the FFORMS framework?
