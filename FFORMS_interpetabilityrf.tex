@@ -1147,43 +1147,37 @@ seasonal component.
 \autoref{fig:pdpquarterly1} and \autoref{fig:pdpquarterly2} show the
 partial dependency functions of the features that get selected most
 often in the top. Additionally, PDP of N is included to observe the
-effects stated in the literature. Except for random walk, partial
-dependency curves of seasonality and trend show a similar behaviour for
-both quarterly and monthly data. Hence, for seasonality and trend, the
-partial dependency curves computed based quarterly are presented except
-for random walk. Probability of selecting a model with a parameter to
-handle the seasonal effect (snaive, all ETS models with seasonal
-component, SARIMA, tbats, theta, stlar) increases as the seasonality
-increases. Further, for classes rwd, all ETS model with trend component,
-SARIMA, ARIMA, tbats and theta, have a high probability of getting
-selected as the strength of trend increases. On the other hand, opposite
-relationships were observed for snaive and ETS-seasonal which accounted
-seasonality only. This confirms the idea that the choice of model
-selection consistent with the expected relationship. FFORMS framework
-trained on quarterly data probability of selecting random walk models
-remains stable up to 0.85 value of trend and drops sharply afterwards,
-whereas the FFORMS framework trained on monthly data indicates
-probability of selecting random walk models increases as trend
-increases. This could be due to the interaction effect of trend with
-other features. As shown in \autoref{fig:friedmanQ} and
-\autoref{fig:friedmanM} trend shows a high interactivity with other
-features within random walk class. \autoref{fig:friedmanQ} and
-\autoref{fig:friedmanM} show the heat maps of relative strength of all
-possible pairwise interactions calculated based on Friedman's
-H-statistic for quarterly and monthly data respectively. Within all
-classes seasonality show less interactivity with other features, whereas
-lumpiness show high interactivity with other features. In addition to
-that, for quarterly diff1y\_pacf5 shows a very high interactivity with
-other features and for monthly data within many classes linearity,
-spikiness, y\_pacf5, and ACF/PACF-based features related to seasonal
-lags and beta show an interactivity with all features. For quarterly
-data y\_acf1 and y\_acf5 show higher interactivity within random walk
-with drift, ETS-seasonal and SARIMA while for monthly all classes show a
-high interactivity between y\_acf1 and y\_acf5. Further within each
-class, a subset of ACF/PACF-based features shows some interactivity. In
-general interactivity between features related to correlation structure
-of a time series and overall shape (spikiness, linearity, curvature,
-etc) lead to the choice of forecast-model selection.
+effects stated in the literature \autocite{makridakis2000m3}. Except for
+random walk, partial dependency curves of seasonality and trend show a
+similar behaviour for both quarterly and monthly data. Hence, for
+seasonality and trend, the partial dependency curves computed based
+quarterly are presented except for random walk. Probability of selecting
+a model with a parameter to handle the seasonal effect (snaive, all ETS
+models with seasonal component, SARIMA, tbats, theta, stlar) increases
+as the seasonality increases. Further, for classes rwd, all ETS model
+with trend component, SARIMA, ARIMA, tbats and theta, have a high
+probability of getting selected as the strength of trend increases. On
+the other hand, opposite relationships were observed for snaive and
+ETS-seasonal which accounted seasonality only. This confirms the idea
+that the choice of model selection consistent with the expected
+relationship. FFORMS framework for quarterly series show probability of
+selecting random walk models remains stable up to 0.85 value of trend
+and drops sharply afterwards, whereas the FFORMS framework for monthly
+series show probability of selecting random walk models increases as
+trend increases. This could be due to the interaction effect of trend
+with other features.
+
+\autoref{fig:friedmanQ} and \autoref{fig:friedmanM} show the heat maps
+of relative strength of all possible pairwise interactions calculated
+based on Friedman's H-statistic for quarterly and monthly data
+respectively. Within random walk with drift class trend shows a high
+interactivity with other features. Within all classes seasonality show
+less interactivity with other features, whereas lumpiness show high
+interactivity with other features. Further within each class, a subset
+of ACF/PACF-based features shows some interactivity. In general
+interactivity between features related to correlation structure of a
+time series and overall shape (spikiness, linearity, curvature, etc)
+lead to the choice of forecast-model selection.
 
 \begin{figure}
 \centering
