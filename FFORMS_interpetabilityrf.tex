@@ -442,75 +442,74 @@ interpretability techniques that are used to identify role of features
 in forecast model selection. In \autoref{results} we discuss the
 results. \autoref{conclusions} concludes.
 
-\section{FFORMS Application to M4 competition data}\label{fforms}
+\section{FFORMS application to M4 competition data}\label{fforms}
 
 The FFORMS framework consists of two main components: i) \emph{offline
-phase}, which includes the development of a classification model and ii)
-\emph{online phase}, use the classification model developed in the
-offline phase to identify ``best'' forecast-model. We develop separate
-classifiers for yearly, monthly, quarterly, weekly, daily and hourly
-series.
+phase}, which includes the development of a meta-learner and ii)
+\emph{online phase}, using the meta-learner identify the ``best''
+forecast-model. We develop separate classifiers for yearly, monthly,
+quarterly, weekly, daily and hourly series.
 
 \subsection{FFORMS framework: offline
 phase}\label{fforms-framework-offline-phase}
 
-\subsubsection{observed sample}\label{observed-sample}
+\subsubsection{Reference set}\label{reference-set}
 
-We split the time series in the M4 competition into training set and
-test set. The time series in the training set are used as the set of
-observed time series. The time series in the test set are used to
-evaluate the classification models. Further, for yearly, quarterly and
-monthly time series in addition to the time series provided in the M4
-competition we used the time series of M1 and M3 competitions. Table
-\ref{observedsample} summarizes the number of time series in the
-observed sample and the test set in each frequency category.
+We call the total collection of time series used for training the
+meta-leaner as the ``reference set''. The reference set consist of two
+set of time series: i) observed sample and ii) simulated time series.
+
+\subsubsection{Observed sample}\label{observed-sample}
+
+We use the time series from the M1, M3 and M4 competitions as the
+observed sample. Note that from the M4 competition randomly selected
+subset of time series are used for the observed sample. The rest is used
+to evaluate the meta-learner. Table \ref{observedsample} summarizes the
+number of time series in the observed sample.
 
 \begin{table}[!h]
 \centering
 \caption{Composition of the time series in the observed sample and the test set}
 \label{observedsample}
-\begin{tabular}{l|rrr|r}
-\multirow{2}{*}{Frequency} & \multicolumn{3}{l|}{Observed Sample} &  Test set \\ 
-                  &   M1    &    M3   &    M4  &  M4 \\ \hline
-  Yearly          &   181    &   645    &   22000   & 1000 \\
-  Quarterly       &   203    &    756   &   23000   &  1000\\
-  Monthly         &   617    &    1428   &  47000    &  1000\\
-  Weekly          &   -    &   -    &   259   & 100 \\
-  Daily           &   -    &   -    &   4001   & 226 \\
-  Hourly          &   -    &    -   &  350    & 64\\ \hline
+\begin{tabular}{l|rrr}
+\multirow{2}{*}{Frequency} & \multicolumn{3}{l}{Observed Sample} \\
+                  &   M1    &    M3   &    M4  \\ \hline
+  Yearly          &   181    &   645    &   22000  \\
+  Quarterly       &   203    &    756   &   23000\\
+  Monthly         &   617    &    1428   &  47000\\
+  Weekly          &   -    &   -    &   259\\
+  Daily           &   -    &   -    &   4001\\
+  Hourly          &   -    &    -   &  350\\ \hline
 \end{tabular}
 \end{table}
 
-\subsubsection{simulated time series}\label{simulated-time-series}
+\subsubsection{Simulated time series}\label{simulated-time-series}
 
 As described in \textcite{fforms}, we augment the reference set by
 adding multiple time series simulated based on each series in the M4
-competition. We use several standard automatic forecasting algorithms to
-simulate multiple time series from each series. Table \ref{simulation}
-shows the different automatic forecasting algorithms used under each
-frequency category. The automated ETS and ARIMA are implemented using
-\texttt{ets} and \texttt{auto.arima} functions available in the forecast
-package in R \autocite{forecast}. The \texttt{stlf} function in the
-forecast package \autocite{forecast} is used to simulate multiple time
-series based on multiple seasonal decomposition approach. As shown in
-Table \ref{simulation} we fit models to each time series in the M4
-competition database from the corresponding algorithm and then simulate
-multiple time series from the selected models. Before simulating time
-series from daily and hourly series we convert the time series into
-multiple seasonal time series (msts) objects. For daily time series with
-length less than 366, the frequency is set to 7 and if the time series
-is long enough to take more than a year (length \textgreater{} 366), the
-series is converted to a multiple seasonal time series objects with
-frequencies 7 and 365.25. For hourly series, if the series length is
-shorter than 168, frequency is set to 24, if the length of the series is
-greater than 168 and less than or equals to 8766 only daily and weekly
-seasonality are allowed setting the frequencies to 24 and 168. In this
-experiment the length of the simulated time series is set to be equal
-to: length of the training period specified in the M4 competition +
-length of the forecast horizon specified in the competition. For
-example, the series with id ``Y13190'' contains a training period of
-length 835. The length of the simulated series generated based on this
-series is equals to 841 (835+6).
+competition. We use several automated algorithms to simulate multiple
+time series. Table \ref{simulation} shows the data generating algorithms
+used for each frequency. The \texttt{ets()} and \texttt{auto.arima()}
+functions available in the forecast package in R \autocite{forecast} are
+used to simulate yearly, quarterly and monthly data from exponential
+smoothing and ARIMA models. The \texttt{stlf()} function also available
+in the forecast package is used to simulate multiple time series based
+on multiple seasonal decomposition approach. Using the above functions
+we fit models to each time series in the M4 database and then simulate
+multiple time series from the selected models. In this experiment the
+length of the simulated time series is set to be equal to: length of the
+training period specified in the M4 competition + length of the forecast
+horizon specified in the competition. For example, the series with id
+``Y13190'' contains a training period of length 835. The length of the
+simulated series generated based on this series is equals to 841
+(835+6). Before simulating time series from daily and hourly series we
+convert the time series into multiple seasonal time series (msts)
+objects. For daily time series with length less than 366, the frequency
+set to 7 and longer time series are converted to multiple seasonal time
+series objects with frequencies set to 7 and 365.25. For hourly series,
+we set the frequencies to 24 and 168 to handle multiple frequencies
+corresponds to time-of-day pattern and time-of-week pattern
+respectively.
 
 \begin{table}[!h]
 \centering
@@ -518,23 +517,23 @@ series is equals to 841 (835+6).
 \label{simulation}
 \begin{tabular}{lllllll}
  Algorithm & Y & Q & M & W & D &  H \\ \hline
- automated ETS & \checkmark & \checkmark & \checkmark &  &  &  \\
-automated ARIMA & \checkmark & \checkmark & \checkmark &  &  &  \\
-forecast based on multiple seasonal decomposition &  &  &  & \checkmark & \checkmark & \checkmark\\ \hline
+ ets() & \checkmark & \checkmark & \checkmark &  &  &  \\
+auto.arima() & \checkmark & \checkmark & \checkmark &  &  &  \\
+stlf() &  &  &  & \checkmark & \checkmark & \checkmark\\ \hline
 \end{tabular}
 \end{table}
 
-As illustrated in \textcite{fforms}, the observed time series and the
-simulated time series form the reference to build our classification
-algorithm. Once we create the reference set for random forest training
-we split each time series in the reference set into training period and
-test period.
+We should reemphasise that all the observed time series and the
+simulated time series form the reference set to build our meta-learner.
+Once we create the reference set for random forest training we split
+each time series in the reference set into training period and test
+period.
 
 \subsubsection{Input: features}\label{input-features}
 
-The FFORMS framework operates on the features of the time series. For
-each time series in the reference set features are calculated based on
-the training period of the time series.
+The FFORMS framework operates on features calculated from the time
+series. For each time series in the reference set, features are
+calculated based on the training period of the time series.
 
 \begin{table}[!htp]
 \centering\footnotesize\tabcolsep=0.12cm
@@ -589,13 +588,16 @@ features used in the experiment is given in \textcite{fforms}.
 
 \subsubsection{Output: class-labels}\label{output-class-labels}
 
-In addition to the class labels used by \textcite{fforms} we include
-some more class labels when applying the FFORMS framework to the M4
-competition time series. The description of class labels considered
-under each frequency is shown in Table \ref{classlabels}. We fit the
-corresponding models outlined in Table \ref{classlabels} to each series
-in the reference set. The models are estimated using the training period
-for each series, and forecasts are produced for the test periods.
+The description of class labels considered under each frequency is shown
+in Table \ref{classlabels}. Note that these added to \textcite{fforms}.
+We fit the corresponding models outlined in Table \ref{classlabels} to
+each series in the reference set. The models are estimated using the
+training period for each series, and forecasts are produced for the test
+periods. Most of the labels given in Table \ref{classlabels} are
+self-explanatory labels. In STL-AR, mstlets, and mstlarima, first STL
+decomposition method applied to the time series and then seasonal naive
+method is used to forecast the seasonal component. Finally, AR, ETS and
+ARIMA models are used to forecast seasonally adjusted data respectively.
 
 \begin{table}[!htp]
 \centering\footnotesize\tabcolsep=0.12cm
@@ -625,21 +627,17 @@ mstlarima & & - & - & - & \checkmark \\\hline
 \end{tabular}
 \end{table}
 
-The \texttt{auto.arima} and \texttt{ets} functions in the forecast
-package are used to identify the suitable (S)ARIMA and ETS models. In
-order to identify the ``best'' forecast-model for each time series in
-the reference set we combine the mean Absolute Scaled Error (MASE) and
-the symmetric Mean Absolute Percentage Error (MAPE) calculated over the
-test set. More specifically, for each series both forecast error
+Accoding to the \textcite{M4compguide}, in the M4-competition the
+forecast accuracy is evaluated based on the mean Absolute Scaled Error
+(MASE) and the symmetric Mean Absolute Percentage Error (MAPE). Hence,
+in order to identify the ``best'' forecast-model for each time series in
+the reference set we combine MASE and the symmetric MAPE calculated over
+the test set. More specifically, for each series both forecast error
 measures MASE and sMAPE are calculated for each of the forecast models.
 Each of these is respectively standardized by the median MASE and median
-sMAPE calculated across the methods. The model with the lowest average
-value of the scaled MASE and scaled sMAPE is selected as the output
-class-label. Most of the labels given in Table \ref{classlabels} are
-self-explanatory labels. In STL-AR, mstlets, and mstlarima, first STL
-decomposition method applied to the time series and then seasonal naive
-method is used to forecast the seasonal component. Finally, AR, ETS and
-ARIMA models are used to forecast seasonally adjusted data respectively.
+sMAPE calculated across the forecast-models. The model with the lowest
+average value of the scaled MASE and scaled sMAPE is selected as the
+output class-label.
 
 \subsubsection{Train a random forest
 classifier}\label{train-a-random-forest-classifier}
@@ -655,11 +653,12 @@ forest.
 phase}\label{fforms-framework-online-phase}
 
 The online phase of the algorithm involves generating point forecasts
-and 95\% prediction intervals for the M4 competition data. First, the
-corresponding features are calculated based on the full length of the
-training period provided by the M4 competition. Second, point forecasts
-and 95\% prediction intervals are calculated based on the predicted
-class labels. Finally, all negative values of forecasts are set to zero.
+and 95\% prediction intervals for the new series or the future values
+observed time series. First, the corresponding features are calculated
+based on the full length of the training period provided by the M4
+competition. Second, point forecasts and 95\% prediction intervals are
+calculated based on the predicted class labels. We should note that all
+negative forecasts are set to zero.
 
 \section{Peeking inside FFORMS}\label{machinelearning}
 
@@ -938,93 +937,70 @@ An alternative for explaining local behaviour of complex models is
 proposed by \textcite{lundberg2017unified} based on game theory named
 ``Shapley values''.
 
-\newpage
-
 \section{Results}\label{results}
+
+\newpage
 
 \subsection{Yearly data}\label{yearly-data}
 
 \begin{figure}
 \centering
 \includegraphics{figures/yearlyoob-1.png}
-\caption{\label{fig:yearlyoob}Distribution of proportion of times each
-yearly time series was assigned to each class based on OOB sample. Each
-row represent the predicted class label and colours of boxplots
-corresponds to class label of ``best'' forecasting method. There are ten
-rows in the plot corresponds to each predicted class represented by
-Y-axis. X-axis denotes the proportion of times the time series was
-predicted into each class. On each row, distribution of correctly
-classified class dominated the top, indicating a fairly good
-classification of the model fitted.}
+\caption{\label{fig:yearlyoob}The vote matrix representation of the random
+forest based on OOB sample. The Y-axis denotes what was predicted from
+the random forest. The X-axis denotes the proportion of times each time
+series was classified to each class. The colours of boxplots corresponds
+to class label of ``best'' forecast-model identified based on MASE and
+sMAPE. On each row, distribution of correctly classified class
+dominates, indicating a good classification of the meta-learner.}
 \end{figure}
 
-\autoref{fig:yearlyoob} shows the distribution of proportion of times
-each observation (in our case each time series) was assigned to each
-class based on OOB sample. Each row represent the \textbf{predicted
-class label} and colours of boxplots corresponds to \textbf{class label
-of the best forecast-model (true class label)}. The proportion 1
-indicates, that the time series was always predicted to the
-corresponding class and 0 being never. This is an alternative way of
-visualizing the vote-matrix information in the random forest model. The
-other way of representing vote matrix involves ternary plot
-(\textcite{sutherland2000orca}) and jittered side-by-side dotplot
-\autocites{ehrlinger2015ggrandomforests}{da2017interactive}. To overcome
-the problem of overlapping data points due to the scale of the training
-data set, high similarity between classes and relatively large number of
-class labels, boxplot diagrams are used. This \autoref{fig:yearlyoob}
-helps to evaluate the model performance in the data space
-(model-in-the-data-space) (\textcite{da2017interactive}). According to
-\autoref{fig:yearlyoob} FFORMS framework successfully learnt the
+According to \autoref{fig:yearlyoob} distributions of correctly
+classified classes dominate, indicating a good classification of the
+meta-learner. The random walk with drift has a high chance of getting
+selected with yearly time series. The results of M4-competition also
+shows random walk with drift perform well with yearly time series. The
+forecast-models, neural network and theta also have a high chance of
+getting selected as they represent a more general class of
+forecast-models. Furthermore, FFORMS framework successfully learnt the
 similarities and dissimilarities between the classes itself. For
 example, within ETS-trend predicted class, the distributions correspond
 to the true class labels, ETS-damped trend, ARIMA, were also assigned
 with high probability and less values were assigned to ARMA/AR/MA, White
-noise process and ETS (ANN)/ ETS(MNN). On average, random walk with
-drift have a high chance of getting selected with yearly time series.
-The results of M4-competition also shows random walk with drift perform
-well for yearly time series (average MASE across all series is 3.06).
-The graphical representations of \textcite{kang2018efficient} show
-feature distribution of M4-competition data are generally trended.
+noise process and ETS (ANN)/ ETS(MNN).
 
-\autoref{fig:viyearly} shows the contribution of features to the
-predictive mechanism of the FFORMS framework with respect to variable
-importance scores. Permutation-based variable importance and Gini
-feature importance measure are used to evaluate the overall feature
-importance. Furthermore, most important features for each class is
-identified based on three measures: i) permutation-based variable
-importance, ii) partial dependence functions based variable importance
-and iii) ICE-curves based variable importance measure. The one that
-shows the highest importance is ranked 25, the second best is ranked 24,
-and so on. Finally, for each category, an average rank for each feature
-is computed based on the mean value of all rankings across all the
-feature importance metrics considered. The features, strength of trend
-and test statistic of Phillips--Perron(PP) unit root test, linearity,
-first autocorrelation coefficient of the differenced series, beta and
-lmres\_acf1 are appear to be most important features in each class.
-Spikiness appear to be an important feature in the overall
-classification, except ARIMA category, even though it does not appear to
-be among top five features, spikiness has been assigned a relatively
-high importance among all categories. These results indicates on average
-the features related to trend, nonstationarity, overall shape of the
+\autoref{fig:viyearly} shows how important each one of the features we
+considered within each class as well as in the overall classification
+mechanism of the FFORMS. To identify class-specific important features
+we rank features in three different ways: i) based on permutation-based
+variable importance, ii) based on partial dependence functions and iii)
+based on ICE-curves. We consider 25 features for yearly data. The
+feature that shows the highest importance is ranked 25, the second best
+is ranked 24, and so on. Finally, for each feature, a mean rank is
+calculated based on the rankings of the three measures. Similarly, the
+overall feature importance is evaluated based on permutation-based
+variable importance measure and Gini coefficient-based feature
+importance measure.
+
+According to \autoref{fig:pdpyearly}, the features related to strength
+of trend, nonstationarity (ur\_pp, diff1y\_acf1), overall shape of the
 trend (linear: measured by linearity, damped trend:measured by beta,
-exponential: measured by curvature) and randomness (from spikiness, and
-lmres\_acf1) are important for the choice of yearly time series
-forecasting methods. Further, y\_acf1 is appear to be important in
-random walk with drift class and ARMA/AR/MA class. The length of time
-series (N) is assigned a high importance in random walk with drift,
-ETS-dampedtrend and neural-network class compared to others. Further
-exploration of partial dependency plots revealed neural network approach
-is likely to be selected in forecasting time series with long history of
-observations and probability of selecting random walk decreases as the
-length of the time series increases. Further, first correlation
-coefficient of the twice-differenced series is appear to be most
-important in ARIMA class as this category contains the higher order
-differenced series. Hurst exponent and entropy appear to be equally
-important in stationary classes. Within ETS-damped trend category beta
-and curvature ranked as important features. On the other hand, sum of
+exponential: measured by curvature) and measures of randomness (from
+spikiness, and lmres\_acf1) are the most important for the choice of
+yearly time series forecast-models. The first ACF value of the original
+series (y\_acf1) appears among top five within random walk with drift
+class and ARMA/AR/MA class as it helps to separate stationary and
+non-stationary series. The first correlation coefficient of the
+twice-differenced series is appear to be the most important in ARIMA
+class as this class contains the higher order differenced series. The
+Hurst exponent and entropy appear to be equally important in stationary
+classes. Within ETS-damped trend class beta and curvature ranked as
+important features. The length of time series (N) is assigned relatively
+high rank within random walk with drift, ETS-dampedtrend and
+neural-network class compared to others. On the other hand, sum of
 squares of first five autocorrelation coefficients of the
-twice-difference series and lumpiness show lowest contribution across
-many classes.
+twice-difference series and lumpiness are the least important feature
+across many classes.
 
 \autoref{fig:pdpyearly} shows the partial dependency curves, and
 associated confidence intervals of the top-three features that get
@@ -1034,7 +1010,7 @@ selecting ETS-trend, ARIMA, ETS-without seasonal and trend component and
 neural network models increases steadily as ur\_pp increases. As
 expected probability of selecting stationary models decreases as the
 test statistic of Phillip-Perron test increases and this probability
-remains zero after the value of 0 of ur\_pp.~Random walk with drift,
+remains zero beyond the value of 0 of ur\_pp.~Random walk with drift,
 ETS-trend, ETS-damped trend, ARIMA show an increasing relationship with
 trend, whereas random walk, ETS-without trend and seasonal components,
 and stationary models show a monotonically deceasing relationship as
@@ -1045,43 +1021,40 @@ very clear highly trended series are more likely to select ETS-trend,
 ETS-dampedtrend and ARIMA models which lessen the chance of neural
 network models for them. The wide confidence bands around the partial
 dependency functions of linearity indicated the higher variability of
-ICE curves. Narrow confidence band corresponds to linearity of random
-walk with drift indicate all individual ICE curves rise sharply around
-the value linearity = 0 and remained stable beyond value linearity=5.
-Random walk class depicted the mirror image of random walk with drift
-class. For ARMA/AR/MA class all the ICE curves increase sharply around 0
-and decline steadily after that. Similar relationship appeared in white
+ICE curves. The probability of selecting random walk with drift
+increases rapidly beyond value 0 and remains thereafter. Fro ARMA/AR/MA
+class all ICE curve of linearity increase sharply around 0 and decline
+steadily after that. Similar relationship can be observed within white
 noise class with wide confidence bands whereas ARIMA and neural network
-show an opposite relationship.
+show the opposite relationship. The partial dependency curves of
+diff1y\_acf1 indicate probability of selecting random walk with drift
+and ETS-trend higher for differenced-stationary series.
 
 \autoref{fig:friedmany} shows the heat maps of relative strength of all
 possible pairwise interactions for each class. The relative strength of
-two-way interaction between features were determined using formula
+two-way interaction between features are measured using the formula
 developed by \textcite{friedman2008predictive}, which is implemented in
-the \texttt{iml} (\textcite{molnar2018iml},) package in R. The test
-statistic of Phillip-Perron test, strength of trend, and linearity show
-a weak interaction with other features in all the class. However, except
-ETS-trend class, trend and ur\_pp shows a high level of interactivity.
-These two features are appear to be among top 5 in all the classes
-according to the variable importance measures. Further, narrow
-confidence bands corresponds to these features in the partial dependency
-plots also confirms the less interactivity. In almost all the cases
+the \texttt{iml} (\textcite{molnar2018iml},) package in R. Except
+ETS-trend class, trend and ur\_pp show a high level of interactivity and
+less interactivity with other features. Linearity also show a weak
+interaction with other features in all classes. In almost all the cases
 partial correlation and auto-correlation based features are heavily
 interacting. However, the first correlation coefficient of the
-difference series do not interact with other features heavily in the
-case of ARIMA class. Further, almost all pair of features appear to be
+difference series do not interact with other features heavily within
+ARIMA class. Further, almost all pair of features appear to be
 interacting within neural network category. The features stability and
-lumpiness show the most commonly appeared interactivity within each
-class.
+lumpiness show the most commonly appeared type interactivity within all
+classes.
 
 \begin{figure}
 \centering
 \includegraphics{figures/viyearly-1.png}
 \caption{\label{fig:viyearly}Feature importance plot for yearly series.
-Permutation-based VI measure and mean decrease in Gini coefficients are
-used to evaluate overall feature importance. Class-specific feature
-importance is evaluated based on three measures: i) permutation-based
-variable importance, PD-based VI measure, and ICE-based VI measure.
+Permutation-based variable importance measure and mean decrease in Gini
+coefficients are used to evaluate overall feature importance shown in
+the top left plot. Class-specific feature importance is evaluated based
+on three measures: i) permutation-based variable importance, PD-based
+variable importance measure, and ICE-based variable importance measure.
 Longer bars indicate more important features. Top 5 features are
 highlighted in red. Strength of trend appear to be the most important
 feature.}
