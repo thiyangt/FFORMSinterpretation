@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2019.3.20)  5 APR 2019 20:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2019.3.20)  6 APR 2019 10:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2018,90 +2018,84 @@ Overfull \vbox (14.0728pt too high) has occurred while \output is active []
 <figures/oobweekly-1.png, id=468, 722.7pt x 686.565pt>
 File: figures/oobweekly-1.png Graphic file (type png)
 <use figures/oobweekly-1.png>
-Package pdftex.def Info: figures/oobweekly-1.png  used on input line 1291.
+Package pdftex.def Info: figures/oobweekly-1.png  used on input line 1290.
 (pdftex.def)             Requested size: 455.24826pt x 432.48586pt.
 [29 <./figures/oobweekly-1.png>]
-<figures/viweekly-1.png, id=477, 1445.4pt x 1084.05pt>
+<figures/viweekly-1.png, id=478, 1445.4pt x 1084.05pt>
 File: figures/viweekly-1.png Graphic file (type png)
 <use figures/viweekly-1.png>
-Package pdftex.def Info: figures/viweekly-1.png  used on input line 1313.
+Package pdftex.def Info: figures/viweekly-1.png  used on input line 1318.
 (pdftex.def)             Requested size: 455.23724pt x 341.42793pt.
 [30
 
  <./figures/viweekly-1.png>]
-<figures/weeklypdp-1.png, id=485, 1445.4pt x 2023.56pt>
+<figures/weeklypdp-1.png, id=486, 1445.4pt x 2023.56pt>
 File: figures/weeklypdp-1.png Graphic file (type png)
 <use figures/weeklypdp-1.png>
-Package pdftex.def Info: figures/weeklypdp-1.png  used on input line 1324.
+Package pdftex.def Info: figures/weeklypdp-1.png  used on input line 1329.
 (pdftex.def)             Requested size: 455.23724pt x 637.33215pt.
 [31 <./figures/weeklypdp-1.png>]
-<figures/oobdailyhourly-1.png, id=499, 1084.05pt x 1445.4pt>
+<figures/oobdailyhourly-1.png, id=500, 1084.05pt x 1445.4pt>
 File: figures/oobdailyhourly-1.png Graphic file (type png)
 <use figures/oobdailyhourly-1.png>
-Package pdftex.def Info: figures/oobdailyhourly-1.png  used on input line 1382.
+Package pdftex.def Info: figures/oobdailyhourly-1.png  used on input line 1384.
 
 (pdftex.def)             Requested size: 455.24828pt x 606.99771pt.
 [32] [33 <./figures/oobdailyhourly-1.png>]
-<figures/vidaily-1.png, id=514, 1662.21pt x 794.97pt>
+<figures/vidaily-1.png, id=515, 1662.21pt x 794.97pt>
 File: figures/vidaily-1.png Graphic file (type png)
 <use figures/vidaily-1.png>
-Package pdftex.def Info: figures/vidaily-1.png  used on input line 1397.
+Package pdftex.def Info: figures/vidaily-1.png  used on input line 1399.
 (pdftex.def)             Requested size: 455.24496pt x 217.72585pt.
-<figures/vihourly-1.png, id=515, 1662.21pt x 794.97pt>
+<figures/vihourly-1.png, id=516, 1662.21pt x 794.97pt>
 File: figures/vihourly-1.png Graphic file (type png)
 <use figures/vihourly-1.png>
-Package pdftex.def Info: figures/vihourly-1.png  used on input line 1406.
+Package pdftex.def Info: figures/vihourly-1.png  used on input line 1408.
 (pdftex.def)             Requested size: 455.24496pt x 217.72585pt.
 [34 <./figures/vidaily-1.png> <./figures/vihourly-1.png>]
-<figures/dailypdp-1.png, id=522, 1445.4pt x 2023.56pt>
+<figures/dailypdp-1.png, id=523, 1445.4pt x 2023.56pt>
 File: figures/dailypdp-1.png Graphic file (type png)
 <use figures/dailypdp-1.png>
-Package pdftex.def Info: figures/dailypdp-1.png  used on input line 1419.
+Package pdftex.def Info: figures/dailypdp-1.png  used on input line 1421.
 (pdftex.def)             Requested size: 455.23724pt x 637.33215pt.
 [35 <./figures/dailypdp-1.png>]
-<figures/hourlypdp-1.png, id=528, 1445.4pt x 2023.56pt>
+<figures/hourlypdp-1.png, id=529, 1445.4pt x 2023.56pt>
 File: figures/hourlypdp-1.png Graphic file (type png)
 <use figures/hourlypdp-1.png>
-Package pdftex.def Info: figures/hourlypdp-1.png  used on input line 1431.
+Package pdftex.def Info: figures/hourlypdp-1.png  used on input line 1433.
 (pdftex.def)             Requested size: 455.23724pt x 637.33215pt.
 [36 <./figures/hourlypdp-1.png>]
-<figures/dtwopdp-1.png, id=536, 1445.4pt x 722.7pt>
+<figures/dtwopdp-1.png, id=537, 1445.4pt x 722.7pt>
 File: figures/dtwopdp-1.png Graphic file (type png)
 <use figures/dtwopdp-1.png>
-Package pdftex.def Info: figures/dtwopdp-1.png  used on input line 1449.
+Package pdftex.def Info: figures/dtwopdp-1.png  used on input line 1452.
 (pdftex.def)             Requested size: 455.23724pt x 227.61862pt.
-<figures/htwopdp-1.png, id=537, 1445.4pt x 722.7pt>
+<figures/htwopdp-1.png, id=538, 1445.4pt x 722.7pt>
 File: figures/htwopdp-1.png Graphic file (type png)
 <use figures/htwopdp-1.png>
-Package pdftex.def Info: figures/htwopdp-1.png  used on input line 1458.
+Package pdftex.def Info: figures/htwopdp-1.png  used on input line 1461.
 (pdftex.def)             Requested size: 455.23724pt x 227.61862pt.
 [37 <./figures/dtwopdp-1.png (PNG copy)> <./figures/htwopdp-1.png (PNG copy)>]
-<figures/quarterlypca-1.png, id=545, 1445.4pt x 1084.05pt>
-File: figures/quarterlypca-1.png Graphic file (type png)
-<use figures/quarterlypca-1.png>
-Package pdftex.def Info: figures/quarterlypca-1.png  used on input line 1469.
-(pdftex.def)             Requested size: 455.23724pt x 341.42793pt.
-[38
-
- <./figures/quarterlypca-1.png>]
-<figures/quarterlylime-1.png, id=556, 1445.4pt x 578.16pt>
+<figures/quarterlylime-1.png, id=546, 1445.4pt x 578.16pt>
 File: figures/quarterlylime-1.png Graphic file (type png)
 <use figures/quarterlylime-1.png>
-Package pdftex.def Info: figures/quarterlylime-1.png  used on input line 1510.
+Package pdftex.def Info: figures/quarterlylime-1.png  used on input line 1475.
 (pdftex.def)             Requested size: 455.23724pt x 182.0949pt.
-<figures/quarterlylime2-1.pdf, id=557, 1084.05pt x 578.16pt>
+<figures/quarterlylime2-1.pdf, id=547, 1084.05pt x 578.16pt>
 File: figures/quarterlylime2-1.pdf Graphic file (type pdf)
 <use figures/quarterlylime2-1.pdf>
-Package pdftex.def Info: figures/quarterlylime2-1.pdf  used on input line 1518.
+Package pdftex.def Info: figures/quarterlylime2-1.pdf  used on input line 1483.
 
 (pdftex.def)             Requested size: 455.24828pt x 242.79907pt.
-[39 <./figures/quarterlylime-1.png> <./figures/quarterlylime2-1.pdf>] [40] [41]
-[42] [43]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1590.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1590.
+[38
+
+ <./figures/quarterlylime-1.png> <./figures/quarterlylime2-1.pdf>] [39] [40] [4
+1] [42]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1579.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1579.
 (./FFORMS_interpetabilityrf.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1590.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1590.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1579.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1579.
 
 Package rerunfilecheck Info: File `FFORMS_interpetabilityrf.out' has not change
 d.
@@ -2109,17 +2103,17 @@ d.
 Package logreq Info: Writing requests to 'FFORMS_interpetabilityrf.run.xml'.
 \openout1 = `FFORMS_interpetabilityrf.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1590.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1579.
  )
 (\end occurred inside a group at level 1)
 
 ### semi simple group (level 1) entered at line 188 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 42962 strings out of 494562
- 794646 string characters out of 6175863
- 1236270 words of memory out of 5000000
- 45595 multiletter control sequences out of 15000+600000
+ 42955 strings out of 494562
+ 794477 string characters out of 6175863
+ 1236031 words of memory out of 5000000
+ 45590 multiletter control sequences out of 15000+600000
  629844 words of font info for 336 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  55i,15n,92p,1149b,18413s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2139,10 +2133,10 @@ Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb
 ><c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/palatino
 /uplr8a.pfb><c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/u
 rw/palatino/uplri8a.pfb>
-Output written on FFORMS_interpetabilityrf.pdf (43 pages, 1349001 bytes).
+Output written on FFORMS_interpetabilityrf.pdf (42 pages, 1308413 bytes).
 PDF statistics:
- 669 PDF objects out of 1000 (max. 8388607)
- 539 compressed objects within 6 object streams
- 142 named destinations out of 1000 (max. 500000)
- 27122 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 660 PDF objects out of 1000 (max. 8388607)
+ 533 compressed objects within 6 object streams
+ 140 named destinations out of 1000 (max. 500000)
+ 27117 words of extra memory for PDF output out of 29859 (max. 10000000)
 

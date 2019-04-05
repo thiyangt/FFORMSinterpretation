@@ -1278,13 +1278,12 @@ monthly data.}
 
 \autoref{fig:oobweekly} shows the proportion of times each time series
 was classified to each class. Unlike, yearly, quarterly and monthly data
-theta method have a low chance of being selected to forecast weekly
-data. The random walk with drift, tbats models and theta have higher
-chance of being selected. Except ARMA/AR/MA class the distribution
-corresponds to the true class label dominates others. ARMA/AR/MA class
-shows some unusual behaviour within some categories due to class
-imbalance ratio, ARMA/AR/MA class contains fewer number of observations
-in the training set.
+theta method has a low chance of getting selected. The random walk with
+drift, tbats models and nn have a high chance of getting selected.
+Except ARMA/AR/MA class the distribution corresponds to the true class
+label dominates others. ARMA/AR/MA class shows some unusual behaviour
+within some categories due to class imbalance ratio, ARMA/AR/MA class
+contains fewer number of observations in the training set.
 
 \begin{figure}
 \centering
@@ -1306,7 +1305,13 @@ quarterly and monthly data. The length of series has been selected among
 top 5 by mstlets, tbats, theta and neural network models. According to
 the results of \autoref{fig:weeklypdp} for mstlets models probability of
 being selected increases as the linearity increases while the opposite
-relationship was observed at SARIMA models.
+relationship was observed at SARIMA models. According to
+\autoref{fig:weeklypdp} probability of selecting snaive, random walk,
+neural network and white noise increases as spikiness increases.
+Furthermore, as expected partial dependency plots reveal probability of
+selecting random walk and neural network models decreases as the
+stability increases while the opposite relationship canbe observed for
+other classes.
 
 \begin{figure}[h]
 
@@ -1347,35 +1352,32 @@ and hourly data are shown in \autoref{fig:vidaily} and
 determining suitable forecast-models for daily time series are, strength
 of seasonality corresponds to the weekly seasonality (7, measured by
 seasonal\_strength1), stability, trend, lumpiness and linearity.
-Strength of seasonality corresponds to the annual seasonality (365.25,
-measured by seasonal\_strength2) is appeared to be important in
-determining the selection of theta models. Furthermore, length of the
-series is important in determining random walk, random walk with drift,
-mstlarima, mstlets, stlar, theta and nn classes. \autoref{fig:dailypdp}
-shows the partial dependency plots of the top 3 features from the FFORMS
-framework. According to the results of \autoref{fig:dailypdp} shorter
-series tends to select random walk with drift models while probability
-of selecting snaive, mstlarima and mstlets models increases as the
-length of series increases. Neural network models shows a non-monotonic
-relationship with length of the series (N). The theta models tends to be
-selected for series with high annual seasonality but very low weekly
-seasonality. According to \autoref{fig:vihourly}, strength of daily
-seasonality (period=24, measured by seasonal\_strength1) appear to be
-more important than than the strength of weekly seasonality (period=168,
-measured by seasonal\_strength2). Furthermore, entropy, linearity, sum
-of squares of first 5 coefficients of PACF, curvature, trend, spikiness
-and stability were found to be the most important features in
-determining best forecasting method for hourly time series. Only snaive
-category ranked N among top 5 for hourly time series. The strength of
-seasonality corresponds to weekly seasonality also seems to be one of
-the most important feature for the classes snaive, random walk,
-mstlarima, and tbats. According to \autoref{fig:hourlypdp} probability
-of selecting random walk, random walk with drift, theta model and white
-noise process decreased with higher strength of daily
-(seasonal\_strength1) seasonality, while the opposite relationship hold
-for other classes. On the other hand, probability of selecting random
-walk model increased with the increase in strength of weekly
-seasonality.
+Furthermore, length of the series is important in determining random
+walk, random walk with drift, mstlarima, mstlets, stlar, theta and nn
+classes. \autoref{fig:dailypdp} shows the partial dependency plots of
+the top 3 features from the FFORMS framework. According to the results
+of \autoref{fig:dailypdp} shorter series tends to select random walk
+with drift models while probability of selecting snaive, mstlarima and
+mstlets models increases as the length of series increases. Neural
+network models shows a non-monotonic relationship with length of the
+series (N). The theta models tends to be selected for series with high
+annual seasonality but very low weekly seasonality. According to
+\autoref{fig:vihourly}, strength of daily seasonality (period=24,
+measured by seasonal\_strength1) appear to be more important than than
+the strength of weekly seasonality (period=168, measured by
+seasonal\_strength2). Furthermore, entropy, linearity, sum of squares of
+first 5 coefficients of PACF, curvature, trend, spikiness and stability
+were found to be the most important features in determining best
+forecasting method for hourly time series. Only snaive category ranked N
+among top 5 for hourly time series. The strength of weekly seasonality
+also seems to be one of the most important feature for the classes
+snaive, random walk, mstlarima, and tbats. According to
+\autoref{fig:hourlypdp} probability of selecting random walk, random
+walk with drift, theta model and white noise process decreased with
+higher strength of daily (seasonal\_strength1) seasonality, while the
+opposite relationship hold for other classes. On the other hand,
+probability of selecting random walk model increased with the increase
+in strength of weekly seasonality.
 
 \begin{figure}
 \centering
@@ -1436,13 +1438,14 @@ belong to corresponding class.(seasonal\_strength1 denotes daily
 seasonality and seasonal\_strength2 for weekly seasonality)}
 \end{figure}
 
-For daily series within each category, sediff\_acf5 and weekly
-seasonality (seasonal\_strength2) show high interactivity within each
-class (Friedman's H-statistic close to 0.9), while for hourly series
+According to Friedman's H-statistic for daily series within each
+category, sediff\_acf5 and weekly seasonality (seasonal\_strength2) show
+high interactivity within each class, while for hourly series
 sediff\_seacf1 and linearity show high interactivity within each class.
-The associated figures are shown in \autoref{fig:dtwopdp} and
-\autoref{fig:htwopdp}. Each plot shows a unique pattern of interactivity
-which are useful in separating one from another.
+The partial dependency plots of associated figures are shown in
+\autoref{fig:dtwopdp} and \autoref{fig:htwopdp}. Each plot shows a
+unique pattern of interactivity which are useful in separating one from
+another.
 
 \begin{figure}
 \centering
@@ -1464,46 +1467,8 @@ pattern of interactivity between sediff\_seacf1 and linearity.}
 
 \clearpage
 
-\begin{figure}
-\centering
-\includegraphics{figures/quarterlypca-1.png}
-\caption{\label{fig:quarterlypca}Distribution of prediction space across
-instance space for quarterly time series. PC1 and PC2 are the first two
-principal components. All classes tightly clustered into a particular
-region of the PCA space}
-\end{figure}
-
 \subsection{Local Interpretable Model-agnostic
 Explanations}\label{local-interpretable-model-agnostic-explanations}
-
-\autoref{fig:quarterlypca} shows the distribution of prediction space
-across instance space for quarterly time series data.
-\autoref{fig:quarterlypca} is a global representation of model-in-data
-space. All classes clustered into particular region of the instance
-space. However, we can not observe a clear separation of boundaries.
-This is because it is hard to define a ``best'' forecast-model for a
-given series, most time series could inherit a pattern of multiple types
-of forecast-models. We now illustrate how LIME approach can be used to
-zoom into local regions of the data to identify which features
-contribute most to classify a specific instance. For the illustration we
-select for different types of time series classified with high
-probability. \autoref{fig:quarterlylime2} shows the feature contribution
-for the instances highlighted on the PCA-space of quarterly series. We
-can see how the different strength of seasonality influence the FFORMS
-framework to select different types of seasonal forecast-models. For
-example, SARIMA models was selected when the seasonality vary between
-0.579 and 0.787 (case 1), ETS-seasonal models is selected when the
-strength of seasonality is greater than 0.787 (case 4), random walk with
-drift when the seasonality with lower than 0.579 (case 2) and for the
-highly trended and seasonal series (strength of seasonality
-\textgreater{} 0.895) ETS model with a trend and seasonal component is
-selected (case 3). Further, high value of diff1y\_acf5 in supports the
-selection of SARIMA for case 1 while, moderate value of diff1y\_acf5
-supports the selection of ETS-seasonal for the case 4. Similarly, we can
-explore the reasons for other instances in all frequency categories.
-From LIME approach we can gain insight into the local neighbourhood
-characteristics which lead to the choice of a particular neighbourhood
-over alternative destinations.
 
 \begin{figure}[h]
 
@@ -1522,6 +1487,28 @@ over alternative destinations.
 \caption{Panel A: Distribution of quarterly time series in the PCA space. Panel B: Time series corresponds to the highlighted points in the PCA space. Panel C:Local interpretable Model-agnostic explanations for four selected quarterly time series. Features denoted with green colour are supporting features for an outcome label and length of the bar is proportional to the weight of a feature.}\label{fig:quarterlylime2}
 \end{figure}
 
+We now illustrate how LIME approach can be used to zoom into local
+regions of the data to identify which features contribute most to
+classify a specific instance. For the illustration we select for
+different types of time series classified with high probability.
+\autoref{fig:quarterlylime2} shows the feature contribution for the
+instances highlighted on the PCA-space of quarterly series. We can see
+how the different strength of seasonality influence the FFORMS framework
+to select different types of seasonal forecast-models. For example,
+SARIMA models was selected when the seasonality vary between 0.579 and
+0.787 (case 1), ETS-seasonal models is selected when the strength of
+seasonality is greater than 0.787 (case 4), random walk with drift when
+the seasonality with lower than 0.579 (case 2) and for the highly
+trended and seasonal series (strength of seasonality \textgreater{}
+0.895) ETS model with a trend and seasonal component is selected (case
+3). Further, high value of diff1y\_acf5 in supports the selection of
+SARIMA for case 1 while, moderate value of diff1y\_acf5 supports the
+selection of ETS-seasonal for the case 4. Similarly, we can explore the
+reasons for other instances in all frequency categories. From LIME
+approach we can gain insight into the local neighbourhood
+characteristics which lead to the choice of a particular neighbourhood
+over alternative destinations.
+
 \section{Discussion and Conclusions}\label{conclusions}
 
 Forecast model selection is both time and computer cost intensive
@@ -1536,7 +1523,9 @@ is an important aspect in getting humans trust and use the proposed
 framework effectively, if the explanations are faithful and
 intelligible. Humans usually have prior knowledge about the application
 domain, which they can use to accept (trust) or reject prediction if
-they understand the reasons behind it.
+they understand the reasons behind it. The results we present here are a
+novel application of machine learning interpretability methods to
+visualize and explore the role of features in forecast-model selection.
 
 We explored the role of features in two different perspectives: i)
 individual effect of feature, and ii) interaction effect of features.
