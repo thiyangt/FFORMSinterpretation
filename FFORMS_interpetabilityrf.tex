@@ -439,7 +439,7 @@ The remainder of the paper is structured as follows. In \autoref{fforms}
 we describe the application of FFORMS framework to M4-competition data.
 \autoref{machinelearning} gives background on machine learning
 interpretability techniques that are used to identify role of features
-in forecast model selection. In \autoref{results} we discuss the
+in forecast-model selection. In \autoref{results} we discuss the
 results. \autoref{conclusions} concludes.
 
 \section{FFORMS application to M4 competition data}\label{fforms}
@@ -455,21 +455,22 @@ phase}\label{fforms-framework-offline-phase}
 
 \subsubsection{Reference set}\label{reference-set}
 
-We call the total collection of time series used for training the
-meta-leaner as the ``reference set''. The reference set consist of two
-set of time series: i) observed sample and ii) simulated time series.
+We call the collection of time series used for training the meta-leaner
+as the ``reference set''. The reference set consist of two set of time
+series: i) observed sample and ii) simulated time series.
 
 \subsubsection{Observed sample}\label{observed-sample}
 
 We use the time series from the M1, M3 and M4 competitions as the
 observed sample. Note that from the M4 competition randomly selected
 subset of time series are used for the observed sample. The rest is used
-to evaluate the meta-learner. Table \ref{observedsample} summarizes the
-number of time series in the observed sample.
+a validation set to evaluate the meta-learner. Table
+\ref{observedsample} summarizes the number of time series in the
+observed sample.
 
 \begin{table}[!h]
 \centering
-\caption{Composition of the time series in the observed sample and the test set}
+\caption{Composition of the time series in the observed sample}
 \label{observedsample}
 \begin{tabular}{l|rrr}
 \multirow{2}{*}{Frequency} & \multicolumn{3}{l}{Observed Sample} \\
@@ -590,14 +591,14 @@ features used in the experiment is given in \textcite{fforms}.
 
 The description of class labels considered under each frequency is shown
 in Table \ref{classlabels}. Note that these added to \textcite{fforms}.
-We fit the corresponding models outlined in Table \ref{classlabels} to
-each series in the reference set. The models are estimated using the
-training period for each series, and forecasts are produced for the test
-periods. Most of the labels given in Table \ref{classlabels} are
-self-explanatory labels. In STL-AR, mstlets, and mstlarima, first STL
-decomposition method applied to the time series and then seasonal naive
-method is used to forecast the seasonal component. Finally, AR, ETS and
-ARIMA models are used to forecast seasonally adjusted data respectively.
+Most of the labels given in Table \ref{classlabels} are self-explanatory
+labels. In STL-AR, mstlets, and mstlarima, first STL decomposition
+method applied to the time series and then seasonal naive method is used
+to forecast the seasonal component. Finally, AR, ETS and ARIMA models
+are used to forecast seasonally adjusted data respectively. We fit the
+corresponding models outlined in Table \ref{classlabels} to each series
+in the reference set. The models are estimated using the training period
+for each series, and forecasts are produced for the test periods.
 
 \begin{table}[!htp]
 \centering\footnotesize\tabcolsep=0.12cm
@@ -670,66 +671,6 @@ and their interactions led to the different choices. We use both
 model-diagnostic approaches and machine learning interpretability
 approaches to evaluate our framework.
 
-\subsection{Model-diagnostics}\label{model-diagnostics}
-
-Model-diagnostic is an important aspect in evaluating the accuracy of
-the model's predictions as well as the model's understanding of the
-nature of the relationship between features and predicted outcome. We
-next explain the model-diagnostics tools considered in this paper.
-
-\subsubsection{Out-of-bag (OOB) error and uncertainty measure for each
-observation}\label{out-of-bag-oob-error-and-uncertainty-measure-for-each-observation}
-
-It is argued in order to estimate the test error of a bagged model it is
-not necessary to perform cross-validation approach, because each tree is
-grown using different bootstrap samples from the training set and a part
-of training data is not used in the tree construction
-(\textcite{breiman2001random}; \textcite{chen2004using}). In general,
-each bagged tree does not make use of around one third of observations
-to construct the decision tree. These observations are referred to as
-the out-of-bag (OOB) observations. Each tree is grown based on different
-bootstrap samples hence, each tree has different set of OOB
-observations. These OOB samples can be used to calculate internal
-estimation of the test set error.
-
-\autoref{fig:yearlyoob} shows the proportion of times each observation
-(in our case each time series) was assigned to each class based on OOB
-sample. A proportion of 1 indicates, that the time series was always
-classified to the class and 0 being never. This is an alternative way of
-visualizing the vote-matrix information in the random forest model. The
-other way of representing vote matrix involves ternary plot
-(\textcite{sutherland2000orca}) and jittered side-by-side dotplot
-\autocites{ehrlinger2015ggrandomforests}{da2017interactive}. To overcome
-the problem of overlapping data points due to the scale of the training
-data set, high similarity between classes and relatively large number of
-class labels, boxplot diagrams are used. This \autoref{fig:yearlyoob}
-helps to evaluate the model performance in the data space
-(model-in-the-data-space) (\textcite{da2017interactive}).
-
-\subsubsection{Representation of model in the data space (m-in-ds) and
-data in the model space
-(d-in-ms)}\label{representation-of-model-in-the-data-space-m-in-ds-and-data-in-the-model-space-d-in-ms}
-
-\textcite{wickham2015visualizing} explains the importance of displaying
-the ``model in the data space (m-in-ds)'' and ``data in the model space
-(d-in-ms)''. Displaying the data in the model space (d-in-ms) is the
-most commonly used approach for model-diagnostics. For example, plot of
-fitted values versus residuals (\textcite{wickham2015visualizing}).
-D-in-MS is a visualization of embedding high-dimensional data into a
-low-dimensional space generated from the model. Visualization of D-in-MS
-do not help to gain an understanding of the nature of the relationship
-between features predicted outcome. In order to address this issue
-\textcite{wickham2015visualizing} and \textcite{da2017interactive} have
-highlighted the importance of visualizations of model in the data space.
-In the context of classification, representation of m-in-ds could be
-achieved by first, projecting the training data set into meaningful
-low-dimensional feature space and then visualize the complete prediction
-regions or their boundaries. In other words this can be considered as
-the visualization of predictor space in the context of the data space.
-See \textcite{wickham2015visualizing} for visualization method of this
-kind and \textcite{da2017interactive} for comparable method for random
-forest algorithm.
-
 \subsection{Machine Learning
 Interpretability}\label{machine-learning-interpretability}
 
@@ -755,6 +696,48 @@ variable, the best forecasting method for each series \(Y\). Let
 framework, random forest algorithm tries to learn this relationship
 using the historical data we provided. We denote the predicted function
 as \(g\).
+
+\subsection{Model-diagnostics}\label{model-diagnostics}
+
+Model-diagnostic is an important aspect in evaluating the accuracy of
+the model's predictions as well as the model's understanding of the
+nature of the relationship between features and predicted outcome.
+
+It is argued in order to estimate the test error of a bagged model it is
+not necessary to perform cross-validation approach, because each tree is
+grown using different bootstrap samples from the training set and a part
+of training data is not used in the tree construction
+(\textcite{breiman2001random}; \textcite{chen2004using}). In general,
+each bagged tree does not make use of around one third of observations
+to construct the decision tree. These observations are referred to as
+the out-of-bag (OOB) observations. Each tree is grown based on different
+bootstrap samples hence, each tree has different set of OOB
+observations. These OOB samples are used to calculate internal
+estimation of the test set error.
+
+\subsection{Representation of model in the data space (m-in-ds) and data
+in the model space
+(d-in-ms)}\label{representation-of-model-in-the-data-space-m-in-ds-and-data-in-the-model-space-d-in-ms}
+
+\textcite{wickham2015visualizing} explains the importance of displaying
+the ``model in the data space (m-in-ds)'' and ``data in the model space
+(d-in-ms)''. Displaying the data in the model space (d-in-ms) is the
+most commonly used approach for model-diagnostics. For example, plot of
+fitted values versus residuals (\textcite{wickham2015visualizing}).
+D-in-MS is a visualization of embedding high-dimensional data into a
+low-dimensional space generated from the model. Visualization of D-in-MS
+do not help to gain an understanding of the nature of the relationship
+between features predicted outcome. In order to address this issue
+\textcite{wickham2015visualizing} and \textcite{da2017interactive} have
+highlighted the importance of visualizations of model in the data space.
+In the context of classification, representation of m-in-ds could be
+achieved by first, projecting the training data set into meaningful
+low-dimensional feature space and then visualize the complete prediction
+regions or their boundaries. In other words this can be considered as
+the visualization of predictor space in the context of the data space.
+See \textcite{wickham2015visualizing} for visualization method of this
+kind and \textcite{da2017interactive} for comparable method for random
+forest algorithm.
 
 \subsection{Global Interpretability
 Methods}\label{global-interpretability-methods}
@@ -956,14 +939,14 @@ proposed by \textcite{lundberg2017unified} based on game theory named
 \subsection{Yearly data}\label{yearly-data}
 
 Random forest return a vote matirx which is useful in evaluating the
-uncertainty of observations. The vote matrix (\(N \times P\); N is total
-number of observations, p is number of classes) contains the proportion
-of times each observation was classified to each class based on OOB
-sample. This information for yearly data random forest is presented in
-\autoref{fig:yearlyoob}. This is an alternative way of visualizing the
-vote-matrix information. The other way of representing vote matrix
-involves ternary plot (\textcite{sutherland2000orca}) and jittered
-side-by-side dotplot
+uncertainty of observations. The vote matrix (\(N \times P\); \(N\) is
+total number of observations, \(P\) is number of classes) contains the
+proportion of times each observation was classified to each class based
+on OOB sample. This information for yearly data random forest is
+presented in \autoref{fig:yearlyoob}. This is an alternative way of
+visualizing the vote-matrix information. The other way of representing
+vote matrix involves ternary plot (\textcite{sutherland2000orca}) and
+jittered side-by-side dotplot
 \autocites{ehrlinger2015ggrandomforests}{da2017interactive}. To overcome
 the problem of overlapping data points due to the scale of the training
 data set, high similarity between classes and relatively large number of
