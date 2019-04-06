@@ -956,7 +956,7 @@ proposed by \textcite{lundberg2017unified} based on game theory named
 \subsection{Yearly data}\label{yearly-data}
 
 Random forest return a vote matirx which is useful in evaluating the
-uncertainty of cases. The vote matrix (\(N \times P\); where N is total
+uncertainty of observations. The vote matrix (\(N \times P\); N is total
 number of observations, p is number of classes) contains the proportion
 of times each observation was classified to each class based on OOB
 sample. This information for yearly data random forest is presented in
@@ -989,12 +989,12 @@ noise process and ETS (ANN)/ ETS(MNN).
 \centering
 \includegraphics{figures/yearlyoob-1.png}
 \caption{\label{fig:yearlyoob}Visualization of the vote matrix based on OOB
-sample. The Y-axis denotes what was predicted from the random forest.
-The X-axis denotes the proportion of times each time series was
-classified to each class. The colours of boxplots corresponds to class
-label of ``best'' forecast-model identified based on MASE and sMAPE. On
-each row, distribution of correctly classified class dominates,
-indicating a good classification of the meta-learner.}
+sample for yearly random forest. The Y-axis denotes what was predicted
+from the random forest. The X-axis denotes the proportion of times each
+time series was classified to each class. The colours of boxplots
+corresponds to class label of ``best'' forecast-model identified based
+on MASE and sMAPE. On each row, distribution of correctly classified
+class dominates, indicating a good classification of the meta-learner.}
 \end{figure}
 
 \autoref{fig:viyearly} shows how important each one of the features we
@@ -1210,12 +1210,14 @@ lead to the choice of forecast-model selection.
 \begin{figure}
 \centering
 \includegraphics{figures/oobquarterlymonthly1-1.png}
-\caption{\label{fig:oobquarterlymonthly1}Distribution of proportion of times
-each quarterly time series was assigned to each class based on OOB
-sample. Each row represent the predicted class label and colours of
-boxplots corresponds to class label of ``best'' forecasting method.
-X-axis denotes the proportion of times the time series was predicted
-into each class. ARMA/AR/MA has a low chance of being selected while
+\caption{\label{fig:oobquarterlymonthly1}Visualization of the vote matrix
+based on OOB sample for quarterly random forest. The Y-axis denotes what
+was predicted from the random forest. The X-axis denotes the proportion
+of times each time series was classified to each class. The colours of
+boxplots corresponds to class label of ``best'' forecast-model
+identified based on MASE and sMAPE. On each row, distribution of
+correctly classified class dominates, indicating a good classification
+of the meta-learner. ARMA/AR/MA has a low chance of being selected while
 random walk with drift has a high chance of being selected.}
 \end{figure}
 
@@ -1224,12 +1226,14 @@ random walk with drift has a high chance of being selected.}
 \begin{figure}
 \centering
 \includegraphics{figures/oobquarterlymonthly2-1.png}
-\caption{\label{fig:oobquarterlymonthly2} Distribution of proportion of
-times each monthly time series was assigned to each class based on OOB
-sample. Each row represent the predicted class label and colours of
-boxplots corresponds to class label of ``best'' forecasting method.
-X-axis denotes the proportion of times the time series was predicted
-into each class. Few series corresponds to stlar and nn have been
+\caption{\label{fig:oobquarterlymonthly2} Visualization of the vote matrix
+based on OOB sample for monthly random forest. The Y-axis denotes what
+was predicted from the random forest. The X-axis denotes the proportion
+of times each time series was classified to each class. The colours of
+boxplots corresponds to class label of ``best'' forecast-model
+identified based on MASE and sMAPE. On each row, distribution of
+correctly classified class dominates, indicating a good classification
+of the meta-learner.Few series corresponds to stlar and nn have been
 correctly classified with a very high probability.}
 \end{figure}
 
@@ -1316,12 +1320,13 @@ contains fewer number of observations in the training set.
 \begin{figure}
 \centering
 \includegraphics{figures/oobweekly-1.png}
-\caption{\label{fig:oobweekly}Distribution of proportion of times each
-weekly time series was assigned to each class based on OOB sample. Each
-row represent the predicted class label and colours of boxplots
-corresponds to class label of ``best'' forecasting method. X-axis
-denotes the proportion of times the time series was predicted into each
-class.}
+\caption{\label{fig:oobweekly}Visualization of the vote matrix based on OOB
+sample for weekly random forest. The Y-axis denotes what was predicted
+from the random forest. The X-axis denotes the proportion of times each
+time series was classified to each class. The colours of boxplots
+corresponds to class label of ``best'' forecast-model identified based
+on MASE and sMAPE. On each row, distribution of correctly classified
+class dominates, indicating a good classification of the meta-learner..}
 \end{figure}
 
 \clearpage
@@ -1410,14 +1415,14 @@ in strength of weekly seasonality.
 \begin{figure}
 \centering
 \includegraphics{figures/oobdailyhourly-1.png}
-\caption{\label{fig:oobdailyhourly}Distribution of proportion of times each
-daily and hourly time series were assigned to each class in the forest.
-Each row represent the predicted class label and colour of boxplots
-corresponds to true class label. There are ten rows in the plot
-corresponds to each predicted class represented by Y-axis. X-axis
-denotes the proportion of times a time series is classified in each
-class. On each row, distribution of correctly classified class dominated
-the top, indicating a fairly good classification of the model fitted.}
+\caption{\label{fig:oobdailyhourly}Visualization of the vote matrix based on
+OOB sample for daily and hourly random forests. The Y-axis denotes what
+was predicted from the random forest. The X-axis denotes the proportion
+of times each time series was classified to each class. The colours of
+boxplots corresponds to class label of ``best'' forecast-model
+identified based on MASE and sMAPE. On each row, distribution of
+correctly classified class dominates, indicating a good classification
+of the meta-learners.}
 \end{figure}
 
 \newpage
