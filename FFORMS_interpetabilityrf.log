@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2019.3.20)  8 APR 2019 08:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2019.3.20)  8 APR 2019 09:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2096,15 +2096,15 @@ Package pdftex.def Info: figures/quarterlylime2-1.pdf  used on input line 1515.
 
  <./figures/quarterlylime-1.png> <./figures/quarterlylime2-1.pdf>] [38] [39] [4
 0] [41]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1609.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1609.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1604.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1604.
 (./FFORMS_interpetabilityrf.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1609.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1609.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1604.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1604.
 
 Package rerunfilecheck Info: File `FFORMS_interpetabilityrf.out' has not change
 d.
-(rerunfilecheck)             Checksum: B7DE5982D77BBEFF4E164CB5AD832525;7625.
+(rerunfilecheck)             Checksum: 97A0380BBEE60B4C6B7B8B5A7A7030C1;7625.
 
 Package biblatex Warning: Please rerun LaTeX.
 (biblatex)                Page breaks have changed.
@@ -2112,7 +2112,7 @@ Package biblatex Warning: Please rerun LaTeX.
 Package logreq Info: Writing requests to 'FFORMS_interpetabilityrf.run.xml'.
 \openout1 = `FFORMS_interpetabilityrf.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1609.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1604.
  )
 (\end occurred inside a group at level 1)
 
@@ -2121,11 +2121,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1609.
 Here is how much of TeX's memory you used:
  42886 strings out of 494562
  793844 string characters out of 6175863
- 1225067 words of memory out of 5000000
+ 1225051 words of memory out of 5000000
  45518 multiletter control sequences out of 15000+600000
  629999 words of font info for 338 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 55i,15n,92p,1149b,18409s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,15n,92p,1149b,18396s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc
 /dvips/base/8r.enc}<c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmex10.pfb><c:/Users/Thiyanga/AppData/Roaming/TinyTeX/
@@ -2142,10 +2142,10 @@ Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb
 ><c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/palatino
 /uplr8a.pfb><c:/Users/Thiyanga/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/u
 rw/palatino/uplri8a.pfb>
-Output written on FFORMS_interpetabilityrf.pdf (41 pages, 1310527 bytes).
+Output written on FFORMS_interpetabilityrf.pdf (41 pages, 1310190 bytes).
 PDF statistics:
- 661 PDF objects out of 1000 (max. 8388607)
- 535 compressed objects within 6 object streams
+ 660 PDF objects out of 1000 (max. 8388607)
+ 534 compressed objects within 6 object streams
  140 named destinations out of 1000 (max. 500000)
  27109 words of extra memory for PDF output out of 29859 (max. 10000000)
 
