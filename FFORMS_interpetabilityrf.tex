@@ -412,10 +412,10 @@ In this article, we make the following contributions:
   labels. The contribution of this paper differs from previously
   published work related to meta-learning
   \autocites{prudencio2004meta}{lemke2010meta}{kuck2016meta} in three
-  ways : i) a more extensive collection of features is used (35
-  different feature types are used which are simple and easy to
-  compute), ii) the diversity of forecast-models considered as class
-  labels, and iii) capability of handling high frequency data;
+  ways: i) a more extensive collection of features is used (35 different
+  feature types are used which are simple and easy to compute), ii) the
+  diversity of forecast-models considered as class labels, and iii)
+  capability of handling high frequency data;
 \item
   We analyse the application of the FFORMS framework to the
   M4-competition data. We generated point forecasts and prediction
@@ -685,7 +685,7 @@ contribution: nature of the contributions features make for a prediction
 of a specific instance. We will introduce each of these ideas briefly
 below.
 
-\subsection{General Notation}\label{general-notation}
+\subsection{General notation}\label{general-notation}
 
 Let \(\mathcal{P}=\{(\mathbf{x^{(i)}}, y^{(i)})\}_{i=1}^{N}\) be the
 historical data set we use to train a classifier. Consider a
@@ -742,8 +742,7 @@ See \textcite{wickham2015visualizing} for visualization method of this
 kind and \textcite{da2017interactive} for comparable method for random
 forest algorithm.
 
-\subsection{Global Interpretability
-Methods}\label{global-interpretability-methods}
+\subsection{Global interpretability}\label{global-interpretability}
 
 Global interpretability evaluates the behavior of a model on entire data
 set. Global perspective of model interpretation helps users to
@@ -754,7 +753,7 @@ between features, etc. In the following subsections, we provide a
 description of tools we use to explore the global perspective of the
 model.
 
-\subsection{Analysis of Feature
+\subsection{Analysis of feature
 contribution}\label{analysis-of-feature-contribution}
 
 \textcite{jiang2002} explains variable importance under three different
@@ -840,7 +839,7 @@ changes while taking into account the average effect of the other
 features in the model. The flatness of the curve is measured using the
 standard deviation of the values \(\{\bar{g}_{s}(x_{sk})\}_{k=1}^{m}\).
 
-\subsubsection{Individual Conditional Expectation (ICE)
+\subsubsection{Individual conditional expectation (ICE)
 curves}\label{individual-conditional-expectation-ice-curves}
 
 While partial dependency curves are useful in understanding the
@@ -864,8 +863,8 @@ computed an ICE based variable importance score -- simply the average of
 all the standard deviations. A higher value indicates a higher degree of
 interactivity with other features.
 
-\subsection{Assessment of Interaction
-Effect}\label{assessment-of-interaction-effect}
+\subsection{Assessment of interaction
+effect}\label{assessment-of-interaction-effect}
 
 Friedman's H-statistic (\textcite{friedman2008predictive}) is used to
 test the presence of interaction between all possible pairs of features.
@@ -1329,8 +1328,8 @@ being selected increases as the linearity increases while the opposite
 relationship was observed at SARIMA models. According to
 \autoref{fig:weeklypdp} probability of selecting snaive, random walk,
 neural network and white noise increases as spikiness increases.
-Furthermore, as expected partial dependency plots reveal probability of
-selecting random walk and neural network models decreases as the
+Furthermore, as expected, partial dependency plots reveal probability of
+selecting random walk and neural network models decrease as the
 stability increases while the opposite relationship can be observed for
 white noise class.
 
@@ -1340,7 +1339,7 @@ white noise class.
 
 }
 
-\caption{Feature importance plot for weekly data. Permutation-based VI measure and mean decrease in Gini coefficient are used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.}\label{fig:viweekly}
+\caption{Feature importance plot for weekly data. Permutation-based VI measure and mean decrease in Gini coefficient is used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.}\label{fig:viweekly}
 \end{figure}
 
 \newpage
@@ -1374,8 +1373,8 @@ features from the FFORMS framework. According to the results of
 \autoref{fig:dailypdp} shorter series tends to select random walk with
 drift models while probability of selecting snaive, mstlarima and
 mstlets models increases as the length of series increases. Neural
-network models shows a non-monotonic relationship with length of the
-series (N). The theta models tends to be selected for series with high
+network models show a non-monotonic relationship with length of the
+series (N). The theta models tend to be selected for series with high
 annual seasonality but very low weekly seasonality.
 
 Variable importance graph for daily and hourly data are shown in
@@ -1389,19 +1388,19 @@ stlar, theta and nn classes.
 
 According to \autoref{fig:vihourly}, strength of daily seasonality
 (period=24, measured by seasonal\_strength1) appear to be more important
-than than the strength of weekly seasonality (period=168, measured by
+than the strength of weekly seasonality (period=168, measured by
 seasonal\_strength2). Furthermore, entropy, linearity, sum of squares of
 first 5 coefficients of PACF, curvature, trend, spikiness and stability
 were found to be the most important features in determining best
 forecasting method for hourly time series. Only snaive category ranked N
 among top 5 for hourly time series. The strength of weekly seasonality
-also seems to be one of the most important feature for the classes
+also seems to be one of the most important features for the classes
 snaive, random walk, mstlarima, and tbats.
 
 According to \autoref{fig:hourlypdp} probability of selecting random
 walk, random walk with drift, theta model and white noise process
 decreased with higher strength of daily (seasonal\_strength1)
-seasonality, while the opposite relationship hold for other classes. On
+seasonality, while the opposite relationship holds for other classes. On
 the other hand, probability of selecting random walk model increased
 with the increase in strength of weekly seasonality.
 
@@ -1446,10 +1445,11 @@ more important features. Top 5 features are highlighted in red.}
 \centering
 \includegraphics{figures/dailypdp-1.png}
 \caption{\label{fig:dailypdp}Partial dependence plots for the top ranked
-features from variable importance measures(daily series). The shading
-shows the 95\% confidence intervals. Y-axis denotes the probability of
-belong to corresponding class. (seasonal\_strength1 denotes weekly
-seasonality and seasonal\_strength2 for annual seasonality).}
+features based on variable importance measures (daily series). The
+shading shows the 95\% confidence intervals. Y-axis denotes the
+probability of belong to corresponding class. (seasonal\_strength1
+denotes weekly seasonality and seasonal\_strength2 for annual
+seasonality).}
 \end{figure}
 
 \newpage
@@ -1460,7 +1460,7 @@ seasonality and seasonal\_strength2 for annual seasonality).}
 \caption{\label{fig:hourlypdp}Partial dependence plots for the top ranked
 features from variable importance measures (hourly series). The shading
 shows the 95\% confidence intervals. Y-axis denotes the probability of
-belong to corresponding class.(seasonal\_strength1 denotes daily
+belong to corresponding class. (seasonal\_strength1 denotes daily
 seasonality and seasonal\_strength2 for weekly seasonality)}
 \end{figure}
 
@@ -1514,18 +1514,18 @@ Explanations}\label{local-interpretable-model-agnostic-explanations}
 
 }
 
-\caption{Panel A: Distribution of quarterly time series in the PCA space. Panel B: Time series corresponds to the highlighted points in the PCA space. Panel C:Local interpretable Model-agnostic explanations for four selected quarterly time series. Features denoted with green colour are supporting features for an outcome label and length of the bar is proportional to the weight of a feature.}\label{fig:quarterlylime2}
+\caption{Panel A: Distribution of quarterly time series in the PCA space. Panel B: Time series corresponds to the highlighted points in the PCA space. Panel C: Local interpretable Model-agnostic explanations for four selected quarterly time series. Features denoted with green colour are supporting features for an outcome label and length of the bar is proportional to the weight of a feature.}\label{fig:quarterlylime2}
 \end{figure}
 
 We now illustrate how LIME approach can be used to zoom into local
-regions of the data to identify which features contribute most to
+regions of the data to identify which features, contribute most to
 classify a specific instance. For the illustration we select for
 different types of time series classified with high probability.
 \autoref{fig:quarterlylime2} shows the feature contribution for the
 instances highlighted on the PCA-space of quarterly series. We can see
 how the different strength of seasonality influence the FFORMS framework
 to select different types of seasonal forecast-models. For example,
-SARIMA models was selected when the seasonality vary between 0.579 and
+SARIMA models was selected when the seasonality varies between 0.579 and
 0.787 (case 1), ETS-seasonal models is selected when the strength of
 seasonality is greater than 0.787 (case 4), random walk with drift when
 the seasonality with lower than 0.579 (case 2) and for the highly
@@ -1566,7 +1566,7 @@ nonstationarity and seasonality of a series are important factors for
 choosing a forecasting method. Partial dependency plots are used to
 visualize the learned relationship between features and the model
 predictions. The displayed relationships confirm to domain knowledge
-expectations. However, since several number of features are used to
+expectations. However, since several numbers of features are used to
 build the framework with comparable contributions, and thus, all
 individual contributions are small. According to the results of daily
 and hourly data we also observed neural network modelling model was
@@ -1581,20 +1581,20 @@ forecasts with longer time series as these are more parameterized
 models.
 
 As FFORMS framework is developed on top of random forest algorithm takes
-into account every possible interactions. It was apparent from the heat
+into account every possible interaction. It was apparent from the heat
 matrices of Friedman's H-Statistic presented that a substantial
-interaction effect exist between the features. The strength trend showed
-less interactivity in yearly series data, reflecting that these features
-are more important on their own. The features involve in interaction and
-their strength of interaction effect differ across the different
-frequency categories (yearly, quarterly, monthly, weekly, daily and
-hourly) as well as forecast-models (random walk, ETS models, etc.).
-However, it is interesting to note that in each frequency category all
-or subset of ACF/PACF-based features interact each other. This confirm
-that information regarding correlation structure of the time series is
-an essential information for the choice of model selection. A unique
-pattern of interactivity exist within each class are useful for
-separating one from another.
+interaction effect exists between the features. The strength trends
+showed less interactivity in yearly series data, reflecting that these
+features are more important on their own. The features involve in
+interaction and their strength of interaction effect differ across the
+different frequency categories (yearly, quarterly, monthly, weekly,
+daily and hourly) as well as forecast-models (random walk, ETS models,
+etc.). However, it is interesting to note that in each frequency
+category all or subset of ACF/PACF-based features interact each other.
+This confirm that information regarding correlation structure of the
+time series is an essential information for the choice of model
+selection. A unique pattern of interactivity exists within each class
+are useful for separating one from another.
 
 Exploration of conditions learnt by the FFORMS framework also support
 practitioners to make a good educated guess on suitable forecast-model

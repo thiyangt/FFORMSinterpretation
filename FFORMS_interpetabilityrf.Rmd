@@ -85,7 +85,7 @@ To fill this gap, this paper makes a first step towards providing a comprehensiv
 
 In this article, we make the following contributions:
 
-1. We extend the FFORMS framework to handle weekly, daily and hourly series. We also extend the diversity of forecast-models used as class labels. The contribution of this paper differs from previously published work related to meta-learning [@prudencio2004meta; @lemke2010meta; @kuck2016meta] in three ways : i) a more extensive collection of features is used (35 different feature types are used which are simple and easy to compute), ii) the diversity of forecast-models considered as class labels, and iii) capability of handling high frequency data;
+1. We extend the FFORMS framework to handle weekly, daily and hourly series. We also extend the diversity of forecast-models used as class labels. The contribution of this paper differs from previously published work related to meta-learning [@prudencio2004meta; @lemke2010meta; @kuck2016meta] in three ways: i) a more extensive collection of features is used (35 different feature types are used which are simple and easy to compute), ii) the diversity of forecast-models considered as class labels, and iii) capability of handling high frequency data;
 1. We analyse the application of the FFORMS framework to the M4-competition data. We generated point forecasts and prediction intervals for the M4-competition time series data, and is shown to yield accurate forecast comparable to several benchmarks and other commonly used automated approaches of time series forecasting. Our approach achieved a high accuracy rate based on individual forecast-model selection rule. 
 1. The main contribution of the paper is to explore the relationship between features of time series and the choice of forecast-model selection using the FFORMS framework. We explore the role of features in two different perspectives: i) Global perspective of feature contribution: the overall role of features in the choice of different forecast-models and ii) Local perspective of feature contribution: we zoom into local regions of the data to identify which features contribute most to classify a specific instance. 
 
@@ -245,7 +245,7 @@ The main objective of this paper is to explore the nature of the relationship be
 
 In recent years, there have been a growing interest for interpretability of machine learning algorithms with the European General Data Protection Regulation (GDPR) stipulates the explainability of all automatically made decision concerning individuals. We explore the role of features in two different perspectives: i) global explanation of feature contribution: overall role of features in the choice of different forecast model selection, and ii) local explanation of feature contribution: nature of the contributions features make for a prediction of a specific instance. We will introduce each of these ideas briefly below. 
 
-## General Notation
+## General notation
 
 Let \(\mathcal{P}=\{(\mathbf{x^{(i)}}, y^{(i)})\}_{i=1}^{N}\) be the
 historical data set we use to train a classifier. Consider a
@@ -265,11 +265,11 @@ Model-diagnostic is an important aspect in evaluating the accuracy of the model'
 gain an understanding of the nature of the relationship between features predicted outcome. In order to address this issue @wickham2015visualizing and @da2017interactive have highlighted the importance of visualizations of model in the data space. In the context of classification, representation of m-in-ds could be achieved by first, projecting the training data set into meaningful low-dimensional feature space and then visualize the complete prediction regions or their boundaries. In other words, this can be considered as the visualization of predictor space in the context of the data space. See @wickham2015visualizing for visualization method of this kind and @da2017interactive for comparable method for random forest algorithm. 
 
 
-## Global Interpretability Methods
+## Global interpretability 
 
 Global interpretability evaluates the behavior of a model on entire data set. Global perspective of model interpretation helps users to understand the overall modelled relationship between features and the model outcome. For example, which features are contributing mostly to the predictive mechanism of the fitted model, complex interactions between features, etc. In the following subsections, we provide a description of tools we use to explore the global perspective of the model.  
 
-## Analysis of Feature contribution
+## Analysis of feature contribution
 
 @jiang2002 explains variable importance under three different views: i) causality: change in the value of Y for an increase or decrease in the value of x, ii) contribution of X based on out-of-sample prediction accuracy and iii) face value of X on prediction function $g$, for example in linear regression model estimated coefficients of each predictor can be considered as a measure of variable importance. See @jiang2002 for comparable face value interpretation for machine learning models. In this paper we use the first two notions of variable importance. Partial dependency functions and individual conditional expectation curves are used to explore the "causality" notion of variable importance while Mean decrease in Gini coefficient and Permutation-based variable importance are used to capture the second notion of variable importance-features contribution to the predictive accuracy (@Zhao). We will introduce each of these variable importance measures below.  
 
@@ -300,7 +300,7 @@ where $n$ is the number of observations in the training data set. Partial depend
 
 @Greenwell2018 introduced a variable importance measure based on the partial dependency curves. The idea is to measure the “flatness” of partial dependence curves for each feature. A feature whose PDP curve is flat, relative to the other features, indicates that the feature does not have much influence on the predicted value as it changes while taking into account the average effect of the other features in the model. The flatness of the curve is measured using the standard deviation of the values $\{\bar{g}_{s}(x_{sk})\}_{k=1}^{m}$.
 
-### Individual Conditional Expectation (ICE) curves
+### Individual conditional expectation (ICE) curves
 
 While partial dependency curves are useful in understanding the estimated relationship between features and the predicted outcome in the presence of substantial interaction between features, it can be misleading.  @goldstein2015peeking proposed the Individual Conditional Expectation (ICE) curves to address this issue. Instead of
 averaging $g(x_s, X_{iC})$ over all observations in the training data, ICE plots the individual response curves by plotting the pairs $\{(x_s^k, g(x_{sk}, X_{iC}))\}_{k=1}^{m}$ defined on grid of points $\{x_{s1}, x_{s2},\dots, x_{sm}\}$ based on $X_s$. In other words, partial dependency curve is simply the average of all the ICE curves. 
@@ -310,7 +310,7 @@ averaging $g(x_s, X_{iC})$ over all observations in the training data, ICE plots
 
 This method is similar to the PDP-based VI scores above, but are based on measuring the “flatness” of the individual conditional expectation curves. We calculated standard deviations of each ICE curves.  We then computed an ICE based variable importance score – simply the average of all the standard deviations. A higher value indicates a higher degree of interactivity with other features. 
 
-## Assessment of Interaction Effect
+## Assessment of interaction effect
 
 Friedman's H-statistic (@friedman2008predictive) is used to test the presence of interaction between all possible pairs of features. This statistic is computed based on the partial dependence functions. For two-way interaction between two specific variable $x_j$ and $x_k$, Friedman's H-statistic is defined as follow,
 
