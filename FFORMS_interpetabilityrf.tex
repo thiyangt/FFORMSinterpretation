@@ -344,7 +344,7 @@ models, LIME
 
 \section{Introduction}\label{intro}
 
-The filed of time series forecasting field has been evolving for a few
+The field of time series forecasting field has been evolving for a few
 decades now and has introduced a wide variety of models for forecasting.
 However, for a given time series the selection of an appropriate
 forecast-model among many possibilities is not straight forward. This
@@ -368,7 +368,7 @@ model with lowest MASE over a test set, etc.). Then a meta-learner is
 trained to identify a suitable forecast-model (usually a machine
 learning algorithm is used). In the era of big data, such an automated
 model selection process is necessary because the cost of invoking all
-possible forecast-models is prohibitive. However, these existing
+possible forecast-models is prohibitive. However, the existing
 literature suffers from the limitation of providing answers to questions
 such as: i) How features are related to the property being modelled?;
 ii) How features interact with each other to identify a suitable
@@ -495,7 +495,7 @@ functions available in the forecast package in R \autocite{forecast} are
 used to simulate yearly, quarterly and monthly data from exponential
 smoothing and ARIMA models. The \texttt{stlf()} function also available
 in the forecast package is used to simulate multiple time series based
-on multiple seasonal decomposition approach. Using the above functions
+on multiple seasonal decomposition approach. Using the above functions,
 we fit models to each time series in the M4 database and then simulate
 multiple time series from the selected models. In this experiment the
 length of the simulated time series is set to be equal to: length of the
@@ -503,7 +503,7 @@ training period specified in the M4 competition + length of the forecast
 horizon specified in the competition. For example, the series with id
 ``Y13190'' contains a training period of length 835. The length of the
 simulated series generated based on this series is equals to 841
-(835+6). Before simulating time series from daily and hourly series we
+(835+6). Before simulating time series from daily and hourly series, we
 convert the time series into multiple seasonal time series (msts)
 objects. For daily time series with length less than 366, the frequency
 set to 7 and longer time series are converted to multiple seasonal time
@@ -524,7 +524,7 @@ stlf() &  &  &  & \checkmark & \checkmark & \checkmark\\ \hline
 \end{tabular}
 \end{table}
 
-We should re-emphasise that all the observed time series and the
+We should re-emphasize that all the observed time series and the
 simulated time series form the reference set to build our meta-learner.
 Once we create the reference set for random forest training we split
 each time series in the reference set into training period and test
@@ -736,7 +736,7 @@ highlighted the importance of visualizations of model in the data space.
 In the context of classification, representation of m-in-ds could be
 achieved by first, projecting the training data set into meaningful
 low-dimensional feature space and then visualize the complete prediction
-regions or their boundaries. In other words this can be considered as
+regions or their boundaries. In other words, this can be considered as
 the visualization of predictor space in the context of the data space.
 See \textcite{wickham2015visualizing} for visualization method of this
 kind and \textcite{da2017interactive} for comparable method for random
@@ -745,20 +745,21 @@ forest algorithm.
 \subsection{Global Interpretability
 Methods}\label{global-interpretability-methods}
 
-Global interpretability evaluate the behavior of a model on entire data
+Global interpretability evaluates the behavior of a model on entire data
 set. Global perspective of model interpretation helps users to
 understand the overall modelled relationship between features and the
-model outcome. For example, which features are contribute mostly to the
-predictive mechanism of the fitted model, complex interactions between
-features, etc. In the following subsections we provide a description of
-tools we use to explore the global perspective of the model.
+model outcome. For example, which features are contributing mostly to
+the predictive mechanism of the fitted model, complex interactions
+between features, etc. In the following subsections, we provide a
+description of tools we use to explore the global perspective of the
+model.
 
 \subsection{Analysis of Feature
 contribution}\label{analysis-of-feature-contribution}
 
 \textcite{jiang2002} explains variable importance under three different
-views: i) causality: change in the value of Y for a increase or decrease
-in the value of x, ii) contribution of X based on out-of-sample
+views: i) causality: change in the value of Y for an increase or
+decrease in the value of x, ii) contribution of X based on out-of-sample
 prediction accuracy and iii) face value of X on prediction function
 \(g\), for example in linear regression model estimated coefficients of
 each predictor can be considered as a measure of variable importance.
@@ -850,7 +851,7 @@ Conditional Expectation (ICE) curves to address this issue. Instead of
 averaging \(g(x_s, X_{iC})\) over all observations in the training data,
 ICE plots the individual response curves by plotting the pairs
 \(\{(x_s^k, g(x_{sk}, X_{iC}))\}_{k=1}^{m}\) defined on grid of points
-\(\{x_{s1}, x_{s2},\dots, x_{sm}\}\) based on \(X_s\). In other words
+\(\{x_{s1}, x_{s2},\dots, x_{sm}\}\) based on \(X_s\). In other words,
 partial dependency curve is simply the average of all the ICE curves.
 
 \subsubsection{Variable importance measure based on ICE
@@ -858,18 +859,18 @@ curves}\label{variable-importance-measure-based-on-ice-curves}
 
 This method is similar to the PDP-based VI scores above, but are based
 on measuring the ``flatness'' of the individual conditional expectation
-curves. We calculated standard deviations of each ICE curve. We then
-computed a ICE based variable importance score -- simply the average of
+curves. We calculated standard deviations of each ICE curves. We then
+computed an ICE based variable importance score -- simply the average of
 all the standard deviations. A higher value indicates a higher degree of
 interactivity with other features.
 
 \subsection{Assessment of Interaction
 Effect}\label{assessment-of-interaction-effect}
 
-Friedman's H-statistic (\textcite{friedman2008predictive}) is use to
+Friedman's H-statistic (\textcite{friedman2008predictive}) is used to
 test the presence of interaction between all possible pairs of features.
 This statistic is computed based on the partial dependence functions.
-For two way interaction between two specific variable \(x_j\) and
+For two-way interaction between two specific variable \(x_j\) and
 \(x_k\), Friedman's H-statistic is defined as follow,
 
 \[H_{jk}^2=\sum_{i=1}^{n}[\bar{g}_{s}(x_{ij}, x_{jk})-\bar{g}_{s}(x_{ij})-\bar{g}_{s}(x_{ik})]^2/\sum_{i=1}^{n}\bar{g}^2_{s}(x_{ij}, x_{jk}).\]
@@ -879,13 +880,14 @@ two-variable partial dependency, \(\bar{g}_{s}(x_{ij}, x_{jk})\) not
 captured by sum of the respective individual partial dependencies,
 \(\bar{g}_{s}(x_{ij})+\bar{g}_{s}(x_{ik})\). In addition to Friedman's
 H-statistic we also use the PDP of two variables to visualize the
-interaction effect.
+interaction effects.
 
 Note that the, PD plots, ICE curves and PD-, ICE-associated measures and
 Friedman's H-statistic are computationally intensive to compute,
 especially when there are large number of observations in the training
-set. Hence, in our experiments ICE and PDP-based variable importance are
-computed based on the subset of randomly selected training examples.
+set. Hence, in our experiments ICE and PDP-based variable importance
+measures are computed based on the subset of randomly selected training
+examples.
 
 \subsection{Local Interpretable Model-agnostic Explanations
 (LIME)}\label{local-interpretable-model-agnostic-explanations-lime}
@@ -902,7 +904,7 @@ that ``every complex model is linear on a local scale''. This is
 accomplished by locally approximating the complex black-box model with a
 simple interpretable model. \textcite{ribeiro2016should} highlighted
 features that are globally important may not be important in the local
-context and vice verse. The algorithm steps can be summarized as follow:
+context and vice versa. The algorithm steps can be summarized as follow:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -941,9 +943,9 @@ proposed by \textcite{lundberg2017unified} based on game theory named
 
 \subsection{Yearly data}\label{yearly-data}
 
-Random forest return a vote matirx which is useful in evaluating the
+Random forest returns a vote matrix which is useful in evaluating the
 uncertainty of observations. The vote matrix (\(N \times P\); \(N\) is
-total number of observations, \(P\) is number of classes) contains the
+total number of observations; \(P\) is number of classes) contains the
 proportion of times each observation was classified to each class based
 on OOB sample. This information for yearly data random forest is
 presented in \autoref{fig:yearlyoob}. This is an alternative way of
@@ -998,7 +1000,7 @@ importance measure.
 
 According to \autoref{fig:viyearly}, the features related to strength of
 trend, nonstationarity (ur\_pp, diff1y\_acf1), overall shape of the
-trend (linear: measured by linearity, damped trend:measured by beta,
+trend (linear: measured by linearity, damped trend: measured by beta,
 exponential: measured by curvature) and measures of randomness (from
 spikiness, and lmres\_acf1) are the most important for the choice of
 yearly time series forecast-models. The first ACF value of the original
@@ -1018,11 +1020,11 @@ across many classes.
 
 \autoref{fig:pdpyearly} shows the partial dependency curves, and
 associated confidence intervals of the top-three features that get
-selected most in each class. The three features shows a non-linear
+selected most in each class. The three features show a non-linear
 relationship with predicted class probabilities. Probability of
 selecting ETS-trend, ARIMA, ETS-without seasonal and trend component and
 neural network models increases steadily as ur\_pp increases. As
-expected probability of selecting stationary models decreases as the
+expected, probability of selecting stationary models decreases as the
 test statistic of Phillip-Perron test increases and this probability
 remains zero beyond the value of 0 of ur\_pp.~Random walk with drift,
 ETS-trend, ETS-damped trend, ARIMA show an increasing relationship with
@@ -1092,7 +1094,7 @@ nonlinear relationship with predicted probabilities.}
 \centering
 \includegraphics{figures/friedmany-1.pdf}
 \caption{\label{fig:friedmany}Heat maps of relative strength of all possible
-pairwise interactions calclated based on Friedman's H-statistic (yearly
+pairwise interactions calculated based on Friedman's H-statistic (yearly
 series). Strength of trend shows less interactivity with other
 features.}
 \end{figure}
@@ -1106,19 +1108,19 @@ data}\label{quarterly-and-monthly-data}
 show the vote-matrix of random forests for quarterly and monthly data
 respectively based on OOB observations.
 \autoref{fig:oobquarterlymonthly1} and
-\autoref{fig:oobquarterlymonthly2} depicted similar patterns accorss
+\autoref{fig:oobquarterlymonthly2} depicted similar patterns across
 classes. For quarterly and monthly data, the same set of features and
 class-labels are used to train the model. Hence, this consistency
 between the results of quarterly and monthly series would provide
 evidence in support of the validity and trustability of the model. The
-outliers associated with dominating distributions indicates somes series
+outliers associated with dominating distributions indicates some series
 are correctly classified with very high probability. Seasonal time
 series has a low chance of classified into random walk with drift model
 and high chance of selecting SARIMA, stlar and tbats. Except the time
 series labelled as ARMA/AR/MA all other quarterly time series have a
 very low chance of classified to ARMA/AR/MA class. Further, all
-distributions corresponds to the tbats row located further away from
-zero. This indicates all time series select tbats model at least once
+distributions correspond to the tbats row located further away from
+zero. This indicates all-time series select tbats model at least once
 from the individual trees in the forest. Except few outliers,
 distributions within neural network category also show a slight upward
 deviation from zero. However, the upper boundary of these distributions
@@ -1126,7 +1128,7 @@ do not surpass the upper boundaries of dominating box plots in the
 random walk with drift class and SARIMA class. Further, within stlar,
 tbats, theta and neural network classes all distributions level at
 similar proportionalities. These types of similarities in the
-distributions indicates the the appropriateness of using combination
+distributions indicates the appropriateness of using combination
 forecasting. Further, these information are useful in identifying
 potential time series models for combination forecast and improve the
 existing combination approaches proposed in the M4-competition
@@ -1139,8 +1141,8 @@ importance plots for quarterly and monthly data respectively. For both
 quarterly and monthly data strength of seasonality, trend, linearity and
 spikiness are the most important features across all categories. Even
 though the lumpiness does not appear as a top five feature within
-classes it is appear to be an important feature in the overall
-classification process and a relatively high rank is assigned within
+classes it is appeared to be an important feature in the overall
+classification process and a relatively high ranks are assigned within
 many classes. In the case of yearly data low variable importance is
 assigned to both stability and length of the series. However, in
 quarterly and monthly data high variable importance is assigned to
@@ -1188,7 +1190,7 @@ respectively. Within random walk with drift class trend shows a high
 interactivity with other features. Within all classes seasonality show
 less interactivity with other features, whereas lumpiness show high
 interactivity with other features. Further within each class, a subset
-of ACF/PACF-based features shows some interactivity. In general
+of ACF/PACF-based features show some interactivity. In general
 interactivity between features related to correlation structure of a
 time series and overall shape (spikiness, linearity, curvature, etc)
 lead to the choice of forecast-model selection.
@@ -1198,7 +1200,7 @@ lead to the choice of forecast-model selection.
 \includegraphics{figures/oobquarterlymonthly1-1.png}
 \caption{\label{fig:oobquarterlymonthly1}Visualization of the vote matrix
 based on OOB sample for quarterly random forest. The Y-axis denotes what
-was predicted from the random forest. The X-axis denotes the proportion
+was predicted from the random forest?. The X-axis denotes the proportion
 of times each time series was classified to each class. The colours of
 boxplots corresponds to class label of ``best'' forecast-model
 identified based on MASE and sMAPE. On each row, distribution of
@@ -1214,12 +1216,12 @@ random walk with drift has a high chance of being selected.}
 \includegraphics{figures/oobquarterlymonthly2-1.png}
 \caption{\label{fig:oobquarterlymonthly2} Visualization of the vote matrix
 based on OOB sample for monthly random forest. The Y-axis denotes what
-was predicted from the random forest. The X-axis denotes the proportion
+was predicted from the random forest? The X-axis denotes the proportion
 of times each time series was classified to each class. The colours of
 boxplots corresponds to class label of ``best'' forecast-model
 identified based on MASE and sMAPE. On each row, distribution of
 correctly classified class dominates, indicating a good classification
-of the meta-learner. Few series corresponds to stlar and nn have been
+of the meta-learner. Few series correspond to stlar and nn have been
 correctly classified with a very high probability.}
 \end{figure}
 
