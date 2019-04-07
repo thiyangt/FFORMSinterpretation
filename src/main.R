@@ -561,6 +561,7 @@ m4yPCAresults1$predicted <- train_predictions_oob
 train_votes1 <- data.frame(train_votes)
 m4yPCAresults <- dplyr::bind_cols(m4yPCAresults1, train_votes1)
 
+
 pca1M4Y_rwd <- ggplot(m4yPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   geom_point(colour = "firebrick1") +
   theme(
@@ -652,8 +653,49 @@ pca1M4Y_nn <- ggplot(m4yPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
   geom_point(data = m4yPCAresults[m4yPCAresults$predicted == "nn", ], aes(x = PC1, y = PC2), color = "forestgreen") +
   labs(subtitle = "nn") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
-(pca1M4Y_rwd | pca1M4Y_rw | pca1M4Y_etstrend | pca1M4Y_etsdamtrend | pca1M4Y_notrend) /
-  (pca1M4Y_ARIMA | pca1M4Y_ARMA | pca1M4Y_wn | pca1M4Y_theta | pca1M4Y_nn)
+m4y_fea <- dplyr::bind_cols(m4yPCAresults, pcaYvariables)
+
+f1 <- ggplot(m4y_fea, aes(x = PC1, y = PC2, color = ur_pp)) +
+  geom_point() +
+  theme(
+    legend.position = "none",
+    aspect.ratio = 1
+  )+ggtitle("trend")
+
+f2 <- ggplot(m4y_fea, aes(x = PC1, y = PC2, color = trend)) +
+  geom_point() +
+  theme(
+    legend.position = "none",
+    aspect.ratio = 1
+  )+ggtitle("diff1y_acf1")
+
+f3 <- ggplot(m4y_fea, aes(x = PC1, y = PC2, color = spikiness)) +
+  geom_point() +
+  theme(
+    legend.position = "none",
+    aspect.ratio = 1
+  )+ggtitle("linearity")
+
+f4 <- ggplot(m4y_fea, aes(x = PC1, y = PC2, color = beta)) +
+  geom_point() +
+  theme(
+    legend.position = "none",
+    aspect.ratio = 1
+  )+ggtitle("curvature")
+
+f5 <- ggplot(m4y_fea, aes(x = PC1, y = PC2, color = N)) +
+  geom_point() +
+  theme(
+    legend.position = "none",
+    aspect.ratio = 1
+  )+ggtitle("N")
+
+p <- (pca1M4Y_rwd | pca1M4Y_rw | pca1M4Y_etstrend | pca1M4Y_etsdamtrend | pca1M4Y_notrend) /
+  (pca1M4Y_ARIMA | pca1M4Y_ARMA | pca1M4Y_wn | pca1M4Y_theta | pca1M4Y_nn) 
+
+
+p
+
 
 #################################################################
 #                  Quarterly and Monthly data                               #
