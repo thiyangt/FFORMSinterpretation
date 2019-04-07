@@ -1368,15 +1368,6 @@ chance of getting selected. Furthermore, it is important to note that
 all hourly series have been assigned non-zero probability of getting
 selected to neural network class.
 
-\autoref{fig:dailypdp} shows the partial dependency plots of the top 3
-features from the FFORMS framework. According to the results of
-\autoref{fig:dailypdp} shorter series tends to select random walk with
-drift models while probability of selecting snaive, mstlarima and
-mstlets models increases as the length of series increases. Neural
-network models show a non-monotonic relationship with length of the
-series (N). The theta models tend to be selected for series with high
-annual seasonality but very low weekly seasonality.
-
 Variable importance graph for daily and hourly data are shown in
 \autoref{fig:vidaily} and \autoref{fig:vihourly} respectively. The most
 important features for determining suitable forecast-models for daily
@@ -1397,12 +1388,23 @@ among top 5 for hourly time series. The strength of weekly seasonality
 also seems to be one of the most important features for the classes
 snaive, random walk, mstlarima, and tbats.
 
-According to \autoref{fig:hourlypdp} probability of selecting random
-walk, random walk with drift, theta model and white noise process
-decreased with higher strength of daily (seasonal\_strength1)
-seasonality, while the opposite relationship holds for other classes. On
-the other hand, probability of selecting random walk model increased
-with the increase in strength of weekly seasonality.
+\autoref{fig:dailypdp} shows the partial dependency plots of the top 3
+features for daily series. According to the results of
+\autoref{fig:dailypdp} shorter series tends to select random walk with
+drift models while probability of selecting snaive, mstlarima and
+mstlets models increases as the length of series increases. Neural
+network models show a non-monotonic relationship with length of the
+series (N). The theta models tend to be selected for series with high
+annual seasonality but very low weekly seasonality.
+
+The partial dependency plots of the top 3 features for hourly series are
+shown in \autoref{fig:hourlypdp}. According to \autoref{fig:hourlypdp}
+probability of selecting random walk, random walk with drift, theta
+model and white noise process decreased with higher strength of daily
+(seasonal\_strength1) seasonality, while the opposite relationship holds
+for other classes. On the other hand, probability of selecting random
+walk model increased with the increase in strength of weekly
+seasonality.
 
 \begin{figure}
 \centering
