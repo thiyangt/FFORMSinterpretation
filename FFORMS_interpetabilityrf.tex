@@ -890,7 +890,7 @@ examples.
 Global interpretations help us to understand the entire modelled
 relationship. Local interpretations help us to understand the
 predictions of the model for a single instance or a group of similar
-instances. In other words this allows users to zoom into a particular
+instances. In other words, this allows users to zoom into a particular
 instance or a subset and explore how different features affect the
 resulting prediction. We use Local Interpretable Model-agnostic
 Explanations (LIME) approach introduce by \textcite{ribeiro2016should}
@@ -959,8 +959,8 @@ According to \autoref{fig:yearlyoob} the distributions of correctly
 classified classes dominate, indicating a good classification of the
 meta-learner. The random walk with drift has a high chance of getting
 selected with yearly time series and the results of M4-competition also
-show random walk with drift perform well with yearly time series. The
-forecast-models, neural network and theta also have a high chance of
+show the random walk with drift perform well with yearly time series.
+The forecast-models, neural network and theta also have a high chance of
 getting selected as they represent a more general class of
 forecast-models. Furthermore, FFORMS framework successfully learned the
 similarities and dissimilarities between the classes itself. For
@@ -991,8 +991,8 @@ based on ICE-curves. We consider 25 features for yearly data. The
 feature that shows the highest importance is ranked 25, the second best
 is ranked 24, and so on. Finally, for each feature, a mean rank is
 calculated based on the rankings of the three measures. Similarly, the
-overall feature importance is evaluated based on permutation-based
-variable importance measure and Gini coefficient-based feature
+overall feature importance is evaluated based on the permutation-based
+variable importance measure and the Gini coefficient-based feature
 importance measure.
 
 According to \autoref{fig:viyearly}, the features related to strength of
@@ -1001,7 +1001,7 @@ trend (linear: measured by linearity, damped trend: measured by beta,
 exponential: measured by curvature) and measures of randomness (from
 spikiness, and lmres\_acf1) are the most important for the choice of
 yearly time series forecast-models. The first ACF value of the original
-series (y\_acf1) appears among top five within the random walk with
+series (y\_acf1) appears among the top five within the random walk with
 drift class and the ARMA/AR/MA class as it helps to separate stationary
 and non-stationary series. The first correlation coefficient of the
 twice-differenced series is appeared to be the most important in the
@@ -1035,7 +1035,7 @@ more likely to select ETS-trend, ETS-dampedtrend and ARIMA models. The
 wide confidence bands around the partial dependency functions of
 linearity indicate the higher variability of ICE curves. The probability
 of selecting random walk with drift increases rapidly beyond value 0 and
-remains thereafter. The PDP curve of linearity in ARMA/AR/MA increase
+remains thereafter. The PDP curves of linearity in ARMA/AR/MA increase
 sharply around 0 and decline steadily after that. Similar relationship
 can be observed within the white noise class with wide confidence bands
 whereas ARIMA and neural network show the opposite relationship. The
@@ -1053,7 +1053,7 @@ interactivity and a less interactivity with other features. Linearity
 also show a weak interaction with other features in all classes. In
 almost all the classes the partial correlation and auto-correlation
 based features are heavily interacting. However, the first correlation
-coefficient of the differenced series do not interact with other
+coefficient of the differenced series does not interact with other
 features heavily within the ARIMA class. Further, almost all pairs of
 features appear to be interacting within neural network category. The
 interactivity between stability and lumpiness is the most common type of
@@ -1105,7 +1105,7 @@ data}\label{quarterly-and-monthly-data}
 show the vote-matrices of the random forests for quarterly and monthly
 data respectively based on OOB observations.
 \autoref{fig:oobquarterlymonthly1} and
-\autoref{fig:oobquarterlymonthly2} depicted a similar patterns across
+\autoref{fig:oobquarterlymonthly2} depicted similar patterns across
 classes. For quarterly and monthly data, the same set of features and
 the class-labels are used to train the model. Hence, this consistency
 between the results of the quarterly and the monthly series would
@@ -1113,7 +1113,7 @@ provide evidence in support of the validity and trustability of the
 model. The outliers associated with the dominating distributions
 indicate some series are correctly classified with very high
 probability. Seasonal time series have a low chance of classified into
-the random walk with drift model and high chance of selecting SARIMA,
+the random walk with drift model and a high chance of selecting SARIMA,
 stlar and tbats. Except the time series labelled as ARMA/AR/MA all other
 quarterly time series have a very low chance of classified into
 ARMA/AR/MA class. Further, all distributions correspond to the tbats row
@@ -1125,8 +1125,8 @@ boundaries of these distributions do not surpass the upper boundaries of
 dominating box plots in the random walk with drift class and the SARIMA
 class. Further, within stlar, tbats, theta and neural network classes
 all distributions level at similar proportionalities. These types of
-similarities in the distributions indicates the appropriateness of using
-combination forecasting. Further, these information are useful in
+similarities in the distributions indicate the appropriateness of using
+combination forecasting. Further, these information is useful in
 identifying potential time series models for combination forecast and
 improve the existing combination approaches proposed in the
 M4-competition (\textcite{Makridakis2018dx}). In addition to that the
@@ -1183,9 +1183,9 @@ of the relative strength of all possible pairwise interactions
 calculated based on Friedman's H-statistic for quarterly and monthly
 data respectively. Within the random walk with drift class trend shows a
 high interactivity with other features. Within all classes seasonality
-show less interactivity with other features, whereas lumpiness show high
-interactivity with other features. Further within each class, a subset
-of ACF/PACF-based features show some interactivity. In general
+show less interactivity with other features, whereas lumpiness shows
+high interactivity with other features. Further within each class, a
+subset of ACF/PACF-based features show some interactivity. In general
 interactivity between features related to correlation structure of a
 time series and overall shape (spikiness, linearity, curvature, etc)
 lead to the choice of forecast-model selection.
@@ -1520,20 +1520,20 @@ classify a specific instance. For the illustration we select four
 different time series classified with high probability.
 \autoref{fig:quarterlylime2} shows the feature contribution for the
 instances highlighted on the PCA-space of quarterly series. We can see
-how the strength of seasonality influence the FFORMS framework to select
-different types of seasonal forecast-models. For example, SARIMA models
-was selected when the seasonality varies between 0.579 and 0.787 (case
-1), ETS-seasonal models is selected when the strength of seasonality is
-greater than 0.787 (case 4), random walk with drift when the seasonality
-with lower than 0.579 (case 2) and for the highly trended and seasonal
-series (strength of seasonality \textgreater{} 0.895) ETS model with a
-trend and seasonal component is selected (case 3). Further, high value
-of diff1y\_acf5 in supports the selection of SARIMA for case 1 while,
-moderate value of diff1y\_acf5 supports the selection of ETS-seasonal
-for the case 4. Similarly, we can explore the reasons for other
-instances in all frequency categories. From LIME approach we can gain
-insight into the local neighbourhood characteristics which lead to the
-choice of a particular neighbourhood over alternative destinations.
+how the strength of seasonality influences the FFORMS framework to
+select different types of seasonal forecast-models. For example, SARIMA
+model is selected when the seasonality varies between 0.579 and 0.787
+(case 1), ETS-seasonal model is selected when the strength of
+seasonality is greater than 0.787 (case 4), random walk with drift when
+the seasonality is lower than 0.579 (case 2) and for the highly trended
+and seasonal series (strength of seasonality \textgreater{} 0.895) ETS
+model with a trend and seasonal component is selected (case 3). Further,
+high value of diff1y\_acf5 in supports the selection of SARIMA for case
+1 while, moderate value of diff1y\_acf5 supports the selection of
+ETS-seasonal for the case 4. Similarly, we can explore the reasons for
+other instances in all frequency categories. From LIME approach we can
+gain insight into the local neighbourhood characteristics which lead to
+the choice of a particular neighbourhood over alternative destinations.
 
 \section{Discussion and Conclusions}\label{conclusions}
 
@@ -1576,7 +1576,7 @@ As FFORMS framework is developed on top of random forest algorithm, it
 takes into account every possible interaction. It was apparent from the
 heat matrices of Friedman's H-Statistic that a substantial interaction
 effect exists between the features. The strength trends show a less
-interactivity in yearly series data, reflecting that this features is
+interactivity in yearly series data, reflecting that this feature is
 more important on its own. The features involved in interaction and
 their strength of interaction effect differ across the different
 frequency categories (yearly, quarterly, monthly, weekly, daily and
