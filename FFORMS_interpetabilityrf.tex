@@ -327,15 +327,12 @@ forecasting. Talagala, Hyndman \& Athanasopoulos (2018) proposed a
 classification framework, labelled FFORMS (Feature-based FORecast Model
 Selection), which selects forecast models based on features calculated
 from the time series. The FFORMS framework builds a mapping that relates
-the features of a time series to the ``best'' forecast model using the
-random forest algorithm. In this paper we explore what is happening
-under the hood of the FFORMS framework. This is accomplished using
-model-agnostic machine learning interpretability approaches. The
-analysis provides a valuable insight into how different features and
-their interactions affect the choice of forecast model selection. This
-gives a more refined picture of the relationship between features and
-the choice of forecast model which is particularly valuable for ongoing
-research in the field of feature-based time series analysis.
+the features of a time series to the ``best'' forecast model using a
+random forest. In this paper we explore what is happening under the hood
+of the FFORMS framework. This is accomplished using model-agnostic
+machine learning interpretability approaches. The analysis provides a
+valuable insight into how different features and their interactions
+affect the choice of forecast model.
 \end{abstract}
 \begin{keywords}
 forecasting, time series, machine learning interpretability, black-box
@@ -344,8 +341,8 @@ models, LIME
 
 \section{Introduction}\label{intro}
 
-The field of time series forecasting field has been evolving for a few
-decades now and has introduced a wide variety of models for forecasting.
+The field of time series forecasting has been evolving for a few decades
+now and has introduced a wide variety of models for forecasting.
 However, for a given time series the selection of an appropriate
 forecast-model among many possibilities is not straight forward. This
 selection is one of the most difficult tasks as each method perform best
@@ -1578,9 +1575,9 @@ components, SARIMA models, mstl models tend to provide accurate
 forecasts with longer time series as these are more parameterized
 models.
 
-As FFORMS framework is developed on top of random forest algorithm takes
-into account every possible interaction. It was apparent from the heat
-matrices of Friedman's H-Statistic presented that a substantial
+As FFORMS framework is developed on top of random forest algorithm, it
+takes into account every possible interaction. It was apparent from the
+heat matrices of Friedman's H-Statistic presented that a substantial
 interaction effect exists between the features. The strength trends
 showed less interactivity in yearly series data, reflecting that these
 features are more important on its own. The features involve in
