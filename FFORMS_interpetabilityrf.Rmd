@@ -77,9 +77,9 @@ library(seer)
 
 The field of time series forecasting has been evolving for a few decades now and has introduced a wide variety of models for forecasting. However, for a given time series the selection of an appropriate forecast-model among many possibilities is not straight forward. This selection is one of the most difficult tasks as each method perform best for some but not all tasks. The features of a time series are considered to be an important factor in identifying suitable forecasting models [@collopy1992rule; @meade2000evidence; @makridakis2000m3; @wang2009rule]. However, a comprehensive description of the relationship between the features and the performance of algorithms is rarely discussed. 
 
-There have been several recent studies on the use of meta-learning approaches to automate the forecast-model selection based on the features computed from the time series [@shah1997model; @prudencio2004meta; @lemke2010meta; @kuck2016meta]. Meta-learning approach provides a systematic guidance on model selection based on knowledge acquired from historical data sets. The key idea is, forecast-model selection is posed as a supervised learning task. Each time series in the meta-data set is represented as a vector of features and labelled according to the "best" forecast-model (i.e. for example model with lowest MASE over a test set, etc.). Then a meta-learner is trained to identify a suitable forecast-model (usually a machine learning algorithm is used). In the era of big data, such an automated model selection process is necessary because the cost of invoking all possible forecast-models is prohibitive. However, the existing literature suffers from the limitation of providing answers to questions such as: i) How features are related to the property being modelled?; ii) How features interact with each other to identify a suitable forecast-model?; iii) Which features contribute most to the classification process?, etc. Addressing such questions can enhance the understanding of the relations between features and model selection outcomes. To the best of our knowledge, a very limited effort has been taken to understand how the meta-learners are making its decisions and what is really happening inside these complex model structures. Providing transparency will result, building trust in the prediction results of the meta-learner.
+There have been several recent studies on the use of meta-learning approaches to automate forecast-model selection based on features computed from the time series [@shah1997model; @prudencio2004meta; @lemke2010meta; @kuck2016meta]. A meta-learning approach provides a systematic guidance on model selection based on knowledge acquired from historical data sets. The key idea is, forecast-model selection is posed as a supervised learning task. Each time series in the meta-data set is represented as a vector of features and labelled according to the "best" forecast-model (i.e. for example model with lowest MASE over a test set, etc.). Then a meta-learner is trained to identify a suitable forecast-model (usually a machine learning algorithm is used). In the era of big data, such an automated model selection process is necessary because the cost of invoking all possible forecast-models is prohibitive. However, the existing literature suffers from the limitation of providing answers to questions such as: i) How features are related to the property being modelled?; ii) How features interact with each other to identify a suitable forecast-model?; iii) Which features contribute most to the classification process? etc. Addressing such questions can enhance the understanding of the relations between features and model selection outcomes. To the best of our knowledge, a very limited effort has been taken to understand how the meta-learners are making its decisions and what is really happening inside these complex model structures. Providing transparency will result, building trust in the prediction results of the meta-learner.
 
-Furthermore, besides from the goal of developing an automated forecast-model selection framework very few researchers have made an attempt to provide a description of the relationship between the features and the choice of different forecast-models [@schnaars1984situational;  @wang2009rule;@lemke2010meta; @petropoulos2014horses]. These studies are limited by the scale of problem instances used, the diversity of forecast-models implemented, and the limited number of features considered to identify the relationship between features and forecast-model performance. 
+Furthermore, besides the goal of developing an automated forecast-model selection framework very few researchers have made an attempt to provide a description of the relationship between the features and the choice of different forecast-models [@schnaars1984situational;  @wang2009rule;@lemke2010meta; @petropoulos2014horses are among some exceptions]. These studies are limited by the scale of problem instances used, the diversity of forecast-models implemented, and the limited number of features considered to identify the relationship between features and forecast-model performance. 
 
 To fill this gap, this paper makes a first step towards providing a comprehensive analysis of the relationship between time series features and forecast-model selection using machine learning interpretability techniques. This paper builds on the method from our previous work @fforms,  in which we introduced the FFORMS (Feature-based FORecast Model Selection) framework. A random forest is used to model the relationship between features and "best" performing forecast-model. A large collection of time series is used to train the meta-learner.
 
@@ -93,32 +93,32 @@ The remainder of the paper is structured as follows. In \autoref{fforms} we desc
 
 # FFORMS application to M4 competition data{#fforms}
 
-The FFORMS framework consists of two main components: i) *offline phase*, which includes the development of a meta-learner and ii) *online phase*, using the meta-learner identify the "best" forecast-model. We develop separate classifiers for yearly, monthly, quarterly, weekly, daily and hourly series. 
+The FFORMS framework consists of two main components: i) *offline phase*, which includes the development of a meta-learner and ii) *online phase*, using the meta-learner to identify the "best" forecast-model. We develop separate classifiers for yearly, monthly, quarterly, weekly, daily and hourly series. 
 
 
 ## FFORMS framework: offline phase
 
 ### Reference set
 
-We call the collection of time series used for training the meta-leaner as the "reference set". The reference set consist of two set of time series: i) observed sample and ii) simulated time series. 
+We call the collection of time series used for training the meta-leaner as the "reference set". The reference set consist of two sets of time series: i) observed sample and ii) simulated time series. 
 
 ### Observed sample
 
-We use the time series from the M1, M3 and M4 competitions as the observed sample.  Note that from the M4 competition randomly selected subset of time series are used for the observed sample. The rest is used as a validation set to evaluate the meta-learner. Table \ref{observedsample} summarizes the number of time series in the observed sample.
+We use the time series from the M1, M3 and M4 competitions as the observed sample. Table \ref{observedsample} summarizes the number of time series in the observed sample. Note that from the M4 competition a randomly selected subset of time series are used for the observed sample. The rest shown by the column labelled "Test set - M4" are used as a validation set to evaluate the performance of the meta-learner. 
 
 \begin{table}[!h]
 \centering
-\caption{Composition of the time series in the observed sample}
+\caption{Composition of the time series in the observed sample and the test set}
 \label{observedsample}
-\begin{tabular}{l|rrr}
-\multirow{2}{*}{Frequency} & \multicolumn{3}{l}{Observed Sample} \\
-                  &   M1    &    M3   &    M4  \\ \hline
-  Yearly          &   181    &   645    &   22000  \\
-  Quarterly       &   203    &    756   &   23000\\
-  Monthly         &   617    &    1428   &  47000\\
-  Weekly          &   -    &   -    &   259\\
-  Daily           &   -    &   -    &   4001\\
-  Hourly          &   -    &    -   &  350\\ \hline
+\begin{tabular}{l|rrr|r}
+\multirow{2}{*}{Frequency} & \multicolumn{3}{l|}{Observed Sample} & Test set \\
+                  &   M1    &    M3   &    M4 & M4 \\ \hline
+  Yearly          &   181    &   645    &   22000 & 1000 \\
+  Quarterly       &   203    &    756   &   23000 & 1000\\
+  Monthly         &   617    &    1428   &  47000 & 1000\\
+  Weekly          &   -    &   -    &   259 & 100\\
+  Daily           &   -    &   -    &   4001 & 226\\
+  Hourly          &   -    &    -   &  350 & 64\\ \hline
 \end{tabular}
 \end{table}
 
@@ -196,7 +196,7 @@ The description of the features calculated under each frequency category is show
 
 ### Output: class-labels
 
-The description of class labels considered under each frequency is shown in Table \ref{classlabels}. Note that these added to @fforms. Most of the labels given in Table \ref{classlabels} are self-explanatory labels. In STL-AR, mstlets, and mstlarima, first STL decomposition method applied to the time series and then seasonal naive method is used to forecast the seasonal component. Finally, AR, ETS and ARIMA models are used to forecast seasonally adjusted data respectively. We fit the corresponding models outlined in Table \ref{classlabels} to each series in the reference set. The models are estimated using the training period for each series, and forecasts are produced for the test periods. 
+The description of class labels considered under each frequency is shown in Table \ref{classlabels}. Note that these added to @fforms. Most of the labels given in Table \ref{classlabels} are self-explanatory labels. In STL-AR, mstlets, and mstlarima, first an STL decomposition is applied to the time series and then seasonal naive is used to forecast the seasonal component. Then, AR, ETS and ARIMA models are used to forecast the seasonally adjusted data respectively. We fit the corresponding models outlined in Table \ref{classlabels} to each series in the reference set. The models are estimated using the training period for each series, and forecasts are produced for the test periods. 
 
 \begin{table}[!htp]
 \centering\footnotesize\tabcolsep=0.12cm
@@ -243,7 +243,7 @@ The main objective of this paper is to explore the nature of the relationship be
 
 ## Machine learning interpretability
 
-In recent years, there have been a growing interest for interpretability of machine learning algorithms with the European General Data Protection Regulation (GDPR) stipulates the explainability of all automatically made decision concerning individuals. We explore the role of features in two different perspectives: i) global explanation of feature contribution: overall role of features in the choice of different forecast model selection, and ii) local explanation of feature contribution: nature of the contributions features make for a prediction of a specific instance. We will introduce each of these ideas briefly below. 
+In recent years, there have been a growing interest for interpretability of machine learning algorithms. For example, the European General Data Protection Regulation (GDPR) stipulates the explainability of all automatically made decision concerning individuals. We explore the role of features in two different perspectives: i) global explanation of feature contribution: overall role of features in the choice of different forecast model, and ii) local explanation of feature contribution: the nature of the contributions features make for a prediction of a specific instance. We will introduce each of these ideas briefly below. 
 
 ## General notation
 
@@ -257,11 +257,11 @@ $g$.
 
 ## Model-diagnostics
 
-Model-diagnostic is an important aspect in evaluating the accuracy of the model's predictions as well as the model's understanding of the nature of the relationship between features and predicted outcome. It is argued in order to estimate the test error of a bagged model it is not necessary to perform cross-validation approach, because each tree is grown using different bootstrap samples from  the training set and a part of training data is not used in the tree construction (@breiman2001random; @chen2004using). In general, each bagged tree does not make use of around one third of observations to construct the decision tree. These observations are referred to as the out-of-bag (OOB) observations. Each tree is grown based on different bootstrap samples hence, each tree has different set of OOB observations. These OOB samples are used to calculate internal estimation of the test set error. We use vote matrix calculated based on OOB observations as a model-diagnostic tool. The vote matrix ($N \times P$; $N$ is total number of observations, $P$ is number of classes) contains the proportion of times each observation was classified to each class based on OOB sample.
+Model-diagnostic is an important aspect in evaluating the accuracy of the model's predictions as well as the model's understanding of the nature of the relationship between features and predicted outcome. It is argued in order to estimate the test error of a bagged model it is not necessary to perform cross-validation, because each tree is grown using different bootstrap samples from  the training set and a part of training data is not used in the tree construction (@breiman2001random; @chen2004using). In general, each bagged tree does not make use of around one third of observations to construct the decision tree. These observations are referred to as the out-of-bag (OOB) observations. Each tree is grown based on different bootstrap samples hence, each tree has different set of OOB observations. These OOB samples are used to evaluate test set error. We use a vote matrix calculated based on OOB observations as a model-diagnostic tool. The vote matrix ($N \times P$; $N$ is total number of observations, $P$ is number of classes) contains the proportion of times each observation was classified to each class based on OOB sample.
 
 ## Representation of model in the data space (m-in-ds) and data in the model space (d-in-ms)
 
-@wickham2015visualizing explains the importance of displaying the "model in the data space (m-in-ds)" and "data in the model space (d-in-ms)". Displaying the data in the model space (d-in-ms) is the most commonly used approach for model-diagnostics. For example, plot of fitted values versus residuals (@wickham2015visualizing). D-in-MS is a visualization of embedding high-dimensional data into a low-dimensional space generated from the model. Visualization of D-in-MS do not help to
+@wickham2015visualizing explain the importance of displaying the "model in the data space (m-in-ds)" and "data in the model space (d-in-ms)". Displaying the data in the model space (d-in-ms) is the most commonly used approach for model-diagnostics. For example, plot of fitted values versus residuals (@wickham2015visualizing). D-in-MS is a visualization of embedding high-dimensional data into a low-dimensional space generated from the model. Visualization of D-in-MS do not help to
 gain an understanding of the nature of the relationship between features predicted outcome. In order to address this issue @wickham2015visualizing and @da2017interactive have highlighted the importance of visualizations of model in the data space. In the context of classification, representation of m-in-ds could be achieved by first, projecting the training data set into meaningful low-dimensional feature space and then visualize the complete prediction regions or their boundaries. In other words, this can be considered as the visualization of predictor space in the context of the data space. See @wickham2015visualizing for visualization method of this kind and @da2017interactive for comparable method for random forest algorithm. 
 
 
@@ -339,7 +339,7 @@ An alternative for explaining local behaviour of complex models is proposed by @
 
 ## Yearly data
 
-Random forest returns a vote matrix which is useful in evaluating the uncertainty of observations. The vote matrix ($N \times P$; $N$ is total number of observations; $P$ is number of classes) contains the proportion of times each observation was classified to each class based on OOB sample. This information for yearly data random forest is presented in \autoref{fig:yearlyoob}. This is an alternative way of visualizing the vote-matrix information. The other way of representing vote matrix involves ternary plot (@sutherland2000orca) and jittered side-by-side dotplot [@ehrlinger2015ggrandomforests; @da2017interactive]. To overcome the problem of overlapping data points due to the scale of the training data set, high similarity between classes and relatively large number of class labels, boxplot diagrams are used. \autoref{fig:yearlyoob} helps to evaluate the model performance in the data space (model-in-the-data-space) (@da2017interactive).
+The vote matrix ($N \times P$; $N$ is total number of observations; $P$ is number of classes) contains the proportion of times each observation was classified to each class based on OOB sample. This information for the yearly data is presented in \autoref{fig:yearlyoob}. This is an alternative way of visualizing the vote-matrix information. The other way of representing vote matrix involves ternary plot (@sutherland2000orca) and jittered side-by-side dotplot [@ehrlinger2015ggrandomforests; @da2017interactive]. To overcome the problem of overlapping data points due to the scale of the training data set, high similarity between classes and relatively large number of class labels, boxplot diagrams are used. \autoref{fig:yearlyoob} helps to evaluate the model performance in the data space (model-in-the-data-space) (@da2017interactive).
 
 According to \autoref{fig:yearlyoob} the distributions of correctly classified classes dominate, indicating a good classification of the meta-learner. The random walk with drift has a high chance of getting selected with yearly time series and the results of M4-competition also shows random walk with drift perform well with yearly time series.  The forecast-models, neural network and theta also have a high chance of getting selected as they represent a more general class of forecast-models. Furthermore, FFORMS framework successfully learnt the similarities and dissimilarities between the classes itself.  For example, within ETS-trend predicted class, the distributions correspond to the class labels, ETS-damped trend, ARIMA, were also assigned with high probability and less values were assigned to ARMA/AR/MA, White noise process and ETS (ANN)/ ETS(MNN).
 
@@ -361,7 +361,7 @@ According to \autoref{fig:viyearly}, the features related to strength of trend, 
 
 \autoref{fig:friedmany} shows the heat maps of relative strength of all possible pairwise interactions for each class. The relative strength of two-way interaction between features are measured using the formula developed by @friedman2008predictive, which is implemented in the `iml` (@molnar2018iml,) package in R. Except ETS-trend class, trend and ur_pp show a high level of interactivity and less interactivity with other features. Linearity also show a weak interaction  with other features in all classes.  In almost all the cases partial correlation and auto-correlation based features are heavily interacting. However, the first correlation coefficient of the differenced series do not interact with other features heavily within ARIMA  class. Further, almost all pair of features appear to be interacting within neural network category. The interactivity between stability and lumpiness is the most common type of interactivity appear within all classes. 
 
-```{r viyearly, fig.height=15, fig.width=20, fig.cap="Feature importance plot for yearly series. Permutation-based variable importance measure and mean decrease in Gini coefficients are used to evaluate overall feature importance shown in the top left plot. Class-specific feature importance is evaluated based on three measures: i) permutation-based variable importance, PD-based variable importance measure, and ICE-based variable importance measure. Longer bars indicate more important features. Top 5 features are highlighted in red. Strength of trend appear to be the most important feature.", fig.pos="h"}
+```{r viyearly, fig.height=15, fig.width=20, fig.cap="Feature importance plot for yearly series. Permutation-based variable importance measure and mean decrease in Gini coefficients are used to evaluate overall feature importance shown in the top left plot. Class-specific feature importance is evaluated based on three measures: i) permutation-based variable importance, PD-based variable importance measure, and ICE-based variable importance measure. Longer bars indicate more important features. Top 5 overall features are highlighted in red. Strength of trend appears to be the most important feature.", fig.pos="h"}
 ```
 
 \newpage
