@@ -243,7 +243,7 @@ The main objective of this paper is to explore the nature of the relationship be
 
 ## Machine learning interpretability
 
-In recent years, there have been a growing interest for interpretability of machine learning algorithms. For example, the European General Data Protection Regulation (GDPR) stipulates the explainability of all automatically made decision concerning individuals. We explore the role of features in two different perspectives: i) global explanation of feature contribution: overall role of features in the choice of different forecast model, and ii) local explanation of feature contribution: the nature of the contributions features make for a prediction of a specific instance. We will introduce each of these ideas briefly below. 
+In recent years, there have been a growing interest for interpretability of machine learning algorithms. For example, the European General Data Protection Regulation (GDPR) stipulates the explainability of all automatically made decision concerning individuals. We explore the role of features in two different perspectives: i) global explanation of feature contribution: overall role of features in the choice of different forecast models, and ii) local explanation of feature contribution: the nature of the contributions features make for a prediction of a specific instance. We will introduce each of these ideas briefly below. 
 
 ## General notation
 
@@ -257,7 +257,7 @@ $g$.
 
 ## Model-diagnostics
 
-Model-diagnostic is an important aspect in evaluating the accuracy of the model's predictions as well as the model's understanding of the nature of the relationship between features and predicted outcome. It is argued in order to estimate the test error of a bagged model it is not necessary to perform cross-validation, because each tree is grown using different bootstrap samples from  the training set and a part of training data is not used in the tree construction (@breiman2001random; @chen2004using). In general, each bagged tree does not make use of around one third of observations to construct the decision tree. These observations are referred to as the out-of-bag (OOB) observations. Each tree is grown based on different bootstrap samples hence, each tree has different set of OOB observations. These OOB samples are used to evaluate test set error. We use a vote matrix calculated based on OOB observations as a model-diagnostic tool. The vote matrix ($N \times P$; $N$ is total number of observations, $P$ is number of classes) contains the proportion of times each observation was classified to each class based on OOB sample.
+Model-diagnostic is an important aspect in evaluating the accuracy of the model's predictions as well as the model's understanding of the nature of the relationship between features and predicted outcome. It is argued in order to estimate the test error of a bagged model it is not necessary to perform cross-validation, because each tree is grown using different bootstrap samples from  the training set and a part of training data is not used in the tree construction (@breiman2001random; @chen2004using). In general, each bagged tree does not make use of around one third of observations to construct the decision tree. These observations are referred to as the out-of-bag (OOB) observations. Each tree is grown based on different bootstrap samples hence, each tree has different set of OOB observations. These OOB samples are used to evaluate the test set error. We use a vote matrix calculated based on OOB observations as a model-diagnostic tool. The vote matrix ($N \times P$; $N$ is total number of observations, $P$ is number of classes) contains the proportion of times each observation was classified to each class based on OOB sample.
 
 ## Representation of model in the data space (m-in-ds) and data in the model space (d-in-ms)
 
@@ -290,25 +290,25 @@ Permutation-based variable importance measures provide a useful starting point f
 
 ### Partial dependence plot (PDP)
 
-Partial dependence plot can be used to graphically examine how each feature is related to the model prediction while accounting for the average effect of other features in the model. Let $X_s$ be the subset of feature we want examine partial dependencies for and $X_c$ be the remaining set of features in $X$.  Then $g_s$, the partial dependence function on $X_s$ is defines as 
+Partial dependence plot can be used to graphically examine how each feature is related to the model prediction while accounting for the average effect of other features in the model. Let $X_s$ be the subset of features we want examine partial dependencies for and $X_c$ be the remaining set of features in $X$.  Then $g_s$, the partial dependence function on $X_s$ is defines as 
 \[g_s(X_s)=E_{x_c}[g(x_s, X_c)]=\int{g(x_s, x_c)dP(x_c).}\] 
 In practice, PDP can be estimated from a training data set as 
 \[\bar{g_s}(x_s)=\frac{1}{n}\sum_{i=1}^{n}g(x_s, X_{iC}),\]
-where $n$ is the number of observations in the training data set. Partial dependency curve can be created by plotting the pairs of $\{(x_s^k, \bar{g}_s(x_{sk}))\}_{k=1}^{m}$ defined on grid of points $\{x_{s1}, x_{s2},\dots, x_{sm}\}$ based on $X_s$. FFORMS framework has treated the forecast-model selection problem as a classification problem. Hence, in this paper partial dependency functions displays the probability of certain class occurring given different values of the feature $X_s$.
+where $n$ is the number of observations in the training data set. Partial dependency curve can be created by plotting the pairs of $\{(x_s^k, \bar{g}_s(x_{sk}))\}_{k=1}^{m}$ defined on grid of points $\{x_{s1}, x_{s2},\dots, x_{sm}\}$ based on $X_s$. FFORMS framework has treated the forecast-model selection problem as a classification problem. Hence, in this paper partial dependency functions display the probability of certain class occurring given different values of the feature $X_s$.
 
 ### Variable importance measure based on PDP
 
-@Greenwell2018 introduced a variable importance measure based on the partial dependency curves. The idea is to measure the “flatness” of partial dependence curves for each feature. A feature whose PDP curve is flat, relative to the other features, indicates that the feature does not have much influence on the predicted value as it changes while taking into account the average effect of the other features in the model. The flatness of the curve is measured using the standard deviation of the values $\{\bar{g}_{s}(x_{sk})\}_{k=1}^{m}$.
+@Greenwell2018 introduce a variable importance measure based on the partial dependency curves. The idea is to measure the “flatness” of partial dependence curves for each feature. A feature whose PDP curve is flat, relative to the other features, indicates that the feature does not have much influence on the predicted value as it changes while taking into account the average effect of the other features in the model. The flatness of the curve is measured using the standard deviation of the values $\{\bar{g}_{s}(x_{sk})\}_{k=1}^{m}$.
 
 ### Individual conditional expectation (ICE) curves
 
-While partial dependency curves are useful in understanding the estimated relationship between features and the predicted outcome in the presence of substantial interaction between features, it can be misleading.  @goldstein2015peeking proposed the Individual Conditional Expectation (ICE) curves to address this issue. Instead of
+While partial dependency curves are useful in understanding the estimated relationship between features and the predicted outcome in the presence of substantial interaction between features, it can be misleading.  @goldstein2015peeking propose the Individual Conditional Expectation (ICE) curves to address this issue. Instead of
 averaging $g(x_s, X_{iC})$ over all observations in the training data, ICE plots the individual response curves by plotting the pairs $\{(x_s^k, g(x_{sk}, X_{iC}))\}_{k=1}^{m}$ defined on grid of points $\{x_{s1}, x_{s2},\dots, x_{sm}\}$ based on $X_s$. In other words, partial dependency curve is simply the average of all the ICE curves. 
 
 
 ### Variable importance measure based on ICE curves
 
-This method is similar to the PDP-based VI scores above, but are based on measuring the “flatness” of the individual conditional expectation curves. We calculated standard deviations of each ICE curves.  We then computed an ICE based variable importance score – simply the average of all the standard deviations. A higher value indicates a higher degree of interactivity with other features. 
+This method is similar to the PDP-based variable importance scores above, but are based on measuring the “flatness” of the individual conditional expectation curves. We calculated standard deviations of each ICE curves.  We then computed an ICE based variable importance score – simply the average of all the standard deviations. A higher value indicates a higher degree of interactivity with other features. 
 
 ## Assessment of interaction effect
 
@@ -339,7 +339,8 @@ An alternative for explaining local behaviour of complex models is proposed by @
 
 ## Yearly data
 
-The vote matrix ($N \times P$; $N$ is total number of observations; $P$ is number of classes) contains the proportion of times each observation was classified to each class based on OOB sample. This information for the yearly data is presented in \autoref{fig:yearlyoob}. This is an alternative way of visualizing the vote-matrix information. The other way of representing vote matrix involves ternary plot (@sutherland2000orca) and jittered side-by-side dotplot [@ehrlinger2015ggrandomforests; @da2017interactive]. To overcome the problem of overlapping data points due to the scale of the training data set, high similarity between classes and relatively large number of class labels, boxplot diagrams are used. \autoref{fig:yearlyoob} helps to evaluate the model performance in the data space (model-in-the-data-space) (@da2017interactive).
+The random forest returns a vote matrix which is useful in evaluating the patterns learned by the random forest and the uncertainty of observations.
+The vote matrix ($N \times P$; $N$ is total number of observations; $P$ is number of classes) contains the proportion of times each observation was classified to each class based on OOB sample. This information for the yearly data is presented in \autoref{fig:yearlyoob}. This is an alternative way of visualizing the vote-matrix information. The other ways of representing vote matrix involve ternary plot (@sutherland2000orca) and jittered side-by-side dotplot [@ehrlinger2015ggrandomforests; @da2017interactive]. To overcome the problem of overlapping data points due to the scale of the training data set, high similarity between classes and relatively large number of class labels, boxplot diagrams are used. \autoref{fig:yearlyoob} helps to evaluate the model performance in the data space (model-in-the-data-space) (@da2017interactive).
 
 According to \autoref{fig:yearlyoob} the distributions of correctly classified classes dominate, indicating a good classification of the meta-learner. The random walk with drift has a high chance of getting selected with yearly time series and the results of M4-competition also shows random walk with drift perform well with yearly time series.  The forecast-models, neural network and theta also have a high chance of getting selected as they represent a more general class of forecast-models. Furthermore, FFORMS framework successfully learnt the similarities and dissimilarities between the classes itself.  For example, within ETS-trend predicted class, the distributions correspond to the class labels, ETS-damped trend, ARIMA, were also assigned with high probability and less values were assigned to ARMA/AR/MA, White noise process and ETS (ANN)/ ETS(MNN).
 
@@ -348,7 +349,7 @@ According to \autoref{fig:yearlyoob} the distributions of correctly classified c
 ```
 
 
-```{r yearlyoob, fig.height=10, fig.width=10, fig.cap="Visualization of the vote matrix based on OOB sample for yearly random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots corresponds to class label of \"best\" forecast-model identified based on MASE and sMAPE. On each row, distribution of correctly classified class dominates, indicating a good classification of the meta-learner.", fig.pos="h"}
+```{r yearlyoob, fig.height=10, fig.width=10, fig.cap="Visualization of the vote matrix based on OOB sample for yearly random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of \"best\" forecast-model identified based on MASE and sMAPE. On each row, distribution of correctly classified class dominates, indicating a good classification of the meta-learner.", fig.pos="h"}
 ```
 
 
