@@ -439,6 +439,12 @@ interpretability techniques that are used to identify role of features
 in forecast-model selection. In \autoref{results} we discuss the
 results. \autoref{conclusions} concludes.
 
+\section{Methodological framework}\label{methodological-framework}
+
+\begin{figure}[h]
+\includegraphics[width=1.15\linewidth]{figures/framework} \caption{FFORMS (Feature-based FORecast-Model Selection) framework. The offline phase is shown in blue and the online phase by red.}\label{fig:framework}
+\end{figure}
+
 \section{FFORMS application to M4 competition data}\label{fforms}
 
 The FFORMS framework consists of two main components: i) \emph{offline
@@ -471,13 +477,13 @@ as a validation set to evaluate the performance of the meta-learner.
 \label{observedsample}
 \begin{tabular}{l|rrr|r}
 \multirow{2}{*}{Frequency} & \multicolumn{3}{l|}{Observed Sample} & Test set \\
-                  &   M1    &    M3   &    M4 & M4 \\ \hline
-  Yearly          &   181    &   645    &   22000 & 1000 \\
-  Quarterly       &   203    &    756   &   23000 & 1000\\
-  Monthly         &   617    &    1428   &  47000 & 1000\\
-  Weekly          &   -    &   -    &   259 & 100\\
-  Daily           &   -    &   -    &   4001 & 226\\
-  Hourly          &   -    &    -   &  350 & 64\\ \hline
+&   M1    &    M3   &    M4 & M4 \\ \hline
+Yearly          &   181    &   645    &   22000 & 1000 \\
+Quarterly       &   203    &    756   &   23000 & 1000\\
+Monthly         &   617    &    1428   &  47000 & 1000\\
+Weekly          &   -    &   -    &   259 & 100\\
+Daily           &   -    &   -    &   4001 & 226\\
+Hourly          &   -    &    -   &  350 & 64\\ \hline
 \end{tabular}
 \end{table}
 
@@ -514,8 +520,8 @@ respectively.
 \caption{Automatic forecasting algorithms used to simulate time series}
 \label{simulation}
 \begin{tabular}{lllllll}
- Algorithm & Y & Q & M & W & D &  H \\ \hline
- ets() & \checkmark & \checkmark & \checkmark &  &  &  \\
+Algorithm & Y & Q & M & W & D &  H \\ \hline
+ets() & \checkmark & \checkmark & \checkmark &  &  &  \\
 auto.arima() & \checkmark & \checkmark & \checkmark &  &  &  \\
 stlf() &  &  &  & \checkmark & \checkmark & \checkmark\\ \hline
 \end{tabular}
@@ -577,7 +583,7 @@ calculated based on the training period of the time series.
 34 & diff1y\_pacf5  & sum of squares of first 5 PACF values of differenced series                             & \yes  & \yes & \yes & \yes\\
 35 & diff2y\_pacf5  & sum of squares of first 5 PACF values of twice-differenced series                       & \yes  & \yes & \yes & \yes\\
 \bottomrule
- \end{tabular}
+\end{tabular}
 \end{table}
 
 The description of the features calculated under each frequency category

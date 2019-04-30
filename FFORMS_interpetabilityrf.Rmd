@@ -61,9 +61,6 @@ library(png)
 library(tsfeatures)
 library(tidyverse)
 library(ggpubr)
-library(forestviews)
-#install_github(repo = 'thiyangt/forestviews')
-library(networkD3)
 library(RColorBrewer)
 library(iml) #machine learning interpretability package
 library(ggcorrplot) # to draw  ggcorrplot
@@ -91,6 +88,12 @@ In this article, we make the following contributions:
 
 The remainder of the paper is structured as follows. In \autoref{fforms} we describe the application of FFORMS framework to M4-competition data. \autoref{machinelearning} gives background on machine learning interpretability techniques that are used to identify role of features in forecast-model selection. In \autoref{results} we discuss the results. \autoref{conclusions} concludes.
 
+# Methodological framework
+
+```{r framework, fig.cap="FFORMS (Feature-based FORecast-Model Selection) framework. The offline phase is shown in blue and the online phase by red.", out.width='115%'}
+knitr::include_graphics("figures/framework.png")
+```
+
 # FFORMS application to M4 competition data{#fforms}
 
 The FFORMS framework consists of two main components: i) *offline phase*, which includes the development of a meta-learner and ii) *online phase*, using the meta-learner to identify the "best" forecast-model. We develop separate classifiers for yearly, monthly, quarterly, weekly, daily and hourly series. 
@@ -112,15 +115,16 @@ We use the time series from the M1, M3 and M4 competitions as the observed sampl
 \label{observedsample}
 \begin{tabular}{l|rrr|r}
 \multirow{2}{*}{Frequency} & \multicolumn{3}{l|}{Observed Sample} & Test set \\
-                  &   M1    &    M3   &    M4 & M4 \\ \hline
-  Yearly          &   181    &   645    &   22000 & 1000 \\
-  Quarterly       &   203    &    756   &   23000 & 1000\\
-  Monthly         &   617    &    1428   &  47000 & 1000\\
-  Weekly          &   -    &   -    &   259 & 100\\
-  Daily           &   -    &   -    &   4001 & 226\\
-  Hourly          &   -    &    -   &  350 & 64\\ \hline
+&   M1    &    M3   &    M4 & M4 \\ \hline
+Yearly          &   181    &   645    &   22000 & 1000 \\
+Quarterly       &   203    &    756   &   23000 & 1000\\
+Monthly         &   617    &    1428   &  47000 & 1000\\
+Weekly          &   -    &   -    &   259 & 100\\
+Daily           &   -    &   -    &   4001 & 226\\
+Hourly          &   -    &    -   &  350 & 64\\ \hline
 \end{tabular}
 \end{table}
+
 
 ### Simulated time series
 
@@ -132,8 +136,8 @@ period specified in the M4 competition + length of the forecast horizon specifie
 \caption{Automatic forecasting algorithms used to simulate time series}
 \label{simulation}
 \begin{tabular}{lllllll}
- Algorithm & Y & Q & M & W & D &  H \\ \hline
- ets() & \checkmark & \checkmark & \checkmark &  &  &  \\
+Algorithm & Y & Q & M & W & D &  H \\ \hline
+ets() & \checkmark & \checkmark & \checkmark &  &  &  \\
 auto.arima() & \checkmark & \checkmark & \checkmark &  &  &  \\
 stlf() &  &  &  & \checkmark & \checkmark & \checkmark\\ \hline
 \end{tabular}
@@ -141,9 +145,11 @@ stlf() &  &  &  & \checkmark & \checkmark & \checkmark\\ \hline
 
 We should re-emphasize that all the observed time series and the simulated time series form the reference set to build our meta-learner. Once we create the reference set for random forest training we split each time series in the reference set into training period and test period. 
 
+
 ### Input: features
 
 The FFORMS framework operates on features calculated from the time series. For each time series in the reference set, features are calculated based on the training period of the time series. 
+
 
 \begin{table}[!htp]
 \centering\footnotesize\tabcolsep=0.12cm
@@ -189,8 +195,10 @@ The FFORMS framework operates on features calculated from the time series. For e
 34 & diff1y\_pacf5  & sum of squares of first 5 PACF values of differenced series                             & \yes  & \yes & \yes & \yes\\
 35 & diff2y\_pacf5  & sum of squares of first 5 PACF values of twice-differenced series                       & \yes  & \yes & \yes & \yes\\
 \bottomrule
- \end{tabular}
+\end{tabular}
 \end{table}
+
+
 
 The description of the features calculated under each frequency category is shown in Table \ref{feature}. A comprehensive description of the features used in the experiment is given in @fforms.
 
@@ -229,6 +237,7 @@ mstlarima & & - & - & - & \checkmark \\\hline
 According to the @M4compguide, in the M4-competition the forecast accuracy is evaluated based on the mean Absolute Scaled Error (MASE) and the symmetric Mean Absolute Percentage Error (MAPE). Hence, in order to identify the "best" forecast-model for each time series in the reference set we combine MASE and the symmetric MAPE calculated over the test set. More specifically, for each series both forecast error measures MASE and sMAPE are calculated for each of the forecast models. Each of these is respectively standardized by the median MASE and median sMAPE calculated across the forecast-models. The model with the lowest average value of the scaled MASE and scaled sMAPE is selected as the output class-label. 
 
 
+
 ### Train a random forest classifier
 
 A random forest algorithm is used to train the meta-learner. We build separate random forest classifiers for yearly, quarterly, monthly, weekly, daily and hourly time series. The wrapper function called `build_rf` in the `seer` package (available at: https://github.com/thiyangt/seer) enables the training of a random forest.
@@ -244,6 +253,7 @@ The main objective of this paper is to explore the nature of the relationship be
 ## Machine learning interpretability
 
 In recent years, there have been a growing interest for interpretability of machine learning algorithms. For example, the European General Data Protection Regulation (GDPR) stipulates the explainability of all automatically made decision concerning individuals. We explore the role of features in two different perspectives: i) global explanation of feature contribution: overall role of features in the choice of different forecast models, and ii) local explanation of feature contribution: the nature of the contributions features make for a prediction of a specific instance. We will introduce each of these ideas briefly below. 
+
 
 ## General notation
 
@@ -282,11 +292,14 @@ Mean decrease in Gini coefficient is a measure of how each feature contributes t
 
 The permutation-based variable importance introduced by @breiman2001random measures the prediction
 strength of each feature. This measure is calculated based on the  out-of-bag (OOB) observations. The calculation of variable importance is formalized as follow: Let $\bar{\mathcal{B}}^{(k)}$ be the OOB sample for a tree $k$, with $k\in \{1,...,ntree\}$, where $ntree$ is the number of trees in the random forest. Then the variable importance of variable $X_{j}$ in $k^{th}$ tree is:
- \[VI^{(k)}(X_{j})=\frac{\sum_{i\in \bar{\mathcal{B}}^{(k)}}I(\gamma_{i}=\gamma_{i,\pi_{j}}^{k})}{|\bar{\mathcal{B}}^{(k)}|}-\frac{\sum_{i\in \bar{\mathcal{B}}^{(k)}}I(\gamma_{i}=\gamma_{i}^{k})}{|\bar{\mathcal{B}}^{(k)}|},\]
- where $\gamma_{i}^{k}$ denotes the predicted class for the $i^{th}$ observation before permuting the values of $X_{j}$ and $\gamma_{i, \pi_{j}}^{k}$ is the predicted class for the $i^{th}$ observation after permuting the values of $X_{j}$. The overall variable importance score is calculated as:
- \[VI(X_{j})=\frac{\sum_{1}^{ntree}VI^{(t)}(x_{j})}{ntree}.\]
+  \[VI^{(k)}(X_{j})=\frac{\sum_{i\in \bar{\mathcal{B}}^{(k)}}I(\gamma_{i}=\gamma_{i,\pi_{j}}^{k})}{|\bar{\mathcal{B}}^{(k)}|}-\frac{\sum_{i\in \bar{\mathcal{B}}^{(k)}}I(\gamma_{i}=\gamma_{i}^{k})}{|\bar{\mathcal{B}}^{(k)}|},\]
+where $\gamma_{i}^{k}$ denotes the predicted class for the $i^{th}$ observation before permuting the values of $X_{j}$ and $\gamma_{i, \pi_{j}}^{k}$ is the predicted class for the $i^{th}$ observation after permuting the values of $X_{j}$. The overall variable importance score is calculated as:
+  \[VI(X_{j})=\frac{\sum_{1}^{ntree}VI^{(t)}(x_{j})}{ntree}.\]
 
 Permutation-based variable importance measures provide a useful starting point for identifying relative influence of features on the predicted outcome.  However, they provide a little indication of the nature of the relationship between the features and model outcome. To gain further insights into the role of features inside the FFORMS framework we use partial dependence plot (PDP) introduced by @friedman2008predictive. 
+
+
+
 
 ### Partial dependence plot (PDP)
 
@@ -321,6 +334,8 @@ The Friedman's H-statistic measures the fraction of variance of two-variable par
 Note that the, PD plots, ICE curves and PD-, ICE-associated measures and Friedman's H-statistic are computationally intensive to compute, especially when there are large number of observations in the training set. Hence, in our experiments ICE and PDP-based variable importance measures are computed based on the subset of randomly selected training examples.
 
 
+
+
 ## Local Interpretable Model-agnostic Explanations (LIME)
 
 Global interpretations help us to understand the entire modelled relationship.  Local interpretations help us to understand the predictions of the model for a single instance or a group of similar instances. In other words, this allows users to zoom into a particular instance or a subset and explore how different features affect the resulting prediction. We use Local Interpretable Model-agnostic Explanations (LIME) approach introduce by @ribeiro2016should for explaining individual predictions which relies on the assumption that "every complex model is linear on a local scale". This is accomplished by locally approximating the complex black-box model with a simple interpretable model. @ribeiro2016should highlighted features that are globally important may not be important in the local context and vice versa. The algorithm steps can be summarized as follow: 
@@ -334,6 +349,7 @@ Global interpretations help us to understand the entire modelled relationship.  
 7. Use the estimated coefficients of simple linear model to explain the local behaviour corresponds to the selected observation in step 1.
 
 An alternative for explaining local behaviour of complex models is proposed by @lundberg2017unified based on game theory named "Shapley values".
+
 
 # Results{#results}
 
@@ -357,7 +373,7 @@ According to \autoref{fig:yearlyoob} the distributions of correctly classified c
 
 According to \autoref{fig:viyearly}, the features related to strength of trend, nonstationarity (ur_pp, diff1y_acf1), overall shape of the trend (linear: measured by linearity, damped trend: measured by beta, exponential: measured by curvature) and measures of randomness (from spikiness, and lmres_acf1) are the most important for the choice of yearly time series forecast-models. The first ACF value of the original series (y_acf1) appears among the top five within the random walk with drift class and the ARMA/AR/MA class as it helps to separate stationary and non-stationary series. The first correlation coefficient of the twice-differenced series is appeared to be the most important in the ARIMA class as this class contains the higher order differenced series.  The Hurst exponent and entropy appear to be equally important in stationary classes. Within the  ETS-damped trend class beta and curvature ranked as important features. The length of time series (N) is assigned relatively high rank within the random walk with drift, ETS-dampedtrend and the neural-network class compared to others. On the other hand, sum of squares of the first five autocorrelation coefficients of the twice-difference series and the lumpiness are the least important feature across many classes.
 
- 
+
 \autoref{fig:pdpyearly} shows the partial dependency curves, and the associated confidence intervals of the top-three features that get selected most in each class. The three features show a non-linear relationship with the predicted class probabilities. The probabilities of selecting ETS-trend, ARIMA, ETS-without seasonal and trend component and neural network models increase steadily as ur_pp increases. As expected, the probability of selecting stationary models decreases as the test statistic of Phillip-Perron test increases and this probability remains zero  beyond the value of 0 of ur_pp. Random walk with drift, ETS-trend, ETS-damped trend, ARIMA show an increasing relationship with trend, whereas the random walk, ETS-without trend and seasonal components, and the stationary models show a monotonically deceasing relationship as  trend increases. The theta class shows parabolic relationship with trend. It is interesting to observe that the probability of selecting neural network models decreases with very high trend value. The reason could be very clear highly trended series are more likely to select ETS-trend, ETS-dampedtrend and ARIMA models. The wide confidence bands around the partial dependency functions of linearity indicate the higher variability of ICE curves. The probability of selecting random walk with drift increases rapidly beyond value 0 and remains thereafter. The PDP curves of linearity in ARMA/AR/MA increase sharply around 0 and decline steadily after that. Similar relationship can be observed within the white noise class with wide confidence bands whereas ARIMA and neural network show the opposite relationship. The partial dependency curves of diff1y_acf1 indicate the probabilities of selecting the random walk with drift and the ETS-trend are higher for differenced-stationary series. 
 
 \autoref{fig:friedmany} shows the heat maps of the relative strength of all possible pairwise interactions of the features for each class. The relative strength of two-way interactions between features are measured using the formula developed by @friedman2008predictive, which is implemented in the `iml` (@molnar2018iml,) package in R. Except the ETS-trend class, trend and ur_pp show a high level of interactivity and a less interactivity with other features. Linearity also show a weak interaction  with other features in all classes.  In almost all the classes the partial correlation and auto-correlation based features are heavily interacting. However, the first correlation coefficient of the differenced series does not interact with other features heavily within the ARIMA  class. Further, almost all pairs of features appear to be interacting within neural network category. The interactivity between stability and lumpiness is the most common type of interactivity appear within all classes. 
@@ -454,7 +470,7 @@ According to \autoref{fig:oobdailyhourly} the distributions corresponds to obser
 Variable importance graph for daily and hourly data are shown in \autoref{fig:vidaily} and \autoref{fig:vihourly} respectively. The most
 important features for daily time series are, strength of seasonality corresponds to the weekly seasonality (7, measured by seasonal_strength1), stability, trend, lumpiness and linearity. Furthermore, length of the series is important in determining random walk,
 random walk with drift, mstlarima, mstlets, stlar, theta and nn classes.
- 
+
 According to \autoref{fig:vihourly}, the strength of daily
 seasonality (period=24, measured by seasonal_strength1) appear to be more important than the strength of weekly seasonality (period=168, measured by seasonal_strength2). Furthermore, entropy, linearity, sum of squares of first 5 coefficients of PACF, curvature, trend, spikiness and stability were found to be the most important features in determining best forecasting method for hourly time series. Only snaive category ranked N among top 5 for hourly time series. The strength of weekly seasonality also seems to be one of the most important features for classes snaive, random walk, mstlarima, and tbats. 
 
