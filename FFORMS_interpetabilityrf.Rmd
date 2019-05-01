@@ -86,22 +86,25 @@ In this article, we make the following contributions:
 1. We analyse the application of the FFORMS framework to the M4-competition data. We generated point forecasts and prediction intervals for the M4-competition time series data, and is shown to yield accurate forecast comparable to several benchmarks and other commonly used automated approaches of time series forecasting. Our approach achieved a high accuracy rate based on individual forecast-model selection rule. 
 1. The main contribution of the paper is to explore the relationship between features of time series and the choice of forecast-model selection using the FFORMS framework. We explore the role of features in two different perspectives: i) Global perspective of feature contribution: the overall role of features in the choice of different forecast-models and ii) Local perspective of feature contribution: we zoom into local regions of the data to identify which features contribute most to classify a specific instance. 
 
-The remainder of the paper is structured as follows. In \autoref{fforms} we describe the application of FFORMS framework to M4-competition data. \autoref{machinelearning} gives background on machine learning interpretability techniques that are used to identify role of features in forecast-model selection. In \autoref{results} we discuss the results. \autoref{conclusions} concludes.
+The remainder of the paper is structured as follows. The  \autoref{fforms} outlines the extended FFORMS framework. \autoref{offline} through \autoref{peeking} explain the three main components of the extended FFORMS framework.  In \autoref{results} we discuss the results. \autoref{conclusions} concludes.
 
-# Methodological framework
+# Methodological framework{#fforms}
+
+\autoref{fig:framework} shows the extended FFORMS framework with all additional components highlighted in yellow. There are three main components of this extended FFORMS framework. They are,
+
+1. offline phase (blue):, the development of a meta-learner 
+1. online phase (red): use the pre-trained meta-learner to identify the "best" forecast-model. 
+1. peeking inside FFORMS (yellow): gain insights into what what is happening under the hood of the FFORMS framework. 
+
+We now explain application of the extended FFORMS framework to the M4-competition data. 
 
 ```{r framework, fig.cap="FFORMS (Feature-based FORecast-Model Selection) framework. The offline phase is shown in blue and the online phase by red.", out.width='115%'}
 knitr::include_graphics("figures/framework.png")
 ```
 
-# FFORMS application to M4 competition data{#fforms}
+# Offline phase{#offline}
 
-The FFORMS framework consists of two main components: i) *offline phase*, which includes the development of a meta-learner and ii) *online phase*, using the meta-learner to identify the "best" forecast-model. We develop separate classifiers for yearly, monthly, quarterly, weekly, daily and hourly series. 
-
-
-## FFORMS framework: offline phase
-
-### Reference set
+## Reference set
 
 We call the collection of time series used for training the meta-leaner as the "reference set". The reference set consist of two sets of time series: i) observed sample and ii) simulated time series. 
 
@@ -146,7 +149,7 @@ stlf() &  &  &  & \checkmark & \checkmark & \checkmark\\ \hline
 We should re-emphasize that all the observed time series and the simulated time series form the reference set to build our meta-learner. Once we create the reference set for random forest training we split each time series in the reference set into training period and test period. 
 
 
-### Input: features
+## Input: features
 
 The FFORMS framework operates on features calculated from the time series. For each time series in the reference set, features are calculated based on the training period of the time series. 
 
@@ -202,7 +205,7 @@ The FFORMS framework operates on features calculated from the time series. For e
 
 The description of the features calculated under each frequency category is shown in Table \ref{feature}. A comprehensive description of the features used in the experiment is given in @fforms.
 
-### Output: class-labels
+## Output: class-labels
 
 The description of class labels considered under each frequency is shown in Table \ref{classlabels}. Note that these added to @fforms. Most of the labels given in Table \ref{classlabels} are self-explanatory labels. In STL-AR, mstlets, and mstlarima, first an STL decomposition is applied to the time series and then seasonal naive is used to forecast the seasonal component. Then, AR, ETS and ARIMA models are used to forecast the seasonally adjusted data respectively. We fit the corresponding models outlined in Table \ref{classlabels} to each series in the reference set. The models are estimated using the training period for each series, and forecasts are produced for the test periods. 
 
@@ -238,15 +241,15 @@ According to the @M4compguide, in the M4-competition the forecast accuracy is ev
 
 
 
-### Train a random forest classifier
+## Train a random forest classifier
 
 A random forest algorithm is used to train the meta-learner. We build separate random forest classifiers for yearly, quarterly, monthly, weekly, daily and hourly time series. The wrapper function called `build_rf` in the `seer` package (available at: https://github.com/thiyangt/seer) enables the training of a random forest.
 
-## FFORMS framework: online phase
+# Online phase{#online}
 
 The online phase of the algorithm involves generating point forecasts and 95% prediction intervals for the new series or the future values observed time series. First, the corresponding features are calculated based on the full length of the training period provided by the M4 competition. Second, point forecasts and 95% prediction intervals are calculated based on the predicted class labels. We should note that all negative forecasts are set to zero.
 
-# Peeking inside FFORMS{#machinelearning}
+# Peeking inside FFORMS{#peeking}
 
 The main objective of this paper is to explore the nature of the relationship between features and forecast-model selection learned by the FFORMS framework. More specifically, to identify which of the features are important for model predictions and how different features and their interactions led to the different choices. We use both model-diagnostic approaches and machine learning interpretability approaches to evaluate our framework.
 

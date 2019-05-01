@@ -432,31 +432,41 @@ In this article, we make the following contributions:
   contribute most to classify a specific instance.
 \end{enumerate}
 
-The remainder of the paper is structured as follows. In \autoref{fforms}
-we describe the application of FFORMS framework to M4-competition data.
-\autoref{machinelearning} gives background on machine learning
-interpretability techniques that are used to identify role of features
-in forecast-model selection. In \autoref{results} we discuss the
-results. \autoref{conclusions} concludes.
+The remainder of the paper is structured as follows. The
+\autoref{fforms} outlines the extended FFORMS framework.
+\autoref{offline} through \autoref{peeking} explain the three main
+components of the extended FFORMS framework. In \autoref{results} we
+discuss the results. \autoref{conclusions} concludes.
 
-\section{Methodological framework}\label{methodological-framework}
+\section{Methodological framework}\label{fforms}
+
+\autoref{fig:framework} shows the extended FFORMS framework with all
+additional components highlighted in yellow. There are three main
+components of this extended FFORMS framework. They are,
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  offline phase (blue):, the development of a meta-learner
+\item
+  online phase (red): use the pre-trained meta-learner to identify the
+  ``best'' forecast-model.
+\item
+  peeking inside FFORMS (yellow): gain insights into what what is
+  happening under the hood of the FFORMS framework.
+\end{enumerate}
+
+We now explain application of the extended FFORMS framework to the
+M4-competition data.
 
 \begin{figure}[h]
 \includegraphics[width=1.15\linewidth]{figures/framework} \caption{FFORMS (Feature-based FORecast-Model Selection) framework. The offline phase is shown in blue and the online phase by red.}\label{fig:framework}
 \end{figure}
 
-\section{FFORMS application to M4 competition data}\label{fforms}
+\section{Offline phase}\label{offline}
 
-The FFORMS framework consists of two main components: i) \emph{offline
-phase}, which includes the development of a meta-learner and ii)
-\emph{online phase}, using the meta-learner to identify the ``best''
-forecast-model. We develop separate classifiers for yearly, monthly,
-quarterly, weekly, daily and hourly series.
-
-\subsection{FFORMS framework: offline
-phase}\label{fforms-framework-offline-phase}
-
-\subsubsection{Reference set}\label{reference-set}
+\subsection{Reference set}\label{reference-set}
 
 We call the collection of time series used for training the meta-leaner
 as the ``reference set''. The reference set consist of two sets of time
@@ -533,7 +543,7 @@ Once we create the reference set for random forest training we split
 each time series in the reference set into training period and test
 period.
 
-\subsubsection{Input: features}\label{input-features}
+\subsection{Input: features}\label{input-features}
 
 The FFORMS framework operates on features calculated from the time
 series. For each time series in the reference set, features are
@@ -590,7 +600,7 @@ The description of the features calculated under each frequency category
 is shown in Table \ref{feature}. A comprehensive description of the
 features used in the experiment is given in \textcite{fforms}.
 
-\subsubsection{Output: class-labels}\label{output-class-labels}
+\subsection{Output: class-labels}\label{output-class-labels}
 
 The description of class labels considered under each frequency is shown
 in Table \ref{classlabels}. Note that these added to \textcite{fforms}.
@@ -643,7 +653,7 @@ sMAPE calculated across the forecast-models. The model with the lowest
 average value of the scaled MASE and scaled sMAPE is selected as the
 output class-label.
 
-\subsubsection{Train a random forest
+\subsection{Train a random forest
 classifier}\label{train-a-random-forest-classifier}
 
 A random forest algorithm is used to train the meta-learner. We build
@@ -653,8 +663,7 @@ weekly, daily and hourly time series. The wrapper function called
 \url{https://github.com/thiyangt/seer}) enables the training of a random
 forest.
 
-\subsection{FFORMS framework: online
-phase}\label{fforms-framework-online-phase}
+\section{Online phase}\label{online}
 
 The online phase of the algorithm involves generating point forecasts
 and 95\% prediction intervals for the new series or the future values
@@ -664,7 +673,7 @@ competition. Second, point forecasts and 95\% prediction intervals are
 calculated based on the predicted class labels. We should note that all
 negative forecasts are set to zero.
 
-\section{Peeking inside FFORMS}\label{machinelearning}
+\section{Peeking inside FFORMS}\label{peeking}
 
 The main objective of this paper is to explore the nature of the
 relationship between features and forecast-model selection learned by
