@@ -96,9 +96,9 @@ The remainder of the paper is structured as follows. The  \autoref{fforms} outli
 1. online phase (red): use the pre-trained meta-learner to identify the "best" forecast-model. 
 1. peeking inside FFORMS (yellow): gain insights into what what is happening under the hood of the FFORMS framework. 
 
-We now explain application of the extended FFORMS framework to the M4-competition data. 
+We now explain application of the extended FFORMS framework to the M4-competition data. We analyse yearly, quarterly, monthly, weekly, daily and hourly series separately due to their differences in frequencies and hence the appropriateness of different features and forecast-models we considered as class labels. 
 
-```{r framework, fig.cap="FFORMS (Feature-based FORecast-Model Selection) framework. The offline phase is shown in blue and the online phase by red.", out.width='115%'}
+```{r framework, fig.cap="extended FFORMS (Feature-based FORecast-Model Selection) framework. The offline phase is shown in blue, the online phase by red and the peeking inside FFORMS is shown in yellow.", out.width='115%'}
 knitr::include_graphics("figures/framework.png")
 ```
 
@@ -251,12 +251,7 @@ The online phase of the algorithm involves generating point forecasts and 95% pr
 
 # Peeking inside FFORMS{#peeking}
 
-The main objective of this paper is to explore the nature of the relationship between features and forecast-model selection learned by the FFORMS framework. More specifically, to identify which of the features are important for model predictions and how different features and their interactions led to the different choices. We use both model-diagnostic approaches and machine learning interpretability approaches to evaluate our framework.
-
-## Machine learning interpretability
-
-In recent years, there have been a growing interest for interpretability of machine learning algorithms. For example, the European General Data Protection Regulation (GDPR) stipulates the explainability of all automatically made decision concerning individuals. We explore the role of features in two different perspectives: i) global explanation of feature contribution: overall role of features in the choice of different forecast models, and ii) local explanation of feature contribution: the nature of the contributions features make for a prediction of a specific instance. We will introduce each of these ideas briefly below. 
-
+The main objective of this paper is to explore the nature of the relationship between features and forecast-model selection learned by the FFORMS framework. More specifically, to identify which of the features are important for model predictions and how different features and their interactions led to the different choices. 
 
 ## General notation
 

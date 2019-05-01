@@ -458,10 +458,13 @@ components of this extended FFORMS framework. They are,
 \end{enumerate}
 
 We now explain application of the extended FFORMS framework to the
-M4-competition data.
+M4-competition data. We analyse yearly, quarterly, monthly, weekly,
+daily and hourly series separately due to their differences in
+frequencies and hence the appropriateness of different features and
+forecast-models we considered as class labels.
 
 \begin{figure}[h]
-\includegraphics[width=1.15\linewidth]{figures/framework} \caption{FFORMS (Feature-based FORecast-Model Selection) framework. The offline phase is shown in blue and the online phase by red.}\label{fig:framework}
+\includegraphics[width=1.15\linewidth]{figures/framework} \caption{extended FFORMS (Feature-based FORecast-Model Selection) framework. The offline phase is shown in blue, the online phase by red and the peeking inside FFORMS is shown in yellow.}\label{fig:framework}
 \end{figure}
 
 \section{Offline phase}\label{offline}
@@ -679,23 +682,7 @@ The main objective of this paper is to explore the nature of the
 relationship between features and forecast-model selection learned by
 the FFORMS framework. More specifically, to identify which of the
 features are important for model predictions and how different features
-and their interactions led to the different choices. We use both
-model-diagnostic approaches and machine learning interpretability
-approaches to evaluate our framework.
-
-\subsection{Machine learning
-interpretability}\label{machine-learning-interpretability}
-
-In recent years, there have been a growing interest for interpretability
-of machine learning algorithms. For example, the European General Data
-Protection Regulation (GDPR) stipulates the explainability of all
-automatically made decision concerning individuals. We explore the role
-of features in two different perspectives: i) global explanation of
-feature contribution: overall role of features in the choice of
-different forecast models, and ii) local explanation of feature
-contribution: the nature of the contributions features make for a
-prediction of a specific instance. We will introduce each of these ideas
-briefly below.
+and their interactions led to the different choices.
 
 \subsection{General notation}\label{general-notation}
 
