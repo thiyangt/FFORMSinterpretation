@@ -49,17 +49,14 @@ read_chunk("src/main_lime.R")
 read_chunk("src/twowayPDPplots.R")
 read_chunk("src/main_daily_hourly.R")
 library(Mcomp)
-library(ggplot2)
 library(patchwork)
 library(tidyverse)
 library(reshape2)
-library(ggplot2)
 library(grid)
 library(gridExtra)
 library(ggrepel)
 library(png)
 library(tsfeatures)
-library(tidyverse)
 library(ggpubr)
 library(RColorBrewer)
 library(iml) #machine learning interpretability package
@@ -67,6 +64,7 @@ library(ggcorrplot) # to draw  ggcorrplot
 library(ggpubr)
 library(lime)
 library(seer)
+library(Hmisc)
 ```
 
 
@@ -257,14 +255,14 @@ The main objective of this paper is to explore the nature of the relationship be
 
 ## Visualise patterns learned by the meta-learner
 
-Model-diagnostic is an important aspect in evaluating the accuracy of the model's predictions as well as the model's understanding of the nature of the relationship between features and predicted outcome. It is argued in order to estimate the test error of a bagged model it is not necessary to perform cross-validation, because each tree is grown using different bootstrap samples from  the training set and a part of training data is not used in the tree construction (@breiman2001random; @chen2004using). In general, each bagged tree does not make use of around one third of observations to construct the decision tree. These observations are referred to as the out-of-bag (OOB) observations. Each tree is grown based on different bootstrap samples hence, each tree has different set of OOB observations. These OOB samples are used to evaluate the test set error. We use a vote matrix calculated based on OOB observations as a model-diagnostic tool. The vote matrix ($N \times P$; $N$ is total number of observations, $P$ is number of classes) contains the proportion of times each observation was classified to each class based on OOB sample.
+We use a vote matrix calculated based on OOB observations to visualise patterns leaned by the random forest. The vote matrix ($N \times P$; $N$ is total number of observations, $P$ is number of classes) contains the proportion of times each observation was classified to each class based on OOB sample.
 
 
-## Analysis of feature contribution
+## Feature importance
 
 @jiang2002 explains variable importance under three different views: i) causality: change in the value of Y for an increase or decrease in the value of x, ii) contribution of X based on out-of-sample prediction accuracy and iii) face value of X on prediction function $g$, for example in linear regression model estimated coefficients of each predictor can be considered as a measure of variable importance. See @jiang2002 for comparable face value interpretation for machine learning models. In this paper we use the first two notions of variable importance. Partial dependency functions and individual conditional expectation curves are used to explore the "causality" notion of variable importance while Mean decrease in Gini coefficient and Permutation-based variable importance are used to capture the second notion of variable importance-features contribution to the predictive accuracy (@Zhao). We will introduce each of these variable importance measures below.  
 
-### General notation
+**General notation**
 
 Let \(\mathcal{P}=\{(\mathbf{x^{(i)}}, y^{(i)})\}_{i=1}^{N}\) be the
 historical data set we use to train a classifier. Consider a
@@ -274,12 +272,12 @@ variable, the best forecasting method for each series \(Y\). Let \(\mathcal{G}\)
 the historical data we provided. We denote the predicted function as
 $g$.
 
-### Mean decrease in Gini coefficient
+**Mean decrease in Gini coefficient**
 
 Mean decrease in Gini coefficient is a measure of how each feature contributes to the homogeneity of the nodes and leaves in the resulting random forest proposed by @breiman2001random.
 
 
-### Permutation-based variable importance measure
+**Permutation-based variable importance measure**
 
 The permutation-based variable importance introduced by @breiman2001random measures the prediction
 strength of each feature. This measure is calculated based on the  out-of-bag (OOB) observations. The calculation of variable importance is formalized as follow: Let $\bar{\mathcal{B}}^{(k)}$ be the OOB sample for a tree $k$, with $k\in \{1,...,ntree\}$, where $ntree$ is the number of trees in the random forest. Then the variable importance of variable $X_{j}$ in $k^{th}$ tree is:
@@ -290,7 +288,7 @@ where $\gamma_{i}^{k}$ denotes the predicted class for the $i^{th}$ observation 
 Permutation-based variable importance measures provide a useful starting point for identifying relative influence of features on the predicted outcome.  However, they provide a little indication of the nature of the relationship between the features and model outcome. To gain further insights into the role of features inside the FFORMS framework we use partial dependence plot (PDP) introduced by @friedman2008predictive. 
 
 
-### Partial dependence plot (PDP)
+**Partial dependence plot (PDP)**
 
 Partial dependence plot can be used to graphically examine how each feature is related to the model prediction while accounting for the average effect of other features in the model. Let $X_s$ be the subset of features we want examine partial dependencies for and $X_c$ be the remaining set of features in $X$.  Then $g_s$, the partial dependence function on $X_s$ is defines as 
 \[g_s(X_s)=E_{x_c}[g(x_s, X_c)]=\int{g(x_s, x_c)dP(x_c).}\] 
@@ -298,19 +296,21 @@ In practice, PDP can be estimated from a training data set as
 \[\bar{g_s}(x_s)=\frac{1}{n}\sum_{i=1}^{n}g(x_s, X_{iC}),\]
 where $n$ is the number of observations in the training data set. Partial dependency curve can be created by plotting the pairs of $\{(x_s^k, \bar{g}_s(x_{sk}))\}_{k=1}^{m}$ defined on grid of points $\{x_{s1}, x_{s2},\dots, x_{sm}\}$ based on $X_s$. FFORMS framework has treated the forecast-model selection problem as a classification problem. Hence, in this paper partial dependency functions display the probability of certain class occurring given different values of the feature $X_s$.
 
-### Variable importance measure based on PDP
+**Variable importance measure based on PDP**
 
 @Greenwell2018 introduce a variable importance measure based on the partial dependency curves. The idea is to measure the “flatness” of partial dependence curves for each feature. A feature whose PDP curve is flat, relative to the other features, indicates that the feature does not have much influence on the predicted value as it changes while taking into account the average effect of the other features in the model. The flatness of the curve is measured using the standard deviation of the values $\{\bar{g}_{s}(x_{sk})\}_{k=1}^{m}$.
 
-### Individual conditional expectation (ICE) curves
+**Individual conditional expectation (ICE) curves**
 
 While partial dependency curves are useful in understanding the estimated relationship between features and the predicted outcome in the presence of substantial interaction between features, it can be misleading.  @goldstein2015peeking propose the Individual Conditional Expectation (ICE) curves to address this issue. Instead of
 averaging $g(x_s, X_{iC})$ over all observations in the training data, ICE plots the individual response curves by plotting the pairs $\{(x_s^k, g(x_{sk}, X_{iC}))\}_{k=1}^{m}$ defined on grid of points $\{x_{s1}, x_{s2},\dots, x_{sm}\}$ based on $X_s$. In other words, partial dependency curve is simply the average of all the ICE curves. 
 
 
-### Variable importance measure based on ICE curves
+**Variable importance measure based on ICE curves**
 
 This method is similar to the PDP-based variable importance scores above, but are based on measuring the “flatness” of the individual conditional expectation curves. We calculated standard deviations of each ICE curves.  We then computed an ICE based variable importance score – simply the average of all the standard deviations. A higher value indicates a higher degree of interactivity with other features. 
+
+## Relationship between most important features and the choice of forecast-model selection 
 
 ## Assessment of interaction effect
 
@@ -374,10 +374,13 @@ According to \autoref{fig:viyearly}, the features related to strength of trend, 
 
 \newpage
 
-```{r friedmany, fig.height=30, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calculated based on Friedman's H-statistic (yearly series). Strength of trend shows less interactivity with other features.", fig.pos="h", message=FALSE, warning=FALSE, dev='pdf'}
+```{r friedmany, fig.height=8, fig.width=8, fig.cap="Heat maps of relative strength of all possible pairwise interactions calculated based on Friedman's H-statistic (yearly series). Strength of trend shows less interactivity with other features.", fig.pos="h", message=FALSE, warning=FALSE, dev='pdf'}
 ```
 
+
 \newpage
+
+
 
 ## Quarterly and Monthly data
 
@@ -414,17 +417,13 @@ literature [@makridakis2000m3]. Except for random walk, partial dependency curve
 
 \newpage
 
-```{r pdpquarterly2, fig.height=28, fig.width=20, fig.cap="Partial dependence plots for the top-three features get selected most within each class inside quarterly and monthly FFORMS frameworks. Additionally, N is included to observe the effects stated in the literature. The shading shows the 95% confidence interval. Y-axis denotes the probability of belonging to corresponding class. Red colour is for PDP drawn based on quarterly data and blue colour is for the PDP drawn based on monthly data.(Continue from Figure 9)", fig.pos="h"}
+```{r pdpquarterlysec2, fig.height=28, fig.width=20, fig.cap="Partial dependence plots for the top-three features get selected most within each class inside quarterly and monthly FFORMS frameworks. Additionally, N is included to observe the effects stated in the literature. The shading shows the 95% confidence interval. Y-axis denotes the probability of belonging to corresponding class. Red colour is for PDP drawn based on quarterly data and blue colour is for the PDP drawn based on monthly data.(Continue from Figure 9)", fig.pos="h"}
 ```
 
-\newpage
+\clearpage
 
-```{r friedmanQ, fig.height=30, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calculated based on Friedman's H-statistic for quarterly data.", fig.pos="h", message=FALSE, warning=FALSE, dev='pdf'}
-```
 
-\newpage
-
-```{r friedmanM, fig.height=30, fig.width=20, fig.cap="Heat maps of relative strength of all possible pairwise interactions calculated based on Friedman's H-statistic for monthly data.", fig.pos="h", message=FALSE, warning=FALSE, dev='pdf'}
+```{r friedmanQM, fig.height=10, fig.width=10, fig.cap="Heat maps of relative strength of all possible pairwise interactions calculated based on Friedman's H-statistic for quarterly and monthly data.", fig.pos="h", message=FALSE, warning=FALSE, dev='pdf'}
 ```
 
 ## Weekly
@@ -446,8 +445,9 @@ According to the results of \autoref{fig:viweekly} spikiness, linearity, trend, 
 ```{r weeklypdp, fig.height=28, fig.width=20, fig.cap="Partial dependence plots for the top ranked features from variable importance measures (weekly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belonging to corresponding class.", fig.pos="h"}
 ```
 
-
 \newpage
+```{r friedmanHW, fig.height=7, fig.width=7, fig.cap="Heat maps of relative strength of all possible pairwise interactions calculated based on Friedman's H-statistic for weekly series.", fig.pos="h", message=FALSE, warning=FALSE, dev='pdf'}
+```
 
 ## Daily and Hourly data
 
@@ -539,4 +539,9 @@ Exploration of conditions learnt by the FFORMS framework also support practition
 # References
 
 
+# Appendix
+
+## Out-of-Bag Observations
+
+## Votematrix calculation based on OOB-observations
 

@@ -1,0 +1,19 @@
+[0] Config.pm:304> INFO - This is Biber 2.12
+[0] Config.pm:307> INFO - Logfile is 'FFORMS_interpetabilityrf.blg'
+[38] biber-MSWIN32:315> INFO - === 
+[73] Biber.pm:371> INFO - Reading 'FFORMS_interpetabilityrf.bcf'
+[200] Biber.pm:889> INFO - Found 25 citekeys in bib section 0
+[217] Biber.pm:4093> INFO - Processing section 0
+[233] Biber.pm:4254> INFO - Looking for bibtex format file 'references.bib' for section 0
+[243] bibtex.pm:1523> INFO - LaTeX decoding ...
+[329] bibtex.pm:1340> INFO - Found BibTeX data source 'references.bib'
+[331] Utils.pm:193> WARN - Duplicate entry key: 'breiman2001random' in file 'references.bib', skipping ...
+[332] Utils.pm:193> WARN - Duplicate entry key: 'lemke2010meta' in file 'references.bib', skipping ...
+[333] Utils.pm:193> WARN - Duplicate entry key: 'makridakis2000m3' in file 'references.bib', skipping ...
+[630] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[630] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[630] Biber.pm:3921> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[631] Biber.pm:3927> INFO - No sort tailoring available for locale 'en-US'
+[671] bbl.pm:636> INFO - Writing 'FFORMS_interpetabilityrf.bbl' with encoding 'UTF-8'
+[685] bbl.pm:739> INFO - Output to FFORMS_interpetabilityrf.bbl
+[689] Biber.pm:110> INFO - WARNINGS: 3

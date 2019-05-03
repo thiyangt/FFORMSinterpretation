@@ -707,26 +707,13 @@ to explore the global perspective of the FFORMS meta-learners.
 \subsection{Visualise patterns learned by the
 meta-learner}\label{visualise-patterns-learned-by-the-meta-learner}
 
-Model-diagnostic is an important aspect in evaluating the accuracy of
-the model's predictions as well as the model's understanding of the
-nature of the relationship between features and predicted outcome. It is
-argued in order to estimate the test error of a bagged model it is not
-necessary to perform cross-validation, because each tree is grown using
-different bootstrap samples from the training set and a part of training
-data is not used in the tree construction (\textcite{breiman2001random};
-\textcite{chen2004using}). In general, each bagged tree does not make
-use of around one third of observations to construct the decision tree.
-These observations are referred to as the out-of-bag (OOB) observations.
-Each tree is grown based on different bootstrap samples hence, each tree
-has different set of OOB observations. These OOB samples are used to
-evaluate the test set error. We use a vote matrix calculated based on
-OOB observations as a model-diagnostic tool. The vote matrix
-(\(N \times P\); \(N\) is total number of observations, \(P\) is number
-of classes) contains the proportion of times each observation was
-classified to each class based on OOB sample.
+We use a vote matrix calculated based on OOB observations to visualise
+patterns leaned by the random forest. The vote matrix (\(N \times P\);
+\(N\) is total number of observations, \(P\) is number of classes)
+contains the proportion of times each observation was classified to each
+class based on OOB sample.
 
-\subsection{Analysis of feature
-contribution}\label{analysis-of-feature-contribution}
+\subsection{Feature importance}\label{feature-importance}
 
 \textcite{jiang2002} explains variable importance under three different
 views: i) causality: change in the value of Y for an increase or
@@ -744,7 +731,7 @@ notion of variable importance-features contribution to the predictive
 accuracy (\textcite{Zhao}). We will introduce each of these variable
 importance measures below.
 
-\subsubsection{General notation}\label{general-notation}
+\textbf{General notation}
 
 Let \(\mathcal{P}=\{(\mathbf{x^{(i)}}, y^{(i)})\}_{i=1}^{N}\) be the
 historical data set we use to train a classifier. Consider a
@@ -756,15 +743,13 @@ framework, random forest algorithm tries to learn this relationship
 using the historical data we provided. We denote the predicted function
 as \(g\).
 
-\subsubsection{Mean decrease in Gini
-coefficient}\label{mean-decrease-in-gini-coefficient}
+\textbf{Mean decrease in Gini coefficient}
 
 Mean decrease in Gini coefficient is a measure of how each feature
 contributes to the homogeneity of the nodes and leaves in the resulting
 random forest proposed by \textcite{breiman2001random}.
 
-\subsubsection{Permutation-based variable importance
-measure}\label{permutation-based-variable-importance-measure}
+\textbf{Permutation-based variable importance measure}
 
 The permutation-based variable importance introduced by
 \textcite{breiman2001random} measures the prediction strength of each
@@ -790,8 +775,7 @@ insights into the role of features inside the FFORMS framework we use
 partial dependence plot (PDP) introduced by
 \textcite{friedman2008predictive}.
 
-\subsubsection{Partial dependence plot
-(PDP)}\label{partial-dependence-plot-pdp}
+\textbf{Partial dependence plot (PDP)}
 
 Partial dependence plot can be used to graphically examine how each
 feature is related to the model prediction while accounting for the
@@ -811,8 +795,7 @@ problem. Hence, in this paper partial dependency functions display the
 probability of certain class occurring given different values of the
 feature \(X_s\).
 
-\subsubsection{Variable importance measure based on
-PDP}\label{variable-importance-measure-based-on-pdp}
+\textbf{Variable importance measure based on PDP}
 
 \textcite{Greenwell2018} introduce a variable importance measure based
 on the partial dependency curves. The idea is to measure the
@@ -823,8 +806,7 @@ changes while taking into account the average effect of the other
 features in the model. The flatness of the curve is measured using the
 standard deviation of the values \(\{\bar{g}_{s}(x_{sk})\}_{k=1}^{m}\).
 
-\subsubsection{Individual conditional expectation (ICE)
-curves}\label{individual-conditional-expectation-ice-curves}
+\textbf{Individual conditional expectation (ICE) curves}
 
 While partial dependency curves are useful in understanding the
 estimated relationship between features and the predicted outcome in the
@@ -837,8 +819,7 @@ ICE plots the individual response curves by plotting the pairs
 \(\{x_{s1}, x_{s2},\dots, x_{sm}\}\) based on \(X_s\). In other words,
 partial dependency curve is simply the average of all the ICE curves.
 
-\subsubsection{Variable importance measure based on ICE
-curves}\label{variable-importance-measure-based-on-ice-curves}
+\textbf{Variable importance measure based on ICE curves}
 
 This method is similar to the PDP-based variable importance scores
 above, but are based on measuring the ``flatness'' of the individual
@@ -846,6 +827,10 @@ conditional expectation curves. We calculated standard deviations of
 each ICE curves. We then computed an ICE based variable importance score
 -- simply the average of all the standard deviations. A higher value
 indicates a higher degree of interactivity with other features.
+
+\subsection{Relationship between most important features and the choice
+of forecast-model
+selection}\label{relationship-between-most-important-features-and-the-choice-of-forecast-model-selection}
 
 \subsection{Assessment of interaction
 effect}\label{assessment-of-interaction-effect}
@@ -1235,35 +1220,25 @@ colour is for the PDP drawn based on monthly data.}
 
 \begin{figure}
 \centering
-\includegraphics{figures/pdpquarterly2-1.png}
-\caption{\label{fig:pdpquarterly2}Partial dependence plots for the top-three
-features get selected most within each class inside quarterly and
-monthly FFORMS frameworks. Additionally, N is included to observe the
-effects stated in the literature. The shading shows the 95\% confidence
-interval. Y-axis denotes the probability of belonging to corresponding
-class. Red colour is for PDP drawn based on quarterly data and blue
-colour is for the PDP drawn based on monthly data.(Continue from Figure
-9)}
+\includegraphics{figures/pdpquarterlysec2-1.png}
+\caption{\label{fig:pdpquarterlysec2}Partial dependence plots for the
+top-three features get selected most within each class inside quarterly
+and monthly FFORMS frameworks. Additionally, N is included to observe
+the effects stated in the literature. The shading shows the 95\%
+confidence interval. Y-axis denotes the probability of belonging to
+corresponding class. Red colour is for PDP drawn based on quarterly data
+and blue colour is for the PDP drawn based on monthly data.(Continue
+from Figure 9)}
 \end{figure}
 
-\newpage
+\clearpage
 
 \begin{figure}
 \centering
-\includegraphics{figures/friedmanQ-1.pdf}
-\caption{\label{fig:friedmanQ}Heat maps of relative strength of all possible
-pairwise interactions calculated based on Friedman's H-statistic for
-quarterly data.}
-\end{figure}
-
-\newpage
-
-\begin{figure}
-\centering
-\includegraphics{figures/friedmanM-1.pdf}
-\caption{\label{fig:friedmanM}Heat maps of relative strength of all possible
-pairwise interactions calculated based on Friedman's H-statistic for
-monthly data.}
+\includegraphics{figures/friedmanQM-1.pdf}
+\caption{\label{fig:friedmanQM}Heat maps of relative strength of all
+possible pairwise interactions calculated based on Friedman's
+H-statistic for quarterly and monthly data.}
 \end{figure}
 
 \subsection{Weekly}\label{weekly}
@@ -1327,6 +1302,14 @@ belonging to corresponding class.}
 \end{figure}
 
 \newpage
+
+\begin{figure}
+\centering
+\includegraphics{figures/friedmanHW-1.pdf}
+\caption{\label{fig:friedmanHW}Heat maps of relative strength of all
+possible pairwise interactions calculated based on Friedman's
+H-statistic for weekly series.}
+\end{figure}
 
 \subsection{Daily and Hourly data}\label{daily-and-hourly-data}
 
@@ -1590,6 +1573,15 @@ for a given problem. Further the results of this study is useful in
 identifying new ways to improve forecasting accuracy by capturing
 different features of time series.
 
-\printbibliography[title=References]
+\section{References}\label{references}
+
+\section{Appendix}\label{appendix}
+
+\subsection{Out-of-Bag Observations}\label{out-of-bag-observations}
+
+\subsection{Votematrix calculation based on
+OOB-observations}\label{votematrix-calculation-based-on-oob-observations}
+
+\printbibliography
 
 \end{document}
