@@ -478,139 +478,53 @@ col.order <- c("spikiness", "linearity", "trend", "seasonality", "stability",
 ## snaive
 snaive_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="snaive",]
 snaive_WFH_cormat <- friedmanHstat_matrix(snaive_WFH, 27, rev(col.order))
-p1 <- ggcorrplot(snaive_WFH_cormat, hc.order = FALSE, type = "upper",
-                 outline.col = "white")+
-  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       high = "#ef8a62", low = "#f7f7f7")+
-  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+
-  guides(fill=FALSE, color=FALSE)+ggtitle("snaive")
-
 ## rwd
 rwd_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="rwd",]
 rwd_WFH_cormat <- friedmanHstat_matrix(rwd_WFH, 27, rev(col.order))
-p2 <- ggcorrplot(rwd_WFH_cormat, hc.order = FALSE, type = "upper",
-                 outline.col = "white")+
-  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       high = "#ef8a62", low = "#f7f7f7")+
-  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+
-  guides(fill=FALSE, color=FALSE)+ggtitle("rwd")
-
 ## rw
 rw_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="rw",]
 rw_WFH_cormat <- friedmanHstat_matrix(rw_WFH, 27, rev(col.order))
-p3 <- ggcorrplot(rw_WFH_cormat, hc.order = FALSE, type = "upper",
-                 outline.col = "white")+
-  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       high = "#ef8a62", low = "#f7f7f7")+
-  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+
-  guides(fill=FALSE, color=FALSE)+ggtitle("rw")
-
 ## ARIMA
 arima_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="ARIMA",]
 arima_WFH_cormat <- friedmanHstat_matrix(arima_WFH, 27, rev(col.order))
-p4 <- ggcorrplot(arima_WFH_cormat, hc.order = FALSE, type = "upper",
-                 outline.col = "white")+
-  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       high = "#ef8a62", low = "#f7f7f7")+
-  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+
-  guides(fill=FALSE, color=FALSE)+ggtitle("ARIMA")
-
 ## SARIMA
 sarima_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="SARIMA",]
 sarima_WFH_cormat <- friedmanHstat_matrix(sarima_WFH, 27, rev(col.order))
-p5 <- ggcorrplot(sarima_WFH_cormat, hc.order = FALSE, type = "upper",
-                 outline.col = "white")+
-  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       high = "#ef8a62", low = "#f7f7f7")+
-  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+
-  guides(fill=FALSE, color=FALSE)+ggtitle("SARIMA")
-
 ## stlar
 stlar_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="stlar",]
 stlar_WFH_cormat <- friedmanHstat_matrix(stlar_WFH, 27, rev(col.order))
-p6 <- ggcorrplot(stlar_WFH_cormat, hc.order = FALSE, type = "upper",
-                 outline.col = "white")+
-  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       high = "#ef8a62", low = "#f7f7f7")+
-  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+
-  guides(fill=FALSE, color=FALSE)+ggtitle("stlar")
-
 ## mstlets
 mstlets_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="mstlets",]
 mstlets_WFH_cormat <- friedmanHstat_matrix(mstlets_WFH, 27, rev(col.order))
-p7 <- ggcorrplot(mstlets_WFH_cormat, hc.order = FALSE, type = "upper",
-                 outline.col = "white")+
-  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       high = "#ef8a62", low = "#f7f7f7")+
-  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+
-  guides(fill=FALSE, color=FALSE)+ggtitle("mstlets")
-
-
 ## tbats
 tbats_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="tbats",]
 tbats_WFH_cormat <- friedmanHstat_matrix(tbats_WFH, 27, rev(col.order))
-p8 <- ggcorrplot(tbats_WFH_cormat, hc.order = FALSE, type = "upper",
-                 outline.col = "white")+
-  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       high = "#ef8a62", low = "#f7f7f7")+
-  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+
-  guides(fill=FALSE, color=FALSE)+ggtitle("tbats")
-
-
 ## ARMA
 arma_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="ARMA.AR.MA",]
 arma_WFH_cormat <- friedmanHstat_matrix(arma_WFH, 27, rev(col.order))
-p9 <- ggcorrplot(arma_WFH_cormat, hc.order = FALSE, type = "upper",
-                 outline.col = "white")+
-  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       high = "#ef8a62", low = "#f7f7f7")+
-  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+
-  guides(fill=FALSE, color=FALSE)+ggtitle("ARMA/AR/MA")
-
 ## wn
 wn_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="wn",]
 wn_WFH_cormat <- friedmanHstat_matrix(wn_WFH, 27, rev(col.order))
-p10 <- ggcorrplot(wn_WFH_cormat, hc.order = FALSE, type = "upper",
-                 outline.col = "white")+
-  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       high = "#ef8a62", low = "#f7f7f7")+
-  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+
-  guides(fill=FALSE, color=FALSE)+ggtitle("wn")
-
 ## theta
 theta_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="theta",]
 theta_WFH_cormat <- friedmanHstat_matrix(theta_WFH, 27, rev(col.order))
-p11 <- ggcorrplot(theta_WFH_cormat, hc.order = FALSE, type = "upper",
-                  outline.col = "white")+
-  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       high = "#ef8a62", low = "#f7f7f7")+
-  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+
-  guides(fill=FALSE, color=FALSE)+ggtitle("theta")
-
 ## nn
 nn_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="nn",]
 nn_WFH_cormat <- friedmanHstat_matrix(nn_WFH, 27, rev(col.order))
-p12 <- ggcorrplot(nn_WFH_cormat, hc.order = FALSE, type = "upper",
-                  outline.col = "white")+
+friedman.weekly.mean <- (snaive_WFH_cormat + rwd_WFH_cormat + rw_WFH_cormat +
+                  arima_WFH_cormat + sarima_WFH_cormat + stlar_WFH_cormat+
+                  mstlets_WFH_cormat + tbats_WFH_cormat + arma_WFH_cormat +
+                  wn_WFH_cormat + theta_WFH_cormat + nn_WFH_cormat)/12
+fried.mat.weekly <- ggcorrplot(friedman.weekly.mean, hc.order = TRUE, type = "upper",
+                                outline.col = "white")+
   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       high = "#ef8a62", low = "#f7f7f7")+
+                       high = "#ef8a62", low = "#f7f7f7",
+                       name = "Friedman's H-statistic")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))+
-  ggtitle("nn")
-
-
-p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+p11+p12+plot_layout(ncol = 3, nrow = 4)
+                                   size = 12, hjust = 1),
+        panel.margin=unit(c(0,0,0,0), "null"),
+        plot.margin=unit(c(0,0,0,0), "null"))
+fried.mat.weekly
 
 ## ---- pcaweekly
 load("data/weekly/trainW_votes.rda")
