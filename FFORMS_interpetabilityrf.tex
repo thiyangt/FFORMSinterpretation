@@ -828,6 +828,20 @@ each ICE curves. We then computed an ICE based variable importance score
 -- simply the average of all the standard deviations. A higher value
 indicates a higher degree of interactivity with other features.
 
+\subsubsection{Ranking of features based on feature importance
+measures}\label{ranking-of-features-based-on-feature-importance-measures}
+
+To identify class-specific important features we rank features in three
+different ways: i) based on permutation-based variable importance, ii)
+based on partial dependence functions and iii) based on ICE-curves. We
+consider 25 features for yearly data. The feature that shows the highest
+importance is ranked 25, the second best is ranked 24, and so on.
+Finally, for each feature, a mean rank is calculated based on the
+rankings of the three measures. Similarly, the overall feature
+importance is evaluated based on the permutation-based variable
+importance measure and the Gini coefficient-based feature importance
+measure.
+
 \subsection{Relationship between most important features and the choice
 of forecast-model
 selection}\label{relationship-between-most-important-features-and-the-choice-of-forecast-model-selection}
@@ -943,16 +957,7 @@ meta-learner.}
 
 \autoref{fig:viyearly} shows how important each one of the features we
 considered within each class as well as in the overall classification
-mechanism of the FFORMS. To identify class-specific important features
-we rank features in three different ways: i) based on permutation-based
-variable importance, ii) based on partial dependence functions and iii)
-based on ICE-curves. We consider 25 features for yearly data. The
-feature that shows the highest importance is ranked 25, the second best
-is ranked 24, and so on. Finally, for each feature, a mean rank is
-calculated based on the rankings of the three measures. Similarly, the
-overall feature importance is evaluated based on the permutation-based
-variable importance measure and the Gini coefficient-based feature
-importance measure.
+mechanism of the FFORMS.
 
 According to \autoref{fig:viyearly}, the features related to strength of
 trend, nonstationarity (ur\_pp, diff1y\_acf1), overall shape of the
@@ -1020,14 +1025,15 @@ interactivity appear within all classes.
 
 \begin{figure}
 \centering
-\includegraphics{figures/viyearly-1.png}
+\includegraphics{figures/viyearly-1.pdf}
 \caption{\label{fig:viyearly}Feature importance plot for yearly series.
-Permutation-based variable importance measure and mean decrease in Gini
-coefficients are used to evaluate overall feature importance shown in
-the top left plot. Class-specific feature importance is evaluated based
-on three measures: i) permutation-based variable importance, PD-based
-variable importance measure, and ICE-based variable importance measure.
-Longer bars indicate more important features. Top 5 overall features are
+Overall feature importance(top left plot) is evaluated based on two
+measures: i) Permutation-based variable importance measure and ii) mean
+decrease in Gini coefficients are used to evaluate shown in the top left
+plot. Class-specific feature importance is evaluated based on three
+measures: i) permutation-based variable importance, PD-based variable
+importance measure, and ICE-based variable importance measure. Longer
+bars indicate more important features. Top 5 overall features are
 highlighted in purple. Strength of trend appears to be the most
 important feature.}
 \end{figure}

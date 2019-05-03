@@ -156,238 +156,45 @@ feaImp_yearly
 
 ## ---- pdpyearly
 load("data/yearly/pdp_yearly/trendgrid.rda")
-trendgrid$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/y_acf5grid.rda")
-y_acf5grid$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/entropygrid.rda")
-entropygrid$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/hurstgrid.rda")
-hurstgrid$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/ur_ppgrid.rda")
-ur_ppgrid$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/alphagrid.rda")
-alphagrid$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/betagrid.rda")
-betagrid$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/spikinessgrid.rda")
-spikinessgrid$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/linearitygrid.rda")
-linearitygrid$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/curvaturegrid.rda")
-curvaturegrid$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/e_acf1grid.rda")
-e_acf1grid$variable <- rep(1:1000, 20)
 load("data/yearly/pdp_yearly/diff1y_acf1grid.rda")
-diff1y_acf1grid$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/diff1y_acf5grid.rda")
-diff1y_acf5grid$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/diff1y_pacf5grid.rda")
-diff1y_pacf5grid$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/stabilitygrid.rda")
-stabilitygrid$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/nonlinearitygrid.rda")
-nonlinearitygrid$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/Ngrid.rda")
-Ngrid$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/lmres_acf1grid.rda")
-lmres_acf1grid$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/y_pacf5grid.rda")
-y_pacf5grid$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/lumpinessgrid.rda")
-lumpinessgrid$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/diff2y_pacf5grid.rda")
-diff2y_pacf5grid$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/diff2y_pacf5grid.rda")
-diff2y_pacf5grid$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/diff2y_acf5grid.rda")
-diff2y_acf5grid$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/diff2y_acf1grid.rda")
-diff2y_acf1grid$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/ur_kpssgrid.rda")
-ur_kpssgrid$variable <- rep(1:1000, 20)
-# removing outliers
+load("data/yearly/pdp_yearly/linearitygrid.rda")
+# trim_boundaries
 load("data/yearly/pdp_yearly/ur_ppgrid_rmout.rda")
-ur_ppgrid_rmout$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/linearitygrid_rmout.rda")
-linearitygrid_rmout$variable <- rep(1:1000, 20)
-load("data/yearly/pdp_yearly/curvaturegrid_rmout.rda")
-curvaturegrid_rmout$variable <- rep(1:1000, 20)
+## Arrange graphs for faceting
+keep.modelnames <- c("ARIMA", "ARMA.AR.MA", "ETS.dampedtrend", "ETS.notrendnoseasonal",
+                     "ETS.trend", "nn", "rw", "rwd", "theta", "wn")
+keeptrend <- c(keep.modelnames, "trend")
+keepur <- c(keep.modelnames, "ur_pp")
+keeplinearity <- c(keep.modelnames, "linearity")
+keepdiffacf1 <- c(keep.modelnames, "diff1y_acf1")
+
+trendgrid <- trendgrid[, names(trendgrid) %in% keeptrend]
+trendgrid_long <- gather(trendgrid, class, probability, "ARIMA":"wn", factor_key = TRUE)
+names(trendgrid_long)[names(trendgrid_long)=="trend"] <- "feature"
+
+ur_ppgrid_rmout <- ur_ppgrid_rmout[, names(ur_ppgrid_rmout) %in% keepur]
+ur_ppgrid_long <- gather(ur_ppgrid_rmout, class, probability, "ARIMA":"wn", factor_key = TRUE)
+names(ur_ppgrid_long)[names(ur_ppgrid_long)=="ur_pp"] <- "feature"
+
+linearitygrid <- linearitygrid[, names(linearitygrid) %in% keeplinearity]
+linearitygrid_long <- gather(linearitygrid, class, probability, "ARIMA":"wn", factor_key = TRUE)
+names(linearitygrid_long)[names(linearitygrid_long)=="linearity"] <- "feature"
+
+diff1y_acf1grid <- diff1y_acf1grid[, names(diff1y_acf1grid) %in% keepdiffacf1]
+diff1y_acf1grid_long <- gather(diff1y_acf1grid, class, probability, "ARIMA":"wn", factor_key = TRUE)
+names(diff1y_acf1grid_long)[names(diff1y_acf1grid_long)=="diff1y_acf1"] <- "feature"
+
+yearly_pdp <- dplyr::bind_rows(trendgrid_long, ur_ppgrid_long, linearitygrid_long, diff1y_acf1grid_long)
+yearly_pdp$"featurename" <- c(rep("trend", 200000), rep("ur_pp", 200000), rep("linearity", 200000), rep("diff1y_acf1", 200000))
 
 ## pdp plots with confidence intervals
-## rwd
-p1 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "rwd")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("rwd")
-p2 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "rwd")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + 
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
-p3 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "rwd")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
-pda1 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "rwd")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
+plot_pdp_yearly <- ggplot(data = yearly_pdp, aes_string(x = yearly_pdp$feature, y = "probability")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) +
+  stat_summary(fun.data = mean_cl_normal,fill="red", geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+ 
+  theme(axis.text.x = element_text(angle = 90),text = element_text(size=20))+
+  facet_grid(class ~ featurename, scales='free')
+plot_pdp_yearly
 
-# rw
-p4 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "rw")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + xlab("ur_pp") + ylab("random walk")
-p5 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "rw")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + 
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-p6 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "rw")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-pda2 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "rw")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-
-# ETS-trend
-p7 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "ETS.trend")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + 
-  theme(legend.position = "none", text = element_text(size=20)) + xlab("ur_pp") + ylab("ETS-trend")
-p8 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "ETS.trend")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + 
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-p9 <- ggplot(data =linearitygrid, aes_string(x = linearitygrid$linearity, y = "ETS.trend")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + 
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-pda3 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "ETS.trend")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-
-# ETS-dampedtrend
-p10 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "ETS.dampedtrend")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + xlab("ur_pp") + ylab("ETS-dampedtrend")
-p11 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "ETS.dampedtrend")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + 
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-p12 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "ETS.dampedtrend")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-pda4 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "ETS.dampedtrend")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-# ETS-notrendnoseasonal
-p13 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "ETS.notrendnoseasonal")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("ETS-notrendnoseasonal")
-p14 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "ETS.notrendnoseasonal")) +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") + 
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-p15 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "ETS.notrendnoseasonal")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + 
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-pda5 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "ETS.notrendnoseasonal")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-# ARIMA
-p16 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "ARIMA")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("ARIMA")
-p17 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "ARIMA")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-p18 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "ARIMA")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + 
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-pda6 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "ARIMA")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-# ARMA.AR.MA
-p19 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "ARMA.AR.MA")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("ARMA.AR.MA")
-p20 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "ARMA.AR.MA")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + 
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-p21 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "ARMA.AR.MA")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-pda7 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "ARMA.AR.MA")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-# wn
-p22 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "wn")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("wn")
-p23 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "wn")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-p24 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "wn")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-pda8 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "wn")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-# theta
-p25 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "theta")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("theta")
-p26 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "theta")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-p27 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "theta")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + 
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-pda9 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "theta")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-## nn
-p28 <- ggplot(data = ur_ppgrid_rmout, aes_string(x = ur_ppgrid_rmout$ur_pp, y = "nn")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("ur_pp") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) + 
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("nn")
-p29 <- ggplot(data = trendgrid, aes_string(x = trendgrid$trend, y = "nn")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-p30 <- ggplot(data = linearitygrid, aes_string(x = linearitygrid$linearity, y = "nn")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-pda10 <- ggplot(data = diff1y_acf1grid, aes_string(x = diff1y_acf1grid$diff1y_acf1, y = "nn")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("diff1y_acf1") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none", text = element_text(size=20)) + ylab("")
-(p1 | p2 | p3|pda1) / (p4 | p5 | p6|pda2) / (p7 | p8 | p9|pda3) / (p10 | p11 | p12|pda4) / (p13 | p14 | p15|pda5) / (p16 | p17 | p18|pda6) / (p19 | p20 | p21|pda7) / (p22 | p23 | p24|pda8) / (p25 | p26 | p27|pda9) / (p28 | p29 | p30|pda10)
 
 ## ---- friedmany
 load("data/friedmanHstat_yearly.rda")

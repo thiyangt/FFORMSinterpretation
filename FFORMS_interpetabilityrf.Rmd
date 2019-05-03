@@ -295,6 +295,10 @@ averaging $g(x_s, X_{iC})$ over all observations in the training data, ICE plots
 
 This method is similar to the PDP-based variable importance scores above, but are based on measuring the “flatness” of the individual conditional expectation curves. We calculated standard deviations of each ICE curves.  We then computed an ICE based variable importance score – simply the average of all the standard deviations. A higher value indicates a higher degree of interactivity with other features. 
 
+### Ranking of features based on feature importance measures
+
+To identify class-specific important features we rank features in three different ways: i) based on permutation-based variable importance, ii) based on partial dependence functions and iii) based on ICE-curves. We consider 25 features for yearly data. The feature that shows the highest importance is ranked 25, the second best is ranked 24, and so on. Finally, for each feature, a mean rank is calculated based on the rankings of the three measures. Similarly, the overall feature importance is evaluated based on the permutation-based variable importance measure and the Gini coefficient-based feature importance measure.
+
 ## Relationship between most important features and the choice of forecast-model selection 
 
 ## Assessment of interaction effect
@@ -338,7 +342,7 @@ This vote-matrix information for the yearly data is presented in \autoref{fig:ye
 ```
 
 
-\autoref{fig:viyearly} shows how important each one of the features we considered within each class as well as in the overall classification mechanism of the FFORMS. To identify class-specific important features we rank features in three different ways: i) based on permutation-based variable importance, ii) based on partial dependence functions and iii) based on ICE-curves. We consider 25 features for yearly data. The feature that shows the highest importance is ranked 25, the second best is ranked 24, and so on. Finally, for each feature, a mean rank is calculated based on the rankings of the three measures. Similarly, the overall feature importance is evaluated based on the permutation-based variable importance measure and the Gini coefficient-based feature importance measure.
+\autoref{fig:viyearly} shows how important each one of the features we considered within each class as well as in the overall classification mechanism of the FFORMS. 
 
 According to \autoref{fig:viyearly}, the features related to strength of trend, nonstationarity (ur_pp, diff1y_acf1), overall shape of the trend (linear: measured by linearity, damped trend: measured by beta, exponential: measured by curvature) and measures of randomness (from spikiness, and lmres_acf1) are the most important for the choice of yearly time series forecast-models. The first ACF value of the original series (y_acf1) appears among the top five within the random walk with drift class and the ARMA/AR/MA class as it helps to separate stationary and non-stationary series. The first correlation coefficient of the twice-differenced series is appeared to be the most important in the ARIMA class as this class contains the higher order differenced series.  The Hurst exponent and entropy appear to be equally important in stationary classes. Within the  ETS-damped trend class beta and curvature ranked as important features. The length of time series (N) is assigned relatively high rank within the random walk with drift, ETS-dampedtrend and the neural-network class compared to others. On the other hand, sum of squares of the first five autocorrelation coefficients of the twice-difference series and the lumpiness are the least important feature across many classes.
 
@@ -347,12 +351,12 @@ According to \autoref{fig:viyearly}, the features related to strength of trend, 
 
 \autoref{fig:friedmany} shows the heat maps of the relative strength of all possible pairwise interactions of the features for each class. The relative strength of two-way interactions between features are measured using the formula developed by @friedman2008predictive, which is implemented in the `iml` (@molnar2018iml,) package in R. Except the ETS-trend class, trend and ur_pp show a high level of interactivity and a less interactivity with other features. Linearity also show a weak interaction  with other features in all classes.  In almost all the classes the partial correlation and auto-correlation based features are heavily interacting. However, the first correlation coefficient of the differenced series does not interact with other features heavily within the ARIMA  class. Further, almost all pairs of features appear to be interacting within neural network category. The interactivity between stability and lumpiness is the most common type of interactivity appear within all classes. 
 
-```{r viyearly, fig.height=15, fig.width=20, fig.cap="Feature importance plot for yearly series. Permutation-based variable importance measure and mean decrease in Gini coefficients are used to evaluate overall feature importance shown in the top left plot. Class-specific feature importance is evaluated based on three measures: i) permutation-based variable importance, PD-based variable importance measure, and ICE-based variable importance measure. Longer bars indicate more important features. Top 5 overall features are highlighted in purple. Strength of trend appears to be the most important feature.", fig.pos="h"}
+```{r viyearly, fig.height=15, fig.width=20, fig.cap="Feature importance plot for yearly series. Overall feature importance(top left plot) is evaluated based on two measures: i) Permutation-based variable importance measure and ii) mean decrease in Gini coefficients are used to evaluate  shown in the top left plot. Class-specific feature importance is evaluated based on three measures: i) permutation-based variable importance, PD-based variable importance measure, and ICE-based variable importance measure. Longer bars indicate more important features. Top 5 overall features are highlighted in purple. Strength of trend appears to be the most important feature.", fig.pos="h", dev='pdf'}
 ```
 
 \newpage
 
-```{r pdpyearly, fig.height=28, fig.width=20, fig.cap="Partial dependence plots for the top-three features get selected most within each class for yearly series. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All features show a nonlinear relationship with predicted probabilities.", fig.pos="h"}
+```{r pdpyearly, fig.height=20, fig.width=15, fig.cap="Partial dependence plots for the top-three features get selected most within each class for yearly series. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All features show a nonlinear relationship with predicted probabilities.", fig.pos="h"}
 ```
 
 \newpage
