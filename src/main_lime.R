@@ -127,7 +127,8 @@ pp <- p1 + p2 + p3 + p4 + plot_layout(ncol = 1)
 pcaQ+pp+plot_layout(ncol = 2)
 
 ## ---- quarterlylime2
-plot_features(explanationq, ncol = 2)+ggtitle("C")
+library(ggplot2)
+lime::plot_features(explanationq, ncol = 2)+ggtitle("C")
 
 
 ## ---- hourlylime
