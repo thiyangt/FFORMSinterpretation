@@ -731,8 +731,6 @@ notion of variable importance-features contribution to the predictive
 accuracy (\textcite{Zhao}). We will introduce each of these variable
 importance measures below.
 
-\textbf{General notation}
-
 Let \(\mathcal{P}=\{(\mathbf{x^{(i)}}, y^{(i)})\}_{i=1}^{N}\) be the
 historical data set we use to train a classifier. Consider a
 p-dimensional feature vector \(X=(X_1, X_2, ..., X_p)\) and a dependent
@@ -743,13 +741,15 @@ framework, random forest algorithm tries to learn this relationship
 using the historical data we provided. We denote the predicted function
 as \(g\).
 
-\textbf{Mean decrease in Gini coefficient}
+\subsubsection{Mean decrease in Gini
+coefficient}\label{mean-decrease-in-gini-coefficient}
 
 Mean decrease in Gini coefficient is a measure of how each feature
 contributes to the homogeneity of the nodes and leaves in the resulting
 random forest proposed by \textcite{breiman2001random}.
 
-\textbf{Permutation-based variable importance measure}
+\subsubsection{Permutation-based variable importance
+measure}\label{permutation-based-variable-importance-measure}
 
 The permutation-based variable importance introduced by
 \textcite{breiman2001random} measures the prediction strength of each
@@ -775,7 +775,9 @@ insights into the role of features inside the FFORMS framework we use
 partial dependence plot (PDP) introduced by
 \textcite{friedman2008predictive}.
 
-\textbf{Partial dependence plot (PDP)}
+\subsubsection{Partial dependence plot (PDP) and Variable importance
+measure based on
+PDP}\label{partial-dependence-plot-pdp-and-variable-importance-measure-based-on-pdp}
 
 Partial dependence plot can be used to graphically examine how each
 feature is related to the model prediction while accounting for the
@@ -795,8 +797,6 @@ problem. Hence, in this paper partial dependency functions display the
 probability of certain class occurring given different values of the
 feature \(X_s\).
 
-\textbf{Variable importance measure based on PDP}
-
 \textcite{Greenwell2018} introduce a variable importance measure based
 on the partial dependency curves. The idea is to measure the
 ``flatness'' of partial dependence curves for each feature. A feature
@@ -806,7 +806,9 @@ changes while taking into account the average effect of the other
 features in the model. The flatness of the curve is measured using the
 standard deviation of the values \(\{\bar{g}_{s}(x_{sk})\}_{k=1}^{m}\).
 
-\textbf{Individual conditional expectation (ICE) curves}
+\subsubsection{Individual conditional expectation (ICE) curves Variable
+importance measure based on ICE
+curves}\label{individual-conditional-expectation-ice-curves-variable-importance-measure-based-on-ice-curves}
 
 While partial dependency curves are useful in understanding the
 estimated relationship between features and the predicted outcome in the
@@ -818,8 +820,6 @@ ICE plots the individual response curves by plotting the pairs
 \(\{(x_s^k, g(x_{sk}, X_{iC}))\}_{k=1}^{m}\) defined on grid of points
 \(\{x_{s1}, x_{s2},\dots, x_{sm}\}\) based on \(X_s\). In other words,
 partial dependency curve is simply the average of all the ICE curves.
-
-\textbf{Variable importance measure based on ICE curves}
 
 This method is similar to the PDP-based variable importance scores
 above, but are based on measuring the ``flatness'' of the individual
@@ -856,9 +856,6 @@ especially when there are large number of observations in the training
 set. Hence, in our experiments ICE and PDP-based variable importance
 measures are computed based on the subset of randomly selected training
 examples.
-
-\subsection{Visualise algorithm performance in the
-feature-space}\label{visualise-algorithm-performance-in-the-feature-space}
 
 \subsection{Local Interpretable Model-agnostic Explanations
 (LIME)}\label{local-interpretable-model-agnostic-explanations-lime}
