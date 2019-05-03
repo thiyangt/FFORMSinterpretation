@@ -41,31 +41,21 @@ knitr::opts_chunk$set(echo = FALSE, cache=TRUE, messages=FALSE, warning=FALSE, f
 # Make sure you have the latest version of rmarkdown and bookdown
 #devtools::install_github("rstudio/rmarkdown")
 #devtools::install_github("rstudio/bookdown")
-read_chunk("src/main.R") # analysis of yearly, quarterly and monthly
+read_chunk("src/main.R") # common codes for all frequency categories
+read_chunk("src/main_yearly.R")
+read_chunk("src/main_daily.R")
+read_chunk("src/main_hourly.R")
 read_chunk("src/main_weekly.R")
 read_chunk("src/main_daily.R")
 read_chunk("src/main_hourly.R")
 read_chunk("src/main_lime.R")
 read_chunk("src/twowayPDPplots.R")
 read_chunk("src/main_daily_hourly.R")
-library(Mcomp)
-library(patchwork)
-library(tidyverse)
-library(reshape2)
-library(grid)
-library(gridExtra)
-library(ggrepel)
-library(png)
-library(tsfeatures)
-library(ggpubr)
-library(RColorBrewer)
-library(iml) #machine learning interpretability package
-library(ggcorrplot) # to draw  ggcorrplot
-library(ggpubr)
-library(lime)
-library(seer)
-library(Hmisc)
 ```
+
+```{r loadPackages}
+```
+
 
 
 # Introduction{#intro}
@@ -357,7 +347,7 @@ According to \autoref{fig:viyearly}, the features related to strength of trend, 
 
 \autoref{fig:friedmany} shows the heat maps of the relative strength of all possible pairwise interactions of the features for each class. The relative strength of two-way interactions between features are measured using the formula developed by @friedman2008predictive, which is implemented in the `iml` (@molnar2018iml,) package in R. Except the ETS-trend class, trend and ur_pp show a high level of interactivity and a less interactivity with other features. Linearity also show a weak interaction  with other features in all classes.  In almost all the classes the partial correlation and auto-correlation based features are heavily interacting. However, the first correlation coefficient of the differenced series does not interact with other features heavily within the ARIMA  class. Further, almost all pairs of features appear to be interacting within neural network category. The interactivity between stability and lumpiness is the most common type of interactivity appear within all classes. 
 
-```{r viyearly, fig.height=15, fig.width=20, fig.cap="Feature importance plot for yearly series. Permutation-based variable importance measure and mean decrease in Gini coefficients are used to evaluate overall feature importance shown in the top left plot. Class-specific feature importance is evaluated based on three measures: i) permutation-based variable importance, PD-based variable importance measure, and ICE-based variable importance measure. Longer bars indicate more important features. Top 5 overall features are highlighted in red. Strength of trend appears to be the most important feature.", fig.pos="h"}
+```{r viyearly, fig.height=15, fig.width=20, fig.cap="Feature importance plot for yearly series. Permutation-based variable importance measure and mean decrease in Gini coefficients are used to evaluate overall feature importance shown in the top left plot. Class-specific feature importance is evaluated based on three measures: i) permutation-based variable importance, PD-based variable importance measure, and ICE-based variable importance measure. Longer bars indicate more important features. Top 5 overall features are highlighted in purple. Strength of trend appears to be the most important feature.", fig.pos="h"}
 ```
 
 \newpage

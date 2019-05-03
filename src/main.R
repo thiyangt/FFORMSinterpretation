@@ -20,7 +20,7 @@ library(Hmisc)
 source("src/friedmanHstatmatrix.R")
 
 #################################################################
-#                  Quarterly and Monthly data                               #
+#                  Quarterly and Monthly data                               
 #################################################################
 
 ## ---- oobquarterlymonthly1

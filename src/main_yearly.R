@@ -1,8 +1,8 @@
 ## codes to reproduce yearly data results
 ## ---- yearlyoob
-load("data/yearly/yearly_training.rda") # random forest training set
-load("data/yearly/train_votes.rda") # oob votes from the random forest
-load("data/yearly/train_predictions_oob.rda") # based on oob prediction
+load("data/yearly/yearly_training.rda") # random forest training set 
+load("data/yearly/train_votes.rda") # oob votes from the random forest (see: yearly_cluster_results for more info)
+load("data/yearly/train_predictions_oob.rda") # based on oob prediction (see: yearly_cluster_results for more info)
 votes_oob <- data.frame(train_votes)
 names(votes_oob) <- names(table(train_predictions_oob))
 votes_oob$predicted <- train_predictions_oob
@@ -148,10 +148,10 @@ top <- meanrank_yearly %>%
 meanrank_yearly$istop <- ifelse(meanrank_yearly$rn%in%top$rn, TRUE, FALSE)
 
 feaImp_yearly <- ggplot(meanrank_yearly, aes(y = rank, x = feature, fill=as.factor(istop))) +
-  geom_bar(position = "dodge", stat = "identity") +
+  geom_bar(position = "dodge", stat = "identity", width=0.3) +
   facet_wrap(~class, ncol = 6, nrow = 2) +
   coord_flip() + ylab("Average rank")+ 
-  scale_fill_manual(breaks=c("0","1"), values=c("black","red"), guide="none")+theme(text=element_text(size = 20))
+  scale_fill_manual(breaks=c("0","1"), values=c("#f1a340","#998ec3"), guide="none")+theme(text=element_text(size = 20))
 feaImp_yearly
 
 ## ---- pdpyearly
