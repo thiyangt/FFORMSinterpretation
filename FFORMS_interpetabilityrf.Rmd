@@ -43,8 +43,8 @@ knitr::opts_chunk$set(echo = FALSE, cache=TRUE, messages=FALSE, warning=FALSE, f
 #devtools::install_github("rstudio/bookdown")
 read_chunk("src/main.R") # common codes for all frequency categories
 read_chunk("src/main_yearly.R")
-read_chunk("src/main_daily.R")
-read_chunk("src/main_hourly.R")
+read_chunk("src/main_quarterly.R")
+read_chunk("src/main_monthly.R")
 read_chunk("src/main_weekly.R")
 read_chunk("src/main_daily.R")
 read_chunk("src/main_hourly.R")
@@ -338,7 +338,7 @@ This vote-matrix information for the yearly data is presented in \autoref{fig:ye
 ```
 
 
-```{r yearlyoob, fig.height=10, fig.width=10, fig.cap="Visualization of the vote matrix based on OOB sample for yearly random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the \"best\" forecast-model identified based on MASE and sMAPE. On each row, distribution of correctly classified class dominates, indicating a good classification of the meta-learner.", fig.pos="h"}
+```{r yearlyoob, fig.height=10, fig.width=20, fig.cap="Visualization of the vote matrix based on OOB sample for yearly random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the \"best\" forecast-model identified based on MASE and sMAPE. On each row, distribution of correctly classified class dominates, indicating a good classification of the meta-learner.", fig.pos="h"}
 ```
 
 
@@ -378,36 +378,17 @@ literature [@makridakis2000m3]. Except for random walk, partial dependency curve
 \autoref{fig:friedmanQ} and \autoref{fig:friedmanM} show the heat maps of the relative strength of all possible pairwise interactions calculated based on Friedman's H-statistic for quarterly and monthly data respectively. Within the random walk with drift class trend shows a high interactivity with other features. Within all classes seasonality show less interactivity with other features, whereas lumpiness shows high interactivity with other features. Further within each class, a subset of ACF/PACF-based features show some interactivity. In general interactivity between features related to correlation structure of a time series and overall shape (spikiness, linearity, curvature, etc) lead to the choice of forecast-model selection.
 
 
-```{r oobquarterlymonthly1, fig.height=30, fig.width=25, fig.cap="Visualization of the vote matrix based on OOB sample for quarterly random forest. The Y-axis denotes what was predicted from the random forest?. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots corresponds to class label of the \"best\" forecast-model identified based on MASE and sMAPE. On each row, distribution of correctly classified class dominates, indicating a good classification of the meta-learner. ARMA/AR/MA has a low chance of being selected while random walk with drift has a high chance of being selected.", dev='png',fig.pos="h"}
+```{r oobquarterly, fig.height=40, fig.width=40, dev='png',fig.pos="h"}
 ```
 
 \clearpage
 
-```{r oobquarterlymonthly2, fig.height=38, fig.width=30, fig.cap=" Visualization of the vote matrix based on OOB sample for monthly random forest. The Y-axis denotes what was predicted from the random forest? The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots corresponds to class label of the \"best\" forecast-model identified based on MASE and sMAPE. On each row, distribution of correctly classified class dominates, indicating a good classification of the meta-learner. Few series correspond to stlar and nn have been correctly classified with a very high probability.", dev='png',fig.pos="h"}
+```{r viquarterly, fig.height=10, fig.width=18, fig.cap="Feature importance plot for quarterly series. Overall feature importance(top left plot) is evaluated based on two measures: i) Permutation-based variable importance measure and ii) mean decrease in Gini coefficients are used to evaluate  shown in the top left plot. Class-specific feature importance is evaluated based on three measures: i) permutation-based variable importance, PD-based variable importance measure, and ICE-based variable importance measure. Longer bars indicate more important features. Top 5 overall features are highlighted in purple. Strength of seasonality appears to be the most important feature."}
+
 ```
 
-\clearpage
+```{r vimonthly, fig.height=12, fig.width=18,  fig.cap="Feature importance plot for monthly series. Overall feature importance(top left plot) is evaluated based on two measures: i) Permutation-based variable importance measure and ii) mean decrease in Gini coefficients are used to evaluate  shown in the top left plot. Class-specific feature importance is evaluated based on three measures: i) permutation-based variable importance, PD-based variable importance measure, and ICE-based variable importance measure. Longer bars indicate more important features. Top 5 overall features are highlighted in purple. Strength of seasonality appears to be the most important feature."}
 
-```{r viquarterly, fig.height=11, fig.width=23, fig.cap="Feature importance plot for quarterly data. Permutation-based VI measure and mean decrease in Gini coefficients are used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h", fig.align="center",dev='pdf'}
-```
-
-```{r vimonthly, fig.height=11, fig.width=23, fig.cap="Feature importance plot for monthly data. Permutation-based VI measure and mean decrease in Gini coefficients are used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h", fig.align="center", dev='pdf'}
-```
-
-\newpage
-
-```{r pdpquarterly1, fig.height=28, fig.width=20, fig.cap="Partial dependence plots for the top-three features get selected most within each class inside quarterly and monthly FFORMS frameworks. Additionally, N is included to observe the effects stated in the literature. The shading shows the 95% confidence interval. Y-axis denotes the probability of belonging to corresponding class. Red colour is for PDP drawn based on quarterly data and blue colour is for the PDP drawn based on monthly data.", fig.pos="h"}
-```
-
-\newpage
-
-```{r pdpquarterlysec2, fig.height=28, fig.width=20, fig.cap="Partial dependence plots for the top-three features get selected most within each class inside quarterly and monthly FFORMS frameworks. Additionally, N is included to observe the effects stated in the literature. The shading shows the 95% confidence interval. Y-axis denotes the probability of belonging to corresponding class. Red colour is for PDP drawn based on quarterly data and blue colour is for the PDP drawn based on monthly data.(Continue from Figure 9)", fig.pos="h"}
-```
-
-\clearpage
-
-
-```{r friedmanQM, fig.height=10, fig.width=10, fig.cap="Heat maps of relative strength of all possible pairwise interactions calculated based on Friedman's H-statistic for quarterly and monthly data.", fig.pos="h", message=FALSE, warning=FALSE, dev='pdf'}
 ```
 
 ## Weekly
@@ -429,9 +410,6 @@ According to the results of \autoref{fig:viweekly} spikiness, linearity, trend, 
 ```{r weeklypdp, fig.height=28, fig.width=20, fig.cap="Partial dependence plots for the top ranked features from variable importance measures (weekly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belonging to corresponding class.", fig.pos="h"}
 ```
 
-\newpage
-```{r friedmanHW, fig.height=7, fig.width=7, fig.cap="Heat maps of relative strength of all possible pairwise interactions calculated based on Friedman's H-statistic for weekly series.", fig.pos="h", message=FALSE, warning=FALSE, dev='pdf'}
-```
 
 ## Daily and Hourly data
 
@@ -491,8 +469,6 @@ According to Friedman's H-statistic for daily series, sediff_acf5 and weekly sea
 ```{r htwopdp, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of sediff_seacf1 and linearity for hourly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. Random walk and random walk with drift class show opposite pattern of interactivity between sediff_seacf1 and linearity.", dev='png'}
 
 ```
-
-## Interaction effect
 
 \clearpage
 

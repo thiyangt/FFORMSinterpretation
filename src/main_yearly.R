@@ -11,83 +11,45 @@ votes_oob <- votes_oob %>%
   mutate(id = seq_len(n())) %>%
   melt(id.var = c("classlabel", "id", "predicted"), na.rm = T) %>%
   select(-id)
+votes_oob <- votes_oob %>%
+  mutate(classlabel = recode(classlabel, nn="nn",
+    theta = "theta", wn = "wn", "ARMA/AR/MA" = "ARMA", ARIMA = "ARIMA", "ETS-notrendnoseasonal" = "ETS_NTNS",
+    "ETS-dampedtrend" = "ETS_DT", "ETS-trend" = "ETS_T", "rwd" = "rwd", "rw" = "rw" ))
+
+votes_oob <- votes_oob %>%
+  mutate(predicted = recode(predicted, nn="nn", theta = "theta",
+                             wn = "wn", "ARMA/AR/MA" = "ARMA", ARIMA = "ARIMA",
+                             "ETS-notrendnoseasonal" = "ETS_NTNS", "ETS-dampedtrend" = "ETS_DT",
+                             "ETS-trend" = "ETS_T","rwd" = "rwd", "rw" = "rw" ))
+
+votes_oob <- votes_oob %>%
+  mutate(variable = recode(variable, nn="nn", theta = "theta", wn = "wn", "ARMA/AR/MA" = "ARMA",
+                            ARIMA = "ARIMA", "ETS-notrendnoseasonal" = "ETS_NTNS", "ETS-dampedtrend" = "ETS_DT",
+                            "ETS-trend" = "ETS_T", "rwd" = "rwd", "rw" = "rw" ))
 # arrange labels
-votes_oob$classlabel <- factor(votes_oob$classlabel,
-                               levels = c(
+votes_oob$variable <- factor(votes_oob$variable,
+                               levels = rev(c(
                                  "nn",
                                  "theta",
                                  "wn",
-                                 "ARMA/AR/MA",
+                                 "ARMA",
                                  "ARIMA",
-                                 "ETS-notrendnoseasonal",
-                                 "ETS-dampedtrend",
-                                 "ETS-trend",
-                                 "rw",
-                                 "rwd" ))
+                                 "ETS_NTNS",
+                                 "ETS_DT",
+                                 "ETS_T",
+                                 "rwd",
+                                 "rw" )))
 
-votes_oob <- votes_oob %>%
-  mutate(classlabel = recode(classlabel, nn="nn",
-    theta = "theta",
-    wn = "wn",
-    "ARMA/AR/MA" = "ARMA",
-    ARIMA = "ARIMA",
-    "ETS-notrendnoseasonal" = "ETS_NTNS",
-    "ETS-dampedtrend" = "ETS_DT",
-    "ETS-trend" = "ETS_T",
-    "rwd" = "rwd",
-    "rw" = "rw" ))
-
-votes_oob <- votes_oob %>%
-  mutate(predicted = recode(predicted, nn="nn",
-                             theta = "theta",
-                             wn = "wn",
-                             "ARMA/AR/MA" = "ARMA",
-                             ARIMA = "ARIMA",
-                             "ETS-notrendnoseasonal" = "ETS_NTNS",
-                             "ETS-dampedtrend" = "ETS_DT",
-                             "ETS-trend" = "ETS_T",
-                             "rwd" = "rwd",
-                             "rw" = "rw" ))
-
-votes_oob <- votes_oob %>%
-  mutate(variable = recode(variable, nn="nn",
-                            theta = "theta",
-                            wn = "wn",
-                            "ARMA/AR/MA" = "ARMA",
-                            ARIMA = "ARIMA",
-                            "ETS-notrendnoseasonal" = "ETS_NTNS",
-                            "ETS-dampedtrend" = "ETS_DT",
-                            "ETS-trend" = "ETS_T",
-                            "rwd" = "rwd",
-                            "rw" = "rw" ))
-
-oob_boxplot_yearly <- ggplot(votes_oob, aes(
-  x = variable,
-  y = value, fill = classlabel
-)) +
+oob_boxplot_yearly <- ggplot(votes_oob, aes(x = classlabel, y = value, fill = classlabel)) +
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
-  scale_fill_manual(values = c(
-    "#a50026", "#d73027", "#f46d43", "#fdae61", "#fee090",
-    "#e0f3f8", "#abd9e9", "#74add1", "#4575b4",
-    "#313695"
-  )) +
   ylab("Proportion") +
   xlab("") +
-  theme(legend.position = "right", legend.title = element_blank(), legend.text.align = 0) +
+  theme(legend.position = "none", legend.title = element_blank(), 
+        legend.text.align = 0, text = element_text(size = 25), axis.text.x = element_text(angle = 90),
+        strip.text = element_text(size = 20)) +
   guides(fill = guide_legend(reverse = TRUE)) +
-  scale_x_discrete(limits = c(
-    "nn",
-    "theta",
-    "wn",
-    "ARMA",
-    "ARIMA",
-    "ETS_NTNS",
-    "ETS_DT",
-    "ETS_T",
-    "rwd",
-    "rw"
-  )) +
-  coord_flip()
+  scale_x_discrete(limits = c("nn", "theta", "wn", "ARMA", "ARIMA", "ETS_NTNS", "ETS_DT", "ETS_T", "rwd", "rw" )) +
+  coord_flip() + facet_wrap(. ~ variable, ncol=5)
 oob_boxplot_yearly
 
 ## ---- viyearly

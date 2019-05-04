@@ -42,7 +42,10 @@ oob_boxplot_quarterly <- ggplot(votes_oobQ, aes(x = classlabel, y = value, fill 
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
   ylab("Proportion") +
   xlab("") +
-  theme(legend.position = "none", legend.title = element_blank(), legend.text.align = 0, text = element_text(size = 25)) +
+  theme(legend.position = "none", legend.title = element_blank(), 
+        legend.text.align = 0, text = element_text(size = 30), axis.text.x = element_text(angle = 90),
+        strip.text = element_text(size = 40),
+        strip.background = element_rect(size=4)) +
   guides(fill = guide_legend(reverse = TRUE)) +
   scale_x_discrete(limits = rev(c(
     "snaive", "rwd", "rw", "ETS_NTNS", "ETS_DT", "ETS_T", "ETS_DTS", "ETS_TS", "ETS_S", "SARIMA",
