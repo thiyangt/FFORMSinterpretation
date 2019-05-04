@@ -56,40 +56,6 @@ oob_boxplot_quarterly
 
 
 
-# 
-# #Part 1 of the oob plot
-# part1 <- c("snaive", "rwd", "rw", "ETS-notrendnoseasonal", "ETS-dampedtrend", "ETS-trend", "ETS-dampedtrendseasonal")
-# part2 <- c("ETS-trendseasonal","ETS-seasonal", "SARIMA", "ARIMA", "ARMA/AR/MA", "stlar", "tbats", "wn", "theta", "nn")
-# 
-# part1_votes_oobQ <- subset(votes_oobQ, votes_oobQ$predicted %in% part1)
-# part2_votes_oobQ <- subset(votes_oobQ,  votes_oobQ$predicted %in% part2)
-# # Part 1_quarterly
-# oob_boxplot_quarterly_p1 <- ggplot(part1_votes_oobQ, aes(x = variable, y = value, fill = classlabel)) +
-#   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
-#   ylab("Proportion") +
-#   xlab("") +
-#   theme(legend.position = "none", legend.title = element_blank(), legend.text.align = 0, text = element_text(size = 25)) +
-#   guides(fill = guide_legend(reverse = TRUE)) +
-#   scale_x_discrete(limits = rev(c(
-#     "snaive", "rwd", "rw", "ETS-notrendnoseasonal", "ETS-dampedtrend", "ETS-trend", "ETS-dampedtrendseasonal"))) +
-#   coord_flip()
-
-# # Part 2_quarterly
-# oob_boxplot_quarterly_p2 <- ggplot(part2_votes_oobQ, aes(x = variable, y = value, fill = classlabel)) +
-#   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
-#   ylab("Proportion") +
-#   xlab("") +
-#   theme(legend.position = "right", legend.title = element_blank(), legend.text.align = 0, text = element_text(size = 25)) +
-#   guides(fill = guide_legend(reverse = TRUE)) +
-#   scale_x_discrete(limits = rev(c(
-#     "ETS-trendseasonal", "ETS-seasonal", "SARIMA",
-#     "ARIMA", "ARMA/AR/MA", "stlar", "tbats", "wn", "theta", "nn"
-#   ))) +
-#   coord_flip()
-# 
-# 
-# oob_boxplot_quarterly_p1|oob_boxplot_quarterly_p2
-
 ## ---- viquarterly
 # All variable scores into one dataframe
 load("data/quarterly/trainQ_importance.rda")
@@ -171,3 +137,11 @@ feaImp_quarterly <- ggplot(meanrank_quarterly, aes(y = rank, x = feature,fill=as
   theme(text=element_text(size = 18))
 feaImp_quarterly
 
+
+#### ---- pdpquarterly1
+load("data/quarterly/pdp_quarterly/seasonalitygridQ.rda")
+seasonalitygridQ$variable <- rep(1:1700, 20)
+load("data/quarterly/pdp_quarterly/trendgridQ.rda")
+trendgridQ$variable <- rep(1:1700, 20)
+load("data/quarterly/pdp_quarterly/trendgridQ.rda")
+trendgridQ$variable <- rep(1:1700, 20)

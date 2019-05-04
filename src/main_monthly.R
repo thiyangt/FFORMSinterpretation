@@ -41,6 +41,18 @@ oob_monthly_part2 <- ggplot(part2_votes_oobM, aes(x = variable, y = value, fill 
 
 oob_monthly_part1|oob_monthly_part2
 
+## ---- pdpmonthly
+## Monthly linearity
+load("data/monthly/pdp_monthly/linearitygridM.rda")
+linearitygridM$variable <- rep(1:1700, 20)
+load("data/monthly/pdp_monthly/seasonalitygridM.rda")
+seasonalitygridM$variable <- rep(1:1700, 20)
+load("data/monthly/pdp_monthly/trendgridM.rda")
+trendgridM$variable <- rep(1:1700, 20)
+load("data/monthly/pdp_monthly/NgridM.rda")
+NgridM$variable <- rep(1:1700, 20)
+
+
 
 
 ## ---- vimonthly
