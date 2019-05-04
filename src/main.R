@@ -20,10 +20,6 @@ library(Hmisc) # to draw confidence intervals
 source("src/friedmanHstatmatrix.R")
 
 
-
-## ---- friedmanQ
-
-
 ## ---- quarterlypca
 pcaQvariables <- quarterly_training[, 1:30]
 pcaM4Q <- prcomp(pcaQvariables, center = TRUE, scale = TRUE)
