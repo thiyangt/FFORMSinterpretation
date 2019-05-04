@@ -347,27 +347,24 @@ This vote-matrix information for the yearly data is presented in \autoref{fig:ye
 According to \autoref{fig:viyearly}, the features related to strength of trend, nonstationarity (ur_pp, diff1y_acf1), overall shape of the trend (linear: measured by linearity, damped trend: measured by beta, exponential: measured by curvature) and measures of randomness (from spikiness, and lmres_acf1) are the most important for the choice of yearly time series forecast-models. The first ACF value of the original series (y_acf1) appears among the top five within the random walk with drift class and the ARMA/AR/MA class as it helps to separate stationary and non-stationary series. The first correlation coefficient of the twice-differenced series is appeared to be the most important in the ARIMA class as this class contains the higher order differenced series.  The Hurst exponent and entropy appear to be equally important in stationary classes. Within the  ETS-damped trend class beta and curvature ranked as important features. The length of time series (N) is assigned relatively high rank within the random walk with drift, ETS-dampedtrend and the neural-network class compared to others. On the other hand, sum of squares of the first five autocorrelation coefficients of the twice-difference series and the lumpiness are the least important feature across many classes.
 
 
-\autoref{fig:pdpyearly} shows the partial dependency curves, and the associated confidence intervals of the top-three features that get selected most in each class. The three features show a non-linear relationship with the predicted class probabilities. The probabilities of selecting ETS-trend, ARIMA, ETS-without seasonal and trend component and neural network models increase steadily as ur_pp increases. As expected, the probability of selecting stationary models decreases as the test statistic of Phillip-Perron test increases and this probability remains zero  beyond the value of 0 of ur_pp. Random walk with drift, ETS-trend, ETS-damped trend, ARIMA show an increasing relationship with trend, whereas the random walk, ETS-without trend and seasonal components, and the stationary models show a monotonically deceasing relationship as  trend increases. The theta class shows parabolic relationship with trend. It is interesting to observe that the probability of selecting neural network models decreases with very high trend value. The reason could be very clear highly trended series are more likely to select ETS-trend, ETS-dampedtrend and ARIMA models. The wide confidence bands around the partial dependency functions of linearity indicate the higher variability of ICE curves. The probability of selecting random walk with drift increases rapidly beyond value 0 and remains thereafter. The PDP curves of linearity in ARMA/AR/MA increase sharply around 0 and decline steadily after that. Similar relationship can be observed within the white noise class with wide confidence bands whereas ARIMA and neural network show the opposite relationship. The partial dependency curves of diff1y_acf1 indicate the probabilities of selecting the random walk with drift and the ETS-trend are higher for differenced-stationary series. 
+\autoref{fig:pdpyearly} shows the partial dependency curves, and the associated confidence intervals of the top-three features that get selected most in each class. As expected, the probability of selecting stationary models decreases as the test statistic of Phillip-Perron test increases and this probability remains zero  beyond the value of 0 of ur_pp. 
 
-\autoref{fig:friedmany} shows the heat maps of the relative strength of all possible pairwise interactions of the features for each class. The relative strength of two-way interactions between features are measured using the formula developed by @friedman2008predictive, which is implemented in the `iml` (@molnar2018iml,) package in R. Except the ETS-trend class, trend and ur_pp show a high level of interactivity and a less interactivity with other features. Linearity also show a weak interaction  with other features in all classes.  In almost all the classes the partial correlation and auto-correlation based features are heavily interacting. However, the first correlation coefficient of the differenced series does not interact with other features heavily within the ARIMA  class. Further, almost all pairs of features appear to be interacting within neural network category. The interactivity between stability and lumpiness is the most common type of interactivity appear within all classes. 
+
 
 ```{r viyearly, fig.height=15, fig.width=20, fig.cap="Feature importance plot for yearly series. Overall feature importance(top left plot) is evaluated based on two measures: i) Permutation-based variable importance measure and ii) mean decrease in Gini coefficients are used to evaluate  shown in the top left plot. Class-specific feature importance is evaluated based on three measures: i) permutation-based variable importance, PD-based variable importance measure, and ICE-based variable importance measure. Longer bars indicate more important features. Top 5 overall features are highlighted in purple. Strength of trend appears to be the most important feature.", fig.pos="h", dev='pdf'}
 ```
 
 \newpage
 
-```{r pdpyearly, fig.height=20, fig.width=15, fig.cap="Partial dependence plots for the top-three features get selected most within each class for yearly series. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All features show a nonlinear relationship with predicted probabilities.", fig.pos="h"}
+```{r pdpyearlyurpp, fig.height=4, fig.width=15, fig.cap="Partial dependence plots for ur_pp. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All features show a nonlinear relationship with predicted probabilities.", fig.pos="h", dev='png'}
 ```
 
-\newpage
-
-```{r friedmany, fig.height=8, fig.width=8, fig.cap="Heat maps of relative strength of all possible pairwise interactions calculated based on Friedman's H-statistic (yearly series). Strength of trend shows less interactivity with other features.", fig.pos="h", message=FALSE, warning=FALSE, dev='pdf'}
+```{r pdpyearlytrend, fig.height=4, fig.width=15, fig.cap="Partial dependence plots for trend. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All features show a nonlinear relationship with predicted probabilities.", fig.pos="h", dev='png'}
 ```
 
 
-\newpage
-
-
+```{r pdpyearlylinearity, fig.height=4, fig.width=15, fig.cap="Partial dependence plots for linearity. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All features show a nonlinear relationship with predicted probabilities.", fig.pos="h", dev='png'}
+```
 
 ## Quarterly and Monthly data
 
@@ -495,6 +492,7 @@ According to Friedman's H-statistic for daily series, sediff_acf5 and weekly sea
 
 ```
 
+## Interaction effect
 
 \clearpage
 

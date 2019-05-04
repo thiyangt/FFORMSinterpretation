@@ -512,44 +512,6 @@
       \field{pages}{515\bibrangedash 535}
       \range{pages}{21}
     \endentry
-    \entry{molnar2018iml}{article}{}
-      \name{author}{3}{}{%
-        {{hash=1519de263bd388a2ce312e7171b96d0d}{%
-           family={Molnar},
-           familyi={M\bibinitperiod},
-           given={Christoph},
-           giveni={C\bibinitperiod}}}%
-        {{hash=c00b6938329435f93bc66d0617ea7481}{%
-           family={Casalicchio},
-           familyi={C\bibinitperiod},
-           given={Giuseppe},
-           giveni={G\bibinitperiod}}}%
-        {{hash=c5695b464b6059e7047553d017275f65}{%
-           family={Bischl},
-           familyi={B\bibinitperiod},
-           given={Bernd},
-           giveni={B\bibinitperiod}}}%
-      }
-      \strng{namehash}{fe656234e9d16099a3db13456632d93e}
-      \strng{fullhash}{fe656234e9d16099a3db13456632d93e}
-      \strng{bibnamehash}{fe656234e9d16099a3db13456632d93e}
-      \strng{authorbibnamehash}{fe656234e9d16099a3db13456632d93e}
-      \strng{authornamehash}{fe656234e9d16099a3db13456632d93e}
-      \strng{authorfullhash}{fe656234e9d16099a3db13456632d93e}
-      \field{sortinit}{M}
-      \field{sortinithash}{cfd219b90152c06204fab207bc6c7cab}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{year}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{The Journal of Open Source Software}
-      \field{number}{786}
-      \field{title}{Iml: An R package for interpretable machine learning}
-      \field{volume}{3}
-      \field{year}{2018}
-      \field{pages}{10\bibrangedash 21105}
-      \range{pages}{21096}
-    \endentry
     \entry{petropoulos2014horses}{article}{}
       \name{author}{4}{}{%
         {{hash=8a8906bc431b0399f6be129d2e1271a1}{%

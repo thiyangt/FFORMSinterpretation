@@ -981,47 +981,10 @@ feature across many classes.
 
 \autoref{fig:pdpyearly} shows the partial dependency curves, and the
 associated confidence intervals of the top-three features that get
-selected most in each class. The three features show a non-linear
-relationship with the predicted class probabilities. The probabilities
-of selecting ETS-trend, ARIMA, ETS-without seasonal and trend component
-and neural network models increase steadily as ur\_pp increases. As
-expected, the probability of selecting stationary models decreases as
-the test statistic of Phillip-Perron test increases and this probability
-remains zero beyond the value of 0 of ur\_pp.~Random walk with drift,
-ETS-trend, ETS-damped trend, ARIMA show an increasing relationship with
-trend, whereas the random walk, ETS-without trend and seasonal
-components, and the stationary models show a monotonically deceasing
-relationship as trend increases. The theta class shows parabolic
-relationship with trend. It is interesting to observe that the
-probability of selecting neural network models decreases with very high
-trend value. The reason could be very clear highly trended series are
-more likely to select ETS-trend, ETS-dampedtrend and ARIMA models. The
-wide confidence bands around the partial dependency functions of
-linearity indicate the higher variability of ICE curves. The probability
-of selecting random walk with drift increases rapidly beyond value 0 and
-remains thereafter. The PDP curves of linearity in ARMA/AR/MA increase
-sharply around 0 and decline steadily after that. Similar relationship
-can be observed within the white noise class with wide confidence bands
-whereas ARIMA and neural network show the opposite relationship. The
-partial dependency curves of diff1y\_acf1 indicate the probabilities of
-selecting the random walk with drift and the ETS-trend are higher for
-differenced-stationary series.
-
-\autoref{fig:friedmany} shows the heat maps of the relative strength of
-all possible pairwise interactions of the features for each class. The
-relative strength of two-way interactions between features are measured
-using the formula developed by \textcite{friedman2008predictive}, which
-is implemented in the \texttt{iml} (\textcite{molnar2018iml},) package
-in R. Except the ETS-trend class, trend and ur\_pp show a high level of
-interactivity and a less interactivity with other features. Linearity
-also show a weak interaction with other features in all classes. In
-almost all the classes the partial correlation and auto-correlation
-based features are heavily interacting. However, the first correlation
-coefficient of the differenced series does not interact with other
-features heavily within the ARIMA class. Further, almost all pairs of
-features appear to be interacting within neural network category. The
-interactivity between stability and lumpiness is the most common type of
-interactivity appear within all classes.
+selected most in each class. As expected, the probability of selecting
+stationary models decreases as the test statistic of Phillip-Perron test
+increases and this probability remains zero beyond the value of 0 of
+ur\_pp.
 
 \begin{figure}
 \centering
@@ -1042,26 +1005,30 @@ important feature.}
 
 \begin{figure}
 \centering
-\includegraphics{figures/pdpyearly-1.png}
-\caption{\label{fig:pdpyearly}Partial dependence plots for the top-three
-features get selected most within each class for yearly series. The
+\includegraphics{figures/pdpyearlyurpp-1.png}
+\caption{\label{fig:pdpyearlyurpp}Partial dependence plots for ur\_pp.~The
 shading shows the 95\% confidence intervals. Y-axis denotes the
 probability of belong to corresponding class. All features show a
 nonlinear relationship with predicted probabilities.}
 \end{figure}
 
-\newpage
+\begin{figure}
+\centering
+\includegraphics{figures/pdpyearlytrend-1.png}
+\caption{\label{fig:pdpyearlytrend}Partial dependence plots for trend. The
+shading shows the 95\% confidence intervals. Y-axis denotes the
+probability of belong to corresponding class. All features show a
+nonlinear relationship with predicted probabilities.}
+\end{figure}
 
 \begin{figure}
 \centering
-\includegraphics{figures/friedmany-1.pdf}
-\caption{\label{fig:friedmany}Heat maps of relative strength of all possible
-pairwise interactions calculated based on Friedman's H-statistic (yearly
-series). Strength of trend shows less interactivity with other
-features.}
+\includegraphics{figures/pdpyearlylinearity-1.png}
+\caption{\label{fig:pdpyearlylinearity}Partial dependence plots for
+linearity. The shading shows the 95\% confidence intervals. Y-axis
+denotes the probability of belong to corresponding class. All features
+show a nonlinear relationship with predicted probabilities.}
 \end{figure}
-
-\newpage
 
 \subsection{Quarterly and Monthly
 data}\label{quarterly-and-monthly-data}
@@ -1454,6 +1421,8 @@ corresponding class shown in the plot title. Random walk and random walk
 with drift class show opposite pattern of interactivity between
 sediff\_seacf1 and linearity.}
 \end{figure}
+
+\subsection{Interaction effect}\label{interaction-effect}
 
 \clearpage
 
