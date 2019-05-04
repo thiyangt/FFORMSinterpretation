@@ -25,6 +25,42 @@ votes_oob$classlabel <- factor(votes_oob$classlabel,
                                  "rw",
                                  "rwd" ))
 
+votes_oob <- votes_oob %>%
+  mutate(classlabel = recode(classlabel, nn="nn",
+    theta = "theta",
+    wn = "wn",
+    "ARMA/AR/MA" = "ARMA",
+    ARIMA = "ARIMA",
+    "ETS-notrendnoseasonal" = "ETS_NTNS",
+    "ETS-dampedtrend" = "ETS_DT",
+    "ETS-trend" = "ETS_T",
+    "rwd" = "rwd",
+    "rw" = "rw" ))
+
+votes_oob <- votes_oob %>%
+  mutate(predicted = recode(predicted, nn="nn",
+                             theta = "theta",
+                             wn = "wn",
+                             "ARMA/AR/MA" = "ARMA",
+                             ARIMA = "ARIMA",
+                             "ETS-notrendnoseasonal" = "ETS_NTNS",
+                             "ETS-dampedtrend" = "ETS_DT",
+                             "ETS-trend" = "ETS_T",
+                             "rwd" = "rwd",
+                             "rw" = "rw" ))
+
+votes_oob <- votes_oob %>%
+  mutate(variable = recode(variable, nn="nn",
+                            theta = "theta",
+                            wn = "wn",
+                            "ARMA/AR/MA" = "ARMA",
+                            ARIMA = "ARIMA",
+                            "ETS-notrendnoseasonal" = "ETS_NTNS",
+                            "ETS-dampedtrend" = "ETS_DT",
+                            "ETS-trend" = "ETS_T",
+                            "rwd" = "rwd",
+                            "rw" = "rw" ))
+
 oob_boxplot_yearly <- ggplot(votes_oob, aes(
   x = variable,
   y = value, fill = classlabel
@@ -43,13 +79,13 @@ oob_boxplot_yearly <- ggplot(votes_oob, aes(
     "nn",
     "theta",
     "wn",
-    "ARMA/AR/MA",
+    "ARMA",
     "ARIMA",
-    "ETS-notrendnoseasonal",
-    "ETS-dampedtrend",
-    "ETS-trend",
-    "rw",
-    "rwd"
+    "ETS_NTNS",
+    "ETS_DT",
+    "ETS_T",
+    "rwd",
+    "rw"
   )) +
   coord_flip()
 oob_boxplot_yearly
@@ -96,8 +132,8 @@ importancescoreY$VI <- rep(c("permutation", "PDP", "ICE"), each = 250)
 
 ## rank permutation, sd_pdp, and sd_ice scores for each class
 importancescoreY$class <- factor(importancescoreY$class,
-                                 levels = c("rwd", "rw", "ETS.trend", "ETS.dampedtrend", "ETS.notrendnoseasonal", "ARIMA", "ARMA.AR.MA", "wn", "theta", "nn"),
-                                 labels = c("rwd", "rw", "ETS.trend", "ETS.dampedtrend", "ETS.notrendnoseasonal", "ARIMA", "ARMA.AR.MA", "wn", "theta", "nn")
+                                 levels = c("rw", "rwd", "ETS.trend", "ETS.dampedtrend", "ETS.notrendnoseasonal", "ARIMA", "ARMA.AR.MA", "wn", "theta", "nn"),
+                                 labels = c("rw", "rwd", "ETS.trend", "ETS.dampedtrend", "ETS.notrendnoseasonal", "ARIMA", "ARMA.AR.MA", "wn", "theta", "nn")
 )
 rank_vi_yearly_classes <- importancescoreY %>%
   group_by(VI, class) %>%
@@ -126,8 +162,8 @@ orderOverall <- filter(meanrank_yearly, class == "overall")
 meanrank_yearly$feature <- factor(meanrank_yearly$feature, levels = orderOverall$feature[order(orderOverall$rank)])
 meanrank_yearly$class <- factor(meanrank_yearly$class,
                                 levels = c(
-                                  "overall", "rwd",
-                                  "rw",
+                                  "overall", "rw",
+                                  "rwd",
                                   "ETS.trend",
                                   "ETS.dampedtrend",
                                   "ETS.notrendnoseasonal",
@@ -135,9 +171,19 @@ meanrank_yearly$class <- factor(meanrank_yearly$class,
                                   "ARMA.AR.MA",
                                   "wn",
                                   "theta",
-                                  "nn"
-                                )
-)
+                                  "nn" ))
+
+meanrank_yearly <- meanrank_yearly %>%
+  mutate(class = recode(class, nn="nn",
+                           theta = "theta",
+                           wn = "wn",
+                           "ARMA.AR.MA" = "ARMA",
+                           ARIMA = "ARIMA",
+                           "ETS.notrendnoseasonal" = "ETS_NTNS",
+                           "ETS.dampedtrend" = "ETS_DT",
+                           "ETS.trend" = "ETS_T",
+                           "rwd" = "rwd",
+                           "rw" = "rw" ))
 
 meanrank_yearly$rn <- 1:275
 
@@ -149,51 +195,97 @@ meanrank_yearly$istop <- ifelse(meanrank_yearly$rn%in%top$rn, TRUE, FALSE)
 
 feaImp_yearly <- ggplot(meanrank_yearly, aes(y = rank, x = feature, fill=as.factor(istop))) +
   geom_bar(position = "dodge", stat = "identity", width=0.3) +
-  facet_wrap(~class, ncol = 6, nrow = 2) +
+  facet_wrap(~ class, ncol = 6, nrow = 2) +
   coord_flip() + ylab("Average rank")+ 
-  scale_fill_manual(breaks=c("0","1"), values=c("#f1a340","#998ec3"), guide="none")+theme(text=element_text(size = 20))
+  scale_fill_manual(breaks=c("0","1"), values=c("#f1a340","#998ec3"), guide="none")+theme(text=element_text(size = 20))+
+  theme(strip.text.x = element_text(size = 18))
 feaImp_yearly
 
-## ---- pdpyearly
-load("data/yearly/pdp_yearly/trendgrid.rda")
-load("data/yearly/pdp_yearly/diff1y_acf1grid.rda")
-load("data/yearly/pdp_yearly/linearitygrid.rda")
-# trim_boundaries
+## ---- pdpyearlyurpp
 load("data/yearly/pdp_yearly/ur_ppgrid_rmout.rda")
 ## Arrange graphs for faceting
 keep.modelnames <- c("ARIMA", "ARMA.AR.MA", "ETS.dampedtrend", "ETS.notrendnoseasonal",
                      "ETS.trend", "nn", "rw", "rwd", "theta", "wn")
-keeptrend <- c(keep.modelnames, "trend")
 keepur <- c(keep.modelnames, "ur_pp")
-keeplinearity <- c(keep.modelnames, "linearity")
-keepdiffacf1 <- c(keep.modelnames, "diff1y_acf1")
-
-trendgrid <- trendgrid[, names(trendgrid) %in% keeptrend]
-trendgrid_long <- gather(trendgrid, class, probability, "ARIMA":"wn", factor_key = TRUE)
-names(trendgrid_long)[names(trendgrid_long)=="trend"] <- "feature"
-
 ur_ppgrid_rmout <- ur_ppgrid_rmout[, names(ur_ppgrid_rmout) %in% keepur]
 ur_ppgrid_long <- gather(ur_ppgrid_rmout, class, probability, "ARIMA":"wn", factor_key = TRUE)
-names(ur_ppgrid_long)[names(ur_ppgrid_long)=="ur_pp"] <- "feature"
 
-linearitygrid <- linearitygrid[, names(linearitygrid) %in% keeplinearity]
-linearitygrid_long <- gather(linearitygrid, class, probability, "ARIMA":"wn", factor_key = TRUE)
-names(linearitygrid_long)[names(linearitygrid_long)=="linearity"] <- "feature"
+ur_ppgrid_long <- ur_ppgrid_long %>%
+   mutate(class = recode(class, nn="nn",
+                         theta = "theta",
+                        wn = "wn",
+                        "ARMA.AR.MA" = "ARMA",
+                        ARIMA = "ARIMA",
+                        "ETS.notrendnoseasonal" = "ETS_NTNS",
+                        "ETS.dampedtrend" = "ETS_DT",
+                         "ETS.trend" = "ETS_T",
+                         "rwd" = "rwd",
+                         "rw" = "rw" ))
+ur_ppgrid_long$class <- factor(ur_ppgrid_long$class,
+                                levels = c("rw", "rwd", "ETS_T", "ETS_DT", "ETS_NTNS",
+                                  "ARIMA", "ARMA", "wn", "theta", "nn" ))
 
-diff1y_acf1grid <- diff1y_acf1grid[, names(diff1y_acf1grid) %in% keepdiffacf1]
-diff1y_acf1grid_long <- gather(diff1y_acf1grid, class, probability, "ARIMA":"wn", factor_key = TRUE)
-names(diff1y_acf1grid_long)[names(diff1y_acf1grid_long)=="diff1y_acf1"] <- "feature"
+plot_pdp_yearly <- ggplot(data = ur_ppgrid_long, aes_string(x = ur_ppgrid_long$ur_pp, y = "probability")) +
+   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) +
+   stat_summary(fun.data = mean_cl_normal,fill="red", geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+ 
+  theme(axis.text.x = element_text(angle = 90), text = element_text(size=18), axis.title = element_text(size = 16))+
+   facet_grid(. ~ class)+theme(strip.text.x = element_text(size = 10))+xlab("test statistic based on Phillips-Perron unit root test (ur_pp)")+ylab("probability of selecting forecast-models")
+plot_pdp_yearly
 
-yearly_pdp <- dplyr::bind_rows(trendgrid_long, ur_ppgrid_long, linearitygrid_long, diff1y_acf1grid_long)
-yearly_pdp$"featurename" <- c(rep("trend", 200000), rep("ur_pp", 200000), rep("linearity", 200000), rep("diff1y_acf1", 200000))
+## ---- pdpyearlytrend
+load("data/yearly/pdp_yearly/trendgrid.rda")
+keeptrend <- c(keep.modelnames, "trend")
+trendgrid <- trendgrid[, names(trendgrid) %in% keeptrend]
+trendgrid_long <- gather(trendgrid, class, probability, "ARIMA":"wn", factor_key = TRUE)
+trendgrid_long <- trendgrid_long %>%
+  mutate(class = recode(class, nn="nn",
+                        theta = "theta",
+                        wn = "wn",
+                        "ARMA.AR.MA" = "ARMA",
+                        ARIMA = "ARIMA",
+                        "ETS.notrendnoseasonal" = "ETS_NTNS",
+                        "ETS.dampedtrend" = "ETS_DT",
+                        "ETS.trend" = "ETS_T",
+                        "rwd" = "rwd",
+                        "rw" = "rw" ))
+trendgrid_long$class <- factor(trendgrid_long$class,
+                               levels = c("rw", "rwd", "ETS_T", "ETS_DT", "ETS_NTNS",
+                                          "ARIMA", "ARMA", "wn", "theta", "nn" ))
 
-## pdp plots with confidence intervals
-plot_pdp_yearly <- ggplot(data = yearly_pdp, aes_string(x = yearly_pdp$feature, y = "probability")) +
+plot_pdp_yearly_trend <- ggplot(data = trendgrid_long, aes_string(x = trendgrid_long$trend, y = "probability")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) +
   stat_summary(fun.data = mean_cl_normal,fill="red", geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+ 
-  theme(axis.text.x = element_text(angle = 90),text = element_text(size=20))+
-  facet_grid(class ~ featurename, scales='free')
-plot_pdp_yearly
+  theme(axis.text.x = element_text(angle = 90), text = element_text(size=18), axis.title = element_text(size = 16))+
+  facet_grid(. ~ class)+theme(strip.text.x = element_text(size = 10))+xlab("strength of trend")+ylab("probability of selecting forecast-models")
+plot_pdp_yearly_trend
+
+## ---- pdpyearlylinearity
+load("data/yearly/pdp_yearly/linearitygrid.rda")
+keeplinearity <- c(keep.modelnames, "linearity")
+linearitygrid <- linearitygrid[, names(linearitygrid) %in% keeplinearity]
+linearitygrid_long <- gather(linearitygrid, class, probability, "ARIMA":"wn", factor_key = TRUE)
+linearitygrid_long <- linearitygrid_long %>%
+  mutate(class = recode(class, nn="nn",
+                        theta = "theta",
+                        wn = "wn",
+                        "ARMA.AR.MA" = "ARMA",
+                        ARIMA = "ARIMA",
+                        "ETS.notrendnoseasonal" = "ETS_NTNS",
+                        "ETS.dampedtrend" = "ETS_DT",
+                        "ETS.trend" = "ETS_T",
+                        "rwd" = "rwd",
+                        "rw" = "rw" ))
+
+linearitygrid_long$class <- factor(linearitygrid_long$class,
+                               levels = c("rw", "rwd", "ETS_T", "ETS_DT", "ETS_NTNS",
+                                          "ARIMA", "ARMA", "wn", "theta", "nn" ))
+
+plot_pdp_yearly_linearity <- ggplot(data = linearitygrid_long, aes_string(x = linearitygrid_long$linearity, y = "probability")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) +
+  stat_summary(fun.data = mean_cl_normal,fill="red", geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+ 
+  theme(axis.text.x = element_text(angle = 90), text = element_text(size=18), axis.title = element_text(size = 16))+
+  facet_grid(. ~ class)+theme(strip.text.x = element_text(size = 10))+xlab("strength of linearity")+ylab("probability of selecting forecast-models")
+plot_pdp_yearly_linearity
 
 
 ## ---- friedmany

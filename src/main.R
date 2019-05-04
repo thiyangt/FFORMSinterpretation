@@ -10,11 +10,11 @@ library(png)
 library(tsfeatures)
 library(ggpubr)
 library(RColorBrewer)
-library(iml) #machine learning interpretability package
+library(iml) # machine learning interpretability package
 library(ggcorrplot) # to draw  ggcorrplot
 library(lime)
 library(seer)
-library(Hmisc)
+library(Hmisc) # to draw confidence intervals
 
 ## ---- functionfriedman
 source("src/friedmanHstatmatrix.R")
