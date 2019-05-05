@@ -58,31 +58,26 @@ train_imp_dfW <- within(train_imp_dfW, rm("MeanDecreaseAccuracy", "MeanDecreaseG
 permutation_impW <- train_imp_dfW %>% melt(id.vars = "Feature")
 #dim(permutation_impW) # 324 3
 colnames(permutation_impW) <- c("feature", "class", "score")
-
 ## PDP-based
 sd_pdf_dfW <- add_rownames(sd_pdf_dfW, "class")
 pdp_imp <- sd_pdf_dfW %>% melt(id.vars = "class")
 colnames(pdp_imp) <- c("class", "feature", "score")
-
 ## ICE-based
 sd_ice_dfW <- add_rownames(sd_ice_dfW, "class")
 ice_imp <- sd_ice_dfW %>% melt(id.vars = "class")
 colnames(ice_imp) <- c("class", "feature", "score")
-
 ## Combine the data frames
 importancescoreW <- bind_rows(permutation_impW, pdp_imp)
 importancescoreW <- bind_rows(importancescoreW, ice_imp)
 importancescoreW$VI <- rep(c("permutation", "PDP", "ICE"), each = 324)
-
 ## rank permutation, sd_pdp, and sd_ice scores for each class
 importancescoreW$class <- factor(importancescoreW$class,
                                  levels = c(
-                                   "snaive", "rwd", "rw", 
-                                   "ARIMA", "SARIMA", "stlar","mstlets", "tbats","ARMA.AR.MA", "wn", "theta", "nn"
-                                 ),
+                                   "snaive", "rw", "rwd", "ARMA.AR.MA","ARIMA", "SARIMA",
+                                   "stlar", "mstlets", "tbats", "theta", "nn", "wn"),
                                  labels = c(
-                                   "snaive", "rwd", "rw", 
-                                   "ARIMA", "SARIMA", "stlar","mstlets", "tbats","ARMA.AR.MA", "wn", "theta", "nn"
+                                   "snaive", "rw", "rwd", "ARMA.AR.MA","ARIMA", "SARIMA",
+                                   "stlar", "mstlets", "tbats", "theta", "nn", "wn"
                                  )
 )
 
@@ -112,15 +107,15 @@ meanrank_weekly <- dplyr::bind_rows(meanrank_viw_forest, meanrank_viw_classes)
 orderOverall <- filter(meanrank_weekly, class == "overall")
 meanrank_weekly$feature <- factor(meanrank_weekly$feature, levels = orderOverall$feature[order(orderOverall$rank)])
 meanrank_weekly$class <- factor(meanrank_weekly$class,
-                                   levels = c(
-                                     "overall",  "snaive", "rwd", "rw", 
-                                     "ARIMA", "SARIMA", "stlar","mstlets", "tbats","ARMA.AR.MA", "wn", "theta", "nn"
-                                   ),
-                                   labels = c(
-                                     "overall",  "snaive", "rwd", "rw", 
-                                     "ARIMA", "SARIMA", "stlar","mstlets", "tbats","ARMA.AR.MA", "wn", "theta", "nn"
-                                   )
-)
+levels = c("overall",  "snaive", "rw", "rwd", "ARMA.AR.MA","ARIMA", "SARIMA",
+            "stlar", "mstlets", "tbats", "theta", "nn", "wn"),
+labels = c( "overall", "snaive", "rw", "rwd", "ARMA.AR.MA","ARIMA", "SARIMA",
+            "stlar", "mstlets", "tbats", "theta", "nn", "wn"))
+
+meanrank_weekly <- meanrank_weekly %>%
+  mutate(class=recode(class, "overall"="overall", "snaive"="snaive", "rw"="rw",
+                      "rwd"="rwd", "ARMA.AR.MA"="ARMA", "ARIMA"="ARIMA", "SARIMA"="SARIMA",
+                      "stlar"="stlar", "mstlets"="mstlets", "tbats"="tbats", "theta"="theta", "nn"="nn", "wn"="wn"))
 
 meanrank_weekly$rn <- 1:351
 topq <- meanrank_weekly %>%
@@ -128,10 +123,10 @@ topq <- meanrank_weekly %>%
   top_n(n = 5, wt = rank)
 meanrank_weekly$istop <- ifelse(meanrank_weekly$rn %in% topq$rn, TRUE, FALSE)
 feaImp_weekly <- ggplot(meanrank_weekly, aes(y = rank, x = feature,fill=as.factor(istop))) +
-  geom_bar(position = "dodge", stat = "identity") +
+  geom_bar(position = "dodge", stat = "identity", width=0.3) +
   facet_wrap(~class, ncol = 7, nrow = 2) +
   coord_flip() + ylab("Average rank")+ 
-  scale_fill_manual(breaks=c("0","1"), values=c("black","red"), guide="none")+
+  scale_fill_manual(breaks=c("0","1"), values=c("#f1a340","#998ec3"), guide="none")+
   theme(text=element_text(size = 20))
 feaImp_weekly
 
@@ -139,6 +134,28 @@ feaImp_weekly
 ## load ICE calculation files
 ## spikines
 load("data/weekly/pdp_ice/spikinessW_includeout.rda")
+## Arrange graphs for faceting
+keep.modelnames <- c("snaive", "rw", "rwd", "ARMA.AR.MA","ARIMA", "SARIMA",
+                     "stlar", "mstlets", "tbats", "theta", "nn", "wn")
+keepspikiness <- c(keep.modelnames, "spikiness")
+spikinessW_includeout <- spikinessW_includeout[, names(spikinessW_includeout) %in% keepspikiness]
+spikiness_long <- gather(spikinessW_includeout, class, probability, "ARIMA":"wn", factor_key = TRUE)
+
+spikiness_long <- spikiness_long %>%
+  mutate(class = recode(class, "snaive"="snaive", "rw"="rw",
+                        "rwd"="rwd", "ARMA.AR.MA"="ARMA", "ARIMA"="ARIMA", "SARIMA"="SARIMA",
+                        "stlar"="stlar", "mstlets"="mstlets", "tbats"="tbats", "theta"="theta", "nn"="nn", "wn"="wn"))
+spikiness_long$class <- factor(spikiness_long$class,
+                               levels = c("snaive", "rw", "rwd", "ARMA","ARIMA", "SARIMA",
+                                          "stlar", "mstlets", "tbats", "theta", "nn", "wn"))
+
+plot_pdp_weekly_spikiness <- ggplot(data = spikiness_long, aes_string(x = spikiness_long$spikiness, y = "probability")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) +
+  stat_summary(fun.data = mean_cl_normal,fill="red", geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+ 
+  theme(axis.text.x = element_text(angle = 90), text = element_text(size=18), axis.title = element_text(size = 16))+
+  facet_grid(. ~ class)+theme(strip.text.x = element_text(size = 10))+xlab("spikiness")+ylab("probability of selecting forecast-models")
+plot_pdp_weekly_spikiness
+
 
 ## ---- friedmanHW
 load("data/friedmanHstat_weekly.rda")

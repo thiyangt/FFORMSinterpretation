@@ -436,7 +436,7 @@ According to the results of \autoref{fig:viweekly} spikiness, linearity, trend, 
 
 \newpage
 
-```{r weeklypdp, fig.height=28, fig.width=20, fig.cap="Partial dependence plots for the top ranked features from variable importance measures (weekly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belonging to corresponding class.", fig.pos="h"}
+```{r weeklypdp, fig.height=5, fig.width=20, fig.cap="Partial dependence plots for the top ranked features from variable importance measures (weekly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belonging to corresponding class.", fig.pos="h"}
 ```
 
 
