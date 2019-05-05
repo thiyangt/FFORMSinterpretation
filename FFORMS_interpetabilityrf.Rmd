@@ -424,7 +424,7 @@ literature [@makridakis2000m3]. Except for random walk, partial dependency curve
 
 \autoref{fig:oobweekly} shows the proportion of times each time series was classified to each class. Unlike, yearly, quarterly and monthly data theta method has a low chance of getting selected. The random walk with drift, tbats models and nn have a high chance of getting selected. Except ARMA/AR/MA class the distributions corresponds to the true class label dominate others. ARMA/AR/MA class shows some unusual behaviour within some categories due to class imbalance ratio, ARMA/AR/MA class contains fewer number of observations in the training set. 
 
-```{r oobweekly, fig.height=9.5, fig.width=10, fig.cap="Visualization of the vote matrix based on OOB sample for weekly random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots corresponds to class label of the \"best\" forecast-model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of getting selected.", fig.pos="h"}
+```{r oobweekly, fig.height=10, fig.width=20, fig.cap="Visualization of the vote matrix based on OOB sample for weekly random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots corresponds to class label of the \"best\" forecast-model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of getting selected.", fig.pos="h"}
 ```
 
 \clearpage

@@ -1,6 +1,3 @@
-#################################################################
-#                  Weekly data                                  #
-#################################################################
 ## ---- oobweekly
 load("data/weekly/trainW_votes.rda") # oob votes from the random forest
 load("data/weekly/trainW_predictions_oob.rda") # based on oob prediction
@@ -13,23 +10,41 @@ votes_oobW <- votes_oobW %>%
   mutate(id = seq_len(n())) %>%
   melt(id.var = c("classlabel", "id", "predicted"), na.rm = T) %>%
   select(-id)
-# new addition to arrange labels
-votes_oobW$classlabel <- factor(votes_oobW$classlabel, levels = rev(c(
-  "snaive", "rwd", "rw",
-  "ARIMA", "ARMA/AR/MA",  "SARIMA","stlar", "mstlets","tbats", "wn", "theta", "nn"
-)))
-oob_boxplot_weekly <- ggplot(votes_oobW, aes(x = variable, y = value, fill = classlabel)) +
+votes_oobW <- votes_oobW %>%
+  mutate(classlabel = recode(classlabel, snaive="snaive",
+                             rwd = "rwd", rw = "rw", "ARIMA" = "ARIMA", "ARMA/AR/MA" = "ARMA", "SARIMA" = "SARIMA",
+                             "stlar" = "stlar", "mstlets" = "mstlets", "tbats" = "tbats", "wn" = "wn",
+                             "theta"="theta", "nn"="nn"))
+
+votes_oobW <- votes_oobW %>%
+  mutate(predicted = recode(predicted, snaive="snaive",
+                            rwd = "rwd", rw = "rw", "ARIMA" = "ARIMA", "ARMA/AR/MA" = "ARMA", "SARIMA" = "SARIMA",
+                            "stlar" = "stlar", "mstlets" = "mstlets", "tbats" = "tbats", "wn" = "wn",
+                            "theta"="theta", "nn"="nn" ))
+
+votes_oobW <- votes_oobW %>%
+  mutate(variable = recode(variable,snaive="snaive",
+                           rwd = "rwd", rw = "rw", "ARIMA" = "ARIMA", "ARMA/AR/MA" = "ARMA", "SARIMA" = "SARIMA",
+                           "stlar" = "stlar", "mstlets" = "mstlets", "tbats" = "tbats", "wn" = "wn",
+                           "theta"="theta", "nn"="nn"))
+# arrange labels
+votes_oobW$variable <- factor(votes_oobW$variable,
+levels = c( "snaive", "rw", "rwd", "ARMA","ARIMA", "SARIMA",
+"stlar", "mstlets", "tbats", "theta", "nn", "wn"))
+
+oob_boxplot_weekly <- ggplot(votes_oobW, aes(x = classlabel, y = value, fill = classlabel)) +
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
   ylab("Proportion") +
   xlab("") +
-  theme(legend.position = "right", legend.title = element_blank(), legend.text.align = 0, text = element_text(size = 20)) +
+  theme(legend.position = "none", legend.title = element_blank(), 
+        legend.text.align = 0, text = element_text(size = 20), axis.text.x = element_text(angle = 90),
+        strip.text = element_text(size = 20)) +
   guides(fill = guide_legend(reverse = TRUE)) +
-  scale_x_discrete(limits = rev(c(
-    "snaive", "rwd", "rw", 
-    "ARIMA", "ARMA/AR/MA",  "SARIMA","stlar", "mstlets","tbats", "wn", "theta", "nn"
-  ))) +
-  coord_flip()
+  scale_x_discrete(limits = rev(c("snaive", "rw", "rwd", "ARMA","ARIMA", "SARIMA",
+                              "stlar", "mstlets", "tbats", "theta", "nn", "wn" ))) +
+  coord_flip() + facet_wrap(. ~ variable, ncol=6)
 oob_boxplot_weekly
+
 
 ## ---- viweekly
 # All variable scores into one dataframe
@@ -122,350 +137,8 @@ feaImp_weekly
 
 ## ---- weeklypdp
 ## load ICE calculation files
-## entropy
-load("data/weekly/pdp_ice/entropyW_includeout.rda")
-entropyW_includeout$variable <- rep(1:1111, 20)
-## lumpiness
-load("data/weekly/pdp_ice/lumpinessW_includeout.rda")
-lumpinessW_includeout$variable <- rep(1:1111, 20)
-## stability
-load("data/weekly/pdp_ice/stabilityW_includeout.rda")
-stabilityW_includeout$variable <- rep(1:1111, 20)
-## hurst
-load("data/weekly/pdp_ice/hurstW_includeout.rda")
-hurstW_includeout$variable <- rep(1:1111, 20)
-## trend
-load("data/weekly/pdp_ice/trendW_includeout.rda")
-trendW_includeout$variable <- rep(1:1111, 20)
 ## spikines
 load("data/weekly/pdp_ice/spikinessW_includeout.rda")
-spikinessW_includeout$variable <- rep(1:1111, 20)
-## linearity
-load("data/weekly/pdp_ice/linearityW_includeout.rda")
-linearityW_includeout$variable <- rep(1:1111, 20)
-## curvature
-load("data/weekly/pdp_ice/curvatureW_includeout.rda")
-curvatureW_includeout$variable <- rep(1:1111, 20)
-## e_acf1
-load("data/weekly/pdp_ice/e_acf1W_includeout.rda")
-e_acf1W_includeout$variable <- rep(1:1111, 20)
-## y_acf1
-load("data/weekly/pdp_ice/y_acf1W_includeout.rda")
-y_acf1W_includeout$variable <- rep(1:1111, 20)
-## diff1y_acf1
-load("data/weekly/pdp_ice/diff1y_acf1W_includeout.rda")
-diff1y_acf1W_includeout$variable <- rep(1:1111, 20)
-## diff2y_acf1
-load("data/weekly/pdp_ice/diff2y_acf1W_includeout.rda")
-diff2y_acf1W_includeout$variable <- rep(1:1111, 20)
-## y_pacf5
-load("data/weekly/pdp_ice/y_pacf5W_includeout.rda")
-y_pacf5W_includeout$variable <- rep(1:1111, 20)
-## diff1y_pacf5
-load("data/weekly/pdp_ice/diff1y_pacf5W_includeout.rda")
-diff1y_pacf5W_includeout$variable <- rep(1:1111, 20)
-## diff2y_pacf5
-load("data/weekly/pdp_ice/diff2y_pacf5W_includeout.rda")
-diff2y_pacf5W_includeout$variable <- rep(1:1111, 20)
-## nonlinearity
-load("data/weekly/pdp_ice/nonlinearityW_includeout.rda")
-nonlinearityW_includeout$variable <- rep(1:1111, 20)
-## seasonality
-load("data/weekly/pdp_ice/seasonalityW_includeout.rda")
-seasonalityW_includeout$variable <- rep(1:1111, 20)
-## seas_pacf
-load("data/weekly/pdp_ice/seas_pacfW_includeout.rda")
-seas_pacfW_includeout$variable <- rep(1:1111, 20)
-## sediff_acf1
-load("data/weekly/pdp_ice/sediff_acf1W_includeout.rda")
-sediff_acf1W_includeout$variable <- rep(1:1111, 20)
-## sediff_acf5
-load("data/weekly/pdp_ice/sediff_acf5W_includeout.rda")
-sediff_acf5W_includeout$variable <- rep(1:1111, 20)
-## N
-load("data/weekly/pdp_ice/NW_includeout.rda")
-NW_includeout$variable <- rep(1:1111, 20)
-## y_acf5
-load("data/weekly/pdp_ice/y_acf5W_includeout.rda")
-y_acf5W_includeout$variable <- rep(1:1111, 20)
-## diff1y_acf5
-load("data/weekly/pdp_ice/diff1y_acf5W_includeout.rda")
-diff1y_acf5W_includeout$variable <- rep(1:1111, 20)
-## diff2y_acf5
-load("data/weekly/pdp_ice/diff2y_acf5W_includeout.rda")
-diff2y_acf5W_includeout$variable <- rep(1:1111, 20)
-## alpha
-load("data/weekly/pdp_ice/alphaW_includeout.rda")
-alphaW_includeout$variable <- rep(1:1111, 20)
-## beta
-load("data/weekly/pdp_ice/betaW_includeout.rda")
-betaW_includeout$variable <- rep(1:1111, 20)
-## sediff_seacf1
-load("data/weekly/pdp_ice/sediff_seacf1W_includeout.rda")
-sediff_seacf1W_includeout$variable <- rep(1:1111, 20)
-
-## snaive
-p1 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "snaive")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("snaive")
-p2 <- ggplot(data = trendW_includeout, aes_string(x = trendW_includeout$trend, y = "snaive")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-p3 <- ggplot(data = linearityW_includeout, aes_string(x = linearityW_includeout$linearity, y = "snaive")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-p1s <- ggplot(data = stabilityW_includeout, aes_string(x = stabilityW_includeout$stability, y = "snaive")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("stability") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-p1sp <- ggplot(data = spikinessW_includeout, aes_string(x = spikinessW_includeout$spikiness, y = "snaive")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("spikiness") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-
-## rwd
-p4 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "rwd")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("rwd")
-p5 <- ggplot(data = trendW_includeout, aes_string(x = trendW_includeout$trend, y = "rwd")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
-p6 <- ggplot(data = linearityW_includeout, aes_string(x = linearityW_includeout$linearity, y = "rwd")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
-p2s <- ggplot(data = stabilityW_includeout, aes_string(x = stabilityW_includeout$stability, y = "rwd")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("stability") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-p2sp <- ggplot(data = spikinessW_includeout, aes_string(x = spikinessW_includeout$spikiness, y = "rwd")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("spikiness") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-## rw
-p7 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "rw")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("rw")
-p8 <- ggplot(data = trendW_includeout, aes_string(x = trendW_includeout$trend, y = "rw")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
-p9 <- ggplot(data = linearityW_includeout, aes_string(x = linearityW_includeout$linearity, y = "rw")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
-p3s <- ggplot(data = stabilityW_includeout, aes_string(x = stabilityW_includeout$stability, y = "rw")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("stability") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-p3sp <- ggplot(data = spikinessW_includeout, aes_string(x = spikinessW_includeout$spikiness, y = "rw")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("spikiness") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-## ARIMA
-p10 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "ARIMA")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("ARIMA")
-p11 <- ggplot(data = trendW_includeout, aes_string(x = trendW_includeout$trend, y = "ARIMA")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
-p12 <- ggplot(data = linearityW_includeout, aes_string(x = linearityW_includeout$linearity, y = "ARIMA")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
-p4s <- ggplot(data = stabilityW_includeout, aes_string(x = stabilityW_includeout$stability, y = "ARIMA")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("stability") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-p4sp <- ggplot(data = spikinessW_includeout, aes_string(x = spikinessW_includeout$spikiness, y = "ARIMA")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("spikiness") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-
-## SARIMA
-p13 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "SARIMA")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("SARIMA")
-p14 <- ggplot(data = trendW_includeout, aes_string(x = trendW_includeout$trend, y = "SARIMA")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
-p15 <- ggplot(data = linearityW_includeout, aes_string(x = linearityW_includeout$linearity, y = "SARIMA")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
-p5s <- ggplot(data = stabilityW_includeout, aes_string(x = stabilityW_includeout$stability, y = "SARIMA")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("stability") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-p5sp <- ggplot(data = spikinessW_includeout, aes_string(x = spikinessW_includeout$spikiness, y = "SARIMA")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("spikiness") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-## stlar
-p16 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "stlar")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("stlar")
-p17 <- ggplot(data = trendW_includeout, aes_string(x = trendW_includeout$trend, y = "stlar")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
-p18 <- ggplot(data = linearityW_includeout, aes_string(x = linearityW_includeout$linearity, y = "stlar")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
-p6s <- ggplot(data = stabilityW_includeout, aes_string(x = stabilityW_includeout$stability, y = "stlar")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("stability") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-p6sp <- ggplot(data = spikinessW_includeout, aes_string(x = spikinessW_includeout$spikiness, y = "stlar")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("spikiness") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-
-## mstlets
-p19 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "mstlets")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("mstlets")
-p20 <- ggplot(data = trendW_includeout, aes_string(x = trendW_includeout$trend, y = "mstlets")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
-p21 <- ggplot(data = linearityW_includeout, aes_string(x = linearityW_includeout$linearity, y = "mstlets")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
-p7s <- ggplot(data = stabilityW_includeout, aes_string(x = stabilityW_includeout$stability, y = "mstlets")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("stability") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-p7sp <- ggplot(data = spikinessW_includeout, aes_string(x = spikinessW_includeout$spikiness, y = "mstlets")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("spikiness") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-
-## tbats
-p22 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "tbats")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("tbats")
-p23 <- ggplot(data = trendW_includeout, aes_string(x = trendW_includeout$trend, y = "tbats")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
-p24 <- ggplot(data =linearityW_includeout, aes_string(x = linearityW_includeout$linearity, y = "tbats")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
-p8s <- ggplot(data = stabilityW_includeout, aes_string(x = stabilityW_includeout$stability, y = "tbats")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("stability") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-p8sp <- ggplot(data = spikinessW_includeout, aes_string(x = spikinessW_includeout$spikiness, y = "tbats")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("spikiness") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-
-## ARMA
-p25 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "ARMA.AR.MA")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("ARMA.AR.MA")
-p26 <- ggplot(data = trendW_includeout, aes_string(x = trendW_includeout$trend, y = "ARMA.AR.MA")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
-p27 <- ggplot(data = linearityW_includeout, aes_string(x = linearityW_includeout$linearity, y = "ARMA.AR.MA")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
-p9s <- ggplot(data = stabilityW_includeout, aes_string(x = stabilityW_includeout$stability, y = "ARMA.AR.MA")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("stability") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-p9sp <- ggplot(data = spikinessW_includeout, aes_string(x = spikinessW_includeout$spikiness, y = "ARMA.AR.MA")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("spikiness") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-
-## wn
-p28 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "wn")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("wn")
-p29 <- ggplot(data = trendW_includeout, aes_string(x = trendW_includeout$trend, y = "wn")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
-p30 <- ggplot(data = linearityW_includeout, aes_string(x = linearityW_includeout$linearity, y = "wn")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
-p10s <- ggplot(data = stabilityW_includeout, aes_string(x = stabilityW_includeout$stability, y = "wn")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("stability") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-p10sp <- ggplot(data = spikinessW_includeout, aes_string(x = spikinessW_includeout$spikiness, y = "wn")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("spikiness") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-
-## theta
-p31 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "theta")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("theta")
-p32 <- ggplot(data = trendW_includeout, aes_string(x = trendW_includeout$trend, y = "theta")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
-p33 <- ggplot(data = linearityW_includeout, aes_string(x = linearityW_includeout$linearity, y = "theta")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
-p11s <- ggplot(data = stabilityW_includeout, aes_string(x = stabilityW_includeout$stability, y = "theta")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("stability") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-p11sp <- ggplot(data = spikinessW_includeout, aes_string(x = spikinessW_includeout$spikiness, y = "theta")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("spikiness") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-
-## nn
-p34 <- ggplot(data = seasonalityW_includeout, aes_string(x = seasonalityW_includeout$seasonality, y = "nn")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonality") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("nn")
-p35 <- ggplot(data = trendW_includeout, aes_string(x = trendW_includeout$trend, y = "nn")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
-p36 <- ggplot(data = linearityW_includeout, aes_string(x = linearityW_includeout$linearity, y = "nn")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("linearity") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) + ylab("")
-p12s <- ggplot(data = stabilityW_includeout, aes_string(x = stabilityW_includeout$stability, y = "nn")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("stability") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-p12sp <- ggplot(data = spikinessW_includeout, aes_string(x = spikinessW_includeout$spikiness, y = "nn")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("spikiness") +
-  stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
-  theme(legend.position = "none",text = element_text(size=20)) +ylab("")
-
-(p1|p2|p3|p1s|p1sp)/(p4|p5|p6|p2s|p2sp)/(p7|p8|p9|p3s|p3sp)/(p10|p11|p12|p4s|p4sp)/(p13|p14|p15|p5s|p5sp)/(p16|p17|p18|p6s|p6sp)/(p19|p20|p21|p7s|p7sp)/(p22|p23|p24|p8s|p8sp)/(p25|p26|p27|p9s|p9sp)/(p28|p29|p30|p10s|p10sp)/(p31|p32|p33|p11s|p11sp)/(p34|p35|p36|p12s|p12sp)
 
 ## ---- friedmanHW
 load("data/friedmanHstat_weekly.rda")
