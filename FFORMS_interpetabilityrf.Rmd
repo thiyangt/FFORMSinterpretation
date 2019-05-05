@@ -53,7 +53,7 @@ read_chunk("src/twowayPDPplots.R")
 read_chunk("src/main_daily_hourly.R")
 ```
 
-```{r loadPackages}
+```{r loadPackages, cache=FALSE, warning=FALSE, message=FALSE}
 ```
 
 
@@ -387,9 +387,16 @@ literature [@makridakis2000m3]. Except for random walk, partial dependency curve
 
 ```
 
+
+```{r pdpquarterlyseasonality, fig.height=8, fig.width=15, fig.cap="Partial dependence plots for strength of seasonality (seasonality_Q). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All features show a nonlinear relationship with predicted probabilities.", fig.pos="h"}
+
+```
+
 ```{r vimonthly, fig.height=12, fig.width=18,  fig.cap="Feature importance plot for monthly series. Overall feature importance(top left plot) is evaluated based on two measures: i) Permutation-based variable importance measure and ii) mean decrease in Gini coefficients are used to evaluate  shown in the top left plot. Class-specific feature importance is evaluated based on three measures: i) permutation-based variable importance, PD-based variable importance measure, and ICE-based variable importance measure. Longer bars indicate more important features. Top 5 overall features are highlighted in purple. Strength of seasonality appears to be the most important feature."}
 
 ```
+
+
 
 ## Weekly
 
