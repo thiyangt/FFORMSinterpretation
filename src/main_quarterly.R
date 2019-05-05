@@ -140,7 +140,6 @@ feaImp_quarterly
 
 ## ---- pdpquarterlyseasonality
 load("data/quarterly/pdp_quarterly/seasonalitygridQ.rda")
-seasonalitygridQ$variable <- rep(1:1700, 20)
 keep.modelnamesq <- c("ARIMA", "ARMA.AR.MA", "ETS.dampedtrend", "ETS.dampedtrendseasonal",
                       "ETS.notrendnoseasonal", "ETS.seasonal", 
                      "ETS.trend","ETS.trendseasonal"  ,"nn", "rw",
@@ -172,42 +171,59 @@ plot_pdp_quarterlyS
 
 
 ## ---- pdpquarterlydiff1ypacf5
-load("data/quarterly/pdp_quarterly/seasonalitygridQ.rda")
-seasonalitygridQ$variable <- rep(1:1700, 20)
-keep.modelnamesq <- c("ARIMA", "ARMA.AR.MA", "ETS.dampedtrend", "ETS.dampedtrendseasonal",
+load("data/quarterly/pdp_quarterly/diff1y_pacf5gridQ.rda")
+keep.modelnamedq <- c("ARIMA", "ARMA.AR.MA", "ETS.dampedtrend", "ETS.dampedtrendseasonal",
                       "ETS.notrendnoseasonal", "ETS.seasonal", 
                       "ETS.trend","ETS.trendseasonal"  ,"nn", "rw",
                       "rwd", "SARIMA","snaive","stlar","tbats","theta", "wn")
-keepseasonal <- c(keep.modelnamesq, "seasonality")
-seasonalitygridQ <- seasonalitygridQ[, names(seasonalitygridQ) %in% keepseasonal]
-seasonalitygridQ_long <- gather(seasonalitygridQ, class, probability, "ARIMA":"wn", factor_key = TRUE)
-
-seasonalitygridQ_long <- seasonalitygridQ_long %>%
+keepdiffpacf <- c(keep.modelnamesq, "diff1y_pacf5")
+diff1y_pacf5gridQ <- diff1y_pacf5gridQ[, names(diff1y_pacf5gridQ) %in% keepdiffpacf]
+diff1y_pacf5gridQ_long <- gather(diff1y_pacf5gridQ, class, probability, "ARIMA":"wn", factor_key = TRUE)
+diff1y_pacf5gridQ_long <- diff1y_pacf5gridQ_long %>%
   mutate(class = recode(class, "ARIMA"="ARIMA", "ARMA.AR.MA"="ARMA", 
                         "ETS.dampedtrend"="ETS_DT", "ETS.dampedtrendseasonal"="ETS_DTS",
                         "ETS.notrendnoseasonal"="ETS_NTNS", "ETS.seasonal"="ETS_S", 
                         "ETS.trend"="ETS_T","ETS.trendseasonal"="ETS_TS"  ,"nn"="nn", "rw"="rw",
                         "rwd"="rwd", "SARIMA"="SARIMA","snaive"="snaive","stlar"="stlar","tbats"="tbats","theta"="theta", "wn"="wn"))
-seasonalitygridQ_long <- seasonalitygridQ_long %>% rename("seasonality_Q"="seasonality")
-
-seasonalitygridQ_long$class <- factor(seasonalitygridQ_long$class,
+diff1y_pacf5gridQ_long$class <- factor(diff1y_pacf5gridQ_long$class,
                                       levels = c("snaive","rw", "rwd", "ETS_NTNS","ETS_DT", "ETS_T", "ETS_DTS",
                                                  "ETS_TS", "ETS_S","tbats","stlar", "SARIMA",
                                                  "ARIMA", "ARMA", "wn", "theta", "nn" ))
 
-plot_pdp_quarterlyS <- ggplot(data = seasonalitygridQ_long, aes_string(x = seasonalitygridQ_long$"seasonality_Q", y = "probability")) +
+plot_pdp_quarterlyDP <- ggplot(data = diff1y_pacf5gridQ_long, aes_string(x = diff1y_pacf5gridQ_long$"diff1y_pacf5", y = "probability")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) +
   stat_summary(fun.data = mean_cl_normal,fill="red", geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+ 
   theme(axis.text.x = element_text(angle = 90), text = element_text(size=18), axis.title = element_text(size = 16))+
-  facet_wrap(. ~ class, ncol=9)+theme(strip.text.x = element_text(size = 10))+xlab("strength of seasonality (seasonality_Q)")+ylab("probability of selecting forecast-models")
-plot_pdp_quarterlyS
+  facet_wrap(. ~ class, ncol=9)+theme(strip.text.x = element_text(size = 10))+xlab("sum of squares of first 5 PACF values of differenced series (diff1y_pacf5)")+ylab("probability of selecting forecast-models")
+plot_pdp_quarterlyDP
 
 
 
-## ---- pdpquarterlytrend 
+## ---- pdpquarterlytrend
 load("data/quarterly/pdp_quarterly/trendgridQ.rda")
-trendgridQ$variable <- rep(1:1700, 20)
-load("data/quarterly/pdp_quarterly/trendgridQ.rda")
-trendgridQ$variable <- rep(1:1700, 20)
+keep.modelnamet <- c("ARIMA", "ARMA.AR.MA", "ETS.dampedtrend", "ETS.dampedtrendseasonal",
+                      "ETS.notrendnoseasonal", "ETS.seasonal", 
+                      "ETS.trend","ETS.trendseasonal"  ,"nn", "rw",
+                      "rwd", "SARIMA","snaive","stlar","tbats","theta", "wn")
+keeptrend <- c(keep.modelnamet, "trend")
+trendgridQ <- trendgridQ[, names(trendgridQ) %in% keeptrend]
+trendgridQ_long <- gather(trendgridQ, class, probability, "ARIMA":"wn", factor_key = TRUE)
+trendgridQ_long <- trendgridQ_long %>%
+  mutate(class = recode(class, "ARIMA"="ARIMA", "ARMA.AR.MA"="ARMA", 
+                        "ETS.dampedtrend"="ETS_DT", "ETS.dampedtrendseasonal"="ETS_DTS",
+                        "ETS.notrendnoseasonal"="ETS_NTNS", "ETS.seasonal"="ETS_S", 
+                        "ETS.trend"="ETS_T","ETS.trendseasonal"="ETS_TS"  ,"nn"="nn", "rw"="rw",
+                        "rwd"="rwd", "SARIMA"="SARIMA","snaive"="snaive","stlar"="stlar","tbats"="tbats","theta"="theta", "wn"="wn"))
+trendgridQ_long$class <- factor(trendgridQ_long$class,
+                                       levels = c("snaive","rw", "rwd", "ETS_NTNS","ETS_DT", "ETS_T", "ETS_DTS",
+                                                  "ETS_TS", "ETS_S","tbats","stlar", "SARIMA",
+                                                  "ARIMA", "ARMA", "wn", "theta", "nn" ))
+
+plot_pdp_quarterlyT <- ggplot(data = trendgridQ_long, aes_string(x = trendgridQ_long$trend, y = "probability")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) +
+  stat_summary(fun.data = mean_cl_normal,fill="red", geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+ 
+  theme(axis.text.x = element_text(angle = 90), text = element_text(size=18), axis.title = element_text(size = 16))+
+  facet_wrap(. ~ class, ncol=9)+theme(strip.text.x = element_text(size = 10))+xlab("strength of trend (trend)")+ylab("probability of selecting forecast-models")
+plot_pdp_quarterlyT
 
 

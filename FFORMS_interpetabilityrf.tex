@@ -1122,93 +1122,67 @@ interactivity between features related to correlation structure of a
 time series and overall shape (spikiness, linearity, curvature, etc)
 lead to the choice of forecast-model selection.
 
-\begin{figure}
-\centering
-\includegraphics{figures/oobquarterlymonthly1-1.png}
-\caption{\label{fig:oobquarterlymonthly1}Visualization of the vote matrix
-based on OOB sample for quarterly random forest. The Y-axis denotes what
-was predicted from the random forest?. The X-axis denotes the proportion
-of times each time series was classified to each class. The colours of
-boxplots corresponds to class label of the ``best'' forecast-model
-identified based on MASE and sMAPE. On each row, distribution of
-correctly classified class dominates, indicating a good classification
-of the meta-learner. ARMA/AR/MA has a low chance of being selected while
-random walk with drift has a high chance of being selected.}
-\end{figure}
+\includegraphics{figures/oobquarterly-1.png}
 
 \clearpage
 
 \begin{figure}
 \centering
-\includegraphics{figures/oobquarterlymonthly2-1.png}
-\caption{\label{fig:oobquarterlymonthly2} Visualization of the vote matrix
-based on OOB sample for monthly random forest. The Y-axis denotes what
-was predicted from the random forest? The X-axis denotes the proportion
-of times each time series was classified to each class. The colours of
-boxplots corresponds to class label of the ``best'' forecast-model
-identified based on MASE and sMAPE. On each row, distribution of
-correctly classified class dominates, indicating a good classification
-of the meta-learner. Few series correspond to stlar and nn have been
-correctly classified with a very high probability.}
+\includegraphics{figures/viquarterly-1.png}
+\caption{\label{fig:viquarterly}Feature importance plot for quarterly
+series. Overall feature importance(top left plot) is evaluated based on
+two measures: i) Permutation-based variable importance measure and ii)
+mean decrease in Gini coefficients are used to evaluate shown in the top
+left plot. Class-specific feature importance is evaluated based on three
+measures: i) permutation-based variable importance, PD-based variable
+importance measure, and ICE-based variable importance measure. Longer
+bars indicate more important features. Top 5 overall features are
+highlighted in purple. Strength of seasonality appears to be the most
+important feature.}
 \end{figure}
-
-\clearpage
-
-\begin{figure}[h]
-
-{\centering \includegraphics{figures/viquarterly-1} 
-
-}
-
-\caption{Feature importance plot for quarterly data. Permutation-based VI measure and mean decrease in Gini coefficients are used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.}\label{fig:viquarterly}
-\end{figure}
-
-\begin{figure}[h]
-
-{\centering \includegraphics{figures/vimonthly-1} 
-
-}
-
-\caption{Feature importance plot for monthly data. Permutation-based VI measure and mean decrease in Gini coefficients are used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.}\label{fig:vimonthly}
-\end{figure}
-
-\newpage
 
 \begin{figure}
 \centering
-\includegraphics{figures/pdpquarterly1-1.png}
-\caption{\label{fig:pdpquarterly1}Partial dependence plots for the top-three
-features get selected most within each class inside quarterly and
-monthly FFORMS frameworks. Additionally, N is included to observe the
-effects stated in the literature. The shading shows the 95\% confidence
-interval. Y-axis denotes the probability of belonging to corresponding
-class. Red colour is for PDP drawn based on quarterly data and blue
-colour is for the PDP drawn based on monthly data.}
+\includegraphics{figures/pdpquarterlyseasonality-1.png}
+\caption{\label{fig:pdpquarterlyseasonality}Partial dependence plots for
+strength of seasonality (seasonality\_Q). The shading shows the 95\%
+confidence intervals. Y-axis denotes the probability of belong to
+corresponding class. All features show a nonlinear relationship with
+predicted probabilities.}
 \end{figure}
-
-\newpage
 
 \begin{figure}
 \centering
-\includegraphics{figures/pdpquarterlysec2-1.png}
-\caption{\label{fig:pdpquarterlysec2}Partial dependence plots for the
-top-three features get selected most within each class inside quarterly
-and monthly FFORMS frameworks. Additionally, N is included to observe
-the effects stated in the literature. The shading shows the 95\%
-confidence interval. Y-axis denotes the probability of belonging to
-corresponding class. Red colour is for PDP drawn based on quarterly data
-and blue colour is for the PDP drawn based on monthly data.(Continue
-from Figure 9)}
+\includegraphics{figures/pdpquarterlydiff1ypacf5-1.png}
+\caption{\label{fig:pdpquarterlydiff1ypacf5}Partial dependence plots for sum
+of squares of first 5 PACF values of differenced series (diff1y\_pacf5).
+The shading shows the 95\% confidence intervals. Y-axis denotes the
+probability of belong to corresponding class. All features show a
+nonlinear relationship with predicted probabilities.}
 \end{figure}
-
-\clearpage
 
 \begin{figure}
 \centering
-\includegraphics{figures/friedmanQM-1.pdf}
-\caption{\label{fig:friedmanQM}Heat maps of relative strength of all
-possible pairwise interactions calculated based on Friedman's
-H-statistic for quarterly and monthly data.}
+\includegraphics{figures/pdpquarterlytrend-1.png}
+\caption{\label{fig:pdpquarterlytrend}Partial dependence plots for strength
+of trend (trend). The shading shows the 95\% confidence intervals.
+Y-axis denotes the probability of belong to corresponding class. All
+features show a nonlinear relationship with predicted probabilities.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{figures/vimonthly-1.png}
+\caption{\label{fig:vimonthly}Feature importance plot for monthly series.
+Overall feature importance(top left plot) is evaluated based on two
+measures: i) Permutation-based variable importance measure and ii) mean
+decrease in Gini coefficients are used to evaluate shown in the top left
+plot. Class-specific feature importance is evaluated based on three
+measures: i) permutation-based variable importance, PD-based variable
+importance measure, and ICE-based variable importance measure. Longer
+bars indicate more important features. Top 5 overall features are
+highlighted in purple. Strength of seasonality appears to be the most
+important feature.}
 \end{figure}
 
 \subsection{Weekly}\label{weekly}
@@ -1269,16 +1243,6 @@ white noise class.
 features from variable importance measures (weekly series). The shading
 shows the 95\% confidence intervals. Y-axis denotes the probability of
 belonging to corresponding class.}
-\end{figure}
-
-\newpage
-
-\begin{figure}
-\centering
-\includegraphics{figures/friedmanHW-1.pdf}
-\caption{\label{fig:friedmanHW}Heat maps of relative strength of all
-possible pairwise interactions calculated based on Friedman's
-H-statistic for weekly series.}
 \end{figure}
 
 \subsection{Daily and Hourly data}\label{daily-and-hourly-data}
@@ -1421,8 +1385,6 @@ corresponding class shown in the plot title. Random walk and random walk
 with drift class show opposite pattern of interactivity between
 sediff\_seacf1 and linearity.}
 \end{figure}
-
-\subsection{Interaction effect}\label{interaction-effect}
 
 \clearpage
 
