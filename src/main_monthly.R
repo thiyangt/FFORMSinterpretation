@@ -1,6 +1,4 @@
-
-## ---- oobquarterlymonthly2
-
+## ---- oobmonthly
 load("data/monthly/trainM_votes.rda") #oob votes from the random forest
 load("data/monthly/trainM_predictions_oob.rda") # based on oob prediction
 load("data/monthly/monthly_training.rda") # random forest training set
@@ -15,44 +13,44 @@ votes_oobM$classlabel <- factor(votes_oobM$classlabel, levels=rev(c("snaive","rw
                                                                     "ARIMA", "ARMA/AR/MA","stlar" ,"tbats","wn", "theta","nn"))
 )
 
-part1_votes_oobM <- subset(votes_oobM, votes_oobM$predicted %in% part1)
-part2_votes_oobM <- subset(votes_oobM, votes_oobM$predicted %in% part2)
 
+votes_oobM <- votes_oobM %>% mutate(classlabel = recode(classlabel,
+                                                        "snaive"="snaive", "rwd"="rwd", "rw"="rw", "ETS-notrendnoseasonal"="ETS_NTNS",
+                                                        "ETS-dampedtrend"="ETS_DT", "ETS-trend"="ETS_T", 
+                                                        "ETS-dampedtrendseasonal"="ETS_DTS", "ETS-trendseasonal"="ETS_TS", 
+                                                        "ETS-seasonal"="ETS_S", "SARIMA"="SARIMA", "ARIMA"="ARIMA",
+                                                        "ARMA/AR/MA"="ARMA", "stlar"="stlar", 
+                                                        "tbats"="tbats", "wn"="wn", "theta"="theta", "nn"="nn"))
 
+votes_oobM<- votes_oobM %>% mutate(predicted = recode(predicted,
+                                                       "snaive"="snaive", "rwd"="rwd", "rw"="rw", "ETS-notrendnoseasonal"="ETS_NTNS", 
+                                                       "ETS-dampedtrend"="ETS_DT", "ETS-trend"="ETS_T", "ETS-dampedtrendseasonal"="ETS_DTS",
+                                                       "ETS-trendseasonal"="ETS_TS", "ETS-seasonal"="ETS_S", "SARIMA"="SARIMA",
+                                                       "ARIMA"="ARIMA", "ARMA/AR/MA"="ARMA", "stlar"="stlar", 
+                                                       "tbats"="tbats", "wn"="wn", "theta"="theta", "nn"="nn"))
 
-oob_monthly_part1 <- ggplot(part1_votes_oobM, aes(x = variable, y = value, fill = classlabel)) +
+votes_oobM <- votes_oobM %>% mutate(variable= recode(variable,
+                                                     "snaive"="snaive", "rwd"="rwd", "rw"="rw", "ETS-notrendnoseasonal"="ETS_NTNS", 
+                                                     "ETS-dampedtrend"="ETS_DT", "ETS-trend"="ETS_T", "ETS-dampedtrendseasonal"="ETS_DTS",
+                                                     "ETS-trendseasonal"="ETS_TS", "ETS-seasonal"="ETS_S", "SARIMA"="SARIMA",
+                                                     "ARIMA"="ARIMA", "ARMA/AR/MA"="ARMA", "stlar"="stlar", 
+                                                     "tbats"="tbats", "wn"="wn", "theta"="theta", "nn"="nn"))
+
+oob_boxplot_monthly <- ggplot(votes_oobM, aes(x = classlabel, y = value, fill = classlabel)) +
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
   ylab("Proportion") +
-  xlab("") + 
-  guides(fill=guide_legend(reverse=TRUE)) +
-  scale_x_discrete(limits=rev(c("snaive","rwd", "rw", "ETS-notrendnoseasonal","ETS-dampedtrend", "ETS-trend", "ETS-dampedtrendseasonal"))) +
-  theme(legend.position = "none", legend.title = element_blank(), legend.text.align = 0, text = element_text(size=25)) + 
-  coord_flip()
-
-oob_monthly_part2 <- ggplot(part2_votes_oobM, aes(x = variable, y = value, fill = classlabel)) +
-  geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
-  ylab("Proportion") +
-  xlab("") + 
-  guides(fill=guide_legend(reverse=TRUE)) +
-  scale_x_discrete(limits=rev(c("ETS-trendseasonal","ETS-seasonal","SARIMA",
-                                "ARIMA", "ARMA/AR/MA","stlar" ,"tbats","wn", "theta","nn"))) +
-  theme(legend.position = "right", legend.title = element_blank(), legend.text.align = 0, text = element_text(size=25)) + 
-  coord_flip()
-
-oob_monthly_part1|oob_monthly_part2
-
-## ---- pdpmonthly
-## Monthly linearity
-load("data/monthly/pdp_monthly/linearitygridM.rda")
-linearitygridM$variable <- rep(1:1700, 20)
-load("data/monthly/pdp_monthly/seasonalitygridM.rda")
-seasonalitygridM$variable <- rep(1:1700, 20)
-load("data/monthly/pdp_monthly/trendgridM.rda")
-trendgridM$variable <- rep(1:1700, 20)
-load("data/monthly/pdp_monthly/NgridM.rda")
-NgridM$variable <- rep(1:1700, 20)
-
-
+  xlab("") +
+  theme(legend.position = "none", legend.title = element_blank(), 
+        legend.text.align = 0, text = element_text(size = 30), axis.text.x = element_text(angle = 90),
+        strip.text = element_text(size = 40),
+        strip.background = element_rect(size=4)) +
+  guides(fill = guide_legend(reverse = TRUE)) +
+  scale_x_discrete(limits = rev(c(
+    "snaive", "rwd", "rw", "ETS_NTNS", "ETS_DT", "ETS_T", "ETS_DTS", "ETS_TS", "ETS_S", "SARIMA",
+    "ARIMA", "ARMA", "stlar", "tbats", "wn", "theta", "nn"
+  ))) +
+  coord_flip() + facet_wrap(. ~ variable, ncol=4)
+oob_boxplot_monthly
 
 
 ## ---- vimonthly
@@ -134,3 +132,70 @@ feaImp_monthly <- ggplot(meanrank_monthly, aes(y = rank, x = feature,fill=as.fac
   scale_fill_manual(breaks=c("0","1"), values=c("#f1a340","#998ec3"), guide="none")+
   theme(text=element_text(size = 18))
 feaImp_monthly
+
+
+
+## ---- pdpmonthlylinearity
+load("data/monthly/pdp_monthly/linearitygridM.rda")
+keep.modelnamesM <- c("ARIMA", "ARMA.AR.MA", "ETS.dampedtrend", "ETS.dampedtrendseasonal",
+                      "ETS.notrendnoseasonal", "ETS.seasonal", 
+                      "ETS.trend","ETS.trendseasonal"  ,"nn", "rw",
+                      "rwd", "SARIMA","snaive","stlar","tbats","theta", "wn")
+keeplinearity <- c(keep.modelnamesM, "linearity")
+linearitygridM <- linearitygridM[, names(linearitygridM) %in% keeplinearity]
+linearitygridM_long <- gather(linearitygridM, class, probability, "ARIMA":"wn", factor_key = TRUE)
+
+linearitygridM_long <- linearitygridM_long %>%
+  mutate(class = recode(class, "ARIMA"="ARIMA", "ARMA.AR.MA"="ARMA", 
+                        "ETS.dampedtrend"="ETS_DT", "ETS.dampedtrendseasonal"="ETS_DTS",
+                        "ETS.notrendnoseasonal"="ETS_NTNS", "ETS.seasonal"="ETS_S", 
+                        "ETS.trend"="ETS_T","ETS.trendseasonal"="ETS_TS"  ,"nn"="nn", "rw"="rw",
+                        "rwd"="rwd", "SARIMA"="SARIMA","snaive"="snaive","stlar"="stlar","tbats"="tbats","theta"="theta", "wn"="wn"))
+
+linearitygridM_long$class <- factor(linearitygridM_long$class,
+                                      levels = c("snaive","rw", "rwd", "ETS_NTNS","ETS_DT", "ETS_T", "ETS_DTS",
+                                                 "ETS_TS", "ETS_S","tbats","stlar", "SARIMA",
+                                                 "ARIMA", "ARMA", "wn", "theta", "nn" ))
+
+plot_pdp_monthlyL <- ggplot(data = linearitygridM_long, aes_string(x = linearitygridM_long$"linearity", y = "probability")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) +
+  stat_summary(fun.data = mean_cl_normal,fill="red", geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+ 
+  theme(axis.text.x = element_text(angle = 90), text = element_text(size=18), axis.title = element_text(size = 16))+
+  facet_wrap(. ~ class, ncol=9)+theme(strip.text.x = element_text(size = 10))+xlab("linearity")+ylab("probability of selecting forecast-models")
+plot_pdp_monthlyL
+
+## ---- pdpmonthlyN
+load("data/monthly/pdp_monthly/NgridM.rda")
+keep.modelnamesM <- c("ARIMA", "ARMA.AR.MA", "ETS.dampedtrend", "ETS.dampedtrendseasonal",
+                      "ETS.notrendnoseasonal", "ETS.seasonal", 
+                      "ETS.trend","ETS.trendseasonal"  ,"nn", "rw",
+                      "rwd", "SARIMA","snaive","stlar","tbats","theta", "wn")
+keepN <- c(keep.modelnamesM, "N")
+NgridM <- NgridM[, names(NgridM) %in% keepN]
+NgridM_long <- gather(NgridM, class, probability, "ARIMA":"wn", factor_key = TRUE)
+
+NgridM_long <- NgridM_long %>%
+  mutate(class = recode(class, "ARIMA"="ARIMA", "ARMA.AR.MA"="ARMA", 
+                        "ETS.dampedtrend"="ETS_DT", "ETS.dampedtrendseasonal"="ETS_DTS",
+                        "ETS.notrendnoseasonal"="ETS_NTNS", "ETS.seasonal"="ETS_S", 
+                        "ETS.trend"="ETS_T","ETS.trendseasonal"="ETS_TS"  ,"nn"="nn", "rw"="rw",
+                        "rwd"="rwd", "SARIMA"="SARIMA","snaive"="snaive","stlar"="stlar","tbats"="tbats","theta"="theta", "wn"="wn"))
+
+NgridM_long$class <- factor(linearitygridM_long$class,
+                                    levels = c("snaive","rw", "rwd", "ETS_NTNS","ETS_DT", "ETS_T", "ETS_DTS",
+                                               "ETS_TS", "ETS_S","tbats","stlar", "SARIMA",
+                                               "ARIMA", "ARMA", "wn", "theta", "nn" ))
+NgridM_long <- NgridM_long %>% rename("T"="N")
+
+plot_pdp_monthlyN <- ggplot(data = NgridM_long, aes_string(x = NgridM_long$"T", y = "probability")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) +
+  stat_summary(fun.data = mean_cl_normal,fill="red", geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+ 
+  theme(axis.text.x = element_text(angle = 90), text = element_text(size=18), axis.title = element_text(size = 16))+
+  facet_wrap(. ~ class, ncol=9)+theme(strip.text.x = element_text(size = 10))+xlab("length of time series (T)")+ylab("probability of selecting forecast-models")
+plot_pdp_monthlyN
+
+
+
+
+
+

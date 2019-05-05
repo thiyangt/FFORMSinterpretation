@@ -366,7 +366,7 @@ According to \autoref{fig:viyearly}, the features related to strength of trend, 
 ```{r pdpyearlylinearity, fig.height=4, fig.width=15, fig.cap="Partial dependence plots for linearity. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All features show a nonlinear relationship with predicted probabilities.", fig.pos="h", dev='png'}
 ```
 
-## Quarterly and Monthly data
+## Quarterly 
 
 \autoref{fig:oobquarterlymonthly1} - \autoref{fig:oobquarterlymonthly2} show the vote-matrices of the random forests for quarterly and monthly data respectively based on OOB observations. \autoref{fig:oobquarterlymonthly1} and \autoref{fig:oobquarterlymonthly2} depicted similar patterns across classes. For quarterly and monthly data, the same set of features and the class-labels are used to train the model. Hence, this consistency between the results of the quarterly and the monthly series would provide evidence in support of the validity and trustability of the model. The outliers associated with the dominating distributions indicate some series are correctly classified with very high probability. Seasonal time series have a low chance of classified into the random walk with drift model and a high chance of selecting SARIMA, stlar and tbats. Except the time series labelled as ARMA/AR/MA all other quarterly time series have a very low chance of classified into ARMA/AR/MA class. Further, all distributions correspond to the tbats row located further away from zero. This indicates all-time series select tbats model at least once from the individual trees in the forest. Except few outliers,  distributions within neural network category also show a slight upward deviation from the zero. However, the upper boundaries of these distributions do not surpass the upper boundaries of dominating box plots in the random walk with drift class and the SARIMA class. Further, within stlar, tbats, theta and neural network classes all distributions level at similar proportionalities.  These types of similarities in the distributions indicate the  appropriateness of using combination forecasting.  Further, these information is useful in identifying potential time series models for combination forecast and improve the existing combination approaches proposed in the M4-competition (@Makridakis2018dx). In addition to that the similarities and diversities observed in the boxplots indicate the neighbourhood of cases in their respective instance space.
 
@@ -401,11 +401,24 @@ literature [@makridakis2000m3]. Except for random walk, partial dependency curve
 
 ```
 
+## Monthly
+
+```{r oobmonthly, fig.height=40, fig.width=40, dev='png',fig.pos="h"}
+```
+
+
 ```{r vimonthly, fig.height=12, fig.width=18,  fig.cap="Feature importance plot for monthly series. Overall feature importance(top left plot) is evaluated based on two measures: i) Permutation-based variable importance measure and ii) mean decrease in Gini coefficients are used to evaluate  shown in the top left plot. Class-specific feature importance is evaluated based on three measures: i) permutation-based variable importance, PD-based variable importance measure, and ICE-based variable importance measure. Longer bars indicate more important features. Top 5 overall features are highlighted in purple. Strength of seasonality appears to be the most important feature."}
 
 ```
 
 
+```{r pdpmonthlylinearity, fig.height=8, fig.width=15, fig.cap="Partial dependence plots for linearity. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All features show a nonlinear relationship with predicted probabilities.", fig.pos="h"}
+
+```
+
+```{r pdpmonthlyN, fig.height=8, fig.width=15, fig.cap="Partial dependence plots for length of time series (T). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All features show a nonlinear relationship with predicted probabilities.", fig.pos="h"}
+
+```
 
 ## Weekly
 

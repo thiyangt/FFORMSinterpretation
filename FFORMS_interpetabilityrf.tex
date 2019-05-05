@@ -1030,8 +1030,7 @@ denotes the probability of belong to corresponding class. All features
 show a nonlinear relationship with predicted probabilities.}
 \end{figure}
 
-\subsection{Quarterly and Monthly
-data}\label{quarterly-and-monthly-data}
+\subsection{Quarterly}\label{quarterly}
 
 \autoref{fig:oobquarterlymonthly1} - \autoref{fig:oobquarterlymonthly2}
 show the vote-matrices of the random forests for quarterly and monthly
@@ -1170,6 +1169,10 @@ Y-axis denotes the probability of belong to corresponding class. All
 features show a nonlinear relationship with predicted probabilities.}
 \end{figure}
 
+\subsection{Monthly}\label{monthly}
+
+\includegraphics{figures/oobmonthly-1.png}
+
 \begin{figure}
 \centering
 \includegraphics{figures/vimonthly-1.png}
@@ -1183,6 +1186,24 @@ importance measure, and ICE-based variable importance measure. Longer
 bars indicate more important features. Top 5 overall features are
 highlighted in purple. Strength of seasonality appears to be the most
 important feature.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{figures/pdpmonthlylinearity-1.png}
+\caption{\label{fig:pdpmonthlylinearity}Partial dependence plots for
+linearity. The shading shows the 95\% confidence intervals. Y-axis
+denotes the probability of belong to corresponding class. All features
+show a nonlinear relationship with predicted probabilities.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{figures/pdpmonthlyN-1.png}
+\caption{\label{fig:pdpmonthlyN}Partial dependence plots for length of time
+series (T). The shading shows the 95\% confidence intervals. Y-axis
+denotes the probability of belong to corresponding class. All features
+show a nonlinear relationship with predicted probabilities.}
 \end{figure}
 
 \subsection{Weekly}\label{weekly}
