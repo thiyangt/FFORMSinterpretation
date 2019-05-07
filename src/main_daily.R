@@ -1,7 +1,33 @@
-#################################################################
-#                  Daily data                                  #
-#################################################################
+## ---- oobdaily
+load("data/daily/trainD_votes.rda") #oob votes from the random forest
+load("data/daily/trainD_predictions_oob.rda") # based on oob prediction
 load("data/daily/daily_training.rda") # random forest training set
+votes_oobD <- data.frame(trainD_votes)
+names(votes_oobD) <- names(table(trainD_predictions_oob))
+votes_oobD$predicted <- trainD_predictions_oob
+votes_oobD$classlabel <- daily_training$classlabels
+votes_oobD <- votes_oobD %>% mutate(id=seq_len(n())) %>%
+  melt(id.var=c('classlabel','id','predicted'), na.rm=T) %>%
+  select(-id)
+#new addition to arrange labels 
+votes_oobD$variable <- factor(votes_oobD$variable, 
+                              levels=c("snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
+                                       "theta","nn","wn")
+)
+oob_boxplot_daily <- ggplot(votes_oobD, aes(x = classlabel, y = value, fill = classlabel)) +
+  geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
+  ylab("Proportion") +
+  xlab("") +
+  theme(legend.position = "none", legend.title = element_blank(), 
+        legend.text.align = 0, text = element_text(size = 25), axis.text.x = element_text(angle = 90),
+        strip.text = element_text(size = 20)) +
+  guides(fill = guide_legend(reverse = TRUE)) +
+  scale_x_discrete(limits = rev(c("snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
+                                  "theta","nn","wn" ))) +
+  coord_flip() + facet_wrap(. ~ variable, ncol=5)
+oob_boxplot_daily
+
+
 ## ---- vidaily
 # All variable scores into one dataframe
 load("data/daily/trainD_importance.rda")
@@ -79,10 +105,10 @@ topq <- meanrank_daily %>%
   top_n(n = 5, wt = rank)
 meanrank_daily$istop <- ifelse(meanrank_daily$rn %in% topq$rn, TRUE, FALSE)
 feaImp_daily <- ggplot(meanrank_daily, aes(y = rank, x = feature,fill=as.factor(istop))) +
-  geom_bar(position = "dodge", stat = "identity") +
+  geom_bar(position = "dodge", stat = "identity", width=0.3) +
   facet_wrap(~class, ncol = 6, nrow = 2) +
   coord_flip() + ylab("Average rank")+ 
-  scale_fill_manual(breaks=c("0","1"), values=c("black","red"), guide="none")+
+  scale_fill_manual(breaks=c("0","1"), values=c("#f1a340","#998ec3"), guide="none")+
   theme(text=element_text(size = 20))
 feaImp_daily
 
