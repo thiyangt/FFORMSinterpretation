@@ -439,8 +439,19 @@ According to the results of \autoref{fig:viweekly} spikiness, linearity, trend, 
 ```{r weeklypdp, fig.height=5, fig.width=20, fig.cap="Partial dependence plots for the top ranked features from variable importance measures (weekly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belonging to corresponding class.", fig.pos="h"}
 ```
 
+## Hourly
 
-## Daily and Hourly data
+```{r oobhourly, fig.height=10, fig.width=20, fig.cap="Visualization of the vote matrix based on OOB sample for hourly random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots corresponds to class label of the \"best\" forecast-model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of getting selected.", fig.pos="h"}
+```
+
+
+
+```{r vihourly, fig.height=11, fig.width=23, fig.cap="Feature importance plot hourly series. Permutation-based VI measure and mean decrease in Gini coefficients are used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h"}
+```
+
+
+
+## Daily
 
 According to \autoref{fig:oobdailyhourly} the distributions corresponds to observations that have been correctly classified dominate the top for daily data.  However, within daily series there are few observations that have been incorrectly classified to tbats class with very high probabilities. In general, neural network models have a higher chance of getting selected for daily time series. Overall, for hourly series random walk with drift models, tbats and neural network models have a high chance of getting selected. Furthermore,  it is important to note that all hourly series have been assigned a non-zero probability of getting selected to neural network class. 
 
@@ -466,16 +477,13 @@ higher value of strength of daily (seasonal_strength1) seasonality, while the op
 random walk model increase as the strength of weekly
 seasonality increases. 
 
-```{r oobdailyhourly, fig.height=20, fig.width=15, fig.cap="Visualization of the vote matrix based on OOB sample for daily and hourly random forests. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots corresponds to class label of the \"best\" forecast-model identified based on MASE and sMAPE. On each row, distribution of correctly classified class dominates, indicating a good classification of the meta-learners.", fig.pos="h"}
+
+```{r oobdaily, fig.height=10, fig.width=20, fig.cap="Visualization of the vote matrix based on OOB sample for daily random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots corresponds to class label of the \"best\" forecast-model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of getting selected.", fig.pos="h"}
 ```
 
 \newpage
 
 ```{r vidaily, fig.height=11, fig.width=23, fig.cap="Feature importance plot for daily data. Permutation-based VI measure and mean decrease in Gini coefficients are used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h", fig.align="center"}
-```
-
-
-```{r vihourly, fig.height=11, fig.width=23, fig.cap="Feature importance plot hourly series. Permutation-based VI measure and mean decrease in Gini coefficients are used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h"}
 ```
 
 

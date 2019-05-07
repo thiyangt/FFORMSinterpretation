@@ -1266,7 +1266,32 @@ shows the 95\% confidence intervals. Y-axis denotes the probability of
 belonging to corresponding class.}
 \end{figure}
 
-\subsection{Daily and Hourly data}\label{daily-and-hourly-data}
+\subsection{Hourly}\label{hourly}
+
+\begin{figure}
+\centering
+\includegraphics{figures/oobhourly-1.png}
+\caption{\label{fig:oobhourly}Visualization of the vote matrix based on OOB
+sample for hourly random forest. The Y-axis denotes what was predicted
+from the random forest. The X-axis denotes the proportion of times each
+time series was classified to each class. The colours of boxplots
+corresponds to class label of the ``best'' forecast-model identified
+based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of
+getting selected.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{figures/vihourly-1.png}
+\caption{\label{fig:vihourly}Feature importance plot hourly series.
+Permutation-based VI measure and mean decrease in Gini coefficients are
+used to evaluate overall feature importance. Class-specific feature
+importance is evaluated based on the three measures: permutation-based
+VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate
+more important features. Top 5 features are highlighted in red.}
+\end{figure}
+
+\subsection{Daily}\label{daily}
 
 According to \autoref{fig:oobdailyhourly} the distributions corresponds
 to observations that have been correctly classified dominate the top for
@@ -1319,15 +1344,14 @@ increases.
 
 \begin{figure}
 \centering
-\includegraphics{figures/oobdailyhourly-1.png}
-\caption{\label{fig:oobdailyhourly}Visualization of the vote matrix based on
-OOB sample for daily and hourly random forests. The Y-axis denotes what
-was predicted from the random forest. The X-axis denotes the proportion
-of times each time series was classified to each class. The colours of
-boxplots corresponds to class label of the ``best'' forecast-model
-identified based on MASE and sMAPE. On each row, distribution of
-correctly classified class dominates, indicating a good classification
-of the meta-learners.}
+\includegraphics{figures/oobdaily-1.png}
+\caption{\label{fig:oobdaily}Visualization of the vote matrix based on OOB
+sample for daily random forest. The Y-axis denotes what was predicted
+from the random forest. The X-axis denotes the proportion of times each
+time series was classified to each class. The colours of boxplots
+corresponds to class label of the ``best'' forecast-model identified
+based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of
+getting selected.}
 \end{figure}
 
 \newpage
@@ -1339,17 +1363,6 @@ of the meta-learners.}
 }
 
 \caption{Feature importance plot for daily data. Permutation-based VI measure and mean decrease in Gini coefficients are used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.}\label{fig:vidaily}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics{figures/vihourly-1.png}
-\caption{\label{fig:vihourly}Feature importance plot hourly series.
-Permutation-based VI measure and mean decrease in Gini coefficients are
-used to evaluate overall feature importance. Class-specific feature
-importance is evaluated based on the three measures: permutation-based
-VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate
-more important features. Top 5 features are highlighted in red.}
 \end{figure}
 
 \newpage
