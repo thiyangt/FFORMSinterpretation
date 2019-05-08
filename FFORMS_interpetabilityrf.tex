@@ -1123,8 +1123,6 @@ lead to the choice of forecast-model selection.
 
 \includegraphics{figures/oobquarterly-1.png}
 
-\clearpage
-
 \begin{figure}
 \centering
 \includegraphics{figures/viquarterly-1.png}
@@ -1255,8 +1253,6 @@ white noise class.
 \caption{Feature importance plot for weekly data. Permutation-based VI measure and mean decrease in Gini coefficient is used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.}\label{fig:viweekly}
 \end{figure}
 
-\newpage
-
 \begin{figure}
 \centering
 \includegraphics{figures/weeklypdp-1.png}
@@ -1289,6 +1285,22 @@ used to evaluate overall feature importance. Class-specific feature
 importance is evaluated based on the three measures: permutation-based
 VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate
 more important features. Top 5 features are highlighted in red.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{figures/seasonalityhourly-1.png}
+\caption{\label{fig:seasonalityhourly}Partial dependence plots for strength
+of seasonality. The shading shows the 95\% confidence intervals. Y-axis
+denotes the probability of belonging to corresponding class.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{figures/entropyhourly-1.png}
+\caption{\label{fig:entropyhourly}Partial dependence plots for entropy. The
+shading shows the 95\% confidence intervals. Y-axis denotes the
+probability of belonging to corresponding class.}
 \end{figure}
 
 \subsection{Daily}\label{daily}
@@ -1354,8 +1366,6 @@ based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of
 getting selected.}
 \end{figure}
 
-\newpage
-
 \begin{figure}[h]
 
 {\centering \includegraphics{figures/vidaily-1} 
@@ -1365,29 +1375,20 @@ getting selected.}
 \caption{Feature importance plot for daily data. Permutation-based VI measure and mean decrease in Gini coefficients are used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.}\label{fig:vidaily}
 \end{figure}
 
-\newpage
-
 \begin{figure}
 \centering
-\includegraphics{figures/dailypdp-1.png}
-\caption{\label{fig:dailypdp}Partial dependence plots for the top ranked
-features based on variable importance measures (daily series). The
-shading shows the 95\% confidence intervals. Y-axis denotes the
-probability of belong to corresponding class. (seasonal\_strength1
-denotes weekly seasonality and seasonal\_strength2 for annual
-seasonality).}
+\includegraphics{figures/dailypdpstability-1.png}
+\caption{\label{fig:dailypdpstability}Partial dependence plots for
+stability. The shading shows the 95\% confidence intervals. Y-axis
+denotes the probability of belonging to corresponding class.}
 \end{figure}
 
-\newpage
-
 \begin{figure}
 \centering
-\includegraphics{figures/hourlypdp-1.png}
-\caption{\label{fig:hourlypdp}Partial dependence plots for the top ranked
-features from variable importance measures (hourly series). The shading
-shows the 95\% confidence intervals. Y-axis denotes the probability of
-belong to corresponding class. (seasonal\_strength1 denotes daily
-seasonality and seasonal\_strength2 for weekly seasonality)}
+\includegraphics{figures/dailypdpN-1.png}
+\caption{\label{fig:dailypdpN}Partial dependence plots for stability. The
+shading shows the 95\% confidence intervals. Y-axis denotes the
+probability of belonging to corresponding class.}
 \end{figure}
 
 According to Friedman's H-statistic for daily series, sediff\_acf5 and
@@ -1397,28 +1398,6 @@ high interactivity within each class. The partial dependency plots of
 associated figures are shown in \autoref{fig:dtwopdp} and
 \autoref{fig:htwopdp}. Each plot shows a unique pattern of interactivity
 which is useful in separating one from another.
-
-\begin{figure}
-\centering
-\includegraphics{figures/dtwopdp-1.png}
-\caption{\label{fig:dtwopdp}Partial dependence plot of model selection
-probability and the interaction of sediff\_acf5 and seasonal\_strength2
-for daily data. Dark regions show the high probability of belonging to
-the corresponding class shown in the plot title. Within each class
-unique pattern of interaction pattern exist between sediff\_acf5 and
-seasonal\_strength2.}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics{figures/htwopdp-1.png}
-\caption{\label{fig:htwopdp}Partial dependence plot of model selection
-probability and the interaction of sediff\_seacf1 and linearity for
-hourly data. Dark regions show the high probability of belonging to the
-corresponding class shown in the plot title. Random walk and random walk
-with drift class show opposite pattern of interactivity between
-sediff\_seacf1 and linearity.}
-\end{figure}
 
 \clearpage
 

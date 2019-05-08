@@ -381,8 +381,6 @@ literature [@makridakis2000m3]. Except for random walk, partial dependency curve
 ```{r oobquarterly, fig.height=40, fig.width=40, dev='png',fig.pos="h"}
 ```
 
-\clearpage
-
 ```{r viquarterly, fig.height=10, fig.width=18, fig.cap="Feature importance plot for quarterly series. Overall feature importance(top left plot) is evaluated based on two measures: i) Permutation-based variable importance measure and ii) mean decrease in Gini coefficients are used to evaluate  shown in the top left plot. Class-specific feature importance is evaluated based on three measures: i) permutation-based variable importance, PD-based variable importance measure, and ICE-based variable importance measure. Longer bars indicate more important features. Top 5 overall features are highlighted in purple. Strength of seasonality appears to be the most important feature."}
 
 ```
@@ -434,7 +432,6 @@ According to the results of \autoref{fig:viweekly} spikiness, linearity, trend, 
 ```{r viweekly, fig.height=15, fig.width=20, fig.cap="Feature importance plot for weekly data. Permutation-based VI measure and mean decrease in Gini coefficient is used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h", fig.align="center"}
 ```
 
-\newpage
 
 ```{r weeklypdp, fig.height=5, fig.width=20, fig.cap="Partial dependence plots for the top ranked features from variable importance measures (weekly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belonging to corresponding class.", fig.pos="h"}
 ```
@@ -445,11 +442,14 @@ According to the results of \autoref{fig:viweekly} spikiness, linearity, trend, 
 ```
 
 
-
 ```{r vihourly, fig.height=11, fig.width=23, fig.cap="Feature importance plot hourly series. Permutation-based VI measure and mean decrease in Gini coefficients are used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h"}
 ```
 
+```{r seasonalityhourly, fig.height=5, fig.width=20, fig.cap="Partial dependence plots for strength of seasonality. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belonging to corresponding class.", fig.pos="h"}
+```
 
+```{r entropyhourly, fig.height=5, fig.width=20, fig.cap="Partial dependence plots for entropy. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belonging to corresponding class.", fig.pos="h"}
+```
 
 ## Daily
 
@@ -481,31 +481,18 @@ seasonality increases.
 ```{r oobdaily, fig.height=10, fig.width=20, fig.cap="Visualization of the vote matrix based on OOB sample for daily random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots corresponds to class label of the \"best\" forecast-model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of getting selected.", fig.pos="h"}
 ```
 
-\newpage
 
 ```{r vidaily, fig.height=11, fig.width=23, fig.cap="Feature importance plot for daily data. Permutation-based VI measure and mean decrease in Gini coefficients are used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h", fig.align="center"}
 ```
 
-
-\newpage
-
-```{r dailypdp, fig.height=28, fig.width=20, fig.cap="Partial dependence plots for the top ranked features based on variable importance measures (daily series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. (seasonal_strength1 denotes weekly seasonality and seasonal_strength2 for annual seasonality).", fig.pos="h"}
+```{r dailypdpstability, fig.height=5, fig.width=20, fig.cap="Partial dependence plots for stability. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belonging to corresponding class.", fig.pos="h"}
 ```
 
-\newpage
-
-```{r hourlypdp, fig.height=28, fig.width=20, fig.cap="Partial dependence plots for the top ranked features from variable importance measures (hourly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. (seasonal_strength1 denotes daily seasonality and seasonal_strength2 for weekly seasonality)", fig.pos="h"}
+```{r dailypdpN, fig.height=5, fig.width=20, fig.cap="Partial dependence plots for stability. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belonging to corresponding class.", fig.pos="h"}
 ```
 
 According to Friedman's H-statistic for daily series, sediff_acf5 and weekly seasonality (seasonal_strength2) show high interactivity within each class, while for hourly series sediff_seacf1 and linearity show high interactivity within each class. The partial dependency plots of associated figures are shown in \autoref{fig:dtwopdp} and \autoref{fig:htwopdp}. Each plot shows a unique pattern of interactivity which is useful in separating one from another. 
 
-```{r dtwopdp, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of sediff_acf5 and seasonal_strength2 for daily data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. Within each class unique pattern of interaction pattern exist between sediff_acf5 and seasonal_strength2. ", dev='png'}
-
-```
-
-```{r htwopdp, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of sediff_seacf1 and linearity for hourly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. Random walk and random walk with drift class show opposite pattern of interactivity between sediff_seacf1 and linearity.", dev='png'}
-
-```
 
 \clearpage
 
