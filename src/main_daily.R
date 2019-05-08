@@ -195,10 +195,13 @@ diff2y_acf5D_includeout$variable <- rep(1:1000, 20)
 
 
 ## snaive
-p1 <- ggplot(data = seasonal_strength1D_includeout, aes_string(x = seasonal_strength1D_includeout$seasonal_strength1, y = "snaive")) +
+p1 <- ggplot(data = seasonal_strength1D_includeout, 
+             aes_string(x = seasonal_strength1D_includeout$seasonal_strength1, y = "snaive")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("seasonal_strength1") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +
   theme(legend.position = "none",text = element_text(size=20)) + ylab("snaive")
+
+
 p2 <- ggplot(data = trendD_includeout, aes_string(x = trendD_includeout$trend, y = "snaive")) +
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) + xlab("trend") +
   stat_summary(fun.data = mean_cl_normal, geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3) +

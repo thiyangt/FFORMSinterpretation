@@ -110,19 +110,17 @@ feaImp_hourly
 ## ----hourlypdp
 load("data/hourly/hiceout/curvaturegridH.rda")
 curvaturegridH$variable <- rep(1:1000, 20)
-load("data/hourly/hiceout/entropygridH.rda")
-entropygridH$variable <- rep(1:1000, 20)
+
 load("data/hourly/hiceout/linearitygridH.rda")
 linearitygridH$variable <- rep(1:1000, 20)
 load("data/hourly/hiceout/seasonality1gridH.rda")
-seasonality1gridH$variable <- rep(1:1000, 20)
-load("data/hourly/hiceout/seasonality2gridH.rda")
-seasonality2gridH$variable <- rep(1:1000, 20)
 
 
 ## ---- seasonalityhourly
 load("data/hourly/hiceout/seasonality1gridH.rda")
+seasonality1gridH$variable <- rep(1:1000, 20)
 load("data/hourly/hiceout/seasonality2gridH.rda")
+seasonality2gridH$variable <- rep(1:1000, 20)
 ## Arrange graphs for faceting
 keep.modelnames <- c("snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
                      "theta","nn","wn")
@@ -132,21 +130,65 @@ seasonal1 <- seasonality1gridH[, names(seasonality1gridH) %in% keeps1]
 seasonal1 <- rename(seasonal1, seasonal = seasonal_strength1) 
 seasonal2 <- seasonality2gridH[, names(seasonality2gridH) %in% keeps2]
 seasonal2 <- rename(seasonal2, seasonal = seasonal_strength2) 
-seasonal1_long <- gather(seasonal1, class, probability, "snaive":"wn", factor_key = TRUE)
-seasonal2_long <- gather(seasonal2, class, probability, "snaive":"wn", factor_key = TRUE)
-seasonal_DW <- dplyr::bind_rows(seasonal1_long, seasonal2_long)
-seasonal_DW$feature <- c(rep("seasonal_D", 20000), rep("seasonal_W", 20000))
+seasonal1_long <- gather(seasonal1, class, probability, "mstlarima":"wn", factor_key = TRUE)
+seasonal2_long <- gather(seasonal2, class, probability, "mstlarima":"wn", factor_key = TRUE)
+seasonal1_long_mean <- seasonal1_long %>%
+  group_by(seasonal, class) %>%
+  summarise(n=n(), mean=mean(probability), sd=sd(probability)) %>%
+  mutate(sem = sd/sqrt(n-1),
+  CI_lower = mean+qt((1-0.95)/2, n-1)*sem,
+  CI_upper = mean - qt((1-0.95)/2, n-1)*sem)
+seasonal2_long_mean <- seasonal2_long %>%
+  group_by(seasonal, class) %>%
+  summarise(n=n(), mean=mean(probability), sd=sd(probability)) %>%
+  mutate(sem = sd/sqrt(n-1),
+         CI_lower = mean+qt((1-0.95)/2, n-1)*sem,
+         CI_upper = mean - qt((1-0.95)/2, n-1)*sem)
+
+seasonal_DW <- dplyr::bind_rows(seasonal1_long_mean, seasonal2_long_mean)
+seasonal_DW$feature <- c(rep("seasonal_D (24)", 200), rep("seasonal_W (168)", 200))
 seasonal_DW$class <- factor(seasonal_DW$class,
                                levels = c("snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
                                           "theta","nn","wn"))
 
-plot_pdp_hourly_seasonal <- ggplot(data = seasonal_DW, aes_string(x = seasonal_DW$seasonal, y = "probability", fill="feature")) +
-  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1, fill="feature") +
-  stat_summary(fun.data = mean_cl_normal,fill="red", geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+ 
-  theme(axis.text.x = element_text(angle = 90), text = element_text(size=18), axis.title = element_text(size = 16))+
-  facet_grid(. ~ class)+theme(strip.text.x = element_text(size = 10))+xlab("strength of seasonality")+ylab("probability of selecting forecast-models")
+plot_pdp_hourly_seasonal <- ggplot(seasonal_DW, aes(x=seasonal, y=mean, color=feature))+
+  geom_line(aes(x=seasonal, y=mean, color=feature), size = 1)+
+  geom_ribbon(aes(ymin=CI_lower, ymax=CI_upper, fill=feature),alpha=0.4, colour = NA)+
+  facet_grid(. ~ class)+
+  theme(axis.text.x = element_text(angle = 90), text = element_text(size=16), axis.title = element_text(size = 14))+
+  theme(strip.text.x = element_text(size = 16))+xlab("strength of seasonality")+
+  ylab("probability of selecting forecast-models")+
+  theme(legend.position="bottom", legend.title=element_blank())
 plot_pdp_hourly_seasonal
 
+## ---- entropyhourly
+load("data/hourly/hiceout/entropygridH.rda")
+entropygridH$variable <- rep(1:1000, 20)
+## Arrange graphs for faceting
+keep.modelnames <- c("snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
+                     "theta","nn","wn")
+keepE <- c(keep.modelnames, "entropy")
+entropygridH1 <- entropygridH[, names(entropygridH) %in% keepE]
+entropygridH1_long <- gather(entropygridH1, class, probability, "mstlarima":"wn", factor_key = TRUE)
+entropygridH1_long_mean <- entropygridH1_long %>%
+  group_by(entropy, class) %>%
+  summarise(n=n(), mean=mean(probability), sd=sd(probability)) %>%
+  mutate(sem = sd/sqrt(n-1),
+         CI_lower = mean+qt((1-0.95)/2, n-1)*sem,
+         CI_upper = mean - qt((1-0.95)/2, n-1)*sem)
+
+entropygridH1_long_mean$class <- factor(entropygridH1_long_mean$class,
+                            levels = c("snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
+                                       "theta","nn","wn"))
+
+plot_pdp_hourly_entropy <- ggplot(entropygridH1_long_mean, aes(x=entropy, y=mean))+
+  geom_line(aes(x=entropy, y=mean, size=1))+
+  geom_ribbon(aes(ymin=CI_lower, ymax=CI_upper),alpha=0.3, fun.args = list(mult = 1))+facet_grid(. ~ class)+
+  theme(axis.text.x = element_text(angle = 90), text = element_text(size=16), axis.title = element_text(size = 14))+
+  theme(strip.text.x = element_text(size = 16))+xlab("entropy")+
+  ylab("probability of selecting forecast-models")+
+  theme(legend.position="bottom", legend.title=element_blank())
+plot_pdp_hourly_entropy
 
 
 ## ---- pcahourly
