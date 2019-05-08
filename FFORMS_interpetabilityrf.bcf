@@ -2050,23 +2050,20 @@
     <bcf:citekey order="52">ribeiro2016should</bcf:citekey>
     <bcf:citekey order="53">lundberg2017unified</bcf:citekey>
     <bcf:citekey order="54">lundberg2017unified</bcf:citekey>
-    <bcf:citekey order="55">Makridakis2018dx</bcf:citekey>
-    <bcf:citekey order="56">Makridakis2018dx</bcf:citekey>
-    <bcf:citekey order="57">makridakis2000m3</bcf:citekey>
+    <bcf:citekey order="55">wickham2015visualizing</bcf:citekey>
+    <bcf:citekey order="56">wickham2015visualizing</bcf:citekey>
+    <bcf:citekey order="57">wickham2015visualizing</bcf:citekey>
     <bcf:citekey order="58">wickham2015visualizing</bcf:citekey>
     <bcf:citekey order="59">wickham2015visualizing</bcf:citekey>
     <bcf:citekey order="60">wickham2015visualizing</bcf:citekey>
-    <bcf:citekey order="61">wickham2015visualizing</bcf:citekey>
-    <bcf:citekey order="62">wickham2015visualizing</bcf:citekey>
+    <bcf:citekey order="61">da2017interactive</bcf:citekey>
+    <bcf:citekey order="62">da2017interactive</bcf:citekey>
     <bcf:citekey order="63">wickham2015visualizing</bcf:citekey>
-    <bcf:citekey order="64">da2017interactive</bcf:citekey>
+    <bcf:citekey order="64">wickham2015visualizing</bcf:citekey>
     <bcf:citekey order="65">da2017interactive</bcf:citekey>
-    <bcf:citekey order="66">wickham2015visualizing</bcf:citekey>
-    <bcf:citekey order="67">wickham2015visualizing</bcf:citekey>
-    <bcf:citekey order="68">da2017interactive</bcf:citekey>
-    <bcf:citekey order="69">da2017interactive</bcf:citekey>
-    <bcf:citekey order="70">lemke2010meta</bcf:citekey>
-    <bcf:citekey order="71">lemke2010meta</bcf:citekey>
+    <bcf:citekey order="66">da2017interactive</bcf:citekey>
+    <bcf:citekey order="67">lemke2010meta</bcf:citekey>
+    <bcf:citekey order="68">lemke2010meta</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

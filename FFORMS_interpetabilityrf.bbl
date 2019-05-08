@@ -446,44 +446,6 @@
       \field{pages}{451\bibrangedash 476}
       \range{pages}{26}
     \endentry
-    \entry{Makridakis2018dx}{article}{}
-      \name{author}{3}{}{%
-        {{hash=ba8241955b5282793fdcf2d43c398cc6}{%
-           family={Makridakis},
-           familyi={M\bibinitperiod},
-           given={Spyros},
-           giveni={S\bibinitperiod}}}%
-        {{hash=1bbd058009b400578fd6334102fc8dec}{%
-           family={Spiliotis},
-           familyi={S\bibinitperiod},
-           given={Evangelos},
-           giveni={E\bibinitperiod}}}%
-        {{hash=c84a88720d8401a0259918f2eb3bec78}{%
-           family={Assimakopoulos},
-           familyi={A\bibinitperiod},
-           given={Vassilios},
-           giveni={V\bibinitperiod}}}%
-      }
-      \strng{namehash}{79b1cdab2388adc969bf628908c61838}
-      \strng{fullhash}{79b1cdab2388adc969bf628908c61838}
-      \strng{bibnamehash}{79b1cdab2388adc969bf628908c61838}
-      \strng{authorbibnamehash}{79b1cdab2388adc969bf628908c61838}
-      \strng{authornamehash}{79b1cdab2388adc969bf628908c61838}
-      \strng{authorfullhash}{79b1cdab2388adc969bf628908c61838}
-      \field{sortinit}{M}
-      \field{sortinithash}{cfd219b90152c06204fab207bc6c7cab}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{year}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{International Journal of Forecasting}
-      \field{number}{4}
-      \field{title}{The {M4} Competition: Results, findings, conclusion and way forward}
-      \field{volume}{34}
-      \field{year}{2018}
-      \field{pages}{802\bibrangedash 808}
-      \range{pages}{7}
-    \endentry
     \entry{meade2000evidence}{article}{}
       \name{author}{1}{}{%
         {{hash=5352521e47b89c8838e558b2d2c7b27d}{%

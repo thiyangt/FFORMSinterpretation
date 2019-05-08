@@ -923,30 +923,31 @@ proposed by \textcite{lundberg2017unified} based on game theory named
 
 \section{Results:}\label{results}
 
+\clearpage
+
 \section{Results: Peeking inside FFORMS}\label{results2}
 
 \subsection{Yearly data}\label{yearly-data}
 
 This vote-matrix information for the yearly data is presented in
-\autoref{fig:yearlyoob}. According to \autoref{fig:yearlyoob} the
-distributions of correctly classified classes dominate, indicating a
-good classification of the meta-learner. The random walk with drift has
-a high chance of getting selected with yearly time series and the
-results of M4-competition also show the random walk with drift perform
-well with yearly time series. The forecast-models, neural network and
-theta also have a high chance of getting selected as they represent a
-more general class of forecast-models. Furthermore, FFORMS framework
-successfully learned the similarities and dissimilarities between the
-classes itself. For example, within ETS-trend predicted class, the
-distributions correspond to the class labels, ETS-damped trend, ARIMA,
-were also assigned with high probability and less values were assigned
-to ARMA/AR/MA, white noise process and ETS (ANN)/ ETS(MNN).
+\autoref{fig:yearlyoob}. \autoref{fig:yearlyoob} indicates three main
+types of information. They are, i) the distributions of correctly
+classified classes dominate, indicating a good classification of the
+meta-learner, ii) the random walk with drift has a high chance of
+getting selected with yearly time series and the results of
+M4-competition also show the random walk with drift perform well with
+yearly time series, iii) FFORMS framework successfully learned the
+similarities and dissimilarities between the classes itself. For
+example, within ETS models with a trend component (ETS\_T, 3rd panel),
+disparities between forecast-models with trend components and
+forecast-models without trend component (wn, ARMA, ETS\_NTNS) are
+immediately visible.
 
 \begin{figure}
 \centering
 \includegraphics{figures/yearlyoob-1.png}
 \caption{\label{fig:yearlyoob}Visualization of the vote matrix based on OOB
-sample for yearly random forest. The Y-axis denotes what was predicted
+sample for yearly random forest. Each panel shows the predicted class
 from the random forest. The X-axis denotes the proportion of times each
 time series was classified to each class. The colours of boxplots
 correspond to class label of the ``best'' forecast-model identified
@@ -957,34 +958,26 @@ meta-learner.}
 
 \autoref{fig:viyearly} shows how important each one of the features we
 considered within each class as well as in the overall classification
-mechanism of the FFORMS.
+mechanism of the FFORMS. The srength of trend, test statistic based on
+Phillips-Perron unit root test, first ACF value of the differenced
+series, and linearity are the most important features across all
+categories. The first ACF value of the original series appears to be
+important with in rwd and ARMA class. The reason could be, the first ACF
+value can easily separate very clear stationary and nonstationary
+models. The features related to different types of trend (linear trend:
+measured by \texttt{linearity}, damped trend: measured by \texttt{beta},
+exponential trend: measured by curvature) are assigned a very high
+importance with in ETS\_T, ETS\_DT and ETS\_NTNS. The features related
+to randomness of the series such as \texttt{spikiness} and
+\texttt{lmres\_acf} are also assigned a high importance. The length of
+time series (N) is assigned a very low importance within random walk
+class.
 
-According to \autoref{fig:viyearly}, the features related to strength of
-trend, nonstationarity (ur\_pp, diff1y\_acf1), overall shape of the
-trend (linear: measured by linearity, damped trend: measured by beta,
-exponential: measured by curvature) and measures of randomness (from
-spikiness, and lmres\_acf1) are the most important for the choice of
-yearly time series forecast-models. The first ACF value of the original
-series (y\_acf1) appears among the top five within the random walk with
-drift class and the ARMA/AR/MA class as it helps to separate stationary
-and non-stationary series. The first correlation coefficient of the
-twice-differenced series is appeared to be the most important in the
-ARIMA class as this class contains the higher order differenced series.
-The Hurst exponent and entropy appear to be equally important in
-stationary classes. Within the ETS-damped trend class beta and curvature
-ranked as important features. The length of time series (N) is assigned
-relatively high rank within the random walk with drift, ETS-dampedtrend
-and the neural-network class compared to others. On the other hand, sum
-of squares of the first five autocorrelation coefficients of the
-twice-difference series and the lumpiness are the least important
-feature across many classes.
-
-\autoref{fig:pdpyearly} shows the partial dependency curves, and the
-associated confidence intervals of the top-three features that get
-selected most in each class. As expected, the probability of selecting
-stationary models decreases as the test statistic of Phillip-Perron test
-increases and this probability remains zero beyond the value of 0 of
-ur\_pp.
+\autoref{fig:pdpyearlyurpp} to \autoref{fig:pdpyearlylinearity} show the
+partial dependency curves, and associated confidence intervals of the
+top-three features that get selected most in each class. In all three
+cases, within each class the displayed relationship consistent with the
+theoritical expectations.
 
 \begin{figure}
 \centering
@@ -1032,96 +1025,39 @@ show a nonlinear relationship with predicted probabilities.}
 
 \subsection{Quarterly}\label{quarterly}
 
-\autoref{fig:oobquarterlymonthly1} - \autoref{fig:oobquarterlymonthly2}
-show the vote-matrices of the random forests for quarterly and monthly
-data respectively based on OOB observations.
-\autoref{fig:oobquarterlymonthly1} and
-\autoref{fig:oobquarterlymonthly2} depicted similar patterns across
-classes. For quarterly and monthly data, the same set of features and
-the class-labels are used to train the model. Hence, this consistency
-between the results of the quarterly and the monthly series would
-provide evidence in support of the validity and trustability of the
-model. The outliers associated with the dominating distributions
+\autoref{fig:oobquarterly} shows the vote-matrix of the random forests
+for quarterly based on OOB observations. The disparities between
+dominating class and non-dominating classes are immediately apparent
+within ETS\_DT, ETS\_T, ETS\_DTS, ETS\_TS, ETS\_S and ARMA classes.
+Within each panel, the outliers associated with dominating distribution
 indicate some series are correctly classified with very high
-probability. Seasonal time series have a low chance of classified into
-the random walk with drift model and a high chance of selecting SARIMA,
-stlar and tbats. Except the time series labelled as ARMA/AR/MA all other
-quarterly time series have a very low chance of classified into
-ARMA/AR/MA class. Further, all distributions correspond to the tbats row
-located further away from zero. This indicates all-time series select
-tbats model at least once from the individual trees in the forest.
-Except few outliers, distributions within neural network category also
-show a slight upward deviation from the zero. However, the upper
-boundaries of these distributions do not surpass the upper boundaries of
-dominating box plots in the random walk with drift class and the SARIMA
-class. Further, within stlar, tbats, theta and neural network classes
-all distributions level at similar proportionalities. These types of
-similarities in the distributions indicate the appropriateness of using
-combination forecasting. Further, these information is useful in
-identifying potential time series models for combination forecast and
-improve the existing combination approaches proposed in the
-M4-competition (\textcite{Makridakis2018dx}). In addition to that the
-similarities and diversities observed in the boxplots indicate the
-neighbourhood of cases in their respective instance space.
+probability. Furthermore, except ETS\_DTS, ETS\_TS, ETS\_S and SARIMA
+all other series has a high chance of classified into random walk with
+drift class. Within tbats panel all distributions located further away
+from zero, indicating all time series selec tbats model at least once
+from the individual trees in the forest. Within the panels theta, and nn
+all distributions level at simila proportionalities.
 
-\autoref{fig:viquarterly} and \autoref{fig:vimonthly} show feature
-importance plots for the quarterly and monthly data respectively. For
-both quarterly and monthly data strength of seasonality, trend,
+\begin{figure}
+\centering
+\includegraphics{figures/oobquarterly-1.png}
+\caption{\label{fig:oobquarterly}Visualization of the vote matrix based on
+OOB sample for quarterly random forest. Each panel shows the predicted
+class from the random forest. The X-axis denotes the proportion of times
+each time series was classified to each class. The colours of boxplots
+correspond to class label of the ``best'' forecast-model identified
+based on MASE and sMAPE. On each row, distribution of correctly
+classified class dominates, indicating a good classification of the
+meta-learner.}
+\end{figure}
+
+\autoref{fig:viquarterly} shows the feature importance plots for the
+quarterly. The features strength of seasonality, trend,diff1y\_pacf5,
 linearity and spikiness are the most important features across all
 categories. Even though the lumpiness does not appear as a top five
 feature within classes it is appeared to be an important feature in the
 overall classification process and a relatively high ranks are assigned
-within many classes. In the case of yearly data low variable importance
-is assigned to both stability and length of the series. However, within
-quarterly and monthly data a high variable importance is assigned to
-length of the series and stability. One notable difference between the
-quarterly series and the monthly series is, for monthly data length of
-the series is ranked among the top five, specially in random walk with
-drift, random walk, ETS with seasonal and trend component, ETS-seasonal,
-SARIMA and ARIMA classes. In addition to the strength of seasonality,
-the models handling seasonal components (snaive, SARIMA, all ETS models
-with seasonal component) assigned a high importance to the additional
-features related to seasonality such as ACF, PACF-based features related
-to seasonal lag or seasonally differenced series. Furthermore, as
-expected features calculated based on parameter estimated of ETS(A, A,
-A) ranked as important for the choice of ETS with damped trend and
-seasonal component and ETS with trend and seasonal component.
-
-\autoref{fig:pdpquarterly1} and \autoref{fig:pdpquarterly2} show the
-partial dependency functions of the features that get selected most
-often in the top. Additionally, the PDP of N is included to observe the
-effects stated in the literature \autocite{makridakis2000m3}. Except for
-random walk, partial dependency curves of seasonality and trend show a
-similar behaviour for both quarterly and monthly data. Hence, for
-seasonality and trend, the partial dependency curves computed based
-quarterly are presented except for random walk. Probability of selecting
-a model with a parameter to handle the seasonal effect (snaive, all ETS
-models with seasonal component, SARIMA, tbats, theta, stlar) increases
-as the seasonality increases. Further, the rwd, all ETS model with trend
-component, SARIMA, ARIMA, tbats and theta, have a high probability of
-getting selected as the strength of trend increases. On the other hand,
-opposite relationships are observed for snaive and ETS-seasonal. This
-confirms the idea that the choice of model selection consistent with the
-expected relationships. For quarterly series the probability of
-selecting random walk models remains stable up to 0.85 value of trend
-and drops sharply afterwards, whereas the FFORMS framework for monthly
-series show probability of selecting random walk models increases as
-trend increases. This could be due to the interaction effect of trend
-with other features.
-
-\autoref{fig:friedmanQ} and \autoref{fig:friedmanM} show the heat maps
-of the relative strength of all possible pairwise interactions
-calculated based on Friedman's H-statistic for quarterly and monthly
-data respectively. Within the random walk with drift class trend shows a
-high interactivity with other features. Within all classes seasonality
-show less interactivity with other features, whereas lumpiness shows
-high interactivity with other features. Further within each class, a
-subset of ACF/PACF-based features show some interactivity. In general
-interactivity between features related to correlation structure of a
-time series and overall shape (spikiness, linearity, curvature, etc)
-lead to the choice of forecast-model selection.
-
-\includegraphics{figures/oobquarterly-1.png}
+within many classes.
 
 \begin{figure}
 \centering
@@ -1167,9 +1103,40 @@ Y-axis denotes the probability of belong to corresponding class. All
 features show a nonlinear relationship with predicted probabilities.}
 \end{figure}
 
+\autoref{fig:pdpquarterlyseasonality} to \autoref{fig:pdpquarterlytrend}
+show the partial dependency curves, and associated confidence intervals
+of the top-three features that get selected most in each class.
+According to \autoref{fig:pdpquarterlyseasonality}, it is immediately
+apparent, that the probability of selecting a seasonal forecast-model
+increases as the strength of seasonalitiy increases. According to
+\autoref{fig:pdpquarterlyseasonality} and
+\autoref{fig:pdpquarterlydiff1ypacf5} probability of selecting SARIMA
+models drastically changes according to the change of seasonality, and
+diff1y\_pacf5. The partial dependence plot of trend is very similar to
+the observed patterns in yearly data.
+
 \subsection{Monthly}\label{monthly}
 
+\begin{figure}
+\centering
 \includegraphics{figures/oobmonthly-1.png}
+\caption{\label{fig:oobmonthly}Visualization of the vote matrix based on OOB
+sample for quarterly random forest. Each panel shows the predicted class
+from the random forest. The X-axis denotes the proportion of times each
+time series was classified to each class. The colours of boxplots
+correspond to class label of the ``best'' forecast-model identified
+based on MASE and sMAPE. On each row, distribution of correctly
+classified class dominates, indicating a good classification of the
+meta-learner.}
+\end{figure}
+
+\autoref{fig:oobquarterly} shows the vote-matrix information for monthly
+series. \autoref{fig:oobquarterly} and \autoref{fig:oobmonthly} depicted
+similar patterns across classes. For quarterly and monthly data, the
+same set of features and the class-labels are used to train the model.
+Hence, this consistency between the results of the quarterly and the
+monthly series would provide evidence in support of the validity and
+trustability of the model.
 
 \begin{figure}
 \centering
@@ -1185,6 +1152,25 @@ bars indicate more important features. Top 5 overall features are
 highlighted in purple. Strength of seasonality appears to be the most
 important feature.}
 \end{figure}
+
+\autoref{fig:vimonthly} shows the feature importance plots for monthly
+data. For both quarterly and monthly data strength of seasonality,
+trend, linearity and spikiness are the most important features across
+all categories. In the case of yearly data low variable importance is
+assigned to both stability and length of the series. However, within
+quarterly and monthly data a high variable importance is assigned to
+length of the series and stability. In addition to the strength of
+seasonality, the models handling seasonal components (snaive, SARIMA,
+all ETS models with seasonal component) assigned a high importance to
+the additional features related to seasonality such as ACF, PACF-based
+features related to seasonal lag or seasonally differenced series.
+Furthermore, as expected features calculated based on parameter
+estimated of ETS(A, A, A) ranked as important for the choice of ETS with
+damped trend and seasonal component and ETS with trend and seasonal
+component. One notable difference between the quarterly series and the
+monthly series is, for monthly data length of the series is ranked among
+the top five, specially in random walk with drift, random walk, ETS with
+seasonal and trend component, ETS\_seasonal, SARIMA and ARIMA classes.
 
 \begin{figure}
 \centering

@@ -10,11 +10,7 @@ votes_oobQ <- votes_oobQ %>%
   mutate(id = seq_len(n())) %>%
   melt(id.var = c("classlabel", "id", "predicted"), na.rm = T) %>%
   select(-id)
-# new addition to arrange labels
-votes_oobQ$classlabel <- factor(votes_oobQ$classlabel, levels = rev(c(
-  "snaive", "rwd", "rw", "ETS-notrendnoseasonal", "ETS-dampedtrend", "ETS-trend", "ETS-dampedtrendseasonal", "ETS-trendseasonal", "ETS-seasonal", "SARIMA",
-  "ARIMA", "ARMA/AR/MA", "stlar", "tbats", "wn", "theta", "nn"
-)))
+
 
 votes_oobQ <- votes_oobQ %>% mutate(classlabel = recode(classlabel,
   "snaive"="snaive", "rwd"="rwd", "rw"="rw", "ETS-notrendnoseasonal"="ETS_NTNS",
@@ -37,6 +33,12 @@ votes_oobQ <- votes_oobQ %>% mutate(variable= recode(variable,
               "ETS-trendseasonal"="ETS_TS", "ETS-seasonal"="ETS_S", "SARIMA"="SARIMA",
               "ARIMA"="ARIMA", "ARMA/AR/MA"="ARMA", "stlar"="stlar", 
               "tbats"="tbats", "wn"="wn", "theta"="theta", "nn"="nn"))
+
+# new addition to arrange labels
+votes_oobQ$variable <- factor(votes_oobQ$variable, levels = c(
+  "snaive", "rwd", "rw", "ETS_NTNS", "ETS_DT", "ETS_T", "ETS_DTS", "ETS_TS", "ETS_S", "SARIMA",
+  "ARIMA", "ARMA", "stlar", "tbats", "wn", "theta", "nn"
+))
 
 oob_boxplot_quarterly <- ggplot(votes_oobQ, aes(x = classlabel, y = value, fill = classlabel)) +
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
