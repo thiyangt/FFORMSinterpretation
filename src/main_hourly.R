@@ -107,14 +107,6 @@ feaImp_hourly <- ggplot(meanrank_hourly, aes(y = rank, x = feature,fill=as.facto
   theme(text=element_text(size = 20))
 feaImp_hourly
 
-## ----hourlypdp
-load("data/hourly/hiceout/curvaturegridH.rda")
-curvaturegridH$variable <- rep(1:1000, 20)
-
-load("data/hourly/hiceout/linearitygridH.rda")
-linearitygridH$variable <- rep(1:1000, 20)
-load("data/hourly/hiceout/seasonality1gridH.rda")
-
 
 ## ---- seasonalityhourly
 load("data/hourly/hiceout/seasonality1gridH.rda")
@@ -158,37 +150,67 @@ plot_pdp_hourly_seasonal <- ggplot(seasonal_DW, aes(x=seasonal, y=mean, color=fe
   theme(axis.text.x = element_text(angle = 90), text = element_text(size=16), axis.title = element_text(size = 14))+
   theme(strip.text.x = element_text(size = 16))+xlab("strength of seasonality")+
   ylab("probability of selecting forecast-models")+
-  theme(legend.position="bottom", legend.title=element_blank())
+  theme(legend.position="bottom", legend.title=element_blank())+
+  scale_colour_manual("",values=c("red", "blue"))+
+  scale_fill_manual("",values=c("red", "blue"))
 plot_pdp_hourly_seasonal
 
 ## ---- entropyhourly
 load("data/hourly/hiceout/entropygridH.rda")
-entropygridH$variable <- rep(1:1000, 20)
 ## Arrange graphs for faceting
 keep.modelnames <- c("snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
                      "theta","nn","wn")
-keepE <- c(keep.modelnames, "entropy")
-entropygridH1 <- entropygridH[, names(entropygridH) %in% keepE]
-entropygridH1_long <- gather(entropygridH1, class, probability, "mstlarima":"wn", factor_key = TRUE)
-entropygridH1_long_mean <- entropygridH1_long %>%
-  group_by(entropy, class) %>%
-  summarise(n=n(), mean=mean(probability), sd=sd(probability)) %>%
-  mutate(sem = sd/sqrt(n-1),
-         CI_lower = mean+qt((1-0.95)/2, n-1)*sem,
-         CI_upper = mean - qt((1-0.95)/2, n-1)*sem)
-
-entropygridH1_long_mean$class <- factor(entropygridH1_long_mean$class,
+keepentropy <- c(keep.modelnames, "entropy")
+entropy1 <- entropygridH[, names(entropygridH) %in% keepentropy]
+entropy1_long <- gather(entropy1, class, probability,  "mstlarima":"wn", factor_key = TRUE)
+entropy1_long$class <- factor(entropy1_long$class,
                             levels = c("snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
                                        "theta","nn","wn"))
 
-plot_pdp_hourly_entropy <- ggplot(entropygridH1_long_mean, aes(x=entropy, y=mean))+
-  geom_line(aes(x=entropy, y=mean, size=1))+
-  geom_ribbon(aes(ymin=CI_lower, ymax=CI_upper),alpha=0.3, fun.args = list(mult = 1))+facet_grid(. ~ class)+
-  theme(axis.text.x = element_text(angle = 90), text = element_text(size=16), axis.title = element_text(size = 14))+
-  theme(strip.text.x = element_text(size = 16))+xlab("entropy")+
-  ylab("probability of selecting forecast-models")+
-  theme(legend.position="bottom", legend.title=element_blank())
+plot_pdp_hourly_entropy <- ggplot(data = entropy1_long, aes_string(x = entropy1_long$entropy, y = "probability")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) +
+  stat_summary(fun.data = mean_cl_normal,fill="red", geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+ 
+  theme(axis.text.x = element_text(angle = 90), text = element_text(size=16), axis.title = element_text(size = 16))+
+  facet_grid(. ~ class)+theme(strip.text.x = element_text(size = 16))+xlab("entropy")+ylab("probability of selecting forecast-models")
 plot_pdp_hourly_entropy
+
+## ---- linearityhourly
+load("data/hourly/hiceout/linearitygridH.rda")
+## Arrange graphs for faceting
+keep.modelnames <- c("snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
+                     "theta","nn","wn")
+keeplinearity <- c(keep.modelnames, "linearity")
+linearityhourly1 <- linearitygridH[, names(linearitygridH) %in% keeplinearity]
+linearityhourly1_long <- gather(linearityhourly1 , class, probability,  "mstlarima":"wn", factor_key = TRUE)
+linearityhourly1_long$class <- factor(linearityhourly1_long$class,
+                              levels = c("snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
+                                         "theta","nn","wn"))
+
+plot_pdp_hourly_linearity <- ggplot(data = linearityhourly1_long, aes_string(x = linearityhourly1_long$linearity, y = "probability")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) +
+  stat_summary(fun.data = mean_cl_normal,fill="red", geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+ 
+  theme(axis.text.x = element_text(angle = 90), text = element_text(size=16), axis.title = element_text(size = 16))+
+  facet_grid(. ~ class)+theme(strip.text.x = element_text(size = 16))+xlab("linearity")+ylab("probability of selecting forecast-models")
+plot_pdp_hourly_linearity
+
+## ---- curvaturehourly
+load("data/hourly/hiceout/curvaturegridH.rda")
+## Arrange graphs for faceting
+keep.modelnames <- c("snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
+                     "theta","nn","wn")
+keepcurvature <- c(keep.modelnames, "curvature")
+curvaturehourly1 <- curvaturegridH[, names(curvaturegridH) %in% keepcurvature]
+curvaturehourly1_long <- gather(curvaturehourly1 , class, probability,  "mstlarima":"wn", factor_key = TRUE)
+curvaturehourly1_long$class <- factor(curvaturehourly1_long$class,
+                                      levels = c("snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
+                                                 "theta","nn","wn"))
+
+plot_pdp_hourly_curvature <- ggplot(data = curvaturehourly1_long, aes_string(x = curvaturehourly1_long$curvature, y = "probability")) +
+  stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) +
+  stat_summary(fun.data = mean_cl_normal,fill="red", geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+ 
+  theme(axis.text.x = element_text(angle = 90), text = element_text(size=16), axis.title = element_text(size = 16))+
+  facet_grid(. ~ class)+theme(strip.text.x = element_text(size = 16))+xlab("curvature")+ylab("probability of selecting forecast-models")
+plot_pdp_hourly_curvature
 
 
 ## ---- pcahourly
