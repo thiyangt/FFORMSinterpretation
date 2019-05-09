@@ -485,7 +485,7 @@ frequencies and hence the appropriateness of different features and
 forecast-models we considered as class labels.
 
 \begin{figure}[h]
-\includegraphics[width=1.15\linewidth]{figures/framework} \caption{extended FFORMS (Feature-based FORecast-Model Selection) framework. The offline phase is shown in blue, the online phase by red and the peeking inside FFORMS is shown in yellow.}\label{fig:framework}
+\includegraphics[width=1.15\linewidth]{figures/framework2} \caption{extended FFORMS (Feature-based FORecast-Model Selection) framework. The offline phase is shown in blue, the online phase by red and the peeking inside FFORMS is shown in yellow.}\label{fig:framework}
 \end{figure}
 
 \section{Offline phase}\label{offline}
@@ -925,8 +925,6 @@ An alternative for explaining local behaviour of complex models is
 proposed by \textcite{lundberg2017unified} based on game theory named
 ``Shapley values''.
 
-\section{Results:}\label{results}
-
 \clearpage
 
 \section{Results: Peeking inside FFORMS}\label{results2}
@@ -962,7 +960,7 @@ meta-learner.}
 
 \autoref{fig:viyearly} shows how important each one of the features we
 considered within each class as well as in the overall classification
-mechanism of the FFORMS. The srength of trend, test statistic based on
+mechanism of the FFORMS. The strength of trend, test statistic based on
 Phillips-Perron unit root test, first ACF value of the differenced
 series, and linearity are the most important features across all
 categories. The first ACF value of the original series appears to be
@@ -981,7 +979,7 @@ class.
 partial dependency curves, and associated confidence intervals of the
 top-three features that get selected most in each class. In all three
 cases, within each class the displayed relationship consistent with the
-theoritical expectations.
+theoretical expectations.
 
 \begin{figure}
 \centering
@@ -1038,9 +1036,9 @@ indicate some series are correctly classified with very high
 probability. Furthermore, except ETS\_DTS, ETS\_TS, ETS\_S and SARIMA
 all other series has a high chance of classified into random walk with
 drift class. Within tbats panel all distributions located further away
-from zero, indicating all time series selec tbats model at least once
+from zero, indicating all time series select tbats model at least once
 from the individual trees in the forest. Within the panels theta, and nn
-all distributions level at simila proportionalities.
+all distributions level at similar proportionalities.
 
 \begin{figure}
 \centering
@@ -1112,7 +1110,7 @@ show the partial dependency curves, and associated confidence intervals
 of the top-three features that get selected most in each class.
 According to \autoref{fig:pdpquarterlyseasonality}, it is immediately
 apparent, that the probability of selecting a seasonal forecast-model
-increases as the strength of seasonalitiy increases. According to
+increases as the strength of seasonality increases. According to
 \autoref{fig:pdpquarterlyseasonality} and
 \autoref{fig:pdpquarterlydiff1ypacf5} probability of selecting SARIMA
 models drastically changes according to the change of seasonality, and
@@ -1220,7 +1218,7 @@ trend, strength of seasonality, stability and lumpiness have been
 assigned a high importance. This is similar to the results of yearly,
 quarterly and monthly data. The length of series has been selected among
 top 5 by mstlets, tbats, theta and neural network models. The partial
-dependence plots for seasonality, trend and linearity is very simila to
+dependence plots for seasonality, trend and linearity is very similar to
 the patterns observed in quarterly and monthly data. Hence, we have not
 repeated the results. Instead, we have plotted the partial dependence
 plot for spikiness. According to \autoref{fig:weeklypdp} the probability
@@ -1318,11 +1316,11 @@ strength of weekly seasonality increases. The partial dependency plots
 of entropy are shown in \autoref{fig:entropyhourly}. The entropy
 measures forecastability of time series. We can see the probability of
 selecting random walk with drift and tbats decreases as the entropy
-increases. The is consistent with our theoretical expectations. Inother
-words, if the series has a clear trend or a clear trignomatic pattern
+increases. The is consistent with our theoretical expectations. In other
+words, if the series has a clear trend or a clear trigonometric pattern
 then the forecastability of the time series is high and the entropy is
 low. For a clear trend, random walk with drift model is suitable while
-for a series with trignometric pattern tbats model is suitable.
+for a series with trigonometric pattern tbats model is suitable.
 
 \subsection{Daily}\label{daily}
 
@@ -1354,11 +1352,11 @@ linearity. Furthermore, length of the series is important in determining
 random walk, random walk with drift, mstlarima, mstlets, stlar, theta
 and nn classes.
 
-\autoref{fig:dailypdp} shows the partial dependency plots of the top 3
-features for daily series. According to the results of
-\autoref{fig:dailypdp} shorter series tends to select random walk with
-drift models while probability of selecting snaive, mstlarima and
-mstlets models increases as the length of series increases. Neural
+\autoref{fig:dailypdpstability} shows the partial dependency plots of
+the top 3 features for daily series. According to the results of
+\autoref{fig:dailypdpstability} shorter series tends to select random
+walk with drift models while probability of selecting snaive, mstlarima
+and mstlets models increases as the length of series increases. Neural
 network models show a non-monotonic relationship with length of the
 series (N). The theta models tend to be selected for series with high
 annual seasonality but very low weekly seasonality.
@@ -1395,7 +1393,13 @@ effect}\label{assessment-of-interaction-effect-1}
 dependency plot for most frequently appeared two-way interacting feature
 combinations. Most frequently appeared two-way interacting feature
 combinations were identified based on the Friedman's H-Statistics
-calculations.
+calculations. For each frequency category, Friedman's H-statistics
+between all possible two-way feature combinations were calculated. Then,
+for each feature combination mean value of Friedman's H-Statistic across
+all forecast-models were calculated. The feature combination with
+highest mean value is considered as most frequently appeared two-way
+interaction effect. \autoref{fig:intyearly} to \autoref{fig:intdaily}
+shows white noise class is easily separated.
 
 \begin{figure}
 \centering
@@ -1440,9 +1444,7 @@ between sediff\_acf5 and seasonality\_W for daily data.}
 \end{figure}
 
 \clearpage
-
-\subsection{Local Interpretable Model-agnostic
-Explanations}\label{local-interpretable-model-agnostic-explanations}
+\#\# Local Interpretable Model-agnostic Explanations
 
 \begin{figure}[h]
 
