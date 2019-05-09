@@ -8,66 +8,66 @@ colNamesed <- colnames(eacf1.diff2yacf1.y)[27:36]
 colNamesha <- colnames(hurst.y_acf5.y)[27:36]
 colNameshe <- colnames(hurst.e_acf1.y)[27:36]
 
-# rwd
-int1 <- ggplot(
-  data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[8], fill = colNamesls[8]
-  ))+geom_tile() + 
-  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100),option = "A", direction = -1)+
-  xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("rwd")
-## rw
-int2 <- ggplot(
-  data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[7], fill = colNamesls[7]
-  ))+geom_tile() + 
-  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100),option = "A", direction = -1)+
-  xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("rw")
-# ETS-trend
-int3 <- ggplot(
-  data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[5], fill = colNamesls[5]
-  ))+geom_tile() + 
-  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100),option = "A", direction = -1)+
-  xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("ETS-trend")
-## ETS_dampedtrend
-int4 <- ggplot(
-  data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[3], fill = colNamesls[3]
-  ))+geom_tile() + 
-  scale_fill_viridis_c(limits = c(0, 0.003), breaks = seq(0, 0.003, 100),option = "A", direction = -1)+
-  xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("ETS-dampedtrend")
-# ETS-notrendseasonal
-int5 <- ggplot(
-  data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[4], fill = colNamesls[4]
-  ))+geom_tile() + 
-  scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100),option = "A", direction = -1)+
-  xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("ETS-notrendnoseasonal")
-# ARIMA
-int6 <- ggplot(
-  data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[1], fill = colNamesls[1]
-  ))+geom_tile() + 
-  scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100),option = "A", direction = -1)+
-  xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("ARIMA")
-## ARMA
-int7 <- ggplot(
-  data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[2], fill = colNamesls[2]
-  ))+geom_tile() + 
-  scale_fill_viridis_c(limits = c(0, 0.005), breaks = seq(0, 0.005, 100),option = "A", direction = -1)+
-  xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("ARMA/AR/MA")
-# wn
-int8 <- ggplot(
-  data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[10], fill = colNamesls[10]
-  ))+geom_tile() + 
-  scale_fill_viridis_c(limits = c(0, 0.8), breaks = seq(0, 0.8, 100),option = "A", direction = -1)+
-  xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("wn")
-## theta
-int9 <- ggplot(
-  data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[9], fill = colNamesls[9]
-  ))+geom_tile() + 
-  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100),option = "A", direction = -1)+
-  xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("theta")
-# nn
-int10 <- ggplot(
-  data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[6], fill = colNamesls[6]
-  ))+geom_tile() + 
-  scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100),option = "A", direction = -1)+
-  xlab("lumpiness") + ylab("stability") +ggtitle("nn")
+# # rwd
+# int1 <- ggplot(
+#   data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[8], fill = colNamesls[8]
+#   ))+geom_tile() + 
+#   scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100),option = "A", direction = -1)+
+#   xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("rwd")
+# ## rw
+# int2 <- ggplot(
+#   data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[7], fill = colNamesls[7]
+#   ))+geom_tile() + 
+#   scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100),option = "A", direction = -1)+
+#   xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("rw")
+# # ETS-trend
+# int3 <- ggplot(
+#   data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[5], fill = colNamesls[5]
+#   ))+geom_tile() + 
+#   scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100),option = "A", direction = -1)+
+#   xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("ETS-trend")
+# ## ETS_dampedtrend
+# int4 <- ggplot(
+#   data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[3], fill = colNamesls[3]
+#   ))+geom_tile() + 
+#   scale_fill_viridis_c(limits = c(0, 0.003), breaks = seq(0, 0.003, 100),option = "A", direction = -1)+
+#   xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("ETS-dampedtrend")
+# # ETS-notrendseasonal
+# int5 <- ggplot(
+#   data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[4], fill = colNamesls[4]
+#   ))+geom_tile() + 
+#   scale_fill_viridis_c(limits = c(0, 0.1), breaks = seq(0, 0.1, 100),option = "A", direction = -1)+
+#   xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("ETS-notrendnoseasonal")
+# # ARIMA
+# int6 <- ggplot(
+#   data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[1], fill = colNamesls[1]
+#   ))+geom_tile() + 
+#   scale_fill_viridis_c(limits = c(0, 0.05), breaks = seq(0, 0.05, 100),option = "A", direction = -1)+
+#   xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("ARIMA")
+# ## ARMA
+# int7 <- ggplot(
+#   data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[2], fill = colNamesls[2]
+#   ))+geom_tile() + 
+#   scale_fill_viridis_c(limits = c(0, 0.005), breaks = seq(0, 0.005, 100),option = "A", direction = -1)+
+#   xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("ARMA/AR/MA")
+# # wn
+# int8 <- ggplot(
+#   data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[10], fill = colNamesls[10]
+#   ))+geom_tile() + 
+#   scale_fill_viridis_c(limits = c(0, 0.8), breaks = seq(0, 0.8, 100),option = "A", direction = -1)+
+#   xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("wn")
+# ## theta
+# int9 <- ggplot(
+#   data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[9], fill = colNamesls[9]
+#   ))+geom_tile() + 
+#   scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100),option = "A", direction = -1)+
+#   xlab("lumpiness") + ylab("stability") + theme(legend.position="none")+ggtitle("theta")
+# # nn
+# int10 <- ggplot(
+#   data = lumpiness.stability.y, aes_string(x = lumpiness.stability.y$lumpiness,y = lumpiness.stability.y$stability, z = colNamesls[6], fill = colNamesls[6]
+#   ))+geom_tile() + 
+#   scale_fill_viridis_c(limits = c(0, 0.2), breaks = seq(0, 0.2, 100),option = "A", direction = -1)+
+#   xlab("lumpiness") + ylab("stability") +ggtitle("nn")
 
 int1+int2+int3+int4+int5+int6+int7+int8+int9+int10+plot_layout(ncol = 5, nrow = 2)
 

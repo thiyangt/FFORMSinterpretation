@@ -201,6 +201,35 @@ plot_pdp_monthlyN
 
 
 
+## ---- intmonthly
+load("data/monthly/sediff_acf5.sediff_seacf1.m.rda")
+colNamesds <- colnames(sediff_acf5.sediff_seacf1.m )[32:48]
+keep.modelnames <- c("ARIMA", "ARMA.AR.MA", "ETS.dampedtrend", "ETS.dampedtrendseasonal",
+                     "ETS.notrendnoseasonal", "ETS.seasonal", 
+                     "ETS.trend","ETS.trendseasonal"  ,"nn", "rw",
+                     "rwd", "SARIMA","snaive","stlar","tbats","theta", "wn")
+keepm <- c(keep.modelnames, c("sediff_acf5", "sediff_seacf1"))
+sediff_acf5.sediff_seacf1.m <- sediff_acf5.sediff_seacf1.m[, names(sediff_acf5.sediff_seacf1.m) %in% keepm]
+sediff_acf5.sediff_seacf1.m.long <- gather(sediff_acf5.sediff_seacf1.m, class, probability, "ARIMA":"wn", factor_key = TRUE)
+sediff_acf5.sediff_seacf1.m.long <- sediff_acf5.sediff_seacf1.m.long %>%
+  mutate(class = recode(class, "ARIMA"="ARIMA", "ARMA.AR.MA"="ARMA", 
+                        "ETS.dampedtrend"="ETS_DT", "ETS.dampedtrendseasonal"="ETS_DTS",
+                        "ETS.notrendnoseasonal"="ETS_NTNS", "ETS.seasonal"="ETS_S", 
+                        "ETS.trend"="ETS_T","ETS.trendseasonal"="ETS_TS"  ,"nn"="nn", "rw"="rw",
+                        "rwd"="rwd", "SARIMA"="SARIMA","snaive"="snaive","stlar"="stlar","tbats"="tbats","theta"="theta", "wn"="wn"))
+sediff_acf5.sediff_seacf1.m.long$class <- factor(sediff_acf5.sediff_seacf1.m.long$class,
+                                             levels = c("snaive","rw", "rwd", "ETS_NTNS","ETS_DT", "ETS_T", "ETS_DTS",
+                                                        "ETS_TS", "ETS_S","tbats","stlar", "SARIMA",
+                                                        "ARIMA", "ARMA", "wn", "theta", "nn" ))
+
+
+sediff_acf5.sediff_seacf1.m.long %>%
+  ggplot(aes(x = sediff_acf5, y = sediff_seacf1, fill = probability)) +
+  geom_raster() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  facet_wrap(~class, ncol=9) +
+  scale_fill_viridis_c(option = "A", direction = -1)+
+  theme(strip.text.x = element_text(size = 12))
 
 
 

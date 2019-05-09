@@ -216,6 +216,36 @@ fried.mat.weekly <- ggcorrplot(friedman.weekly.mean, hc.order = TRUE, type = "up
         plot.margin=unit(c(0,0,0,0), "null"))
 fried.mat.weekly
 
+
+## ---- intweekly
+load("data/weekly/trend.entropy.w.rda")
+colNameste <- colnames(trend.entropy.w)[29:40]
+
+keep.modelnames <- c("snaive", "rw", "rwd", "ARMA.AR.MA","ARIMA", "SARIMA",
+                     "stlar", "mstlets", "tbats", "theta", "nn", "wn")
+keepw <- c(keep.modelnames, c("trend", "entropy"))
+trend.entropy.w <- trend.entropy.w[, names(trend.entropy.w) %in% keepw]
+trend.entropy.w.long <- gather(trend.entropy.w, class, probability, "ARIMA":"wn", factor_key = TRUE)
+trend.entropy.w.long <- trend.entropy.w.long %>%
+  mutate(class = recode(class, "snaive"="snaive", "rw"="rw",
+                        "rwd"="rwd", "ARMA.AR.MA"="ARMA", "ARIMA"="ARIMA", "SARIMA"="SARIMA",
+                        "stlar"="stlar", "mstlets"="mstlets", "tbats"="tbats", "theta"="theta", "nn"="nn", "wn"="wn"))
+trend.entropy.w.long$class <- factor(trend.entropy.w.long$class,
+                                           levels = c("snaive", "rw", "rwd", "ARMA","ARIMA", "SARIMA",
+                                                      "stlar", "mstlets", "tbats", "theta", "nn", "wn"))
+
+
+trend.entropy.w.long %>%
+  ggplot(aes(x = trend, y = entropy, fill = probability)) +
+  geom_raster() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  facet_wrap(~class, ncol=6) +
+  scale_fill_viridis_c(option = "A", direction = -1)+
+  theme(strip.text.x = element_text(size = 18))
+
+
+
+
 ## ---- pcaweekly
 load("data/weekly/trainW_votes.rda")
 pcaWvariables <- weekly_training[, c(1:26, 28)]

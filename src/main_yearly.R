@@ -293,14 +293,55 @@ nn_YFH_cormat <- friedmanHstat_matrix(nn_YFH, 25, rev(col.order))
 friedman.yearly.mean <- (rwd_YFH_cormat + rw_YFH_cormat + etst_YFH_cormat + 
                            etsdt_YFH_cormat + etsntns_YFH_cormat + arima_YFH_cormat +
                            arma_YFH_cormat + wn_YFH_cormat + theta_YFH_cormat + nn_YFH_cormat)/10
-fried.mat.yearly <- ggcorrplot(friedman.yearly.mean, hc.order = TRUE, type = "upper",
-                               outline.col = "white")+
-  scale_fill_continuous(limits=c(0, 1), breaks=seq(0,1,100), 
+
+# friedman.yearly.mean2 <- friedman.yearly.mean[ c("ur_pp", "linearity", "trend", "lmres_acf1", "N",
+#                                                   "ur_kpss", "stability", "lumpiness", "curvature", "diff1y_acf5",
+#                                                   "spikiness", "entropy", "diff1y_pacf5", "diff2y_acf1", "e_acf1",
+#                                                   "diff2y_pacf5", "diff2y_acf5", "nonlinearity", "y_acf5", "hurst",
+#                                                   "alpha", "y_acf1", "y_pacf5", "diff1y_acf1", "beta"), ]
+fried.mat.yearly <- ggcorrplot(friedman.yearly.mean, hc.order = TRUE, type = "lower",
+                                outline.col = "white")+
+   scale_fill_continuous(limits=c(0, 1), breaks=seq(0,1,100), 
                         high = "#ef8a62", low = "#f7f7f7",
                         name = "Friedman's H-statistic")+
   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1))
+                                    size = 12, hjust = 1))
 fried.mat.yearly
+
+## ---- intyearly
+load("data/yearly/lumpiness.stability.y.rda")
+colNamesls <- colnames(lumpiness.stability.y)[27:36]
+
+keep.modelnames <- c("ARIMA", "ARMA.AR.MA", "ETS.dampedtrend", "ETS.notrendnoseasonal",
+                     "ETS.trend", "nn", "rw", "rwd", "theta", "wn")
+keepy <- c(keep.modelnames, c("lumpiness", "stability"))
+lumpiness.stability.y <- lumpiness.stability.y[, names(lumpiness.stability.y) %in% keepy]
+lumpiness.stability.y.long <- gather(lumpiness.stability.y, class, probability, "ARIMA":"wn", factor_key = TRUE)
+lumpiness.stability.y.long <- lumpiness.stability.y.long %>%
+  mutate(class = recode(class, nn="nn",
+                        theta = "theta",
+                        wn = "wn",
+                        "ARMA.AR.MA" = "ARMA",
+                        ARIMA = "ARIMA",
+                        "ETS.notrendnoseasonal" = "ETS_NTNS",
+                        "ETS.dampedtrend" = "ETS_DT",
+                        "ETS.trend" = "ETS_T",
+                        "rwd" = "rwd",
+                        "rw" = "rw" ))
+lumpiness.stability.y.long$class <- factor(lumpiness.stability.y.long$class,
+                               levels = c("rw", "rwd", "ETS_T", "ETS_DT", "ETS_NTNS",
+                                          "ARIMA", "ARMA", "wn", "theta", "nn" ))
+
+
+lumpiness.stability.y.long %>%
+  ggplot(aes(x = lumpiness, y = stability, fill = probability)) +
+  geom_raster() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  facet_wrap(~class, ncol=5) +
+  scale_fill_viridis_c(option = "A", direction = -1)+
+  theme(strip.text.x = element_text(size = 18))
+
+
 
 ## ---- yearlypcamodels
 load("data/yearly/yearly_training.rda") 

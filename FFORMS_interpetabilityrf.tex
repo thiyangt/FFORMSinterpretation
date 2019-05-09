@@ -846,6 +846,10 @@ measure.
 of forecast-model
 selection}\label{relationship-between-most-important-features-and-the-choice-of-forecast-model-selection}
 
+The partial-dependence curves along with their confidence intervals are
+used to visualize the relationship between top features are the choice
+of forecast model selection.
+
 \subsection{Assessment of interaction
 effect}\label{assessment-of-interaction-effect}
 
@@ -1192,14 +1196,12 @@ show a nonlinear relationship with predicted probabilities.}
 
 \subsection{Weekly}\label{weekly}
 
-\autoref{fig:oobweekly} shows the proportion of times each time series
-was classified to each class. Unlike, yearly, quarterly and monthly data
-theta method has a low chance of getting selected. The random walk with
-drift, tbats models and nn have a high chance of getting selected.
-Except ARMA/AR/MA class the distributions corresponds to the true class
-label dominate others. ARMA/AR/MA class shows some unusual behaviour
-within some categories due to class imbalance ratio, ARMA/AR/MA class
-contains fewer number of observations in the training set.
+\autoref{fig:oobweekly} shows the vote matrix information for weekly
+data. Unlike, yearly, quarterly and monthly data theta method has a low
+chance of getting selected. The random walk with drift, tbats models and
+nn have a high chance of getting selected. ARMA class shows some unusual
+behaviour within some categories due to class imbalance ratio, ARMA
+class contains fewer number of observations in the training set.
 
 \begin{figure}
 \centering
@@ -1213,22 +1215,18 @@ based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of
 getting selected.}
 \end{figure}
 
-\clearpage
-
 According to the results of \autoref{fig:viweekly} spikiness, linearity,
 trend, strength of seasonality, stability and lumpiness have been
 assigned a high importance. This is similar to the results of yearly,
 quarterly and monthly data. The length of series has been selected among
-top 5 by mstlets, tbats, theta and neural network models. According to
-the results of \autoref{fig:weeklypdp} for mstlets models probability of
-getting selected increases as the linearity increases while the opposite
-relationship is observed for SARIMA models. According to
-\autoref{fig:weeklypdp} probability of selecting snaive, random walk,
-neural network and white noise increases as spikiness increases.
-Furthermore, as expected, partial dependency plots reveal probability of
-selecting random walk and neural network models decrease as the
-stability increases while the opposite relationship can be observed for
-white noise class.
+top 5 by mstlets, tbats, theta and neural network models. The partial
+dependence plots for seasonality, trend and linearity is very simila to
+the patterns observed in quarterly and monthly data. Hence, we have not
+repeated the results. Instead, we have plotted the partial dependence
+plot for spikiness. According to \autoref{fig:weeklypdp} the probability
+of selecting snaive, random walk, neural network and white noise
+increases as the spikiness increases while other forecast-model classes
+show the opposite.
 
 \begin{figure}[h]
 
@@ -1249,6 +1247,14 @@ belonging to corresponding class.}
 \end{figure}
 
 \subsection{Hourly}\label{hourly}
+
+\autoref{fig:oobhourly} shows the vote matrix information for hourly
+data. Overall, for hourly series random walk with drift models, tbats
+and neural network models have a high chance of getting selected.
+Furthermore, it is important to note that within nn panels all
+distributions located away from series which indicates all hourly series
+have been assigned a non-zero probability of getting selected to neural
+network class.
 
 \begin{figure}
 \centering
@@ -1273,6 +1279,19 @@ VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate
 more important features. Top 5 features are highlighted in red.}
 \end{figure}
 
+Variable importance graph for hourly data is shown in
+\autoref{fig:vihourly}. According to \autoref{fig:vihourly}, the
+strength of daily seasonality (period=24, measured by
+seasonal\_strength1) appear to be more important than the strength of
+weekly seasonality (period=168, measured by seasonal\_strength2).
+However, the strength of weekly seasonality also seems to be one of the
+most important features for classes snaive, random walk, mstlarima, and
+tbats. Furthermore, entropy, linearity, sum of squares of first 5
+coefficients of PACF, curvature, trend, spikiness and stability were
+found to be the most important features in determining best forecasting
+method for hourly time series. Only snaive category ranked N among top 5
+for hourly time series.
+
 \begin{figure}
 \centering
 \includegraphics{figures/seasonalityhourly-1.png}
@@ -1289,56 +1308,31 @@ shading shows the 95\% confidence intervals. Y-axis denotes the
 probability of belonging to corresponding class.}
 \end{figure}
 
+The partial dependency plots of the strength of seasonalities are shown
+in \autoref{fig:seasonalityhourly}. According to
+\autoref{fig:seasonalityhourly} the probability of selecting random
+walk, random walk with drift, theta model and white noise process
+decrease with higher value of strength of daily seasonality. On the
+other hand, probability of selecting random walk model increase as the
+strength of weekly seasonality increases. The partial dependency plots
+of entropy are shown in \autoref{fig:entropyhourly}. The entropy
+measures forecastability of time series. We can see the probability of
+selecting random walk with drift and tbats decreases as the entropy
+increases. The is consistent with our theoretical expectations. Inother
+words, if the series has a clear trend or a clear trignomatic pattern
+then the forecastability of the time series is high and the entropy is
+low. For a clear trend, random walk with drift model is suitable while
+for a series with trignometric pattern tbats model is suitable.
+
 \subsection{Daily}\label{daily}
 
-According to \autoref{fig:oobdailyhourly} the distributions corresponds
+\autoref{fig:oobdaily} shows the vote matrix information for hourly
+data. According to \autoref{fig:oobdaily} the distributions corresponds
 to observations that have been correctly classified dominate the top for
 daily data. However, within daily series there are few observations that
 have been incorrectly classified to tbats class with very high
 probabilities. In general, neural network models have a higher chance of
-getting selected for daily time series. Overall, for hourly series
-random walk with drift models, tbats and neural network models have a
-high chance of getting selected. Furthermore, it is important to note
-that all hourly series have been assigned a non-zero probability of
-getting selected to neural network class.
-
-Variable importance graph for daily and hourly data are shown in
-\autoref{fig:vidaily} and \autoref{fig:vihourly} respectively. The most
-important features for daily time series are, strength of seasonality
-corresponds to the weekly seasonality (7, measured by
-seasonal\_strength1), stability, trend, lumpiness and linearity.
-Furthermore, length of the series is important in determining random
-walk, random walk with drift, mstlarima, mstlets, stlar, theta and nn
-classes.
-
-According to \autoref{fig:vihourly}, the strength of daily seasonality
-(period=24, measured by seasonal\_strength1) appear to be more important
-than the strength of weekly seasonality (period=168, measured by
-seasonal\_strength2). Furthermore, entropy, linearity, sum of squares of
-first 5 coefficients of PACF, curvature, trend, spikiness and stability
-were found to be the most important features in determining best
-forecasting method for hourly time series. Only snaive category ranked N
-among top 5 for hourly time series. The strength of weekly seasonality
-also seems to be one of the most important features for classes snaive,
-random walk, mstlarima, and tbats.
-
-\autoref{fig:dailypdp} shows the partial dependency plots of the top 3
-features for daily series. According to the results of
-\autoref{fig:dailypdp} shorter series tends to select random walk with
-drift models while probability of selecting snaive, mstlarima and
-mstlets models increases as the length of series increases. Neural
-network models show a non-monotonic relationship with length of the
-series (N). The theta models tend to be selected for series with high
-annual seasonality but very low weekly seasonality.
-
-The partial dependency plots of the top 3 features for hourly series are
-shown in \autoref{fig:hourlypdp}. According to \autoref{fig:hourlypdp}
-the probability of selecting random walk, random walk with drift, theta
-model and white noise process decrease with higher value of strength of
-daily (seasonal\_strength1) seasonality, while the opposite relationship
-holds for the other classes. On the other hand, probability of selecting
-random walk model increase as the strength of weekly seasonality
-increases.
+getting selected for daily time series.
 
 \begin{figure}
 \centering
@@ -1351,6 +1345,23 @@ corresponds to class label of the ``best'' forecast-model identified
 based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of
 getting selected.}
 \end{figure}
+
+Variable importance graph for daily data is shown in
+\autoref{fig:vidaily}. The most important features for daily time series
+are, strength of seasonality corresponds to the weekly seasonality (7,
+measured by seasonal\_strength1), stability, trend, lumpiness and
+linearity. Furthermore, length of the series is important in determining
+random walk, random walk with drift, mstlarima, mstlets, stlar, theta
+and nn classes.
+
+\autoref{fig:dailypdp} shows the partial dependency plots of the top 3
+features for daily series. According to the results of
+\autoref{fig:dailypdp} shorter series tends to select random walk with
+drift models while probability of selecting snaive, mstlarima and
+mstlets models increases as the length of series increases. Neural
+network models show a non-monotonic relationship with length of the
+series (N). The theta models tend to be selected for series with high
+annual seasonality but very low weekly seasonality.
 
 \begin{figure}[h]
 
@@ -1377,13 +1388,56 @@ shading shows the 95\% confidence intervals. Y-axis denotes the
 probability of belonging to corresponding class.}
 \end{figure}
 
-According to Friedman's H-statistic for daily series, sediff\_acf5 and
-weekly seasonality (seasonal\_strength2) show high interactivity within
-each class, while for hourly series sediff\_seacf1 and linearity show
-high interactivity within each class. The partial dependency plots of
-associated figures are shown in \autoref{fig:dtwopdp} and
-\autoref{fig:htwopdp}. Each plot shows a unique pattern of interactivity
-which is useful in separating one from another.
+\subsection{Assessment of interaction
+effect}\label{assessment-of-interaction-effect-1}
+
+\autoref{fig:intyearly} to \autoref{fig:intdaily} show partial
+dependency plot for most frequently appeared two-way interacting feature
+combinations. Most frequently appeared two-way interacting feature
+combinations were identified based on the Friedman's H-Statistics
+calculations.
+
+\begin{figure}
+\centering
+\includegraphics{figures/intyearly-1.png}
+\caption{\label{fig:intyearly}Two-way partial dependency plot for
+interaction between stability and lumpiness for yearly data.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{figures/intquarterly-1.png}
+\caption{\label{fig:intquarterly}Two-way partial dependency plot for
+interaction between stability and diff1y\_acf5 for quarterly data.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{figures/intmonthly-1.png}
+\caption{\label{fig:intmonthly}Two-way partial dependency plot for
+interaction between sediff\_acf5 and sediff\_seacf1 for monthly data.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{figures/intweekly-1.png}
+\caption{\label{fig:intweekly}Two-way partial dependency plot for
+interaction between trend and entropy for weekly data.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{figures/inthourly-1.png}
+\caption{\label{fig:inthourly}Two-way partial dependency plot for
+interaction between sediff\_seacf1 and linearity for hourly data.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{figures/intdaily-1.png}
+\caption{\label{fig:intdaily}Two-way partial dependency plot for interaction
+between sediff\_acf5 and seasonality\_W for daily data.}
+\end{figure}
 
 \clearpage
 
@@ -1506,15 +1560,6 @@ for a given problem. Further the results of this study is useful in
 identifying new ways to improve forecasting accuracy by capturing
 different features of time series.
 
-\section{References}\label{references}
-
-\section{Appendix}\label{appendix}
-
-\subsection{Out-of-Bag Observations}\label{out-of-bag-observations}
-
-\subsection{Votematrix calculation based on
-OOB-observations}\label{votematrix-calculation-based-on-oob-observations}
-
-\printbibliography
+\printbibliography[title=References]
 
 \end{document}

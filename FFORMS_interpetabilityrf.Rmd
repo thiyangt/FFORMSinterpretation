@@ -301,6 +301,8 @@ To identify class-specific important features we rank features in three differen
 
 ## Relationship between most important features and the choice of forecast-model selection 
 
+The partial-dependence curves along with their confidence intervals are used to visualize the relationship between top features are the choice of forecast model selection.
+
 ## Assessment of interaction effect
 
 Friedman's H-statistic (@friedman2008predictive) is used to test the presence of interaction between all possible pairs of features. This statistic is computed based on the partial dependence functions. For two-way interaction between two specific variable $x_j$ and $x_k$, Friedman's H-statistic is defined as follow,
@@ -334,10 +336,6 @@ An alternative for explaining local behaviour of complex models is proposed by @
 ## Yearly data
 
 This vote-matrix information for the yearly data is presented in \autoref{fig:yearlyoob}. \autoref{fig:yearlyoob} indicates three main types of information. They are, i) the distributions of correctly classified classes dominate, indicating a good classification of the meta-learner, ii) the random walk with drift has a high chance of getting selected with yearly time series and the results of M4-competition also show the random walk with drift perform well with yearly time series, iii) FFORMS framework successfully learned the similarities and dissimilarities between the classes itself.  For example, within ETS models with a trend component (ETS_T, 3rd panel), disparities between forecast-models with trend components and forecast-models without trend component (wn, ARMA, ETS_NTNS) are immediately visible. 
-
-
-```{r functionfriedman}
-```
 
 
 ```{r yearlyoob, fig.height=10, fig.width=20, fig.cap="Visualization of the vote matrix based on OOB sample for yearly random forest. Each panel shows the predicted class from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the \"best\" forecast-model identified based on MASE and sMAPE. On each row, distribution of correctly classified class dominates, indicating a good classification of the meta-learner.", fig.pos="h"}
@@ -422,14 +420,12 @@ The srength of trend, test statistic based on Phillips-Perron unit root test, fi
 
 ## Weekly
 
-\autoref{fig:oobweekly} shows the proportion of times each time series was classified to each class. Unlike, yearly, quarterly and monthly data theta method has a low chance of getting selected. The random walk with drift, tbats models and nn have a high chance of getting selected. Except ARMA/AR/MA class the distributions corresponds to the true class label dominate others. ARMA/AR/MA class shows some unusual behaviour within some categories due to class imbalance ratio, ARMA/AR/MA class contains fewer number of observations in the training set. 
+\autoref{fig:oobweekly} shows the vote matrix information for weekly data. Unlike, yearly, quarterly and monthly data theta method has a low chance of getting selected. The random walk with drift, tbats models and nn have a high chance of getting selected. ARMA class shows some unusual behaviour within some categories due to class imbalance ratio, ARMA class contains fewer number of observations in the training set. 
 
 ```{r oobweekly, fig.height=10, fig.width=20, fig.cap="Visualization of the vote matrix based on OOB sample for weekly random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots corresponds to class label of the \"best\" forecast-model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of getting selected.", fig.pos="h"}
 ```
 
-\clearpage
-
-According to the results of \autoref{fig:viweekly} spikiness, linearity, trend, strength of seasonality, stability and lumpiness have been assigned a high importance. This is similar to the results of yearly, quarterly and monthly data. The length of series has been selected among top 5 by mstlets, tbats, theta and neural network models. According to the results of \autoref{fig:weeklypdp} for mstlets models probability of getting selected increases as the linearity increases while the opposite relationship is observed for SARIMA models. According to \autoref{fig:weeklypdp} probability of selecting snaive, random walk, neural network and white noise increases as spikiness increases. Furthermore, as expected, partial dependency plots reveal probability of selecting random walk and neural network models decrease as the stability increases while the opposite relationship can be observed for white noise class.
+According to the results of \autoref{fig:viweekly} spikiness, linearity, trend, strength of seasonality, stability and lumpiness have been assigned a high importance. This is similar to the results of yearly, quarterly and monthly data. The length of series has been selected among top 5 by mstlets, tbats, theta and neural network models. The partial dependence plots for seasonality, trend and linearity is very simila to the patterns observed in quarterly and monthly data. Hence, we have not repeated the results. Instead, we have plotted the partial dependence plot for spikiness. According to \autoref{fig:weeklypdp} the probability of selecting snaive, random walk, neural network and white noise increases as the spikiness increases while other forecast-model classes show the opposite. 
 
 ```{r viweekly, fig.height=15, fig.width=20, fig.cap="Feature importance plot for weekly data. Permutation-based VI measure and mean decrease in Gini coefficient is used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h", fig.align="center"}
 ```
@@ -440,6 +436,8 @@ According to the results of \autoref{fig:viweekly} spikiness, linearity, trend, 
 
 ## Hourly
 
+\autoref{fig:oobhourly} shows the vote matrix information for hourly data. Overall, for hourly series random walk with drift models, tbats and neural network models have a high chance of getting selected. Furthermore, it is important to note that within nn panels all distributions located away from series which indicates all hourly series have been assigned a non-zero probability of getting selected to neural network class. 
+
 ```{r oobhourly, fig.height=10, fig.width=20, fig.cap="Visualization of the vote matrix based on OOB sample for hourly random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots corresponds to class label of the \"best\" forecast-model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of getting selected.", fig.pos="h"}
 ```
 
@@ -447,22 +445,28 @@ According to the results of \autoref{fig:viweekly} spikiness, linearity, trend, 
 ```{r vihourly, fig.height=11, fig.width=23, fig.cap="Feature importance plot hourly series. Permutation-based VI measure and mean decrease in Gini coefficients are used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h"}
 ```
 
+Variable importance graph for hourly data is shown in \autoref{fig:vihourly}. According to \autoref{fig:vihourly}, the strength of daily
+seasonality (period=24, measured by seasonal_strength1) appear to be more important than the strength of weekly seasonality (period=168, measured by seasonal_strength2). However, the strength of weekly seasonality also seems to be one of the most important features for classes snaive, random walk, mstlarima, and tbats. Furthermore, entropy, linearity, sum of squares of first 5 coefficients of PACF, curvature, trend, spikiness and stability were found to be the most important features in determining best forecasting method for hourly time series. Only snaive category ranked N among top 5 for hourly time series. 
+
+
 ```{r seasonalityhourly, fig.height=5, fig.width=20, fig.cap="Partial dependence plots for strength of seasonality. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belonging to corresponding class.", fig.pos="h"}
 ```
 
 ```{r entropyhourly, fig.height=5, fig.width=20, fig.cap="Partial dependence plots for entropy. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belonging to corresponding class.", fig.pos="h"}
 ```
 
+The partial dependency plots of the strength of seasonalities are shown in \autoref{fig:seasonalityhourly}. According to \autoref{fig:seasonalityhourly} the probability of selecting random walk, random walk with drift, theta model and white noise process decrease with higher value of strength of daily seasonality. On the other hand, probability of selecting random walk model increase as the strength of weekly seasonality increases. The partial dependency plots of entropy are shown in \autoref{fig:entropyhourly}. The entropy measures forecastability of time series. We can see the probability of selecting random walk with drift and tbats decreases as the entropy increases. The is consistent with our theoretical expectations. Inother words, if the series has a clear trend or a clear trignomatic pattern then the forecastability of the time series is high and the entropy is low. For a clear trend, random walk with drift model is suitable while for a series with trignometric pattern tbats model is suitable.
+
 ## Daily
 
-According to \autoref{fig:oobdailyhourly} the distributions corresponds to observations that have been correctly classified dominate the top for daily data.  However, within daily series there are few observations that have been incorrectly classified to tbats class with very high probabilities. In general, neural network models have a higher chance of getting selected for daily time series. Overall, for hourly series random walk with drift models, tbats and neural network models have a high chance of getting selected. Furthermore,  it is important to note that all hourly series have been assigned a non-zero probability of getting selected to neural network class. 
+\autoref{fig:oobdaily} shows the vote matrix information for hourly data. According to \autoref{fig:oobdaily} the distributions corresponds to observations that have been correctly classified dominate the top for daily data.  However, within daily series there are few observations that have been incorrectly classified to tbats class with very high probabilities. In general, neural network models have a higher chance of getting selected for daily time series. 
 
-Variable importance graph for daily and hourly data are shown in \autoref{fig:vidaily} and \autoref{fig:vihourly} respectively. The most
-important features for daily time series are, strength of seasonality corresponds to the weekly seasonality (7, measured by seasonal_strength1), stability, trend, lumpiness and linearity. Furthermore, length of the series is important in determining random walk,
-random walk with drift, mstlarima, mstlets, stlar, theta and nn classes.
 
-According to \autoref{fig:vihourly}, the strength of daily
-seasonality (period=24, measured by seasonal_strength1) appear to be more important than the strength of weekly seasonality (period=168, measured by seasonal_strength2). Furthermore, entropy, linearity, sum of squares of first 5 coefficients of PACF, curvature, trend, spikiness and stability were found to be the most important features in determining best forecasting method for hourly time series. Only snaive category ranked N among top 5 for hourly time series. The strength of weekly seasonality also seems to be one of the most important features for classes snaive, random walk, mstlarima, and tbats. 
+```{r oobdaily, fig.height=10, fig.width=20, fig.cap="Visualization of the vote matrix based on OOB sample for daily random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots corresponds to class label of the \"best\" forecast-model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of getting selected.", fig.pos="h"}
+```
+
+
+Variable importance graph for daily data is shown in \autoref{fig:vidaily}. The most important features for daily time series are, strength of seasonality corresponds to the weekly seasonality (7, measured by seasonal_strength1), stability, trend, lumpiness and linearity. Furthermore, length of the series is important in determining random walk, random walk with drift, mstlarima, mstlets, stlar, theta and nn classes.
 
 \autoref{fig:dailypdp} shows the partial dependency plots of the
 top 3 features for daily series. According to the results of
@@ -472,16 +476,6 @@ increases as the length of series increases. Neural network models show
 a non-monotonic relationship with length of the series (N). The theta
 models tend to be selected for series with high annual seasonality but
 very low weekly seasonality.
-
-The partial dependency plots of the top 3 features for hourly series are shown in \autoref{fig:hourlypdp}. According to \autoref{fig:hourlypdp} the probability of selecting random walk, random
-walk with drift, theta model and white noise process decrease with
-higher value of strength of daily (seasonal_strength1) seasonality, while the opposite relationship holds for the other classes. On the other hand, probability of selecting
-random walk model increase as the strength of weekly
-seasonality increases. 
-
-
-```{r oobdaily, fig.height=10, fig.width=20, fig.cap="Visualization of the vote matrix based on OOB sample for daily random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots corresponds to class label of the \"best\" forecast-model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of getting selected.", fig.pos="h"}
-```
 
 
 ```{r vidaily, fig.height=11, fig.width=23, fig.cap="Feature importance plot for daily data. Permutation-based VI measure and mean decrease in Gini coefficients are used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h", fig.align="center"}
@@ -493,7 +487,35 @@ seasonality increases.
 ```{r dailypdpN, fig.height=5, fig.width=20, fig.cap="Partial dependence plots for stability. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belonging to corresponding class.", fig.pos="h"}
 ```
 
-According to Friedman's H-statistic for daily series, sediff_acf5 and weekly seasonality (seasonal_strength2) show high interactivity within each class, while for hourly series sediff_seacf1 and linearity show high interactivity within each class. The partial dependency plots of associated figures are shown in \autoref{fig:dtwopdp} and \autoref{fig:htwopdp}. Each plot shows a unique pattern of interactivity which is useful in separating one from another. 
+## Assessment of interaction effect
+
+ \autoref{fig:intyearly} to \autoref{fig:intdaily} show partial dependency plot for most frequently appeared two-way interacting feature combinations.
+Most frequently appeared two-way interacting feature combinations were identified based on the Friedman's H-Statistics calculations. 
+
+```{r intyearly, fig.height=5,fig.width=10, fig.cap="Two-way partial dependency plot for interaction between stability and lumpiness for yearly data."}
+
+```
+
+```{r intquarterly, fig.height=5,fig.width=15, fig.cap="Two-way partial dependency plot for interaction between stability and diff1y_acf5 for quarterly data."}
+
+```
+
+```{r intmonthly, fig.height=5,fig.width=15, fig.cap="Two-way partial dependency plot for interaction between sediff_acf5 and sediff_seacf1 for monthly data."}
+
+```
+
+```{r intweekly, fig.height=5,fig.width=15, fig.cap="Two-way partial dependency plot for interaction between trend and entropy for weekly data."}
+
+```
+
+
+```{r inthourly, fig.height=5,fig.width=15, fig.cap="Two-way partial dependency plot for interaction between sediff_seacf1 and linearity for hourly data."}
+
+```
+
+```{r intdaily, fig.height=5,fig.width=15, fig.cap="Two-way partial dependency plot for interaction between sediff_acf5 and seasonality_W for daily data."}
+
+```
 
 
 \clearpage
@@ -524,11 +546,4 @@ Exploration of conditions learnt by the FFORMS framework also support practition
 
 
 # References
-
-
-# Appendix
-
-## Out-of-Bag Observations
-
-## Votematrix calculation based on OOB-observations
 

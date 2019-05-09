@@ -154,6 +154,27 @@ plot_pdp_hourly_N <- ggplot(data = ND_includeout1_long, aes_string(x = ND_includ
 plot_pdp_hourly_N
 
 
+## ---- intdaily
+load("data/daily/sediff_acf5.seasonal_strength2.d.rda")
+colNamesss <- colnames(sediff_acf5.seasonal_strength2.d)[28:37]
+
+keep.modelnames <- c("snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
+                     "theta","nn","wn")
+keepd <- c(keep.modelnames, c("sediff_acf5", "seasonal_strength2"))
+sediff_acf5.seasonal_strength2.d <- sediff_acf5.seasonal_strength2.d[, names(sediff_acf5.seasonal_strength2.d) %in% keepd]
+sediff_acf5.seasonal_strength2.d.long <- gather(sediff_acf5.seasonal_strength2.d, class, probability, "mstlarima":"wn", factor_key = TRUE)
+sediff_acf5.seasonal_strength2.d.long$class <- factor(sediff_acf5.seasonal_strength2.d.long$class,
+                                               levels = c("snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
+                                                          "theta","nn","wn"))
+
+sediff_acf5.seasonal_strength2.d.long %>%
+  ggplot(aes(x = sediff_acf5, y = seasonal_strength2, fill = probability)) +
+  geom_raster() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  facet_wrap(~class, ncol=5) +
+  scale_fill_viridis_c(option = "A", direction = -1)+
+  theme(strip.text.x = element_text(size = 18))
+
 
 ## ---- pcadaily
 load("data/daily/trainD_votes.rda")

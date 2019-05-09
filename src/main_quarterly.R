@@ -229,3 +229,34 @@ plot_pdp_quarterlyT <- ggplot(data = trendgridQ_long, aes_string(x = trendgridQ_
 plot_pdp_quarterlyT
 
 
+## ---- intquarterly
+load("data/quarterly/diff1y_acf5.stability.q.rda")
+colNamesds <- colnames(diff1y_acf5.stability.q)[32:48]
+
+keep.modelnames <- c("ARIMA", "ARMA.AR.MA", "ETS.dampedtrend", "ETS.dampedtrendseasonal",
+                     "ETS.notrendnoseasonal", "ETS.seasonal", 
+                     "ETS.trend","ETS.trendseasonal"  ,"nn", "rw",
+                     "rwd", "SARIMA","snaive","stlar","tbats","theta", "wn")
+keepq <- c(keep.modelnames, c("diff1y_acf5", "stability"))
+diff1y_acf5.stability.q <- diff1y_acf5.stability.q[, names(diff1y_acf5.stability.q) %in% keepq]
+diff1y_acf5.stability.q.long <- gather(diff1y_acf5.stability.q, class, probability, "ARIMA":"wn", factor_key = TRUE)
+diff1y_acf5.stability.q.long <- diff1y_acf5.stability.q.long %>%
+  mutate(class = recode(class, "ARIMA"="ARIMA", "ARMA.AR.MA"="ARMA", 
+                        "ETS.dampedtrend"="ETS_DT", "ETS.dampedtrendseasonal"="ETS_DTS",
+                        "ETS.notrendnoseasonal"="ETS_NTNS", "ETS.seasonal"="ETS_S", 
+                        "ETS.trend"="ETS_T","ETS.trendseasonal"="ETS_TS"  ,"nn"="nn", "rw"="rw",
+                        "rwd"="rwd", "SARIMA"="SARIMA","snaive"="snaive","stlar"="stlar","tbats"="tbats","theta"="theta", "wn"="wn"))
+diff1y_acf5.stability.q.long$class <- factor(diff1y_acf5.stability.q.long$class,
+                                           levels = c("snaive","rw", "rwd", "ETS_NTNS","ETS_DT", "ETS_T", "ETS_DTS",
+                                                      "ETS_TS", "ETS_S","tbats","stlar", "SARIMA",
+                                                      "ARIMA", "ARMA", "wn", "theta", "nn" ))
+
+
+diff1y_acf5.stability.q.long %>%
+  ggplot(aes(x = diff1y_acf5, y = stability, fill = probability)) +
+  geom_raster() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  facet_wrap(~class, ncol=9) +
+  scale_fill_viridis_c(option = "A", direction = -1)+
+  theme(strip.text.x = element_text(size = 12))
+
