@@ -63,13 +63,21 @@ yearly_mean <- (rwd_YFH_cormat + rw_YFH_cormat + etst_YFH_cormat +
   arma_YFH_cormat + wn_YFH_cormat + theta_YFH_cormat + nn_YFH_cormat)/10
 ## maximum value of top 3 combinations
 friedmanMaxValue(yearly_mean,1)
-## results_yearly
+## results_yearly-result 1
 #      row         col
 #1 lumpiness   stability
 #2    e_acf1 diff2y_acf1
 #3     hurst      y_acf5
 #4     hurst      e_acf1
 
+## results_yearly-result 2
+#     row         col
+# 1 lumpiness   stability
+# 2    e_acf1   stability
+# 3     hurst           N
+# 4    e_acf1 diff2y_acf1
+# 5     hurst      y_acf5
+# 6     hurst      e_acf1
 
 # quarterly----
 load("data/friedmanHstat_quarterly.rda")

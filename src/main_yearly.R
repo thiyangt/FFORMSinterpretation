@@ -309,15 +309,15 @@ fried.mat.yearly <- ggcorrplot(friedman.yearly.mean, hc.order = TRUE, type = "lo
 fried.mat.yearly
 
 ## ---- intyearly
-load("data/yearly/lumpiness.stability.y.rda")
-colNamesls <- colnames(lumpiness.stability.y)[27:36]
+load("data/yearly/hurst.y_acf5.y.rda")
+colNamesls <- colnames(hurst.y_acf5.y)[27:36]
 
 keep.modelnames <- c("ARIMA", "ARMA.AR.MA", "ETS.dampedtrend", "ETS.notrendnoseasonal",
                      "ETS.trend", "nn", "rw", "rwd", "theta", "wn")
-keepy <- c(keep.modelnames, c("lumpiness", "stability"))
-lumpiness.stability.y <- lumpiness.stability.y[, names(lumpiness.stability.y) %in% keepy]
-lumpiness.stability.y.long <- gather(lumpiness.stability.y, class, probability, "ARIMA":"wn", factor_key = TRUE)
-lumpiness.stability.y.long <- lumpiness.stability.y.long %>%
+keepy <- c(keep.modelnames, c("hurst", "y_acf5"))
+hurst.y_acf5.y <- hurst.y_acf5.y[, names(hurst.y_acf5.y) %in% keepy]
+hurst.y_acf5.y.long <- gather(hurst.y_acf5.y, class, probability, "ARIMA":"wn", factor_key = TRUE)
+hurst.y_acf5.y.long <- hurst.y_acf5.y.long %>%
   mutate(class = recode(class, nn="nn",
                         theta = "theta",
                         wn = "wn",
@@ -328,13 +328,13 @@ lumpiness.stability.y.long <- lumpiness.stability.y.long %>%
                         "ETS.trend" = "ETS_T",
                         "rwd" = "rwd",
                         "rw" = "rw" ))
-lumpiness.stability.y.long$class <- factor(lumpiness.stability.y.long$class,
+hurst.y_acf5.y.long$class <- factor(hurst.y_acf5.y.long$class,
                                levels = c("rw", "rwd", "ETS_T", "ETS_DT", "ETS_NTNS",
                                           "ARIMA", "ARMA", "wn", "theta", "nn" ))
 
 
-lumpiness.stability.y.long %>%
-  ggplot(aes(x = lumpiness, y = stability, fill = probability)) +
+hurst.y_acf5.y.long %>%
+  ggplot(aes(x = hurst, y = y_acf5, fill = probability)) +
   geom_raster() +
   theme(axis.text.x = element_text(angle = 90)) +
   facet_wrap(~class, ncol=5) +
