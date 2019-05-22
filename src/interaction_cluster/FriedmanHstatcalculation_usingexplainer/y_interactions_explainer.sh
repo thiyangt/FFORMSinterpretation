@@ -3,7 +3,7 @@
 #SBATCH --time=10:00:00
 #SBATCH --mem=50G
 #SBATCH --ntasks=1
-#SBATCH --partition=short
+#SBATCH --partition=short,comp,gpu
 #SBATCH --mail-type=BEGIN,END,FAIL
 #SBATCH --mail-user=thiyanga.talagala@monash.edu
 #SBATCH --output=y_interactions_explainer.txt

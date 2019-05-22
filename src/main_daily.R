@@ -14,7 +14,7 @@ votes_oobD$variable <- factor(votes_oobD$variable,
                               levels=c("snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
                                        "theta","nn","wn")
 )
-oob_boxplot_daily <- ggplot(votes_oobD, aes(x = classlabel, y = value, fill = classlabel)) +
+oob_boxplot_daily <- ggplot(votes_oobD, aes(x = classlabel, y = log(value), fill = classlabel)) +
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
   ylab("Proportion") +
   xlab("") +

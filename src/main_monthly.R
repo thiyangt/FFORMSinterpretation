@@ -41,7 +41,7 @@ votes_oobM$variable <- factor(votes_oobM$variable, levels = c(
   "ARIMA", "ARMA", "stlar", "tbats", "wn", "theta", "nn"
 ))
 
-oob_boxplot_monthly <- ggplot(votes_oobM, aes(x = classlabel, y = value, fill = classlabel)) +
+oob_boxplot_monthly <- ggplot(votes_oobM, aes(x = classlabel, y = log(value), fill = classlabel)) +
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
   ylab("Proportion") +
   xlab("") +

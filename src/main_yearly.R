@@ -40,7 +40,7 @@ votes_oob$variable <- factor(votes_oob$variable,
                                  "rwd",
                                  "rw" )))
 
-oob_boxplot_yearly <- ggplot(votes_oob, aes(x = classlabel, y = value, fill = classlabel)) +
+oob_boxplot_yearly <- ggplot(votes_oob, aes(x = classlabel, y = log(value), fill = classlabel)) +
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
   ylab("Proportion") +
   xlab("") +

@@ -14,17 +14,17 @@ load("phdproject2/subset_yearly.rda")
 subset_yearly <- subset_yearly[,1:25]
 
 
-subsetdf <- subset_yearly
+subsetdf <- data.frame(subset_yearly)
 model <- rfu_m4yearly
-fulldf <- yearly_training
+fulldf <- data.frame(yearly_training)
 allfeatures <- colnames(yearly_training)[-25]
 grid.resolution <- 10
 trimfeatures <- c("ur_pp", "linearity", "curvature")
 classnames <- c("ARIMA", 
-                "ARMA/AR/MA", 
-                "ETS-dampedtrend",
-                "ETS-notrendnoseasonal",
-                "ETS-trend",
+                "ARMA.AR.MA", 
+                "ETS.dampedtrend",
+                "ETS.notrendnoseasonal",
+                "ETS.trend",
                 "nn",
                 "rw",
                 "rwd",
