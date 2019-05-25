@@ -42,7 +42,7 @@ votes_oob$variable <- factor(votes_oob$variable,
 
 oob_boxplot_yearly <- ggplot(votes_oob, aes(x = classlabel, y = log(value), fill = classlabel)) +
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
-  ylab("Proportion") +
+  ylab("log(Proportion)") +
   xlab("") +
   theme(legend.position = "none", legend.title = element_blank(), 
         legend.text.align = 0, text = element_text(size = 25), axis.text.x = element_text(angle = 90),
@@ -309,15 +309,15 @@ fried.mat.yearly <- ggcorrplot(friedman.yearly.mean, hc.order = TRUE, type = "lo
 fried.mat.yearly
 
 ## ---- intyearly
-load("data/yearly/hurst.y_acf5.y.rda")
-colNamesls <- colnames(hurst.y_acf5.y)[27:36]
+load("data/yearly/lumpiness.entropy.y.rda")
+colNamesls <- colnames(lumpiness.entropy.y)[27:36]
 
 keep.modelnames <- c("ARIMA", "ARMA.AR.MA", "ETS.dampedtrend", "ETS.notrendnoseasonal",
                      "ETS.trend", "nn", "rw", "rwd", "theta", "wn")
-keepy <- c(keep.modelnames, c("hurst", "y_acf5"))
-hurst.y_acf5.y <- hurst.y_acf5.y[, names(hurst.y_acf5.y) %in% keepy]
-hurst.y_acf5.y.long <- gather(hurst.y_acf5.y, class, probability, "ARIMA":"wn", factor_key = TRUE)
-hurst.y_acf5.y.long <- hurst.y_acf5.y.long %>%
+keepy <- c(keep.modelnames, c("lumpiness", "entropy"))
+lumpiness.entropy.y <- lumpiness.entropy.y[, names(lumpiness.entropy.y) %in% keepy]
+lumpiness.entropy.y.long <- gather(lumpiness.entropy.y, class, probability, "ARIMA":"wn", factor_key = TRUE)
+lumpiness.entropy.y.long <- lumpiness.entropy.y.long %>%
   mutate(class = recode(class, nn="nn",
                         theta = "theta",
                         wn = "wn",
@@ -328,13 +328,13 @@ hurst.y_acf5.y.long <- hurst.y_acf5.y.long %>%
                         "ETS.trend" = "ETS_T",
                         "rwd" = "rwd",
                         "rw" = "rw" ))
-hurst.y_acf5.y.long$class <- factor(hurst.y_acf5.y.long$class,
+lumpiness.entropy.y.long$class <- factor(lumpiness.entropy.y.long$class,
                                levels = c("rw", "rwd", "ETS_T", "ETS_DT", "ETS_NTNS",
                                           "ARIMA", "ARMA", "wn", "theta", "nn" ))
 
 
-hurst.y_acf5.y.long %>%
-  ggplot(aes(x = hurst, y = y_acf5, fill = probability)) +
+lumpiness.entropy.y.long %>%
+  ggplot(aes(x = lumpiness, y = entropy, fill = probability)) +
   geom_raster() +
   theme(axis.text.x = element_text(angle = 90)) +
   facet_wrap(~class, ncol=5) +

@@ -34,7 +34,7 @@ levels = c( "snaive", "rw", "rwd", "ARMA","ARIMA", "SARIMA",
 
 oob_boxplot_weekly <- ggplot(votes_oobW, aes(x = classlabel, y = log(value), fill = classlabel)) +
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
-  ylab("Proportion") +
+  ylab("log(Proportion)") +
   xlab("") +
   theme(legend.position = "none", legend.title = element_blank(), 
         legend.text.align = 0, text = element_text(size = 20), axis.text.x = element_text(angle = 90),
