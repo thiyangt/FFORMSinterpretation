@@ -251,62 +251,117 @@ plot_pdp_yearly_linearity
 
 
 ## ---- friedmany
-load("data/friedmanHstat_yearly.rda")
-col.order <- c("trend", "ur_pp","spikiness", "beta",
-               "diff1y_acf1", "linearity", "diff1y_acf5", "curvature",
-               "lmres_acf1","y_pacf5", "ur_kpss", "y_acf1", "nonlinearity",
-               "alpha", "diff1y_pacf5", "hurst", "entropy", "e_acf1", "y_acf5",
-               "diff2y_pacf5",
-               "diff2y_acf1", "N", "diff2y_acf5", "lumpiness", "stability")
+# Two-way interaction between each combination
+# load("data/friedmanHstat_yearly.rda")
+# col.order <- c("trend", "ur_pp","spikiness", "beta",
+#                "diff1y_acf1", "linearity", "diff1y_acf5", "curvature",
+#                "lmres_acf1","y_pacf5", "ur_kpss", "y_acf1", "nonlinearity",
+#                "alpha", "diff1y_pacf5", "hurst", "entropy", "e_acf1", "y_acf5",
+#                "diff2y_pacf5",
+#                "diff2y_acf1", "N", "diff2y_acf5", "lumpiness", "stability")
+# 
+# ## random walk with drift
+# rwd_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="rwd",]
+# rwd_YFH_cormat <- friedmanHstat_matrix(rwd_YFH, 25, rev(col.order))
+# ## random walk
+# rw_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="rw",]
+# rw_YFH_cormat <- friedmanHstat_matrix(rw_YFH, 25, rev(col.order))
+# ## ETS-trend
+# etst_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="ETS.trend",]
+# etst_YFH_cormat <- friedmanHstat_matrix(etst_YFH, 25, rev(col.order))
+# ## ETS-dampedtrend
+# etsdt_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="ETS.dampedtrend",]
+# etsdt_YFH_cormat <- friedmanHstat_matrix(etsdt_YFH, 25, rev(col.order))
+# ## ETS-notrendnoseasonal
+# etsntns_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="ETS.notrendnoseasonal",]
+# etsntns_YFH_cormat <- friedmanHstat_matrix(etsntns_YFH, 25, rev(col.order))
+# ## ARIMA
+# arima_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="ARIMA",]
+# arima_YFH_cormat <- friedmanHstat_matrix(arima_YFH, 25, rev(col.order))
+# ##  ARMA.AR.MA 
+# arma_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="ARMA.AR.MA",]
+# arma_YFH_cormat <- friedmanHstat_matrix(arma_YFH, 25, rev(col.order))
+# ##  wn 
+# wn_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="wn",]
+# wn_YFH_cormat <- friedmanHstat_matrix(wn_YFH, 25, rev(col.order))
+# ## theta
+# theta_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="theta",]
+# theta_YFH_cormat <- friedmanHstat_matrix(theta_YFH, 25, rev(col.order))
+# ## nn
+# nn_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="nn",]
+# nn_YFH_cormat <- friedmanHstat_matrix(nn_YFH, 25, rev(col.order))
+# ##visualize friedman matrix plot
+# friedman.yearly.mean <- (rwd_YFH_cormat + rw_YFH_cormat + etst_YFH_cormat + 
+#                            etsdt_YFH_cormat + etsntns_YFH_cormat + arima_YFH_cormat +
+#                            arma_YFH_cormat + wn_YFH_cormat + theta_YFH_cormat + nn_YFH_cormat)/10
+# 
+# # friedman.yearly.mean2 <- friedman.yearly.mean[ c("ur_pp", "linearity", "trend", "lmres_acf1", "N",
+# #                                                   "ur_kpss", "stability", "lumpiness", "curvature", "diff1y_acf5",
+# #                                                   "spikiness", "entropy", "diff1y_pacf5", "diff2y_acf1", "e_acf1",
+# #                                                   "diff2y_pacf5", "diff2y_acf5", "nonlinearity", "y_acf5", "hurst",
+# #                                                   "alpha", "y_acf1", "y_pacf5", "diff1y_acf1", "beta"), ]
+# fried.mat.yearly <- ggcorrplot(friedman.yearly.mean, hc.order = TRUE, type = "lower",
+#                                 outline.col = "white")+
+#    scale_fill_continuous(limits=c(0, 1), breaks=seq(0,1,100), 
+#                         high = "#ef8a62", low = "#f7f7f7",
+#                         name = "Friedman's H-statistic")+
+#   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+#                                     size = 12, hjust = 1))
+# fried.mat.yearly
 
-## random walk with drift
-rwd_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="rwd",]
-rwd_YFH_cormat <- friedmanHstat_matrix(rwd_YFH, 25, rev(col.order))
-## random walk
-rw_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="rw",]
-rw_YFH_cormat <- friedmanHstat_matrix(rw_YFH, 25, rev(col.order))
-## ETS-trend
-etst_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="ETS.trend",]
-etst_YFH_cormat <- friedmanHstat_matrix(etst_YFH, 25, rev(col.order))
-## ETS-dampedtrend
-etsdt_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="ETS.dampedtrend",]
-etsdt_YFH_cormat <- friedmanHstat_matrix(etsdt_YFH, 25, rev(col.order))
-## ETS-notrendnoseasonal
-etsntns_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="ETS.notrendnoseasonal",]
-etsntns_YFH_cormat <- friedmanHstat_matrix(etsntns_YFH, 25, rev(col.order))
-## ARIMA
-arima_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="ARIMA",]
-arima_YFH_cormat <- friedmanHstat_matrix(arima_YFH, 25, rev(col.order))
-##  ARMA.AR.MA 
-arma_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="ARMA.AR.MA",]
-arma_YFH_cormat <- friedmanHstat_matrix(arma_YFH, 25, rev(col.order))
-##  wn 
-wn_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="wn",]
-wn_YFH_cormat <- friedmanHstat_matrix(wn_YFH, 25, rev(col.order))
-## theta
-theta_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="theta",]
-theta_YFH_cormat <- friedmanHstat_matrix(theta_YFH, 25, rev(col.order))
-## nn
-nn_YFH <- friedmanHstat_yearly[friedmanHstat_yearly$class=="nn",]
-nn_YFH_cormat <- friedmanHstat_matrix(nn_YFH, 25, rev(col.order))
-##visualize friedman matrix plot
-friedman.yearly.mean <- (rwd_YFH_cormat + rw_YFH_cormat + etst_YFH_cormat + 
-                           etsdt_YFH_cormat + etsntns_YFH_cormat + arima_YFH_cormat +
-                           arma_YFH_cormat + wn_YFH_cormat + theta_YFH_cormat + nn_YFH_cormat)/10
+## Overall interaction plot
+load("data/yearly/overall_interactions_y.rda")
+overall_interactions_y$".class" <- factor(overall_interactions_y$.class,
+                                levels = c(
+                                  "rw",
+                                  "rwd",
+                                  "ETS.trend",
+                                  "ETS.dampedtrend",
+                                  "ETS.notrendnoseasonal",
+                                  "ARIMA",
+                                  "ARMA.AR.MA",
+                                  "wn",
+                                  "theta",
+                                  "nn" ))
 
-# friedman.yearly.mean2 <- friedman.yearly.mean[ c("ur_pp", "linearity", "trend", "lmres_acf1", "N",
-#                                                   "ur_kpss", "stability", "lumpiness", "curvature", "diff1y_acf5",
-#                                                   "spikiness", "entropy", "diff1y_pacf5", "diff2y_acf1", "e_acf1",
-#                                                   "diff2y_pacf5", "diff2y_acf5", "nonlinearity", "y_acf5", "hurst",
-#                                                   "alpha", "y_acf1", "y_pacf5", "diff1y_acf1", "beta"), ]
-fried.mat.yearly <- ggcorrplot(friedman.yearly.mean, hc.order = TRUE, type = "lower",
-                                outline.col = "white")+
-   scale_fill_continuous(limits=c(0, 1), breaks=seq(0,1,100), 
-                        high = "#ef8a62", low = "#f7f7f7",
-                        name = "Friedman's H-statistic")+
-  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                    size = 12, hjust = 1))
-fried.mat.yearly
+overall_interactions_y <- overall_interactions_y %>%
+  mutate(.class = recode(.class, nn="nn",
+                        theta = "theta",
+                        wn = "wn",
+                        "ARMA.AR.MA" = "ARMA",
+                        ARIMA = "ARIMA",
+                        "ETS.notrendnoseasonal" = "ETS_NTNS",
+                        "ETS.dampedtrend" = "ETS_DT",
+                        "ETS.trend" = "ETS_T",
+                        "rwd" = "rwd",
+                        "rw" = "rw" ))
+# arrange features according to the order of rw class
+orderRW <- filter(overall_interactions_y, .class == "rw")
+overall_interactions_y$.feature <- factor(overall_interactions_y$.feature,
+              levels = orderRW$.feature[order(orderRW$.interaction)])
+top <- overall_interactions_y %>%
+  group_by(.class) %>%
+  top_n(n = 5, wt = .interaction)
+
+overall_interactions_y$istop <- ifelse(overall_interactions_y$.interaction%in%top$.interaction, TRUE, FALSE)
+
+FHinteraction_yearly <- ggplot(overall_interactions_y, 
+                        aes(y = .interaction, x = .feature, fill=as.factor(istop))) +
+  geom_bar(position = "dodge", stat = "identity", width=0.3) +
+  facet_wrap(~ .class, ncol = 5, nrow = 2) +
+  coord_flip() + ylab("Friedman's H-Statistic")+
+  scale_fill_manual(breaks=c("0","1"), values=c("#f1a340","#998ec3"), guide="none")+theme(text=element_text(size = 20))
+FHinteraction_yearly
+
+
+
+feaImp_yearly <- ggplot(meanrank_yearly, aes(y = rank, x = feature, fill=as.factor(istop))) +
+  geom_bar(position = "dodge", stat = "identity", width=0.3) +
+  facet_wrap(~ class, ncol = 6, nrow = 2) +
+  coord_flip() + ylab("Average rank")+ 
+  scale_fill_manual(breaks=c("0","1"), values=c("#f1a340","#998ec3"), guide="none")+theme(text=element_text(size = 20))+
+  theme(strip.text.x = element_text(size = 18))
+feaImp_yearly
 
 ## ---- intyearly
 load("data/yearly/lumpiness.entropy.y.rda")
@@ -341,122 +396,5 @@ lumpiness.entropy.y.long %>%
   scale_fill_viridis_c(option = "A", direction = -1)+
   theme(strip.text.x = element_text(size = 18))
 
-
-
-## ---- yearlypcamodels
-load("data/yearly/yearly_training.rda") 
-load("data/yearly/train_predictions_oob.rda")
-load("data/yearly/train_votes.rda")
-pcaYvariables <- yearly_training[, 1:25]
-# unitize <- function(z) {
-#   zrange <- range(z)
-#   if (!(dif <- diff(zrange))) return(rep(0,length(z)))
-#   (z - zrange[1])/dif
-# }
-# pcaYvariablesU <- apply( as.matrix(pcaYvariables), 2, unitize)
-pcaM4Y <- prcomp(pcaYvariables, center = TRUE, scale = FALSE)
-# summary(pcaM1Y)
-PC1m4y <- pcaM4Y$x[, 1]
-PC2m4y <- pcaM4Y$x[, 2]
-PC3m4y <- pcaM4Y$x[, 3]
-m4yPCAresults1 <- data.frame(PC1 = PC1m4y, PC2 = PC2m4y, PC3 = PC3m4y, pcaYvariables)
-m4yPCAresults1$predicted <- train_predictions_oob
-train_votes1 <- data.frame(train_votes)
-m4yPCAresults <- dplyr::bind_cols(m4yPCAresults1, train_votes1)
-
-
-pca1M4Y_rwd <- ggplot(m4yPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4yPCAresults[m4yPCAresults$predicted == "rwd", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "rwd") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4Y_rw <- ggplot(m4yPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4yPCAresults[m4yPCAresults$predicted == "rw", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "rw") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4Y_etstrend <- ggplot(m4yPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4yPCAresults[m4yPCAresults$predicted == "ETS-trend", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "ETS-trend") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4Y_etsdamtrend <- ggplot(m4yPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4yPCAresults[m4yPCAresults$predicted == "ETS-dampedtrend", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "ETS-dampedtrend") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-
-pca1M4Y_notrend <- ggplot(m4yPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4yPCAresults[m4yPCAresults$predicted == "ETS-notrendnoseasonal", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "ETS-notrendnoseasonal") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4Y_ARIMA <- ggplot(m4yPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4yPCAresults[m4yPCAresults$predicted == "ARIMA", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "ARIMA") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4Y_ARMA <- ggplot(m4yPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4yPCAresults[m4yPCAresults$predicted == "ARMA/AR/MA", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "ARMA/AR/MA") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4Y_wn <- ggplot(m4yPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4yPCAresults[m4yPCAresults$predicted == "wn", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "wn") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4Y_theta <- ggplot(m4yPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4yPCAresults[m4yPCAresults$predicted == "theta", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "theta") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4Y_nn <- ggplot(m4yPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4yPCAresults[m4yPCAresults$predicted == "nn", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "nn") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-(pca1M4Y_rwd|pca1M4Y_rw|pca1M4Y_etstrend|pca1M4Y_etsdamtrend| pca1M4Y_notrend)/
-  (pca1M4Y_ARIMA|pca1M4Y_ARMA|pca1M4Y_wn|pca1M4Y_theta|pca1M4Y_nn) 
 
 
