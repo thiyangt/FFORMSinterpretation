@@ -40,7 +40,7 @@ votes_oobQ$variable <- factor(votes_oobQ$variable, levels = c(
   "ARIMA", "ARMA", "stlar", "tbats", "wn", "theta", "nn"
 ))
 
-oob_boxplot_quarterly <- ggplot(votes_oobQ, aes(x = classlabel, y = log(value), fill = classlabel)) +
+oob_boxplot_quarterly <- ggplot(votes_oobQ, aes(x = classlabel, y = value, fill = classlabel)) +
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
   ylab("log(Proportion)") +
   xlab("") +

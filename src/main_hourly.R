@@ -14,9 +14,9 @@ votes_oobH$variable <- factor(votes_oobH$variable,
                                 levels=c("snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
                                              "theta","nn","wn")
 )
-oob_boxplot_hourly <- ggplot(votes_oobH, aes(x = classlabel, y = log(value), fill = classlabel)) +
+oob_boxplot_hourly <- ggplot(votes_oobH, aes(x = classlabel, y = value, fill = classlabel)) +
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
-  ylab("log(Proportion)") +
+  ylab("Proportion") +
   xlab("") +
   theme(legend.position = "none", legend.title = element_blank(), 
         legend.text.align = 0, text = element_text(size = 25), axis.text.x = element_text(angle = 90),
