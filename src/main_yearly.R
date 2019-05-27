@@ -350,18 +350,10 @@ FHinteraction_yearly <- ggplot(overall_interactions_y,
   geom_bar(position = "dodge", stat = "identity", width=0.3) +
   facet_wrap(~ .class, ncol = 5, nrow = 2) +
   coord_flip() + ylab("Friedman's H-Statistic")+
-  scale_fill_manual(breaks=c("0","1"), values=c("#f1a340","#998ec3"), guide="none")+theme(text=element_text(size = 20))
+  scale_fill_manual(breaks=c("0","1"), values=c("#7fbf7b","#af8dc3"), guide="none")+
+  theme(text=element_text(size = 20), axis.text.x = element_text(angle = 90, hjust = 1))
 FHinteraction_yearly
 
-
-
-feaImp_yearly <- ggplot(meanrank_yearly, aes(y = rank, x = feature, fill=as.factor(istop))) +
-  geom_bar(position = "dodge", stat = "identity", width=0.3) +
-  facet_wrap(~ class, ncol = 6, nrow = 2) +
-  coord_flip() + ylab("Average rank")+ 
-  scale_fill_manual(breaks=c("0","1"), values=c("#f1a340","#998ec3"), guide="none")+theme(text=element_text(size = 20))+
-  theme(strip.text.x = element_text(size = 18))
-feaImp_yearly
 
 ## ---- intyearly
 load("data/yearly/lumpiness.entropy.y.rda")

@@ -200,6 +200,47 @@ plot_pdp_monthlyN <- ggplot(data = NgridM_long, aes_string(x = NgridM_long$"T", 
 plot_pdp_monthlyN
 
 
+## ---- friedmanm
+## Overall interaction plot
+load("data/monthly/overall_interactions_m.rda")
+overall_interactions_m <- overall_interactions_m %>% mutate(.class = recode(.class,
+                                                                            "snaive"="snaive", "rwd"="rwd", "rw"="rw", "ETS.notrendnoseasonal"="ETS_NTNS",
+                                                                            "ETS.dampedtrend"="ETS_DT", "ETS.trend"="ETS_T", 
+                                                                            "ETS.dampedtrendseasonal"="ETS_DTS", "ETS.trendseasonal"="ETS_TS", 
+                                                                            "ETS.seasonal"="ETS_S", "SARIMA"="SARIMA", "ARIMA"="ARIMA",
+                                                                            "ARMA.AR.MA"="ARMA", "stlar"="stlar", 
+                                                                            "tbats"="tbats", "wn"="wn", "theta"="theta", "nn"="nn"))
+# new addition to arrange labels
+overall_interactions_m$.class <- factor(overall_interactions_m$.class, levels = c(
+  "snaive", "rwd", "rw", "ETS_NTNS", "ETS_DT", "ETS_T", "ETS_DTS", "ETS_TS", "ETS_S", "SARIMA",
+  "ARIMA", "ARMA", "stlar", "tbats", "wn", "theta", "nn"
+))
+
+# arrange features according to the order of rw class
+orderSNAIVE <- filter(overall_interactions_m, .class == "snaive")
+overall_interactions_m$.feature <- factor(overall_interactions_m$.feature,
+                                          levels = orderSNAIVE$.feature[order(orderSNAIVE$.interaction)])
+top <- overall_interactions_m %>%
+  group_by(.class) %>%
+  top_n(n = 5, wt = .interaction)
+
+overall_interactions_m$istop <- ifelse(overall_interactions_m$.interaction%in%top$.interaction, TRUE, FALSE)
+overall_interactions_m$.interaction[overall_interactions_m$.interaction > 1.0] <- 1
+
+
+colnames(overall_interactions_m) <- c("feature", "class", "interaction", "istop")
+
+
+FHinteraction_monthly <- ggplot(overall_interactions_m, 
+                                  aes(y = interaction, x = feature, fill=as.factor(istop))) +
+  geom_bar(position = "dodge", stat = "identity", width=0.3) +
+  facet_wrap(~ class, ncol = 9, nrow = 2) +
+  coord_flip() + ylab("Friedman's H-Statistic")+
+  scale_fill_manual(breaks=c("0","1"), values=c("#7fbf7b","#af8dc3"), guide="none")+
+  theme(text=element_text(size = 20), axis.text.x = element_text(angle = 90, hjust = 1))
+FHinteraction_monthly
+
+
 
 ## ---- intmonthly
 load("data/monthly/sediff_acf5.sediff_seacf1.m.rda")

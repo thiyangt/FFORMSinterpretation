@@ -157,64 +157,102 @@ plot_pdp_weekly_spikiness <- ggplot(data = spikiness_long, aes_string(x = spikin
 plot_pdp_weekly_spikiness
 
 
-## ---- friedmanHW
-load("data/friedmanHstat_weekly.rda")
-col.order <- c("spikiness", "linearity", "trend", "seasonality", "stability",
-               "lumpiness", "curvature", "sediff_acf5", "entropy", "beta","y_pacf5",
-               "seas_pacf", "N", "diff2y_acf5", "nonlinearity", "sediff_seacf1",
-               "y_acf5", "diff1y_pacf5", "y_acf1", "diff1y_acf5", "diff2y_pacf5", 
-               "e_acf1", "sediff_acf1", "diff2y_acf1", "hurst", "alpha", "diff1y_acf1")
-  
-## snaive
-snaive_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="snaive",]
-snaive_WFH_cormat <- friedmanHstat_matrix(snaive_WFH, 27, rev(col.order))
-## rwd
-rwd_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="rwd",]
-rwd_WFH_cormat <- friedmanHstat_matrix(rwd_WFH, 27, rev(col.order))
-## rw
-rw_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="rw",]
-rw_WFH_cormat <- friedmanHstat_matrix(rw_WFH, 27, rev(col.order))
-## ARIMA
-arima_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="ARIMA",]
-arima_WFH_cormat <- friedmanHstat_matrix(arima_WFH, 27, rev(col.order))
-## SARIMA
-sarima_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="SARIMA",]
-sarima_WFH_cormat <- friedmanHstat_matrix(sarima_WFH, 27, rev(col.order))
-## stlar
-stlar_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="stlar",]
-stlar_WFH_cormat <- friedmanHstat_matrix(stlar_WFH, 27, rev(col.order))
-## mstlets
-mstlets_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="mstlets",]
-mstlets_WFH_cormat <- friedmanHstat_matrix(mstlets_WFH, 27, rev(col.order))
-## tbats
-tbats_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="tbats",]
-tbats_WFH_cormat <- friedmanHstat_matrix(tbats_WFH, 27, rev(col.order))
-## ARMA
-arma_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="ARMA.AR.MA",]
-arma_WFH_cormat <- friedmanHstat_matrix(arma_WFH, 27, rev(col.order))
-## wn
-wn_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="wn",]
-wn_WFH_cormat <- friedmanHstat_matrix(wn_WFH, 27, rev(col.order))
-## theta
-theta_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="theta",]
-theta_WFH_cormat <- friedmanHstat_matrix(theta_WFH, 27, rev(col.order))
-## nn
-nn_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="nn",]
-nn_WFH_cormat <- friedmanHstat_matrix(nn_WFH, 27, rev(col.order))
-friedman.weekly.mean <- (snaive_WFH_cormat + rwd_WFH_cormat + rw_WFH_cormat +
-                  arima_WFH_cormat + sarima_WFH_cormat + stlar_WFH_cormat+
-                  mstlets_WFH_cormat + tbats_WFH_cormat + arma_WFH_cormat +
-                  wn_WFH_cormat + theta_WFH_cormat + nn_WFH_cormat)/12
-fried.mat.weekly <- ggcorrplot(friedman.weekly.mean, hc.order = TRUE, type = "upper",
-                                outline.col = "white")+
-  scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
-                       high = "#ef8a62", low = "#f7f7f7",
-                       name = "Friedman's H-statistic")+
-  theme(axis.text.x = element_text(angle = 90, vjust = 1, 
-                                   size = 12, hjust = 1),
-        panel.margin=unit(c(0,0,0,0), "null"),
-        plot.margin=unit(c(0,0,0,0), "null"))
-fried.mat.weekly
+# ## ---- friedmanHW
+# load("data/friedmanHstat_weekly.rda")
+# col.order <- c("spikiness", "linearity", "trend", "seasonality", "stability",
+#                "lumpiness", "curvature", "sediff_acf5", "entropy", "beta","y_pacf5",
+#                "seas_pacf", "N", "diff2y_acf5", "nonlinearity", "sediff_seacf1",
+#                "y_acf5", "diff1y_pacf5", "y_acf1", "diff1y_acf5", "diff2y_pacf5", 
+#                "e_acf1", "sediff_acf1", "diff2y_acf1", "hurst", "alpha", "diff1y_acf1")
+#   
+# ## snaive
+# snaive_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="snaive",]
+# snaive_WFH_cormat <- friedmanHstat_matrix(snaive_WFH, 27, rev(col.order))
+# ## rwd
+# rwd_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="rwd",]
+# rwd_WFH_cormat <- friedmanHstat_matrix(rwd_WFH, 27, rev(col.order))
+# ## rw
+# rw_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="rw",]
+# rw_WFH_cormat <- friedmanHstat_matrix(rw_WFH, 27, rev(col.order))
+# ## ARIMA
+# arima_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="ARIMA",]
+# arima_WFH_cormat <- friedmanHstat_matrix(arima_WFH, 27, rev(col.order))
+# ## SARIMA
+# sarima_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="SARIMA",]
+# sarima_WFH_cormat <- friedmanHstat_matrix(sarima_WFH, 27, rev(col.order))
+# ## stlar
+# stlar_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="stlar",]
+# stlar_WFH_cormat <- friedmanHstat_matrix(stlar_WFH, 27, rev(col.order))
+# ## mstlets
+# mstlets_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="mstlets",]
+# mstlets_WFH_cormat <- friedmanHstat_matrix(mstlets_WFH, 27, rev(col.order))
+# ## tbats
+# tbats_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="tbats",]
+# tbats_WFH_cormat <- friedmanHstat_matrix(tbats_WFH, 27, rev(col.order))
+# ## ARMA
+# arma_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="ARMA.AR.MA",]
+# arma_WFH_cormat <- friedmanHstat_matrix(arma_WFH, 27, rev(col.order))
+# ## wn
+# wn_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="wn",]
+# wn_WFH_cormat <- friedmanHstat_matrix(wn_WFH, 27, rev(col.order))
+# ## theta
+# theta_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="theta",]
+# theta_WFH_cormat <- friedmanHstat_matrix(theta_WFH, 27, rev(col.order))
+# ## nn
+# nn_WFH <- friedmanHstat_weekly[friedmanHstat_weekly$class=="nn",]
+# nn_WFH_cormat <- friedmanHstat_matrix(nn_WFH, 27, rev(col.order))
+# friedman.weekly.mean <- (snaive_WFH_cormat + rwd_WFH_cormat + rw_WFH_cormat +
+#                   arima_WFH_cormat + sarima_WFH_cormat + stlar_WFH_cormat+
+#                   mstlets_WFH_cormat + tbats_WFH_cormat + arma_WFH_cormat +
+#                   wn_WFH_cormat + theta_WFH_cormat + nn_WFH_cormat)/12
+# fried.mat.weekly <- ggcorrplot(friedman.weekly.mean, hc.order = TRUE, type = "upper",
+#                                 outline.col = "white")+
+#   scale_fill_gradient2(limits=c(0, 1), breaks=seq(0,1,100), 
+#                        high = "#ef8a62", low = "#f7f7f7",
+#                        name = "Friedman's H-statistic")+
+#   theme(axis.text.x = element_text(angle = 90, vjust = 1, 
+#                                    size = 12, hjust = 1),
+#         panel.margin=unit(c(0,0,0,0), "null"),
+#         plot.margin=unit(c(0,0,0,0), "null"))
+# fried.mat.weekly
+
+
+## ---- friedmanw
+## Overall interaction plot
+load("data/weekly/overall_interactions_w.rda")
+overall_interactions_w <- overall_interactions_w %>% mutate(.class = recode(.class,
+                                                                            "snaive"="snaive", "rw"="rw",
+                                                                            "rwd"="rwd", "ARMA.AR.MA"="ARMA", "ARIMA"="ARIMA", "SARIMA"="SARIMA",
+                                                                            "stlar"="stlar", "mstlets"="mstlets", "tbats"="tbats", "theta"="theta", "nn"="nn", "wn"="wn"))
+# new addition to arrange labels
+overall_interactions_w$.class <- factor(overall_interactions_w$.class, levels = c(
+  "snaive", "rw", "rwd", "ARMA","ARIMA", "SARIMA",
+  "stlar", "mstlets", "tbats", "theta", "nn", "wn"
+))
+
+# arrange features according to the order of rw class
+orderSNAIVE <- filter(overall_interactions_w, .class == "snaive")
+overall_interactions_w$.feature <- factor(overall_interactions_w$.feature,
+                                          levels = orderSNAIVE$.feature[order(orderSNAIVE$.interaction)])
+top <- overall_interactions_w %>%
+  group_by(.class) %>%
+  top_n(n = 5, wt = .interaction)
+
+overall_interactions_w$istop <- ifelse(overall_interactions_w$.interaction%in%top$.interaction, TRUE, FALSE)
+overall_interactions_w$.interaction[overall_interactions_w$.interaction > 1.0] <- 1
+
+colnames(overall_interactions_w) <- c("feature", "class", "interaction", "istop")
+
+FHinteraction_weekly <- ggplot(overall_interactions_w, 
+                                  aes(y = interaction, x = feature, fill=as.factor(istop))) +
+  geom_bar(position = "dodge", stat = "identity", width=0.3) +
+  facet_wrap(~ class, ncol = 6, nrow = 2) +
+  coord_flip() + ylab("Friedman's H-Statistic")+
+  scale_fill_manual(breaks=c("0","1"), values=c("#7fbf7b","#af8dc3"), guide="none")+
+  theme(text=element_text(size = 20), axis.text.x = element_text(angle = 90, hjust = 1))
+FHinteraction_weekly
+
+
 
 
 ## ---- intweekly

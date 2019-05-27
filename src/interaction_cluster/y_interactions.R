@@ -14,10 +14,10 @@ load("phdproject2/subset_yearly.rda")
 subset_yearly <- subset_yearly[,1:25]
 
 
-lumpiness.entropy.y <- twowayinteraction(rfu_m4yearly, lumpiness, entropy,
+diff1yacf1.trend.y <- twowayinteraction(rfu_m4yearly, diff1y_acf1, trend,
                                   fulldf = yearly_training,
                                   subsetdf = subset_yearly, grid.resolution=20, trim1=FALSE)
-save(lumpiness.entropy.y, file="phdproject2/lumpiness.entropy.y.rda")
+save(diff1yacf1.trend.y, file="phdproject2/diff1yacf1.trend.y.rda")
 # 
 # eacf1.diff2yacf1.y <- twowayinteraction(rfu_m4yearly, e_acf1, diff2y_acf1, 
 #                                              fulldf = yearly_training,

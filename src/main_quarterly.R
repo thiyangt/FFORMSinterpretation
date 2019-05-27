@@ -228,6 +228,44 @@ plot_pdp_quarterlyT <- ggplot(data = trendgridQ_long, aes_string(x = trendgridQ_
   facet_wrap(. ~ class, ncol=9)+theme(strip.text.x = element_text(size = 10))+xlab("strength of trend (trend)")+ylab("probability of selecting forecast-models")
 plot_pdp_quarterlyT
 
+## ---- friedmanq
+## Overall interaction plot
+load("data/quarterly/overall_interactions_q.rda")
+overall_interactions_q <- overall_interactions_q %>% mutate(.class = recode(.class,
+                                                        "snaive"="snaive", "rwd"="rwd", "rw"="rw", "ETS.notrendnoseasonal"="ETS_NTNS",
+                                                        "ETS.dampedtrend"="ETS_DT", "ETS.trend"="ETS_T", 
+                                                        "ETS.dampedtrendseasonal"="ETS_DTS", "ETS.trendseasonal"="ETS_TS", 
+                                                        "ETS.seasonal"="ETS_S", "SARIMA"="SARIMA", "ARIMA"="ARIMA",
+                                                        "ARMA.AR.MA"="ARMA", "stlar"="stlar", 
+                                                        "tbats"="tbats", "wn"="wn", "theta"="theta", "nn"="nn"))
+# new addition to arrange labels
+overall_interactions_q$.class <- factor(overall_interactions_q$.class, levels = c(
+  "snaive", "rwd", "rw", "ETS_NTNS", "ETS_DT", "ETS_T", "ETS_DTS", "ETS_TS", "ETS_S", "SARIMA",
+  "ARIMA", "ARMA", "stlar", "tbats", "wn", "theta", "nn"
+))
+
+# arrange features according to the order of rw class
+orderSNAIVE <- filter(overall_interactions_q, .class == "snaive")
+overall_interactions_q$.feature <- factor(overall_interactions_q$.feature,
+                                          levels = orderSNAIVE$.feature[order(orderSNAIVE$.interaction)])
+top <- overall_interactions_q %>%
+  group_by(.class) %>%
+  top_n(n = 5, wt = .interaction)
+
+overall_interactions_q$istop <- ifelse(overall_interactions_q$.interaction%in%top$.interaction, TRUE, FALSE)
+overall_interactions_q$.interaction[overall_interactions_q$.interaction > 1.0] <- 1
+
+colnames(overall_interactions_q) <- c("feature", "class", "interaction", "istop")
+  
+FHinteraction_quarterly <- ggplot(overall_interactions_q, 
+                               aes(y = interaction, x = feature, fill=as.factor(istop))) +
+  geom_bar(position = "dodge", stat = "identity", width=0.3) +
+  facet_wrap(~ class, ncol = 9, nrow = 2) +
+  coord_flip() + ylab("Friedman's H-Statistic")+
+  scale_fill_manual(breaks=c("0","1"), values=c("#7fbf7b","#af8dc3"), guide="none")+
+  theme(text=element_text(size = 20), axis.text.x = element_text(angle = 90, hjust = 1))
+FHinteraction_quarterly
+
 
 ## ---- intquarterly
 load("data/quarterly/diff1y_acf5.stability.q.rda")
