@@ -154,6 +154,38 @@ plot_pdp_hourly_N <- ggplot(data = ND_includeout1_long, aes_string(x = ND_includ
 plot_pdp_hourly_N
 
 
+## ---- friedmand
+## Overall interaction plot
+load("data/daily/overall_interactions_d.rda")
+overall_interactions_d$.class <- factor(overall_interactions_d$.class, levels = c(
+  "snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
+  "theta","nn","wn"
+))
+
+# arrange features according to the order of rw class
+orderSNAIVE <- filter(overall_interactions_d, .class == "snaive")
+overall_interactions_d$.feature <- factor(overall_interactions_d$.feature,
+                                          levels = orderSNAIVE$.feature[order(orderSNAIVE$.interaction)])
+top <- overall_interactions_d %>%
+  group_by(.class) %>%
+  top_n(n = 5, wt = .interaction)
+
+overall_interactions_d$istop <- ifelse(overall_interactions_d$.interaction%in%top$.interaction, TRUE, FALSE)
+overall_interactions_d$.interaction[overall_interactions_d$.interaction > 1.0] <- 1
+
+colnames(overall_interactions_d) <- c("feature", "class", "interaction", "istop")
+
+FHinteraction_daily <- ggplot(overall_interactions_d, 
+                               aes(y = interaction, x = feature, fill=as.factor(istop))) +
+  geom_bar(position = "dodge", stat = "identity", width=0.3) +
+  facet_wrap(~ class, ncol = 5, nrow = 2) +
+  coord_flip() + ylab("Friedman's H-Statistic")+
+  scale_fill_manual(breaks=c("0","1"), values=c("#7fbf7b","#af8dc3"), guide="none")+
+  theme(text=element_text(size = 20), axis.text.x = element_text(angle = 90, hjust = 1))
+FHinteraction_daily
+
+
+
 ## ---- intdaily
 load("data/daily/sediff_acf5.seasonal_strength2.d.rda")
 colNamesss <- colnames(sediff_acf5.seasonal_strength2.d)[28:37]
@@ -175,111 +207,3 @@ sediff_acf5.seasonal_strength2.d.long %>%
   scale_fill_viridis_c(option = "A", direction = -1)+
   theme(strip.text.x = element_text(size = 18))
 
-
-## ---- pcadaily
-load("data/daily/trainD_votes.rda")
-pcaDvariables <- daily_training[, 1:26]
-pcaM4D <- prcomp(pcaDvariables, center = TRUE, scale = TRUE)
-# summary(pcaM4W)
-PC1m4d <- pcaM4D$x[, 1]
-PC2m4d <- pcaM4D$x[, 2]
-PC3m4d <- pcaM4D$x[, 3]
-m4dPCAresults1 <- data.frame(PC1 = PC1m4d, PC2 = PC2m4d, PC3 = PC3m4d, pcaDvariables)
-m4dPCAresults1$predicted <- trainD_predictions_oob
-trainD_votes1 <- data.frame(trainD_votes)
-m4dPCAresults <- dplyr::bind_cols(m4dPCAresults1, trainD_votes1)
-
-pca1M4D_rwd <- ggplot(m4dPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4dPCAresults[m4dPCAresults$predicted == "rwd", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "rwd") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4D_rw <- ggplot(m4dPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4dPCAresults[m4dPCAresults$predicted == "rw", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "rw") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4D_wn <- ggplot(m4dPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4dPCAresults[m4dPCAresults$predicted == "wn", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "wn") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4D_theta <- ggplot(m4dPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4dPCAresults[m4dPCAresults$predicted == "theta", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "theta") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4D_nn <- ggplot(m4dPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4dPCAresults[m4dPCAresults$predicted == "nn", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "nn") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4D_tbats <- ggplot(m4dPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4dPCAresults[m4dPCAresults$predicted == "tbats", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "tbats") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4D_mstlets <- ggplot(m4dPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4dPCAresults[m4dPCAresults$predicted == "mstlets", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "mstlets") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4D_mstlarima <- ggplot(m4dPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4dPCAresults[m4dPCAresults$predicted == "mstlarima", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "mstlarima") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-
-pca1M4D_stlar <- ggplot(m4dPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4dPCAresults[m4dPCAresults$predicted == "stlar", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "stlar") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-
-pca1M4D_snaive <- ggplot(m4dPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4dPCAresults[m4dPCAresults$predicted == "snaive", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "snaive") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4D_snaive+pca1M4D_rwd+pca1M4D_rw + pca1M4D_mstlarima + pca1M4D_mstlets + pca1M4D_tbats+
- pca1M4D_stlar + pca1M4D_theta + pca1M4D_nn+pca1M4D_wn+plot_layout(ncol = 5, nrow = 2)

@@ -213,136 +213,33 @@ plot_pdp_hourly_curvature <- ggplot(data = curvaturehourly1_long, aes_string(x =
 plot_pdp_hourly_curvature
 
 
+## ---- friedmanh
+## Overall interaction plot
+load("data/hourly/overall_interactions_h.rda")
+overall_interactions_h$.class <- factor(overall_interactions_h$.class, levels = c(
+  "snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
+  "theta","nn","wn"
+))
 
-## ---- inthourly
-load("data/hourly/linearity.sediff_seacf1.h.rda")
-colNamesss <- colnames(linearity.sediff_seacf1.h)[28:37]
+# arrange features according to the order of rw class
+orderSNAIVE <- filter(overall_interactions_h, .class == "snaive")
+overall_interactions_h$.feature <- factor(overall_interactions_h$.feature,
+                                          levels = orderSNAIVE$.feature[order(orderSNAIVE$.interaction)])
+top <- overall_interactions_h %>%
+  group_by(.class) %>%
+  top_n(n = 5, wt = .interaction)
 
-keep.modelnames <- c("snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
-                     "theta","nn","wn")
-keeph <- c(keep.modelnames, c("linearity", "sediff_seacf1"))
-linearity.sediff_seacf1.h <- linearity.sediff_seacf1.h[, names(linearity.sediff_seacf1.h) %in% keeph]
-linearity.sediff_seacf1.h.long <- gather(linearity.sediff_seacf1.h, class, probability, "mstlarima":"wn", factor_key = TRUE)
-linearity.sediff_seacf1.h.long$class <- factor(linearity.sediff_seacf1.h.long$class,
-                                     levels = c("snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
-                                                "theta","nn","wn"))
+overall_interactions_h$istop <- ifelse(overall_interactions_h$.interaction%in%top$.interaction, TRUE, FALSE)
+overall_interactions_h$.interaction[overall_interactions_h$.interaction > 1.0] <- 1
 
+colnames(overall_interactions_h) <- c("feature", "class", "interaction", "istop")
 
-linearity.sediff_seacf1.h.long %>%
-  ggplot(aes(x = linearity, y = sediff_seacf1, fill = probability)) +
-  geom_raster() +
-  theme(axis.text.x = element_text(angle = 90)) +
-  facet_wrap(~class, ncol=5) +
-  scale_fill_viridis_c(option = "A", direction = -1)+
-  theme(strip.text.x = element_text(size = 18))
-
-
-
-## ---- pcahourly
-load("data/hourly/trainH_votes.rda")
-pcaHvariables <- hourly_training[, 1:26]
-pcaM4H <- prcomp(pcaHvariables, center = TRUE, scale = TRUE)
-# summary(pcaM4W)
-PC1m4h <- pcaM4H$x[, 1]
-PC2m4h <- pcaM4H$x[, 2]
-PC3m4h <- pcaM4H$x[, 3]
-m4hPCAresults1 <- data.frame(PC1 = PC1m4h, PC2 = PC2m4h, PC3 = PC3m4h, pcaHvariables)
-m4hPCAresults1$predicted <- trainH_predictions_oob
-trainH_votes1 <- data.frame(trainH_votes)
-m4hPCAresults <- dplyr::bind_cols(m4hPCAresults1, trainH_votes1)
-
-pca1M4H_rwd <- ggplot(m4hPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4hPCAresults[m4hPCAresults$predicted == "rwd", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "rwd") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4H_rw <- ggplot(m4hPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4hPCAresults[m4hPCAresults$predicted == "rw", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "rw") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4H_wn <- ggplot(m4hPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4hPCAresults[m4hPCAresults$predicted == "wn", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "wn") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4H_theta <- ggplot(m4hPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4hPCAresults[m4hPCAresults$predicted == "theta", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "theta") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4H_nn <- ggplot(m4hPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4hPCAresults[m4hPCAresults$predicted == "nn", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "nn") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4H_tbats <- ggplot(m4hPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4hPCAresults[m4hPCAresults$predicted == "tbats", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "tbats") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4H_mstlets <- ggplot(m4hPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4hPCAresults[m4hPCAresults$predicted == "mstlets", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "mstlets") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4H_mstlarima <- ggplot(m4hPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4hPCAresults[m4hPCAresults$predicted == "mstlarima", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "mstlarima") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-
-pca1M4H_stlar <- ggplot(m4hPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4hPCAresults[m4hPCAresults$predicted == "stlar", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "stlar") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-
-pca1M4H_snaive <- ggplot(m4hPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4hPCAresults[m4hPCAresults$predicted == "snaive", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "snaive") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4H_snaive+pca1M4H_rwd+pca1M4H_rw +pca1M4H_mstlarima+pca1M4H_mstlets + pca1M4H_tbats+
-pca1M4H_stlar + pca1M4H_theta + pca1M4H_nn+pca1M4H_wn+plot_layout(ncol = 5, nrow = 2)
+FHinteraction_hourly <- ggplot(overall_interactions_h, 
+                               aes(y = interaction, x = feature, fill=as.factor(istop))) +
+  geom_bar(position = "dodge", stat = "identity", width=0.3) +
+  facet_wrap(~ class, ncol = 5, nrow = 2) +
+  coord_flip() + ylab("Friedman's H-Statistic")+
+  scale_fill_manual(breaks=c("0","1"), values=c("#7fbf7b","#af8dc3"), guide="none")+
+  theme(text=element_text(size = 20), axis.text.x = element_text(angle = 90, hjust = 1))
+FHinteraction_hourly
 
