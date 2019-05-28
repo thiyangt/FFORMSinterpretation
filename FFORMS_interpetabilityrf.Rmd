@@ -367,16 +367,15 @@ This vote-matrix information for the yearly data is presented in \autoref{fig:ye
 
 
 \autoref{fig:viyearly} shows how important each one of the features we considered in the overall classification mechanism of the FFORMS as well as within each class. The first panel gives the ranks of overall variable importance for all features and the other panels shows the class-specific feature rankings. The main point here is strength of trend and test statistic based on Phillips-Perron unit root test, first ACF value of the differenced series, and linearity are the most important features across all categories.
-The 
+In addition to that within first ACF value of residual series of linear trend model appear to be important within all classes.  In addition to linearity, the other features related to different types of trend (damped trend: measured by `beta`, exponential trend: measured by curvature) are assigned a very high importance with in ETS_T, ETS_DT and ETS_NTNS which handles different versions of trend within ETS family. Spikiness appear to be an important feature in the overall classification, even though it does not appear to be among top five feature, spikiness has been assigned a relatively high importance within all categories. The reson for the high importance of spikiness within overall classification is due to the high Mean Decrease in Gini Coefficient. This suggests contribution of spikiness to the homogeneity of the nodes and leaves in the resulting random forest make it important rather than its effect of causality. The length of time series (N) is assigned a very low importance within all categories. 
 
 
-The first ACF value of the original series appears to be important with in rwd and ARMA class. The reason could be, the first ACF value can easily separate very clear stationary and nonstationary models.  The features related to different types of trend (linear trend: measured by `linearity`, damped trend: measured by `beta`, exponential trend: measured by curvature) are assigned a very high importance with in ETS_T, ETS_DT and ETS_NTNS. The features related to randomness of the series such as `spikiness` and `lmres_acf` are also assigned a high importance. The length of time series (N) is assigned a very low importance within random walk class. 
-
-
-\autoref{fig:pdpyearlyurpp} to \autoref{fig:pdpyearlylinearity} show the partial dependency curves, and associated confidence intervals of the top-three features that get selected most in each class. In all three cases, within each class the displayed relationship consistent with the theoretical expectations. 
-
-```{r viyearly, fig.height=15, fig.width=20, fig.cap="Feature importance plot for yearly series. Overall feature importance(top left plot) is evaluated based on two measures: i) Permutation-based variable importance measure and ii) mean decrease in Gini coefficients are used to evaluate  shown in the top left plot. Class-specific feature importance is evaluated based on three measures: i) permutation-based variable importance, PD-based variable importance measure, and ICE-based variable importance measure. Longer bars indicate more important features. Top 5 overall features are highlighted in purple. Strength of trend appears to be the most important feature.", fig.pos="h", dev='pdf'}
+```{r viyearly, fig.height=10, fig.width=20, fig.cap="Feature importance plot for yearly series. Overall feature importance(top left plot) is evaluated based on two measures: i) Permutation-based variable importance measure and ii) mean decrease in Gini coefficients. Class-specific feature importance is evaluated based on three measures: i) permutation-based variable importance, PD-based variable importance measure, and ICE-based variable importance measure. Longer bars indicate more important features. Top 5 overall features are highlighted in purple. Strength of trend appears to be the most important feature.", fig.pos="h", dev='pdf'}
 ```
+
+
+\autoref{fig:pdpyearlyurpp} to \autoref{fig:pdpyearlylinearity} show the partial dependency curves, and associated confidence intervals of the top-three features that get selected most and top within each class. In all three cases, within each class the displayed relationship consistent with the theoretical expectations. 
+
 
 ```{r pdpyearlyurpp, fig.height=4, fig.width=15, fig.cap="Partial dependence plots for ur_pp. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All features show a nonlinear relationship with predicted probabilities.", fig.pos="h", dev='png'}
 ```
@@ -389,7 +388,7 @@ The first ACF value of the original series appears to be important with in rwd a
 ```
 
 
-```{r friedmany, fig.height=14, fig.width=19, fig.cap="", fig.pos="h", dev='pdf'}
+```{r friedmany, fig.height=10, fig.width=20, fig.cap="", fig.pos="h", dev='pdf'}
 ```
 
 ## Quarterly series
