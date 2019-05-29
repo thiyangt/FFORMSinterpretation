@@ -424,7 +424,7 @@ In addition to that within first ACF value of residual series of linear trend mo
 
 ```
 
-According to \autoref{fig:friedmanq} strength of seasonality shows extremely low interactivity within SARIMA, ETS_DT and ETS_DTS, indicating the importance of main effect of seasonality within those classes. Only stlar, ETS_TS and ETS_S classes show high level of interactivity (> 0.6) for seasonality. Further within ARMA class y_acf1 shows a very low level of interactivity. Stength of trend show appear to be among top interacting feature within many classes. 
+According to \autoref{fig:friedmanq} strength of seasonality shows extremely low interactivity within SARIMA, ETS_DT and ETS_DTS, indicating the importance of main effect of seasonality within those classes. Only stlar, ETS_TS and ETS_S classes show high level of interactivity (> 0.6) for seasonality. ARMA class shows a very low interactivity with y_acf1, reflecting the importance of y_acf1 on its own when deciding the probability of selecting ARMA models.  Stength of trend show appear to be among top interacting feature within many classes. The intraction strength of trend within random walk and nn are relatively high (> 0.8) compared to others. Length of time series show a high level of interactivity within random walk class.
 
 
 ```{r friedmanq, fig.height=12, fig.width=18, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for quarterly forest. Top 5 interacting features are highlighted in purple. Stength of seasonality shows an extremely low interactivity within SARIMA, ETS_DT and ETS_DTS."}
@@ -451,19 +451,18 @@ According to \autoref{fig:friedmanq} strength of seasonality shows extremely low
 ```
 
 
-
-```{r pdpmonthlylinearity, fig.height=6, fig.width=15, fig.cap="Partial dependence plots for linearity. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All features show a nonlinear relationship with predicted probabilities.", fig.pos="h"}
-
-```
-
-```{r pdpmonthlyN, fig.height=6, fig.width=15, fig.cap="Partial dependence plots for length of time series (T). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All features show a nonlinear relationship with predicted probabilities.", fig.pos="h"}
+```{r pdpmonthlylinearity, fig.height=6, fig.width=15, fig.cap="Partial dependence plots for linearity. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All curves show an turning point in the relationship around zeo.", fig.pos="h"}
 
 ```
 
-```{r friedmanm, fig.height=15, fig.width=18, fig.cap=""}
+```{r pdpmonthlyN, fig.height=6, fig.width=15, fig.cap="Partial dependence plots for length of time series (T). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. Probability of selecting rw and rwd decreases as the length > 500.", fig.pos="h"}
 
 ```
 
+```{r friedmanm, fig.height=15, fig.width=18, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for quarterly forest. Top 5 interacting features are highlighted in purple. Curvature shows highest level of interactivity within ETS_DTS"}
+
+```
+The partial dependency curves of seasonality and trend of monthly data are very similar to the corresponding plots of quarterly data. Hence, these partial dependency curves are not repeated here. \autoref{fig:pdpmonthlylinearity} partial dependency plot of linearity for monthly data. For non-seasonal forecast models the relationships are very similar to the corresponding observed curves in yearly data. Partial dependency curves of \autoref{fig:pdpmonthlyN} reveals highly parameterized models  and models involves seasonal components suce as (ETS_TS, ETS_DTS, ETS_S, SARIMA, tbats) shows an increasing relationship with N after some point. According to figure \autoref{fig:friedmanm} we can see number of features show high level(>0.5) of interactivity within classes are relatively low. 
 
 ## Weekly series
 
@@ -474,18 +473,50 @@ According to \autoref{fig:friedmanq} strength of seasonality shows extremely low
 
 According to the results of \autoref{fig:viweekly} spikiness, linearity, trend, strength of seasonality, stability and lumpiness have been assigned a high importance. This is similar to the results of yearly, quarterly and monthly data. The length of series has been selected among top 5 by mstlets, tbats, theta and neural network models. The partial dependence plots for seasonality, trend and linearity is very similar to the patterns observed in quarterly and monthly data. Hence, we have not repeated the results. Instead, we have plotted the partial dependence plot for spikiness. According to \autoref{fig:weeklypdp} the probability of selecting snaive, random walk, neural network and white noise increases as the spikiness increases while other forecast-model classes show the opposite. 
 
-```{r viweekly, fig.height=15, fig.width=20, fig.cap="Feature importance plot for weekly data. Permutation-based VI measure and mean decrease in Gini coefficient is used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h", fig.align="center"}
+```{r viweekly, fig.height=8, fig.width=15, fig.cap="Feature importance plot for weekly data. Permutation-based VI measure and mean decrease in Gini coefficient is used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in purple.", fig.pos="h", fig.align="center"}
 ```
 
 
 ```{r weeklypdp, fig.height=5, fig.width=20, fig.cap="Partial dependence plots for the top ranked features from variable importance measures (weekly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belonging to corresponding class.", fig.pos="h"}
 ```
 
+Overall strength of interaction effect for features are shown in \autoref{fig:friedmanw}. Except, ARMA class for all other features across different classes strength of interaction is relatively low (< 0.25). This reflects the importance of individual effect of features when selecting forecast-models for weekly data.
 
-```{r friedmanw, fig.height=15, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```{r friedmanw, fig.height=8, fig.width=15, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for weekly forest. Overall, the interaction effects between the features are very weak.", fig.pos="h", fig.align="center"}
 ```
 
-\clearpage
+\newpage
+## Daily series
+
+\autoref{fig:oobdaily} shows the vote matrix information for hourly data. According to \autoref{fig:oobdaily} the distributions corresponds to observations that have been correctly classified dominate the top for daily data.  However, within daily series there are few observations that have been incorrectly classified to tbats class with very high probabilities. In general, neural network models have a higher chance of getting selected for daily time series. 
+
+
+Variable importance graph for daily data is shown in \autoref{fig:vidaily}. The most important features for daily time series are, strength of seasonality corresponds to the weekly seasonality (7, measured by seasonal_strength1), stability, trend, lumpiness and linearity. Furthermore, length of the series is important in determining random walk, random walk with drift, mstlarima, mstlets, stlar, theta and nn classes.
+
+\autoref{fig:dailypdpstability} we can see probability of selecting whitenoise models increases as stability increases. According to the partial dependency curves of length(N)
+\autoref{fig:dailypdpstability} shorter series tends to select random walk with drift models while probability of selecting snaive, mstlarima and mstlets models increases as the length of series increases. Neural network models show a non-monotonic relationship with length of the series (N). The theta models tend to be selected for series with high annual seasonality but
+very low weekly seasonality.
+
+```{r oobdaily, fig.height=10, fig.width=20, fig.cap="Visualization of the vote matrix based on OOB sample for daily random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots corresponds to class label of the \"best\" forecast-model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of getting selected.", fig.pos="h", dev='png'}
+```
+
+
+```{r vidaily, fig.height=11, fig.width=23, fig.cap="Feature importance plot for daily data. Permutation-based VI measure and mean decrease in Gini coefficients are used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h", fig.align="center"}
+```
+
+According to \autoref{fig:friedmand} number of features that show high level of interactivity (>0.7) with other features are relatively low. Friedman's H-statistic for most of the features across different categories are roughly around o.25, meaning that 25% of variation is explained by the interaction effect. 
+
+```{r dailypdpstability, fig.height=5, fig.width=20, fig.cap="Partial dependence plots for stability. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belonging to corresponding class.", fig.pos="h"}
+```
+
+```{r dailypdpN, fig.height=5, fig.width=20, fig.cap="Partial dependence plots for stability. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belonging to corresponding class.", fig.pos="h"}
+```
+
+
+```{r friedmand, fig.height=11, fig.width=23, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for daily forest. Strength of trend shows highest level of interactivity within white noise class.", fig.pos="h", fig.align="center"}
+```
+
+
 
 ## Hourly series
 
@@ -509,40 +540,15 @@ seasonality (period=24, measured by seasonal_strength1) appear to be more import
 ```
 
 
-```{r friedmanh, fig.height=15, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
+```{r friedmanh, fig.height=11, fig.width=23, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for hourly forest. Linearity shows high level of interactivity within random walk with drift.", fig.pos="h", fig.align="center"}
 ```
 
 The partial dependency plots of the strength of seasonalities are shown in \autoref{fig:seasonalityhourly}. According to \autoref{fig:seasonalityhourly} the probability of selecting random walk, random walk with drift, theta model and white noise process decrease with higher value of strength of daily seasonality. On the other hand, probability of selecting random walk model increase as the strength of weekly seasonality increases. The partial dependency plots of entropy are shown in \autoref{fig:entropyhourly}. The entropy measures forecastability of time series. We can see the probability of selecting random walk with drift and tbats decreases as the entropy increases. The is consistent with our theoretical expectations. In other words, if the series has a clear trend or a clear trigonometric pattern then the forecastability of the time series is high and the entropy is low. For a clear trend, random walk with drift model is suitable while for a series with trigonometric pattern tbats model is suitable.
 
-## Daily series
-
-\autoref{fig:oobdaily} shows the vote matrix information for hourly data. According to \autoref{fig:oobdaily} the distributions corresponds to observations that have been correctly classified dominate the top for daily data.  However, within daily series there are few observations that have been incorrectly classified to tbats class with very high probabilities. In general, neural network models have a higher chance of getting selected for daily time series. 
+According to \autoref{fig:friedmanh} linearity shows high level of interactivity within many classes. Furthermore, we dive deeper into all 2-way interactions with linearity by observing the Friedman's H-Statistics. Friedman's H-Statistic shows high level of interactivity (value close to 1.00) between sediff_seacf1 and linearity across all classes. The associated two-way partial dependency plot is shown below.
 
 
-```{r oobdaily, fig.height=10, fig.width=20, fig.cap="Visualization of the vote matrix based on OOB sample for daily random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots corresponds to class label of the \"best\" forecast-model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of getting selected.", fig.pos="h", dev='png'}
-```
 
-
-Variable importance graph for daily data is shown in \autoref{fig:vidaily}. The most important features for daily time series are, strength of seasonality corresponds to the weekly seasonality (7, measured by seasonal_strength1), stability, trend, lumpiness and linearity. Furthermore, length of the series is important in determining random walk, random walk with drift, mstlarima, mstlets, stlar, theta and nn classes.
-
-\autoref{fig:dailypdpstability} shows the partial dependency plots of the
-top 3 features for daily series. According to the results of
-\autoref{fig:dailypdpstability} shorter series tends to select random walk with drift models while probability of selecting snaive, mstlarima and mstlets models increases as the length of series increases. Neural network models show a non-monotonic relationship with length of the series (N). The theta models tend to be selected for series with high annual seasonality but
-very low weekly seasonality.
-
-
-```{r vidaily, fig.height=11, fig.width=23, fig.cap="Feature importance plot for daily data. Permutation-based VI measure and mean decrease in Gini coefficients are used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.", fig.pos="h", fig.align="center"}
-```
-
-```{r dailypdpstability, fig.height=5, fig.width=20, fig.cap="Partial dependence plots for stability. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belonging to corresponding class.", fig.pos="h"}
-```
-
-```{r dailypdpN, fig.height=5, fig.width=20, fig.cap="Partial dependence plots for stability. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belonging to corresponding class.", fig.pos="h"}
-```
-
-
-```{r friedmand, fig.height=15, fig.width=20, fig.cap="", fig.pos="h", fig.align="center"}
-```
 
 \clearpage
 
