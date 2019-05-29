@@ -203,6 +203,8 @@ plot_pdp_monthlyN
 ## ---- friedmanm
 ## Overall interaction plot
 load("data/monthly/overall_interactions_m.rda")
+## adjust rounding error
+overall_interactions_m$.interaction[overall_interactions_m$.interaction > 1.0] <- 0
 overall_interactions_m <- overall_interactions_m %>% mutate(.class = recode(.class,
                                                                             "snaive"="snaive", "rwd"="rwd", "rw"="rw", "ETS.notrendnoseasonal"="ETS_NTNS",
                                                                             "ETS.dampedtrend"="ETS_DT", "ETS.trend"="ETS_T", 
@@ -225,7 +227,7 @@ top <- overall_interactions_m %>%
   top_n(n = 5, wt = .interaction)
 
 overall_interactions_m$istop <- ifelse(overall_interactions_m$.interaction%in%top$.interaction, TRUE, FALSE)
-overall_interactions_m$.interaction[overall_interactions_m$.interaction > 1.0] <- 1
+
 
 
 colnames(overall_interactions_m) <- c("feature", "class", "interaction", "istop")

@@ -390,53 +390,60 @@ In addition to that within first ACF value of residual series of linear trend mo
 ```
 
 
-```{r friedmany, fig.height=10, fig.width=20, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature. The Hurst exponent within ETS_DT has the highest interaction effect.", fig.pos="h", dev='pdf'}
+```{r friedmany, fig.height=10, fig.width=20, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for yearly forest. The Hurst exponent within ETS_DT has the highest interaction effect.", fig.pos="h", dev='pdf'}
 ```
 
 ## Quarterly series
 
-\autoref{fig:oobquarterly} shows the vote-matrix of the random forests for quarterly based on OOB observations. The disparities between dominating class and non-dominating classes are immediately apparent within ETS_DT, ETS_T, ETS_DTS, ETS_TS, ETS_S and ARMA classes. Within each panel, the outliers associated with dominating distribution indicate some series are correctly classified with very high probability. Furthermore, except ETS_DTS, ETS_TS, ETS_S and SARIMA all other series has a high chance of classified into random walk with drift class. Within tbats panel all distributions located further away from zero, indicating all time series select tbats model at least once from the individual trees in the forest. Within the panels theta, and nn all distributions level at similar proportionalities.  
+\autoref{fig:oobquarterly} shows the vote-matrix of the random forests for quarterly based on OOB observations. The disparities between dominating class and non-dominating classes are immediately apparent within ETS_DT, ETS_T, ETS_DTS, ETS_TS, ETS_S and ARMA classes. Within each panel, the outliers associated with dominating distribution indicate some series are correctly classified with very high probability. Furthermore, except ETS_DTS, ETS_TS, ETS_S and SARIMA all other series has a high chance of classified into random walk with drift class. Within the theta, and nn all distributions level at similar proportionalities as they both represent a general class of forecast-models. Overall random forest succesfully learnt the similarities and dissimailarities between different forecast-models. For example, within each panel, series with a label which involves a sesonal parameter have a high chance of getting selected a seasonal forecast models such as SARIMA, ETS models with seasonal components, stlar, and tbats.
+
+\autoref{fig:viquarterly} shows the feature importance plots for the quarterly. The features strength of seasonality, trend,diff1y_pacf5, linearity and spikiness are the most important features across all categories. Even though the lumpiness does not appear as a top five feature within classes it is appeared to be an important feature in the overall classification process and a relatively high ranks are assigned within many classes. Except, ETS_DT, ETS_DTS and ETS_TS the features, nonlinearity, hwalpha and hwbeta are assigned a very low importance within all other classes. 
 
 
-```{r oobquarterly, fig.height=40, fig.width=40, dev='png',fig.pos="h", fig.cap="Visualization of the vote matrix based on OOB sample for quarterly random forest. Each panel shows the predicted class from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the \"best\" forecast-model identified based on MASE and sMAPE. On each row, distribution of correctly classified class dominates, indicating a good classification of the meta-learner.", dev='png'}
+```{r oobquarterly, fig.height=40, fig.width=40, dev='png',fig.pos="h", fig.cap="Visualization of the vote matrix based on OOB sample for quarterly random forest. Each panel shows the predicted class from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the \"best\" forecast-model identified based on MASE and sMAPE. The disparities between dominating class and nondominating classes are immediately apparent within ETS model classes.", dev='png'}
 ```
-
-\autoref{fig:viquarterly} shows the feature importance plots for the quarterly. The features strength of seasonality, trend,diff1y_pacf5, linearity and spikiness are the most important features across all categories. Even though the lumpiness does not appear as a top five feature within classes it is appeared to be an important feature in the overall classification process and a relatively high ranks are assigned within many classes. 
-
-
-```{r viquarterly, fig.height=10, fig.width=18, fig.cap="Feature importance plot for quarterly series. Overall feature importance(top left plot) is evaluated based on two measures: i) Permutation-based variable importance measure and ii) mean decrease in Gini coefficients are used to evaluate  shown in the top left plot. Class-specific feature importance is evaluated based on three measures: i) permutation-based variable importance, PD-based variable importance measure, and ICE-based variable importance measure. Longer bars indicate more important features. Top 5 overall features are highlighted in purple. Strength of seasonality appears to be the most important feature."}
-
-```
-
-
-```{r pdpquarterlyseasonality, fig.height=8, fig.width=15, fig.cap="Partial dependence plots for strength of seasonality (seasonality_Q). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All features show a nonlinear relationship with predicted probabilities.", fig.pos="h"}
-
-```
-
-
-```{r pdpquarterlydiff1ypacf5, fig.height=8, fig.width=15, fig.cap="Partial dependence plots for sum of squares of first 5 PACF values of differenced series (diff1y_pacf5). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All features show a nonlinear relationship with predicted probabilities.", fig.pos="h"}
-
-```
-
-```{r pdpquarterlytrend, fig.height=8, fig.width=15, fig.cap="Partial dependence plots for strength of trend (trend). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All features show a nonlinear relationship with predicted probabilities.", fig.pos="h"}
-
-```
-
-
-
-```{r friedmanq, fig.height=10, fig.width=18, fig.cap=""}
-
-```
-
 
 \autoref{fig:pdpquarterlyseasonality} to \autoref{fig:pdpquarterlytrend} show the partial dependency curves, and associated confidence intervals of the top-three features that get selected most in each class. According to \autoref{fig:pdpquarterlyseasonality}, it is immediately apparent, that the probability of selecting a seasonal forecast-model increases as the strength of seasonality increases. According to \autoref{fig:pdpquarterlyseasonality} and \autoref{fig:pdpquarterlydiff1ypacf5} probability of selecting SARIMA models drastically changes according to the change of seasonality, and diff1y_pacf5. The partial dependence plot of trend is very similar to the observed patterns in yearly data. 
 
+
+```{r viquarterly, fig.height=12, fig.width=18, fig.cap="Feature importance plot for quarterly series. Overall feature importance(top left plot) is evaluated based on two measures: i) Permutation-based variable importance measure and ii) mean decrease in Gini coefficients are used to evaluate  shown in the top left plot. Class-specific feature importance is evaluated based on three measures: i) permutation-based variable importance, PD-based variable importance measure, and ICE-based variable importance measure. Longer bars indicate more important features. Top 5 overall features are highlighted in purple. Strength of seasonality appears to be the most important feature."}
+
+```
+
+
+```{r pdpquarterlyseasonality, fig.height=6, fig.width=15, fig.cap="Partial dependence plots for strength of seasonality (seasonality_Q). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. Probability of selecting forecast-models with seasonal components increases as seasonality increases.", fig.pos="h"}
+
+```
+
+
+```{r pdpquarterlydiff1ypacf5, fig.height=6, fig.width=15, fig.cap="Partial dependence plots for sum of squares of first 5 PACF values of differenced series (diff1y_pacf5). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. Probability of selecting SARIMA models drastically increases as diff1y_pacf5 increases", fig.pos="h"}
+
+```
+
+```{r pdpquarterlytrend, fig.height=6, fig.width=15, fig.cap="Partial dependence plots for strength of trend (trend). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. The information about whether a seies has an extremely high trend value or not drastically influence the decision of selecting a forecast-model.", fig.pos="h"}
+
+```
+
+According to \autoref{fig:friedmanq} strength of seasonality shows extremely low interactivity within SARIMA, ETS_DT and ETS_DTS, indicating the importance of main effect of seasonality within those classes. Only stlar, ETS_TS and ETS_S classes show high level of interactivity (> 0.6) for seasonality. Further within ARMA class y_acf1 shows a very low level of interactivity. Stength of trend show appear to be among top interacting feature within many classes. 
+
+
+```{r friedmanq, fig.height=12, fig.width=18, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for quarterly forest. Top 5 interacting features are highlighted in purple. Stength of seasonality shows an extremely low interactivity within SARIMA, ETS_DT and ETS_DTS."}
+
+```
+
+
 ## Monthly series
+
+\autoref{fig:oobmonthly} shows the vote-matrix information for monthly series.  Vote matrix information for monthly data depicted similar pattern to quarterly data. For quarterly and monthly data, the same set of features and the class-labels are used to train the model. Hence, this consistency between the results of the quarterly and the monthly series would provide evidence in support of the validity and trustability of the model. 
+
+
+\autoref{fig:vimonthly} shows the feature importance plots for monthly data. For both quarterly and monthly data strength of seasonality, trend, linearity and spikiness are the most important features across all categories. In the case of yearly series low variable importance is assigned to both stability and length of the series. However, within quarterly and monthly data a high variable importance is assigned to length of the series and stability. In addition to the strength of seasonality, the models handling seasonal components (snaive, SARIMA, all ETS models with seasonal component) assigned a high importance to the additional features related to seasonality such as ACF, PACF-based features related to seasonal lag or seasonally differenced series. Furthermore, as expected features calculated based on parameter estimated of ETS(A, A, A) ranked as important for the choice of ETS with damped trend and seasonal component and ETS with trend and seasonal component. One notable difference between the quarterly series and the monthly series is, for monthly data length of the series is ranked among the top five, specially in random walk with drift, random walk, ETS with seasonal and trend component, ETS_seasonal, SARIMA and ARIMA classes. 
+
+
 
 ```{r oobmonthly, fig.height=40, fig.width=40, dev='png',fig.pos="h", fig.cap="Visualization of the vote matrix based on OOB sample for quarterly random forest. Each panel shows the predicted class from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the \"best\" forecast-model identified based on MASE and sMAPE. On each row, distribution of correctly classified class dominates, indicating a good classification of the meta-learner.", dev='png'}
 ```
 
-\autoref{fig:oobquarterly} shows the vote-matrix information for monthly series.  \autoref{fig:oobquarterly} and \autoref{fig:oobmonthly} depicted similar patterns across classes. For quarterly and monthly data, the same set of features and the class-labels are used to train the model. Hence, this consistency between the results of the quarterly and the monthly series would provide evidence in support of the validity and trustability of the model. 
 
 
 ```{r vimonthly, fig.height=12, fig.width=18,  fig.cap="Feature importance plot for monthly series. Overall feature importance(top left plot) is evaluated based on two measures: i) Permutation-based variable importance measure and ii) mean decrease in Gini coefficients are used to evaluate  shown in the top left plot. Class-specific feature importance is evaluated based on three measures: i) permutation-based variable importance, PD-based variable importance measure, and ICE-based variable importance measure. Longer bars indicate more important features. Top 5 overall features are highlighted in purple. Strength of seasonality appears to be the most important feature."}
@@ -444,14 +451,12 @@ In addition to that within first ACF value of residual series of linear trend mo
 ```
 
 
-\autoref{fig:vimonthly} shows the feature importance plots for monthly data. For both quarterly and monthly data strength of seasonality, trend, linearity and spikiness are the most important features across all categories. In the case of yearly data low variable importance is assigned to both stability and length of the series. However, within quarterly and monthly data a high variable importance is assigned to length of the series and stability. In addition to the strength of seasonality, the models handling seasonal components (snaive, SARIMA, all ETS models with seasonal component) assigned a high importance to the additional features related to seasonality such as ACF, PACF-based features related to seasonal lag or seasonally differenced series. Furthermore, as expected features calculated based on parameter estimated of ETS(A, A, A) ranked as important for the choice of ETS with damped trend and seasonal component and ETS with trend and seasonal component. One notable difference between the quarterly series and the monthly series is, for monthly data length of the series is ranked among the top five, specially in random walk with drift, random walk, ETS with seasonal and trend component, ETS_seasonal, SARIMA and ARIMA classes. 
 
-
-```{r pdpmonthlylinearity, fig.height=8, fig.width=15, fig.cap="Partial dependence plots for linearity. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All features show a nonlinear relationship with predicted probabilities.", fig.pos="h"}
+```{r pdpmonthlylinearity, fig.height=6, fig.width=15, fig.cap="Partial dependence plots for linearity. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All features show a nonlinear relationship with predicted probabilities.", fig.pos="h"}
 
 ```
 
-```{r pdpmonthlyN, fig.height=8, fig.width=15, fig.cap="Partial dependence plots for length of time series (T). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All features show a nonlinear relationship with predicted probabilities.", fig.pos="h"}
+```{r pdpmonthlyN, fig.height=6, fig.width=15, fig.cap="Partial dependence plots for length of time series (T). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All features show a nonlinear relationship with predicted probabilities.", fig.pos="h"}
 
 ```
 

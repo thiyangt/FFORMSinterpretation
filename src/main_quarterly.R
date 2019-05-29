@@ -42,7 +42,7 @@ votes_oobQ$variable <- factor(votes_oobQ$variable, levels = c(
 
 oob_boxplot_quarterly <- ggplot(votes_oobQ, aes(x = classlabel, y = value, fill = classlabel)) +
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
-  ylab("log(Proportion)") +
+  ylab("Proportion") +
   xlab("") +
   theme(legend.position = "none", legend.title = element_blank(), 
         legend.text.align = 0, text = element_text(size = 30), axis.text.x = element_text(angle = 90),
@@ -231,6 +231,8 @@ plot_pdp_quarterlyT
 ## ---- friedmanq
 ## Overall interaction plot
 load("data/quarterly/overall_interactions_q.rda")
+## adjust rounding error 
+overall_interactions_q$.interaction[overall_interactions_q$.interaction > 1.0] <- 0
 overall_interactions_q <- overall_interactions_q %>% mutate(.class = recode(.class,
                                                         "snaive"="snaive", "rwd"="rwd", "rw"="rw", "ETS.notrendnoseasonal"="ETS_NTNS",
                                                         "ETS.dampedtrend"="ETS_DT", "ETS.trend"="ETS_T", 
@@ -253,7 +255,7 @@ top <- overall_interactions_q %>%
   top_n(n = 5, wt = .interaction)
 
 overall_interactions_q$istop <- ifelse(overall_interactions_q$.interaction%in%top$.interaction, TRUE, FALSE)
-overall_interactions_q$.interaction[overall_interactions_q$.interaction > 1.0] <- 1
+
 
 colnames(overall_interactions_q) <- c("feature", "class", "interaction", "istop")
   
@@ -261,7 +263,7 @@ FHinteraction_quarterly <- ggplot(overall_interactions_q,
                                aes(y = interaction, x = feature, fill=as.factor(istop))) +
   geom_bar(position = "dodge", stat = "identity", width=0.3) +
   facet_wrap(~ class, ncol = 9, nrow = 2) +
-  coord_flip() + ylab("Friedman's H-Statistic")+
+  coord_flip() + ylab("Overall interaction strength(Friedman's H-Statistic)")+
   scale_fill_manual(breaks=c("0","1"), values=c("#7fbf7b","#af8dc3"), guide="none")+
   theme(text=element_text(size = 20), axis.text.x = element_text(angle = 90, hjust = 1))
 FHinteraction_quarterly
