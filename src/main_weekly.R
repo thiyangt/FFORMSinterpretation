@@ -34,7 +34,7 @@ levels = c( "snaive", "rw", "rwd", "ARMA","ARIMA", "SARIMA",
 
 oob_boxplot_weekly <- ggplot(votes_oobW, aes(x = classlabel, y = value, fill = classlabel)) +
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
-  ylab("log(Proportion)") +
+  ylab("Proportion") +
   xlab("") +
   theme(legend.position = "none", legend.title = element_blank(), 
         legend.text.align = 0, text = element_text(size = 20), axis.text.x = element_text(angle = 90),
@@ -220,6 +220,7 @@ plot_pdp_weekly_spikiness
 ## ---- friedmanw
 ## Overall interaction plot
 load("data/weekly/overall_interactions_w.rda")
+overall_interactions_w$.interaction[overall_interactions_w$.interaction > 1.0] <- 0
 overall_interactions_w <- overall_interactions_w %>% mutate(.class = recode(.class,
                                                                             "snaive"="snaive", "rw"="rw",
                                                                             "rwd"="rwd", "ARMA.AR.MA"="ARMA", "ARIMA"="ARIMA", "SARIMA"="SARIMA",
@@ -239,7 +240,7 @@ top <- overall_interactions_w %>%
   top_n(n = 5, wt = .interaction)
 
 overall_interactions_w$istop <- ifelse(overall_interactions_w$.interaction%in%top$.interaction, TRUE, FALSE)
-overall_interactions_w$.interaction[overall_interactions_w$.interaction > 1.0] <- 1
+
 
 colnames(overall_interactions_w) <- c("feature", "class", "interaction", "istop")
 
@@ -247,7 +248,7 @@ FHinteraction_weekly <- ggplot(overall_interactions_w,
                                   aes(y = interaction, x = feature, fill=as.factor(istop))) +
   geom_bar(position = "dodge", stat = "identity", width=0.3) +
   facet_wrap(~ class, ncol = 6, nrow = 2) +
-  coord_flip() + ylab("Friedman's H-Statistic")+
+  coord_flip() + ylab("Overall interaction strength (Friedman's H-Statistic)")+
   scale_fill_manual(breaks=c("0","1"), values=c("#7fbf7b","#af8dc3"), guide="none")+
   theme(text=element_text(size = 20), axis.text.x = element_text(angle = 90, hjust = 1))
 FHinteraction_weekly

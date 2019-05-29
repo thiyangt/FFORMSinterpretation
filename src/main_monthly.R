@@ -237,7 +237,7 @@ FHinteraction_monthly <- ggplot(overall_interactions_m,
                                   aes(y = interaction, x = feature, fill=as.factor(istop))) +
   geom_bar(position = "dodge", stat = "identity", width=0.3) +
   facet_wrap(~ class, ncol = 9, nrow = 2) +
-  coord_flip() + ylab("Friedman's H-Statistic")+
+  coord_flip() + ylab("Overall inteaction strength (Friedman's H-Statistic)")+
   scale_fill_manual(breaks=c("0","1"), values=c("#7fbf7b","#af8dc3"), guide="none")+
   theme(text=element_text(size = 20), axis.text.x = element_text(angle = 90, hjust = 1))
 FHinteraction_monthly

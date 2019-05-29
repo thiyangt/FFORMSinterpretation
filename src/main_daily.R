@@ -16,7 +16,7 @@ votes_oobD$variable <- factor(votes_oobD$variable,
 )
 oob_boxplot_daily <- ggplot(votes_oobD, aes(x = classlabel, y = value, fill = classlabel)) +
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
-  ylab("log(Proportion)") +
+  ylab("Proportion") +
   xlab("") +
   theme(legend.position = "none", legend.title = element_blank(), 
         legend.text.align = 0, text = element_text(size = 25), axis.text.x = element_text(angle = 90),
@@ -179,7 +179,7 @@ FHinteraction_daily <- ggplot(overall_interactions_d,
                                aes(y = interaction, x = feature, fill=as.factor(istop))) +
   geom_bar(position = "dodge", stat = "identity", width=0.3) +
   facet_wrap(~ class, ncol = 5, nrow = 2) +
-  coord_flip() + ylab("Friedman's H-Statistic")+
+  coord_flip() + ylab("Overall interaction strength (Friedman's H-Statistic)")+
   scale_fill_manual(breaks=c("0","1"), values=c("#7fbf7b","#af8dc3"), guide="none")+
   theme(text=element_text(size = 20), axis.text.x = element_text(angle = 90, hjust = 1))
 FHinteraction_daily
