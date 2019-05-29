@@ -37,7 +37,7 @@ output:
 
 ```{r setup, include=FALSE, cache=FALSE}
 library(knitr)
-knitr::opts_chunk$set(echo = FALSE, cache=TRUE, messages=FALSE, warning=FALSE, fig.path = 'figures/', dev=c('png'), fig.pos= "h", external = TRUE)
+knitr::opts_chunk$set(echo = FALSE, cache=TRUE, messages=FALSE, warning=FALSE, fig.path = 'figures/', dev=c('pdf'), fig.pos= "h", external = TRUE)
 # Make sure you have the latest version of rmarkdown and bookdown
 #devtools::install_github("rstudio/rmarkdown")
 #devtools::install_github("rstudio/bookdown")
@@ -362,7 +362,7 @@ This completes the evaluation of FFORMS framework. Now in the next section we pr
 This vote-matrix information for the yearly data is presented in \autoref{fig:yearlyoob}. \autoref{fig:yearlyoob} indicates three primary patterns: i) the distributions of correctly classified classes dominate, indicating a good classification of the meta-learner, the associated outliers of the boxplots indicate some series are correctly classified with high probability ii) irrespective of the class labels the random walk with drift has a high chance of getting selected for all series, the results if \autoref{results1} also show random walk with drift give very high prediction accuracy,  iii) FFORMS framework successfully learned the similarities and dissimilarities between the classes itself.  For example, within ETS models with a trend component (ETS_T, 3rd panel), disparities between forecast-models with trend components and forecast-models without trend component (wn, ARMA, ETS_NTNS) are immediately visible. 
 
 
-```{r yearlyoob, fig.height=10, fig.width=20, fig.cap="Visualization of the vote matrix based on OOB sample for yearly random forest. Each panel shows the predicted class from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the \"best\" forecast-model identified based on MASE and sMAPE. On each row, distribution of correctly classified class dominates, indicating a good classification of the meta-learner.", fig.pos="h"}
+```{r yearlyoob, fig.height=10, fig.width=20, fig.cap="Visualization of the vote matrix based on OOB sample for yearly random forest. Each panel shows the predicted class from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the \"best\" forecast-model identified based on MASE and sMAPE. On each row, distribution of correctly classified class dominates, indicating a good classification of the meta-learner.", fig.pos="h", dev='png'}
 ```
 
 
@@ -370,25 +370,27 @@ This vote-matrix information for the yearly data is presented in \autoref{fig:ye
 In addition to that within first ACF value of residual series of linear trend model appear to be important within all classes.  In addition to linearity, the other features related to different types of trend (damped trend: measured by `beta`, exponential trend: measured by curvature) are assigned a very high importance with in ETS_T, ETS_DT and ETS_NTNS which handles different versions of trend within ETS family. Spikiness appear to be an important feature in the overall classification, even though it does not appear to be among top five feature, spikiness has been assigned a relatively high importance within all categories. The reson for the high importance of spikiness within overall classification is due to the high Mean Decrease in Gini Coefficient. This suggests contribution of spikiness to the homogeneity of the nodes and leaves in the resulting random forest make it important rather than its effect of causality. The length of time series (N) is assigned a very low importance within all categories. 
 
 
-```{r viyearly, fig.height=10, fig.width=20, fig.cap="Feature importance plot for yearly series. Overall feature importance(top left plot) is evaluated based on two measures: i) Permutation-based variable importance measure and ii) mean decrease in Gini coefficients. Class-specific feature importance is evaluated based on three measures: i) permutation-based variable importance, PD-based variable importance measure, and ICE-based variable importance measure. Longer bars indicate more important features. Top 5 overall features are highlighted in purple. Strength of trend appears to be the most important feature.", fig.pos="h", dev='pdf'}
+```{r viyearly, fig.height=10, fig.width=20, fig.cap="Feature importance plot for yearly series. Overall feature importance(top left plot) is evaluated based on two measures: i) Permutation-based variable importance measure and ii) mean decrease in Gini coefficients. Class-specific feature importance is evaluated based on three measures: i) permutation-based variable importance, PD-based variable importance measure, and ICE-based variable importance measure. Longer bars indicate more important features. Top 5 overall features are highlighted in purple. Strength of trend appears to be the most important feature.", fig.pos="h"}
 ```
 
 
-\autoref{fig:pdpyearlyurpp} to \autoref{fig:pdpyearlylinearity} show the partial dependency curves, and associated confidence intervals of the top-three features that get selected most and top within each class. In all three cases, within each class the displayed relationship consistent with the theoretical expectations. 
+\autoref{fig:pdpyearlyurpp} to \autoref{fig:pdpyearlylinearity} show the partial dependency curves, and associated confidence intervals of the top-three features that get selected most and top within each class. In all three cases, within each class the displayed relationship consistent with the theoretical expectations. For example, a high negative value of Phillips-Perron test statistic indicate a stationarity of the series while a postive value of the test statistic indicate nonstationarity of the series. According to \autoref{fig:pdpyearlyurpp} we can see probability of selecting ETS model with trend component and ARIMA models increases steadily as ur_pp increases while the opposite relationship could be observed for ARMA and WN. According to \autoref{fig:pdpyearlytrend} we can see the information about whether the strength of trend in the series is extremely high or not matters a lot in selecting a forecast-model. The probability of selecting ETS model without trend components (ETS_NTNS), WN and ARMA decreases when the strength of trend is extremely high while the opposite relationship could be observed for other classes. 
+
+\autoref{fig:friedmany} shows interaction strength for each feature. The features appear to be most important in \autoref{fig:viyearly} also interact heavily with other features. Hurst exponent shows the highest level of interactivity within ETS_DT, but a very low ranking was assigned in the importance plot in \autoref{fig:viyearly}, reflecting that this feature is important when considering with other features in the forest rather than on its own in deciding the probability of selecting ETS_DT. On the other hand linearity shows a high variable importance in rwd and ARMA in \autoref{fig:viyearly} but a very low interactivity within rwd and ARMA. This means that linearity is more important on its own rather. \autoref{fig:pdpyearlylinearity} further confirms this as the partial dependency curves corresponds to rwd and ARMA drastically changes as linearity increases.
 
 
-```{r pdpyearlyurpp, fig.height=4, fig.width=15, fig.cap="Partial dependence plots for ur_pp. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All features show a nonlinear relationship with predicted probabilities.", fig.pos="h", dev='png'}
+```{r pdpyearlyurpp, fig.height=4, fig.width=15, fig.cap="Partial dependence plots for ur_pp. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All classes show a turning point in the relationship around zero.", fig.pos="h"}
 ```
 
-```{r pdpyearlytrend, fig.height=4, fig.width=15, fig.cap="Partial dependence plots for trend. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All features show a nonlinear relationship with predicted probabilities.", fig.pos="h", dev='png'}
+```{r pdpyearlytrend, fig.height=4, fig.width=15, fig.cap="Partial dependence plots for trend. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. Probability of selecting ETS models without a trend component and stationary models (WN and ARMA) decrease for an extremely high value of trend.", fig.pos="h"}
 ```
 
 
-```{r pdpyearlylinearity, fig.height=4, fig.width=15, fig.cap="Partial dependence plots for linearity. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. All features show a nonlinear relationship with predicted probabilities.", fig.pos="h", dev='png'}
+```{r pdpyearlylinearity, fig.height=4, fig.width=15, fig.cap="Partial dependence plots for linearity. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belong to corresponding class. Random walk with drift and ARMA classes are highly sensitive to the value of linearity aound 0.", fig.pos="h", dev='png'}
 ```
 
 
-```{r friedmany, fig.height=10, fig.width=20, fig.cap="", fig.pos="h", dev='pdf'}
+```{r friedmany, fig.height=10, fig.width=20, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature. The Hurst exponent within ETS_DT has the highest interaction effect.", fig.pos="h", dev='pdf'}
 ```
 
 ## Quarterly series
@@ -396,7 +398,7 @@ In addition to that within first ACF value of residual series of linear trend mo
 \autoref{fig:oobquarterly} shows the vote-matrix of the random forests for quarterly based on OOB observations. The disparities between dominating class and non-dominating classes are immediately apparent within ETS_DT, ETS_T, ETS_DTS, ETS_TS, ETS_S and ARMA classes. Within each panel, the outliers associated with dominating distribution indicate some series are correctly classified with very high probability. Furthermore, except ETS_DTS, ETS_TS, ETS_S and SARIMA all other series has a high chance of classified into random walk with drift class. Within tbats panel all distributions located further away from zero, indicating all time series select tbats model at least once from the individual trees in the forest. Within the panels theta, and nn all distributions level at similar proportionalities.  
 
 
-```{r oobquarterly, fig.height=40, fig.width=40, dev='png',fig.pos="h", fig.cap="Visualization of the vote matrix based on OOB sample for quarterly random forest. Each panel shows the predicted class from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the \"best\" forecast-model identified based on MASE and sMAPE. On each row, distribution of correctly classified class dominates, indicating a good classification of the meta-learner."}
+```{r oobquarterly, fig.height=40, fig.width=40, dev='png',fig.pos="h", fig.cap="Visualization of the vote matrix based on OOB sample for quarterly random forest. Each panel shows the predicted class from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the \"best\" forecast-model identified based on MASE and sMAPE. On each row, distribution of correctly classified class dominates, indicating a good classification of the meta-learner.", dev='png'}
 ```
 
 \autoref{fig:viquarterly} shows the feature importance plots for the quarterly. The features strength of seasonality, trend,diff1y_pacf5, linearity and spikiness are the most important features across all categories. Even though the lumpiness does not appear as a top five feature within classes it is appeared to be an important feature in the overall classification process and a relatively high ranks are assigned within many classes. 
@@ -431,7 +433,7 @@ In addition to that within first ACF value of residual series of linear trend mo
 
 ## Monthly series
 
-```{r oobmonthly, fig.height=40, fig.width=40, dev='png',fig.pos="h", fig.cap="Visualization of the vote matrix based on OOB sample for quarterly random forest. Each panel shows the predicted class from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the \"best\" forecast-model identified based on MASE and sMAPE. On each row, distribution of correctly classified class dominates, indicating a good classification of the meta-learner."}
+```{r oobmonthly, fig.height=40, fig.width=40, dev='png',fig.pos="h", fig.cap="Visualization of the vote matrix based on OOB sample for quarterly random forest. Each panel shows the predicted class from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the \"best\" forecast-model identified based on MASE and sMAPE. On each row, distribution of correctly classified class dominates, indicating a good classification of the meta-learner.", dev='png'}
 ```
 
 \autoref{fig:oobquarterly} shows the vote-matrix information for monthly series.  \autoref{fig:oobquarterly} and \autoref{fig:oobmonthly} depicted similar patterns across classes. For quarterly and monthly data, the same set of features and the class-labels are used to train the model. Hence, this consistency between the results of the quarterly and the monthly series would provide evidence in support of the validity and trustability of the model. 
@@ -462,7 +464,7 @@ In addition to that within first ACF value of residual series of linear trend mo
 
 \autoref{fig:oobweekly} shows the vote matrix information for weekly data. Unlike, yearly, quarterly and monthly data theta method has a low chance of getting selected. The random walk with drift, tbats models and nn have a high chance of getting selected. ARMA class shows some unusual behaviour within some categories due to class imbalance ratio, ARMA class contains fewer number of observations in the training set. 
 
-```{r oobweekly, fig.height=10, fig.width=20, fig.cap="Visualization of the vote matrix based on OOB sample for weekly random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots corresponds to class label of the \"best\" forecast-model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of getting selected.", fig.pos="h"}
+```{r oobweekly, fig.height=10, fig.width=20, fig.cap="Visualization of the vote matrix based on OOB sample for weekly random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots corresponds to class label of the \"best\" forecast-model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of getting selected.", fig.pos="h", dev='png'}
 ```
 
 According to the results of \autoref{fig:viweekly} spikiness, linearity, trend, strength of seasonality, stability and lumpiness have been assigned a high importance. This is similar to the results of yearly, quarterly and monthly data. The length of series has been selected among top 5 by mstlets, tbats, theta and neural network models. The partial dependence plots for seasonality, trend and linearity is very similar to the patterns observed in quarterly and monthly data. Hence, we have not repeated the results. Instead, we have plotted the partial dependence plot for spikiness. According to \autoref{fig:weeklypdp} the probability of selecting snaive, random walk, neural network and white noise increases as the spikiness increases while other forecast-model classes show the opposite. 
@@ -484,7 +486,7 @@ According to the results of \autoref{fig:viweekly} spikiness, linearity, trend, 
 
 \autoref{fig:oobhourly} shows the vote matrix information for hourly data. Overall, for hourly series random walk with drift models, tbats and neural network models have a high chance of getting selected. Furthermore, it is important to note that within nn panels all distributions located away from series which indicates all hourly series have been assigned a non-zero probability of getting selected to neural network class. 
 
-```{r oobhourly, fig.height=10, fig.width=20, fig.cap="Visualization of the vote matrix based on OOB sample for hourly random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots corresponds to class label of the \"best\" forecast-model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of getting selected.", fig.pos="h"}
+```{r oobhourly, fig.height=10, fig.width=20, fig.cap="Visualization of the vote matrix based on OOB sample for hourly random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots corresponds to class label of the \"best\" forecast-model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of getting selected.", fig.pos="h", dev='png'}
 ```
 
 
@@ -512,7 +514,7 @@ The partial dependency plots of the strength of seasonalities are shown in \auto
 \autoref{fig:oobdaily} shows the vote matrix information for hourly data. According to \autoref{fig:oobdaily} the distributions corresponds to observations that have been correctly classified dominate the top for daily data.  However, within daily series there are few observations that have been incorrectly classified to tbats class with very high probabilities. In general, neural network models have a higher chance of getting selected for daily time series. 
 
 
-```{r oobdaily, fig.height=10, fig.width=20, fig.cap="Visualization of the vote matrix based on OOB sample for daily random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots corresponds to class label of the \"best\" forecast-model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of getting selected.", fig.pos="h"}
+```{r oobdaily, fig.height=10, fig.width=20, fig.cap="Visualization of the vote matrix based on OOB sample for daily random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots corresponds to class label of the \"best\" forecast-model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of getting selected.", fig.pos="h", dev='png'}
 ```
 
 
