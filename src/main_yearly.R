@@ -40,7 +40,7 @@ votes_oob$variable <- factor(votes_oob$variable,
                                  "rwd",
                                  "rw" )))
 
-oob_boxplot_yearly <- ggplot(votes_oob, aes(x = classlabel, y = value, fill = classlabel)) +
+oob_boxplot_yearly <- ggplot(votes_oob, aes(x = classlabel, y = log(value), fill = classlabel)) +
   geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.4) +
   ylab("Proportion") +
   xlab("") +
@@ -247,7 +247,7 @@ plot_pdp_yearly_linearity <- ggplot(data = linearitygrid_long, aes_string(x = li
   stat_summary(fun.data = mean_cl_normal,fill="red", geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+ 
   theme(axis.text.x = element_text(angle = 90), text = element_text(size=18), axis.title = element_text(size = 16))+
   facet_grid(. ~ class)+theme(strip.text.x = element_text(size = 10))+xlab("strength of linearity")+ylab("probability of selecting forecast-models")
-plot_pdp_yearly_linearity
+plot_pdp_yearly_linearity+xlim(-8,8)
 
 
 ## ---- friedmany
@@ -356,15 +356,15 @@ FHinteraction_yearly
 
 
 ## ---- intyearly
-load("data/yearly/lumpiness.entropy.y.rda")
-colNamesls <- colnames(lumpiness.entropy.y)[27:36]
+load("data/yearly/diff1yacf1.linearity.y.rda")
+colNamesls <- colnames(diff1yacf1.linearity.y)[27:36]
 
 keep.modelnames <- c("ARIMA", "ARMA.AR.MA", "ETS.dampedtrend", "ETS.notrendnoseasonal",
                      "ETS.trend", "nn", "rw", "rwd", "theta", "wn")
-keepy <- c(keep.modelnames, c("lumpiness", "entropy"))
-lumpiness.entropy.y <- lumpiness.entropy.y[, names(lumpiness.entropy.y) %in% keepy]
-lumpiness.entropy.y.long <- gather(lumpiness.entropy.y, class, probability, "ARIMA":"wn", factor_key = TRUE)
-lumpiness.entropy.y.long <- lumpiness.entropy.y.long %>%
+keepy <- c(keep.modelnames, c("diff1y_acf1", "linearity"))
+diff1yacf1.linearity.y <- diff1yacf1.linearity.y[, names(diff1yacf1.linearity.y) %in% keepy]
+diff1yacf1.linearity.y.long <- gather(diff1yacf1.linearity.y, class, probability, "ARIMA":"wn", factor_key = TRUE)
+diff1yacf1.linearity.y.long <- diff1yacf1.linearity.y.long %>%
   mutate(class = recode(class, nn="nn",
                         theta = "theta",
                         wn = "wn",
@@ -375,18 +375,19 @@ lumpiness.entropy.y.long <- lumpiness.entropy.y.long %>%
                         "ETS.trend" = "ETS_T",
                         "rwd" = "rwd",
                         "rw" = "rw" ))
-lumpiness.entropy.y.long$class <- factor(lumpiness.entropy.y.long$class,
-                               levels = c("rw", "rwd", "ETS_T", "ETS_DT", "ETS_NTNS",
-                                          "ARIMA", "ARMA", "wn", "theta", "nn" ))
+diff1yacf1.linearity.y.long$class <- factor(diff1yacf1.linearity.y.long$class,
+                                            levels = c("rw", "rwd", "ETS_T", "ETS_DT", "ETS_NTNS",
+                                                       "ARIMA", "ARMA", "wn", "theta", "nn" ))
 
 
-lumpiness.entropy.y.long %>%
-  ggplot(aes(x = lumpiness, y = entropy, fill = probability)) +
-  geom_raster() +
+diff1yacf1.linearity.y.long %>%
+  ggplot(aes(x = diff1y_acf1, y = linearity)) +
+  geom_raster(aes(fill = probability)) +
   theme(axis.text.x = element_text(angle = 90)) +
   facet_wrap(~class, ncol=5) +
-  scale_fill_viridis_c(option = "A", direction = -1)+
-  theme(strip.text.x = element_text(size = 18))
 
-
+  scale_fill_viridis_c(breaks=c(0,0.1,0.2,0.3,0.38),labels=c(0,0.1,0.2,0.3,0.38),
+                       limits=c(0,0.38), option = "A", direction = -1) +
+  theme(strip.text.x = element_text(size = 18),legend.position="right", legend.direction='vertical')  +
+scale_y_continuous(limits = c(-8, 8)) 
 
