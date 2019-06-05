@@ -50,7 +50,6 @@ read_chunk("src/main_daily.R")
 read_chunk("src/main_hourly.R")
 read_chunk("src/main_lime.R")
 read_chunk("src/twowayPDPplots.R")
-read_chunk("src/main_daily_hourly.R")
 ```
 
 ```{r loadPackages, cache=FALSE, warning=FALSE, message=FALSE}
@@ -391,6 +390,10 @@ In addition to that within first ACF value of residual series of linear trend mo
 
 
 ```{r friedmany, fig.height=10, fig.width=20, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for yearly forest. The Hurst exponent within ETS_DT has the highest interaction effect.", fig.pos="h", dev='pdf'}
+```
+
+```{r intyearly, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of linearity and diff1y_acf1 for yearly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. Random walk and random walk with drift class show opposite pattern of interactivity between sediff_seacf1 and linearity.", dev='png'}
+
 ```
 
 ## Quarterly series
