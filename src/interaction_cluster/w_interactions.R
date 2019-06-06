@@ -24,10 +24,10 @@ subset_weekly <- subset_weekly[,c(1:26, 28)]
 #                                        subsetdf = subset_weekly, grid.resolution=20, trim1=TRUE)
 # save(lumpiness.beta.w, file="phdproject2/lumpiness.beta.w.rda")
 
-trend.entropy.w <- twowayinteraction(rfu_m4weekly, trend, entropy, 
+curvature.linearity.w <- twowayinteraction(rfu_m4weekly, curvature, linearity, 
                                        fulldf = weekly_training,
                                        subsetdf = subset_weekly, grid.resolution=20)
-save(trend.entropy.w, file="phdproject2/trend.entropy.w.rda")
+save(curvature.linearity.w, file="phdproject2/curvature.linearity.w.rda")
 
 # stability.lumpiness.w <- twowayinteraction(rfu_m4weekly, stability, lumpiness, 
 #                                      fulldf = weekly_training,

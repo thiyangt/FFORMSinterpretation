@@ -187,23 +187,24 @@ FHinteraction_daily
 
 
 ## ---- intdaily
-load("data/daily/sediff_acf5.seasonal_strength2.d.rda")
-colNamesss <- colnames(sediff_acf5.seasonal_strength2.d)[28:37]
+load("data/daily/stability.seasonal_strength2.d.rda")
+colNamesss <- colnames(stability.seasonal_strength2.d)[28:37]
 
 keep.modelnames <- c("snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
                      "theta","nn","wn")
-keepd <- c(keep.modelnames, c("sediff_acf5", "seasonal_strength2"))
-sediff_acf5.seasonal_strength2.d <- sediff_acf5.seasonal_strength2.d[, names(sediff_acf5.seasonal_strength2.d) %in% keepd]
-sediff_acf5.seasonal_strength2.d.long <- gather(sediff_acf5.seasonal_strength2.d, class, probability, "mstlarima":"wn", factor_key = TRUE)
-sediff_acf5.seasonal_strength2.d.long$class <- factor(sediff_acf5.seasonal_strength2.d.long$class,
+keepd <- c(keep.modelnames, c("stability", "seasonal_strength2"))
+stability.seasonal_strength2.d <- stability.seasonal_strength2.d[, names(stability.seasonal_strength2.d) %in% keepd]
+stability.seasonal_strength2.d.long <- gather(stability.seasonal_strength2.d, class, probability, "mstlarima":"wn", factor_key = TRUE)
+stability.seasonal_strength2.d.long$class <- factor(stability.seasonal_strength2.d.long$class,
                                                levels = c("snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
                                                           "theta","nn","wn"))
 
-sediff_acf5.seasonal_strength2.d.long %>%
-  ggplot(aes(x = sediff_acf5, y = seasonal_strength2, fill = probability)) +
+stability.seasonal_strength2.d.long %>%
+  ggplot(aes(x = stability, y = seasonal_strength2, fill = probability)) +
   geom_raster() +
   theme(axis.text.x = element_text(angle = 90)) +
   facet_wrap(~class, ncol=5) +
-  scale_fill_viridis_c(option = "A", direction = -1)+
-  theme(strip.text.x = element_text(size = 18))
+  scale_fill_viridis_c(option = "A", direction = -1, breaks=c(0,0.2,100),
+                       limits=c(0,0.2))+
+  theme(strip.text.x = element_text(size = 10))
 

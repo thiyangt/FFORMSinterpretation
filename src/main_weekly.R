@@ -257,156 +257,30 @@ FHinteraction_weekly
 
 
 ## ---- intweekly
-load("data/weekly/trend.entropy.w.rda")
-colNameste <- colnames(trend.entropy.w)[29:40]
+load("data/weekly/curvature.linearity.w.rda")
+colNameste <- colnames(curvature.linearity.w)[29:40]
 
 keep.modelnames <- c("snaive", "rw", "rwd", "ARMA.AR.MA","ARIMA", "SARIMA",
                      "stlar", "mstlets", "tbats", "theta", "nn", "wn")
-keepw <- c(keep.modelnames, c("trend", "entropy"))
-trend.entropy.w <- trend.entropy.w[, names(trend.entropy.w) %in% keepw]
-trend.entropy.w.long <- gather(trend.entropy.w, class, probability, "ARIMA":"wn", factor_key = TRUE)
-trend.entropy.w.long <- trend.entropy.w.long %>%
+keepw <- c(keep.modelnames, c("curvature", "linearity"))
+curvature.linearity.w <- curvature.linearity.w[, names(curvature.linearity.w) %in% keepw]
+curvature.linearity.w.long <- gather(curvature.linearity.w, class, probability, "ARIMA":"wn", factor_key = TRUE)
+curvature.linearity.w.long <- curvature.linearity.w.long %>%
   mutate(class = recode(class, "snaive"="snaive", "rw"="rw",
                         "rwd"="rwd", "ARMA.AR.MA"="ARMA", "ARIMA"="ARIMA", "SARIMA"="SARIMA",
                         "stlar"="stlar", "mstlets"="mstlets", "tbats"="tbats", "theta"="theta", "nn"="nn", "wn"="wn"))
-trend.entropy.w.long$class <- factor(trend.entropy.w.long$class,
+curvature.linearity.w.long$class <- factor(curvature.linearity.w.long$class,
                                            levels = c("snaive", "rw", "rwd", "ARMA","ARIMA", "SARIMA",
                                                       "stlar", "mstlets", "tbats", "theta", "nn", "wn"))
 
 
-trend.entropy.w.long %>%
-  ggplot(aes(x = trend, y = entropy, fill = probability)) +
+curvature.linearity.w.long %>%
+  ggplot(aes(x = curvature, y = linearity, fill = probability)) +
   geom_raster() +
   theme(axis.text.x = element_text(angle = 90)) +
   facet_wrap(~class, ncol=6) +
-  scale_fill_viridis_c(option = "A", direction = -1)+
+  scale_fill_viridis_c(option = "A", direction = -1, breaks=c(0,0.15,100),
+                       limits=c(0,0.15))+
   theme(strip.text.x = element_text(size = 18))
 
 
-
-
-## ---- pcaweekly
-load("data/weekly/trainW_votes.rda")
-pcaWvariables <- weekly_training[, c(1:26, 28)]
-pcaM4W <- prcomp(pcaWvariables, center = TRUE, scale = TRUE)
-# summary(pcaM4W)
-PC1m4w <- pcaM4W$x[, 1]
-PC2m4w <- pcaM4W$x[, 2]
-PC3m4w <- pcaM4W$x[, 3]
-m4wPCAresults1 <- data.frame(PC1 = PC1m4w, PC2 = PC2m4w, PC3 = PC3m4w, pcaWvariables)
-m4wPCAresults1$predicted <- trainW_predictions_oob
-trainW_votes1 <- data.frame(trainW_votes)
-m4wPCAresults <- dplyr::bind_cols(m4wPCAresults1, trainW_votes1)
-
-pca1M4W_rwd <- ggplot(m4wPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4wPCAresults[m4wPCAresults$predicted == "rwd", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "rwd") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4W_rw <- ggplot(m4wPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4wPCAresults[m4wPCAresults$predicted == "rw", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "rw") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-
-pca1M4W_ARIMA <- ggplot(m4wPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4wPCAresults[m4wPCAresults$predicted == "ARIMA", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "ARIMA") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4W_ARMA <- ggplot(m4wPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4wPCAresults[m4wPCAresults$predicted == "ARMA/AR/MA", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "ARMA/AR/MA") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4W_wn <- ggplot(m4wPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4wPCAresults[m4wPCAresults$predicted == "wn", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "wn") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4W_theta <- ggplot(m4wPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4wPCAresults[m4wPCAresults$predicted == "theta", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "theta") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4W_nn <- ggplot(m4wPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4wPCAresults[m4wPCAresults$predicted == "nn", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "nn") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4W_tbats <- ggplot(m4wPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4wPCAresults[m4wPCAresults$predicted == "tbats", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "tbats") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4W_mstlets <- ggplot(m4wPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4wPCAresults[m4wPCAresults$predicted == "mstlets", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "mstlets") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4W_SARIMA <- ggplot(m4wPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4wPCAresults[m4wPCAresults$predicted == "SARIMA", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "SARIMA") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4W_stlar <- ggplot(m4wPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4wPCAresults[m4wPCAresults$predicted == "stlar", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "stlar") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-
-pca1M4W_snaive <- ggplot(m4wPCAresults, aes(x = PC1, y = PC2, color = predicted)) +
-  geom_point(colour = "firebrick1") +
-  theme(
-    legend.position = "none",
-    aspect.ratio = 1
-  ) +
-  geom_point(data = m4wPCAresults[m4wPCAresults$predicted == "snaive", ], aes(x = PC1, y = PC2), color = "forestgreen") +
-  labs(subtitle = "snaive") + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
-pca1M4W_snaive+pca1M4W_rwd+pca1M4W_rw+pca1M4W_ARIMA + pca1M4W_SARIMA + pca1M4W_stlar+
-  pca1M4W_mstlets + pca1M4W_tbats + pca1M4W_wn + pca1M4W_theta+ pca1M4W_nn+plot_layout(ncol = 5, nrow = 3)

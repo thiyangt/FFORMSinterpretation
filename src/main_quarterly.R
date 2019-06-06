@@ -270,33 +270,34 @@ FHinteraction_quarterly
 
 
 ## ---- intquarterly
-load("data/quarterly/diff1y_acf5.stability.q.rda")
-colNamesds <- colnames(diff1y_acf5.stability.q)[32:48]
+load("data/quarterly/e_acf1.curvature.q.rda")
+colNamesds <- colnames(e_acf1.curvature.q)[32:48]
 
 keep.modelnames <- c("ARIMA", "ARMA.AR.MA", "ETS.dampedtrend", "ETS.dampedtrendseasonal",
                      "ETS.notrendnoseasonal", "ETS.seasonal", 
                      "ETS.trend","ETS.trendseasonal"  ,"nn", "rw",
                      "rwd", "SARIMA","snaive","stlar","tbats","theta", "wn")
-keepq <- c(keep.modelnames, c("diff1y_acf5", "stability"))
-diff1y_acf5.stability.q <- diff1y_acf5.stability.q[, names(diff1y_acf5.stability.q) %in% keepq]
-diff1y_acf5.stability.q.long <- gather(diff1y_acf5.stability.q, class, probability, "ARIMA":"wn", factor_key = TRUE)
-diff1y_acf5.stability.q.long <- diff1y_acf5.stability.q.long %>%
+keepq <- c(keep.modelnames, c("e_acf1", "curvature"))
+e_acf1.curvature.q <- e_acf1.curvature.q[, names(e_acf1.curvature.q) %in% keepq]
+e_acf1.curvature.q.long <- gather(e_acf1.curvature.q, class, probability, "ARIMA":"wn", factor_key = TRUE)
+e_acf1.curvature.q.long <- e_acf1.curvature.q.long %>%
   mutate(class = recode(class, "ARIMA"="ARIMA", "ARMA.AR.MA"="ARMA", 
                         "ETS.dampedtrend"="ETS_DT", "ETS.dampedtrendseasonal"="ETS_DTS",
                         "ETS.notrendnoseasonal"="ETS_NTNS", "ETS.seasonal"="ETS_S", 
                         "ETS.trend"="ETS_T","ETS.trendseasonal"="ETS_TS"  ,"nn"="nn", "rw"="rw",
                         "rwd"="rwd", "SARIMA"="SARIMA","snaive"="snaive","stlar"="stlar","tbats"="tbats","theta"="theta", "wn"="wn"))
-diff1y_acf5.stability.q.long$class <- factor(diff1y_acf5.stability.q.long$class,
+e_acf1.curvature.q.long$class <- factor(e_acf1.curvature.q.long$class,
                                            levels = c("snaive","rw", "rwd", "ETS_NTNS","ETS_DT", "ETS_T", "ETS_DTS",
                                                       "ETS_TS", "ETS_S","tbats","stlar", "SARIMA",
                                                       "ARIMA", "ARMA", "wn", "theta", "nn" ))
 
 
-diff1y_acf5.stability.q.long %>%
-  ggplot(aes(x = diff1y_acf5, y = stability, fill = probability)) +
-  geom_raster() +
+e_acf1.curvature.q.long %>%
+  ggplot(aes(x = e_acf1, y = curvature)) +
+  geom_raster(aes(fill = probability)) +
   theme(axis.text.x = element_text(angle = 90)) +
-  facet_wrap(~class, ncol=9) +
-  scale_fill_viridis_c(option = "A", direction = -1)+
-  theme(strip.text.x = element_text(size = 12))
+  facet_wrap(~class, ncol=6) +
+  scale_fill_viridis_c(breaks=c(0,0.125,100),
+                       limits=c(0,0.125), option = "A", direction = -1) +
+  theme(strip.text.x = element_text(size = 12),legend.position="right", legend.direction='vertical')  
 

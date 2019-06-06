@@ -356,15 +356,15 @@ FHinteraction_yearly
 
 
 ## ---- intyearly
-load("data/yearly/diff1yacf1.linearity.y.rda")
-colNamesls <- colnames(diff1yacf1.linearity.y)[27:36]
+load("data/yearly/lmres_acf1.diff1y_acf1.y.rda")
+colNamesls <- colnames(lmres_acf1.diff1y_acf1.y)[27:36]
 
 keep.modelnames <- c("ARIMA", "ARMA.AR.MA", "ETS.dampedtrend", "ETS.notrendnoseasonal",
                      "ETS.trend", "nn", "rw", "rwd", "theta", "wn")
-keepy <- c(keep.modelnames, c("diff1y_acf1", "linearity"))
-diff1yacf1.linearity.y <- diff1yacf1.linearity.y[, names(diff1yacf1.linearity.y) %in% keepy]
-diff1yacf1.linearity.y.long <- gather(diff1yacf1.linearity.y, class, probability, "ARIMA":"wn", factor_key = TRUE)
-diff1yacf1.linearity.y.long <- diff1yacf1.linearity.y.long %>%
+keepy <- c(keep.modelnames, c("lmres_acf1", "diff1y_acf1"))
+lmres_acf1.diff1y_acf1.y <- lmres_acf1.diff1y_acf1.y[, names(lmres_acf1.diff1y_acf1.y) %in% keepy]
+lmres_acf1.diff1y_acf1.y.long <- gather(lmres_acf1.diff1y_acf1.y, class, probability, "ARIMA":"wn", factor_key = TRUE)
+lmres_acf1.diff1y_acf1.y.long <- lmres_acf1.diff1y_acf1.y.long %>%
   mutate(class = recode(class, nn="nn",
                         theta = "theta",
                         wn = "wn",
@@ -375,19 +375,18 @@ diff1yacf1.linearity.y.long <- diff1yacf1.linearity.y.long %>%
                         "ETS.trend" = "ETS_T",
                         "rwd" = "rwd",
                         "rw" = "rw" ))
-diff1yacf1.linearity.y.long$class <- factor(diff1yacf1.linearity.y.long$class,
+lmres_acf1.diff1y_acf1.y.long$class <- factor(lmres_acf1.diff1y_acf1.y.long$class,
                                             levels = c("rw", "rwd", "ETS_T", "ETS_DT", "ETS_NTNS",
                                                        "ARIMA", "ARMA", "wn", "theta", "nn" ))
 
-
-diff1yacf1.linearity.y.long %>%
-  ggplot(aes(x = diff1y_acf1, y = linearity)) +
-  geom_raster(aes(fill = probability)) +
+lmres_acf1.diff1y_acf1.y.long %>%
+  ggplot(aes(x = lmres_acf1, y = diff1y_acf1, fill = probability)) +
+  geom_raster() +
   theme(axis.text.x = element_text(angle = 90)) +
   facet_wrap(~class, ncol=5) +
+  scale_fill_viridis_c(option = "A", direction = -1, breaks=c(0,0.21,100),
+                       limits=c(0,0.21))+
+  theme(strip.text.x = element_text(size = 10))
 
-  scale_fill_viridis_c(breaks=c(0,0.1,0.2,0.3,0.38),labels=c(0,0.1,0.2,0.3,0.38),
-                       limits=c(0,0.38), option = "A", direction = -1) +
-  theme(strip.text.x = element_text(size = 18),legend.position="right", legend.direction='vertical')  +
-scale_y_continuous(limits = c(-8, 8)) 
+
 

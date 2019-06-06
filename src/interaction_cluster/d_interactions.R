@@ -14,10 +14,10 @@ load("phdproject2/subset_daily.rda")
 
 subset_daily <- subset_daily[,1:26]
 
-sediff_acf5.seasonal_strength2.d <- twowayinteraction(rfu_m4daily, sediff_acf5, seasonal_strength2, 
+stability.seasonal_strength2.d <- twowayinteraction(rfu_m4daily, stability, seasonal_strength2, 
                                   fulldf = daily_training,
                                   subsetdf = subset_daily, grid.resolution=20)
-save(sediff_acf5.seasonal_strength2.d, file="phdproject2/sediff_acf5.seasonal_strength2.d.rda")
+save(stability.seasonal_strength2.d, file="phdproject2/stability.seasonal_strength2.d.rda")
 # 
 # curvature.seas_pacf.d <- twowayinteraction(rfu_m4daily, curvature, seas_pacf, 
 #                                                   fulldf = daily_training,

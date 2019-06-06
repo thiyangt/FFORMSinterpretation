@@ -245,34 +245,36 @@ FHinteraction_monthly
 
 
 ## ---- intmonthly
-load("data/monthly/sediff_acf5.sediff_seacf1.m.rda")
-colNamesds <- colnames(sediff_acf5.sediff_seacf1.m )[32:48]
+load("data/monthly/curvature.linearity.m.rda")
+colNamesds <- colnames(curvature.linearity.m)[32:48]
 keep.modelnames <- c("ARIMA", "ARMA.AR.MA", "ETS.dampedtrend", "ETS.dampedtrendseasonal",
                      "ETS.notrendnoseasonal", "ETS.seasonal", 
                      "ETS.trend","ETS.trendseasonal"  ,"nn", "rw",
                      "rwd", "SARIMA","snaive","stlar","tbats","theta", "wn")
-keepm <- c(keep.modelnames, c("sediff_acf5", "sediff_seacf1"))
-sediff_acf5.sediff_seacf1.m <- sediff_acf5.sediff_seacf1.m[, names(sediff_acf5.sediff_seacf1.m) %in% keepm]
-sediff_acf5.sediff_seacf1.m.long <- gather(sediff_acf5.sediff_seacf1.m, class, probability, "ARIMA":"wn", factor_key = TRUE)
-sediff_acf5.sediff_seacf1.m.long <- sediff_acf5.sediff_seacf1.m.long %>%
+keepm <- c(keep.modelnames, c("curvature", "linearity"))
+curvature.linearity.m <- curvature.linearity.m[, names(curvature.linearity.m) %in% keepm]
+curvature.linearity.m.long <- gather(curvature.linearity.m, class, probability, "ARIMA":"wn", factor_key = TRUE)
+curvature.linearity.m.long <- curvature.linearity.m.long %>%
   mutate(class = recode(class, "ARIMA"="ARIMA", "ARMA.AR.MA"="ARMA", 
                         "ETS.dampedtrend"="ETS_DT", "ETS.dampedtrendseasonal"="ETS_DTS",
                         "ETS.notrendnoseasonal"="ETS_NTNS", "ETS.seasonal"="ETS_S", 
                         "ETS.trend"="ETS_T","ETS.trendseasonal"="ETS_TS"  ,"nn"="nn", "rw"="rw",
                         "rwd"="rwd", "SARIMA"="SARIMA","snaive"="snaive","stlar"="stlar","tbats"="tbats","theta"="theta", "wn"="wn"))
-sediff_acf5.sediff_seacf1.m.long$class <- factor(sediff_acf5.sediff_seacf1.m.long$class,
+curvature.linearity.m.long$class <- factor(curvature.linearity.m.long$class,
                                              levels = c("snaive","rw", "rwd", "ETS_NTNS","ETS_DT", "ETS_T", "ETS_DTS",
                                                         "ETS_TS", "ETS_S","tbats","stlar", "SARIMA",
                                                         "ARIMA", "ARMA", "wn", "theta", "nn" ))
 
 
-sediff_acf5.sediff_seacf1.m.long %>%
-  ggplot(aes(x = sediff_acf5, y = sediff_seacf1, fill = probability)) +
+
+
+curvature.linearity.m.long %>%
+  ggplot(aes(x = curvature, y = linearity, fill = probability)) +
   geom_raster() +
   theme(axis.text.x = element_text(angle = 90)) +
-  facet_wrap(~class, ncol=9) +
-  scale_fill_viridis_c(option = "A", direction = -1)+
+  facet_wrap(~class, ncol=6) +
+  scale_fill_viridis_c(breaks=c(0,0.19,100),
+                       limits=c(0,0.19), option = "A", direction = -1)+
   theme(strip.text.x = element_text(size = 12))
-
 
 
