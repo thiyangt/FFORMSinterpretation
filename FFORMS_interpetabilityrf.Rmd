@@ -180,15 +180,14 @@ The FFORMS framework operates on features calculated from the time series. For e
 24 & y\_acf5        & sum of squares of first 5 ACF values of original series                                 & \yes  & \yes & \yes & \yes\\
 25 & diff1y\_acf5   & sum of squares of first 5 ACF values of differenced series                              & \yes  & \yes & \yes & \yes\\
 26 & diff2y\_acf5   & sum of squares of first 5 ACF values of twice-differenced series                        & \yes  & \yes & \yes & \yes \\
-27 & seas\_acf1     & autocorrelation coefficient at first seasonal lag                                       & -     & \yes & \yes & \yes\\
-28 & sediff\_acf1   & first ACF value of seasonally-differenced series                                        & -     & \yes & \yes & \yes\\
-29 & sediff\_seacf1 & ACF value at the first seasonal lag of seasonally-differenced series                    & -     & \yes & \yes & \yes\\
-30 & sediff\_acf5   & sum of squares of first 5 autocorrelation coefficients of seasonally-differenced series & -     & \yes & \yes & \yes\\
-31 & seas\_pacf     & partial autocorrelation coefficient at first seasonal lag & -     & \yes & \yes & \yes\\
-32 & lmres\_acf1    & first ACF value of residual series of linear trend model                                & \yes  & - & - & -\\
-33 & y\_pacf5       & sum of squares of first 5 PACF values of original series                                & \yes  & \yes & \yes & \yes\\
-34 & diff1y\_pacf5  & sum of squares of first 5 PACF values of differenced series                             & \yes  & \yes & \yes & \yes\\
-35 & diff2y\_pacf5  & sum of squares of first 5 PACF values of twice-differenced series                       & \yes  & \yes & \yes & \yes\\
+27 & sediff\_acf1   & first ACF value of seasonally-differenced series                                        & -     & \yes & \yes & \yes\\
+28 & sediff\_seacf1 & ACF value at the first seasonal lag of seasonally-differenced series                    & -     & \yes & \yes & \yes\\
+29 & sediff\_acf5   & sum of squares of first 5 autocorrelation coefficients of seasonally-differenced series & -     & \yes & \yes & \yes\\
+30 & seas\_pacf     & partial autocorrelation coefficient at first seasonal lag & -     & \yes & \yes & \yes\\
+31 & lmres\_acf1    & first ACF value of residual series of linear trend model                                & \yes  & - & - & -\\
+32 & y\_pacf5       & sum of squares of first 5 PACF values of original series                                & \yes  & \yes & \yes & \yes\\
+33 & diff1y\_pacf5  & sum of squares of first 5 PACF values of differenced series                             & \yes  & \yes & \yes & \yes\\
+34 & diff2y\_pacf5  & sum of squares of first 5 PACF values of twice-differenced series                       & \yes  & \yes & \yes & \yes\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -392,7 +391,7 @@ In addition to that within first ACF value of residual series of linear trend mo
 ```{r friedmany, fig.height=10, fig.width=20, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for yearly forest. The Hurst exponent within ETS_DT has the highest interaction effect.", fig.pos="h", dev='pdf'}
 ```
 
-```{r intyearly, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of linearity and diff1y_acf1 for yearly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. Random walk and random walk with drift class show opposite pattern of interactivity between sediff_seacf1 and linearity.", dev='png'}
+```{r intyearly, fig.height=5, fig.width=10,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of linearity and diff1y_acf1 for yearly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. Random walk and random walk with drift class show opposite pattern of interactivity between sediff_seacf1 and linearity.", dev='png'}
 
 ```
 
@@ -434,6 +433,9 @@ According to \autoref{fig:friedmanq} strength of seasonality shows extremely low
 
 ```
 
+```{r intquarterly, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of curvature and e_acf1 for yearly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. ", dev='png'}
+
+```
 
 ## Monthly series
 
@@ -467,6 +469,10 @@ According to \autoref{fig:friedmanq} strength of seasonality shows extremely low
 ```
 The partial dependency curves of seasonality and trend of monthly data are very similar to the corresponding plots of quarterly data. Hence, these partial dependency curves are not repeated here. \autoref{fig:pdpmonthlylinearity} partial dependency plot of linearity for monthly data. For non-seasonal forecast models the relationships are very similar to the corresponding observed curves in yearly data. Partial dependency curves of \autoref{fig:pdpmonthlyN} reveals highly parameterized models  and models involves seasonal components such as (ETS_TS, ETS_DTS, ETS_S, SARIMA, tbats) shows an increasing relationship with N after some point. According to figure \autoref{fig:friedmanm} we can see number of features show high level(>0.5) of interactivity within classes are relatively low. 
 
+```{r intmonthly, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of linearity and curvature for yearly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. ", dev='png'}
+
+```
+
 ## Weekly series
 
 \autoref{fig:oobweekly} shows the vote matrix information for weekly data. Unlike, yearly, quarterly and monthly data theta method has a low chance of getting selected. The random walk with drift, tbats models and nn have a high chance of getting selected. ARMA class shows some unusual behaviour within some categories due to class imbalance ratio, ARMA class contains fewer number of observations in the training set. 
@@ -486,6 +492,10 @@ According to the results of \autoref{fig:viweekly} spikiness, linearity, trend, 
 Overall strength of interaction effect for features are shown in \autoref{fig:friedmanw}. Except, ARMA class for all other features across different classes strength of interaction is relatively low (< 0.25). This reflects the importance of individual effect of features when selecting forecast-models for weekly data.
 
 ```{r friedmanw, fig.height=8, fig.width=15, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for weekly forest. Overall, the interaction effects between the features are very weak.", fig.pos="h", fig.align="center"}
+```
+
+```{r intweekly, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of curvature and linearity for yearly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. ", dev='png'}
+
 ```
 
 \newpage
@@ -519,6 +529,9 @@ According to \autoref{fig:friedmand} number of features that show high level of 
 ```{r friedmand, fig.height=11, fig.width=23, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for daily forest. Strength of trend shows highest level of interactivity within white noise class.", fig.pos="h", fig.align="center"}
 ```
 
+```{r intdaily, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of sediff_seacf1 and linearity for hourly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. Random walk and random walk with drift class show opposite pattern of interactivity between sediff_seacf1 and linearity.", dev='png'}
+
+```
 
 
 ## Hourly series
