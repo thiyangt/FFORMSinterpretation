@@ -14,11 +14,12 @@ load("phdproject2/subset_monthly.rda")
 
 subset_monthly <- subset_monthly[,1:30]
 
-seasonality.entropy.m <- twowayinteraction(rfu_m4monthly,seasonality, entropy, 
+sediff_seacf1.y_acf5.m <- twowayinteraction(rfu_m4monthly,sediff_seacf1, y_acf5, 
                                      fulldf = monthly_training,
                                      subsetdf = subset_monthly, grid.resolution=20)
-save(seasonality.entropy.m, file="phdproject2/seasonality.entropy.m.rda")
-# 
+save(sediff_seacf1.y_acf5.m, file="phdproject2/sediff_seacf1.y_acf5.m.rda")
+
+
 # spikiness.hurst.m <- twowayinteraction(rfu_m4monthly, spikiness, hurst, 
 #                                      fulldf = monthly_training,
 #                                      subsetdf = subset_monthly, grid.resolution=20)
