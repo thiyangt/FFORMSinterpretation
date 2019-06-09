@@ -91,7 +91,7 @@ The remainder of the paper is structured as follows. The  \autoref{fforms} outli
 We now explain application of the extended FFORMS framework to the M4-competition data. We analyse yearly, quarterly, monthly, weekly, daily and hourly series separately due to their differences in frequencies and hence the appropriateness of different features and forecast-models we considered as class labels. 
 
 ```{r framework, fig.cap="extended FFORMS (Feature-based FORecast-Model Selection) framework. The offline phase is shown in blue, the online phase by red and the peeking inside FFORMS is shown in yellow.", out.width='115%'}
-knitr::include_graphics("figures/framework2.png")
+knitr::include_graphics("img/framework2.png")
 ```
 
 # Offline phase{#offline}
@@ -388,7 +388,7 @@ In addition to that within first ACF value of residual series of linear trend mo
 ```
 
 
-```{r friedmany, fig.height=10, fig.width=20, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for yearly forest. The Hurst exponent within ETS_DT has the highest interaction effect.", fig.pos="h", dev='pdf'}
+```{r friedmany, fig.height=10, fig.width=20, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for yearly forest. The Hurst exponent within ETS_DT has the highest interaction effect.", fig.pos="h", dev='pdf', cache=FALSE}
 ```
 
 ```{r intyearly, fig.height=5, fig.width=10,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of linearity and diff1y_acf1 for yearly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. Random walk and random walk with drift class show opposite pattern of interactivity between sediff_seacf1 and linearity.", dev='png'}
@@ -429,7 +429,7 @@ In addition to that within first ACF value of residual series of linear trend mo
 According to \autoref{fig:friedmanq} strength of seasonality shows extremely low interactivity within SARIMA, ETS_DT and ETS_DTS, indicating the importance of main effect of seasonality within those classes. Only stlar, ETS_TS and ETS_S classes show high level of interactivity (> 0.6) for seasonality. ARMA class shows a very low interactivity with y_acf1, reflecting the importance of y_acf1 on its own when deciding the probability of selecting ARMA models.  Stength of trend show appear to be among top interacting feature within many classes. The interaction strength of trend within random walk and nn are relatively high (> 0.8) compared to others. Length of time series show a high level of interactivity within random walk class.
 
 
-```{r friedmanq, fig.height=12, fig.width=18, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for quarterly forest. Top 5 interacting features are highlighted in purple. Stength of seasonality shows an extremely low interactivity within SARIMA, ETS_DT and ETS_DTS."}
+```{r friedmanq, fig.height=12, fig.width=18, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for quarterly forest. Top 5 interacting features are highlighted in purple. Stength of seasonality shows an extremely low interactivity within SARIMA, ETS_DT and ETS_DTS.", cache=FALSE}
 
 ```
 
@@ -464,7 +464,7 @@ According to \autoref{fig:friedmanq} strength of seasonality shows extremely low
 
 ```
 
-```{r friedmanm, fig.height=15, fig.width=18, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for quarterly forest. Top 5 interacting features are highlighted in purple. Curvature shows highest level of interactivity within ETS_DTS"}
+```{r friedmanm, fig.height=15, fig.width=18, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for quarterly forest. Top 5 interacting features are highlighted in purple. Curvature shows highest level of interactivity within ETS_DTS", cache=FALSE}
 
 ```
 The partial dependency curves of seasonality and trend of monthly data are very similar to the corresponding plots of quarterly data. Hence, these partial dependency curves are not repeated here. \autoref{fig:pdpmonthlylinearity} partial dependency plot of linearity for monthly data. For non-seasonal forecast models the relationships are very similar to the corresponding observed curves in yearly data. Partial dependency curves of \autoref{fig:pdpmonthlyN} reveals highly parameterized models  and models involves seasonal components such as (ETS_TS, ETS_DTS, ETS_S, SARIMA, tbats) shows an increasing relationship with N after some point. According to figure \autoref{fig:friedmanm} we can see number of features show high level(>0.5) of interactivity within classes are relatively low. 
@@ -491,7 +491,7 @@ According to the results of \autoref{fig:viweekly} spikiness, linearity, trend, 
 
 Overall strength of interaction effect for features are shown in \autoref{fig:friedmanw}. Except, ARMA class for all other features across different classes strength of interaction is relatively low (< 0.25). This reflects the importance of individual effect of features when selecting forecast-models for weekly data.
 
-```{r friedmanw, fig.height=8, fig.width=15, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for weekly forest. Overall, the interaction effects between the features are very weak.", fig.pos="h", fig.align="center"}
+```{r friedmanw, fig.height=8, fig.width=15, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for weekly forest. Overall, the interaction effects between the features are very weak.", fig.pos="h", fig.align="center", cache=FALSE}
 ```
 
 ```{r intweekly, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of curvature and linearity for yearly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. ", dev='png'}
@@ -526,7 +526,7 @@ According to \autoref{fig:friedmand} number of features that show high level of 
 ```
 
 
-```{r friedmand, fig.height=11, fig.width=23, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for daily forest. Strength of trend shows highest level of interactivity within white noise class.", fig.pos="h", fig.align="center"}
+```{r friedmand, fig.height=11, fig.width=23, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for daily forest. Strength of trend shows highest level of interactivity within white noise class.", fig.pos="h", fig.align="center", cache=FALSE}
 ```
 
 ```{r intdaily, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of sediff_seacf1 and linearity for hourly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. Random walk and random walk with drift class show opposite pattern of interactivity between sediff_seacf1 and linearity.", dev='png'}
@@ -556,7 +556,7 @@ seasonality (period=24, measured by seasonal_strength1) appear to be more import
 ```
 
 
-```{r friedmanh, fig.height=11, fig.width=23, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for hourly forest. Linearity shows high level of interactivity within random walk with drift.", fig.pos="h", fig.align="center"}
+```{r friedmanh, fig.height=11, fig.width=23, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for hourly forest. Linearity shows high level of interactivity within random walk with drift.", fig.pos="h", fig.align="center", cache=FALSE}
 ```
 
 The partial dependency plots of the strength of seasonalities are shown in \autoref{fig:seasonalityhourly}. According to \autoref{fig:seasonalityhourly} the probability of selecting random walk, random walk with drift, theta model and white noise process decrease with higher value of strength of daily seasonality. On the other hand, probability of selecting random walk model increase as the strength of weekly seasonality increases. The partial dependency plots of entropy are shown in \autoref{fig:entropyhourly}. The entropy measures forecastability of time series. We can see the probability of selecting random walk with drift and tbats decreases as the entropy increases. The is consistent with our theoretical expectations. In other words, if the series has a clear trend or a clear trigonometric pattern then the forecastability of the time series is high and the entropy is low. For a clear trend, random walk with drift model is suitable while for a series with trigonometric pattern tbats model is suitable.
