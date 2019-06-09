@@ -2,5 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
-figures/*
-FFOMRS_interpretabilityf_cache/*
+figures/
+FFOMRS_interpretabilityf_cache/
