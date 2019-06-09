@@ -14,10 +14,10 @@ load("phdproject2/subset_monthly.rda")
 
 subset_monthly <- subset_monthly[,1:30]
 
-sediff_seacf1.y_acf5.m <- twowayinteraction(rfu_m4monthly,sediff_seacf1, y_acf5, 
+sediff_seacf1.hwalpha.m <- twowayinteraction(rfu_m4monthly,sediff_seacf1,hwalpha, 
                                      fulldf = monthly_training,
                                      subsetdf = subset_monthly, grid.resolution=20)
-save(sediff_seacf1.y_acf5.m, file="phdproject2/sediff_seacf1.y_acf5.m.rda")
+save(sediff_seacf1.hwalpha.m, file="phdproject2/sediff_seacf1.hwalpha.m.rda")
 
 
 # spikiness.hurst.m <- twowayinteraction(rfu_m4monthly, spikiness, hurst, 

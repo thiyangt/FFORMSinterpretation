@@ -245,7 +245,7 @@ FHinteraction_monthly
 
 ## ---- intmonthly
 load("data/monthly/sediff_seacf1.hwalpha.m.rda")
-colNamesds <- colnames(sediff_seacf1.hwalpha.m)[32:48]
+colNamesds <-colnames(sediff_seacf1.hwalpha.m)[32:48]
 keep.modelnames <- c("ARIMA", "ARMA.AR.MA", "ETS.dampedtrend", "ETS.dampedtrendseasonal",
                      "ETS.notrendnoseasonal", "ETS.seasonal", 
                      "ETS.trend","ETS.trendseasonal"  ,"nn", "rw",
