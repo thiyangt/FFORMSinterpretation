@@ -344,7 +344,7 @@ In this article, we make the following contributions:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  We extend the FFORMS framework to handle weekly, daily and hourly series. We also extend the diversity of forecast-models used as class labels. The contribution of this paper differs from previously published work related to meta-learning \autocites{prudencio2004meta}{lemke2010meta}{kuck2016meta} in three ways: i) a more extensive collection of features is used (35 different feature types are used which are simple and easy to compute), ii) the diversity of forecast-models considered as class labels, and iii) capability of handling high frequency data;
+  We extend the FFORMS framework to handle weekly, daily and hourly series. We also extend the diversity of forecast-models used as class labels. The contribution of this paper differs from previously published work related to meta-learning \autocites{prudencio2004meta}{lemke2010meta}{kuck2016meta} in three ways: i) a more extensive collection of features is used (features to handle multiple seasonality in hourly and daily series), ii) the diversity of forecast-models considered as class labels, and iii) capability of handling high frequency data;
 \item
   We analyse the application of the FFORMS framework to the M4-competition data. We generated point forecasts and prediction intervals for the M4-competition time series data, and is shown to yield accurate forecast comparable to several benchmarks and other commonly used automated approaches of time series forecasting. Our approach achieved a high accuracy rate based on individual forecast-model selection rule.
 \item
@@ -356,7 +356,7 @@ In this article, we make the following contributions:
   \item
     \textbf{Which} features are the most important?
   \item
-    \textbf{Where} are they important? Are these features important for the overall classification or only within specific classes?
+    \textbf{Where} (overall classification or only within specific classes) are they important? ?
   \item
     \textbf{How} are they important?
   \item
@@ -366,7 +366,7 @@ In this article, we make the following contributions:
   \end{enumerate}
 \end{enumerate}
 
-The remainder of the paper is structured as follows. The \autoref{fforms} outlines the extended FFORMS framework. \autoref{offline} through \autoref{peeking} explain the three main components of the extended FFORMS framework. In \autoref{results} we discuss the results. \autoref{conclusions} concludes.
+The remainder of the paper is structured as follows. The \autoref{fforms} outlines the extended FFORMS framework. \autoref{offline} through \autoref{peeking} explain the three main components of the extended FFORMS framework. Results are discussed in \autoref{results1} and \autoref{results2}. \autoref{conclusions} concludes.
 
 \hypertarget{fforms}{%
 \section{Methodological framework}\label{fforms}}
@@ -381,10 +381,8 @@ The remainder of the paper is structured as follows. The \autoref{fforms} outlin
 \item
   online phase (red): use the pre-trained meta-learner to identify the ``best'' forecast-model.
 \item
-  peeking inside FFORMS (yellow): gain insights into what what is happening under the hood of the FFORMS framework.
+  peeking inside FFORMS (yellow): gain insights into what is happening under the hood of the FFORMS framework.
 \end{enumerate}
-
-We now explain application of the extended FFORMS framework to the M4-competition data. We analyse yearly, quarterly, monthly, weekly, daily and hourly series separately due to their differences in frequencies and hence the appropriateness of different features and forecast-models we considered as class labels.
 
 \begin{figure}[h]
 \includegraphics[width=1.15\linewidth]{img/framework2} \caption{extended FFORMS (Feature-based FORecast-Model Selection) framework. The offline phase is shown in blue, the online phase by red and the peeking inside FFORMS is shown in yellow.}\label{fig:framework}
@@ -392,6 +390,8 @@ We now explain application of the extended FFORMS framework to the M4-competitio
 
 \hypertarget{offline}{%
 \section{Offline phase}\label{offline}}
+
+We now explain application of the FFORMS framework to the M4-competition data. We analyse yearly, quarterly, monthly, weekly, daily and hourly series separately due to their differences in frequencies and hence the appropriateness of different features and forecast-models we considered as class labels.
 
 \hypertarget{reference-set}{%
 \subsection{Reference set}\label{reference-set}}
@@ -401,14 +401,14 @@ We call the collection of time series used for training the meta-leaner as the `
 \hypertarget{observed-sample}{%
 \subsubsection{Observed sample}\label{observed-sample}}
 
-We use the time series from the M1, M3 and M4 competitions as the observed sample. Table \ref{observedsample} summarizes the number of time series in the observed sample. Note that from the M4 competition a randomly selected subset of time series are used for the observed sample. The rest shown by the column labelled ``Test set - M4'' are used as a validation set to evaluate the performance of the meta-learner.
+We use the time series from the M1, M3 and M4 competitions as the observed sample. Table \ref{observedsample} summarizes the number of time series in the observed sample. Note that from the M4 competition a randomly selected subset of time series are used for the observed sample. The rest shown by the column labelled ``Validation set - M4'' are used as a validation set to evaluate the performance of the meta-learner. Note that, we did not use the test period of the each series of the M4 competition to our observed sample or validation set as it was not available to the competitiors during the running of the M4-competition.
 
 \begin{table}[!h]
 \centering
-\caption{Composition of the time series in the observed sample and the test set}
+\caption{Composition of the time series in the observed sample and the validation set}
 \label{observedsample}
 \begin{tabular}{l|rrr|r}
-\multirow{2}{*}{Frequency} & \multicolumn{3}{l|}{Observed Sample} & Test set \\
+\multirow{2}{*}{Frequency} & \multicolumn{3}{l|}{Observed Sample} & Validation set \\
 &   M1    &    M3   &    M4 & M4 \\ \hline
 Yearly          &   181    &   645    &   22000 & 1000 \\
 Quarterly       &   203    &    756   &   23000 & 1000\\
@@ -478,14 +478,13 @@ The FFORMS framework operates on features calculated from the time series. For e
 24 & y\_acf5        & sum of squares of first 5 ACF values of original series                                 & \yes  & \yes & \yes & \yes\\
 25 & diff1y\_acf5   & sum of squares of first 5 ACF values of differenced series                              & \yes  & \yes & \yes & \yes\\
 26 & diff2y\_acf5   & sum of squares of first 5 ACF values of twice-differenced series                        & \yes  & \yes & \yes & \yes \\
-27 & sediff\_acf1   & first ACF value of seasonally-differenced series                                        & -     & \yes & \yes & \yes\\
-28 & sediff\_seacf1 & ACF value at the first seasonal lag of seasonally-differenced series                    & -     & \yes & \yes & \yes\\
-29 & sediff\_acf5   & sum of squares of first 5 autocorrelation coefficients of seasonally-differenced series & -     & \yes & \yes & \yes\\
-30 & seas\_pacf     & partial autocorrelation coefficient at first seasonal lag & -     & \yes & \yes & \yes\\
-31 & lmres\_acf1    & first ACF value of residual series of linear trend model                                & \yes  & - & - & -\\
-32 & y\_pacf5       & sum of squares of first 5 PACF values of original series                                & \yes  & \yes & \yes & \yes\\
-33 & diff1y\_pacf5  & sum of squares of first 5 PACF values of differenced series                             & \yes  & \yes & \yes & \yes\\
-34 & diff2y\_pacf5  & sum of squares of first 5 PACF values of twice-differenced series                       & \yes  & \yes & \yes & \yes\\
+27 & sediff\_seacf1 & ACF value at the first seasonal lag of seasonally-differenced series                    & -     & \yes & \yes & \yes\\
+28 & sediff\_acf5   & sum of squares of first 5 autocorrelation coefficients of seasonally-differenced series & -     & \yes & \yes & \yes\\
+29 & seas\_pacf     & partial autocorrelation coefficient at first seasonal lag & -     & \yes & \yes & \yes\\
+30 & lmres\_acf1    & first ACF value of residual series of linear trend model                                & \yes  & - & - & -\\
+31 & y\_pacf5       & sum of squares of first 5 PACF values of original series                                & \yes  & \yes & \yes & \yes\\
+32 & diff1y\_pacf5  & sum of squares of first 5 PACF values of differenced series                             & \yes  & \yes & \yes & \yes\\
+33 & diff2y\_pacf5  & sum of squares of first 5 PACF values of twice-differenced series                       & \yes  & \yes & \yes & \yes\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -532,7 +531,7 @@ The last step of offline phase of the framewok is to train a meta-learner. A ran
 \hypertarget{online}{%
 \section{Online phase}\label{online}}
 
-The online phase of the algorithm involves generating point forecasts and 95\% prediction intervals for the new series or the future values observed time series. First, the corresponding features are calculated based on the full length of the training period provided by the M4 competition. Second, point forecasts and 95\% prediction intervals are calculated based on the predicted class labels. We should note that all negative forecasts are set to zero.
+The online phase of the algorithm involves generating point forecasts and 95\% prediction intervals for the new series or the future values observed time series. We calculate point forecasts and prediction intervals over the test period of M4-competition data. First, the corresponding features are calculated based on the full length of the training period provided by the M4 competition. Second, point forecasts and 95\% prediction intervals are calculated based on the predicted class labels. We should note that all negative forecasts are set to zero.
 
 \hypertarget{peeking}{%
 \section{Peeking inside FFORMS}\label{peeking}}
@@ -715,12 +714,6 @@ In addition to that within first ACF value of residual series of linear trend mo
 
 \begin{figure}
 \centering
-\includegraphics{figures/friedmany-1.pdf}
-\caption{\label{fig:friedmany}The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for yearly forest. The Hurst exponent within ETS\_DT has the highest interaction effect.}
-\end{figure}
-
-\begin{figure}
-\centering
 \includegraphics{figures/intyearly-1.png}
 \caption{\label{fig:intyearly}Partial dependence plot of model selection probability and the interaction of linearity and diff1y\_acf1 for yearly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. Random walk and random walk with drift class show opposite pattern of interactivity between sediff\_seacf1 and linearity.}
 \end{figure}
@@ -768,12 +761,6 @@ According to \autoref{fig:friedmanq} strength of seasonality shows extremely low
 
 \begin{figure}
 \centering
-\includegraphics{figures/friedmanq-1.pdf}
-\caption{\label{fig:friedmanq}The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for quarterly forest. Top 5 interacting features are highlighted in purple. Stength of seasonality shows an extremely low interactivity within SARIMA, ETS\_DT and ETS\_DTS.}
-\end{figure}
-
-\begin{figure}
-\centering
 \includegraphics{figures/intquarterly-1.png}
 \caption{\label{fig:intquarterly}Partial dependence plot of model selection probability and the interaction of curvature and e\_acf1 for yearly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title.}
 \end{figure}
@@ -809,7 +796,6 @@ According to \autoref{fig:friedmanq} strength of seasonality shows extremely low
 \caption{\label{fig:pdpmonthlyN}Partial dependence plots for length of time series (T). The shading shows the 95\% confidence intervals. Y-axis denotes the probability of belong to corresponding class. Probability of selecting rw and rwd decreases as the length \textgreater{} 500.}
 \end{figure}
 
-\includegraphics{figures/friedmanm-1.pdf}
 The partial dependency curves of seasonality and trend of monthly data are very similar to the corresponding plots of quarterly data. Hence, these partial dependency curves are not repeated here. \autoref{fig:pdpmonthlylinearity} partial dependency plot of linearity for monthly data. For non-seasonal forecast models the relationships are very similar to the corresponding observed curves in yearly data. Partial dependency curves of \autoref{fig:pdpmonthlyN} reveals highly parameterized models and models involves seasonal components such as (ETS\_TS, ETS\_DTS, ETS\_S, SARIMA, tbats) shows an increasing relationship with N after some point. According to figure \autoref{fig:friedmanm} we can see number of features show high level(\textgreater{}0.5) of interactivity within classes are relatively low.
 
 \begin{figure}
@@ -848,22 +834,11 @@ According to the results of \autoref{fig:viweekly} spikiness, linearity, trend, 
 
 Overall strength of interaction effect for features are shown in \autoref{fig:friedmanw}. Except, ARMA class for all other features across different classes strength of interaction is relatively low (\textless{} 0.25). This reflects the importance of individual effect of features when selecting forecast-models for weekly data.
 
-\begin{figure}[h]
-
-{\centering \includegraphics{figures/friedmanw-1} 
-
-}
-
-\caption{The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for weekly forest. Overall, the interaction effects between the features are very weak.}\label{fig:friedmanw}
-\end{figure}
-
 \begin{figure}
 \centering
 \includegraphics{figures/intweekly-1.png}
 \caption{\label{fig:intweekly}Partial dependence plot of model selection probability and the interaction of curvature and linearity for yearly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title.}
 \end{figure}
-
-\newpage
 
 \hypertarget{daily-series}{%
 \subsection{Daily series}\label{daily-series}}
@@ -905,15 +880,6 @@ According to \autoref{fig:friedmand} number of features that show high level of 
 \caption{\label{fig:dailypdpN}Partial dependence plots for stability. The shading shows the 95\% confidence intervals. Y-axis denotes the probability of belonging to corresponding class.}
 \end{figure}
 
-\begin{figure}[h]
-
-{\centering \includegraphics{figures/friedmand-1} 
-
-}
-
-\caption{The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for daily forest. Strength of trend shows highest level of interactivity within white noise class.}\label{fig:friedmand}
-\end{figure}
-
 \begin{figure}
 \centering
 \includegraphics{figures/intdaily-1.png}
@@ -924,6 +890,12 @@ According to \autoref{fig:friedmand} number of features that show high level of 
 \subsection{Hourly series}\label{hourly-series}}
 
 \autoref{fig:oobhourly} shows the vote matrix information for hourly data. Overall, for hourly series random walk with drift models, tbats and neural network models have a high chance of getting selected. Furthermore, it is important to note that within nn panels all distributions located away from series which indicates all hourly series have been assigned a non-zero probability of getting selected to neural network class.
+
+Variable importance graph for hourly data is shown in \autoref{fig:vihourly}. According to \autoref{fig:vihourly}, the strength of daily seasonality (period=24, measured by seasonal\_strength1) appear to be more important than the strength of weekly seasonality (period=168, measured by seasonal\_strength2). However, the strength of weekly seasonality also seems to be one of the most important features for classes snaive, random walk, mstlarima, and tbats. Furthermore, entropy, linearity, sum of squares of first 5 coefficients of PACF, curvature, trend, spikiness and stability were found to be the most important features in determining best forecasting method for hourly time series. Only snaive category ranked N among top 5 for hourly time series.
+
+The partial dependency plots of the strength of seasonalities are shown in \autoref{fig:seasonalityhourly}. According to \autoref{fig:seasonalityhourly} the probability of selecting random walk, random walk with drift, theta model and white noise process decrease with higher value of strength of daily seasonality. On the other hand, probability of selecting random walk model increase as the strength of weekly seasonality increases. The partial dependency plots of entropy are shown in \autoref{fig:entropyhourly}. The entropy measures forecastability of time series. We can see the probability of selecting random walk with drift and tbats decreases as the entropy increases. The is consistent with our theoretical expectations. In other words, if the series has a clear trend or a clear trigonometric pattern then the forecastability of the time series is high and the entropy is low. For a clear trend, random walk with drift model is suitable while for a series with trigonometric pattern tbats model is suitable.
+
+According to \autoref{fig:friedmanh} linearity shows high level of interactivity within many classes. Furthermore, we dive deeper into all 2-way interactions with linearity by observing the Friedman's H-Statistics. Friedman's H-Statistic shows high level of interactivity (value close to 1.00) between sediff\_seacf1 and linearity across all classes. The associated two-way partial dependency plot is shown below.
 
 \begin{figure}
 \centering
@@ -937,9 +909,6 @@ According to \autoref{fig:friedmand} number of features that show high level of 
 \caption{\label{fig:vihourly}Feature importance plot hourly series. Permutation-based VI measure and mean decrease in Gini coefficients are used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in red.}
 \end{figure}
 
-Variable importance graph for hourly data is shown in \autoref{fig:vihourly}. According to \autoref{fig:vihourly}, the strength of daily
-seasonality (period=24, measured by seasonal\_strength1) appear to be more important than the strength of weekly seasonality (period=168, measured by seasonal\_strength2). However, the strength of weekly seasonality also seems to be one of the most important features for classes snaive, random walk, mstlarima, and tbats. Furthermore, entropy, linearity, sum of squares of first 5 coefficients of PACF, curvature, trend, spikiness and stability were found to be the most important features in determining best forecasting method for hourly time series. Only snaive category ranked N among top 5 for hourly time series.
-
 \begin{figure}
 \centering
 \includegraphics{figures/seasonalityhourly-1.pdf}
@@ -951,19 +920,6 @@ seasonality (period=24, measured by seasonal\_strength1) appear to be more impor
 \includegraphics{figures/entropyhourly-1.pdf}
 \caption{\label{fig:entropyhourly}Partial dependence plots for entropy. The shading shows the 95\% confidence intervals. Y-axis denotes the probability of belonging to corresponding class.}
 \end{figure}
-
-\begin{figure}[h]
-
-{\centering \includegraphics{figures/friedmanh-1} 
-
-}
-
-\caption{The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for hourly forest. Linearity shows high level of interactivity within random walk with drift.}\label{fig:friedmanh}
-\end{figure}
-
-The partial dependency plots of the strength of seasonalities are shown in \autoref{fig:seasonalityhourly}. According to \autoref{fig:seasonalityhourly} the probability of selecting random walk, random walk with drift, theta model and white noise process decrease with higher value of strength of daily seasonality. On the other hand, probability of selecting random walk model increase as the strength of weekly seasonality increases. The partial dependency plots of entropy are shown in \autoref{fig:entropyhourly}. The entropy measures forecastability of time series. We can see the probability of selecting random walk with drift and tbats decreases as the entropy increases. The is consistent with our theoretical expectations. In other words, if the series has a clear trend or a clear trigonometric pattern then the forecastability of the time series is high and the entropy is low. For a clear trend, random walk with drift model is suitable while for a series with trigonometric pattern tbats model is suitable.
-
-According to \autoref{fig:friedmanh} linearity shows high level of interactivity within many classes. Furthermore, we dive deeper into all 2-way interactions with linearity by observing the Friedman's H-Statistics. Friedman's H-Statistic shows high level of interactivity (value close to 1.00) between sediff\_seacf1 and linearity across all classes. The associated two-way partial dependency plot is shown below.
 
 \begin{figure}
 \centering
@@ -1003,6 +959,57 @@ Features of time series are useful in identifying suitable models for forecastin
 The features such as the strength of trend and strength of seasonality rank top within each class across all frequency categories. In addition to that, linearity, curvature, spikiness also rank among top 5 within most of the classes. Within most of the classes at least one feature related to autocorrelation and partial autocorrelation coefficients rank among the top 5. This confirms that the information regarding the correlation structure of the time series is an essential information for the choice of model selection. The length of time series (T) also appeared to be important in selecting simple forecast-models such as snaive, naive and random walk with drift. Partial dependency plots of length(T) shows that short time series tends to select simple forecast models such as snaive, naive and random walk with drift while more-parameterized forecast-models (SARIMA, ETS with trend and seasonal component, neural network approach, forecast models handle multiple seasonal components) often get selected with lengthy series. For all features, the displayed relationships of partial dependency plots consistent with the domain knowledge expectations. This is an important aspect in getting humans trust and use the proposed framework effectively. Further, LIME approach is explore the reasons behind each individual prediction. This also helps to increase trust on framework because if the humans understand the reasons behind the results, they can use their prior knowledge about the application domain, which they can use to decide whether to accept (trust) or reject prediction outcome.The results of this helps to get a more refined picture of the relationship between features and the choice of forecast-model which is particularly valuable for ongoing research in the field of feature-based time series analysis.
 
 Exploration of conditions learnt by the FFORMS framework also support practitioners to make a good educated guess on suitable forecast-model for a given problem. Further the results of this study is useful in identifying new ways to improve forecasting accuracy by capturing different features of time series.
+
+\hypertarget{appendix-interaction-effects}{%
+\section*{Appendix: Interaction effects}\label{appendix-interaction-effects}}
+\addcontentsline{toc}{section}{Appendix: Interaction effects}
+
+\begin{figure}
+\centering
+\includegraphics{figures/friedmany-1.pdf}
+\caption{\label{fig:friedmany}The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for yearly forest. The Hurst exponent within ETS\_DT has the highest interaction effect.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{figures/friedmanq-1.pdf}
+\caption{\label{fig:friedmanq}The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for quarterly forest. Top 5 interacting features are highlighted in purple. Stength of seasonality shows an extremely low interactivity within SARIMA, ETS\_DT and ETS\_DTS.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{figures/friedmanm-1.pdf}
+\caption{\label{fig:friedmanm}The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for quarterly forest. Top 5 interacting features are highlighted in purple. Curvature shows highest level of interactivity within ETS\_DTS}
+\end{figure}
+
+\begin{figure}[h]
+
+{\centering \includegraphics{figures/friedmanw-1} 
+
+}
+
+\caption{The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for weekly forest. Overall, the interaction effects between the features are very weak.}\label{fig:friedmanw}
+\end{figure}
+
+\begin{figure}[h]
+
+{\centering \includegraphics{figures/friedmand-1} 
+
+}
+
+\caption{The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for daily forest. Strength of trend shows highest level of interactivity within white noise class.}\label{fig:friedmand}
+\end{figure}
+
+\begin{figure}[h]
+
+{\centering \includegraphics{figures/friedmanh-1} 
+
+}
+
+\caption{The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for hourly forest. Linearity shows high level of interactivity within random walk with drift.}\label{fig:friedmanh}
+\end{figure}
+
+\clearpage
 
 \printbibliography[title=References]
 
