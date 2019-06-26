@@ -330,9 +330,9 @@ forecasting, time series, machine learning interpretability, black-box models, L
 \hypertarget{intro}{%
 \section{Introduction}\label{intro}}
 
-The field of time series forecasting has been evolving for a few decades now and has introduced a wide variety of models for forecasting. However, for a given time series the selection of an appropriate forecast-model among many possibilities is not straight forward. This selection is one of the most difficult tasks as each method perform best for some but not all tasks. The features of a time series are considered to be an important factor in identifying suitable forecasting models \autocite{collopy1992rule,meade2000evidence,makridakis2000m3,wang2009rule}. However, a comprehensive description of the relationship between the features and the performance of algorithms is rarely discussed.
+The field of time series forecasting has been evolving for a few decades now and has introduced a wide variety of models for forecasting. However, for a given time series the selection of an appropriate forecast-model among many possibilities is not straight forward. This selection is one of the most difficult tasks as each method perform best for some but not all tasks. The features of a time series are considered to be an important factor in identifying suitable forecasting models \autocites{collopy1992rule}{meade2000evidence}{makridakis2000m3}{wang2009rule}. However, a comprehensive description of the relationship between the features and the performance of algorithms is rarely discussed.
 
-There have been several recent studies on the use of meta-learning approaches to automate forecast-model selection based on features computed from the time series \autocite{shah1997model,prudencio2004meta,lemke2010meta,kuck2016meta}. A meta-learning approach provides a systematic guidance on model selection based on knowledge acquired from historical data sets. The key idea is, forecast-model selection is posed as a supervised learning task. Each time series in the meta-data set is represented as a vector of features and labelled according to the ``best'' forecast-model (i.e.~for example model with lowest MASE over a test set, etc.). Then a meta-learner is trained to identify a suitable forecast-model (usually a machine learning algorithm is used). In the era of big data, such an automated model selection process is necessary because the cost of invoking all possible forecast-models is prohibitive. However, the existing literature suffers from the limitation of providing answers to questions such as: i) How features are related to the property being modeled?; ii) How features interact with each other to identify a suitable forecast-model?; iii) Which features contribute most to the classification process? etc. Addressing such questions can enhance the understanding of the relations between features and model selection outcomes. To the best of our knowledge, a very limited effort has been taken to understand how the meta-learners are making its decisions and what is really happening inside these complex model structures. Providing transparency will result, building trust in the prediction results of the meta-learner.
+There have been several recent studies on the use of meta-learning approaches to automate forecast-model selection based on features computed from the time series \autocites{shah1997model}{prudencio2004meta}{lemke2010meta}{kuck2016meta}. A meta-learning approach provides a systematic guidance on model selection based on knowledge acquired from historical data sets. The key idea is, forecast-model selection is posed as a supervised learning task. Each time series in the meta-data set is represented as a vector of features and labelled according to the ``best'' forecast-model (i.e.~for example model with lowest MASE over a test set, etc.). Then a meta-learner is trained to identify a suitable forecast-model (usually a machine learning algorithm is used). With these existing frameworks, the question that must be raised is: ``Can we trust the Machine Learning based frameworks if we don't know how it works?'' In the era of big data, such an automated model selection process is necessary because the cost of invoking all possible forecast-models is prohibitive. However, the existing literature suffers from the limitation of providing answers to questions such as: i) How features are related to the property being modeled?; ii) How features interact with each other to identify a suitable forecast-model?; iii) Which features contribute most to the classification process? etc. Addressing such questions can enhance the understanding of the relations between features and model selection outcomes. To the best of our knowledge, a very limited effort has been taken to understand how the meta-learners are making its decisions and what is really happening inside these complex model structures. Providing transparency will result, building trust in the prediction results of the meta-learner.
 
 Furthermore, besides the goal of developing an automated forecast-model selection framework very few researchers have made an attempt to provide a description of the relationship between the features and the choice of different forecast-models \autocites{schnaars1984situational}{wang2009rule}{lemke2010meta}[ are among some exceptions]{petropoulos2014horses}. These studies are limited by the scale of problem instances used, the diversity of forecast-models implemented, and the limited number of features considered to identify the relationship between features and forecast-model performance.
 
@@ -344,25 +344,25 @@ In this article, we make the following contributions:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  We extend the FFORMS framework to handle weekly, daily and hourly series. We also extend the diversity of forecast-models used as class labels. The contribution of this paper differs from previously published work related to meta-learning \autocite{prudencio2004meta,lemke2010meta,kuck2016meta} in three ways: i) a more extensive collection of features is used (35 different feature types are used which are simple and easy to compute), ii) the diversity of forecast-models considered as class labels, and iii) capability of handling high frequency data;
+  We extend the FFORMS framework to handle weekly, daily and hourly series. We also extend the diversity of forecast-models used as class labels. The contribution of this paper differs from previously published work related to meta-learning \autocites{prudencio2004meta}{lemke2010meta}{kuck2016meta} in three ways: i) a more extensive collection of features is used (35 different feature types are used which are simple and easy to compute), ii) the diversity of forecast-models considered as class labels, and iii) capability of handling high frequency data;
 \item
   We analyse the application of the FFORMS framework to the M4-competition data. We generated point forecasts and prediction intervals for the M4-competition time series data, and is shown to yield accurate forecast comparable to several benchmarks and other commonly used automated approaches of time series forecasting. Our approach achieved a high accuracy rate based on individual forecast-model selection rule.
 \item
-  The main contribution of the paper is to explore the relationship between features of time series and the choice of forecast-model selection using the FFORMS framework. We explore the role of features in two different perspectives: i) Global perspective of feature contribution: the overall role of features in the choice of different forecast-models and ii) Local perspective of feature contribution: we zoom into local regions of the data to identify which features contribute most to classify a specific instance. In this category we make five fundamental contributions. They are,
+  The main contribution of the paper is to explore what is happening under the hood of the FFORMS framework and thereby gain an understanding of the relationship between features of time series and the choice of forecast-model selection using the FFORMS framework. We call it ``Peeking inside FFORMS''. We try to answer the following questions:
 
   \begin{enumerate}
   \def\labelenumii{\roman{enumii})}
   \tightlist
   \item
-    visualise patterns leaned by the meta-leaner
+    \textbf{Which} features are the most important?
   \item
-    rank features according to their importance in the choice of forecast-model selection and identify which features are contributing mostly to the predictive mechanism of the fitted model.
+    \textbf{Where} are they important? Are these features important for the overall classification or only within specific classes?
   \item
-    visualise learned relationships between features and the choice of forecast-model selection using partial dependence plots introduced by \textcite{friedman2008predictive}.
+    \textbf{How} are they important?
   \item
-    Assessment of interaction effect between features
+    \textbf{When} and \textbf{how} are features linked with the prediction outcome?
   \item
-    visualise regions in the feature-space in which good or exceptional performance is expected from different forecast-models.
+    \textbf{When} and \textbf{how strongly} do features interacts with other features?
   \end{enumerate}
 \end{enumerate}
 
@@ -387,7 +387,7 @@ The remainder of the paper is structured as follows. The \autoref{fforms} outlin
 We now explain application of the extended FFORMS framework to the M4-competition data. We analyse yearly, quarterly, monthly, weekly, daily and hourly series separately due to their differences in frequencies and hence the appropriateness of different features and forecast-models we considered as class labels.
 
 \begin{figure}[h]
-\includegraphics[width=1.15\linewidth]{figures/framework2} \caption{extended FFORMS (Feature-based FORecast-Model Selection) framework. The offline phase is shown in blue, the online phase by red and the peeking inside FFORMS is shown in yellow.}\label{fig:framework}
+\includegraphics[width=1.15\linewidth]{img/framework2} \caption{extended FFORMS (Feature-based FORecast-Model Selection) framework. The offline phase is shown in blue, the online phase by red and the peeking inside FFORMS is shown in yellow.}\label{fig:framework}
 \end{figure}
 
 \hypertarget{offline}{%
@@ -646,21 +646,23 @@ An alternative for explaining local behaviour of complex models is proposed by \
 \centering\scriptsize\tabcolsep=0.12cm
 \begin{tabular}{l|rrrrrr}
  & Yearly & Quarterly & Monthly & Weekly & Daily & Hourly \\\hline
-\textcolor{red}{FFORMS} & 3.16 &  \bf{1.14} &  0.97&  \bf{2.31}& 3.56 &  \bf{1.06}\\
+FFORMS & 3.17 &  1.20 &  0.98&  2.31& 3.57 &  0.84\\\hline
 auto.arima & 3.40 &1.17  &0.93  & 2.55 &  -& - \\
 ets & 3.44 &  1.16& 0.95 &  -&-  &  -\\
 theta & 3.37 &1.24  & 0.97 &2.64  & 3.33 & 1.59 \\
-rwd & \bf{3.07} & 1.33 & 1.18  & 2.68  & 3.25 & 11.45 \\
-rw & 3.97 & 1.48 & 1.21  &2.78  & \bf{3.27} & 11.60 \\
+rwd & 3.07 & 1.33 & 1.18  & 2.68  & 3.25 & 11.45 \\
+rw & 3.97 & 1.48 & 1.21  &2.78  & 3.27 & 11.60 \\
 nn & 4.06 & 1.55 &  1.14 &4.04 & 3.90 & 1.09 \\
 stlar & - & 2.02 &  1.33& 3.15 & 4.49 & 1.49 \\
 snaive & - &  1.66& 1.26 &  2.78& 24.46 & 2.86 \\
-tbats & - & 1.19 &  1.05& 2.49 & \bf{3.27} &  1.30\\
+tbats & - & 1.19 &  1.05& 2.49 & 3.27 &  1.30\\
 wn & 13.42 &  6.50&  4.11&  49.91& 38.07 & 11.68 \\
 mstlarima & - & - &  - & - & 3.84 &  1.12\\
 mstlets & - &  - &  - &  - & 3.73 &  1.23\\
 combination (mean) & 4.09 & 1.58 &  1.16&6.96  & 7.94 & 3.93 \\\hline
-M4-1st & 2.98 & 1.12 &  0.88& 2.36 & 3.45 & 0.89\\\hline
+M4-1st & 2.98 & 1.12 &  0.88& 2.36 & 3.45 & 0.89\\
+M4-2nd & 3.06 & 1.11 &  0.89& 2.11 & 3.34 & 0.81\\
+M4-3rd & 3.13 & 1.23 &  0.95& 2.16 & 2.64 & 0.87\\\hline
 \end{tabular}
 \end{table}
 
