@@ -643,7 +643,11 @@ An alternative for explaining local behaviour of complex models is proposed by \
 
 \begin{table}[!h]
 \centering\scriptsize\tabcolsep=0.12cm
+\caption{The performance of FFORMS on the M4 competition data based on point forecasts (based on MASE) and prediction intervals (based on MSIS)}
+\label{forecasts}
 \begin{tabular}{l|rrrrrr}
+\hline
+\multicolumn{7}{c}{Point Forecasts (Mean Absolute Scaled Error (MASE))} \\\hline
  & Yearly & Quarterly & Monthly & Weekly & Daily & Hourly \\\hline
 FFORMS & 3.17 &  1.20 &  0.98&  2.31& 3.57 &  0.84\\\hline
 auto.arima & 3.40 &1.17  &0.93  & 2.55 &  -& - \\
@@ -662,6 +666,11 @@ combination (mean) & 4.09 & 1.58 &  1.16&6.96  & 7.94 & 3.93 \\\hline
 M4-1st & 2.98 & 1.12 &  0.88& 2.36 & 3.45 & 0.89\\
 M4-2nd & 3.06 & 1.11 &  0.89& 2.11 & 3.34 & 0.81\\
 M4-3rd & 3.13 & 1.23 &  0.95& 2.16 & 2.64 & 0.87\\\hline
+\multicolumn{7}{c}{Prediction Intervals (Mean Scaled Interval Score (MSIS))} \\\hline
+FFORMS & 39.79 &  11.24 &  9.82&  20.84& 36.36 &  \\\hline
+M4-1st & 23.89 & 8.55 &  7.20 & 22.03 & 26.28 & 7.92\\
+M4-2nd & 27.47 & 9.38 &  8.65& 21.53 & 34.37 & 18.50\\
+M4-3rd & 30.20 & 9.84 &  9.49& 16.46 & 29.13 & 6.13\\\hline
 \end{tabular}
 \end{table}
 
