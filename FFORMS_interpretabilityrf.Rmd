@@ -343,10 +343,11 @@ M4-1st & 2.98 & 1.12 &  0.88& 2.36 & 3.45 & 0.89\\
 M4-2nd & 3.06 & 1.11 &  0.89& 2.11 & 3.34 & 0.81\\
 M4-3rd & 3.13 & 1.23 &  0.95& 2.16 & 2.64 & 0.87\\\hline
 \multicolumn{7}{c}{Prediction Intervals (Mean Scaled Interval Score (MSIS))} \\\hline
-\bf{FFORMS} & \bf{39.79} &  \bf{11.24} &  \bf{9.82}&  \bf{20.84}& \bf{36.36} &  \\
+\bf{FFORMS} & \bf{39.79} &  \bf{11.24} &  \bf{9.82}&  \bf{20.84}& \bf{36.36} & \bf{8.07} \\
 M4-1st & 23.89 & 8.55 &  7.20 & 22.03 & 26.28 & 7.92\\
 M4-2nd & 27.47 & 9.38 &  8.65& 21.53 & 34.37 & 18.50\\
-M4-3rd & \multicolumn{6}{c}{not submitted}\\\hline
+M4-3rd & \multicolumn{6}{c}{not submitted}\\
+naive & 56.55 & 14.07 &  12.30 & 26.35 & 32.55 & 71.24\\\hline
 \end{tabular}
 \end{table}
 
@@ -579,7 +580,9 @@ Exploration of conditions learnt by the FFORMS framework also support practition
 
 # Appendix: Interaction effects {-}
 
-\autoref{fig:friedmany}-\autoref{fig:friedmanh} show how strongly each feature interact with any other feature in the forest for yearly, quarterly, monthly, weekly, daily and hourly series respectively. 
+\autoref{fig:friedmany}-\autoref{fig:friedmanh} show how strongly each feature interact with any other feature in the forest for yearly, quarterly, monthly, weekly, daily and hourly series respectively. On each panel top 5 interacting features are highlighted in purple.
+
+According \autoref{fig:viyearly} the variable importance plots for yearly data the feature `linearity` is assigned a very high variable importance within `rwd` and `ARMA`, but according to \autoref{fig:friedmany} linearity show very low interactivity within rw and rwd. This means that `linearity` is more important on its own rather that its interaction effect. \autoref{fig:pdpyearlylinearity} further confirms this as the partial dependency curves corresponds to `rwd` and `ARMA` drastically changes as linearity varies. According to \autoref{fig:friedmanq} for quarterly data strength of seasonality show relatively low interactivity, indicating the importance of main effect of seasonality for the classification process. Furthermore, length of the time series show a high level of interactivity within random walk class. According to \autoref{fig:friedmanm} and \autoref{fig:friedmanw}, in the process of classifying monthly and weekly series the number of features show high level (>0.5) of interactivity within classes are relatively low. This reflects the importance of individual effect of features when selecting forecast-models for monthly and weekly series. Weekly data FFORMS frameworkshow high level of interactivity of features within ARMA. This due to the class imbalance. Weekly series reference data set containes very small number of ARMA labeled series. Hence, features interact highly to separate ARMA from the rest. Similar to the results of weekly and monthly data, according to \autoref{fig:friedmand} the number of features that show high level of interactivity (>0.7) with other features are relatively low. For hourly time series, according to \autoref{fig:friedmanh} shows high level of interactivity within many classes. 
 
 
 ```{r friedmany, fig.height=10, fig.width=20, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for yearly forest. The Hurst exponent within ETS_DT has the highest interaction effect.", fig.pos="h", dev='pdf', cache=FALSE}
