@@ -131,6 +131,8 @@ topq <- meanrank_quarterly %>%
   group_by(class) %>%
   top_n(n = 5, wt = rank)
 meanrank_quarterly$istop <- ifelse(meanrank_quarterly$rn %in% topq$rn, TRUE, FALSE)
+levels(meanrank_quarterly$feature)[levels(meanrank_quarterly$feature)=="N"] <- "T"
+levels(meanrank_quarterly$feature)[levels(meanrank_quarterly$feature)=="seasonality"] <- "seasonality_q"
 feaImp_quarterly <- ggplot(meanrank_quarterly, aes(y = rank, x = feature,fill=as.factor(istop)), width=0.1) +
   geom_bar(position = "dodge", stat = "identity", width=0.3) +
   facet_wrap(~class, ncol = 9, nrow = 2) +
@@ -167,7 +169,7 @@ plot_pdp_quarterlyS <- ggplot(data = seasonalitygridQ_long, aes_string(x = seaso
   stat_summary(fun.y = mean, geom = "line", col = "red", size = 1) +
   stat_summary(fun.data = mean_cl_normal,fill="red", geom = "ribbon", fun.args = list(mult = 1), alpha = 0.3)+ 
   theme(axis.text.x = element_text(angle = 90), text = element_text(size=18), axis.title = element_text(size = 16))+
-  facet_wrap(. ~ class, ncol=9)+theme(strip.text.x = element_text(size = 10))+xlab("strength of seasonality (seasonality_Q)")+ylab("probability of selecting forecast-models")
+  facet_wrap(. ~ class, ncol=9)+theme(strip.text.x = element_text(size = 10))+xlab("strength of seasonality (seasonality_q)")+ylab("probability of selecting forecast-models")
 plot_pdp_quarterlyS
 
 
@@ -258,7 +260,8 @@ overall_interactions_q$istop <- ifelse(overall_interactions_q$.interaction%in%to
 
 
 colnames(overall_interactions_q) <- c("feature", "class", "interaction", "istop")
-  
+levels(overall_interactions_q$feature)[levels(overall_interactions_q$feature)=="N"] <- "T"
+levels(overall_interactions_q$feature)[levels(overall_interactions_q$feature)=="seasonality"] <- "seasonality_q" 
 FHinteraction_quarterly <- ggplot(overall_interactions_q, 
                                aes(y = interaction, x = feature, fill=as.factor(istop))) +
   geom_bar(position = "dodge", stat = "identity", width=0.3) +

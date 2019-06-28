@@ -99,6 +99,9 @@ topq <- meanrank_hourly %>%
   group_by(class) %>%
   top_n(n = 5, wt = rank)
 meanrank_hourly$istop <- ifelse(meanrank_hourly$rn %in% topq$rn, TRUE, FALSE)
+levels(meanrank_hourly$feature)[levels(meanrank_hourly$feature)=="N"] <- "T"
+levels(meanrank_hourly$feature)[levels(meanrank_hourly$feature)=="seasonal_strength1"] <- "seasonality_d"
+levels(meanrank_hourly$feature)[levels(meanrank_hourly$feature)=="seasonal_strength2"] <- "seasonality_w"
 feaImp_hourly <- ggplot(meanrank_hourly, aes(y = rank, x = feature,fill=as.factor(istop))) +
   geom_bar(position = "dodge", stat = "identity", width=0.3) +
   facet_wrap(~class, ncol = 6, nrow = 2) +
@@ -233,7 +236,9 @@ overall_interactions_h$istop <- ifelse(overall_interactions_h$.interaction%in%to
 overall_interactions_h$.interaction[overall_interactions_h$.interaction > 1.0] <- 1
 
 colnames(overall_interactions_h) <- c("feature", "class", "interaction", "istop")
-
+levels(overall_interactions_h$feature)[levels(overall_interactions_h$feature)=="N"] <- "T"
+levels(overall_interactions_h$feature)[levels(overall_interactions_h$feature)=="seasonal_strength1"] <- "seasonality_d"
+levels(overall_interactions_h$feature)[levels(overall_interactions_h$feature)=="seasonal_strength2"] <- "seasonality_w"
 FHinteraction_hourly <- ggplot(overall_interactions_h, 
                                aes(y = interaction, x = feature, fill=as.factor(istop))) +
   geom_bar(position = "dodge", stat = "identity", width=0.3) +
@@ -243,118 +248,3 @@ FHinteraction_hourly <- ggplot(overall_interactions_h,
   theme(text=element_text(size = 20), axis.text.x = element_text(angle = 90, hjust = 1))
 FHinteraction_hourly
 
-
-## ---- htwopdp
-load("data/hourly/linearity.sediff_seacf1.h.rda")
-colNamesss <- colnames(linearity.sediff_seacf1.h)[28:37]
-# snaive
-int1 <- ggplot(
-  data = linearity.sediff_seacf1.h,
-  aes_string(
-    x = linearity.sediff_seacf1.h$linearity,
-    y = linearity.sediff_seacf1.h$sediff_seacf1, z = colNamesss[6], fill = colNamesss[6]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.8), breaks = seq(0, 0.8, 100), option = "A", direction = -1) +
-  xlab("linearity") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("snaive")+
-  theme(aspect.ratio=1, text = element_text(size=20))
-
-## rw
-int2 <- ggplot(
-  data = linearity.sediff_seacf1.h,
-  aes_string(
-    x = linearity.sediff_seacf1.h$linearity,
-    y = linearity.sediff_seacf1.h$sediff_seacf1, z = colNamesss[4], fill = colNamesss[4]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.8), breaks = seq(0, 0.8, 100), option = "A", direction = -1) +
-  xlab("linearity") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("rw")+
-  theme(aspect.ratio=1, text = element_text(size=20))
-
-## rwd
-int3 <- ggplot(
-  data = linearity.sediff_seacf1.h,
-  aes_string(
-    x = linearity.sediff_seacf1.h$linearity,
-    y = linearity.sediff_seacf1.h$sediff_seacf1, z = colNamesss[5], fill = colNamesss[5]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.8), breaks = seq(0, 0.8, 100), option = "A", direction = -1) +
-  xlab("linearity") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("rwd")+
-  theme(aspect.ratio=1, text = element_text(size=20))
-
-## mstlarima
-int4 <- ggplot(
-  data = linearity.sediff_seacf1.h,
-  aes_string(
-    x = linearity.sediff_seacf1.h$linearity,
-    y = linearity.sediff_seacf1.h$sediff_seacf1, z = colNamesss[1], fill = colNamesss[1]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.8), breaks = seq(0, 0.8, 100), option = "A", direction = -1) +
-  xlab("linearity") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("mstlarima")+
-  theme(aspect.ratio=1, text = element_text(size=20))
-
-## mstlets
-int5 <- ggplot(
-  data = linearity.sediff_seacf1.h,
-  aes_string(
-    x = linearity.sediff_seacf1.h$linearity,
-    y = linearity.sediff_seacf1.h$sediff_seacf1, z = colNamesss[2], fill = colNamesss[2]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.8), breaks = seq(0, 0.8, 100), option = "A", direction = -1) +
-  xlab("linearity") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("mstlets")+
-  theme(aspect.ratio=1, text = element_text(size=20))
-
-## tbats
-int6 <- ggplot(
-  data = linearity.sediff_seacf1.h,
-  aes_string(
-    x = linearity.sediff_seacf1.h$linearity,
-    y = linearity.sediff_seacf1.h$sediff_seacf1, z = colNamesss[8], fill = colNamesss[8]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.8), breaks = seq(0, 0.8, 100), option = "A", direction = -1) +
-  xlab("linearity") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("tbats")+
-  theme(aspect.ratio=1, text = element_text(size=20))
-
-## stlar
-int7 <- ggplot(
-  data = linearity.sediff_seacf1.h,
-  aes_string(
-    x = linearity.sediff_seacf1.h$linearity,
-    y = linearity.sediff_seacf1.h$sediff_seacf1, z = colNamesss[7], fill = colNamesss[7]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.8), breaks = seq(0, 0.8, 100), option = "A", direction = -1) +
-  xlab("linearity") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("stlar")+
-  theme(aspect.ratio=1, text = element_text(size=20))
-
-## theta
-int8 <- ggplot(
-  data = linearity.sediff_seacf1.h,
-  aes_string(
-    x = linearity.sediff_seacf1.h$linearity,
-    y = linearity.sediff_seacf1.h$sediff_seacf1, z = colNamesss[9], fill = colNamesss[9]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.8), breaks = seq(0, 0.8, 100), option = "A", direction = -1) +
-  xlab("linearity") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("theta")+
-  theme(aspect.ratio=1, text = element_text(size=20))
-
-## nn
-int9 <- ggplot(
-  data = linearity.sediff_seacf1.h,
-  aes_string(
-    x = linearity.sediff_seacf1.h$linearity,
-    y = linearity.sediff_seacf1.h$sediff_seacf1, z = colNamesss[3], fill = colNamesss[3]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.8), breaks = seq(0, 0.8, 100), option = "A", direction = -1) +
-  xlab("linearity") + ylab("sediff_seacf1")+ theme(legend.position="none")+ggtitle("nn")+
-  theme(aspect.ratio=1, text = element_text(size=20))
-
-## wn
-int10 <- ggplot(
-  data = linearity.sediff_seacf1.h,
-  aes_string(
-    x = linearity.sediff_seacf1.h$linearity,
-    y = linearity.sediff_seacf1.h$sediff_seacf1, z = colNamesss[10], fill = colNamesss[10]
-  )) + geom_tile() +
-  scale_fill_viridis_c(limits = c(0, 0.8), breaks = seq(0, 0.8, 100), option = "A", direction = -1) +
-  xlab("linearity") + ylab("sediff_seacf1")+ggtitle("wn")+theme()+
-  theme(aspect.ratio=1, text = element_text(size=20))
-
-int1+int2+int3+int4+int5+int6+int7+int8+int9+int10+plot_layout(ncol = 5, nrow = 2)

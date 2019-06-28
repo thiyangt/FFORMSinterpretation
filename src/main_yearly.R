@@ -154,7 +154,7 @@ top <- meanrank_yearly %>%
   top_n(n = 5, wt = rank)
 
 meanrank_yearly$istop <- ifelse(meanrank_yearly$rn%in%top$rn, TRUE, FALSE)
-
+levels(meanrank_yearly$feature)[levels(meanrank_yearly$feature)=="N"] <- "T"
 feaImp_yearly <- ggplot(meanrank_yearly, aes(y = rank, x = feature, fill=as.factor(istop))) +
   geom_bar(position = "dodge", stat = "identity", width=0.3) +
   facet_wrap(~ class, ncol = 6, nrow = 2) +
@@ -344,7 +344,7 @@ top <- overall_interactions_y %>%
   top_n(n = 5, wt = .interaction)
 
 overall_interactions_y$istop <- ifelse(overall_interactions_y$.interaction%in%top$.interaction, TRUE, FALSE)
-
+levels(overall_interactions_y$.feature)[levels(overall_interactions_y$.feature)=="N"] <- "T"
 FHinteraction_yearly <- ggplot(overall_interactions_y, 
                         aes(y = .interaction, x = .feature, fill=as.factor(istop))) +
   geom_bar(position = "dodge", stat = "identity", width=0.3) +

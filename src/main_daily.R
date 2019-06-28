@@ -104,6 +104,9 @@ topq <- meanrank_daily %>%
   group_by(class) %>%
   top_n(n = 5, wt = rank)
 meanrank_daily$istop <- ifelse(meanrank_daily$rn %in% topq$rn, TRUE, FALSE)
+levels(meanrank_daily$feature)[levels(meanrank_daily$feature)=="N"] <- "T"
+levels(meanrank_daily$feature)[levels(meanrank_daily$feature)=="seasonal_strength1"] <- "seasonality_w"
+levels(meanrank_daily$feature)[levels(meanrank_daily$feature)=="seasonal_strength2"] <- "seasonality_y"
 feaImp_daily <- ggplot(meanrank_daily, aes(y = rank, x = feature,fill=as.factor(istop))) +
   geom_bar(position = "dodge", stat = "identity", width=0.3) +
   facet_wrap(~class, ncol = 6, nrow = 2) +
@@ -172,9 +175,10 @@ top <- overall_interactions_d %>%
 
 overall_interactions_d$istop <- ifelse(overall_interactions_d$.interaction%in%top$.interaction, TRUE, FALSE)
 overall_interactions_d$.interaction[overall_interactions_d$.interaction > 1.0] <- 1
-
 colnames(overall_interactions_d) <- c("feature", "class", "interaction", "istop")
-
+levels(overall_interactions_d$feature)[levels(overall_interactions_d$feature)=="N"] <- "T"
+levels(overall_interactions_d$feature)[levels(overall_interactions_d$feature)=="seasonal_strength1"] <- "seasonality_w"
+levels(overall_interactions_d$feature)[levels(overall_interactions_d$feature)=="seasonal_strength2"] <- "seasonality_y"
 FHinteraction_daily <- ggplot(overall_interactions_d, 
                                aes(y = interaction, x = feature, fill=as.factor(istop))) +
   geom_bar(position = "dodge", stat = "identity", width=0.3) +
@@ -206,5 +210,5 @@ stability.seasonal_strength2.d.long %>%
   facet_wrap(~class, ncol=5) +
   scale_fill_viridis_c(option = "A", direction = -1, breaks=c(0,0.2,100),
                        limits=c(0,0.2))+
-  theme(strip.text.x = element_text(size = 10))
+  theme(strip.text.x = element_text(size = 10))+ylab("seasonal_w")
 

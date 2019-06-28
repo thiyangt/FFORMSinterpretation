@@ -130,6 +130,8 @@ topq <- meanrank_monthly %>%
   group_by(class) %>%
   top_n(n = 5, wt = rank)
 meanrank_monthly$istop <- ifelse(meanrank_monthly$rn %in% topq$rn, TRUE, FALSE)
+levels(meanrank_monthly$feature)[levels(meanrank_monthly$feature)=="N"] <- "T"
+levels(meanrank_monthly$feature)[levels(meanrank_monthly$feature)=="seasonality"] <- "seasonality_m"
 feaImp_monthly <- ggplot(meanrank_monthly, aes(y = rank, x = feature,fill=as.factor(istop))) +
   geom_bar(position = "dodge", stat = "identity", width=0.3) +
   facet_wrap(~class, ncol = 9, nrow = 2) +
@@ -232,7 +234,8 @@ overall_interactions_m$istop <- ifelse(overall_interactions_m$.interaction%in%to
 
 colnames(overall_interactions_m) <- c("feature", "class", "interaction", "istop")
 
-
+levels(overall_interactions_m$feature)[levels(overall_interactions_m$feature)=="N"] <- "T"
+levels(overall_interactions_m$feature)[levels(overall_interactions_m$feature)=="seasonality"] <- "seasonality_m"
 FHinteraction_monthly <- ggplot(overall_interactions_m, 
                                   aes(y = interaction, x = feature, fill=as.factor(istop))) +
   geom_bar(position = "dodge", stat = "identity", width=0.3) +
