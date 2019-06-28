@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.6.10)  28 JUN 2019 14:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.6.10)  28 JUN 2019 15:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2212,15 +2212,23 @@ Package pdftex.def Info: figures/friedmanh-1.pdf  used on input line 999.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[40 <./figures/friedmanm-1.pdf> <./figures/friedmanw-1.pdf>] [41 <./figures/fri
-edmand-1.pdf> <./figures/friedmanh-1.pdf>] [42
+<figures/wntwopdcplots-1.pdf, id=740, 867.24pt x 361.35pt>
+File: figures/wntwopdcplots-1.pdf Graphic file (type pdf)
+<use figures/wntwopdcplots-1.pdf>
+Package pdftex.def Info: figures/wntwopdcplots-1.pdf  used on input line 1008.
+(pdftex.def)             Requested size: 455.24167pt x 189.68402pt.
+[40 <./figures/friedmanm-1.pdf> <./figures/friedmanw-1.pdf>]
+Overfull \vbox (38.35263pt too high) has occurred while \output is active []
+
+[41 <./figures/friedmand-1.pdf> <./figures/friedmanh-1.pdf> <./figures/wntwopdc
+plots-1.pdf>] [42
 
 ] [43]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1010.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1010.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1016.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1016.
 (./FFORMS_interpretabilityrf.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1010.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1010.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1016.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1016.
 
 Package rerunfilecheck Info: File `FFORMS_interpretabilityrf.out' has not chang
 ed.
@@ -2235,17 +2243,17 @@ Package biblatex Warning: Please rerun LaTeX.
 Package logreq Info: Writing requests to 'FFORMS_interpretabilityrf.run.xml'.
 \openout1 = `FFORMS_interpretabilityrf.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1010.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1016.
  )
 (\end occurred inside a group at level 1)
 
 ### semi simple group (level 1) entered at line 187 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 43289 strings out of 494553
- 805321 string characters out of 6174236
- 1233088 words of memory out of 5000000
- 45865 multiletter control sequences out of 15000+600000
+ 43295 strings out of 494553
+ 805512 string characters out of 6174236
+ 1233159 words of memory out of 5000000
+ 45870 multiletter control sequences out of 15000+600000
  632390 words of font info for 348 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  55i,15n,92p,2299b,18488s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2266,10 +2274,10 @@ ype1/public/amsfonts/symbols/msam10.pfb></Users/thiyangashaminitalagala/Library
 talagala/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></Users
 /thiyangashaminitalagala/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/up
 lri8a.pfb>
-Output written on FFORMS_interpretabilityrf.pdf (43 pages, 1246549 bytes).
+Output written on FFORMS_interpretabilityrf.pdf (43 pages, 1259474 bytes).
 PDF statistics:
- 865 PDF objects out of 1000 (max. 8388607)
- 709 compressed objects within 8 object streams
- 188 named destinations out of 1000 (max. 500000)
- 27181 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 884 PDF objects out of 1000 (max. 8388607)
+ 714 compressed objects within 8 object streams
+ 189 named destinations out of 1000 (max. 500000)
+ 27186 words of extra memory for PDF output out of 29859 (max. 10000000)
 

@@ -612,6 +612,9 @@ According \autoref{fig:viyearly} the variable importance plots for yearly data t
 ```{r friedmanh, fig.height=11, fig.width=23, fig.cap="The inteaction strength (Friedman's H-Statistic) for each feature with any other feature for hourly forest. Linearity shows high level of interactivity within random walk with drift.", fig.pos="h", fig.align="center", cache=FALSE}
 ```
 
+```{r wntwopdcplots, fig.height=5, fig.width=12, fig.cap="Partial dependency plots for wn class", fig.pos="h", dev='pdf', cache=FALSE}
+```
+
 \clearpage
 
 # References
