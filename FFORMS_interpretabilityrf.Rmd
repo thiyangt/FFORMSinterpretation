@@ -103,23 +103,7 @@ We call the collection of time series used for training the meta-leaner as the "
 
 ### Observed sample
 
-We use the time series from the M1, M3 and M4 competitions as the observed sample. Table \ref{observedsample} summarizes the number of time series in the observed sample. Note that from the M4 competition a randomly selected subset of time series are used for the observed sample. The rest shown by the column labelled "Validation set - M4" are used as a validation set to evaluate the performance of the meta-learner. Note that, we did not use the test period of the each series of the M4 competition to our observed sample or validation set as it was not available to the competitiors during the running of the M4-competition.
-
-\begin{table}[!h]
-\centering
-\caption{Composition of the time series in the observed sample and the validation set}
-\label{observedsample}
-\begin{tabular}{l|rrr|r}
-\multirow{2}{*}{Frequency} & \multicolumn{3}{l|}{Observed Sample} & Validation set \\
-&   M1    &    M3   &    M4 & M4 \\ \hline
-Yearly          &   181    &   645    &   22000 & 1000 \\
-Quarterly       &   203    &    756   &   23000 & 1000\\
-Monthly         &   617    &    1428   &  47000 & 1000\\
-Weekly          &   -    &   -    &   259 & 100\\
-Daily           &   -    &   -    &   4001 & 226\\
-Hourly          &   -    &    -   &  350 & 64\\ \hline
-\end{tabular}
-\end{table}
+We use the time series from the M1, M3 and M4 competitions as the observed sample.Note that from the M4 competition a randomly selected subset of time series are used for the observed sample. The rest is used as a validation set to evaluate the performance of the meta-learner. Note that, we did not use the test period of the each series of the M4 competition to our observed sample or validation set as it was not available to the competitors during the running of the M4-competition.
 
 
 ### Simulated time series
@@ -143,37 +127,40 @@ The FFORMS framework operates on features calculated from the time series. For e
 \midrule
 1  & T              & length of time series                                                                   & \yes  & \yes & \yes & \yes\\
 2  & trend          & strength of trend                                                                       & \yes  & \yes & \yes & \yes\\
-3  & seasonality 1    & strength of seasonality corresponds to frequency 1                                                              & -     & \yes & \yes & \yes\\
-4  & seasonality 2    & strength of seasonality corresponds to frequency 2                                                              & -     & - & -& \yes\\
-5  & linearity      & linearity                                                                               & \yes  & \yes & \yes & \yes\\
-6  & curvature      & curvature                                                                               & \yes  & \yes & \yes & \yes\\
-7  & spikiness      & spikiness                                                                               & \yes  & \yes & \yes & \yes\\
-8  & e\_acf1        & first ACF value of remainder series                                                     & \yes  & \yes & \yes & \yes\\
-9  & stability      & stability                                                                               & \yes  & \yes & \yes & \yes\\
-10  & lumpiness      & lumpiness                                                                               & \yes  & \yes & \yes & \yes\\
-11 & entropy        & spectral entropy                                                                        & \yes  & \yes & \yes & \yes\\
-12 & hurst          & Hurst exponent                                                                          & \yes  & \yes & \yes & \yes\\
-13 & nonlinearity   & nonlinearity                                                                            & \yes\ & \yes & \yes & \yes\\
-14 & alpha          & ETS(A,A,N) $\hat\alpha$                                                                 & \yes  & \yes & \yes & -\\
-15 & beta           & ETS(A,A,N) $\hat\beta$                                                                  & \yes  & \yes & \yes & - \\
-16 & hwalpha        & ETS(A,A,A) $\hat\alpha$                                                                 & -     & \yes & - & -\\
-17 & hwbeta         & ETS(A,A,A) $\hat\beta$                                                                  & -     & \yes & - & - \\
-18 & hwgamma        & ETS(A,A,A) $\hat\gamma$                                                                 & -     & \yes & - &-\\
-19 & ur\_pp         & test statistic based on Phillips-Perron test                                            & \yes  & - & - & - \\
-20 & ur\_kpss       & test statistic based on KPSS test                                                       & \yes  & - & - & - \\
-21 & y\_acf1        & first ACF value of the original series                                                  & \yes  & \yes & \yes & \yes\\
-22 & diff1y\_acf1   & first ACF value of the differenced series                                               & \yes  & \yes & \yes & \yes\\
-23 & diff2y\_acf1   & first ACF value of the twice-differenced series                                         & \yes  & \yes & \yes & \yes\\
-24 & y\_acf5        & sum of squares of first 5 ACF values of original series                                 & \yes  & \yes & \yes & \yes\\
-25 & diff1y\_acf5   & sum of squares of first 5 ACF values of differenced series                              & \yes  & \yes & \yes & \yes\\
-26 & diff2y\_acf5   & sum of squares of first 5 ACF values of twice-differenced series                        & \yes  & \yes & \yes & \yes \\
-27 & sediff\_seacf1 & ACF value at the first seasonal lag of seasonally-differenced series                    & -     & \yes & \yes & \yes\\
-28 & sediff\_acf5   & sum of squares of first 5 autocorrelation coefficients of seasonally-differenced series & -     & \yes & \yes & \yes\\
-29 & seas\_pacf     & partial autocorrelation coefficient at first seasonal lag & -     & \yes & \yes & \yes\\
-30 & lmres\_acf1    & first ACF value of residual series of linear trend model                                & \yes  & - & - & -\\
-31 & y\_pacf5       & sum of squares of first 5 PACF values of original series                                & \yes  & \yes & \yes & \yes\\
-32 & diff1y\_pacf5  & sum of squares of first 5 PACF values of differenced series                             & \yes  & \yes & \yes & \yes\\
-33 & diff2y\_pacf5  & sum of squares of first 5 PACF values of twice-differenced series                       & \yes  & \yes & \yes & \yes\\
+3  & seasonality\_q    & strength of quarterly seasonality                                                    & -     & \yes & - & -\\
+4  & seasonality\_m    & strength of monthly seasonality                                                      & -     & \yes & - & -\\
+5  & seasonality\_w    & strength of weekly seasonality                                                       & -     & \yes & - & - \\
+6  & seasonality\_d    & strength of daily seasonality                                                        & -     & - & - & \yes\\
+7  & seasonality\_h    & strength of hourly seasonality                                                       & -     & - & - & \yes\\
+8  & linearity      & linearity                                                                               & \yes  & \yes & \yes & \yes\\
+9  & curvature      & curvature                                                                               & \yes  & \yes & \yes & \yes\\
+10  & spikiness      & spikiness                                                                               & \yes  & \yes & \yes & \yes\\
+11  & e\_acf1        & first ACF value of remainder series                                                     & \yes  & \yes & \yes & \yes\\
+12  & stability      & stability                                                                               & \yes  & \yes & \yes & \yes\\
+13  & lumpiness      & lumpiness                                                                               & \yes  & \yes & \yes & \yes\\
+14 & entropy        & spectral entropy                                                                        & \yes  & \yes & \yes & \yes\\
+15 & hurst          & Hurst exponent                                                                          & \yes  & \yes & \yes & \yes\\
+16 & nonlinearity   & nonlinearity                                                                            & \yes\ & \yes & \yes & \yes\\
+17 & alpha          & ETS(A,A,N) $\hat\alpha$                                                                 & \yes  & \yes & \yes & -\\
+18 & beta           & ETS(A,A,N) $\hat\beta$                                                                  & \yes  & \yes & \yes & - \\
+19 & hwalpha        & ETS(A,A,A) $\hat\alpha$                                                                 & -     & \yes & - & -\\
+20 & hwbeta         & ETS(A,A,A) $\hat\beta$                                                                  & -     & \yes & - & - \\
+21 & hwgamma        & ETS(A,A,A) $\hat\gamma$                                                                 & -     & \yes & - &-\\
+22 & ur\_pp         & test statistic based on Phillips-Perron test                                            & \yes  & - & - & - \\
+23 & ur\_kpss       & test statistic based on KPSS test                                                       & \yes  & - & - & - \\
+24 & y\_acf1        & first ACF value of the original series                                                  & \yes  & \yes & \yes & \yes\\
+25 & diff1y\_acf1   & first ACF value of the differenced series                                               & \yes  & \yes & \yes & \yes\\
+26 & diff2y\_acf1   & first ACF value of the twice-differenced series                                         & \yes  & \yes & \yes & \yes\\
+27 & y\_acf5        & sum of squares of first 5 ACF values of original series                                 & \yes  & \yes & \yes & \yes\\
+28 & diff1y\_acf5   & sum of squares of first 5 ACF values of differenced series                              & \yes  & \yes & \yes & \yes\\
+29 & diff2y\_acf5   & sum of squares of first 5 ACF values of twice-differenced series                        & \yes  & \yes & \yes & \yes \\
+30 & sediff\_seacf1 & ACF value at the first seasonal lag of seasonally-differenced series                    & -     & \yes & \yes & \yes\\
+31 & sediff\_acf5   & sum of squares of first 5 autocorrelation coefficients of seasonally-differenced series & -     & \yes & \yes & \yes\\
+32 & seas\_pacf     & partial autocorrelation coefficient at first seasonal lag & -     & \yes & \yes & \yes\\
+33 & lmres\_acf1    & first ACF value of residual series of linear trend model                                & \yes  & - & - & -\\
+34 & y\_pacf5       & sum of squares of first 5 PACF values of original series                                & \yes  & \yes & \yes & \yes\\
+35 & diff1y\_pacf5  & sum of squares of first 5 PACF values of differenced series                             & \yes  & \yes & \yes & \yes\\
+36 & diff2y\_pacf5  & sum of squares of first 5 PACF values of twice-differenced series                       & \yes  & \yes & \yes & \yes\\
 \bottomrule
 \end{tabular}
 \end{table}
