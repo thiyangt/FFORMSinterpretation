@@ -141,7 +141,7 @@ seasonal2_long_mean <- seasonal2_long %>%
          CI_upper = mean - qt((1-0.95)/2, n-1)*sem)
 
 seasonal_DW <- dplyr::bind_rows(seasonal1_long_mean, seasonal2_long_mean)
-seasonal_DW$feature <- c(rep("seasonal_D (24)", 200), rep("seasonal_W (168)", 200))
+seasonal_DW$feature <- c(rep("seasonal_d", 200), rep("seasonal_w", 200))
 seasonal_DW$class <- factor(seasonal_DW$class,
                                levels = c("snaive", "rw", "rwd", "mstlarima", "mstlets", "tbats","stlar",
                                           "theta","nn","wn"))
