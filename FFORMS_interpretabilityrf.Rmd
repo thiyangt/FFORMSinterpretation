@@ -583,18 +583,19 @@ According \autoref{fig:viyearly} the variable importance plots for yearly data t
 ```
 
 
-```{r friedmand, fig.height=11, fig.width=23, fig.cap="The interaction strength (Friedman's H-Statistic) for each feature with any other feature for daily forest. Strength of trend shows highest level of interactivity within white noise class.", fig.pos="h", fig.align="center", cache=FALSE}
+```{r friedmand, fig.height=12, fig.width=23, fig.cap="The interaction strength (Friedman's H-Statistic) for each feature with any other feature for daily forest. Strength of trend shows highest level of interactivity within white noise class.", fig.pos="h", fig.align="center", cache=FALSE}
 ```
 
 
 
-```{r friedmanh, fig.height=11, fig.width=23, fig.cap="The interaction strength (Friedman's H-Statistic) for each feature with any other feature for hourly forest. Linearity shows high level of interactivity within random walk with drift.", fig.pos="h", fig.align="center", cache=FALSE}
-```
-
-```{r wntwopdcplots, fig.height=5, fig.width=12, fig.cap="Partial dependency plots for wn class", fig.pos="h", dev='pdf', cache=FALSE}
+```{r friedmanh, fig.height=12, fig.width=23, fig.cap="The interaction strength (Friedman's H-Statistic) for each feature with any other feature for hourly forest. Linearity shows high level of interactivity within random walk with drift.", fig.pos="h", fig.align="center", cache=FALSE}
 ```
 
 \clearpage
+
+```{r wntwopdcplots, fig.height=4, fig.width=8, fig.cap="Partial dependency plots for wn class", fig.pos="h", dev='pdf', cache=FALSE}
+```
+
 
 # References
 
