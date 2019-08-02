@@ -205,7 +205,7 @@ According to the @M4compguide, in the M4-competition the forecast accuracy is ev
 
 # Online phase{#online}
 
-The online phase of the algorithm involves generating point forecasts and 95% prediction intervals for the new series or the future values observed time series. We calculate point forecasts and prediction intervals over the test period of M4-competition data. First, the corresponding features are calculated based on the full length of the training period provided by the M4 competition. Second, point forecasts and 95% prediction intervals are calculated based on the predicted class labels. We should note that all negative forecasts are set to zero.
+The online phase of the algorithm involves generating point forecasts and 95% prediction intervals for the new series or the future values observed time series. We calculate point forecasts and prediction intervals over the test period of M4-competition data. First, the corresponding features are calculated based on the full length of the training period provided by the M4 competition. Second, point forecasts and 95% prediction intervals are calculated based on the predicted class labels. We should note that all negative forecasts are set to zero. According to the @M4compguide, the performance of prediction intervals are evaluated based on Mean Scaled Interval Score (MSIS).
 
 # Peeking inside FFORMS{#peeking}
 
