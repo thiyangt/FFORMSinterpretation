@@ -466,7 +466,7 @@ The FFORMS framework operates on features calculated from the time series. For e
 \hypertarget{output-class-labels}{%
 \subsection{Output: class-labels}\label{output-class-labels}}
 
-The description of class labels considered under each frequency is shown in Table \ref{classlabels}. Note that these added to \textcite{fforms}. Most of the labels given in Table \ref{classlabels} are self-explanatory labels. In STL-AR, mstlets, and mstlarima, first an STL decomposition is applied to the time series and then seasonal naive is used to forecast the seasonal component. Then, AR, ETS and ARIMA models are used to forecast the seasonally adjusted data respectively. We fit the corresponding models outlined in Table \ref{classlabels} to each series in the reference set. The models are estimated using the training period for each series, and forecasts are produced for the test periods.
+The description of class labels considered under each frequency is shown in Table \ref{classlabels}. Note that these added to \textcite{fforms}. Most of the labels given in Table \ref{classlabels} are self-explanatory labels. In STL-AR, mstlets, and mstlarima, first STL decomposition or multiple seasonal decomposition (for mstlarima and mstlets) is applied to the time series and then seasonal naive is used to forecast the seasonal component. Then, AR, ETS and ARIMA models are used to forecast the seasonally adjusted data respectively. We fit the corresponding models outlined in Table \ref{classlabels} to each series in the reference set. The models are estimated using the training period for each series, and forecasts are produced for the test periods.
 
 \begin{table}[!htp]
 \centering\footnotesize\tabcolsep=0.12cm
