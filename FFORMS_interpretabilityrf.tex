@@ -821,17 +821,17 @@ According to the results of \autoref{fig:viweekly}, spikiness, linearity, trend,
 \hypertarget{daily-series}{%
 \subsection{Daily series}\label{daily-series}}
 
-\autoref{fig:oobdaily} shows the vote matrix information for daily series. According to \autoref{fig:oobdaily} the distributions corresponds to observations that have been correctly classified dominate the top for daily data. However, within daily series there are few observations that have been incorrectly classified to tbats class with very high probabilities. In general, neural network models have a higher chance of getting selected for daily time series.
+\autoref{fig:oobdaily} shows the vote matrix information for daily series. According to \autoref{fig:oobdaily}, the distributions corresponding to observations that have been correctly classified dominate the top for daily data. However, within daily series there are few observations that have been incorrectly classified to tbats class with very high probabilities. In general, neural network models have a higher chance of being selected for daily time series.
 
-Variable importance graph for daily data is shown in \autoref{fig:vidaily}. The most important features for daily time series are, strength of seasonality corresponds to the weekly seasonality (measured by seasonal\_w), stability, trend, lumpiness and linearity. Furthermore, length of the series is important in determining random walk, random walk with drift, mstlarima, mstlets, stlar, theta and nn classes.
+The variable importance graph for daily data is shown in \autoref{fig:vidaily}. The most important features for daily time series are, strength of seasonality corresponds to the weekly seasonality (measured by seasonal\_w), stability, trend, lumpiness and linearity. Further, the length of the series is important in determining random walk, random walk with drift, mstlarima, mstlets, stlar, theta and nn classes.
 
-\autoref{fig:dailypdpstability} we can see probability of selecting white noise models increases as stability increases. According to the partial dependency curves of length (T)
-\autoref{fig:dailypdpstability} shorter series tends to select random walk with drift models while probability of selecting snaive, mstlarima and mstlets models increases as the length of series increases. Neural network models show a non-monotonic relationship with length of the series (T). The theta models tend to be selected for series with high annual seasonality but very low weekly seasonality. For daily time series, stability and strength of seasonality corresponds to weekly pattern shows high level of two-way interactivity within many classes. The classes theta and nn shows high level of interactivity between seasonal\_W and stability. Within theta and nn easy separation of quadrants are visible. For example, with low value of seasonal\_W and low stability, nn models have high chance of getting selected, while with high value of seasonal\_W and stability has low chance of selecting nn. The opposite relation can be observed within rw, mstlarima, tbats and theta classes.
+In \autoref{fig:dailypdpstability} we can see that the probability of selecting white noise models increases as stability increases. According to the partial dependency curves of length (T)
+\autoref{fig:dailypdpN} shorter series tend to select random walk with drift models while the probability of selecting snaive, mstlarima and mstlets models increases as the length of the series increases. Neural network models show a non-monotonic relationship with the length of the series (T). The theta models tend to be selected for series with high annual seasonality but very low weekly seasonality. For daily time series, stability and strength of seasonality shows high levels of two-way interactivity within many classes. The classes theta and nn show high levels of interactivity between seasonal\_W and stability. Within theta and nn the separation of quadrants is easily seen. For example, with low values of seasonal\_W and low stability, nn models have a high chance of being selected, while with high values of seasonal\_W and stability, nn models have a low chance of being selected. The opposite relation can be observed within rw, mstlarima, tbats and theta classes.
 
 \begin{figure}
 \centering
 \includegraphics{figures/oobdaily-1.png}
-\caption{\label{fig:oobdaily}Visualization of the vote matrix based on OOB sample for daily random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots corresponds to class label of the ``best'' forecast-model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of getting selected.}
+\caption{\label{fig:oobdaily}Visualisation of the vote matrix based on OOB sample for daily random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the best forecast-model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of getting selected.}
 \end{figure}
 
 \begin{figure}[h]
@@ -840,25 +840,25 @@ Variable importance graph for daily data is shown in \autoref{fig:vidaily}. The 
 
 }
 
-\caption{Feature importance plot for daily data. Permutation-based VI measure and mean decrease in Gini coefficients are used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: permutation-based VI, PD-based VI measure, and ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in purple.}\label{fig:vidaily}
+\caption{Feature importance plot for daily data. Permutation-based VI measure and mean decrease in Gini coefficients are used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: i) permutation-based VI, ii) PD-based VI measure, and iii) ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in purple.}\label{fig:vidaily}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics{figures/dailypdpstability-1.pdf}
-\caption{\label{fig:dailypdpstability}Partial dependence plots for stability. The shading shows the 95\% confidence intervals. Y-axis denotes the probability of belonging to corresponding class.}
+\caption{\label{fig:dailypdpstability}Partial dependence plots for stability. The shading shows the 95\% confidence intervals. Y-axis denotes the probability of belonging to the corresponding class.}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics{figures/dailypdpN-1.pdf}
-\caption{\label{fig:dailypdpN}Partial dependence plots for stability. The shading shows the 95\% confidence intervals. Y-axis denotes the probability of belonging to corresponding class.}
+\caption{\label{fig:dailypdpN}Partial dependence plots for stability. The shading shows the 95\% confidence intervals. Y-axis denotes the probability of belonging to the corresponding class.}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics{figures/intdaily-1.png}
-\caption{\label{fig:intdaily}Partial dependence plot of model selection probability and the interaction of seasonal\_W and stability for daily data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. Random walk and tbats class show opposite pattern of interactivity between seasonal\_w and stability.}
+\caption{\label{fig:intdaily}Partial dependence plot of model selection probability and the interaction of seasonal\_W and stability for daily data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. Random walk and tbats class show opposite patterns of interactivity between seasonal\_w and stability.}
 \end{figure}
 
 \hypertarget{hourly-series}{%

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.18)  7 AUG 2019 07:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.18)  7 AUG 2019 07:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2106,12 +2106,12 @@ Package pdftex.def Info: figures/dailypdpstability-1.pdf  used on input line 84
 8.
 (pdftex.def)             Requested size: 455.23724pt x 113.80931pt.
 [30 <./figures/oobdaily-1.png>]
-<figures/dailypdpN-1.pdf, id=595, 1445.4pt x 361.35pt>
+<figures/dailypdpN-1.pdf, id=596, 1445.4pt x 361.35pt>
 File: figures/dailypdpN-1.pdf Graphic file (type pdf)
 <use figures/dailypdpN-1.pdf>
 Package pdftex.def Info: figures/dailypdpN-1.pdf  used on input line 854.
 (pdftex.def)             Requested size: 455.23724pt x 113.80931pt.
-<figures/intdaily-1.png, id=596, 1445.4pt x 722.7pt>
+<figures/intdaily-1.png, id=597, 1445.4pt x 722.7pt>
 File: figures/intdaily-1.png Graphic file (type png)
 <use figures/intdaily-1.png>
 Package pdftex.def Info: figures/intdaily-1.png  used on input line 860.
@@ -2233,7 +2233,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 999.
 Here is how much of TeX's memory you used:
  43353 strings out of 494553
  805963 string characters out of 6175442
- 1239173 words of memory out of 5000000
+ 1239189 words of memory out of 5000000
  45924 multiletter control sequences out of 15000+600000
  635068 words of font info for 355 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -2256,7 +2256,7 @@ talagala/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplbi8a.pfb></User
 s/thiyangashaminitalagala/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/u
 plr8a.pfb></Users/thiyangashaminitalagala/Library/TinyTeX/texmf-dist/fonts/type
 1/urw/palatino/uplri8a.pfb>
-Output written on FFORMS_interpretabilityrf.pdf (43 pages, 2215828 bytes).
+Output written on FFORMS_interpretabilityrf.pdf (43 pages, 2292320 bytes).
 PDF statistics:
  894 PDF objects out of 1000 (max. 8388607)
  719 compressed objects within 8 object streams
