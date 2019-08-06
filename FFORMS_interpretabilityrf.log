@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.18)  6 AUG 2019 15:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.18)  6 AUG 2019 16:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2221,7 +2221,7 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1000.
 
 Package rerunfilecheck Info: File `FFORMS_interpretabilityrf.out' has not chang
 ed.
-(rerunfilecheck)             Checksum: 08D6E14D3A47C7E1EAEBF8F58D682D03;7560.
+(rerunfilecheck)             Checksum: 74E36891B3C0B76A9566AA86F2D2E67A;7560.
 Package logreq Info: Writing requests to 'FFORMS_interpretabilityrf.run.xml'.
 \openout1 = `FFORMS_interpretabilityrf.run.xml'.
 
@@ -2233,7 +2233,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1000.
 ### bottom level 
 Here is how much of TeX's memory you used:
  43355 strings out of 494553
- 805992 string characters out of 6175442
+ 805989 string characters out of 6175442
  1239093 words of memory out of 5000000
  45924 multiletter control sequences out of 15000+600000
  635223 words of font info for 357 fonts, out of 8000000 for 9000
@@ -2257,7 +2257,7 @@ talagala/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplbi8a.pfb></User
 s/thiyangashaminitalagala/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/u
 plr8a.pfb></Users/thiyangashaminitalagala/Library/TinyTeX/texmf-dist/fonts/type
 1/urw/palatino/uplri8a.pfb>
-Output written on FFORMS_interpretabilityrf.pdf (42 pages, 1343541 bytes).
+Output written on FFORMS_interpretabilityrf.pdf (42 pages, 1343391 bytes).
 PDF statistics:
  889 PDF objects out of 1000 (max. 8388607)
  715 compressed objects within 8 object streams

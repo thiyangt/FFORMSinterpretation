@@ -522,7 +522,7 @@ Let \(\mathcal{P}=\{(\mathbf{x^{(i)}}, y^{(i)})\}_{i=1}^{N}\) be the
 historical data set we use to train a classifier. Consider a
 p-dimensional feature vector \(X=(X_1, X_2, ..., X_p)\) and a dependent
 variable, the best forecasting method for each series \(Y\). Let \(\mathcal{G}\) be the unknown relationship between \(X\) and
-\(Y\). \textcite{Zhao} term this as ``law of nature''. Inside the FFORMS framework, random forest algorithm tries to learn this relationship using
+\(Y\). \textcite{Zhao} call this `law of nature'. Inside the FFORMS framework, the random forest algorithm tries to learn this relationship using
 the historical data we provided. We denote the predicted function as
 \(g\).
 
@@ -535,80 +535,80 @@ Mean decrease in Gini coefficient is a measure of how each feature contributes t
 \subsubsection{Permutation-based variable importance measure}\label{permutation-based-variable-importance-measure}}
 
 The permutation-based variable importance introduced by \textcite{breiman2001random} measures the prediction
-strength of each feature. This measure is calculated based on the out-of-bag (OOB) observations. The calculation of variable importance is formalized as follow: Let \(\bar{\mathcal{B}}^{(k)}\) be the OOB sample for a tree \(k\), with \(k\in \{1,...,ntree\}\), where \(ntree\) is the number of trees in the random forest. Then the variable importance of variable \(X_{j}\) in \(k^{th}\) tree is:
+strength of each feature. This measure is calculated based on the out-of-bag (OOB) observations. The calculation of variable importance is formalised as follows: Let \(\bar{\mathcal{B}}^{(k)}\) be the OOB sample for a tree \(k\), with \(k\in \{1,...,ntree\}\), where \(ntree\) is the number of trees in the random forest. Then the variable importance of variable \(X_{j}\) in \(k^{th}\) tree is:
 \[VI^{(k)}(X_{j})=\frac{\sum_{i\in \bar{\mathcal{B}}^{(k)}}I(\gamma_{i}=\gamma_{i,\pi_{j}}^{k})}{|\bar{\mathcal{B}}^{(k)}|}-\frac{\sum_{i\in \bar{\mathcal{B}}^{(k)}}I(\gamma_{i}=\gamma_{i}^{k})}{|\bar{\mathcal{B}}^{(k)}|},\]
 where \(\gamma_{i}^{k}\) denotes the predicted class for the \(i^{th}\) observation before permuting the values of \(X_{j}\) and \(\gamma_{i, \pi_{j}}^{k}\) is the predicted class for the \(i^{th}\) observation after permuting the values of \(X_{j}\). The overall variable importance score is calculated as:
 \[VI(X_{j})=\frac{\sum_{1}^{ntree}VI^{(t)}(x_{j})}{ntree}.\]
 
-Permutation-based variable importance measures provide a useful starting point for identifying relative influence of features on the predicted outcome. However, they provide a little indication of the nature of the relationship between the features and model outcome. To gain further insights into the role of features inside the FFORMS framework we use partial dependence plot (PDP) introduced by \textcite{friedman2008predictive}.
+Permutation-based variable importance measures provide a useful starting point for identifying the relative influence of features on the predicted outcome. However, they provide little indication of the nature of the relationship between the features and model outcome. To gain further insights into the role of features inside the FFORMS framework we use the partial dependence plot (PDP) introduced by \textcite{friedman2008predictive}.
 
 \hypertarget{partial-dependence-plot-pdp-and-variable-importance-measure-based-on-pdp}{%
 \subsubsection{Partial dependence plot (PDP) and Variable importance measure based on PDP}\label{partial-dependence-plot-pdp-and-variable-importance-measure-based-on-pdp}}
 
-Partial dependence plot can be used to graphically examine how each feature is related to the model prediction while accounting for the average effect of other features in the model. Let \(X_s\) be the subset of features we want examine partial dependencies for and \(X_c\) be the remaining set of features in \(X\). Then \(g_s\), the partial dependence function on \(X_s\) is defines as
+Partial dependence plots can be used to graphically examine how each feature is related to the model prediction while accounting for the average effect of other features in the model. Let \(X_s\) be the subset of features we want to examine for partial dependencies and \(X_c\) be the remaining set of features in \(X\). Then \(g_s\), the partial dependence function on \(X_s\) is defined as
 \[g_s(X_s)=E_{x_c}[g(x_s, X_c)]=\int{g(x_s, x_c)dP(x_c).}\]
 In practice, PDP can be estimated from a training data set as
 \[\bar{g_s}(x_s)=\frac{1}{n}\sum_{i=1}^{n}g(x_s, X_{iC}),\]
-where \(n\) is the number of observations in the training data set. Partial dependency curve can be created by plotting the pairs of \(\{(x_s^k, \bar{g}_s(x_{sk}))\}_{k=1}^{m}\) defined on grid of points \(\{x_{s1}, x_{s2},\dots, x_{sm}\}\) based on \(X_s\). FFORMS framework has treated the forecast-model selection problem as a classification problem. Hence, in this paper partial dependency functions display the probability of certain class occurring given different values of the feature \(X_s\).
+where \(n\) is the number of observations in the training data set. A partial dependency curve can be created by plotting the pairs of \(\{(x_s^k, \bar{g}_s(x_{sk}))\}_{k=1}^{m}\) defined on a grid of points \(\{x_{s1}, x_{s2},\dots, x_{sm}\}\) based on \(X_s\). The FFORMS framework has treated the forecast-model selection problem as a classification problem. Hence, in this paper partial dependency functions display the probability of a certain class occurring given different values of the feature \(X_s\).
 
-\textcite{Greenwell2018} introduce a variable importance measure based on the partial dependency curves. The idea is to measure the ``flatness'' of partial dependence curves for each feature. A feature whose PDP curve is flat, relative to the other features, indicates that the feature does not have much influence on the predicted value as it changes while taking into account the average effect of the other features in the model. The flatness of the curve is measured using the standard deviation of the values \(\{\bar{g}_{s}(x_{sk})\}_{k=1}^{m}\).
+\textcite{Greenwell2018} introduce a variable importance measure based on the partial dependency curves. The idea is to measure the `flatness' of partial dependence curves for each feature. A feature with a PDP curve that is flat, relative to the other features, does not have much influence on the predicted value. The flatness of the curve is measured using the standard deviation of the values \(\{\bar{g}_{s}(x_{sk})\}_{k=1}^{m}\).
 
 \hypertarget{individual-conditional-expectation-ice-curves-variable-importance-measure-based-on-ice-curves}{%
-\subsubsection{Individual conditional expectation (ICE) curves Variable importance measure based on ICE curves}\label{individual-conditional-expectation-ice-curves-variable-importance-measure-based-on-ice-curves}}
+\subsubsection{Individual conditional expectation (ICE) curves variable importance measure based on ICE curves}\label{individual-conditional-expectation-ice-curves-variable-importance-measure-based-on-ice-curves}}
 
-While partial dependency curves are useful in understanding the estimated relationship between features and the predicted outcome in the presence of substantial interaction between features, it can be misleading. \textcite{goldstein2015peeking} propose the Individual Conditional Expectation (ICE) curves to address this issue. Instead of
-averaging \(g(x_s, X_{iC})\) over all observations in the training data, ICE plots the individual response curves by plotting the pairs \(\{(x_s^k, g(x_{sk}, X_{iC}))\}_{k=1}^{m}\) defined on grid of points \(\{x_{s1}, x_{s2},\dots, x_{sm}\}\) based on \(X_s\). In other words, partial dependency curve is simply the average of all the ICE curves.
+While partial dependency curves are useful in understanding the estimated relationship between features and the predicted outcome in the presence of substantial interaction between features, they can be misleading. \textcite{goldstein2015peeking} propose individual conditional expectation (ICE) curves to address this issue. Instead of
+averaging \(g(x_s, X_{iC})\) over all observations in the training data, an ICE curve generates the individual response curves by plotting the pairs \(\{(x_s^k, g(x_{sk}, X_{iC}))\}_{k=1}^{m}\) defined on grid of points \(\{x_{s1}, x_{s2},\dots, x_{sm}\}\) based on \(X_s\). In other words, the partial dependency curve is simply the average of all the ICE curves.
 
-This method is similar to the PDP-based variable importance scores above, but are based on measuring the ``flatness'' of the individual conditional expectation curves. We calculated standard deviations of each ICE curves. We then computed an ICE based variable importance score -- simply the average of all the standard deviations. A higher value indicates a higher degree of interactivity with other features.
+This method is similar to the PDP-based variable importance scores above, but is based on measuring the `flatness' of the individual conditional expectation curves. We calculate standard deviations of each ICE curve. We then compute an ICE-based variable importance score, which is simply the average of all the standard deviations. A higher value indicates a higher degree of interactivity with other features.
 
 \hypertarget{ranking-of-features-based-on-feature-importance-measures}{%
 \subsubsection{Ranking of features based on feature importance measures}\label{ranking-of-features-based-on-feature-importance-measures}}
 
-To identify class-specific important features we rank features in three different ways: i) based on permutation-based variable importance, ii) based on partial dependence functions and iii) based on ICE-curves. We consider 25 features for yearly data. The feature that shows the highest importance is ranked 25, the second best is ranked 24, and so on. Finally, for each feature, a mean rank is calculated based on the rankings of the three measures. Similarly, the overall feature importance is evaluated based on the permutation-based variable importance measure and the Gini coefficient-based feature importance measure.
+To identify important class-specific features we rank features in three different ways: i) based on permutation-based variable importance, ii) based on partial dependence functions and iii) based on ICE curves. We consider 25 features for yearly data. The feature that shows the highest importance is ranked 25, the second highest is ranked 24, and so on. Finally, for each feature a mean rank is calculated based on the rankings of the three measures. Similarly, the overall feature importance is evaluated based on the permutation-based variable importance measure and the Gini coefficient-based feature importance measure.
 
 \hypertarget{relationship-between-most-important-features-and-the-choice-of-forecast-model-selection}{%
 \subsection{Relationship between most important features and the choice of forecast-model selection}\label{relationship-between-most-important-features-and-the-choice-of-forecast-model-selection}}
 
-The partial-dependence curves along with their confidence intervals are used to visualize the relationship between top features are the choice of forecast model selection.
+The partial-dependence curves, along with their confidence intervals, are used to visualise the relationship between top features and the choice of forecast model selection.
 
 \hypertarget{assessment-of-interaction-effect}{%
 \subsection{Assessment of interaction effect}\label{assessment-of-interaction-effect}}
 
-Friedman's H-statistic (\textcite{friedman2008predictive}) is used to test the presence of interaction between all possible pairs of features. This statistic is computed based on the partial dependence functions. For two-way interaction between two specific variable \(x_j\) and \(x_k\), Friedman's H-statistic is defined as follow,
+Friedman's H-statistic (\textcite{friedman2008predictive}) is used to test the presence of interaction between all possible pairs of features. This statistic is computed based on the partial dependence functions. For two-way interaction between two specific variables \(x_j\) and \(x_k\), Friedman's H-statistic is defined as follows:
 
 \[H_{jk}^2=\sum_{i=1}^{n}[\bar{g}_{s}(x_{ij}, x_{jk})-\bar{g}_{s}(x_{ij})-\bar{g}_{s}(x_{ik})]^2/\sum_{i=1}^{n}\bar{g}^2_{s}(x_{ij}, x_{jk}).\]
 
-The Friedman's H-statistic measures the fraction of variance of two-variable partial dependency, \(\bar{g}_{s}(x_{ij}, x_{jk})\) not captured by sum of the respective individual partial dependencies, \(\bar{g}_{s}(x_{ij})+\bar{g}_{s}(x_{ik})\). In addition to Friedman's H-statistic we also use the PDP of two variables to visualize the interaction effects. Similarly, the Friedman's H-statistic for testing whether a specific feature interacts with any other feature can be estimated by
+Friedman's H-statistic measures the fraction of variance of two-variable partial dependency, \(\bar{g}_{s}(x_{ij}, x_{jk})\) not captured by the sum of the respective individual partial dependencies, \(\bar{g}_{s}(x_{ij})+\bar{g}_{s}(x_{ik})\). In addition to Friedman's H-statistic, we use the PDP of two variables to visualise the interaction effects. Similarly, Friedman's H-statistic for testing whether a specific feature interacts with any other feature can be estimated by
 
 \[H_{j}^2=\sum_{i=1}^{n}[{g}(\bm{x_{i}})-\bar{g}_{s}(x_{ij})-\bar{g}_{s}(x_{i/j})]^2/\sum_{i=1}^{n}g^2(\bm{x_{i}}).\]
 
-Note that the, PD plots, ICE curves and PD-, ICE-associated measures and Friedman's H-statistic are computationally intensive to compute, especially when there are large number of observations in the training set. Hence, in our experiments ICE and PDP-based variable importance measures are computed based on the subset of randomly selected training examples.
+Note that the, PD plots, ICE curves and PD- and ICE-associated measures and Friedman's H-statistic are computationally intensive to compute, especially when there are a large number of observations in the training set. Hence, in our experiments ICE- and PDP-based variable importance measures are computed based on the subset of randomly selected training examples.
 
 \hypertarget{local-interpretable-model-agnostic-explanations-lime}{%
-\subsection{Local Interpretable Model-agnostic Explanations (LIME)}\label{local-interpretable-model-agnostic-explanations-lime}}
+\subsection{Local interpretable model-agnostic explanations (LIME)}\label{local-interpretable-model-agnostic-explanations-lime}}
 
-Global interpretations help us to understand the entire modelled relationship. Local interpretations help us to understand the predictions of the model for a single instance or a group of similar instances. In other words, this allows users to zoom into a particular instance or a subset and explore how different features affect the resulting prediction. We use Local Interpretable Model-agnostic Explanations (LIME) approach introduce by \textcite{ribeiro2016should} for explaining individual predictions which relies on the assumption that ``every complex model is linear on a local scale''. This is accomplished by locally approximating the complex black-box model with a simple interpretable model. \textcite{ribeiro2016should} highlighted features that are globally important may not be important in the local context and vice versa. The algorithm steps can be summarized as follow:
+Global interpretations help us to understand the entire modelled relationship. Local interpretations help us to understand the predictions of the model for a single instance or a group of similar instances. In other words, this allows users to zoom into a particular instance or a subset and explore how different features affect the resulting prediction. We use the local interpretable model-agnostic explanations (LIME) approach introduced by \textcite{ribeiro2016should} for explaining individual predictions. This approach relies on the assumption that `every complex model is linear on a local scale'. It locally approximates the complex black-box model with a simple interpretable model. \textcite{ribeiro2016should} highlighted that globally important features may not be important in the local context, and vice versa. The algorithm steps can be summarized as follow:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Select an observation of interest which we need to have explanations for its black-box prediction.
+  Select an observation of interest for which we need black-box prediction explanations.
 \item
-  Create a permuted data set based on the selected observation. Permuted data set is created by making slight modifications to the features of selected observations.
+  Create a permuted data set based on the selected observation. A permuted data set is created by making slight modifications to the features of selected observations.
 \item
   Obtain similarity scores by calculating distance between permuted data and selected observation.
 \item
-  Obtain predicted outcomes for all permuted data using the black-box model.
+  Obtain predicted outcomes for all permuted data using the black box model.
 \item
-  Select \(m\) number of features best describing the black-box model outcome. This can be accomplished by applying feature selection algorithms such as ridge regression, lasso, etc.
+  Select \(m\) number of features best describing the black-box model outcome. This can be accomplished by applying feature selection algorithms such as ridge regression and lasso regression.
 \item
   Fit a simple linear model to the permuted data based on \(m\) selected features, similarity scores in step 3 as weights and complex model prediction outcomes in step 4 as response variable.
 \item
-  Use the estimated coefficients of simple linear model to explain the local behaviour corresponds to the selected observation in step 1.
+  Use the estimated coefficients of the simple linear model to explain how the local behaviour corresponds to the selected observation in step 1.
 \end{enumerate}
 
-An alternative for explaining local behaviour of complex models is proposed by \textcite{lundberg2017unified} based on game theory named ``Shapley values''.
+An alternative for explaining local behaviour of complex models is proposed by \textcite{lundberg2017unified}. The approach is developed based on game theory, it is named `Shapley values'.
 
 \begin{table}[!h]
 \centering\scriptsize\tabcolsep=0.12cm
