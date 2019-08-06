@@ -99,7 +99,7 @@ We now explain the application of the FFORMS framework to the M4-competition dat
 
 ## Reference set
 
-We call the collection of time series used for training the meta-leaner as the "reference set". The reference set consist of two sets of time series: i) observed sample and ii) simulated time series. 
+We call the collection of time series used for training the meta-learner the 'reference set'. The reference set consists of two sets of time series: i) the observed sample and ii) the simulated time series. 
 
 ### Observed sample
 

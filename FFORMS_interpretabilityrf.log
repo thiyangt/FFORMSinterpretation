@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.18)  6 AUG 2019 12:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.18)  6 AUG 2019 12:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1939,6 +1939,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [3]
 LaTeX Font Info:    Font shape `T1/fvs/b/n' will be
 (Font)              scaled to size 10.79993pt on input line 398.
+[4 <./img/framework2.png>]
 LaTeX Font Info:    Try loading font information for T1+fvm on input line 410.
 
 (/Users/thiyangashaminitalagala/Library/TinyTeX/texmf-dist/tex/latex/bera/t1fvm
@@ -1947,7 +1948,6 @@ File: t1fvm.fd 2004/09/07 scalable font definitions for T1/fvm.
 )
 LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
 (Font)              scaled to size 9.85492pt on input line 410.
-[4 <./img/framework2.png>]
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
 (Font)              scaled to size 9.37807pt on input line 422.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
@@ -2257,7 +2257,7 @@ talagala/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplbi8a.pfb></User
 s/thiyangashaminitalagala/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/u
 plr8a.pfb></Users/thiyangashaminitalagala/Library/TinyTeX/texmf-dist/fonts/type
 1/urw/palatino/uplri8a.pfb>
-Output written on FFORMS_interpretabilityrf.pdf (42 pages, 1343476 bytes).
+Output written on FFORMS_interpretabilityrf.pdf (42 pages, 1343568 bytes).
 PDF statistics:
  889 PDF objects out of 1000 (max. 8388607)
  715 compressed objects within 8 object streams
