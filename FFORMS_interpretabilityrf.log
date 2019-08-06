@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.18)  7 AUG 2019 00:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.18)  7 AUG 2019 01:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2232,8 +2232,8 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 999.
 ### bottom level 
 Here is how much of TeX's memory you used:
  43353 strings out of 494553
- 805966 string characters out of 6175442
- 1239087 words of memory out of 5000000
+ 805963 string characters out of 6175442
+ 1239145 words of memory out of 5000000
  45924 multiletter control sequences out of 15000+600000
  635068 words of font info for 355 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -2256,7 +2256,7 @@ talagala/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplbi8a.pfb></User
 s/thiyangashaminitalagala/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/u
 plr8a.pfb></Users/thiyangashaminitalagala/Library/TinyTeX/texmf-dist/fonts/type
 1/urw/palatino/uplri8a.pfb>
-Output written on FFORMS_interpretabilityrf.pdf (43 pages, 1343988 bytes).
+Output written on FFORMS_interpretabilityrf.pdf (43 pages, 1729477 bytes).
 PDF statistics:
  894 PDF objects out of 1000 (max. 8388607)
  719 compressed objects within 8 object streams
