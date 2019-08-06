@@ -70,7 +70,7 @@ To fill these gaps, this paper makes a first step towards providing a comprehens
 In this article, we make the following contributions:
 
 1. We extend the FFORMS framework to handle weekly, daily and hourly series. We also extend the diversity of forecast-models used as class labels. The contribution of this paper differs from previously published work related to meta-learning [@prudencio2004meta; @lemke2010meta; @kuck2016meta] in three ways: i) a more extensive collection of features is used (features to handle multiple seasonality in hourly and daily series), ii) there is a greater diversity of forecast-models considered class labels, and iii) there is greater capability of handling high frequency data;
-1. We analyse the application of the FFORMS framework to the M4-competition data. We generated point forecasts and prediction intervals for the M4-competition time series data, which is shown to yield accurate forecasts comparable to several benchmarks and other commonly used automated approaches of time series forecasting. Our approach achieved a high accuracy rate based on the individual forecast-model selection rule. 
+1. We analyse the application of the FFORMS framework to the M4 competition data. We generated point forecasts and prediction intervals for the M4 competition time series data, which is shown to yield accurate forecasts comparable to several benchmarks and other commonly used automated approaches of time series forecasting. Our approach achieved a high accuracy rate based on the individual forecast-model selection rule. 
 1. The main contribution of the paper is the exploration of what is happening under the hood of the FFORMS framework, leading to an understanding of the relationship between features of time series and the choice of forecast-model selection using the FFORMS framework. We call it 'Peeking inside FFORMS'. We try to answer the following questions:
       i) **Which** features are the most important?
       ii) **Where** (overall classification or only within specific classes) are they important? 
@@ -95,7 +95,7 @@ knitr::include_graphics("img/framework2.png")
 
 # Offline phase{#offline}
 
-We now explain the application of the FFORMS framework to the M4-competition data. We analyse yearly, quarterly, monthly, weekly, daily and hourly series separately because of their differences in frequencies and hence the appropriateness of different features and forecast-models we considered as class labels. 
+We now explain the application of the FFORMS framework to the M4 competition data. We analyse yearly, quarterly, monthly, weekly, daily and hourly series separately because of their differences in frequencies and hence the appropriateness of different features and forecast-models we considered as class labels. 
 
 ## Reference set
 
@@ -103,7 +103,7 @@ We call the collection of time series used for training the meta-learner the 're
 
 ### Observed sample
 
-We use the time series from the M1, M3 and M4 competitions as the observed sample. Note that from the M4 competition a randomly selected subset of time series is used for the observed sample. The rest is used as a validation set to evaluate the performance of the meta-learner. Note that we did not use the test period of each series of the M4 competition in our observed sample or validation set because it was not available to the competitors during the running of the M4-competition.
+We use the time series from the M1, M3 and M4 competitions as the observed sample. Note that from the M4 competition a randomly selected subset of time series is used for the observed sample. The rest is used as a validation set to evaluate the performance of the meta-learner. Note that we did not use the test period of each series of the M4 competition in our observed sample or validation set because it was not available to the competitors during the running of the M4 competition.
 
 
 ### Simulated time series
@@ -171,7 +171,7 @@ The FFORMS framework operates on features calculated from the time series. For e
 
 ## Output: class-labels
 
-The description of class labels considered under each frequency is shown in Table \ref{classlabels}. Note that these added to @fforms. Most of the labels given in Table \ref{classlabels} are self-explanatory labels. In STL-AR, mstlets, and mstlarima, first STL decomposition or multiple seasonal decomposition (for mstlarima and mstlets) is applied to the time series and then seasonal naive is used to forecast the seasonal component. Then, AR, ETS and ARIMA models are used to forecast the seasonally adjusted data respectively. We fit the corresponding models outlined in Table \ref{classlabels} to each series in the reference set. The models are estimated using the training period for each series, and forecasts are produced for the test periods. 
+The description of class labels considered under each frequency is shown in Table \ref{classlabels}. Note that these added to @fforms. Most of the labels given in Table \ref{classlabels} are self-explanatory. In STL-AR, mstlets and mstlarima, first STL decomposition or multiple seasonal decomposition (for mstlarima and mstlets) is applied to the time series and then seasonal naive is used to forecast the seasonal component. Then AR, ETS and ARIMA models are used to forecast the seasonally adjusted data respectively. We fit the corresponding models outlined in Table \ref{classlabels} to each series in the reference set. The models are estimated using the training period for each series, and forecasts are produced for the test periods. 
 
 \begin{table}[!htp]
 \centering\footnotesize\tabcolsep=0.12cm
@@ -201,7 +201,7 @@ mstlarima & & - & - & - & \checkmark \\\hline
 \end{tabular}
 \end{table}
 
-According to the @M4compguide, in the M4-competition the forecast accuracy is evaluated based on the mean Absolute Scaled Error (MASE) and the symmetric Mean Absolute Percentage Error (MAPE). Hence, in order to identify the "best" forecast-model for each time series in the reference set we combine MASE and the symmetric MAPE calculated over the test set. More specifically, for each series both forecast error measures MASE and sMAPE are calculated for each of the forecast models. Each of these is respectively standardized by the median MASE and median sMAPE calculated across the forecast-models. The model with the lowest average value of the scaled MASE and scaled sMAPE is selected as the output class-label. The last step of offline phase of the framework  is to train a meta-learner. A random forest algorithm is used to train the meta-learner. 
+According to the @M4compguide, in the M4 competition the forecast accuracy is evaluated based on the MASE and the symmetric mean absolute percentage error (sMAPE). Hence, to identify the best forecast-model for each time series in the reference set, we combine MASE and the sMAPE calculated over the test set. More specifically, for each series, both forecast error measures, MASE and sMAPE, are calculated for each of the forecast models. Each of these is standardised by the median MASE and median sMAPE, calculated across the forecast models. The model with the lowest average value of the scaled MASE and scaled sMAPE is selected as the output class label. The last step of the offline phase of the framework  is to train a meta-learner. A random forest algorithm is used to train the meta-learner. 
 
 # Online phase{#online}
 
