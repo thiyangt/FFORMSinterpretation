@@ -95,7 +95,7 @@ knitr::include_graphics("img/framework2.png")
 
 # Offline phase{#offline}
 
-We now explain application of the FFORMS framework to the M4-competition data. We analyse yearly, quarterly, monthly, weekly, daily and hourly series separately due to their differences in frequencies and hence the appropriateness of different features and forecast-models we considered as class labels. 
+We now explain the application of the FFORMS framework to the M4-competition data. We analyse yearly, quarterly, monthly, weekly, daily and hourly series separately because of their differences in frequencies and hence the appropriateness of different features and forecast-models we considered as class labels. 
 
 ## Reference set
 
