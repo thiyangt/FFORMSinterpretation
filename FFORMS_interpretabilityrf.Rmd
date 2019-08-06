@@ -82,14 +82,14 @@ The remainder of the paper is structured as follows. The  \autoref{fforms} outli
 
 # Methodological framework{#fforms}
 
-\autoref{fig:framework} shows the extended FFORMS framework with all additional components highlighted in yellow. There are three main components of this extended FFORMS framework. They are,
+\autoref{fig:framework} shows the extended FFORMS framework with all additional components highlighted in yellow. There are three main components of this extended FFORMS framework. They are:
 
-1. offline phase (blue): the development of a meta-learner 
-1. online phase (red): use the pre-trained meta-learner to identify the "best" forecast-model. 
-1. peeking inside FFORMS (yellow): gain insights into what is happening under the hood of the FFORMS framework. 
+1. offline phase (blue): developing a meta-learner 
+1. online phase (red): useing the pre-trained meta-learner to identify the best forecast-model. 
+1. peeking inside FFORMS (yellow): gaining insights into what is happening under the hood of the FFORMS framework. 
 
 
-```{r framework, fig.cap="extended FFORMS (Feature-based FORecast-Model Selection) framework. The offline phase is shown in blue, the online phase by red and the peeking inside FFORMS is shown in yellow.", out.width='110%'}
+```{r framework, fig.cap="Extended FFORMS (Feature-based FORecast-Model Selection) framework. The offline phase is shown in blue, the online phase in red and the peeking inside FFORMS is shown in yellow.", out.width='110%'}
 knitr::include_graphics("img/framework2.png")
 ```
 
