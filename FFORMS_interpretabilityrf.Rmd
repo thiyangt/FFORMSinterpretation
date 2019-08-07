@@ -443,7 +443,7 @@ The partial dependency curves of seasonality and trend of monthly data are very 
 
 
 
-```{r intmonthly, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence of hwalpha and csediff_seacf1 for monthly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. ", dev='png'}
+```{r intmonthly, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence of hwalpha and sediff_seacf1 for monthly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. ", dev='png'}
 
 ```
 
