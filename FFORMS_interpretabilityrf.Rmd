@@ -372,7 +372,7 @@ In addition, the first ACF value of residual series of linear trend model (lmres
 
 
 
-```{r intyearly, fig.height=5, fig.width=10,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of linearity and diff1y_acf1 for yearly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. Random walk with drift and white noise show a similar pattern of interactivity between diff1y_acf1 and lmres_acf1.", dev='png'}
+```{r intyearly, fig.height=5, fig.width=10,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence of diff1y_acf1 and lmres_acf1 for yearly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. Random walk with drift and white noise show a similar pattern of interactivity between diff1y_acf1 and lmres_acf1.", dev='png'}
 
 ```
 
@@ -409,7 +409,7 @@ According to Friedman's H-statistic (>0.5), curvature and e_acf1 is the most com
 ```
 
 
-```{r intquarterly, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of curvature and e_acf1 for quarterly series. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. ", dev='png'}
+```{r intquarterly, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence of curvature and e_acf1 for quarterly series. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. ", dev='png'}
 
 ```
 
@@ -420,7 +420,7 @@ According to Friedman's H-statistic (>0.5), curvature and e_acf1 is the most com
 
 \autoref{fig:vimonthly} shows the feature importance plots for monthly data. For both quarterly and monthly data strength of seasonality, trend, linearity and spikiness are the most important features across all categories. In the case of yearly series, low variable importance is assigned to both stability and length of the series. However, within quarterly and monthly data, a high variable importance is assigned to length of the series and stability. In addition to the strength of seasonality, the models handling seasonal components (snaive, SARIMA and all ETS models with seasonal components) assigned a high importance to the additional features related to seasonality such as ACF, PACF-based features related to seasonal lag and seasonally differenced series. Further, as expected, features calculated based on parameters estimated from ETS(A, A, A) ranked as important for the choice of ETS with damped trend and seasonal component and ETS with trend and seasonal component. One notable difference between the quarterly series and the monthly series is that for monthly data, the length of the series is ranked among the top five, especially in random walk with drift, random walk, ETS with seasonal and trend component, ETS_seasonal, SARIMA and ARIMA classes. 
 
-```{r oobmonthly, fig.height=40, fig.width=40, dev='png',fig.pos="h", fig.cap="Visualisation of the vote matrix based on OOB sample for quarterly random forest. Each panel shows the predicted class from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the best forecast-model identified based on MASE and sMAPE. On each row, distribution of correctly classified class dominates, indicating a good classification of the meta-learner.", dev='png'}
+```{r oobmonthly, fig.height=40, fig.width=40, dev='png',fig.pos="h", fig.cap="Visualisation of the vote matrix based on OOB sample for monthly random forest. Each panel shows the predicted class from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the best forecast-model identified based on MASE and sMAPE. On each row, distribution of correctly classified class dominates, indicating a good classification of the meta-learner.", dev='png'}
 ```
 
 
@@ -443,7 +443,7 @@ The partial dependency curves of seasonality and trend of monthly data are very 
 
 
 
-```{r intmonthly, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of linearity and curvature for monthly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. ", dev='png'}
+```{r intmonthly, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence of hwalpha and csediff_seacf1 for monthly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. ", dev='png'}
 
 ```
 
@@ -452,20 +452,20 @@ The partial dependency curves of seasonality and trend of monthly data are very 
 ```{r oobweekly, fig.height=10, fig.width=20, fig.cap="Visualisation of the vote matrix based on OOB sample for weekly random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the best forecast-model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of being selected.", fig.pos="h", dev='png'}
 ```
 
-\autoref{fig:oobweekly} shows the vote matrix information for weekly data. Unlike yearly, quarterly and monthly data, theta method has a low chance of being selected. The random walk with drift, tbats models and nn have a high chance of being selected. ARMA class shows some unusual behaviour within some categories because of class imbalance ratio; it ARMA contains a smaller number of observations in the training set. 
+\autoref{fig:oobweekly} shows the vote matrix information for weekly data. Unlike yearly, quarterly and monthly data, theta method has a low chance of being selected. The random walk with drift, tbats models and nn have a high chance of being selected. ARMA class shows some unusual behaviour within some categories because of class imbalance ratio; it contains a smaller number of observations in the training set. 
 
-According to the results of \autoref{fig:viweekly}, spikiness, linearity, trend, strength of seasonality, stability and lumpiness have been assigned a high importance. This is similar to the results of yearly, quarterly and monthly data. The length of series has been selected among the top five by mstlets, tbats, theta and neural network models. The partial dependence plots for seasonality, trend and linearity are very similar to the patterns observed in quarterly and monthly data. Hence, we have not repeated the results. Instead, we have plotted the partial dependence plot for spikiness. According to \autoref{fig:weeklypdp}, the probability of selecting snaive, random walk, neural network and white noise increases as the spikiness increases, while other forecast-model classes show the opposite. According to riedman's H-statistic, curvature and linearity is the most commonly appearing two-way interactivity. The interactivity pattern of ARMA is not visible between 0-0.15 scale as ARMA models have low chance of being selected with the weekly series. A unique pattern of interactivity could be observed within snaive, rw, SARIMA, stlar, mstlets, tbats, theta and nn. Within rw class we can see the main effect of linearity dominating; however, the strength of colour varies according to the level of curvature. 
+According to the results of \autoref{fig:viweekly}, spikiness, linearity, trend, strength of seasonality, stability and lumpiness have been assigned a high importance. This is similar to the results of yearly, quarterly and monthly data. The length of series has been selected among the top five by mstlets, tbats, theta and neural network models. The partial dependence plots for seasonality, trend and linearity are very similar to the patterns observed in quarterly and monthly data. Hence, we have not repeated the results. Instead, we have plotted the partial dependence plot for spikiness. According to \autoref{fig:weeklypdp}, the probability of selecting snaive, random walk, neural network and white noise increases as the spikiness increases, while other forecast-model classes show the opposite. According to Friedman's H-statistic, curvature and linearity is the most commonly appearing two-way interactivity. The interactivity pattern of ARMA is not visible between 0-0.15 scale as ARMA models have low chance of being selected with the weekly series. A unique pattern of interactivity could be observed within snaive, rw, SARIMA, stlar, mstlets, tbats, theta and nn. Within rw class we can see the main effect of linearity dominating; however, the strength of colour varies according to the level of curvature. 
 
 ```{r viweekly, fig.height=8, fig.width=15, fig.cap="Feature importance plot for weekly data. Permutation-based VI measure and mean decrease in Gini coefficient are used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures:i) permutation-based VI, ii) PD-based VI measure, and iii) ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in purple.", fig.pos="h", fig.align="center"}
 ```
 
 
-```{r weeklypdp, fig.height=5, fig.width=20, fig.cap="Partial dependence plots for the top ranked features from variable importance measures (weekly series). The shading shows the 95% confidence intervals. Y-axis denotes the probability of belonging to the corresponding class.", fig.pos="h"}
+```{r weeklypdp, fig.height=5, fig.width=20, fig.cap="Partial dependence plots for spikiness. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belonging to the corresponding class.", fig.pos="h"}
 ```
 
 
 
-```{r intweekly, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of linearity and curvature for weekly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. ", dev='png'}
+```{r intweekly, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence of linearity and curvature for weekly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. ", dev='png'}
 
 ```
 
@@ -477,12 +477,13 @@ According to the results of \autoref{fig:viweekly}, spikiness, linearity, trend,
 
 The variable importance graph for daily data is shown in \autoref{fig:vidaily}. The most important features for daily time series are, strength of seasonality corresponds to the weekly seasonality (measured by seasonal_w), stability, trend, lumpiness and linearity. Further, the length of the series is important in determining random walk, random walk with drift, mstlarima, mstlets, stlar, theta and nn classes.
 
-In \autoref{fig:dailypdpstability} we can see that the probability of selecting white noise models increases as stability increases. According to the partial dependency curves of length (T)
-\autoref{fig:dailypdpN} shorter series tend to select random walk with drift models while the probability of selecting snaive, mstlarima and mstlets models increases as the length of the series increases. Neural network models show a non-monotonic relationship with the length of the series (T). The theta models tend to be selected for series with high annual seasonality but very low weekly seasonality. For daily time series, stability and strength of seasonality shows high levels of two-way interactivity within many classes. The classes theta and nn show high levels of interactivity between seasonal_W and stability. Within theta and nn the separation of quadrants is easily seen. For example, with low values of seasonal_W and low stability, nn models have a high chance of being selected, while with high values of seasonal_W and  stability, nn models have a low chance of being selected. The opposite relation can be observed within rw, mstlarima, tbats and theta classes.
+In \autoref{fig:dailypdpstability} we can see that the probability of selecting white noise models increases as stability increases. According to the partial dependency curves of length (T),
+\autoref{fig:dailypdpN}, shorter series tend to select random walk with drift models while the probability of selecting snaive, mstlarima and mstlets models increases as the length of the series increases. Neural network models show a non-monotonic relationship with the length of the series (T). For daily time series, stability and strength of seasonality shows high levels of two-way interactivity within many classes (\autoref{fig:dailypdpstability}). The classes theta and nn show high levels of interactivity between seasonal_w and stability. Within theta and nn the separation of quadrants is easily seen. For example, with low values of seasonal_w and low stability, nn models have a high chance of being selected, while with high values of seasonal_w and  stability, nn models have a low chance of being selected. The opposite relation can be observed within rw, mstlarima, tbats and theta classes.
 
 ```{r oobdaily, fig.height=10, fig.width=20, fig.cap="Visualisation of the vote matrix based on OOB sample for daily random forest. The Y-axis denotes what was predicted from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the best forecast-model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of getting selected.", fig.pos="h", dev='png'}
 ```
 
+\clearpage
 
 ```{r vidaily, fig.height=11, fig.width=23, fig.cap="Feature importance plot for daily data. Permutation-based VI measure and mean decrease in Gini coefficients are used to evaluate overall feature importance. Class-specific feature importance is evaluated based on the three measures: i) permutation-based VI, ii) PD-based VI measure, and iii) ICE-based VI measure. Longer bars indicate more important features. Top 5 features are highlighted in purple.", fig.pos="h", fig.align="center"}
 ```
@@ -491,13 +492,11 @@ In \autoref{fig:dailypdpstability} we can see that the probability of selecting 
 ```{r dailypdpstability, fig.height=5, fig.width=20, fig.cap="Partial dependence plots for stability. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belonging to the corresponding class.", fig.pos="h"}
 ```
 
-```{r dailypdpN, fig.height=5, fig.width=20, fig.cap="Partial dependence plots for stability. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belonging to the corresponding class.", fig.pos="h"}
+```{r dailypdpN, fig.height=5, fig.width=20, fig.cap="Partial dependence plots for length. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belonging to the corresponding class.", fig.pos="h"}
 ```
 
 
-
-
-```{r intdaily, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of seasonal_W and stability for daily data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. Random walk and tbats class show opposite patterns of interactivity between seasonal_w and stability.", dev='png'}
+```{r intdaily, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence of seasonal_w and stability for daily data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. Random walk and tbats class show opposite patterns of interactivity between seasonal_w and stability.", dev='png'}
 
 ```
 
@@ -530,7 +529,7 @@ Friedman's H-Statistic shows high levels of interactivity between sediff_seacf1 
 
 
 
-```{r htwopdp, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence plot of model selection probability and the interaction of sediffseacf1 and linearity for hourly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. Random walk and random walk with drift class show opposite pattern of interactivity between sediffseacf1 and linearity.", dev='png'}
+```{r htwopdp, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence of sediff_seacf1 and linearity for hourly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. Random walk and random walk with drift class show opposite pattern of interactivity between sediffseacf1 and linearity.", dev='png'}
 
 ```
 
@@ -572,7 +571,7 @@ According to \autoref{fig:viyearly}, which shows the variable importance plots f
 
 
 
-```{r friedmanm, fig.height=12, fig.width=18, fig.cap="The interaction strength (Friedman's H-Statistic) for each feature with any other feature for quarterly forest. Top 5 interacting features are highlighted in purple. Curvature shows highest level of interactivity within ETS_DTS", cache=FALSE}
+```{r friedmanm, fig.height=12, fig.width=18, fig.cap="The interaction strength (Friedman's H-Statistic) for each feature with any other feature for monthly forest. Top 5 interacting features are highlighted in purple. Curvature shows highest level of interactivity within ETS_DTS", cache=FALSE}
 
 ```
 
