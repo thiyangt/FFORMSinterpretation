@@ -210,7 +210,7 @@ The online phase of the algorithm involves generating point forecasts and 95% pr
 
 # Peeking inside FFORMS{#peeking}
 
-The main objective of this paper is to explore the nature of the relationship between features and forecast-model selection learned by the FFORMS framework. More specifically, it is to identify which of the features are important for model predictions and how different features and their interactions led to the different choices. First, we explore the global role of features in the choice of different forecast-model selection. Global interpretability evaluates the behaviour of a model on an entire data set. The global perspective of model interpretation helps users to understand the overall modelled relationship between features and the FFORMS outcome. In the following subsections, we provide a description of tools we use to explore the global perspective of the FFORMS meta-learners.  
+The main objective of this paper is to explore the nature of the relationship between features and forecast model selection learned by the FFORMS framework. More specifically, it is to identify which of the features are important for model predictions and how different features and their interactions led to the different choices. First, we explore the global role of features in the choice of different forecast model selection. Global interpretability evaluates the behaviour of a model on an entire data set. The global perspective of model interpretation helps users to understand the overall modelled relationship between features and the FFORMS outcome. In the following subsections, we provide a description of tools we use to explore the global perspective of the FFORMS meta-learners.  
 
 
 ## Visualise patterns learned by the meta-learner
@@ -220,13 +220,13 @@ A useful by-product of random forest is out-of-bag (OOB) observations. OOB obser
 
 ## Feature importance
 
-@jiang2002 explain variable importance under three different views: i) causality (change in the value of Y for an increase or decrease in the value of x), ii) contribution of X based on out-of-sample prediction accuracy and iii) face value of X on prediction function $g$. For example, in linear regression models estimated coefficients of each predictor can be considered a measure of variable importance. See @jiang2002 for comparable face value interpretation for machine learning models. In this paper we use the first two notions of variable importance. Partial dependency functions and individual conditional expectation curves are used to explore the 'causality' notion of variable importance, while mean decrease in Gini coefficient and permutation-based variable importance are used to capture the second notion of variable importance (feature contribution to the predictive accuracy) (@Zhao). We introduce each of these variable importance measures below.  
+@jiang2002 explain variable importance under three different views: i) causality (change in the value of $Y$ for an increase or decrease in the value of $X_i$), ii) contribution of $X_i$ based on out-of-sample prediction accuracy and iii) face value of $X_i$ on prediction function $g$. For example, in linear regression models estimated coefficients of each predictor can be considered a measure of variable importance. See @jiang2002 for comparable face value interpretation for machine learning models. In this paper we use the first two notions of variable importance. Partial dependency functions and individual conditional expectation curves are used to explore the 'causality' notion of variable importance, while mean decrease in Gini coefficient and permutation-based variable importance are used to capture the second notion of variable importance (feature contribution to the predictive accuracy) (@Zhao). We introduce each of these variable importance measures below.  
 
-Let \(\mathcal{P}=\{(\mathbf{x^{(i)}}, y^{(i)})\}_{i=1}^{N}\) be the
+Let $\mathcal{P}=\{(\mathbf{x^{(i)}}, y^{(i)})\}_{i=1}^{N}$ be the
 historical data set we use to train a classifier. Consider a
-p-dimensional feature vector \(X=(X_1, X_2, ..., X_p)\) and a dependent
-variable, the best forecasting method for each series \(Y\). Let \(\mathcal{G}\) be the unknown relationship between \(X\) and
-\(Y\). @Zhao call this 'law of nature'. Inside the FFORMS framework, the random forest algorithm tries to learn this relationship using
+$d$-dimensional feature vector $\mathbf{X}=(X_1, X_2, ..., X_d)$ and a dependent
+variable, the best forecasting method for each series $Y$. Let $\mathcal{G}$ be the unknown relationship between $\mathbf{X}$ and
+$Y$. @Zhao call this 'law of nature'. Inside the FFORMS framework, the random forest algorithm tries to learn this relationship using
 the historical data we provided. We denote the predicted function as
 $g$.
 
@@ -252,12 +252,12 @@ Partial dependence plots can be used to graphically examine how each feature is 
 \[g_s(X_s)=E_{x_c}[g(x_s, X_c)]=\int{g(x_s, x_c)dP(x_c).}\] 
 In practice, PDP can be estimated from a training data set as 
 \[\bar{g_s}(x_s)=\frac{1}{n}\sum_{i=1}^{n}g(x_s, X_{iC}),\]
-where $n$ is the number of observations in the training data set. A partial dependency curve can be created by plotting the pairs of $\{(x_s^k, \bar{g}_s(x_{sk}))\}_{k=1}^{m}$ defined on a grid of points $\{x_{s1}, x_{s2},\dots, x_{sm}\}$ based on $X_s$. The FFORMS framework has treated the forecast-model selection problem as a classification problem. Hence, in this paper partial dependency functions display the probability of a certain class occurring given different values of the feature $X_s$.
+where $n$ is the number of observations in the training data set. A partial dependency curve can be created by plotting the pairs of $\{(x_s^k, \bar{g}_s(x_{sk}))\}_{k=1}^{m}$ defined on a grid of points $\{x_{s1}, x_{s2},\dots, x_{sm}\}$ based on $X_s$. The FFORMS framework has treated the forecast model selection problem as a classification problem. Hence, in this paper partial dependency functions display the probability of a certain class occurring given different values of the feature $X_s$.
 
 
 @Greenwell2018 introduce a variable importance measure based on the partial dependency curves. The idea is to measure the 'flatness' of partial dependence curves for each feature. A feature with a PDP curve that is flat, relative to the other features, does not have much influence on the predicted value. The flatness of the curve is measured using the standard deviation of the values $\{\bar{g}_{s}(x_{sk})\}_{k=1}^{m}$.
 
-### Individual conditional expectation (ICE) curves variable importance measure based on ICE curves
+### Individual conditional expectation (ICE) curves and variable importance measure based on ICE curves
 
 While partial dependency curves are useful in understanding the estimated relationship between features and the predicted outcome in the presence of substantial interaction between features, they can be misleading.  @goldstein2015peeking propose individual conditional expectation (ICE) curves to address this issue. Instead of
 averaging $g(x_s, X_{iC})$ over all observations in the training data, an ICE curve generates the individual response curves by plotting the pairs $\{(x_s^k, g(x_{sk}, X_{iC}))\}_{k=1}^{m}$ defined on grid of points $\{x_{s1}, x_{s2},\dots, x_{sm}\}$ based on $X_s$. In other words, the partial dependency curve is simply the average of all the ICE curves. 
@@ -275,7 +275,7 @@ The partial-dependence curves, along with their confidence intervals, are used t
 
 ## Assessment of interaction effect
 
-Friedman's H-statistic [@friedman2008predictive] is used to test the presence of interaction between all possible pairs of features. This statistic is computed based on the partial dependence functions. For two-way interaction between two specific variables $x_j$ and $x_k$, Friedman's H-statistic is defined as follows:
+Friedman's H-statistic [@friedman2008predictive] is used to test the presence of interaction between all possible pairs of features. This statistic is computed based on the partial dependence functions. For two-way interaction between two specific variables $X_j$ and $X_k$, Friedman's H-statistic is defined as follows:
 
 \[H_{jk}^2=\sum_{i=1}^{n}[\bar{g}_{s}(x_{ij}, x_{jk})-\bar{g}_{s}(x_{ij})-\bar{g}_{s}(x_{ik})]^2/\sum_{i=1}^{n}\bar{g}^2_{s}(x_{ij}, x_{jk}).\]
 
@@ -288,14 +288,14 @@ Note that the, PD plots, ICE curves and PD- and ICE-associated measures and Frie
 
 ## Local interpretable model-agnostic explanations (LIME)
 
-Global interpretations help us to understand the entire modelled relationship.  Local interpretations help us to understand the predictions of the model for a single instance or a group of similar instances. In other words, this allows users to zoom into a particular instance or a subset and explore how different features affect the resulting prediction. We use the local interpretable model-agnostic explanations (LIME) approach introduced by @ribeiro2016should for explaining individual predictions. This approach relies on the assumption that 'every complex model is linear on a local scale'. It locally approximates the complex black-box model with a simple interpretable model. @ribeiro2016should highlighted that globally important features may not be important in the local context, and vice versa. The algorithm steps can be summarized as follow: 
+Global interpretations help us to understand the entire modelled relationship.  Local interpretations help us to understand the predictions of the model for a single instance or a group of similar instances. In other words, this allows users to zoom into a particular instance or a subset and explore how different features affect the resulting prediction. We use the Local Interpretable Model-agnostic Explanations (LIME) approach introduced by @ribeiro2016should for explaining individual predictions. This approach relies on the assumption that 'every complex model is linear on a local scale'. It locally approximates the complex black box model with a simple interpretable model. @ribeiro2016should highlighted that globally important features may not be important in the local context, and vice versa. The algorithm steps can be summarized as follow: 
 
-1. Select an observation of interest for which we need black-box prediction explanations.
+1. Select an observation of interest for which we need black box prediction explanations.
 2. Create a permuted data set based on the selected observation. A permuted data set is created by making slight modifications to the features of selected observations.
 3. Obtain similarity scores by calculating distance between permuted data and selected observation.
 4. Obtain predicted outcomes for all permuted data using the black box model.
-5. Select $m$ number of features best describing the black-box model outcome. This can be accomplished by applying feature selection algorithms such as ridge regression and lasso regression.
-6. Fit a simple linear model to the permuted data based on $m$ selected features, similarity scores in step 3 as weights and complex model prediction outcomes in step 4 as response variable.
+5. Select $q$ number of features best describing the black box model outcome. This can be accomplished by applying feature selection algorithms such as ridge regression and lasso regression.
+6. Fit a simple linear model to the permuted data based on $q$ selected features, similarity scores in step 3 as weights and complex model prediction outcomes in step 4 as response variable.
 7. Use the estimated coefficients of the simple linear model to explain how the local behaviour corresponds to the selected observation in step 1.
 
 An alternative for explaining local behaviour of complex models is proposed by @lundberg2017unified. The approach is developed based on game theory, it is named 'Shapley values'.
