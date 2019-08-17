@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.18)  17 AUG 2019 11:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.18)  17 AUG 2019 12:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2079,46 +2079,46 @@ File: figures/oobweekly-1.png Graphic file (type png)
 Package pdftex.def Info: figures/oobweekly-1.png  used on input line 802.
 (pdftex.def)             Requested size: 455.23724pt x 227.61862pt.
 [28 <./figures/intmonthly-1.png> <./figures/oobweekly-1.png>]
-<figures/viweekly-1.pdf, id=555, 1084.05pt x 650.43pt>
+<figures/viweekly-1.pdf, id=556, 1084.05pt x 650.43pt>
 File: figures/viweekly-1.pdf Graphic file (type pdf)
 <use figures/viweekly-1.pdf>
 Package pdftex.def Info: figures/viweekly-1.pdf  used on input line 812.
 (pdftex.def)             Requested size: 455.24828pt x 273.14896pt.
-<figures/weeklypdp-1.pdf, id=556, 1445.4pt x 361.35pt>
+<figures/weeklypdp-1.pdf, id=557, 1445.4pt x 361.35pt>
 File: figures/weeklypdp-1.pdf Graphic file (type pdf)
 <use figures/weeklypdp-1.pdf>
 Package pdftex.def Info: figures/weeklypdp-1.pdf  used on input line 821.
 (pdftex.def)             Requested size: 455.23724pt x 113.80931pt.
 [29 <./figures/viweekly-1.pdf>]
-<figures/intweekly-1.png, id=568, 1445.4pt x 722.7pt>
+<figures/intweekly-1.png, id=570, 1445.4pt x 722.7pt>
 File: figures/intweekly-1.png Graphic file (type png)
 <use figures/intweekly-1.png>
 Package pdftex.def Info: figures/intweekly-1.png  used on input line 827.
 (pdftex.def)             Requested size: 455.23724pt x 227.61862pt.
 [30 <./figures/weeklypdp-1.pdf> <./figures/intweekly-1.png>]
-<figures/oobdaily-1.png, id=593, 1445.4pt x 722.7pt>
+<figures/oobdaily-1.png, id=594, 1445.4pt x 722.7pt>
 File: figures/oobdaily-1.png Graphic file (type png)
 <use figures/oobdaily-1.png>
 Package pdftex.def Info: figures/oobdaily-1.png  used on input line 843.
 (pdftex.def)             Requested size: 455.23724pt x 227.61862pt.
 [31 <./figures/oobdaily-1.png>]
-<figures/vidaily-1.pdf, id=602, 1662.21pt x 794.97pt>
+<figures/vidaily-1.pdf, id=604, 1662.21pt x 794.97pt>
 File: figures/vidaily-1.pdf Graphic file (type pdf)
 <use figures/vidaily-1.pdf>
 Package pdftex.def Info: figures/vidaily-1.pdf  used on input line 851.
 (pdftex.def)             Requested size: 455.24496pt x 217.72585pt.
-<figures/dailypdpstability-1.pdf, id=603, 1445.4pt x 361.35pt>
+<figures/dailypdpstability-1.pdf, id=605, 1445.4pt x 361.35pt>
 File: figures/dailypdpstability-1.pdf Graphic file (type pdf)
 <use figures/dailypdpstability-1.pdf>
 Package pdftex.def Info: figures/dailypdpstability-1.pdf  used on input line 86
 0.
 (pdftex.def)             Requested size: 455.23724pt x 113.80931pt.
-<figures/dailypdpN-1.pdf, id=604, 1445.4pt x 361.35pt>
+<figures/dailypdpN-1.pdf, id=606, 1445.4pt x 361.35pt>
 File: figures/dailypdpN-1.pdf Graphic file (type pdf)
 <use figures/dailypdpN-1.pdf>
 Package pdftex.def Info: figures/dailypdpN-1.pdf  used on input line 866.
 (pdftex.def)             Requested size: 455.23724pt x 113.80931pt.
-<figures/intdaily-1.png, id=605, 1445.4pt x 722.7pt>
+<figures/intdaily-1.png, id=607, 1445.4pt x 722.7pt>
 File: figures/intdaily-1.png Graphic file (type png)
 <use figures/intdaily-1.png>
 Package pdftex.def Info: figures/intdaily-1.png  used on input line 872.
@@ -2127,36 +2127,36 @@ Package pdftex.def Info: figures/intdaily-1.png  used on input line 872.
 
  <./figures/vidaily-1.pdf> <./figures/dailypdpstability-1.pdf> <./figures/daily
 pdpN-1.pdf>] [33 <./figures/intdaily-1.png>]
-<figures/oobhourly-1.png, id=650, 1445.4pt x 722.7pt>
+<figures/oobhourly-1.png, id=651, 1445.4pt x 722.7pt>
 File: figures/oobhourly-1.png Graphic file (type png)
 <use figures/oobhourly-1.png>
 Package pdftex.def Info: figures/oobhourly-1.png  used on input line 889.
 (pdftex.def)             Requested size: 455.23724pt x 227.61862pt.
-<figures/vihourly-1.pdf, id=651, 1662.21pt x 794.97pt>
+<figures/vihourly-1.pdf, id=652, 1662.21pt x 794.97pt>
 File: figures/vihourly-1.pdf Graphic file (type pdf)
 <use figures/vihourly-1.pdf>
 Package pdftex.def Info: figures/vihourly-1.pdf  used on input line 895.
 (pdftex.def)             Requested size: 455.24496pt x 217.72585pt.
 [34 <./figures/oobhourly-1.png>]
-<figures/seasonalityhourly-1.pdf, id=658, 1445.4pt x 361.35pt>
+<figures/seasonalityhourly-1.pdf, id=659, 1445.4pt x 361.35pt>
 File: figures/seasonalityhourly-1.pdf Graphic file (type pdf)
 <use figures/seasonalityhourly-1.pdf>
 Package pdftex.def Info: figures/seasonalityhourly-1.pdf  used on input line 90
 1.
 (pdftex.def)             Requested size: 455.23724pt x 113.80931pt.
-<figures/entropyhourly-1.pdf, id=659, 1445.4pt x 361.35pt>
+<figures/entropyhourly-1.pdf, id=660, 1445.4pt x 361.35pt>
 File: figures/entropyhourly-1.pdf Graphic file (type pdf)
 <use figures/entropyhourly-1.pdf>
 Package pdftex.def Info: figures/entropyhourly-1.pdf  used on input line 907.
 (pdftex.def)             Requested size: 455.23724pt x 113.80931pt.
-<figures/htwopdp-1.png, id=660, 1445.4pt x 722.7pt>
+<figures/htwopdp-1.png, id=661, 1445.4pt x 722.7pt>
 File: figures/htwopdp-1.png Graphic file (type png)
 <use figures/htwopdp-1.png>
 Package pdftex.def Info: figures/htwopdp-1.png  used on input line 913.
 (pdftex.def)             Requested size: 455.23724pt x 227.61862pt.
 [35 <./figures/vihourly-1.pdf> <./figures/seasonalityhourly-1.pdf> <./figures/e
 ntropyhourly-1.pdf>]
-<figures/quarterlylime-1.png, id=687, 1445.4pt x 578.16pt>
+<figures/quarterlylime-1.png, id=688, 1445.4pt x 578.16pt>
 File: figures/quarterlylime-1.png Graphic file (type png)
 <use figures/quarterlylime-1.png>
 Package pdftex.def Info: figures/quarterlylime-1.png  used on input line 924.
@@ -2164,7 +2164,7 @@ Package pdftex.def Info: figures/quarterlylime-1.png  used on input line 924.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<figures/quarterlylime2-1.pdf, id=688, 1084.05pt x 578.16pt>
+<figures/quarterlylime2-1.pdf, id=689, 1084.05pt x 578.16pt>
 File: figures/quarterlylime2-1.pdf Graphic file (type pdf)
 <use figures/quarterlylime2-1.pdf>
 Package pdftex.def Info: figures/quarterlylime2-1.pdf  used on input line 932.
@@ -2247,7 +2247,7 @@ Here is how much of TeX's memory you used:
  45948 multiletter control sequences out of 15000+600000
  645531 words of font info for 372 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 55i,15n,92p,2618b,18488s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,15n,92p,2614b,18488s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/Users/thiyangashaminitalagala/Library/TinyTeX/texmf-dist/font
 s/enc/dvips/base/8r.enc}</Users/thiyangashaminitalagala/Library/TinyTeX/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/thiyangashaminitalagala/L
@@ -2266,7 +2266,7 @@ talagala/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplbi8a.pfb></User
 s/thiyangashaminitalagala/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/u
 plr8a.pfb></Users/thiyangashaminitalagala/Library/TinyTeX/texmf-dist/fonts/type
 1/urw/palatino/uplri8a.pfb>
-Output written on FFORMS_interpretabilityrf.pdf (44 pages, 2359229 bytes).
+Output written on FFORMS_interpretabilityrf.pdf (44 pages, 2359159 bytes).
 PDF statistics:
  902 PDF objects out of 1000 (max. 8388607)
  726 compressed objects within 8 object streams
