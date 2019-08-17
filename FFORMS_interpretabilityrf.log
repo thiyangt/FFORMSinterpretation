@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.18)  17 AUG 2019 12:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.18)  17 AUG 2019 12:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2230,7 +2230,7 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1011.
 
 Package rerunfilecheck Info: File `FFORMS_interpretabilityrf.out' has not chang
 ed.
-(rerunfilecheck)             Checksum: 9C826947DDA57D77ADA558612BC30CFC;7583.
+(rerunfilecheck)             Checksum: AD8C4F4298B3BAF46B91672B4D009255;7586.
 Package logreq Info: Writing requests to 'FFORMS_interpretabilityrf.run.xml'.
 \openout1 = `FFORMS_interpretabilityrf.run.xml'.
 
@@ -2241,11 +2241,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1011.
 ### semi simple group (level 1) entered at line 187 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 43388 strings out of 494553
- 806514 string characters out of 6175442
+ 43385 strings out of 494553
+ 806487 string characters out of 6175442
  1239408 words of memory out of 5000000
  45948 multiletter control sequences out of 15000+600000
- 645531 words of font info for 372 fonts, out of 8000000 for 9000
+ 645376 words of font info for 370 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  55i,15n,92p,2614b,18488s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/Users/thiyangashaminitalagala/Library/TinyTeX/texmf-dist/font
@@ -2266,7 +2266,7 @@ talagala/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplbi8a.pfb></User
 s/thiyangashaminitalagala/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/u
 plr8a.pfb></Users/thiyangashaminitalagala/Library/TinyTeX/texmf-dist/fonts/type
 1/urw/palatino/uplri8a.pfb>
-Output written on FFORMS_interpretabilityrf.pdf (44 pages, 2359159 bytes).
+Output written on FFORMS_interpretabilityrf.pdf (44 pages, 2359150 bytes).
 PDF statistics:
  902 PDF objects out of 1000 (max. 8388607)
  726 compressed objects within 8 object streams

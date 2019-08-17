@@ -269,7 +269,7 @@ This method is similar to the PDP-based variable importance scores above, but is
 
 To identify important class-specific features we rank features in three different ways: i) based on permutation-based variable importance, ii) based on partial dependence functions and iii) based on ICE curves. We consider 25 features for yearly data. The feature that shows the highest importance is ranked 25, the second highest is ranked 24, and so on. Finally, for each feature a mean rank is calculated based on the rankings of the three measures. Similarly, the overall feature importance is evaluated based on the permutation-based variable importance measure and the Gini coefficient-based feature importance measure.
 
-## Relationship between most important features and the choice of forecast-model selection 
+## Relationship between most important features and the choice of forecast model selection 
 
 The partial-dependence curves, along with their confidence intervals, are used to visualise the relationship between top features and the choice of forecast model selection.
 
@@ -481,7 +481,7 @@ The variable importance graph for daily data is shown in \autoref{fig:vidaily}. 
 In \autoref{fig:dailypdpstability} we can see that the probability of selecting white noise models increases as stability increases. According to the partial dependency curves of length (T),
 \autoref{fig:dailypdpN}, shorter series tend to select random walk with drift models while the probability of selecting snaive, mstlarima and mstlets models increases as the length of the series increases. Neural network models show a non-monotonic relationship with the length of the series (T). For daily time series, stability and strength of seasonality (seasonality_w) shows high levels of two-way interactivity within many classes (\autoref{fig:intdaily}). The classes theta and nn show high levels of interactivity between seasonal_w and stability. Within theta and nn the separation of quadrants is easily seen. For example, with low values of seasonal_w and low stability, nn models have a high chance of being selected, while with high values of seasonal_w and  stability, nn models have a low chance of being selected. The opposite relation can be observed within rw, mstlarima, tbats and theta classes.
 
-```{r oobdaily, fig.height=10, fig.width=20, fig.cap="Visualisation of the vote matrix based on OOB sample for daily random forest. Each panel shows the predicted class from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the best forecast-model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of getting selected.", fig.pos="h", dev='png'}
+```{r oobdaily, fig.height=10, fig.width=20, fig.cap="Visualisation of the vote matrix based on OOB sample for daily random forest. Each panel shows the predicted class from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the best forecast model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of getting selected.", fig.pos="h", dev='png'}
 ```
 
 \clearpage
@@ -512,7 +512,7 @@ The partial dependency plots of the strength of seasonalities are shown in \auto
 
 Friedman's H-Statistic shows high levels of interactivity between sediff_seacf1 and linearity across all classes. The associated two-way partial dependency plot is shown in \autoref{fig:htwopdp}. According to the \autoref{fig:htwopdp}, we can see there is a unique pattern of interactivity existing within each class. Within rw, rwd and mstlarima we can see a separation between the lower half and the upper half due to the effect of sediff_seacf1. However, the colours of the bands are not uniform across the bands, which indicates that the probability of selecting the models changes according to the levels of linearity. The two-way partial dependency plots show rwd has a high chance of being selected with series with low sediff_seacf1; this is due to the over differencing of the series. 
 
-```{r oobhourly, fig.height=10, fig.width=20, fig.cap="Visualisation of the vote matrix based on OOB sample for hourly random forest. Each panel shows the predicted class from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the best forecast-model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of being selected.", fig.pos="h", dev='png'}
+```{r oobhourly, fig.height=10, fig.width=20, fig.cap="Visualisation of the vote matrix based on OOB sample for hourly random forest. Each panel shows the predicted class from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the best forecast model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of being selected.", fig.pos="h", dev='png'}
 ```
 
 
