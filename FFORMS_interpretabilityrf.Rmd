@@ -1,5 +1,5 @@
 ---
-title: "Peeking inside FFORMS: Feature-based FORecast Model Selection"
+title: "Peeking inside FFORMS: Feature-based forecast model selection"
 author:
   - familyname: Talagala
     othernames: Thiyanga S
