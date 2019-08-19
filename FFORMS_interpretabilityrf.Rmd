@@ -241,7 +241,7 @@ The permutation-based variable importance introduced by @breiman2001random measu
 strength of each feature. This measure is calculated based on the  out-of-bag (OOB) observations. The calculation of variable importance is formalised as follows: Let $\bar{\mathcal{B}}^{(k)}$ be the OOB sample for a tree $k$, with $k\in \{1,...,ntree\}$, where $ntree$ is the number of trees in the random forest. Then the variable importance of variable $X_{j}$ in $k^{th}$ tree is:
   \[VI^{(k)}(X_{j})=\frac{\sum_{i\in \bar{\mathcal{B}}^{(k)}}I(\gamma_{i}=\gamma_{i,\pi_{j}}^{k})}{|\bar{\mathcal{B}}^{(k)}|}-\frac{\sum_{i\in \bar{\mathcal{B}}^{(k)}}I(\gamma_{i}=\gamma_{i}^{k})}{|\bar{\mathcal{B}}^{(k)}|},\]
 where $\gamma_{i}^{k}$ denotes the predicted class for the $i^{th}$ observation before permuting the values of $X_{j}$ and $\gamma_{i, \pi_{j}}^{k}$ is the predicted class for the $i^{th}$ observation after permuting the values of $X_{j}$. The overall variable importance score is calculated as:
-  \[VI(X_{j})=\frac{\sum_{1}^{ntree}VI^{(t)}(x_{j})}{ntree}.\]
+  \[VI(X_{j})=\frac{\sum_{t=1}^{ntree}VI^{(t)}(x_{j})}{ntree}.\]
 
 Permutation-based variable importance measures provide a useful starting point for identifying the relative influence of features on the predicted outcome.  However, they provide little indication of the nature of the relationship between the features and model outcome. To gain further insights into the role of features inside the FFORMS framework we use the partial dependence plot (PDP) introduced by @friedman2008predictive. 
 
