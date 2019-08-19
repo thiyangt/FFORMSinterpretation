@@ -220,13 +220,13 @@ A useful by-product of random forest model is out-of-bag (OOB) observations. OOB
 
 ## Feature importance
 
-@jiang2002 explain variable importance under three different views: i) causality (change in the value of $Y$ for an increase or decrease in the value of $X_i$), ii) contribution of $X_i$ based on out-of-sample prediction accuracy and iii) face value of $X_i$ on prediction function $g$. For example, in linear regression models estimated coefficients of each predictor can be considered a measure of variable importance. See @jiang2002 for comparable face value interpretation for machine learning models. In this paper we use the first two notions of variable importance. Partial dependency functions and individual conditional expectation curves are used to explore the 'causality' notion of variable importance, while mean decrease in Gini coefficient and permutation-based variable importance are used to capture the second notion of variable importance (feature contribution to the predictive accuracy) (@Zhao). We introduce each of these variable importance measures below.  
+@jiang2002 explain variable importance under three different views: i) causality (change in the value of $Z$ for an increase or decrease in the value of $Y_i$), ii) contribution of $Y_i$ based on out-of-sample prediction accuracy and iii) face value of $Y_i$ on prediction function $g$. For example, in linear regression models estimated coefficients of each predictor can be considered a measure of variable importance. See @jiang2002 for comparable face value interpretation for machine learning models. In this paper we use the first two notions of variable importance. Partial dependency functions and individual conditional expectation curves are used to explore the 'causality' notion of variable importance, while mean decrease in Gini coefficient and permutation-based variable importance are used to capture the second notion of variable importance (feature contribution to the predictive accuracy) (@Zhao). We introduce each of these variable importance measures below.  
 
-Let $\mathcal{P}=\{(\mathbf{x^{(i)}}, y^{(i)})\}_{i=1}^{N}$ be the
+Let $\mathcal{P}=\{(\mathbf{y^{(i)}}, z^{(i)})\}_{i=1}^{N}$ be the
 historical data set we use to train a classifier. Consider a
-$d$-dimensional feature vector $\mathbf{X}=(X_1, X_2, ..., X_d)$ and a dependent
-variable, the best forecasting method for each series $Y$. Let $\mathcal{G}$ be the unknown relationship between $\mathbf{X}$ and
-$Y$. @Zhao call this 'law of nature'. Inside the FFORMS framework, the random forest algorithm tries to learn this relationship using
+$d$-dimensional feature vector $\mathbf{Y}=(Y_1, Y_2, ..., Y_d)$ and a dependent
+variable, the best forecasting method for each series $Z$. Let $\mathcal{G}$ be the unknown relationship between $\mathbf{Y}$ and
+$Z$. @Zhao call this 'law of nature'. Inside the FFORMS framework, the random forest algorithm tries to learn this relationship using
 the historical data we provided. We denote the predicted function as
 $g$.
 
@@ -238,29 +238,29 @@ Mean decrease in Gini coefficient is a measure of how each feature contributes t
 ### Permutation-based variable importance measure
 
 The permutation-based variable importance introduced by @breiman2001random measures the prediction
-strength of each feature. This measure is calculated based on the  out-of-bag (OOB) observations. The calculation of variable importance is formalised as follows: Let $\bar{\mathcal{B}}^{(k)}$ be the OOB sample for a tree $k$, with $k\in \{1,...,ntree\}$, where $ntree$ is the number of trees in the random forest. Then the variable importance of variable $X_{j}$ in $k^{th}$ tree is:
-  \[VI^{(k)}(X_{j})=\frac{\sum_{i\in \bar{\mathcal{B}}^{(k)}}I(\gamma_{i}=\gamma_{i,\pi_{j}}^{k})}{|\bar{\mathcal{B}}^{(k)}|}-\frac{\sum_{i\in \bar{\mathcal{B}}^{(k)}}I(\gamma_{i}=\gamma_{i}^{k})}{|\bar{\mathcal{B}}^{(k)}|},\]
-where $\gamma_{i}^{k}$ denotes the predicted class for the $i^{th}$ observation before permuting the values of $X_{j}$ and $\gamma_{i, \pi_{j}}^{k}$ is the predicted class for the $i^{th}$ observation after permuting the values of $X_{j}$. The overall variable importance score is calculated as:
-  \[VI(X_{j})=\frac{\sum_{t=1}^{ntree}VI^{(t)}(x_{j})}{ntree}.\]
+strength of each feature. This measure is calculated based on the  out-of-bag (OOB) observations. The calculation of variable importance is formalised as follows: Let $\bar{\mathcal{B}}^{(k)}$ be the OOB sample for a tree $k$, with $k\in \{1,...,ntree\}$, where $ntree$ is the number of trees in the random forest. Then the variable importance of variable $Y_{j}$ in $k^{th}$ tree is:
+  \[VI^{(k)}(Y_{j})=\frac{\sum_{i\in \bar{\mathcal{B}}^{(k)}}I(\gamma_{i}=\gamma_{i,\pi_{j}}^{k})}{|\bar{\mathcal{B}}^{(k)}|}-\frac{\sum_{i\in \bar{\mathcal{B}}^{(k)}}I(\gamma_{i}=\gamma_{i}^{k})}{|\bar{\mathcal{B}}^{(k)}|},\]
+where $\gamma_{i}^{k}$ denotes the predicted class for the $i^{th}$ observation before permuting the values of $Y_{j}$ and $\gamma_{i, \pi_{j}}^{k}$ is the predicted class for the $i^{th}$ observation after permuting the values of $Y_{j}$. The overall variable importance score is calculated as:
+  \[VI(Y_{j})=\frac{\sum_{k=1}^{ntree}VI^{(k)}(y_{j})}{ntree}.\]
 
 Permutation-based variable importance measures provide a useful starting point for identifying the relative influence of features on the predicted outcome.  However, they provide little indication of the nature of the relationship between the features and model outcome. To gain further insights into the role of features inside the FFORMS framework we use the partial dependence plot (PDP) introduced by @friedman2008predictive. 
 
 
 ### Partial dependence plot (PDP) and Variable importance measure based on PDP
 
-Partial dependence plots can be used to graphically examine how each feature is related to the model prediction while accounting for the average effect of other features in the model. Let $X_s$ be the subset of features we want to examine for partial dependencies and $X_c$ be the remaining set of features in $X$.  Then $g_s$, the partial dependence function on $X_s$ is defined as 
-\[g_s(X_s)=E_{x_c}[g(x_s, X_c)]=\int{g(x_s, x_c)dP(x_c).}\] 
+Partial dependence plots can be used to graphically examine how each feature is related to the model prediction while accounting for the average effect of other features in the model. Let $Y_s$ be the subset of features we want to examine for partial dependencies and $Y_c$ be the remaining set of features in $Y$.  Then $g_s$, the partial dependence function on $Y_s$ is defined as 
+\[g_s(Y_s)=E_{y_c}[g(y_s, Y_c)]=\int{g(y_s, y_c)dP(y_c).}\] 
 In practice, PDP can be estimated from a training data set as 
-\[\bar{g_s}(x_s)=\frac{1}{n}\sum_{i=1}^{n}g(x_s, X_{iC}),\]
-where $n$ is the number of observations in the training data set. A partial dependency curve can be created by plotting the pairs of $\{(x_s^k, \bar{g}_s(x_{sk}))\}_{k=1}^{m}$ defined on a grid of points $\{x_{s1}, x_{s2},\dots, x_{sm}\}$ based on $X_s$. The FFORMS framework has treated the forecast model selection problem as a classification problem. Hence, in this paper partial dependency functions display the probability of a certain class occurring given different values of the feature $X_s$.
+\[\bar{g_s}(y_s)=\frac{1}{n}\sum_{i=1}^{n}g(y_s, Y_{iC}),\]
+where $n$ is the number of observations in the training data set. A partial dependency curve can be created by plotting the pairs of $\{(y_s^k, \bar{g}_s(y_{sk}))\}_{k=1}^{m}$ defined on a grid of points $\{y_{s1}, y_{s2},\dots, y_{sm}\}$ based on $Y_s$. The FFORMS framework has treated the forecast model selection problem as a classification problem. Hence, in this paper partial dependency functions display the probability of a certain class occurring given different values of the feature $Y_s$.
 
 
-@Greenwell2018 introduce a variable importance measure based on the partial dependency curves. The idea is to measure the 'flatness' of partial dependence curves for each feature. A feature with a PDP curve that is flat, relative to the other features, does not have much influence on the predicted value. The flatness of the curve is measured using the standard deviation of the values $\{\bar{g}_{s}(x_{sk})\}_{k=1}^{m}$.
+@Greenwell2018 introduce a variable importance measure based on the partial dependency curves. The idea is to measure the 'flatness' of partial dependence curves for each feature. A feature with a PDP curve that is flat, relative to the other features, does not have much influence on the predicted value. The flatness of the curve is measured using the standard deviation of the values $\{\bar{g}_{s}(y_{sk})\}_{k=1}^{m}$.
 
 ### Individual conditional expectation (ICE) curves and variable importance measure based on ICE curves
 
 While partial dependency curves are useful in understanding the estimated relationship between features and the predicted outcome in the presence of substantial interaction between features, they can be misleading.  @goldstein2015peeking propose individual conditional expectation (ICE) curves to address this issue. Instead of
-averaging $g(x_s, X_{iC})$ over all observations in the training data, an ICE curve generates the individual response curves by plotting the pairs $\{(x_s^k, g(x_{sk}, X_{iC}))\}_{k=1}^{m}$ defined on grid of points $\{x_{s1}, x_{s2},\dots, x_{sm}\}$ based on $X_s$. In other words, the partial dependency curve is simply the average of all the ICE curves. 
+averaging $g(y_s, Y_{iC})$ over all observations in the training data, an ICE curve generates the individual response curves by plotting the pairs $\{(y_s^k, g(y_{sk}, Y_{iC}))\}_{k=1}^{m}$ defined on grid of points $\{y_{s1}, y_{s2},\dots, y_{sm}\}$ based on $Y_s$. In other words, the partial dependency curve is simply the average of all the ICE curves. 
 
 
 This method is similar to the PDP-based variable importance scores above, but is based on measuring the 'flatness' of the individual conditional expectation curves. We calculate standard deviations of each ICE curve.  We then compute an ICE-based variable importance score, which is simply the average of all the standard deviations. A higher value indicates a higher degree of interactivity with other features. 
@@ -275,13 +275,13 @@ The partial-dependence curves, along with their confidence intervals, are used t
 
 ## Assessment of interaction effect
 
-Friedman's H-statistic [@friedman2008predictive] is used to test the presence of interaction between all possible pairs of features. This statistic is computed based on the partial dependence functions. For two-way interaction between two specific variables $X_j$ and $X_k$, Friedman's H-statistic is defined as follows:
+Friedman's H-statistic [@friedman2008predictive] is used to test the presence of interaction between all possible pairs of features. This statistic is computed based on the partial dependence functions. For two-way interaction between two specific variables $Y_j$ and $Y_k$, Friedman's H-statistic is defined as follows:
 
-\[H_{jk}^2=\sum_{i=1}^{n}[\bar{g}_{s}(x_{ij}, x_{jk})-\bar{g}_{s}(x_{ij})-\bar{g}_{s}(x_{ik})]^2/\sum_{i=1}^{n}\bar{g}^2_{s}(x_{ij}, x_{jk}).\]
+\[H_{jk}^2=\sum_{i=1}^{n}[\bar{g}_{s}(y_{ij}, y_{jk})-\bar{g}_{s}(y_{ij})-\bar{g}_{s}(y_{ik})]^2/\sum_{i=1}^{n}\bar{g}^2_{s}(y_{ij}, y_{jk}).\]
 
-Friedman's H-statistic measures the fraction of variance of two-variable partial dependency, $\bar{g}_{s}(x_{ij}, x_{jk})$ not captured by the sum of the respective individual partial dependencies, $\bar{g}_{s}(x_{ij})+\bar{g}_{s}(x_{ik})$. In addition to Friedman's H-statistic, we use the PDP of two variables to visualise the interaction effects. Similarly, Friedman's H-statistic for testing whether a specific feature interacts with any other feature can be estimated by
+Friedman's H-statistic measures the fraction of variance of two-variable partial dependency, $\bar{g}_{s}(y_{ij}, y_{jk})$ not captured by the sum of the respective individual partial dependencies, $\bar{g}_{s}(y_{ij})+\bar{g}_{s}(y_{ik})$. In addition to Friedman's H-statistic, we use the PDP of two variables to visualise the interaction effects. Similarly, Friedman's H-statistic for testing whether a specific feature interacts with any other feature can be estimated by
 
-\[H_{j}^2=\sum_{i=1}^{n}[{g}(\bm{x_{i}})-\bar{g}_{s}(x_{ij})-\bar{g}_{s}(x_{i/j})]^2/\sum_{i=1}^{n}g^2(\bm{x_{i}}).\]
+\[H_{j}^2=\sum_{i=1}^{n}[{g}(\bm{y_{i}})-\bar{g}_{s}(y_{ij})-\bar{g}_{s}(y_{i/j})]^2/\sum_{i=1}^{n}g^2(\bm{y_{i}}).\]
 
 
 Note that the, PD plots, ICE curves and PD- and ICE-associated measures and Friedman's H-statistic are computationally intensive to compute, especially when there are a large number of observations in the training set. Hence, in our experiments ICE- and PDP-based variable importance measures are computed based on the subset of randomly selected training examples.
