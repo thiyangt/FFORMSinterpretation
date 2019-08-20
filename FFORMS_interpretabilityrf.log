@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.18)  20 AUG 2019 10:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.18)  20 AUG 2019 13:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1988,11 +1988,11 @@ File: figures/pdpyearlyurpp-1.pdf Graphic file (type pdf)
 <use figures/pdpyearlyurpp-1.pdf>
 Package pdftex.def Info: figures/pdpyearlyurpp-1.pdf  used on input line 689.
 (pdftex.def)             Requested size: 455.24828pt x 121.39954pt.
-<figures/pdpyearlytrend-1.pdf, id=387, 1084.05pt x 289.08pt>
+<figures/pdpyearlytrend-1.pdf, id=387, 1084.05pt x 296.10625pt>
 File: figures/pdpyearlytrend-1.pdf Graphic file (type pdf)
 <use figures/pdpyearlytrend-1.pdf>
 Package pdftex.def Info: figures/pdpyearlytrend-1.pdf  used on input line 695.
-(pdftex.def)             Requested size: 455.24828pt x 121.39954pt.
+(pdftex.def)             Requested size: 455.24828pt x 124.3502pt.
 <figures/pdpyearlylinearity-1.png, id=388, 1084.05pt x 289.08pt>
 File: figures/pdpyearlylinearity-1.png Graphic file (type png)
 <use figures/pdpyearlylinearity-1.png>
@@ -2230,7 +2230,7 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1011.
 
 Package rerunfilecheck Info: File `FFORMS_interpretabilityrf.out' has not chang
 ed.
-(rerunfilecheck)             Checksum: AD8C4F4298B3BAF46B91672B4D009255;7586.
+(rerunfilecheck)             Checksum: 2919BC92FFBEFF802C6B5CC380BAE4A7;7586.
 Package logreq Info: Writing requests to 'FFORMS_interpretabilityrf.run.xml'.
 \openout1 = `FFORMS_interpretabilityrf.run.xml'.
 
@@ -2241,11 +2241,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1011.
 ### semi simple group (level 1) entered at line 187 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 43379 strings out of 494553
- 806433 string characters out of 6175442
- 1239408 words of memory out of 5000000
+ 43382 strings out of 494553
+ 806460 string characters out of 6175442
+ 1239412 words of memory out of 5000000
  45948 multiletter control sequences out of 15000+600000
- 645078 words of font info for 366 fonts, out of 8000000 for 9000
+ 645233 words of font info for 368 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  55i,15n,92p,2614b,18488s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/Users/thiyangashaminitalagala/Library/TinyTeX/texmf-dist/font
@@ -2266,7 +2266,7 @@ talagala/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplbi8a.pfb></User
 s/thiyangashaminitalagala/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/u
 plr8a.pfb></Users/thiyangashaminitalagala/Library/TinyTeX/texmf-dist/fonts/type
 1/urw/palatino/uplri8a.pfb>
-Output written on FFORMS_interpretabilityrf.pdf (44 pages, 2362671 bytes).
+Output written on FFORMS_interpretabilityrf.pdf (44 pages, 2362696 bytes).
 PDF statistics:
  902 PDF objects out of 1000 (max. 8388607)
  726 compressed objects within 8 object streams

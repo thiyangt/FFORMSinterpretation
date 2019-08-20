@@ -553,7 +553,7 @@ where \(\gamma_{i}^{k}\) denotes the predicted class for the \(i^{th}\) observat
 Permutation-based variable importance measures provide a useful starting point for identifying the relative influence of features on the predicted outcome. However, they provide little indication of the nature of the relationship between the features and model outcome. To gain further insights into the role of features inside the FFORMS framework we use the partial dependence plot (PDP) introduced by \textcite{friedman2008predictive}.
 
 \hypertarget{partial-dependence-plot-pdp-and-variable-importance-measure-based-on-pdp}{%
-\subsubsection{Partial dependence plot (PDP) and Variable importance measure based on PDP}\label{partial-dependence-plot-pdp-and-variable-importance-measure-based-on-pdp}}
+\subsubsection{Partial dependence plot (PDP) and variable importance measure based on PDP}\label{partial-dependence-plot-pdp-and-variable-importance-measure-based-on-pdp}}
 
 Partial dependence plots can be used to graphically examine how each feature is related to the model prediction while accounting for the average effect of other features in the model. Let \(Y_s\) be the subset of features we want to examine for partial dependencies and \(Y_c\) be the remaining set of features in \(Y\). Then \(g_s\), the partial dependence function on \(Y_s\) is defined as
 \[g_s(Y_s)=E_{y_c}[g(y_s, Y_c)]=\int{g(y_s, y_c)dP(y_c).}\]
@@ -693,7 +693,7 @@ In addition, the first ACF value of residual series of linear trend model (lmres
 \begin{figure}
 \centering
 \includegraphics{figures/pdpyearlytrend-1.pdf}
-\caption{\label{fig:pdpyearlytrend}Partial dependence plots for trend. The shading shows the 95\% confidence intervals. Y-axis denotes the probability of belonging to corresponding class. Probability of selecting ETS models without a trend component and stationary models (WN and ARMA) decreases for an extremely high value of trend.}
+\caption{\label{fig:pdpyearlytrend}Partial dependence plots for trend. The shading shows the 95\% confidence intervals. Y-axis denotes the probability of belonging to the corresponding class. Probability of selecting ETS models without a trend component and stationary models (WN and ARMA) decreases for an extremely high value of trend.}
 \end{figure}
 
 \begin{figure}
