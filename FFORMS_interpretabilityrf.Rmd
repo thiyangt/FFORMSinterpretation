@@ -498,7 +498,7 @@ In \autoref{fig:dailypdpstability} we can see that the probability of selecting 
 ```
 
 
-```{r intdaily, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence of seasonal_w and stability for daily data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. Random walk (rw) and tbats class show opposite patterns of interactivity between seasonal_w and stability.", dev='png'}
+```{r intdaily, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence of seasonal_w and stability for daily data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. Random walk (rw) and nn show opposite patterns of interactivity between seasonal_w and stability.", dev='png'}
 
 ```
 
@@ -531,7 +531,7 @@ Friedman's H-Statistic shows high levels of interactivity between sediff_seacf1 
 
 
 
-```{r htwopdp, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence of sediff_seacf1 and linearity for hourly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. Random walk and random walk with drift class show opposite pattern of interactivity between sediff_seacf1 and linearity.", dev='png'}
+```{r htwopdp, fig.height=10, fig.width=20,  fig.pos="h", message=FALSE, warning=FALSE, fig.cap="Partial dependence of sediff_seacf1 and linearity for hourly data. Dark regions show the high probability of belonging to the corresponding class shown in the plot title. Random walk and random walk with drift show opposite pattern of interactivity between sediff_seacf1 and linearity.", dev='png'}
 
 ```
 
