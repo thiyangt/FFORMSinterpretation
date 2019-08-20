@@ -220,8 +220,6 @@ A useful by-product of random forest model is out-of-bag (OOB) observations. OOB
 
 ## Feature importance
 
-@jiang2002 explain variable importance under three different views: i) causality (change in the value of $Z$ for an increase or decrease in the value of $Y_i$), ii) contribution of $Y_i$ based on out-of-sample prediction accuracy and iii) face value of $Y_i$ on prediction function $g$. For example, in linear regression models estimated coefficients of each predictor can be considered a measure of variable importance. See @jiang2002 for comparable face value interpretation for machine learning models. In this paper we use the first two notions of variable importance. Partial dependency functions and individual conditional expectation curves are used to explore the 'causality' notion of variable importance, while mean decrease in Gini coefficient and permutation-based variable importance are used to capture the second notion of variable importance (feature contribution to the predictive accuracy) (@Zhao). We introduce each of these variable importance measures below.  
-
 Let $\mathcal{P}=\{(\mathbf{y^{(i)}}, z^{(i)})\}_{i=1}^{N}$ be the
 historical data set we use to train a classifier. Consider a
 $d$-dimensional feature vector $\mathbf{Y}=(Y_1, Y_2, ..., Y_d)$ and a dependent
@@ -229,6 +227,9 @@ variable, the best forecasting method for each series $Z$. Let $\mathcal{G}$ be 
 $Z$. @Zhao call this 'law of nature'. Inside the FFORMS framework, the random forest algorithm tries to learn this relationship using
 the historical data we provided. We denote the predicted function as
 $g$.
+
+@jiang2002 explain variable importance under three different views: i) causality (change in the value of $Z$ for an increase or decrease in the value of $Y_i$), ii) contribution of $Y_i$ based on out-of-sample prediction accuracy and iii) face value of $Y_i$ on prediction function $g$. For example, in linear regression models estimated coefficients of each predictor can be considered a measure of variable importance. See @jiang2002 for comparable face value interpretation for machine learning models. In this paper we use the first two notions of variable importance. Partial dependency functions and individual conditional expectation curves are used to explore the 'causality' notion of variable importance, while mean decrease in Gini coefficient and permutation-based variable importance are used to capture the second notion of variable importance (feature contribution to the predictive accuracy) (@Zhao). We introduce each of these variable importance measures below.  
+
 
 ### Mean decrease in Gini coefficient
 
