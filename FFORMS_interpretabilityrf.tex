@@ -800,7 +800,7 @@ The partial dependency curves of seasonality and trend of monthly data are very 
 \begin{figure}
 \centering
 \includegraphics{figures/oobweekly-1.png}
-\caption{\label{fig:oobweekly}Visualisation of the vote matrix based on OOB sample for weekly random forest. Each panel shows the predicted class from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the best forecast model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of being selected.}
+\caption{\label{fig:oobweekly}Visualisation of the vote matrix based on OOB sample for weekly random forest. Each panel shows the predicted class from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the best forecast model identified based on MASE and sMAPE. The models rwd, tbats and nn have a high chance of being selected.}
 \end{figure}
 
 \autoref{fig:oobweekly} shows the vote matrix information for weekly data. Unlike yearly, quarterly and monthly data, theta method has a low chance of being selected. The rwd, tbats models and nn have a high chance of being selected. ARMA class shows some unusual behaviour within some categories because of class imbalance ratio; it contains a smaller number of observations in the training set.
@@ -841,7 +841,7 @@ In \autoref{fig:dailypdpstability} we can see that the probability of selecting 
 \begin{figure}
 \centering
 \includegraphics{figures/oobdaily-1.png}
-\caption{\label{fig:oobdaily}Visualisation of the vote matrix based on OOB sample for daily random forest. Each panel shows the predicted class from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the best forecast model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of being selected.}
+\caption{\label{fig:oobdaily}Visualisation of the vote matrix based on OOB sample for daily random forest. Each panel shows the predicted class from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the best forecast model identified based on MASE and sMAPE. The models rwd, tbats and nn have a high chance of being selected.}
 \end{figure}
 
 \clearpage
@@ -887,7 +887,7 @@ Friedman's H-Statistic shows high levels of interactivity between sediff\_seacf1
 \begin{figure}
 \centering
 \includegraphics{figures/oobhourly-1.png}
-\caption{\label{fig:oobhourly}Visualisation of the vote matrix based on OOB sample for hourly random forest. Each panel shows the predicted class from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the best forecast model identified based on MASE and sMAPE. The models rwd, tbats, nn have a high chance of being selected.}
+\caption{\label{fig:oobhourly}Visualisation of the vote matrix based on OOB sample for hourly random forest. Each panel shows the predicted class from the random forest. The X-axis denotes the proportion of times each time series was classified to each class. The colours of boxplots correspond to class label of the best forecast model identified based on MASE and sMAPE. The models rwd, tbats and nn have a high chance of being selected.}
 \end{figure}
 
 \begin{figure}
