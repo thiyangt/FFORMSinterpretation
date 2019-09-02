@@ -75,6 +75,7 @@ lime::plot_features(explanationy, ncol = 2)+ggtitle("C")
 #which.max(m4qPCAresults1$PC2)  #405
 # which(0.46 < m4qPCAresults1$PC2 < 0.4692441) ##277166
 load("data/quarterly/trainQ_votes.rda")
+load("data/quarterly/quarterly_training.rda")
 pcaQvariables <- quarterly_training[, 1:30]
 pcaM4Q <- prcomp(pcaQvariables, center = TRUE, scale = TRUE)
 PC1m4q <- pcaM4Q$x[, 1]
@@ -102,7 +103,7 @@ pcaQ <- ggplot(m4qPCAresults, aes(x = PC1, y = PC2)) +
 
 
 load("data/quarterly/explanationq.rda")
-load("data/ts_lime_qpca.rda")
+load("data/quarterly/ts_lime_qpca.rda")
 p1 <- autoplot(ts_lime_qpca[[1]])+theme(legend.position="none")+
   xlab("")+theme(axis.title.x=element_blank(),
                                           #                     axis.text.x=element_blank(),
