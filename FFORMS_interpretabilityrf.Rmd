@@ -172,7 +172,7 @@ The FFORMS framework operates on features calculated from the time series. For e
 
 ## Output: class-labels
 
-The description of class labels considered under each frequency is shown in Table \ref{classlabels}. Note that these added to @fforms. Most of the labels given in Table \ref{classlabels} are self-explanatory. In stlar, mstlets and mstlarima, first an STL decomposition or a multiple seasonal decomposition (for mstlarima and mstlets) is applied to the time series and then seasonal naive is used to forecast the seasonal component. Then AR, ETS and ARIMA models are used to forecast the seasonally adjusted data. We fit the corresponding models outlined in Table \ref{classlabels} to each series in the reference set. The models are estimated using the training period for each series, and forecasts are produced for the test periods. 
+The description of class labels considered under each frequency is shown in Table \ref{classlabels}. Note that these added to @fforms. Most of the labels given in Table \ref{classlabels} are self-explanatory. In stlar, mstlets and mstlarima, first an STL decomposition or a multiple seasonal decomposition (for mstlarima and mstlets) is applied to the time series and then seasonal naive is used to forecast the seasonal component. Then AR, ETS and ARIMA models are used to forecast the seasonally adjusted data. We fit the corresponding models outlined in Table \ref{classlabels} to each series in the reference set. The models are estimated using the training period for each series, and forecasts are produced for the test periods \textcolor{blue}{based on "fixed origin" evaluation}. 
 
 \begin{table}[!htp]
 \centering\footnotesize\tabcolsep=0.12cm
@@ -556,7 +556,7 @@ Features such as the strength of trend and strength of seasonality rank top with
 
 Exploring of the conditions learned by the FFORMS framework also supports practitioners to make a good educated guess about suitable forecast models for a given problem. Further, the results of this study are useful in identifying new ways to improve forecasting accuracy by capturing different features of time series.
 
-# Appendix: Interaction effects {-}
+# Appendix A: Interaction effects {-}
 
 \autoref{fig:friedmany}-\autoref{fig:friedmanh} show how strongly each feature interacts with any other feature in the forest for yearly, quarterly, monthly, weekly, daily and hourly series. On each panel the top five interacting features are highlighted in purple.
 
@@ -592,9 +592,62 @@ According to \autoref{fig:viyearly}, which shows the variable importance plots f
 
 \clearpage
 
+## Appendix B: Partial dependency plots for white noice class {-}
+
 ```{r wntwopdcplots, fig.height=4, fig.width=8, fig.cap="Partial dependency plots for wn class", fig.pos="h", dev='pdf', cache=FALSE}
 ```
 
+## Appendix C: Summary of the results in Sections 7.1-7.6 {-}
 
+\begin{table}[!htp]
+\centering\footnotesize\tabcolsep=0.12cm
+\caption{Proportion of times each feature is selected for top five ranks by different forecast model classes across each frequency category}
+\label{feature}
+{\color{blue}\begin{tabular}{llp{8,8cm}cccccc}
+\toprule
+\multicolumn{2}{c}{Feature} & Description & Y & Q & M & W & D & H\\
+\midrule
+1  & T              & length of time series                                                                   & 0.00  & 0.05 & 0.52 & 0.33& 0.70 &0.10\\
+2  & trend          & strength of trend                                                                       & 0.90  & 0.82 &0.88 & 0.42 & 0.60 &0.20\\
+3  & seasonality\_q    & strength of quarterly seasonality                                                    & -     & 1.00 & & - & - & -\\
+4  & seasonality\_m    & strength of monthly seasonality                                                      & -     & - & 1.00& - & - &-\\
+5  & seasonality\_w    & strength of weekly seasonality                                                       & -     & - & - & 0.66 & 0.50 &0.40\\
+6  & seasonality\_d    & strength of daily seasonality                                                        & -     & - & & - & 0.00 &1.00 \\
+7  & seasonality\_y    & strength of yearly seasonality                                                       & -     & - & & - & 1.00 & 0.00\\
+8  & linearity      & linearity                                                                               & 0.90  & 0.82 & 0.70& 0.91 &0.70 &0.40\\
+9  & curvature      & curvature                                                                               & 0.30  & 0.05 & 0.00& 0.25 & 0.20 & 0.30\\
+10  & spikiness      & spikiness                                                                               & 0.10  & 0.00 &0.05 & 0.25 & - & 0.10\\
+11  & e\_acf1        & first ACF value of remainder series                                                     & 0.00  & 0.00 &0.05 &0.25 & 0.00 &0.10\\
+12  & stability      & stability                                                                               & 0.00  & 0.11 & 0.47& 0.41 & 0.80 &0.20\\
+13  & lumpiness      & lumpiness                                                                               & 0.00  & 0.11 & 0.00& 0.08 & 0.00 &0.00\\
+14 & entropy        & spectral entropy                                                                        & 0.00  & 0.00 &0.00  & 0.25 &0.00 &0.60\\
+15 & hurst          & Hurst exponent                                                                          & 0.00  & 0.00 &0.00 & 0.00 & 0.10 &0.00\\
+16 & nonlinearity   & nonlinearity                                                                            & 0.00 & 0.00 &0.00 & 0.25 & 0.00 &0.20\\
+17 & alpha          & ETS(A,A,N) $\hat\alpha$                                                                 & 0.00  & 0.23 & 0.05& 0.00 & - &- \\
+18 & beta           & ETS(A,A,N) $\hat\beta$                                                                  & 0.30  & 0.05 &0.05 &0.25 & - &-\\
+19 & hwalpha        & ETS(A,A,A) $\hat\alpha$                                                                 & -     & 0.00 &0.11 & - & - &\\
+20 & hwbeta         & ETS(A,A,A) $\hat\beta$                                                                  & -     & 0.00 &0.00 & - & - &\\
+21 & hwgamma        & ETS(A,A,A) $\hat\gamma$                                                                 & -     & 0.23 & 0.00& - &-&\\
+22 & ur\_pp         & test statistic based on Phillips-Perron test                                            & 0.90  & - &- & - & - &-\\
+23 & ur\_kpss       & test statistic based on KPSS test                                                       & 0.00  & - & -& - & - &-\\
+24 & y\_acf1        & first ACF value of the original series                                                  & 0.20  & 0.00 &0.00 & 0.00 & 0.00 &0.00\\
+25 & diff1y\_acf1   & first ACF value of the differenced series                                               & 0.80  & 0.11 & 0.23& 0.00 & 0.10 &0.00\\
+26 & diff2y\_acf1   & first ACF value of the twice-differenced series                                         & 0.00  & 0.00 &0.00 & 0.08 & 0.00 &0.20\\
+27 & y\_acf5        & sum of squares of first 5 ACF values of original series                                 & 0.00  & 0.05 &0.00 & 0.00 &0.00 &0.00 \\
+28 & diff1y\_acf5   & sum of squares of first 5 ACF values of differenced series                              & 0.10  & 0.11 & 0.11& 0.00 & 0.10 &0.10\\
+29 & diff2y\_acf5   & sum of squares of first 5 ACF values of twice-differenced series                        & 0.00  & 0.05 &0.00 & 0.08 & 0.00 &0.10\\
+30 & sediff\_acf1 & ACF value at the first lag of seasonally-differenced series                               & -     & 0.00 & 0.00& 0.00 & 0.00 &0.10\\
+31 & sediff\_seacf1 & ACF value at the first seasonal lag of seasonally-differenced series                    & -     & \yes & & \yes & \yes &\\
+32 & sediff\_acf5   & sum of squares of first 5 autocorrelation coefficients of seasonally-differenced series & -     & \yes & & \yes & \yes &\\
+33 & seas\_pacf     & partial autocorrelation coefficient at first seasonal lag & -     & \yes & & \yes & \yes &\\
+34 & lmres\_acf1    & first ACF value of residual series of linear trend model                                & 0.40  & - & & - & - &\\
+35 & y\_pacf5       & sum of squares of first 5 PACF values of original series                                & 0.40  & \yes & & \yes & \yes &\\
+36 & diff1y\_pacf5  & sum of squares of first 5 PACF values of differenced series                             & 0.00  & \yes & & \yes & \yes &\\
+37 & diff2y\_pacf5  & sum of squares of first 5 PACF values of twice-differenced series                       & 0.00  & \yes & & \yes & \yes &\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\clearpage
 # References
 
