@@ -614,16 +614,16 @@ rwd & random walk with drift & 10754 & 9103 & 8955 & 41 &671 & 0 \\
 rw & random walk & 521 & 406 & 1731 & 10 & 323 & 0\\
 theta & standard theta method & 466 & 1071 & 3176 & 18 &554 &0\\
 stlar &  & - & 2369 & 9829 & 29 & 678& 39\\
-ETS\_NTNS & ETS without trend and seasonal components & 35 & 34 & 160 & - & &-\\
-ETS\_T & ETS with trend component and without seasonal component & 4992 & 360 & 521 & -& &-\\
-ETS\_DT& ETS with damped trend component and without seasonal component  & 26&  107 & 979 & - & &-\\
-ETS\_TS & ETS with trend and seasonal component & - & 346 & 779 & - & &-\\
-ETS\_DTS & ETS with damped trend and seasonal component & - & 47 & 640 & -& &-\\
-ETS\_S & ETS with seasonal component and without trend component & -  & 110 & 442 & - & & -\\
+ETS\_NTNS & ETS without trend and seasonal components & 35 & 34 & 160 & - &- &-\\
+ETS\_T & ETS with trend component and without seasonal component & 4992 & 360 & 521 & - &- &-\\
+ETS\_DT& ETS with damped trend component and without seasonal component  & 26&  107 & 979 & - & -&-\\
+ETS\_TS & ETS with trend and seasonal component & - & 346 & 779 & - &-  &-\\
+ETS\_DTS & ETS with damped trend and seasonal component & - & 47 & 640 & -& -&-\\
+ETS\_S & ETS with seasonal component and without trend component & -  & 110 & 442 & - & -& -\\
 snaive & seasonal naive method & - & 434 & 1247 & 20 &93 & 50\\
 tbats & TBATS forecasting & - & 2880 & 5989 & 90 &368 & 58\\
 nn & neural network time series forecasts & 1474 & 2128& 4707& 56& 1010& 119\\
-mstlets &  & - & - & \checkmark & 36 &169 & 54\\
+mstlets &  & - & - & - & 36 &169 & 54\\
 mstlarima & & - & - & - & - & 205& 93\\\hline
 \end{tabular}}
 \end{table}
