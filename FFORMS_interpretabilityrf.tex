@@ -545,7 +545,7 @@ Mean decrease in Gini coefficient is a measure of how each feature contributes t
 \subsubsection{Permutation-based variable importance measure}\label{permutation-based-variable-importance-measure}}
 
 The permutation-based variable importance introduced by \textcite{breiman2001random} measures the prediction
-strength of each feature. This measure is calculated based on the out-of-bag (OOB) observations. The calculation of variable importance is formalised as follows: Let \(\bar{\mathcal{B}}^{(k)}\) be the OOB sample for a tree \(k\), with \(k\in \{1,...,ntree\}\), where \(ntree\) is the number of trees in the random forest. Then the variable importance of variable \(Y_{j}\) in \(k^{th}\) tree is:
+strength of each feature. This measure is calculated based on the out-of-bag (OOB) observations. The calculation of variable importance is formalised as follows: Let \(\bar{\mathcal{B}}^{(k)}\) be the OOB sample for a tree \(k\), with \(k\in \{1,...,ntree\}\), where \(ntree\) is the number of trees in the random forest. Then the variable importance of variable \(F_{j}\) in \(k^{th}\) tree is:
 \[VI^{(k)}(F_{j})=\frac{\sum_{i\in \bar{\mathcal{B}}^{(k)}}I(\gamma_{i}=\gamma_{i,\pi_{j}}^{k})}{|\bar{\mathcal{B}}^{(k)}|}-\frac{\sum_{i\in \bar{\mathcal{B}}^{(k)}}I(\gamma_{i}=\gamma_{i}^{k})}{|\bar{\mathcal{B}}^{(k)}|},\]
 where \(\gamma_{i}^{k}\) denotes the predicted class for the \(i^{th}\) observation before permuting the values of \(F_{j}\) and \(\gamma_{i, \pi_{j}}^{k}\) is the predicted class for the \(i^{th}\) observation after permuting the values of \(F_{j}\). The overall variable importance score is calculated as:
 \[VI(F_{j})=\frac{\sum_{k=1}^{ntree}VI^{(k)}(F_{j})}{ntree}.\]
@@ -941,7 +941,7 @@ We now illustrate how the LIME approach can be used to zoom into local regions o
 
 Features of time series are useful in identifying suitable models for forecasting. This paper explores the role of features in forecast model selection under the hood of the FFORMS framework. First, we evaluate the FFORMS prediction performance using the M4 competition data. Then we explore the dissimilarities and similarities of forecast models (class labels) learned by the FFORMS framework based on the vote-matrix information of the random forest. Next, we explore \textbf{which} features are the most important for the choice of the FFORMS framework, and \textbf{where} they are most important; for the overall classification process or within a specific class of forecast models or a set of multiple classes of forecast models. Partial dependency plots are then used to visualise \textbf{when} and \textbf{how} these features link with the prediction outcome of the FFORMS framework. Finally, we explore \textbf{when} and \textbf{how strongly} features interact with other features using Friedman's H-Statistic.
 
-Features such as the strength of trend and strength of seasonality rank top within each class across all frequency categories. In addition, linearity, curvature and spikiness also rank among the top five within most of the classes. Within most of the classes at least one feature related to autocorrelation and partial autocorrelation coefficients ranks among the top five. This confirms that the information regarding the correlation structure of the time series is essential for the choice of model selection. The length of time series also appeared to be important in selecting simple forecast models such as snaive, naive and random walk with drift. Partial dependency plots of length show that short time series tend to select simple forecast models such as snaive, naive and random walk with drift while more parametrised forecast models such as SARIMA, ETS with trend and seasonal component, the neural network approach and forecast models handling multiple seasonal components are often selected with lengthy series. For all features, the displayed relationships of partial dependency plots are consistent with the domain knowledge expectations. This is an important aspect in encouraging people to trust and use the proposed framework effectively. However, several features are used to build the framework with comparable contributions, and thus all individual contributions are small. The observed two-way interactions do not completely change the individual relationship of features with the predicted outcome, but they do change the probability of selecting the models. Further, the LIME approach is used to explore the reasons behind each individual prediction. Exploration of other local interpretability methods is a direction for future research. This is useful for understanding the reasons behind series being classified with very high probability or very low probability. It also helps to increase trust in the framework because if people understand the reasons behind the results, they can use their prior knowledge about the application domain to decide whether to accept (trust) or reject the prediction outcome. The results of this help to refine the picture of the relationship between features and the choice of forecast model, which is particularly valuable for ongoing research in the field of feature-based time series analysis.
+Features such as the strength of trend and strength of seasonality rank top within each class across all frequency categories (\textcolor{blue}{see Table} \autoref{summaryfeature}). In addition, linearity, curvature and spikiness also rank among the top five within most of the classes. Within most of the classes at least one feature related to autocorrelation and partial autocorrelation coefficients ranks among the top five. This confirms that the information regarding the correlation structure of the time series is essential for the choice of model selection. The length of time series also appeared to be important in selecting simple forecast models such as snaive, naive and random walk with drift. Partial dependency plots of length show that short time series tend to select simple forecast models such as snaive, naive and random walk with drift while more parametrised forecast models such as SARIMA, ETS with trend and seasonal component, the neural network approach and forecast models handling multiple seasonal components are often selected with lengthy series. For all features, the displayed relationships of partial dependency plots are consistent with the domain knowledge expectations. This is an important aspect in encouraging people to trust and use the proposed framework effectively. However, several features are used to build the framework with comparable contributions, and thus all individual contributions are small. The observed two-way interactions do not completely change the individual relationship of features with the predicted outcome, but they do change the probability of selecting the models. Further, the LIME approach is used to explore the reasons behind each individual prediction. Exploration of other local interpretability methods is a direction for future research. This is useful for understanding the reasons behind series being classified with very high probability or very low probability. It also helps to increase trust in the framework because if people understand the reasons behind the results, they can use their prior knowledge about the application domain to decide whether to accept (trust) or reject the prediction outcome. The results of this help to refine the picture of the relationship between features and the choice of forecast model, which is particularly valuable for ongoing research in the field of feature-based time series analysis.
 
 Exploring of the conditions learned by the FFORMS framework also supports practitioners to make a good educated guess about suitable forecast models for a given problem. Further, the results of this study are useful in identifying new ways to improve forecasting accuracy by capturing different features of time series.
 
@@ -1010,36 +1010,36 @@ According to \autoref{fig:viyearly}, which shows the variable importance plots f
 \caption{\label{fig:wntwopdcplots}Partial dependency plots for wn class}
 \end{figure}
 
-\hypertarget{appendix-c-relative-frequencies-that-each-forecast-model-was-selected-as-a-component}{%
-\subsection*{Appendix C: Relative frequencies that each forecast model was selected as a component}\label{appendix-c-relative-frequencies-that-each-forecast-model-was-selected-as-a-component}}
-\addcontentsline{toc}{subsection}{Appendix C: Relative frequencies that each forecast model was selected as a component}
+\hypertarget{appendix-c-relative-frequencies-that-each-forecast-model-was-selected-as-the-best-forecast-model}{%
+\subsection*{Appendix C: Relative frequencies that each forecast model was selected as the best forecast model}\label{appendix-c-relative-frequencies-that-each-forecast-model-was-selected-as-the-best-forecast-model}}
+\addcontentsline{toc}{subsection}{Appendix C: Relative frequencies that each forecast model was selected as the best forecast model}
 
 \begin{table}[!htp]
 \centering\footnotesize\tabcolsep=0.12cm
 \caption{Relative frequencies that each forecast model was selected as a component}
 \label{freqmodels}
-\begin{tabular}{llrrrrrr}
+{\color{blue}\begin{tabular}{llrrrrrr}
 Class label & Description & Y & Q & M & W & D & H \\ \hline
-wn & white noise process & \checkmark & \checkmark & \checkmark & \checkmark & & \\
-ARMA & AR, MA, ARMA processes & \checkmark & \checkmark & \checkmark & - & &\\
-ARIMA & ARIMA process & \checkmark & \checkmark & \checkmark & - & &\\
-SARIMA & seasonal ARIMA & - & \checkmark & \checkmark & -& &\\
-rwd & random walk with drift & \checkmark & \checkmark & \checkmark & \checkmark & & \\
-rw & random walk & \checkmark & \checkmark & \checkmark & \checkmark & & \\
-theta & standard theta method & \checkmark & \checkmark & \checkmark & \checkmark & &\\
-stlar &  & - & \checkmark & \checkmark & \checkmark & &\\
-ETS\_NTNS & ETS without trend and seasonal components & \checkmark & \checkmark & - & - & &\\
-ETS\_T & ETS with trend component and without seasonal component & \checkmark & \checkmark & - & -& &\\
-ETS\_DT& ETS with damped trend component and without seasonal component  & \checkmark &  \checkmark & - & - & &\\
-ETS\_TS & ETS with trend and seasonal component & - & \checkmark & - & - & &\\
-ETS\_DTS & ETS with damped trend and seasonal component & - & \checkmark & - & -& &\\
-ETS\_S & ETS with seasonal component and without trend component & -  & \checkmark & - & - & & \\
-snaive & seasonal naive method & - & \checkmark & \checkmark & \checkmark & &\\
-tbats & TBATS forecasting & - & \checkmark & \checkmark & \checkmark & & \\
-nn & neural network time series forecasts & \checkmark & \checkmark & \checkmark & \checkmark & & \\
-mstlets &  & - & - & \checkmark & \checkmark & &\\
-mstlarima & & - & - & - & \checkmark & &\\\hline
-\end{tabular}
+wn & white noise process & 1284 & 463 & 1403 & 3 &156 & 1\\
+ARMA & AR, MA, ARMA processes & 97 & 24 & 11 & - &0 &-\\
+ARIMA & ARIMA process & 3351 & 351 & 649 & - &2 &-\\
+SARIMA & seasonal ARIMA & - & 3667 & 6782 & 54&- &-\\
+rwd & random walk with drift & 10754 & 9103 & 8955 & 41 &671 & 0 \\
+rw & random walk & 521 & 406 & 1731 & 10 & 323 & 0\\
+theta & standard theta method & 466 & 1071 & 3176 & 18 &554 &0\\
+stlar &  & - & 2369 & 9829 & 29 & 678& 39\\
+ETS\_NTNS & ETS without trend and seasonal components & 35 & 34 & 160 & - & &-\\
+ETS\_T & ETS with trend component and without seasonal component & 4992 & 360 & 521 & -& &-\\
+ETS\_DT& ETS with damped trend component and without seasonal component  & 26&  107 & 979 & - & &-\\
+ETS\_TS & ETS with trend and seasonal component & - & 346 & 779 & - & &-\\
+ETS\_DTS & ETS with damped trend and seasonal component & - & 47 & 640 & -& &-\\
+ETS\_S & ETS with seasonal component and without trend component & -  & 110 & 442 & - & & -\\
+snaive & seasonal naive method & - & 434 & 1247 & 20 &93 & 50\\
+tbats & TBATS forecasting & - & 2880 & 5989 & 90 &368 & 58\\
+nn & neural network time series forecasts & 1474 & 2128& 4707& 56& 1010& 119\\
+mstlets &  & - & - & \checkmark & 36 &169 & 54\\
+mstlarima & & - & - & - & - & 205& 93\\\hline
+\end{tabular}}
 \end{table}
 
 \newpage
@@ -1050,49 +1050,49 @@ mstlarima & & - & - & - & \checkmark & &\\\hline
 
 \begin{table}[!htp]
 \centering\footnotesize\tabcolsep=0.12cm
-\caption{Proportion of times each feature is selected for top five ranks by different forecast model classes across each frequency category}
-\label{feature}
+\caption{Proportion of times each feature is selected for the top five ranks by different forecast model classes across each frequency category}
+\label{summaryfeature}
 {\color{blue}\begin{tabular}{llp{8,8cm}cccccc}
 \toprule
 \multicolumn{2}{c}{Feature} & Description & Y & Q & M & W & D & H\\
 \midrule
-1  & T              & length of time series                                                                   & 0.00  & 0.05 & 0.52 & 0.33& 0.70 &0.10\\
+1  & T              & length of time series                                                                   &   & 0.05 & 0.52 & 0.33& 0.70 &0.10\\
 2  & trend          & strength of trend                                                                       & 0.90  & 0.82 &0.88 & 0.42 & 0.60 &0.20\\
 3  & seasonality\_q    & strength of quarterly seasonality                                                    & -     & 1.00 & & - & - & -\\
 4  & seasonality\_m    & strength of monthly seasonality                                                      & -     & - & 1.00& - & - &-\\
 5  & seasonality\_w    & strength of weekly seasonality                                                       & -     & - & - & 0.66 & 0.50 &0.40\\
-6  & seasonality\_d    & strength of daily seasonality                                                        & -     & - & & - & 0.00 &1.00 \\
+6  & seasonality\_d    & strength of daily seasonality                                                        & -     & - & & - &  &1.00 \\
 7  & seasonality\_y    & strength of yearly seasonality                                                       & -     & - & & - & 1.00 & 0.00\\
 8  & linearity      & linearity                                                                               & 0.90  & 0.82 & 0.70& 0.91 &0.70 &0.40\\
 9  & curvature      & curvature                                                                               & 0.30  & 0.05 & 0.00& 0.25 & 0.20 & 0.30\\
-10  & spikiness      & spikiness                                                                               & 0.10  & 0.00 &0.05 & 0.25 & - & 0.10\\
-11  & e\_acf1        & first ACF value of remainder series                                                     & 0.00  & 0.00 &0.05 &0.25 & 0.00 &0.10\\
-12  & stability      & stability                                                                               & 0.00  & 0.11 & 0.47& 0.41 & 0.80 &0.20\\
-13  & lumpiness      & lumpiness                                                                               & 0.00  & 0.11 & 0.00& 0.08 & 0.00 &0.00\\
-14 & entropy        & spectral entropy                                                                        & 0.00  & 0.00 &0.00  & 0.25 &0.00 &0.60\\
-15 & hurst          & Hurst exponent                                                                          & 0.00  & 0.00 &0.00 & 0.00 & 0.10 &0.00\\
-16 & nonlinearity   & nonlinearity                                                                            & 0.00 & 0.00 &0.00 & 0.25 & 0.00 &0.20\\
-17 & alpha          & ETS(A,A,N) $\hat\alpha$                                                                 & 0.00  & 0.23 & 0.05& 0.00 & - &- \\
+10  & spikiness      & spikiness                                                                               & 0.10  &  &0.05 & 0.25 & - & 0.10\\
+11  & e\_acf1        & first ACF value of remainder series                                                     &   &  &0.05 &0.25 &  &0.10\\
+12  & stability      & stability                                                                               &   & 0.11 & 0.47& 0.41 & 0.80 &0.20\\
+13  & lumpiness      & lumpiness                                                                               &   & 0.11 & & 0.08 &  &\\
+14 & entropy        & spectral entropy                                                                        &   &  &  & 0.25 & &0.60\\
+15 & hurst          & Hurst exponent                                                                          &   &  & & & 0.10 &\\
+16 & nonlinearity   & nonlinearity                                                                            &  &  & & 0.25 &  &0.20\\
+17 & alpha          & ETS(A,A,N) $\hat\alpha$                                                                 &  & 0.23 & 0.05& & - &- \\
 18 & beta           & ETS(A,A,N) $\hat\beta$                                                                  & 0.30  & 0.05 &0.05 &0.25 & - &-\\
-19 & hwalpha        & ETS(A,A,A) $\hat\alpha$                                                                 & -     & 0.00 &0.11 & - & - &\\
-20 & hwbeta         & ETS(A,A,A) $\hat\beta$                                                                  & -     & 0.00 &0.00 & - & - &\\
-21 & hwgamma        & ETS(A,A,A) $\hat\gamma$                                                                 & -     & 0.23 & 0.00& - &-&\\
+19 & hwalpha        & ETS(A,A,A) $\hat\alpha$                                                                 & -     & &0.11 & - & - &\\
+20 & hwbeta         & ETS(A,A,A) $\hat\beta$                                                                  & -     & && - & - &\\
+21 & hwgamma        & ETS(A,A,A) $\hat\gamma$                                                                 & -     & 0.23 & & - &-&\\
 22 & ur\_pp         & test statistic based on Phillips-Perron test                                            & 0.90  & - &- & - & - &-\\
-23 & ur\_kpss       & test statistic based on KPSS test                                                       & 0.00  & - & -& - & - &-\\
-24 & y\_acf1        & first ACF value of the original series                                                  & 0.20  & 0.00 &0.00 & 0.00 & 0.00 &0.00\\
-25 & diff1y\_acf1   & first ACF value of the differenced series                                               & 0.80  & 0.11 & 0.23& 0.00 & 0.10 &0.00\\
-26 & diff2y\_acf1   & first ACF value of the twice-differenced series                                         & 0.00  & 0.00 &0.00 & 0.08 & 0.00 &0.20\\
-27 & y\_acf5        & sum of squares of first 5 ACF values of original series                                 & 0.00  & 0.05 &0.00 & 0.00 &0.00 &0.00 \\
-28 & diff1y\_acf5   & sum of squares of first 5 ACF values of differenced series                              & 0.10  & 0.11 & 0.11& 0.00 & 0.10 &0.10\\
-29 & diff2y\_acf5   & sum of squares of first 5 ACF values of twice-differenced series                        & 0.00  & 0.05 &0.00 & 0.08 & 0.00 &0.10\\
-30 & sediff\_acf1 & ACF value at the first lag of seasonally-differenced series                               & -     & 0.00 & 0.00& 0.00 & 0.00 &0.10\\
+23 & ur\_kpss       & test statistic based on KPSS test                                                       &   & - & -& - & - &-\\
+24 & y\_acf1        & first ACF value of the original series                                                  & 0.20  &  & &  & &\\
+25 & diff1y\_acf1   & first ACF value of the differenced series                                               & 0.80  & 0.11 & 0.23&  & 0.10 &\\
+26 & diff2y\_acf1   & first ACF value of the twice-differenced series                                         &   &  & & 0.08 &  &0.20\\
+27 & y\_acf5        & sum of squares of first 5 ACF values of original series                                 &   & 0.05 & & & & \\
+28 & diff1y\_acf5   & sum of squares of first 5 ACF values of differenced series                              & 0.10  & 0.11 & 0.11&  & 0.10 &0.10\\
+29 & diff2y\_acf5   & sum of squares of first 5 ACF values of twice-differenced series                        &   & 0.05 & & 0.08 &  &0.10\\
+30 & sediff\_acf1 & ACF value at the first lag of seasonally-differenced series                               & -     &  & &  &  &0.10\\
 31 & sediff\_seacf1 & ACF value at the first seasonal lag of seasonally-differenced series                    & -     & 0.11 & 0.17& 0.25 & 0.10 & 0.20\\
-32 & sediff\_acf5   & sum of squares of first 5 autocorrelation coefficients of seasonally-differenced series & -     & \yes & & \yes & \yes &\\
-33 & seas\_pacf     & partial autocorrelation coefficient at first seasonal lag & -     & \yes & & \yes & \yes &\\
-34 & lmres\_acf1    & first ACF value of residual series of linear trend model                                & 0.40  & - & & - & - &\\
-35 & y\_pacf5       & sum of squares of first 5 PACF values of original series                                & 0.40  & \yes & & \yes & \yes &\\
-36 & diff1y\_pacf5  & sum of squares of first 5 PACF values of differenced series                             & 0.00  & \yes & & \yes & \yes &\\
-37 & diff2y\_pacf5  & sum of squares of first 5 PACF values of twice-differenced series                       & 0.00  & \yes & & \yes & \yes &\\
+32 & sediff\_acf5   & sum of squares of first 5 autocorrelation coefficients of seasonally-differenced series & -     &  & 0.05&  & 0.20 & \\
+33 & seas\_pacf     & partial autocorrelation coefficient at first seasonal lag & -                           & - & 0.05& 0.05 & 0.25 &\\
+34 & lmres\_acf1    & first ACF value of residual series of linear trend model                                & 0.40  & - & -& - & - &-\\
+35 & y\_pacf5       & sum of squares of first 5 PACF values of original series                                & 0.40  & 0.52 & 0.29& 0.33 & 0.90 & 0.90\\
+36 & diff1y\_pacf5  & sum of squares of first 5 PACF values of differenced series                             &   & 0.82 &  &  & 0.10 &0.70\\
+37 & diff2y\_pacf5  & sum of squares of first 5 PACF values of twice-differenced series                       &   & 0.05 & & 0.08 &  & \\
 \bottomrule
 \end{tabular}}
 \end{table}
