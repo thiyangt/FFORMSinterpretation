@@ -300,15 +300,17 @@ Global interpretations help us to understand the entire modelled relationship.  
 7. Use the estimated coefficients of the simple linear model to explain how the local behaviour corresponds to the selected observation in step 1.
 
 An alternative for explaining local behaviour of complex models is proposed by @lundberg2017unified. The approach is developed based on game theory, it is named 'Shapley values'.
+
 \begin{table}[!h]
 \centering\scriptsize\tabcolsep=0.12cm
+\begin{threeparttable}
 \caption{The performance of FFORMS on the M4 competition data based on point forecasts (based on MASE) and prediction intervals (based on MSIS)}
 \label{forecasts}
 \begin{tabular}{l|rrrrrr}
 \hline
 \multicolumn{7}{c}{Point Forecasts (Mean Absolute Scaled Error (MASE))} \\\hline
  & Yearly & Quarterly & Monthly & Weekly & Daily & Hourly \\\hline
-\bf{FFORMS} & \bf{3.17} &  \bf{1.20} &  \bf{0.98}&  \bf{2.31}& \bf{3.57} &  \bf{0.84}\\
+\bf{FFORMS} & 3.17 &  1.20 &  0.98&  2.31& 3.57 &  0.84\\
 auto.arima & 3.40 &1.17  &0.93  & 2.55 &  -& - \\
 ets & 3.44 &  1.16& 0.95 &  -&-  &  -\\
 theta & 3.37 &1.24  & 0.97 &2.64  & 3.33 & 1.59 \\
@@ -322,16 +324,21 @@ wn & 13.42 &  6.50&  4.11&  49.91& 38.07 & 11.68 \\
 mstlarima & - & - &  - & - & 3.84 &  1.12\\
 mstlets & - &  - &  - &  - & 3.73 &  1.23\\
 combination (mean) & 4.09 & 1.58 &  1.16&6.96  & 7.94 & 3.93 \\\hline
-M4-1st & 2.98 & 1.12 &  0.88& 2.36 & 3.45 & 0.89\\
-M4-2nd & 3.06 & 1.11 &  0.89& 2.11 & 3.34 & 0.81\\
-M4-3rd & 3.13 & 1.12 &  0.91& 2.16 & 2.64 & 0.87\\\hline
+M4-1st & \bf{2.98} & 1.12 &  \bf{0.88}& 2.36 & 3.45 & 0.89\\
+M4-2nd & 3.06 & \bf{1.11} &  0.89& \bf{2.11} & 3.34 & \bf{0.81}\\
+M4-3rd & 3.13 & 1.12 &  0.91& 2.16 & \bf{2.64} & 0.87\\\hline
 \multicolumn{7}{c}{Prediction Intervals (Mean Scaled Interval Score (MSIS))} \\\hline
-\bf{FFORMS} & \bf{39.79} &  \bf{11.24} &  \bf{9.82}&  \bf{20.84}& \bf{36.36} & \bf{8.07} \\
-M4-1st & 23.89 & 8.55 &  7.20 & 22.03 & 26.28 & 7.92\\
+\bf{FFORMS} & 39.79 &  11.24 &  9.82&  \bf{20.84}& 36.36 & 8.0 \\
+M4-1st & \bf{23.89} & \bf{8.55} &  \bf{7.20} & 22.03 & \bf{26.28} & \bf{7.92}\\
 M4-2nd & 27.47 & 9.38 &  8.65& 21.53 & 34.37 & 18.50\\
 M4-3rd & \multicolumn{6}{c}{not submitted}\\
 naive & 56.55 & 14.07 &  12.30 & 26.35 & 32.55 & 71.24\\\hline
 \end{tabular}
+  \begin{tablenotes}
+      \small
+      \item Note: Bold signifies the best performing method.
+    \end{tablenotes}
+  \end{threeparttable}
 \end{table}
 
 
@@ -359,7 +366,7 @@ In addition, the first ACF value of residual series of linear trend model (lmres
 ```
 
 
-\autoref{fig:pdpyearlyurpp} to \autoref{fig:pdpyearlylinearity} show the partial dependency curves and associated confidence intervals of the top three features that are selected most in each class. In all three cases, within each class the displayed relationship is consistent with the theoretical expectations. For example, a high negative value of the Phillips-Perron test statistic indicates a stationarity of the series, while a positive value of the test statistic indicates nonstationarity of the series. According to \autoref{fig:pdpyearlyurpp}, we can see that the probability of selecting an ETS model with a trend component and ARIMA models increases steadily as ur_pp increases, while the opposite relationship could be observed for ARMA and WN. According to \autoref{fig:pdpyearlytrend}, we can see that the information about the strength of trend in the series is very important when selecting a forecast model. The probability of selecting an ETS model without trend components (ETS_NTNS), WN and ARMA decreases when the strength of trend is extremely high, while the opposite relationship can be observed for other classes. According to \autoref{fig:pdpyearlylinearity} random walk with drift and ARMA classes are highly sensitive to the value of linearity around 0. According to Friedman's H-statistic, diff1y_acf1 and lmres_acf1 show high levels of two-way interactivity. The associated two-way partial dependency plots are shown in \autoref{fig:intyearly}. The classes rw, rwd, ETS_NTNS, ARIMA and nn show interactivity. The plots suggest that the probability of selecting the corresponding model changes according to the changes in both diff1y_acf1 and lmres_acf1. Within the neural network class we can see that when lmres_acf1 arrives closer to 1, lmres_acf1 does not interact with diff1y_acf1. ETS_T shows low interactivity, irrespective of the value of diff1y_acf1 series, with a low value of lmres_acf1 leading to a high chance of selecting ETS_T model. Within ETS_T the colours of the bands are constant throughout the domain. However, for rw, rwd, ARIMA, theta and neural networks the strength of colour varies according to the levels of both diff1y_acf1 and lmres_acf1 indicating an interactivity between the two features.   The interactivity pattern within wn class is not visible at a 0-0.21 scale but it is visible within a 0-1 scale. The associated two-way partial dependency plot of wn series is shown in \autoref{fig:wntwopdcplots}. This suggests that two-way interactivity easily separates wn from the rest. 
+\autoref{fig:pdpyearlyurpp} to \autoref{fig:pdpyearlylinearity} show the partial dependency curves and associated confidence intervals of the top three features that are selected most in each class. In all three cases, within each class the displayed relationship is consistent with the theoretical expectations. For example, a high negative value of the Phillips-Perron test statistic indicates a stationarity of the series, while a positive value of the test statistic indicates nonstationarity of the series. According to \autoref{fig:pdpyearlyurpp}, we can see that the probability of selecting an ETS model with a trend component and ARIMA models increases steadily as ur_pp increases, while the opposite relationship could be observed for ARMA and WN. According to \autoref{fig:pdpyearlytrend}, we can see that the information about the strength of trend in the series is very important when selecting a forecast model. The probability of selecting an ETS model without trend components (ETS_NTNS), WN and ARMA decreases when the strength of trend is extremely high, while the opposite relationship can be observed for other classes. According to \autoref{fig:pdpyearlylinearity} random walk with drift and ARMA classes are highly sensitive to the value of linearity around 0. According to Friedman's H-statistic, diff1y_acf1 and lmres_acf1 show high levels of two-way interactivity. The associated two-way partial dependency plots are shown in \autoref{fig:intyearly}. The classes rw, rwd, ETS_NTNS, ARIMA and nn show interactivity. The plots suggest that the probability of selecting the corresponding model changes according to the changes in both diff1y_acf1 and lmres_acf1. Within the neural network class we can see that when lmres_acf1 arrives closer to 1, lmres_acf1 does not interact with diff1y_acf1. ETS_T shows low interactivity, irrespective of the value of diff1y_acf1 series, with a low value of lmres_acf1 leading to a high chance of selecting ETS_T model. Within ETS_T the colours of the bands are constant throughout the domain. However, for rw, rwd, ARIMA, theta and neural networks the strength of colour varies according to the levels of both diff1y_acf1 and lmres_acf1 indicating an interactivity between the two features.   The interactivity pattern within wn class is not visible at a 0-0.21 scale but it is visible within a 0-1 scale. The associated two-way partial dependency plot of wn series is shown in \autoref{fig:wntwopdcplots} \textcolor{blue}{(see in the Appendix B)}. This suggests that two-way interactivity easily separates wn from the rest. 
 
 
 ```{r pdpyearlyurpp, fig.height=4, fig.width=15, fig.cap="Partial dependence plots for ur_pp. The shading shows the 95% confidence intervals. Y-axis denotes the probability of belonging to the corresponding class. All classes show a turning point in the relationship around zero.", fig.pos="h"}
